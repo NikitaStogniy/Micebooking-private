@@ -1,0 +1,23 @@
+<svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="5" cy="6" r="2" fill="#2431A5"/>
+<circle cx="5" cy="11" r="2" fill="#2431A5"/>
+<circle cx="5" cy="16" r="2" fill="#2431A5"/>
+<circle cx="5" cy="21" r="2" fill="#2431A5"/>
+<circle cx="5" cy="26" r="2" fill="#2431A5"/>
+<circle cx="5" cy="31" r="2" fill="#2431A5"/>
+<circle cx="5" cy="36" r="2" fill="#2431A5"/>
+<circle cx="45" cy="6" r="2" fill="#2431A5"/>
+<circle cx="45" cy="11" r="2" fill="#2431A5"/>
+<circle cx="45" cy="16" r="2" fill="#2431A5"/>
+<circle cx="45" cy="21" r="2" fill="#2431A5"/>
+<circle cx="45" cy="26" r="2" fill="#2431A5"/>
+<circle cx="45" cy="31" r="2" fill="#2431A5"/>
+<circle cx="37.998" cy="43" r="2" transform="rotate(90 37.998 43)" fill="#2431A5"/>
+<circle cx="32.998" cy="43.0596" r="2" transform="rotate(90 32.998 43.0596)" fill="#2431A5"/>
+<circle cx="27.998" cy="43.1191" r="2" transform="rotate(90 27.998 43.1191)" fill="#2431A5"/>
+<circle cx="22.999" cy="43.1787" r="2" transform="rotate(90 22.999 43.1787)" fill="#2431A5"/>
+<circle cx="18" cy="43.2393" r="2" transform="rotate(90 18 43.2393)" fill="#2431A5"/>
+<circle cx="13" cy="43.2988" r="2" transform="rotate(90 13 43.2988)" fill="#2431A5"/>
+<circle cx="45" cy="36" r="2" fill="#2431A5"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M9 4H14V33H36V4H41V33V39H36H14H9V33V4Z" fill="#2431A5"/>
+</svg>
