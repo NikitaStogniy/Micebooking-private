@@ -1,0 +1,17 @@
+<svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="14" y="11" width="21" height="6" fill="#2431A5"/>
+<circle cx="21" cy="7" r="2" fill="#2431A5"/>
+<circle cx="28" cy="7" r="2" fill="#2431A5"/>
+<rect x="23" y="27" width="21" height="6" transform="rotate(180 23 27)" fill="#2431A5"/>
+<circle cx="16" cy="31" r="2" transform="rotate(180 16 31)" fill="#2431A5"/>
+<circle cx="9" cy="31" r="2" transform="rotate(180 9 31)" fill="#2431A5"/>
+<rect x="48" y="27" width="21" height="6" transform="rotate(180 48 27)" fill="#2431A5"/>
+<circle cx="41" cy="31" r="2" transform="rotate(180 41 31)" fill="#2431A5"/>
+<circle cx="34" cy="31" r="2" transform="rotate(180 34 31)" fill="#2431A5"/>
+<rect x="23" y="40" width="21" height="6" transform="rotate(180 23 40)" fill="#2431A5"/>
+<circle cx="16" cy="44" r="2" transform="rotate(180 16 44)" fill="#2431A5"/>
+<circle cx="9" cy="44" r="2" transform="rotate(180 9 44)" fill="#2431A5"/>
+<rect x="48" y="40" width="21" height="6" transform="rotate(180 48 40)" fill="#2431A5"/>
+<circle cx="41" cy="44" r="2" transform="rotate(180 41 44)" fill="#2431A5"/>
+<circle cx="34" cy="44" r="2" transform="rotate(180 34 44)" fill="#2431A5"/>
+</svg>
