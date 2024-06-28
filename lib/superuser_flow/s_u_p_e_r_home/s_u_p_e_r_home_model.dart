@@ -7,6 +7,7 @@ import '/superuser_flow/client_search/client_search_widget.dart';
 import '/superuser_flow/company_requests_component/company_requests_component_widget.dart';
 import '/superuser_flow/edit_about/edit_about_widget.dart';
 import '/superuser_flow/edit_about_us/edit_about_us_widget.dart';
+import '/superuser_flow/edit_p_p/edit_p_p_widget.dart';
 import '/superuser_flow/edit_q_a/edit_q_a_widget.dart';
 import '/superuser_flow/edit_whyus/edit_whyus_widget.dart';
 import '/superuser_flow/food_full_info/food_full_info_widget.dart';
@@ -88,6 +89,8 @@ class SUPERHomeModel extends FlutterFlowModel<SUPERHomeWidget> {
   late CompanyRequestsComponentModel companyRequestsComponentModel;
   // Model for super_Hotel_juridical component.
   late SuperHotelJuridicalModel superHotelJuridicalModel;
+  // Model for EditPP component.
+  late EditPPModel editPPModel;
 
   @override
   void initState(BuildContext context) {
@@ -116,6 +119,7 @@ class SUPERHomeModel extends FlutterFlowModel<SUPERHomeWidget> {
         createModel(context, () => CompanyRequestsComponentModel());
     superHotelJuridicalModel =
         createModel(context, () => SuperHotelJuridicalModel());
+    editPPModel = createModel(context, () => EditPPModel());
   }
 
   @override
@@ -144,5 +148,6 @@ class SUPERHomeModel extends FlutterFlowModel<SUPERHomeWidget> {
     roomFullInfoModel.dispose();
     companyRequestsComponentModel.dispose();
     superHotelJuridicalModel.dispose();
+    editPPModel.dispose();
   }
 }

@@ -10,6 +10,7 @@ import '/superuser_flow/client_search/client_search_widget.dart';
 import '/superuser_flow/company_requests_component/company_requests_component_widget.dart';
 import '/superuser_flow/edit_about/edit_about_widget.dart';
 import '/superuser_flow/edit_about_us/edit_about_us_widget.dart';
+import '/superuser_flow/edit_p_p/edit_p_p_widget.dart';
 import '/superuser_flow/edit_q_a/edit_q_a_widget.dart';
 import '/superuser_flow/edit_whyus/edit_whyus_widget.dart';
 import '/superuser_flow/food_full_info/food_full_info_widget.dart';
@@ -654,6 +655,56 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                           ),
                                                 ),
                                               ),
+                                              InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  _model.activePage =
+                                                      SuperUserPage.PP;
+                                                  setState(() {});
+                                                  await _model.columnController2
+                                                      ?.animateTo(
+                                                    0,
+                                                    duration: const Duration(
+                                                        milliseconds: 100),
+                                                    curve: Curves.ease,
+                                                  );
+                                                },
+                                                child: Text(
+                                                  'Политика\nконфиденциальности ',
+                                                  style:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Commissioner',
+                                                            color:
+                                                                valueOrDefault<
+                                                                    Color>(
+                                                              _model.activePage ==
+                                                                      SuperUserPage
+                                                                          .cms_about
+                                                                  ? FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground
+                                                                  : FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .alternate,
+                                                            ),
+                                                            fontSize: 18.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                ),
+                                              ),
                                             ].divide(const SizedBox(height: 20.0)),
                                           ),
                                         ),
@@ -1124,6 +1175,12 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                       setState(() {});
                                     },
                                   ),
+                                ),
+                              if (_model.activePage == SuperUserPage.PP)
+                                wrapWithModel(
+                                  model: _model.editPPModel,
+                                  updateCallback: () => setState(() {}),
+                                  child: const EditPPWidget(),
                                 ),
                             ],
                           ),

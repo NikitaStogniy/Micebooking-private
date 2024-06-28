@@ -3013,6 +3013,20 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                         hotelSearchPageUsersRow
                                                             ?.id,
                                                   });
+                                                  await UsersTable().update(
+                                                    data: {
+                                                      'last_request':
+                                                          supaSerialize<
+                                                                  DateTime>(
+                                                              getCurrentTimestamp),
+                                                    },
+                                                    matchingRows: (rows) =>
+                                                        rows.eq(
+                                                      'id',
+                                                      hotelSearchPageUsersRow
+                                                          ?.id,
+                                                    ),
+                                                  );
 
                                                   context.pushNamed(
                                                     'Request',
@@ -3249,6 +3263,20 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           hotelSearchPageUsersRow
                                                               ?.id,
                                                         ),
+                                                  );
+                                                  await UsersTable().update(
+                                                    data: {
+                                                      'last_request':
+                                                          supaSerialize<
+                                                                  DateTime>(
+                                                              getCurrentTimestamp),
+                                                    },
+                                                    matchingRows: (rows) =>
+                                                        rows.eq(
+                                                      'id',
+                                                      hotelSearchPageUsersRow
+                                                          ?.id,
+                                                    ),
                                                   );
                                                   _model.addToRequestList(
                                                       _model.request!);
