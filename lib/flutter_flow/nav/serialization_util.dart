@@ -219,50 +219,58 @@ dynamic deserializeParam<T>(
       case ParamType.SupabaseRow:
         final data = json.decode(param) as Map<String, dynamic>;
         switch (T) {
-          case RequestWrapperRow:
-            return RequestWrapperRow(data);
-          case ServiceRow:
-            return ServiceRow(data);
-          case RequestsRoomVarRow:
-            return RequestsRoomVarRow(data);
-          case RequestsFoodVarRow:
-            return RequestsFoodVarRow(data);
-          case RequestsRow:
-            return RequestsRow(data);
-          case HallRow:
-            return HallRow(data);
-          case UserDesiresRow:
-            return UserDesiresRow(data);
-          case RoomRow:
-            return RoomRow(data);
           case FoodRow:
             return FoodRow(data);
-          case JuridicalInfoRow:
-            return JuridicalInfoRow(data);
-          case CmsRow:
-            return CmsRow(data);
-          case RequestsHallVarRow:
-            return RequestsHallVarRow(data);
-          case CityRow:
-            return CityRow(data);
-          case SeatingRow:
-            return SeatingRow(data);
-          case FavoriteHotelsRow:
-            return FavoriteHotelsRow(data);
-          case ServiceCategoryRow:
-            return ServiceCategoryRow(data);
-          case CenterDistanceRow:
-            return CenterDistanceRow(data);
+          case PageRow:
+            return PageRow(data);
+          case RequestsRoomVarRow:
+            return RequestsRoomVarRow(data);
           case HotelRow:
             return HotelRow(data);
-          case UsersRow:
-            return UsersRow(data);
-          case FoodPositionRow:
-            return FoodPositionRow(data);
-          case EthalonSeatingRow:
-            return EthalonSeatingRow(data);
+          case RoomRow:
+            return RoomRow(data);
+          case LastChangedRow:
+            return LastChangedRow(data);
+          case UserDesiresRow:
+            return UserDesiresRow(data);
+          case CmsRow:
+            return CmsRow(data);
           case PlaceRow:
             return PlaceRow(data);
+          case FoodPositionRow:
+            return FoodPositionRow(data);
+          case ServiceCategoryRow:
+            return ServiceCategoryRow(data);
+          case EthalonSeatingRow:
+            return EthalonSeatingRow(data);
+          case SeatingRow:
+            return SeatingRow(data);
+          case RequestsFoodVarRow:
+            return RequestsFoodVarRow(data);
+          case PageSectionRow:
+            return PageSectionRow(data);
+          case UsersRow:
+            return UsersRow(data);
+          case FavoriteHotelsRow:
+            return FavoriteHotelsRow(data);
+          case CenterDistanceRow:
+            return CenterDistanceRow(data);
+          case HallRow:
+            return HallRow(data);
+          case RequestsRow:
+            return RequestsRow(data);
+          case FeedbackRow:
+            return FeedbackRow(data);
+          case RequestsHallVarRow:
+            return RequestsHallVarRow(data);
+          case JuridicalInfoRow:
+            return JuridicalInfoRow(data);
+          case ServiceRow:
+            return ServiceRow(data);
+          case RequestWrapperRow:
+            return RequestWrapperRow(data);
+          case CityRow:
+            return CityRow(data);
           default:
             return null;
         }

@@ -97,7 +97,7 @@ class SendemailCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'sendemail',
-      apiUrl: '25.465.587:465/email',
+      apiUrl: 'emailer.micebooking.ru',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
