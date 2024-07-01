@@ -321,7 +321,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                             ],
                           ),
                         ),
-                        if (containerRequestsRow?.rooms.isNotEmpty)
+                        if (containerRequestsRow?.rooms?.isNotEmpty ?? false)
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 40.0, 0.0, 0.0),
@@ -721,7 +721,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                               ],
                             ),
                           ),
-                        if (containerRequestsRow?.halls.isNotEmpty)
+                        if (containerRequestsRow?.halls?.isNotEmpty ?? false)
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 40.0, 0.0, 0.0),
@@ -1116,7 +1116,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                               ],
                             ),
                           ),
-                        if (containerRequestsRow?.food.isNotEmpty)
+                        if (containerRequestsRow?.food?.isNotEmpty ?? false)
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 40.0, 0.0, 0.0),
