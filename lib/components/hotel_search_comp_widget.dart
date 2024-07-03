@@ -617,19 +617,15 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                         (_model.city != null) &&
                         (_model.visitors! > 0) &&
                         (_model.startDate != null)) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            'Сервис временно недоступен. Мы сообщим о начале работы на Вашу почту',
-                            style: TextStyle(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              fontSize: 16.0,
-                            ),
-                          ),
-                          duration: const Duration(milliseconds: 40000),
-                          backgroundColor: FlutterFlowTheme.of(context).primary,
-                        ),
+                      await widget.onSearch?.call(
+                        _model.startDate,
+                        _model.duration,
+                        _model.city,
+                        _model.visitors,
+                        _model.seating,
+                        _model.hallFilter1,
+                        _model.hallFilter2,
+                        _model.hallFilter3,
                       );
                     } else {
                       await showDialog(

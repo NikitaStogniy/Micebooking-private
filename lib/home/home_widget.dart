@@ -1,4 +1,5 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/schema/enums/enums.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/footer_widget.dart';
 import '/components/hotel_search_comp_widget.dart';
@@ -8,6 +9,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'home_model.dart';
 export 'home_model.dart';
@@ -28,6 +30,21 @@ class _HomeWidgetState extends State<HomeWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => HomeModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (loggedIn) {
+        await UsersTable().update(
+          data: {
+            'uid': currentUserUid,
+          },
+          matchingRows: (rows) => rows.eq(
+            'email',
+            currentUserEmail,
+          ),
+        );
+      }
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -361,13 +378,71 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         onPressed: () async {
                                           if (currentUserUid != '') {
                                             if (containerUsersRow?.role ==
-                                                'CLIENT') {
-                                              context.pushNamed('Client_home');
+                                                EnumRole.HOTEL.name) {
+                                              context.pushNamed(
+                                                'HOTEL_HOME',
+                                                extra: <String, dynamic>{
+                                                  kTransitionInfoKey:
+                                                      const TransitionInfo(
+                                                    hasTransition: true,
+                                                    transitionType:
+                                                        PageTransitionType.fade,
+                                                    duration: Duration(
+                                                        milliseconds: 0),
+                                                  ),
+                                                },
+                                              );
                                             } else {
-                                              context.pushNamed('HomePage');
+                                              if (containerUsersRow?.role ==
+                                                  EnumRole.CLIENT.name) {
+                                                context.pushNamed(
+                                                  'Client_home',
+                                                  extra: <String, dynamic>{
+                                                    kTransitionInfoKey:
+                                                        const TransitionInfo(
+                                                      hasTransition: true,
+                                                      transitionType:
+                                                          PageTransitionType
+                                                              .fade,
+                                                      duration: Duration(
+                                                          milliseconds: 0),
+                                                    ),
+                                                  },
+                                                );
+                                              } else {
+                                                if (containerUsersRow?.role ==
+                                                    EnumRole.SUPERUSER.name) {
+                                                  context.pushNamed(
+                                                    'SUPER_Home',
+                                                    extra: <String, dynamic>{
+                                                      kTransitionInfoKey:
+                                                          const TransitionInfo(
+                                                        hasTransition: true,
+                                                        transitionType:
+                                                            PageTransitionType
+                                                                .fade,
+                                                        duration: Duration(
+                                                            milliseconds: 0),
+                                                      ),
+                                                    },
+                                                  );
+                                                }
+                                              }
                                             }
                                           } else {
-                                            context.goNamed('PC_LoginCopy');
+                                            context.goNamed(
+                                              'PC_LoginCopy',
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    const TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType.fade,
+                                                  duration:
+                                                      Duration(milliseconds: 0),
+                                                ),
+                                              },
+                                            );
                                           }
                                         },
                                         text: 'Личный кабинет',
@@ -465,25 +540,42 @@ class _HomeWidgetState extends State<HomeWidget> {
                                               hallFilter2,
                                               hallFilter3) async {
                                             if (loggedIn) {
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(
-                                                SnackBar(
-                                                  content: Text(
-                                                    'Сервис временно недоступен. Мы сообщим о начале работы на Вашу почту',
-                                                    style: TextStyle(
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
-                                                      fontSize: 16.0,
-                                                    ),
+                                              context.pushNamed(
+                                                'HotelSearchPage',
+                                                queryParameters: {
+                                                  'startDate': serializeParam(
+                                                    date,
+                                                    ParamType.DateTime,
                                                   ),
-                                                  duration: const Duration(
-                                                      milliseconds: 40000),
-                                                  backgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                ),
+                                                  'duration': serializeParam(
+                                                    duration,
+                                                    ParamType.double,
+                                                  ),
+                                                  'city': serializeParam(
+                                                    city,
+                                                    ParamType.SupabaseRow,
+                                                  ),
+                                                  'visitors': serializeParam(
+                                                    visitors,
+                                                    ParamType.int,
+                                                  ),
+                                                  'user': serializeParam(
+                                                    containerUsersRow,
+                                                    ParamType.SupabaseRow,
+                                                  ),
+                                                  'hallFilter1': serializeParam(
+                                                    hallFilter1,
+                                                    ParamType.DataStruct,
+                                                  ),
+                                                  'hallFilter2': serializeParam(
+                                                    hallFilter2,
+                                                    ParamType.DataStruct,
+                                                  ),
+                                                  'hallFilter3': serializeParam(
+                                                    hallFilter3,
+                                                    ParamType.DataStruct,
+                                                  ),
+                                                }.withoutNulls,
                                               );
                                             } else {
                                               await showDialog(

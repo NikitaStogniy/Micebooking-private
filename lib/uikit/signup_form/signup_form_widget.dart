@@ -621,6 +621,37 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                     onPressed: !_model.checkboxValue!
                         ? null
                         : () async {
+                            _model.newUserPlatform = await UsersTable().insert({
+                              'role': widget.isHotel
+                                  ? EnumRole.HOTEL.name
+                                  : EnumRole.CLIENT.name,
+                              'email': _model.mailTextController.text,
+                              'name': _model.nameTextController.text,
+                              'network': _model.companyNameTextController.text,
+                              'phone': _model.phoneTextController.text,
+                            });
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'На вашу почту отправлено письмо с потверждением',
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    fontSize: 16.0,
+                                  ),
+                                ),
+                                duration: const Duration(milliseconds: 4000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).secondary,
+                              ),
+                            );
+                            await JuridicalInfoTable().insert({
+                              'name': valueOrDefault<String>(
+                                _model.companyNameTextController.text,
+                                'company_name',
+                              ),
+                              'owner': _model.newUserPlatform?.id,
+                            });
                             GoRouter.of(context).prepareAuthEvent();
 
                             final user =
@@ -633,23 +664,6 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                               return;
                             }
 
-                            _model.newUserPlatform = await UsersTable().insert({
-                              'uid': currentUserUid,
-                              'role': widget.isHotel
-                                  ? EnumRole.HOTEL.name
-                                  : EnumRole.CLIENT.name,
-                              'email': _model.mailTextController.text,
-                              'name': _model.nameTextController.text,
-                              'network': _model.companyNameTextController.text,
-                              'phone': _model.phoneTextController.text,
-                            });
-                            await JuridicalInfoTable().insert({
-                              'name': valueOrDefault<String>(
-                                _model.companyNameTextController.text,
-                                'company_name',
-                              ),
-                              'owner': _model.newUserPlatform?.id,
-                            });
                             if (_model.newUserPlatform?.role ==
                                 EnumRole.CLIENT.name) {
                               context.pushNamedAuth('Home', context.mounted);

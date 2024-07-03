@@ -1,4 +1,5 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/supabase/supabase.dart';
 import '/components/change_password_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -246,7 +247,16 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                           return;
                         }
 
+                        _model.user = await UsersTable().queryRows(
+                          queryFn: (q) => q.eq(
+                            'email',
+                            currentUserEmail,
+                          ),
+                        );
+
                         context.goNamedAuth('Home', context.mounted);
+
+                        setState(() {});
                       },
                       text: 'Войти',
                       options: FFButtonOptions(
