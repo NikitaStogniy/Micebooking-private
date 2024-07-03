@@ -1407,9 +1407,10 @@ class _RequestWidgetState extends State<RequestWidget> {
                                             await SendemailCall.call(
                                           requestWrapper:
                                               widget.requestWrapper?.id,
+                                          email: currentUserEmail,
                                         );
 
-                                        if (!(_model.apiResultows?.succeeded ??
+                                        if ((_model.apiResultows?.succeeded ??
                                             true)) {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
@@ -1427,6 +1428,25 @@ class _RequestWidgetState extends State<RequestWidget> {
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .secondary,
+                                            ),
+                                          );
+                                        } else {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                'Ошибка отправки запроса на почту, попробуйте ещё раз-',
+                                                style: TextStyle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                ),
+                                              ),
+                                              duration:
+                                                  const Duration(milliseconds: 4000),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .error,
                                             ),
                                           );
                                         }

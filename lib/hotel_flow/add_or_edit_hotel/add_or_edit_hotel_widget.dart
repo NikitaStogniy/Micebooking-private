@@ -1358,7 +1358,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                   ),
                                   onPressed: () async {
                                     final selectedMedia = await selectMedia(
-                                      storageFolderPath: 'users/uploads',
+                                      storageFolderPath: 'users/uploaded',
                                       maxWidth: 2048.00,
                                       maxHeight: 2048.00,
                                       mediaSource: MediaSource.photoGallery,

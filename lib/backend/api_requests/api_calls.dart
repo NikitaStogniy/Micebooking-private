@@ -15,13 +15,13 @@ class SearchHotelCall {
     return ApiManager.instance.makeApiCall(
       callName: 'search hotel',
       apiUrl:
-          'https://iuwrguojbtursgxasmnl.supabase.co/rest/v1/hotel?name=ilike.*$searchString*&select=',
+          'https://supabase.micebooking.ru/rest/v1/hotel?name=ilike.*$searchString*&select=',
       callType: ApiCallType.GET,
       headers: {
         'apikey':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml1d3JndW9qYnR1cnNneGFzbW5sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDc5ODAyNTYsImV4cCI6MjAyMzU1NjI1Nn0.3aTnVAWva05ixzXEK4W6_iDmEWJcjE1ZtbLjsWmuVLw',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJhbm9uIiwKICAgICJpc3MiOiAic3VwYWJhc2UtZGVtbyIsCiAgICAiaWF0IjogMTY0MTc2OTIwMCwKICAgICJleHAiOiAxNzk5NTM1NjAwCn0.dc_X5iR_VP_qT0zsiyj_I_OZ2T9FtRU2BBNWN8Bu4GE',
         'Authorization':
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml1d3JndW9qYnR1cnNneGFzbW5sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDc5ODAyNTYsImV4cCI6MjAyMzU1NjI1Nn0.3aTnVAWva05ixzXEK4W6_iDmEWJcjE1ZtbLjsWmuVLw',
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJhbm9uIiwKICAgICJpc3MiOiAic3VwYWJhc2UtZGVtbyIsCiAgICAiaWF0IjogMTY0MTc2OTIwMCwKICAgICJleHAiOiAxNzk5NTM1NjAwCn0.dc_X5iR_VP_qT0zsiyj_I_OZ2T9FtRU2BBNWN8Bu4GE',
       },
       params: {},
       returnBody: true,
@@ -42,13 +42,13 @@ class SearchHotelWithOwnerCall {
     return ApiManager.instance.makeApiCall(
       callName: 'search hotel with owner',
       apiUrl:
-          'https://iuwrguojbtursgxasmnl.supabase.co/rest/v1/hotel?name=ilike.*$searchString*&owner_id@>\$ownerId&select=*',
+          'https://supabase.micebooking.ru/rest/v1/hotel?name=ilike.*$searchString*&owner_id@>\$ownerId&select=*',
       callType: ApiCallType.GET,
       headers: {
         'apikey':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml1d3JndW9qYnR1cnNneGFzbW5sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDc5ODAyNTYsImV4cCI6MjAyMzU1NjI1Nn0.3aTnVAWva05ixzXEK4W6_iDmEWJcjE1ZtbLjsWmuVLw',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJhbm9uIiwKICAgICJpc3MiOiAic3VwYWJhc2UtZGVtbyIsCiAgICAiaWF0IjogMTY0MTc2OTIwMCwKICAgICJleHAiOiAxNzk5NTM1NjAwCn0.dc_X5iR_VP_qT0zsiyj_I_OZ2T9FtRU2BBNWN8Bu4GE',
         'Authorization':
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml1d3JndW9qYnR1cnNneGFzbW5sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDc5ODAyNTYsImV4cCI6MjAyMzU1NjI1Nn0.3aTnVAWva05ixzXEK4W6_iDmEWJcjE1ZtbLjsWmuVLw',
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJhbm9uIiwKICAgICJpc3MiOiAic3VwYWJhc2UtZGVtbyIsCiAgICAiaWF0IjogMTY0MTc2OTIwMCwKICAgICJleHAiOiAxNzk5NTM1NjAwCn0.dc_X5iR_VP_qT0zsiyj_I_OZ2T9FtRU2BBNWN8Bu4GE',
       },
       params: {},
       returnBody: true,
@@ -68,13 +68,13 @@ class SearchClientsCall {
     return ApiManager.instance.makeApiCall(
       callName: 'search clients',
       apiUrl:
-          'https://iuwrguojbtursgxasmnl.supabase.co/rest/v1/users?network=ilike.*$searchString*&select=*',
+          'https://supabase.micebooking.ru/rest/v1/users?network=ilike.*$searchString*&select=*',
       callType: ApiCallType.GET,
       headers: {
         'apikey':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml1d3JndW9qYnR1cnNneGFzbW5sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDc5ODAyNTYsImV4cCI6MjAyMzU1NjI1Nn0.3aTnVAWva05ixzXEK4W6_iDmEWJcjE1ZtbLjsWmuVLw',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJhbm9uIiwKICAgICJpc3MiOiAic3VwYWJhc2UtZGVtbyIsCiAgICAiaWF0IjogMTY0MTc2OTIwMCwKICAgICJleHAiOiAxNzk5NTM1NjAwCn0.dc_X5iR_VP_qT0zsiyj_I_OZ2T9FtRU2BBNWN8Bu4GE',
         'Authorization':
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml1d3JndW9qYnR1cnNneGFzbW5sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDc5ODAyNTYsImV4cCI6MjAyMzU1NjI1Nn0.3aTnVAWva05ixzXEK4W6_iDmEWJcjE1ZtbLjsWmuVLw',
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJhbm9uIiwKICAgICJpc3MiOiAic3VwYWJhc2UtZGVtbyIsCiAgICAiaWF0IjogMTY0MTc2OTIwMCwKICAgICJleHAiOiAxNzk5NTM1NjAwCn0.dc_X5iR_VP_qT0zsiyj_I_OZ2T9FtRU2BBNWN8Bu4GE',
       },
       params: {},
       returnBody: true,
@@ -90,6 +90,7 @@ class SearchClientsCall {
 class SendemailCall {
   static Future<ApiCallResponse> call({
     int? requestWrapper,
+    String? email = '',
   }) async {
     const ffApiRequestBody = '''
 {
@@ -97,7 +98,7 @@ class SendemailCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'sendemail',
-      apiUrl: 'emailer.micebooking.ru',
+      apiUrl: 'emailer.micebooking.ru/email',
       callType: ApiCallType.POST,
       headers: {},
       params: {},

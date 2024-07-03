@@ -44,8 +44,8 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
     return FutureBuilder<List<UsersRow>>(
       future: UsersTable().querySingleRow(
         queryFn: (q) => q.eq(
-          'uid',
-          currentUserUid,
+          'email',
+          currentUserEmail,
         ),
       ),
       builder: (context, snapshot) {

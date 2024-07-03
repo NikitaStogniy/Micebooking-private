@@ -1030,6 +1030,10 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                           });
                                           _model.addNew = null;
                                           setState(() {});
+                                          setState(() =>
+                                              _model.requestCompleter3 = null);
+                                          await _model
+                                              .waitForRequestCompleted3();
                                         },
                                         text: 'Добавить',
                                         options: FFButtonOptions(
