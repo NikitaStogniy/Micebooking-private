@@ -540,42 +540,25 @@ class _HomeWidgetState extends State<HomeWidget> {
                                               hallFilter2,
                                               hallFilter3) async {
                                             if (loggedIn) {
-                                              context.pushNamed(
-                                                'HotelSearchPage',
-                                                queryParameters: {
-                                                  'startDate': serializeParam(
-                                                    date,
-                                                    ParamType.DateTime,
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    'Сервис временно недоступен. Мы сообщим о начале работы на Вашу почту',
+                                                    style: TextStyle(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                      fontSize: 16.0,
+                                                    ),
                                                   ),
-                                                  'duration': serializeParam(
-                                                    duration,
-                                                    ParamType.double,
-                                                  ),
-                                                  'city': serializeParam(
-                                                    city,
-                                                    ParamType.SupabaseRow,
-                                                  ),
-                                                  'visitors': serializeParam(
-                                                    visitors,
-                                                    ParamType.int,
-                                                  ),
-                                                  'user': serializeParam(
-                                                    containerUsersRow,
-                                                    ParamType.SupabaseRow,
-                                                  ),
-                                                  'hallFilter1': serializeParam(
-                                                    hallFilter1,
-                                                    ParamType.DataStruct,
-                                                  ),
-                                                  'hallFilter2': serializeParam(
-                                                    hallFilter2,
-                                                    ParamType.DataStruct,
-                                                  ),
-                                                  'hallFilter3': serializeParam(
-                                                    hallFilter3,
-                                                    ParamType.DataStruct,
-                                                  ),
-                                                }.withoutNulls,
+                                                  duration: const Duration(
+                                                      milliseconds: 40000),
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                ),
                                               );
                                             } else {
                                               await showDialog(
