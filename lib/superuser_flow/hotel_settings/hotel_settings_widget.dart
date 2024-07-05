@@ -736,7 +736,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                             width: 500.0,
                             decoration: const BoxDecoration(),
                             child: FutureBuilder<List<CityRow>>(
-                              future: (_model.requestCompleter3 ??=
+                              future: (_model.requestCompleter4 ??=
                                       Completer<List<CityRow>>()
                                         ..complete(CityTable().queryRows(
                                           queryFn: (q) => q.order('created_at',
@@ -831,10 +831,10 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                         ),
                                                       );
                                                       setState(() => _model
-                                                              .requestCompleter3 =
+                                                              .requestCompleter4 =
                                                           null);
                                                       await _model
-                                                          .waitForRequestCompleted3();
+                                                          .waitForRequestCompleted4();
                                                     },
                                                     child: FaIcon(
                                                       FontAwesomeIcons.solidEye,
@@ -868,10 +868,10 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                         ),
                                                       );
                                                       setState(() => _model
-                                                              .requestCompleter3 =
+                                                              .requestCompleter4 =
                                                           null);
                                                       await _model
-                                                          .waitForRequestCompleted3();
+                                                          .waitForRequestCompleted4();
                                                     },
                                                     child: FaIcon(
                                                       FontAwesomeIcons
@@ -905,10 +905,10 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                         ),
                                                       );
                                                       setState(() => _model
-                                                              .requestCompleter3 =
+                                                              .requestCompleter4 =
                                                           null);
                                                       await _model
-                                                          .waitForRequestCompleted3();
+                                                          .waitForRequestCompleted4();
                                                     } else {
                                                       await CityTable().update(
                                                         data: {
@@ -921,10 +921,10 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                         ),
                                                       );
                                                       setState(() => _model
-                                                              .requestCompleter3 =
+                                                              .requestCompleter4 =
                                                           null);
                                                       await _model
-                                                          .waitForRequestCompleted3();
+                                                          .waitForRequestCompleted4();
                                                     }
                                                   },
                                                   child: FaIcon(
@@ -1031,9 +1031,9 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                           _model.addNew = null;
                                           setState(() {});
                                           setState(() =>
-                                              _model.requestCompleter3 = null);
+                                              _model.requestCompleter4 = null);
                                           await _model
-                                              .waitForRequestCompleted3();
+                                              .waitForRequestCompleted4();
                                         },
                                         text: 'Добавить',
                                         options: FFButtonOptions(
@@ -1078,6 +1078,9 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                     onTap: () async {
                                       _model.addNew = 'HOTEL';
                                       setState(() {});
+                                      setState(() =>
+                                          _model.requestCompleter4 = null);
+                                      await _model.waitForRequestCompleted4();
                                     },
                                     child: wrapWithModel(
                                       model: _model.addNewModel1,
@@ -1122,10 +1125,13 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                           ),
                           decoration: const BoxDecoration(),
                           child: FutureBuilder<List<CenterDistanceRow>>(
-                            future: CenterDistanceTable().queryRows(
-                              queryFn: (q) =>
-                                  q.order('created_at', ascending: true),
-                            ),
+                            future: (_model.requestCompleter3 ??= Completer<
+                                    List<CenterDistanceRow>>()
+                                  ..complete(CenterDistanceTable().queryRows(
+                                    queryFn: (q) =>
+                                        q.order('created_at', ascending: true),
+                                  )))
+                                .future,
                             builder: (context, snapshot) {
                               // Customize what your widget looks like when it's loading.
                               if (!snapshot.hasData) {
@@ -1428,6 +1434,9 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                         _model.editDestination = null;
                                         _model.addNew = 'DESTINATION';
                                         _model.updatePage(() {});
+                                        setState(() =>
+                                            _model.requestCompleter3 = null);
+                                        await _model.waitForRequestCompleted3();
                                       },
                                     ),
                                   ),

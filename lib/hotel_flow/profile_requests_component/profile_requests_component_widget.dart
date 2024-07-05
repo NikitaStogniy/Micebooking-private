@@ -489,7 +489,7 @@ class _ProfileRequestsComponentWidgetState
                                     columnRequestsRowList[columnIndex];
                                 return Visibility(
                                   visible: (_model.completeOnly == false) ||
-                                      (_model.completeOnly == false),
+                                      (columnRequestsRow.complete == true),
                                   child: Container(
                                     width:
                                         MediaQuery.sizeOf(context).width * 1.0,

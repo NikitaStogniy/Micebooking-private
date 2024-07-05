@@ -31,7 +31,7 @@ class HotelSettingsModel extends FlutterFlowModel<HotelSettingsWidget> {
   FocusNode? newCategoryFocusNode;
   TextEditingController? newCategoryTextController;
   String? Function(BuildContext, String?)? newCategoryTextControllerValidator;
-  Completer<List<CityRow>>? requestCompleter3;
+  Completer<List<CityRow>>? requestCompleter4;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController2;
@@ -50,6 +50,7 @@ class HotelSettingsModel extends FlutterFlowModel<HotelSettingsWidget> {
   String? Function(BuildContext, String?)? textController4Validator;
   // Model for addNew component.
   late AddNewModel addNewModel2;
+  Completer<List<CenterDistanceRow>>? requestCompleter3;
 
   @override
   void initState(BuildContext context) {
@@ -102,6 +103,21 @@ class HotelSettingsModel extends FlutterFlowModel<HotelSettingsWidget> {
       await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete = requestCompleter2?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
+  Future waitForRequestCompleted4({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = requestCompleter4?.isCompleted ?? false;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
         break;
       }

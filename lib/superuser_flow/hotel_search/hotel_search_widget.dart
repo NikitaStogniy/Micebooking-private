@@ -565,6 +565,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                                   hotelsItem,
                                                   r'''$.city_name''',
                                                 ).toString(),
+                                                maxLines: 1,
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -624,6 +625,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                                   rowUsersRow?.phone,
                                                   'Не указан',
                                                 ),
+                                                maxLines: 1,
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium

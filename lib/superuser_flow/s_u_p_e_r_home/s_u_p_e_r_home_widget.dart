@@ -72,6 +72,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
             width: double.infinity,
             height: MediaQuery.sizeOf(context).height * 1.0,
             decoration: BoxDecoration(
+              color: const Color(0xFFF9F9F9),
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image: Image.asset(
@@ -785,7 +786,9 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                 SuperUserPage.food_full_info) &&
                             (_model.activePage !=
                                 SuperUserPage.room_full_info) &&
-                            (_model.activePage != SuperUserPage.client_cp))
+                            (_model.activePage != SuperUserPage.client_cp) &&
+                            (_model.activePage != SuperUserPage.PP) &&
+                            (_model.activePage != SuperUserPage.hotel_jur))
                           Text(
                             () {
                               if (_model.activePage ==

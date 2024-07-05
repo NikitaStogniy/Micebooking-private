@@ -389,6 +389,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
                                                                           .secondaryBackground,
+                                                                      fontSize:
+                                                                          15.0,
                                                                       letterSpacing:
                                                                           0.0,
                                                                       fontWeight:
@@ -412,6 +414,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                             'Commissioner',
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .secondaryBackground,
+                                                                        fontSize:
+                                                                            15.0,
                                                                         letterSpacing:
                                                                             0.0,
                                                                         fontWeight:
@@ -435,6 +439,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                             'Commissioner',
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .secondaryBackground,
+                                                                        fontSize:
+                                                                            15.0,
                                                                         letterSpacing:
                                                                             0.0,
                                                                         fontWeight:
@@ -461,6 +467,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                             'Commissioner',
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .secondaryBackground,
+                                                                        fontSize:
+                                                                            15.0,
                                                                         letterSpacing:
                                                                             0.0,
                                                                         fontWeight:
@@ -471,7 +479,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                             ),
                                                             Flexible(
                                                               child: Container(
-                                                                width: 100.0,
+                                                                width: 120.0,
                                                                 decoration:
                                                                     const BoxDecoration(),
                                                                 child: Text(
@@ -484,6 +492,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                             'Commissioner',
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .secondaryBackground,
+                                                                        fontSize:
+                                                                            15.0,
                                                                         letterSpacing:
                                                                             0.0,
                                                                         fontWeight:
@@ -510,6 +520,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                             'Commissioner',
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .secondaryBackground,
+                                                                        fontSize:
+                                                                            15.0,
                                                                         letterSpacing:
                                                                             0.0,
                                                                         fontWeight:
@@ -536,6 +548,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                             'Commissioner',
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .secondaryBackground,
+                                                                        fontSize:
+                                                                            15.0,
                                                                         letterSpacing:
                                                                             0.0,
                                                                         fontWeight:
@@ -575,6 +589,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                             'Commissioner',
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .secondaryBackground,
+                                                                        fontSize:
+                                                                            15.0,
                                                                         letterSpacing:
                                                                             0.0,
                                                                         fontWeight:
@@ -748,8 +764,9 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                               .override(
                                                                                 fontFamily: 'Commissioner',
                                                                                 color: FlutterFlowTheme.of(context).primaryText,
+                                                                                fontSize: 18.0,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: FontWeight.w500,
+                                                                                fontWeight: FontWeight.normal,
                                                                               ),
                                                                         ),
                                                                       ),
@@ -777,8 +794,9 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                               .override(
                                                                                 fontFamily: 'Commissioner',
                                                                                 color: FlutterFlowTheme.of(context).primaryText,
+                                                                                fontSize: 18.0,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: FontWeight.w500,
+                                                                                fontWeight: FontWeight.normal,
                                                                               ),
                                                                         ),
                                                                       ),
@@ -802,8 +820,9 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                               .override(
                                                                                 fontFamily: 'Commissioner',
                                                                                 color: FlutterFlowTheme.of(context).primaryText,
+                                                                                fontSize: 18.0,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: FontWeight.w500,
+                                                                                fontWeight: FontWeight.normal,
                                                                               ),
                                                                         ),
                                                                       ),
@@ -812,7 +831,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                       child:
                                                                           Container(
                                                                         width:
-                                                                            100.0,
+                                                                            120.0,
                                                                         decoration:
                                                                             const BoxDecoration(),
                                                                         child:
@@ -831,8 +850,9 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                               .override(
                                                                                 fontFamily: 'Commissioner',
                                                                                 color: FlutterFlowTheme.of(context).primaryText,
+                                                                                fontSize: 18.0,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: FontWeight.w500,
+                                                                                fontWeight: FontWeight.normal,
                                                                               ),
                                                                         ),
                                                                       ),
@@ -859,8 +879,9 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                               .override(
                                                                                 fontFamily: 'Commissioner',
                                                                                 color: FlutterFlowTheme.of(context).primaryText,
+                                                                                fontSize: 18.0,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: FontWeight.w500,
+                                                                                fontWeight: FontWeight.normal,
                                                                               ),
                                                                         ),
                                                                       ),
@@ -888,8 +909,9 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                               .override(
                                                                                 fontFamily: 'Commissioner',
                                                                                 color: FlutterFlowTheme.of(context).primaryText,
+                                                                                fontSize: 18.0,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: FontWeight.w500,
+                                                                                fontWeight: FontWeight.normal,
                                                                               ),
                                                                         ),
                                                                       ),
@@ -925,8 +947,9 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                   fontFamily: 'Commissioner',
                                                                                   color: FlutterFlowTheme.of(context).primaryText,
+                                                                                  fontSize: 18.0,
                                                                                   letterSpacing: 0.0,
-                                                                                  fontWeight: FontWeight.w500,
+                                                                                  fontWeight: FontWeight.normal,
                                                                                   decoration: TextDecoration.underline,
                                                                                 ),
                                                                           ),
