@@ -253,7 +253,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                         ].divide(const SizedBox(height: 24.0)),
                       ),
                     ),
-                  ],
+                  ].divide(const SizedBox(height: 16.0)),
                 ),
                 Column(
                   mainAxisSize: MainAxisSize.max,
@@ -421,7 +421,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                         ].divide(const SizedBox(height: 24.0)),
                       ),
                     ),
-                  ],
+                  ].divide(const SizedBox(height: 16.0)),
                 ),
                 Column(
                   mainAxisSize: MainAxisSize.max,
@@ -590,7 +590,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                         ].divide(const SizedBox(height: 24.0)),
                       ),
                     ),
-                  ],
+                  ].divide(const SizedBox(height: 16.0)),
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
