@@ -244,6 +244,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Commissioner',
+                                  fontSize: 16.0,
                                   letterSpacing: 0.0,
                                 ),
                             maxLines: 8,
@@ -412,6 +413,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Commissioner',
+                                  fontSize: 16.0,
                                   letterSpacing: 0.0,
                                 ),
                             maxLines: 8,
@@ -581,6 +583,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Commissioner',
+                                  fontSize: 16.0,
                                   letterSpacing: 0.0,
                                 ),
                             maxLines: 8,
