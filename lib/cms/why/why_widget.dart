@@ -51,7 +51,7 @@ class _WhyWidgetState extends State<WhyWidget> {
               queryFn: (q) => q
                   .eq(
                     'type',
-                    EnumCms.ABOUT.name,
+                    EnumCms.WHYUS.name,
                   )
                   .order('created_at'),
             ),

@@ -1608,6 +1608,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                         .halfprice!
                                                         .toString();
                                               });
+                                              Navigator.pop(context);
                                               await widget.doneCallback
                                                   ?.call();
                                             },

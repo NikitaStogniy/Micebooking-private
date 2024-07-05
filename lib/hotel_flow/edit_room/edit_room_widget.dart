@@ -47,9 +47,15 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.checkboxValue = widget.initialRoom!.showSingle!;
-      });
+      _model.uploadedImages = [];
+      setState(() {});
+      _model.uploadedImages =
+          widget.initialRoom!.images.toList().cast<String>();
+      _model.selectedServices =
+          _model.editableRoom!.services.toList().cast<int>();
+      setState(() {});
+      _model.editableRoom = widget.initialRoom;
+      _model.updatePage(() {});
       setState(() {
         _model.hotelNameEditTextController?.text = widget.initialRoom!.name!;
         _model.hotelDescriptionEditTextController?.text =
@@ -61,14 +67,6 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
         _model.singlePriceEditTextController?.text =
             widget.initialRoom!.singlePrice!.toString();
       });
-      _model.editableRoom = widget.initialRoom;
-      _model.updatePage(() {});
-      _model.uploadedImages =
-          _model.editableRoom!.images.toList().cast<String>();
-      _model.selectedServices =
-          _model.editableRoom!.services.toList().cast<int>();
-      _model.singlePerson = _model.editableRoom!.showSingle!;
-      setState(() {});
     });
 
     _model.hotelNameEditTextController ??=
@@ -137,7 +135,7 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                       ),
                       Text(
                         valueOrDefault<String>(
-                          _model.editableRoom?.name,
+                          widget.initialRoom?.name,
                           'Номер',
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -466,8 +464,9 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                                       decoration: const BoxDecoration(),
                                       child: Builder(
                                         builder: (context) {
-                                          final images =
-                                              _model.uploadedImages.toList();
+                                          final images = _model.uploadedImages
+                                              .map((e) => e)
+                                              .toList();
                                           return ListView.builder(
                                             padding: const EdgeInsets.fromLTRB(
                                               0,
@@ -1236,19 +1235,12 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                                       _model.countEditTextController.text),
                                   'price': double.tryParse(
                                       _model.priceEditTextController.text),
-                                  'show_single': _model.singlePerson,
-                                  'single_price': double.tryParse(_model
-                                      .singlePriceEditTextController.text),
                                 },
                                 matchingRows: (rows) => rows.eq(
                                   'id',
                                   widget.id,
                                 ),
                               );
-                              setState(() {
-                                _model.checkboxValue =
-                                    widget.initialRoom!.showSingle!;
-                              });
                               setState(() {
                                 _model.hotelNameEditTextController?.text =
                                     widget.initialRoom!.name!;

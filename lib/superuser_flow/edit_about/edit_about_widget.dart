@@ -187,12 +187,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                         onPressed: () async {
                           await CmsTable().update(
                             data: {
-                              'image':
-                                  _model.image != null && _model.image != ''
-                                      ? _model.image
-                                      : containerCmsRow?.image,
                               'text1': _model.text1TextController.text,
-                              'text2': containerCmsRow?.text2,
                             },
                             matchingRows: (rows) => rows.eq(
                               'id',

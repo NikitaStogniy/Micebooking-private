@@ -319,7 +319,7 @@ class _ProfileHotelsWidgetState extends State<ProfileHotelsWidget>
                                   Text(
                                     getJsonField(
                                       hotelItemsItem,
-                                      r'''$.adress''',
+                                      r'''$.address''',
                                     ).toString(),
                                     maxLines: 1,
                                     style: FlutterFlowTheme.of(context)
