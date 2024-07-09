@@ -809,19 +809,42 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                           ),
                                     ),
                                   ),
-                                  Container(
-                                    width:
-                                        MediaQuery.sizeOf(context).width * 1.0,
-                                    height: 40.0,
-                                    decoration: BoxDecoration(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      borderRadius: const BorderRadius.only(
-                                        bottomLeft: Radius.circular(0.0),
-                                        bottomRight: Radius.circular(0.0),
-                                        topLeft: Radius.circular(16.0),
-                                        topRight: Radius.circular(16.0),
-                                      ),
+
+                                ],
+                              );
+                            },
+                          ),
+                          if (containerRequestsRow?.halls?.isNotEmpty ?? false)
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 16.0),
+                                  child: Text(
+                                    'Залы:',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Commissioner',
+                                          fontSize: 18.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                  ),
+                                ),
+                                Container(
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
+                                  height: 40.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    borderRadius: const BorderRadius.only(
+                                      bottomLeft: Radius.circular(0.0),
+                                      bottomRight: Radius.circular(0.0),
+                                      topLeft: Radius.circular(16.0),
+                                      topRight: Radius.circular(16.0),
+
                                     ),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.min,
@@ -1206,6 +1229,8 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                                   ),
                                             ),
                                           ),
+
+                                          
                                         ),
                                       ),
                                     ],
@@ -1630,6 +1655,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                                   ),
                                             ),
                                           ),
+
                                         ),
                                       ),
                                     ],

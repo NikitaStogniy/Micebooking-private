@@ -1,0 +1,12 @@
+build/
+**/build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache
+.pub
+.hot-reload
+.hot-restart
+.idea
+.dart_tool
+.git

@@ -1352,7 +1352,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                             );
                           },
                         ),
-                        if (containerRequestsRow?.halls.isNotEmpty)
+                        if (containerRequestsRow?.halls?.isNotEmpty ?? false)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1754,7 +1754,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                               ),
                             ],
                           ),
-                        if (containerRequestsRow?.food.isNotEmpty)
+                        if (containerRequestsRow?.food?.isNotEmpty ?? false)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -2161,7 +2161,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                               ),
                             ],
                           ),
-                        if (containerRequestsRow?.rooms.isNotEmpty)
+                        if (containerRequestsRow?.rooms?.isNotEmpty ?? false)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,

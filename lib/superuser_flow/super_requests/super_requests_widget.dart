@@ -358,7 +358,7 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
                             );
                           },
                         ),
-                        if (containerRequestsRow?.halls.isNotEmpty)
+                        if (containerRequestsRow?.halls?.isNotEmpty ?? false)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -760,7 +760,7 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
                               ),
                             ],
                           ),
-                        if (containerRequestsRow?.food.isNotEmpty)
+                        if (containerRequestsRow?.food?.isNotEmpty ?? false)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1163,7 +1163,7 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
                               ),
                             ],
                           ),
-                        if (containerRequestsRow?.rooms.isNotEmpty)
+                        if (containerRequestsRow?.rooms?.isNotEmpty ?? false)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
