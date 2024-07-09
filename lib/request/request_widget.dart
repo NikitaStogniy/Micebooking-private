@@ -148,8 +148,12 @@ class _RequestWidgetState extends State<RequestWidget> {
                           child: wrapWithModel(
                             model: _model.menuModel,
                             updateCallback: () => setState(() {}),
-                            child: const MenuWidget(
+                            child: MenuWidget(
                               isBlue: true,
+                              page: 'home',
+                              clientProfile: () async {},
+                              clientRequest: () async {},
+                              clientFavorite: () async {},
                             ),
                           ),
                         ),

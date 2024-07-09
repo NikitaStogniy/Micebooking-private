@@ -95,7 +95,7 @@ class _SupportBottomsheetWidgetState extends State<SupportBottomsheetWidget> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Переходи в телеграмм-бот поддержка',
+                              'Переходи в телеграмм-бот поддержки',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(

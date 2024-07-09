@@ -59,7 +59,6 @@ class _DaysCountWidgetState extends State<DaysCountWidget> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          width: 280.0,
           height: 70.0,
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,

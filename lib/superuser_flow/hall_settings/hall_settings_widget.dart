@@ -48,11 +48,11 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
     return Container(
       height: MediaQuery.sizeOf(context).height * 1.0,
       decoration: const BoxDecoration(),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          SingleChildScrollView(
-            child: Column(
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -555,26 +555,9 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                                           serviscesListServiceCategoryRow.id,
                                       'type': EnumType.HALL.name,
                                     });
-                                    _model.services =
-                                        await ServiceTable().queryRows(
-                                      queryFn: (q) => q.eq(
-                                        'category',
-                                        serviscesListServiceCategoryRow.id,
-                                      ),
-                                    );
-                                    await ServiceCategoryTable().update(
-                                      data: {
-                                        'services_id': _model.services
-                                            ?.map((e) => e.id)
-                                            .toList(),
-                                      },
-                                      matchingRows: (rows) => rows,
-                                    );
                                     setState(
                                         () => _model.requestCompleter1 = null);
                                     await _model.waitForRequestCompleted1();
-
-                                    setState(() {});
                                   },
                                 );
                               }).divide(const SizedBox(height: 40.0)),
@@ -587,8 +570,8 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                 ),
               ].addToEnd(const SizedBox(height: 72.0)),
             ),
-          ),
-        ].divide(const SizedBox(height: 16.0)),
+          ].divide(const SizedBox(height: 16.0)),
+        ),
       ),
     );
   }

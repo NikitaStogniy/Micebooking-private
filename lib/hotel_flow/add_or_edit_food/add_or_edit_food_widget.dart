@@ -312,7 +312,8 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                           .alternate,
                                       borderWidth: 2.0,
                                       borderRadius: 100.0,
-                                      margin: const EdgeInsets.all(8.0),
+                                      margin: const EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 4.0, 16.0, 4.0),
                                       hidesUnderline: true,
                                       isOverButton: false,
                                       isSearchable: false,

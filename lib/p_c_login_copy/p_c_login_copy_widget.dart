@@ -59,26 +59,42 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                if (responsiveVisibility(
-                  context: context,
-                  phone: false,
-                  tablet: false,
-                  tabletLandscape: false,
-                ))
-                  Align(
-                    alignment: const AlignmentDirectional(0.0, -1.0),
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(
-                          32.0, 16.0, 32.0, 64.0),
-                      child: wrapWithModel(
-                        model: _model.menuModel,
-                        updateCallback: () => setState(() {}),
-                        child: const MenuWidget(
-                          isBlue: false,
+                Align(
+                  alignment: const AlignmentDirectional(0.0, -1.0),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(
+                        valueOrDefault<double>(
+                          MediaQuery.sizeOf(context).width < 1000.0
+                              ? 16.0
+                              : 32.0,
+                          0.0,
                         ),
+                        16.0,
+                        valueOrDefault<double>(
+                          MediaQuery.sizeOf(context).width < 1000.0
+                              ? 16.0
+                              : 32.0,
+                          0.0,
+                        ),
+                        valueOrDefault<double>(
+                          MediaQuery.sizeOf(context).width < 1000.0
+                              ? 32.0
+                              : 64.0,
+                          0.0,
+                        )),
+                    child: wrapWithModel(
+                      model: _model.menuModel,
+                      updateCallback: () => setState(() {}),
+                      child: MenuWidget(
+                        isBlue: false,
+                        page: 'home',
+                        clientProfile: () async {},
+                        clientRequest: () async {},
+                        clientFavorite: () async {},
                       ),
                     ),
                   ),
+                ),
                 Align(
                   alignment: const AlignmentDirectional(0.0, 0.0),
                   child: Padding(
@@ -104,7 +120,10 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Commissioner',
-                                    fontSize: 38.0,
+                                    fontSize: MediaQuery.sizeOf(context).width <
+                                            1000.0
+                                        ? 24.0
+                                        : 38.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -262,6 +281,7 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                       ),
                                       options: FFButtonOptions(
                                         width: 350.0,
+                                        height: 60.0,
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             24.0, 24.0, 24.0, 24.0),
                                         iconPadding:
@@ -285,7 +305,7 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                           width: 2.0,
                                         ),
                                         borderRadius:
-                                            BorderRadius.circular(24.0),
+                                            BorderRadius.circular(240.0),
                                       ),
                                     ),
                                   ),

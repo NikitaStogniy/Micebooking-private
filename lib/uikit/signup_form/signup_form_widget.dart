@@ -527,7 +527,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                 children: [
                   Row(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Theme(
                         data: ThemeData(
@@ -555,62 +555,64 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                           checkColor: FlutterFlowTheme.of(context).info,
                         ),
                       ),
-                      Builder(
-                        builder: (context) => InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            await showDialog(
-                              barrierColor: const Color(0x56000000),
-                              context: context,
-                              builder: (dialogContext) {
-                                return Dialog(
-                                  elevation: 0,
-                                  insetPadding: EdgeInsets.zero,
-                                  backgroundColor: Colors.transparent,
-                                  alignment: const AlignmentDirectional(0.0, 0.0)
-                                      .resolve(Directionality.of(context)),
-                                  child: const PopUpPPWidget(),
-                                );
-                              },
-                            ).then((value) => setState(() {}));
-                          },
-                          child: RichText(
-                            textScaler: MediaQuery.of(context).textScaler,
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: 'Нажимая кнопку, соглашаюсь с ',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Commissioner',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        fontSize: 18.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                ),
-                                TextSpan(
-                                  text: 'условиями обработки данных',
-                                  style: TextStyle(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 18.0,
-                                    decoration: TextDecoration.underline,
+                      Expanded(
+                        child: Builder(
+                          builder: (context) => InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              await showDialog(
+                                barrierColor: const Color(0x56000000),
+                                context: context,
+                                builder: (dialogContext) {
+                                  return Dialog(
+                                    elevation: 0,
+                                    insetPadding: EdgeInsets.zero,
+                                    backgroundColor: Colors.transparent,
+                                    alignment: const AlignmentDirectional(0.0, 0.0)
+                                        .resolve(Directionality.of(context)),
+                                    child: const PopUpPPWidget(),
+                                  );
+                                },
+                              ).then((value) => setState(() {}));
+                            },
+                            child: RichText(
+                              textScaler: MediaQuery.of(context).textScaler,
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: 'Нажимая кнопку, соглашаюсь с ',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Commissioner',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          fontSize: 18.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                   ),
-                                )
-                              ],
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Commissioner',
-                                    letterSpacing: 0.0,
-                                  ),
+                                  TextSpan(
+                                    text: 'условиями обработки данных',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 18.0,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                  )
+                                ],
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Commissioner',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
                             ),
                           ),
                         ),
@@ -677,6 +679,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                     text: 'Зарегистрироваться',
                     options: FFButtonOptions(
                       width: 350.0,
+                      height: 60.0,
                       padding: const EdgeInsetsDirectional.fromSTEB(
                           24.0, 24.0, 24.0, 24.0),
                       iconPadding:
@@ -693,7 +696,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                         color: Colors.transparent,
                         width: 1.0,
                       ),
-                      borderRadius: BorderRadius.circular(24.0),
+                      borderRadius: BorderRadius.circular(240.0),
                       disabledColor: const Color(0xFFECECEC),
                       disabledTextColor: const Color(0xFF383838),
                     ),

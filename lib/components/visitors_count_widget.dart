@@ -90,7 +90,6 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          width: 500.0,
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
             borderRadius: BorderRadius.circular(24.0),

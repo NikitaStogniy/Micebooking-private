@@ -151,8 +151,11 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                           child: wrapWithModel(
                             model: _model.menuModel,
                             updateCallback: () => setState(() {}),
-                            child: const MenuWidget(
+                            child: MenuWidget(
                               isBlue: true,
+                              clientProfile: () async {},
+                              clientRequest: () async {},
+                              clientFavorite: () async {},
                             ),
                           ),
                         ),

@@ -30,8 +30,11 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
     super.initState();
     _model = createModel(context, () => ChangePasswordModel());
 
-    _model.emailTextController ??=
-        TextEditingController(text: currentUserEmail);
+    _model.emailTextController ??= TextEditingController(
+        text: valueOrDefault<String>(
+      currentUserEmail,
+      'Введите почту',
+    ));
     _model.textFieldFocusNode1 ??= FocusNode();
 
     _model.textController1 ??= TextEditingController();
@@ -64,12 +67,31 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
       ),
       decoration: BoxDecoration(
         color: const Color(0xFFF0F0FA),
-        borderRadius: BorderRadius.circular(70.0),
+        borderRadius: BorderRadius.circular(valueOrDefault<double>(
+          MediaQuery.sizeOf(context).width > 1000.0 ? 70.0 : 24.0,
+          0.0,
+        )),
       ),
       child: Container(
         decoration: const BoxDecoration(),
         child: Padding(
-          padding: const EdgeInsets.all(40.0),
+          padding: EdgeInsetsDirectional.fromSTEB(
+              valueOrDefault<double>(
+                MediaQuery.sizeOf(context).width > 1000.0 ? 40.0 : 16.0,
+                0.0,
+              ),
+              valueOrDefault<double>(
+                MediaQuery.sizeOf(context).width > 1000.0 ? 40.0 : 24.0,
+                0.0,
+              ),
+              valueOrDefault<double>(
+                MediaQuery.sizeOf(context).width > 1000.0 ? 40.0 : 16.0,
+                0.0,
+              ),
+              valueOrDefault<double>(
+                MediaQuery.sizeOf(context).width > 1000.0 ? 40.0 : 24.0,
+                0.0,
+              )),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -77,28 +99,33 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      Navigator.pop(context);
-                    },
-                    child: Container(
-                      width: 40.0,
-                      height: 40.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primary,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Icon(
-                        Icons.close_rounded,
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        size: 20.0,
+                  if (MediaQuery.sizeOf(context).width > 1000.0)
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        width: 40.0,
+                        height: 40.0,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).primary,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Visibility(
+                          visible: MediaQuery.sizeOf(context).width > 1000.0,
+                          child: Icon(
+                            Icons.close_rounded,
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            size: 20.0,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
                 ],
               ),
               Row(
@@ -106,21 +133,49 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    'Изменение пароля',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Commissioner',
-                          fontSize: 38.0,
-                          letterSpacing: 0.0,
-                          fontWeight: FontWeight.bold,
-                          lineHeight: 0.5,
-                        ),
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(
+                          0.0,
+                          valueOrDefault<double>(
+                            MediaQuery.sizeOf(context).width > 1000.0
+                                ? 0.0
+                                : 16.0,
+                            0.0,
+                          ),
+                          0.0,
+                          0.0),
+                      child: Text(
+                        'Изменение пароля',
+                        textAlign: TextAlign.center,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Commissioner',
+                              fontSize:
+                                  MediaQuery.sizeOf(context).width > 1000.0
+                                      ? 38.0
+                                      : 24.0,
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.bold,
+                              lineHeight: 0.5,
+                            ),
+                      ),
+                    ),
                   ),
                 ],
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 51.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(
+                      0.0,
+                      valueOrDefault<double>(
+                        MediaQuery.sizeOf(context).width > 1000.0 ? 50.0 : 24.0,
+                        0.0,
+                      ),
+                      0.0,
+                      valueOrDefault<double>(
+                        MediaQuery.sizeOf(context).width > 1000.0 ? 0.0 : 24.0,
+                        0.0,
+                      )),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -141,7 +196,6 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                   readOnly: loggedIn == true,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText: 'Ваша почта',
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -155,38 +209,37 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                           fontFamily: 'Commissioner',
                                           letterSpacing: 0.0,
                                         ),
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                        color: Color(0x00000000),
                                         width: 2.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                                      borderRadius: BorderRadius.circular(80.0),
                                     ),
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                        color: Color(0x00000000),
                                         width: 2.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                                      borderRadius: BorderRadius.circular(80.0),
                                     ),
-                                    errorBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                        color: Color(0x00000000),
                                         width: 2.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                                      borderRadius: BorderRadius.circular(80.0),
                                     ),
-                                    focusedErrorBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                        color: Color(0x00000000),
                                         width: 2.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                                      borderRadius: BorderRadius.circular(80.0),
                                     ),
+                                    filled: true,
+                                    fillColor: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
                                     contentPadding:
                                         const EdgeInsetsDirectional.fromSTEB(
                                             19.0, 0.0, 0.0, 0.0),
@@ -212,7 +265,13 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Commissioner',
-                                        fontSize: 20.0,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        fontSize:
+                                            MediaQuery.sizeOf(context).width >
+                                                    1000.0
+                                                ? 20.0
+                                                : 14.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -244,22 +303,20 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                               letterSpacing: 0.0,
                                             ),
                                         enabledBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
+                                          borderSide: const BorderSide(
+                                            color: Color(0x00000000),
                                             width: 2.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(8.0),
+                                              BorderRadius.circular(80.0),
                                         ),
                                         focusedBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
+                                          borderSide: const BorderSide(
+                                            color: Color(0x00000000),
                                             width: 2.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(8.0),
+                                              BorderRadius.circular(80.0),
                                         ),
                                         errorBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
@@ -268,7 +325,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                             width: 2.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(8.0),
+                                              BorderRadius.circular(80.0),
                                         ),
                                         focusedErrorBorder:
                                             UnderlineInputBorder(
@@ -278,8 +335,10 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                             width: 2.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(8.0),
+                                              BorderRadius.circular(80.0),
                                         ),
+                                        filled: true,
+                                        fillColor: Colors.white,
                                         contentPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
                                                 19.0, 0.0, 0.0, 0.0),
@@ -376,42 +435,40 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                               letterSpacing: 0.0,
                                             ),
                                         enabledBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
+                                          borderSide: const BorderSide(
+                                            color: Color(0x00000000),
                                             width: 2.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(8.0),
+                                              BorderRadius.circular(80.0),
                                         ),
                                         focusedBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
+                                          borderSide: const BorderSide(
+                                            color: Color(0x00000000),
                                             width: 2.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(8.0),
+                                              BorderRadius.circular(80.0),
                                         ),
                                         errorBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
+                                          borderSide: const BorderSide(
+                                            color: Color(0x00000000),
                                             width: 2.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(8.0),
+                                              BorderRadius.circular(80.0),
                                         ),
                                         focusedErrorBorder:
                                             UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
+                                          borderSide: const BorderSide(
+                                            color: Color(0x00000000),
                                             width: 2.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(8.0),
+                                              BorderRadius.circular(80.0),
                                         ),
+                                        filled: true,
+                                        fillColor: Colors.white,
                                         contentPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
                                                 19.0, 0.0, 0.0, 0.0),
@@ -483,46 +540,40 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                       letterSpacing: 0.0,
                                                     ),
                                             enabledBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .alternate,
+                                              borderSide: const BorderSide(
+                                                color: Color(0x00000000),
                                                 width: 2.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(8.0),
+                                                  BorderRadius.circular(80.0),
                                             ),
                                             focusedBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
+                                              borderSide: const BorderSide(
+                                                color: Color(0x00000000),
                                                 width: 2.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(8.0),
+                                                  BorderRadius.circular(80.0),
                                             ),
                                             errorBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
+                                              borderSide: const BorderSide(
+                                                color: Color(0x00000000),
                                                 width: 2.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(8.0),
+                                                  BorderRadius.circular(80.0),
                                             ),
                                             focusedErrorBorder:
                                                 UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
+                                              borderSide: const BorderSide(
+                                                color: Color(0x00000000),
                                                 width: 2.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(8.0),
+                                                  BorderRadius.circular(80.0),
                                             ),
+                                            filled: true,
+                                            fillColor: Colors.white,
                                             contentPadding:
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     19.0, 0.0, 0.0, 0.0),
@@ -559,7 +610,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                         _model.textController3.text)
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 2.0, 0.0, 0.0),
+                                            0.0, 6.0, 0.0, 0.0),
                                         child: Text(
                                           'Пароли должны совпадать',
                                           style: FlutterFlowTheme.of(context)
@@ -580,8 +631,16 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                         ].divide(const SizedBox(height: 26.0)),
                       ),
                       Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            0.0,
+                            40.0,
+                            0.0,
+                            valueOrDefault<double>(
+                              MediaQuery.sizeOf(context).width > 1000.0
+                                  ? 40.0
+                                  : 24.0,
+                              0.0,
+                            )),
                         child: FFButtonWidget(
                           onPressed: ((_model.step == 2) &&
                                   (_model.textController1.text == '') &&

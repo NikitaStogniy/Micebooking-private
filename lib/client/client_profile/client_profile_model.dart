@@ -157,6 +157,75 @@ class ClientProfileModel extends FlutterFlowModel<ClientProfileWidget> {
   FocusNode? bankBicFocusNode;
   TextEditingController? bankBicTextController;
   String? Function(BuildContext, String?)? bankBicTextControllerValidator;
+  // State field(s) for fioMob widget.
+  FocusNode? fioMobFocusNode;
+  TextEditingController? fioMobTextController;
+  String? Function(BuildContext, String?)? fioMobTextControllerValidator;
+  // State field(s) for jobTitleMob widget.
+  FocusNode? jobTitleMobFocusNode;
+  TextEditingController? jobTitleMobTextController;
+  String? Function(BuildContext, String?)? jobTitleMobTextControllerValidator;
+  // State field(s) for mailMob widget.
+  FocusNode? mailMobFocusNode;
+  TextEditingController? mailMobTextController;
+  String? Function(BuildContext, String?)? mailMobTextControllerValidator;
+  // State field(s) for phoneMob widget.
+  FocusNode? phoneMobFocusNode;
+  TextEditingController? phoneMobTextController;
+  final phoneMobMask = MaskTextInputFormatter(mask: '+# (###) ###-##-##');
+  String? Function(BuildContext, String?)? phoneMobTextControllerValidator;
+  // State field(s) for jurNameMob widget.
+  FocusNode? jurNameMobFocusNode;
+  TextEditingController? jurNameMobTextController;
+  String? Function(BuildContext, String?)? jurNameMobTextControllerValidator;
+  // State field(s) for jurAdressMob widget.
+  FocusNode? jurAdressMobFocusNode;
+  TextEditingController? jurAdressMobTextController;
+  String? Function(BuildContext, String?)? jurAdressMobTextControllerValidator;
+  // State field(s) for jurLeadMob widget.
+  FocusNode? jurLeadMobFocusNode;
+  TextEditingController? jurLeadMobTextController;
+  String? Function(BuildContext, String?)? jurLeadMobTextControllerValidator;
+  // State field(s) for KPPMob widget.
+  FocusNode? kPPMobFocusNode;
+  TextEditingController? kPPMobTextController;
+  String? Function(BuildContext, String?)? kPPMobTextControllerValidator;
+  // State field(s) for INNMob widget.
+  FocusNode? iNNMobFocusNode;
+  TextEditingController? iNNMobTextController;
+  String? Function(BuildContext, String?)? iNNMobTextControllerValidator;
+  // State field(s) for OGRNMob widget.
+  FocusNode? oGRNMobFocusNode;
+  TextEditingController? oGRNMobTextController;
+  String? Function(BuildContext, String?)? oGRNMobTextControllerValidator;
+  // State field(s) for OKPOMob widget.
+  FocusNode? oKPOMobFocusNode;
+  TextEditingController? oKPOMobTextController;
+  String? Function(BuildContext, String?)? oKPOMobTextControllerValidator;
+  // State field(s) for bankNameMob widget.
+  FocusNode? bankNameMobFocusNode;
+  TextEditingController? bankNameMobTextController;
+  String? Function(BuildContext, String?)? bankNameMobTextControllerValidator;
+  // State field(s) for bankKorrMob widget.
+  FocusNode? bankKorrMobFocusNode;
+  TextEditingController? bankKorrMobTextController;
+  String? Function(BuildContext, String?)? bankKorrMobTextControllerValidator;
+  // State field(s) for bankRcMob widget.
+  FocusNode? bankRcMobFocusNode;
+  TextEditingController? bankRcMobTextController;
+  String? Function(BuildContext, String?)? bankRcMobTextControllerValidator;
+  // State field(s) for bicMob widget.
+  FocusNode? bicMobFocusNode;
+  TextEditingController? bicMobTextController;
+  String? Function(BuildContext, String?)? bicMobTextControllerValidator;
+  // State field(s) for bankINNMob widget.
+  FocusNode? bankINNMobFocusNode;
+  TextEditingController? bankINNMobTextController;
+  String? Function(BuildContext, String?)? bankINNMobTextControllerValidator;
+  // State field(s) for bankKPPMob widget.
+  FocusNode? bankKPPMobFocusNode;
+  TextEditingController? bankKPPMobTextController;
+  String? Function(BuildContext, String?)? bankKPPMobTextControllerValidator;
 
   /// Query cache managers for this widget.
 
@@ -234,6 +303,57 @@ class ClientProfileModel extends FlutterFlowModel<ClientProfileWidget> {
 
     bankBicFocusNode?.dispose();
     bankBicTextController?.dispose();
+
+    fioMobFocusNode?.dispose();
+    fioMobTextController?.dispose();
+
+    jobTitleMobFocusNode?.dispose();
+    jobTitleMobTextController?.dispose();
+
+    mailMobFocusNode?.dispose();
+    mailMobTextController?.dispose();
+
+    phoneMobFocusNode?.dispose();
+    phoneMobTextController?.dispose();
+
+    jurNameMobFocusNode?.dispose();
+    jurNameMobTextController?.dispose();
+
+    jurAdressMobFocusNode?.dispose();
+    jurAdressMobTextController?.dispose();
+
+    jurLeadMobFocusNode?.dispose();
+    jurLeadMobTextController?.dispose();
+
+    kPPMobFocusNode?.dispose();
+    kPPMobTextController?.dispose();
+
+    iNNMobFocusNode?.dispose();
+    iNNMobTextController?.dispose();
+
+    oGRNMobFocusNode?.dispose();
+    oGRNMobTextController?.dispose();
+
+    oKPOMobFocusNode?.dispose();
+    oKPOMobTextController?.dispose();
+
+    bankNameMobFocusNode?.dispose();
+    bankNameMobTextController?.dispose();
+
+    bankKorrMobFocusNode?.dispose();
+    bankKorrMobTextController?.dispose();
+
+    bankRcMobFocusNode?.dispose();
+    bankRcMobTextController?.dispose();
+
+    bicMobFocusNode?.dispose();
+    bicMobTextController?.dispose();
+
+    bankINNMobFocusNode?.dispose();
+    bankINNMobTextController?.dispose();
+
+    bankKPPMobFocusNode?.dispose();
+    bankKPPMobTextController?.dispose();
 
     /// Dispose query cache managers for this widget.
 

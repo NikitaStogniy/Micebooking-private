@@ -1070,32 +1070,22 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 16.0, 0.0, 0.0),
-                                  child: InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      _model.addNew = 'HOTEL';
-                                      setState(() {});
-                                      setState(() =>
-                                          _model.requestCompleter4 = null);
-                                      await _model.waitForRequestCompleted4();
-                                    },
-                                    child: wrapWithModel(
-                                      model: _model.addNewModel1,
-                                      updateCallback: () => setState(() {}),
-                                      updateOnChange: true,
-                                      child: AddNewWidget(
-                                        label: 'Добавить город',
-                                        onClick: () async {
-                                          _model.editService = null;
-                                          _model.editCity = null;
-                                          _model.editDestination = null;
-                                          _model.addNew = 'CITY';
-                                          _model.updatePage(() {});
-                                        },
-                                      ),
+                                  child: wrapWithModel(
+                                    model: _model.addNewModel1,
+                                    updateCallback: () => setState(() {}),
+                                    updateOnChange: true,
+                                    child: AddNewWidget(
+                                      label: 'Добавить город',
+                                      onClick: () async {
+                                        _model.editService = null;
+                                        _model.editCity = null;
+                                        _model.editDestination = null;
+                                        _model.addNew = 'CITY';
+                                        _model.updatePage(() {});
+                                        setState(() =>
+                                            _model.requestCompleter4 = null);
+                                        await _model.waitForRequestCompleted4();
+                                      },
                                     ),
                                   ),
                                 ),
@@ -1413,32 +1403,22 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 16.0, 0.0, 0.0),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    _model.addNew = 'HOTEL';
-                                    setState(() {});
-                                  },
-                                  child: wrapWithModel(
-                                    model: _model.addNewModel2,
-                                    updateCallback: () => setState(() {}),
-                                    updateOnChange: true,
-                                    child: AddNewWidget(
-                                      label: 'Добавить расстояние от центра',
-                                      onClick: () async {
-                                        _model.editService = null;
-                                        _model.editCity = null;
-                                        _model.editDestination = null;
-                                        _model.addNew = 'DESTINATION';
-                                        _model.updatePage(() {});
-                                        setState(() =>
-                                            _model.requestCompleter3 = null);
-                                        await _model.waitForRequestCompleted3();
-                                      },
-                                    ),
+                                child: wrapWithModel(
+                                  model: _model.addNewModel2,
+                                  updateCallback: () => setState(() {}),
+                                  updateOnChange: true,
+                                  child: AddNewWidget(
+                                    label: 'Добавить расстояние от центра',
+                                    onClick: () async {
+                                      _model.editService = null;
+                                      _model.editCity = null;
+                                      _model.editDestination = null;
+                                      _model.addNew = 'DESTINATION';
+                                      _model.updatePage(() {});
+                                      setState(() =>
+                                          _model.requestCompleter3 = null);
+                                      await _model.waitForRequestCompleted3();
+                                    },
                                   ),
                                 ),
                               ),

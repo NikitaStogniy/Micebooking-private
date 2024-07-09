@@ -358,8 +358,12 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                               child: wrapWithModel(
                                 model: _model.menuModel,
                                 updateCallback: () => setState(() {}),
-                                child: const MenuWidget(
+                                child: MenuWidget(
                                   isBlue: true,
+                                  page: 'home\n',
+                                  clientProfile: () async {},
+                                  clientRequest: () async {},
+                                  clientFavorite: () async {},
                                 ),
                               ),
                             ),
