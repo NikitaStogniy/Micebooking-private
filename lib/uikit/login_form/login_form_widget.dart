@@ -226,7 +226,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
             ].divide(const SizedBox(height: 13.0)),
           ),
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 16.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -234,50 +234,53 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    FFButtonWidget(
-                      onPressed: () async {
-                        GoRouter.of(context).prepareAuthEvent();
+                    Expanded(
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          GoRouter.of(context).prepareAuthEvent();
 
-                        final user = await authManager.signInWithEmail(
-                          context,
-                          _model.emailTextController.text,
-                          _model.passwordTextController.text,
-                        );
-                        if (user == null) {
-                          return;
-                        }
+                          final user = await authManager.signInWithEmail(
+                            context,
+                            _model.emailTextController.text,
+                            _model.passwordTextController.text,
+                          );
+                          if (user == null) {
+                            return;
+                          }
 
-                        _model.user = await UsersTable().queryRows(
-                          queryFn: (q) => q.eq(
-                            'email',
-                            currentUserEmail,
+                          _model.user = await UsersTable().queryRows(
+                            queryFn: (q) => q.eq(
+                              'email',
+                              currentUserEmail,
+                            ),
+                          );
+
+                          context.goNamedAuth('Home', context.mounted);
+
+                          setState(() {});
+                        },
+                        text: 'Войти',
+                        options: FFButtonOptions(
+                          width: MediaQuery.sizeOf(context).width * 1.0,
+                          height: 60.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 24.0, 24.0, 24.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).primary,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Commissioner',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                          elevation: 0.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
                           ),
-                        );
-
-                        context.goNamedAuth('Home', context.mounted);
-
-                        setState(() {});
-                      },
-                      text: 'Войти',
-                      options: FFButtonOptions(
-                        width: 350.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            24.0, 24.0, 24.0, 24.0),
-                        iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).primary,
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Commissioner',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                        elevation: 3.0,
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
+                          borderRadius: BorderRadius.circular(80.0),
                         ),
-                        borderRadius: BorderRadius.circular(24.0),
                       ),
                     ),
                   ].divide(const SizedBox(width: 20.0)),

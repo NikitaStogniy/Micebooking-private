@@ -48,8 +48,9 @@ class _CityDropDownWidgetState extends State<CityDropDownWidget> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          width: 300.0,
+          width: MediaQuery.sizeOf(context).width * 1.0,
           constraints: const BoxConstraints(
+            maxWidth: 300.0,
             maxHeight: 700.0,
           ),
           decoration: BoxDecoration(

@@ -23,8 +23,6 @@ class HallSettingsModel extends FlutterFlowModel<HallSettingsWidget> {
   String? Function(BuildContext, String?)? newCategoryTextControllerValidator;
   // Stores action output result for [Backend Call - Insert Row] action in Button widget.
   ServiceCategoryRow? newService;
-  // Stores action output result for [Backend Call - Query Rows] action in super_service_elment widget.
-  List<ServiceRow>? services;
 
   @override
   void initState(BuildContext context) {}

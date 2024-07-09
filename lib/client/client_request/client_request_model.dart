@@ -9,6 +9,10 @@ class ClientRequestModel extends FlutterFlowModel<ClientRequestWidget> {
 
   int? request;
 
+  DateTime? currentDate;
+
+  String? formatedDate;
+
   @override
   void initState(BuildContext context) {}
 

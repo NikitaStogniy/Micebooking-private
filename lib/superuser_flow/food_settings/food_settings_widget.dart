@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/superuser_flow/add_new/add_new_widget.dart';
 import '/superuser_flow/info_component/info_component_widget.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'food_settings_model.dart';
 export 'food_settings_model.dart';
@@ -73,14 +74,17 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                   ),
                   decoration: const BoxDecoration(),
                   child: FutureBuilder<List<ServiceRow>>(
-                    future: ServiceTable().queryRows(
-                      queryFn: (q) => q
-                          .eq(
-                            'type',
-                            EnumType.FOOD.name,
-                          )
-                          .order('created_at', ascending: true),
-                    ),
+                    future: (_model.requestCompleter ??=
+                            Completer<List<ServiceRow>>()
+                              ..complete(ServiceTable().queryRows(
+                                queryFn: (q) => q
+                                    .eq(
+                                      'type',
+                                      EnumType.FOOD.name,
+                                    )
+                                    .order('created_at', ascending: true),
+                              )))
+                        .future,
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
                       if (!snapshot.hasData) {
@@ -157,6 +161,9 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                                       listViewServiceRow.id,
                                     ),
                                   );
+                                  setState(
+                                      () => _model.requestCompleter = null);
+                                  await _model.waitForRequestCompleted();
                                 },
                                 updateDistance:
                                     (first, last, avalibility) async {},
@@ -197,7 +204,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     isDense: true,
-                                    hintText: 'Новое удобство...',
+                                    hintText: 'Новая категория...',
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -234,6 +241,8 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                                 });
                                 _model.addNew = null;
                                 setState(() {});
+                                setState(() => _model.requestCompleter = null);
+                                await _model.waitForRequestCompleted();
                               },
                               text: 'Добавить',
                               options: FFButtonOptions(

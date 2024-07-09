@@ -87,13 +87,22 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                         const EdgeInsetsDirectional.fromSTEB(16.0, 32.0, 16.0, 0.0),
                     child: Stack(
                       children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(0.0),
-                          child: SvgPicture.asset(
-                            'assets/images/MICEBOOKING.svg',
-                            width: 140.0,
-                            height: 16.0,
-                            fit: BoxFit.contain,
+                        InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed('Home');
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(0.0),
+                            child: SvgPicture.asset(
+                              'assets/images/MICEBOOKING.svg',
+                              width: 140.0,
+                              height: 16.0,
+                              fit: BoxFit.contain,
+                            ),
                           ),
                         ),
                         Align(

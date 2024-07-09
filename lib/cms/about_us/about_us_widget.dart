@@ -110,8 +110,12 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
                               wrapWithModel(
                                 model: _model.menuModel,
                                 updateCallback: () => setState(() {}),
-                                child: const MenuWidget(
+                                child: MenuWidget(
                                   isBlue: true,
+                                  page: 'home',
+                                  clientProfile: () async {},
+                                  clientRequest: () async {},
+                                  clientFavorite: () async {},
                                 ),
                               ),
                               Column(
