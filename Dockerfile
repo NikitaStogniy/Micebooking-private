@@ -25,6 +25,9 @@ RUN flutter build web
 # Используем официальный Docker образ nginx для хостинга нашего веб-приложения
 FROM nginx:alpine
 
+# Копируем конфиг nginx под работу Flutter
+COPY nginx.default.conf /etc/nginx/conf.d/default.conf
+
 # Копируем собранное веб-приложение из предыдущего этапа
 COPY --from=build /app/build/web /usr/share/nginx/html
 
