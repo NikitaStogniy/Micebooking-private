@@ -102,6 +102,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                 .labelMedium
                                 .override(
                                   fontFamily: 'Commissioner',
+                                  fontSize: 16.0,
                                   letterSpacing: 0.0,
                                 ),
                             enabledBorder: UnderlineInputBorder(
@@ -138,6 +139,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Commissioner',
+                                    fontSize: 16.0,
                                     letterSpacing: 0.0,
                                   ),
                           validator: _model.textControllerValidator
