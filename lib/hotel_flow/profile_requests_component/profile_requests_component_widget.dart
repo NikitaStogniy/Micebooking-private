@@ -121,6 +121,7 @@ class _ProfileRequestsComponentWidgetState
                           );
                         }
                         List<CityRow> rowCityRowList = snapshot.data!;
+
                         final rowCityRow = rowCityRowList.isNotEmpty
                             ? rowCityRowList.first
                             : null;
@@ -177,6 +178,7 @@ class _ProfileRequestsComponentWidgetState
                         );
                       }
                       List<UsersRow> rowUsersRowList = snapshot.data!;
+
                       final rowUsersRow = rowUsersRowList.isNotEmpty
                           ? rowUsersRowList.first
                           : null;
@@ -477,6 +479,7 @@ class _ProfileRequestsComponentWidgetState
                             }
                             List<RequestsRow> columnRequestsRowList =
                                 snapshot.data!;
+
                             if (columnRequestsRowList.isEmpty) {
                               return const HotelRequestEmprtyWidget();
                             }

@@ -307,6 +307,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
           );
         }
         List<UsersRow> hotelSearchPageUsersRowList = snapshot.data!;
+
         final hotelSearchPageUsersRow = hotelSearchPageUsersRowList.isNotEmpty
             ? hotelSearchPageUsersRowList.first
             : null;
@@ -432,6 +433,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                         Builder(
                           builder: (context) {
                             final test = _model.filteredRooms.toList();
+
                             return Row(
                               mainAxisSize: MainAxisSize.max,
                               children: List.generate(test.length, (testIndex) {
@@ -1422,6 +1424,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                       }
                                       List<HotelRow> hotelsHotelRowList =
                                           snapshot.data!;
+
                                       if (hotelsHotelRowList.isEmpty) {
                                         return const Center(
                                           child: SearchEmprtyWidget(),
@@ -1727,6 +1730,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                 }
                                 List<HotelRow> containerHotelRowList =
                                     snapshot.data!;
+
                                 final containerHotelRow =
                                     containerHotelRowList.isNotEmpty
                                         ? containerHotelRowList.first
@@ -1777,6 +1781,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                 }
                                 List<HotelRow> hallChooseHotelRowList =
                                     snapshot.data!;
+
                                 final hallChooseHotelRow =
                                     hallChooseHotelRowList.isNotEmpty
                                         ? hallChooseHotelRowList.first
@@ -1855,6 +1860,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                   List<HallRow>
                                                       columnHallRowList =
                                                       snapshot.data!;
+
                                                   if (columnHallRowList
                                                       .isEmpty) {
                                                     return const SearchEmprtyWidget();
@@ -2199,6 +2205,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                 }
                                 List<HotelRow> foodChoseHotelRowList =
                                     snapshot.data!;
+
                                 final foodChoseHotelRow =
                                     foodChoseHotelRowList.isNotEmpty
                                         ? foodChoseHotelRowList.first
@@ -2267,6 +2274,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                 List<FoodRow>
                                                     columnFoodRowList =
                                                     snapshot.data!;
+
                                                 return Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -2493,6 +2501,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                               }
                               List<HotelRow> roomChooseHotelRowList =
                                   snapshot.data!;
+
                               final roomChooseHotelRow =
                                   roomChooseHotelRowList.isNotEmpty
                                       ? roomChooseHotelRowList.first
@@ -2560,6 +2569,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                             }
                                             List<RoomRow> columnRoomRowList =
                                                 snapshot.data!;
+
                                             return Column(
                                               mainAxisSize: MainAxisSize.max,
                                               children: List.generate(
@@ -2779,6 +2789,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                 }
                                 List<HotelRow> containerHotelRowList =
                                     snapshot.data!;
+
                                 final containerHotelRow =
                                     containerHotelRowList.isNotEmpty
                                         ? containerHotelRowList.first
@@ -2945,7 +2956,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                     'client_network':
                                                         hotelSearchPageUsersRow
                                                             ?.network,
-                                                    'duration': widget.duration,
+                                                    'duration':
+                                                        widget.duration,
                                                   });
                                                   await RequestsHallVarTable()
                                                       .update(
@@ -3203,7 +3215,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                     'client_network':
                                                         hotelSearchPageUsersRow
                                                             ?.network,
-                                                    'duration': widget.duration,
+                                                    'duration':
+                                                        widget.duration,
                                                   });
                                                   await RequestsHallVarTable()
                                                       .update(

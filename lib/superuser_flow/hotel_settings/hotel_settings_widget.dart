@@ -162,6 +162,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                       List<ServiceCategoryRow>
                                           categoryListServiceCategoryRowList =
                                           snapshot.data!;
+
                                       return Column(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
@@ -659,6 +660,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                         List<ServiceCategoryRow>
                                             serviscesListServiceCategoryRowList =
                                             snapshot.data!;
+
                                         return Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
@@ -760,6 +762,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                   );
                                 }
                                 List<CityRow> citysCityRowList = snapshot.data!;
+
                                 return ListView.separated(
                                   padding: const EdgeInsets.fromLTRB(
                                     0,
@@ -1140,6 +1143,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                               List<CenterDistanceRow>
                                   listViewCenterDistanceRowList =
                                   snapshot.data!;
+
                               return ListView.separated(
                                 padding: const EdgeInsets.fromLTRB(
                                   0,

@@ -436,6 +436,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                         }
                                         List<CityRow> dropDownCityRowList =
                                             snapshot.data!;
+
                                         return FlutterFlowDropDown<String>(
                                           controller:
                                               _model.dropDownValueController ??=
@@ -1304,6 +1305,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                   builder: (context) {
                                     final images =
                                         _model.uploadedImages.toList();
+
                                     return ListView.builder(
                                       padding: const EdgeInsets.fromLTRB(
                                         0,
@@ -1459,6 +1461,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                             List<ServiceCategoryRow>
                                 staggeredViewServiceCategoryRowList =
                                 snapshot.data!;
+
                             return MasonryGridView.builder(
                               gridDelegate:
                                   const SliverSimpleGridDelegateWithFixedCrossAxisCount(
@@ -1544,6 +1547,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                             List<ServiceRow>
                                                 listViewServiceRowList =
                                                 snapshot.data!;
+
                                             return ListView.separated(
                                               padding: EdgeInsets.zero,
                                               shrinkWrap: true,

@@ -74,6 +74,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
           );
         }
         List<UsersRow> containerUsersRowList = snapshot.data!;
+
         final containerUsersRow = containerUsersRowList.isNotEmpty
             ? containerUsersRowList.first
             : null;

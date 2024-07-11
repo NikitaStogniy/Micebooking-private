@@ -98,6 +98,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                       );
                     }
                     List<UsersRow> descUsersRowList = snapshot.data!;
+
                     final descUsersRow = descUsersRowList.isNotEmpty
                         ? descUsersRowList.first
                         : null;
@@ -709,6 +710,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                       );
                     }
                     List<UsersRow> mobUsersRowList = snapshot.data!;
+
                     final mobUsersRow = mobUsersRowList.isNotEmpty
                         ? mobUsersRowList.first
                         : null;

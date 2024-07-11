@@ -86,6 +86,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                 );
               }
               List<UsersRow> containerUsersRowList = snapshot.data!;
+
               final containerUsersRow = containerUsersRowList.isNotEmpty
                   ? containerUsersRowList.first
                   : null;
@@ -476,18 +477,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                             const AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                        child: MobileMenuWidget(
-                                          page: widget.page,
-                                          clientProfile: () async {
-                                            await widget.clientProfile?.call();
-                                          },
-                                          clientRequests: () async {
-                                            await widget.clientRequest?.call();
-                                          },
-                                          clientFavorite: () async {
-                                            await widget.clientFavorite?.call();
-                                          },
-                                        ),
+                                        child: const MobileMenuWidget(),
                                       );
                                     },
                                   ).then((value) => setState(() {}));

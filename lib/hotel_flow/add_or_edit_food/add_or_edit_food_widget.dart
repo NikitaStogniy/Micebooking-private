@@ -278,6 +278,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                     List<ServiceRow>
                                         createCategoryServiceRowList =
                                         snapshot.data!;
+
                                     return FlutterFlowDropDown<String>(
                                       controller: _model
                                               .createCategoryValueController ??=
@@ -442,6 +443,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                             Builder(
                               builder: (context) {
                                 final menuList1 = _model.menu.toList();
+
                                 return ReorderableListView.builder(
                                   padding: EdgeInsets.zero,
                                   shrinkWrap: true,
@@ -918,6 +920,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                     );
                   }
                   List<FoodRow> containerFoodRowList = snapshot.data!;
+
                   // Return an empty Container when the item does not exist.
                   if (snapshot.data!.isEmpty) {
                     return Container();
@@ -951,6 +954,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                         }
                         List<FoodPositionRow> editFoodFoodPositionRowList =
                             snapshot.data!;
+
                         return wrapWithModel(
                           model: _model.editFoodModel,
                           updateCallback: () => setState(() {}),

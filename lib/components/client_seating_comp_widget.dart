@@ -233,7 +233,8 @@ class _ClientSeatingCompWidgetState extends State<ClientSeatingCompWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 await widget.onChangeSeating?.call(
-                                  functions.enumChange(widget.seating!.type, 1),
+                                  functions.enumChange(
+                                      widget.seating!.type, 1),
                                   int.tryParse(_model.countTextController.text),
                                 );
                               },

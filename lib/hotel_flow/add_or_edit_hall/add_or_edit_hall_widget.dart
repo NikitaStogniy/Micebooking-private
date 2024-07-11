@@ -474,6 +474,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                         builder: (context) {
                                           final images =
                                               _model.uploadedImages.toList();
+
                                           return ListView.builder(
                                             padding: EdgeInsets.zero,
                                             scrollDirection: Axis.horizontal,
@@ -862,6 +863,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                             Builder(
                               builder: (context) {
                                 final seatings = _model.seating.toList();
+
                                 return Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: List.generate(seatings.length,
@@ -991,6 +993,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                   List<ServiceCategoryRow>
                                       staggeredViewServiceCategoryRowList =
                                       snapshot.data!;
+
                                   return MasonryGridView.builder(
                                     gridDelegate:
                                         const SliverSimpleGridDelegateWithFixedCrossAxisCount(
@@ -1079,6 +1082,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                   List<ServiceRow>
                                                       listViewServiceRowList =
                                                       snapshot.data!;
+
                                                   return ListView.separated(
                                                     padding: EdgeInsets.zero,
                                                     shrinkWrap: true,
@@ -1676,6 +1680,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                     );
                   }
                   List<HallRow> editHallHallRowList = snapshot.data!;
+
                   // Return an empty Container when the item does not exist.
                   if (snapshot.data!.isEmpty) {
                     return Container();

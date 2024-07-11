@@ -118,6 +118,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
           );
         }
         List<UsersRow> editRequestPageUsersRowList = snapshot.data!;
+
         final editRequestPageUsersRow = editRequestPageUsersRowList.isNotEmpty
             ? editRequestPageUsersRowList.first
             : null;
@@ -300,6 +301,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                               );
                             }
                             List<HotelRow> columnHotelRowList = snapshot.data!;
+
                             final columnHotelRow = columnHotelRowList.isNotEmpty
                                 ? columnHotelRowList.first
                                 : null;
@@ -345,6 +347,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                           );
                         }
                         List<HotelRow> hallChooseHotelRowList = snapshot.data!;
+
                         final hallChooseHotelRow =
                             hallChooseHotelRowList.isNotEmpty
                                 ? hallChooseHotelRowList.first
@@ -399,6 +402,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                     }
                                     List<HallRow> columnHallRowList =
                                         snapshot.data!;
+
                                     return Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: List.generate(
@@ -443,6 +447,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                             List<RequestsHallVarRow>
                                                 clientHallEditComponentRequestsHallVarRowList =
                                                 snapshot.data!;
+
                                             final clientHallEditComponentRequestsHallVarRow =
                                                 clientHallEditComponentRequestsHallVarRowList
                                                         .isNotEmpty
@@ -648,6 +653,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                           );
                         }
                         List<HotelRow> foodChoseHotelRowList = snapshot.data!;
+
                         final foodChoseHotelRow =
                             foodChoseHotelRowList.isNotEmpty
                                 ? foodChoseHotelRowList.first
@@ -702,6 +708,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                     }
                                     List<FoodRow> columnFoodRowList =
                                         snapshot.data!;
+
                                     return Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: List.generate(
@@ -746,6 +753,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                             List<RequestsFoodVarRow>
                                                 editFoodComponentRequestsFoodVarRowList =
                                                 snapshot.data!;
+
                                             final editFoodComponentRequestsFoodVarRow =
                                                 editFoodComponentRequestsFoodVarRowList
                                                         .isNotEmpty
@@ -945,6 +953,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                           );
                         }
                         List<HotelRow> roomChooseHotelRowList = snapshot.data!;
+
                         final roomChooseHotelRow =
                             roomChooseHotelRowList.isNotEmpty
                                 ? roomChooseHotelRowList.first
@@ -999,6 +1008,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                     }
                                     List<RoomRow> columnRoomRowList =
                                         snapshot.data!;
+
                                     return Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: List.generate(
@@ -1043,6 +1053,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                             List<RequestsRoomVarRow>
                                                 editRoomComponentRequestsRoomVarRowList =
                                                 snapshot.data!;
+
                                             final editRoomComponentRequestsRoomVarRow =
                                                 editRoomComponentRequestsRoomVarRowList
                                                         .isNotEmpty

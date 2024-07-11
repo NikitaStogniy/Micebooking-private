@@ -72,6 +72,7 @@ class _ClientDetailWidgetState extends State<ClientDetailWidget> {
           );
         }
         List<UsersRow> containerUsersRowList = snapshot.data!;
+
         final containerUsersRow = containerUsersRowList.isNotEmpty
             ? containerUsersRowList.first
             : null;
@@ -315,6 +316,7 @@ class _ClientDetailWidgetState extends State<ClientDetailWidget> {
                           );
                         }
                         List<UsersRow> columnUsersRowList = snapshot.data!;
+
                         return Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,

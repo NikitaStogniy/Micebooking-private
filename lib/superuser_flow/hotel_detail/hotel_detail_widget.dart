@@ -83,6 +83,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
           );
         }
         List<HotelRow> containerHotelRowList = snapshot.data!;
+
         final containerHotelRow = containerHotelRowList.isNotEmpty
             ? containerHotelRowList.first
             : null;
@@ -116,6 +117,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                       );
                     }
                     List<CityRow> rowCityRowList = snapshot.data!;
+
                     final rowCityRow =
                         rowCityRowList.isNotEmpty ? rowCityRowList.first : null;
                     return Row(
@@ -243,6 +245,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                             );
                           }
                           List<HallRow> containerHallRowList = snapshot.data!;
+
                           return ClipRRect(
                             borderRadius: const BorderRadius.only(
                               bottomLeft: Radius.circular(16.0),
@@ -387,6 +390,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                     builder: (context) {
                                       final halls =
                                           containerHallRowList.toList();
+
                                       return Column(
                                         mainAxisSize: MainAxisSize.min,
                                         crossAxisAlignment:
@@ -774,6 +778,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                             );
                           }
                           List<FoodRow> containerFoodRowList = snapshot.data!;
+
                           return ClipRRect(
                             borderRadius: const BorderRadius.only(
                               bottomLeft: Radius.circular(16.0),
@@ -920,6 +925,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                         builder: (context) {
                                           final food =
                                               containerFoodRowList.toList();
+
                                           return Column(
                                             mainAxisSize: MainAxisSize.min,
                                             crossAxisAlignment:
@@ -1195,6 +1201,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                             );
                           }
                           List<RoomRow> containerRoomRowList = snapshot.data!;
+
                           return ClipRRect(
                             borderRadius: const BorderRadius.only(
                               bottomLeft: Radius.circular(16.0),
@@ -1335,6 +1342,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                     builder: (context) {
                                       final rooms =
                                           containerRoomRowList.toList();
+
                                       return Column(
                                         mainAxisSize: MainAxisSize.min,
                                         crossAxisAlignment:

@@ -125,6 +125,7 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
               );
             }
             List<ServiceRow> hotelServiceRowList = snapshot.data!;
+
             return Column(
               mainAxisSize: MainAxisSize.max,
               children: List.generate(hotelServiceRowList.length, (hotelIndex) {

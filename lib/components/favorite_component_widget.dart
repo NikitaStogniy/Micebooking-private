@@ -71,6 +71,7 @@ class _FavoriteComponentWidgetState extends State<FavoriteComponentWidget> {
           );
         }
         List<UsersRow> containerUsersRowList = snapshot.data!;
+
         final containerUsersRow = containerUsersRowList.isNotEmpty
             ? containerUsersRowList.first
             : null;
@@ -100,6 +101,7 @@ class _FavoriteComponentWidgetState extends State<FavoriteComponentWidget> {
               }
               List<FavoriteHotelsRow> containerFavoriteHotelsRowList =
                   snapshot.data!;
+
               return Container(
                 decoration: const BoxDecoration(),
                 child: Column(

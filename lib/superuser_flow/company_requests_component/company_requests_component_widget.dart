@@ -84,6 +84,7 @@ class _CompanyRequestsComponentWidgetState
           );
         }
         List<UsersRow> containerUsersRowList = snapshot.data!;
+
         final containerUsersRow = containerUsersRowList.isNotEmpty
             ? containerUsersRowList.first
             : null;
@@ -334,6 +335,7 @@ class _CompanyRequestsComponentWidgetState
                             );
                           }
                           List<HotelRow> containerHotelRowList = snapshot.data!;
+
                           return ClipRRect(
                             borderRadius: const BorderRadius.only(
                               bottomLeft: Radius.circular(16.0),
@@ -490,6 +492,7 @@ class _CompanyRequestsComponentWidgetState
                                       }
                                       List<RequestsRow> columnRequestsRowList =
                                           snapshot.data!;
+
                                       if (columnRequestsRowList.isEmpty) {
                                         return const HotelRequestEmprtyWidget();
                                       }
@@ -855,6 +858,7 @@ class _CompanyRequestsComponentWidgetState
                             );
                           }
                           List<UsersRow> columnUsersRowList = snapshot.data!;
+
                           final columnUsersRow = columnUsersRowList.isNotEmpty
                               ? columnUsersRowList.first
                               : null;
@@ -941,7 +945,7 @@ class _CompanyRequestsComponentWidgetState
                           );
                         },
                       ),
-                      if (_model.request?.halls?.isNotEmpty ?? false)
+                      if (_model.request?.halls.isNotEmpty)
                         Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -1092,6 +1096,7 @@ class _CompanyRequestsComponentWidgetState
                                 List<RequestsHallVarRow>
                                     columnRequestsHallVarRowList =
                                     snapshot.data!;
+
                                 return Column(
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -1324,7 +1329,7 @@ class _CompanyRequestsComponentWidgetState
                             ),
                           ],
                         ),
-                      if (_model.request?.food?.isNotEmpty ?? false)
+                      if (_model.request?.food.isNotEmpty)
                         Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -1475,6 +1480,7 @@ class _CompanyRequestsComponentWidgetState
                                 List<RequestsFoodVarRow>
                                     columnRequestsFoodVarRowList =
                                     snapshot.data!;
+
                                 return Column(
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -1705,7 +1711,7 @@ class _CompanyRequestsComponentWidgetState
                             ),
                           ],
                         ),
-                      if (_model.request?.rooms?.isNotEmpty ?? false)
+                      if (_model.request?.rooms.isNotEmpty)
                         Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -1856,6 +1862,7 @@ class _CompanyRequestsComponentWidgetState
                                 List<RequestsRoomVarRow>
                                     columnRequestsRoomVarRowList =
                                     snapshot.data!;
+
                                 return Column(
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.start,

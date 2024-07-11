@@ -83,6 +83,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                     }
                     List<ServiceCategoryRow> containerServiceCategoryRowList =
                         snapshot.data!;
+
                     return Container(
                       decoration: const BoxDecoration(),
                       child: Column(
@@ -140,6 +141,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                               builder: (context) {
                                 final categories =
                                     containerServiceCategoryRowList.toList();
+
                                 return Column(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -530,6 +532,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                             List<ServiceCategoryRow>
                                 serviscesListServiceCategoryRowList =
                                 snapshot.data!;
+
                             return Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,

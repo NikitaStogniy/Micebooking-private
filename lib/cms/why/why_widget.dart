@@ -71,6 +71,7 @@ class _WhyWidgetState extends State<WhyWidget> {
                 );
               }
               List<CmsRow> containerCmsRowList = snapshot.data!;
+
               final containerCmsRow = containerCmsRowList.isNotEmpty
                   ? containerCmsRowList.first
                   : null;

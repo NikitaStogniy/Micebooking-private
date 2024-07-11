@@ -467,6 +467,7 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                                           final images = _model.uploadedImages
                                               .map((e) => e)
                                               .toList();
+
                                           return ListView.builder(
                                             padding: const EdgeInsets.fromLTRB(
                                               0,
@@ -635,6 +636,7 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                                   List<ServiceCategoryRow>
                                       staggeredViewServiceCategoryRowList =
                                       snapshot.data!;
+
                                   return MasonryGridView.builder(
                                     gridDelegate:
                                         const SliverSimpleGridDelegateWithFixedCrossAxisCount(
@@ -723,6 +725,7 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                                                   List<ServiceRow>
                                                       listViewServiceRowList =
                                                       snapshot.data!;
+
                                                   return ListView.separated(
                                                     padding: EdgeInsets.zero,
                                                     shrinkWrap: true,
@@ -1251,7 +1254,8 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                                 _model.priceEditTextController?.text =
                                     widget.initialRoom!.price!.toString();
                                 _model.singlePriceEditTextController?.text =
-                                    widget.initialRoom!.singlePrice!.toString();
+                                    widget.initialRoom!.singlePrice!
+                                        .toString();
                               });
                               await widget.doneCallback?.call();
                             },

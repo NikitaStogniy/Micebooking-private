@@ -69,6 +69,7 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
           );
         }
         List<FoodRow> containerFoodRowList = snapshot.data!;
+
         final containerFoodRow =
             containerFoodRowList.isNotEmpty ? containerFoodRowList.first : null;
         return Container(
@@ -101,6 +102,7 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                       );
                     }
                     List<HotelRow> rowHotelRowList = snapshot.data!;
+
                     final rowHotelRow = rowHotelRowList.isNotEmpty
                         ? rowHotelRowList.first
                         : null;
@@ -132,6 +134,7 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                                 );
                               }
                               List<CityRow> textCityRowList = snapshot.data!;
+
                               final textCityRow = textCityRowList.isNotEmpty
                                   ? textCityRowList.first
                                   : null;
@@ -354,6 +357,7 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                           }
                           List<FoodPositionRow> listViewFoodPositionRowList =
                               snapshot.data!;
+
                           return ListView.builder(
                             padding: EdgeInsets.zero,
                             shrinkWrap: true,

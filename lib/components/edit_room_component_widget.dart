@@ -98,6 +98,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                       child: ImagesEmptyWidget(),
                     );
                   }
+
                   return SizedBox(
                     width: double.infinity,
                     child: Stack(

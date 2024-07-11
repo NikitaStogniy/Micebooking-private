@@ -453,6 +453,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                         builder: (context) {
                                           final images =
                                               _model.uploadedImages.toList();
+
                                           return ListView.builder(
                                             padding: const EdgeInsets.fromLTRB(
                                               0,
@@ -621,6 +622,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                   List<ServiceCategoryRow>
                                       staggeredViewServiceCategoryRowList =
                                       snapshot.data!;
+
                                   return MasonryGridView.builder(
                                     gridDelegate:
                                         const SliverSimpleGridDelegateWithFixedCrossAxisCount(
@@ -709,6 +711,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                                   List<ServiceRow>
                                                       listViewServiceRowList =
                                                       snapshot.data!;
+
                                                   return ListView.separated(
                                                     padding: EdgeInsets.zero,
                                                     shrinkWrap: true,
@@ -1298,6 +1301,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                     );
                   }
                   List<RoomRow> editRoomRoomRowList = snapshot.data!;
+
                   // Return an empty Container when the item does not exist.
                   if (snapshot.data!.isEmpty) {
                     return Container();

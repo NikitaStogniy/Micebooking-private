@@ -121,6 +121,7 @@ class _ProfileRoomsComponentWidgetState
                 );
               }
               List<RoomRow> containerRoomRowList = snapshot.data!;
+
               return ClipRRect(
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(16.0),
@@ -262,6 +263,7 @@ class _ProfileRoomsComponentWidgetState
                               ),
                             );
                           }
+
                           return Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,

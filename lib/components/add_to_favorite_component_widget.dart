@@ -95,6 +95,7 @@ class _AddToFavoriteComponentWidgetState
                 }
                 List<FavoriteHotelsRow> columnFavoriteHotelsRowList =
                     snapshot.data!;
+
                 return Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,

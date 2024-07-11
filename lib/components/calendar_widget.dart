@@ -176,6 +176,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                     final daysGen =
                         functions.calendarGenerator(widget.month)?.toList() ??
                             [];
+
                     return GridView.builder(
                       padding: EdgeInsets.zero,
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

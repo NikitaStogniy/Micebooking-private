@@ -64,6 +64,7 @@ class _EditRequestHotelComponentWidgetState
                 Builder(
                   builder: (context) {
                     final hotelImages = widget.hotel?.images.toList() ?? [];
+
                     return SizedBox(
                       width: double.infinity,
                       height: 500.0,

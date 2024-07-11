@@ -57,6 +57,7 @@ class _PopUpImagesWidgetState extends State<PopUpImagesWidget> {
           Builder(
             builder: (context) {
               final images = widget.images!.toList();
+
               return SizedBox(
                 width: double.infinity,
                 height: MediaQuery.sizeOf(context).height * 1.0,

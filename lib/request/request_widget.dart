@@ -110,6 +110,7 @@ class _RequestWidgetState extends State<RequestWidget> {
           );
         }
         List<UsersRow> requestUsersRowList = snapshot.data!;
+
         final requestUsersRow =
             requestUsersRowList.isNotEmpty ? requestUsersRowList.first : null;
         return GestureDetector(
@@ -545,6 +546,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                       }
                                       List<RequestsRow> columnRequestsRowList =
                                           snapshot.data!;
+
                                       return Column(
                                         mainAxisSize: MainAxisSize.max,
                                         children: List.generate(
@@ -602,6 +604,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                           List<HotelRow>
                                                               columnHotelRowList =
                                                               snapshot.data!;
+
                                                           final columnHotelRow =
                                                               columnHotelRowList
                                                                       .isNotEmpty
@@ -681,6 +684,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                           List<RequestsHallVarRow>
                                                               columnRequestsHallVarRowList =
                                                               snapshot.data!;
+
                                                           return Column(
                                                             mainAxisSize:
                                                                 MainAxisSize
@@ -784,6 +788,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                           List<RequestsFoodVarRow>
                                                               columnRequestsFoodVarRowList =
                                                               snapshot.data!;
+
                                                           return Column(
                                                             mainAxisSize:
                                                                 MainAxisSize
@@ -889,6 +894,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                   columnRequestsRoomVarRowList =
                                                                   snapshot
                                                                       .data!;
+
                                                               return Column(
                                                                 mainAxisSize:
                                                                     MainAxisSize
