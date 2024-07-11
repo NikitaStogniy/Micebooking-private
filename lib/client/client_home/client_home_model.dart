@@ -2,6 +2,7 @@ import '/backend/schema/enums/enums.dart';
 import '/client/client_favorite/client_favorite_widget.dart';
 import '/client/client_profile/client_profile_widget.dart';
 import '/client/client_request/client_request_widget.dart';
+import '/client/client_request_mob_for_test/client_request_mob_for_test_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/uikit/menu/menu_widget.dart';
 import 'client_home_widget.dart' show ClientHomeWidget;
@@ -23,6 +24,8 @@ class ClientHomeModel extends FlutterFlowModel<ClientHomeWidget> {
   late ClientRequestModel clientRequestModel;
   // Model for Client_favorite component.
   late ClientFavoriteModel clientFavoriteModel;
+  // Model for Client_requestMobForTest component.
+  late ClientRequestMobForTestModel clientRequestMobForTestModel;
 
   @override
   void initState(BuildContext context) {
@@ -30,6 +33,8 @@ class ClientHomeModel extends FlutterFlowModel<ClientHomeWidget> {
     clientProfileModel = createModel(context, () => ClientProfileModel());
     clientRequestModel = createModel(context, () => ClientRequestModel());
     clientFavoriteModel = createModel(context, () => ClientFavoriteModel());
+    clientRequestMobForTestModel =
+        createModel(context, () => ClientRequestMobForTestModel());
   }
 
   @override
@@ -39,5 +44,6 @@ class ClientHomeModel extends FlutterFlowModel<ClientHomeWidget> {
     clientProfileModel.dispose();
     clientRequestModel.dispose();
     clientFavoriteModel.dispose();
+    clientRequestMobForTestModel.dispose();
   }
 }

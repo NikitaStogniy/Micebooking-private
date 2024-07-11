@@ -108,6 +108,7 @@ class _CityDropDownWidgetState extends State<CityDropDownWidget> {
                               );
                             }
                             List<CityRow> columnCityRowList = snapshot.data!;
+
                             return Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -199,6 +200,7 @@ class _CityDropDownWidgetState extends State<CityDropDownWidget> {
                                 );
                               }
                               List<CityRow> columnCityRowList = snapshot.data!;
+
                               return Column(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,

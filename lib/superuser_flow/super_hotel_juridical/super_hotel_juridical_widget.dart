@@ -110,6 +110,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                   );
                 }
                 List<HotelRow> containerHotelRowList = snapshot.data!;
+
                 final containerHotelRow = containerHotelRowList.isNotEmpty
                     ? containerHotelRowList.first
                     : null;
@@ -138,6 +139,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                         );
                       }
                       List<UsersRow> containerUsersRowList = snapshot.data!;
+
                       final containerUsersRow = containerUsersRowList.isNotEmpty
                           ? containerUsersRowList.first
                           : null;
@@ -167,6 +169,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                             }
                             List<JuridicalInfoRow>
                                 containerJuridicalInfoRowList = snapshot.data!;
+
                             final containerJuridicalInfoRow =
                                 containerJuridicalInfoRowList.isNotEmpty
                                     ? containerJuridicalInfoRowList.first

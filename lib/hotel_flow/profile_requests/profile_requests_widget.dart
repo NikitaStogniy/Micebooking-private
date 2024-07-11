@@ -161,6 +161,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                     );
                   }
                   List<HotelRow> columnHotelRowList = snapshot.data!;
+
                   return Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -215,6 +216,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                     );
                   }
                   List<RequestsRow> containerRequestsRowList = snapshot.data!;
+
                   final containerRequestsRow =
                       containerRequestsRowList.isNotEmpty
                           ? containerRequestsRowList.first
@@ -321,7 +323,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                             ],
                           ),
                         ),
-                        if (containerRequestsRow?.rooms?.isNotEmpty ?? false)
+                        if (containerRequestsRow?.rooms.isNotEmpty)
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 40.0, 0.0, 0.0),
@@ -479,6 +481,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                     List<RequestsRoomVarRow>
                                         columnRequestsRoomVarRowList =
                                         snapshot.data!;
+
                                     return Column(
                                       mainAxisSize: MainAxisSize.min,
                                       crossAxisAlignment:
@@ -721,7 +724,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                               ],
                             ),
                           ),
-                        if (containerRequestsRow?.halls?.isNotEmpty ?? false)
+                        if (containerRequestsRow?.halls.isNotEmpty)
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 40.0, 0.0, 0.0),
@@ -879,6 +882,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                     List<RequestsHallVarRow>
                                         columnRequestsHallVarRowList =
                                         snapshot.data!;
+
                                     return Column(
                                       mainAxisSize: MainAxisSize.min,
                                       crossAxisAlignment:
@@ -1116,7 +1120,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                               ],
                             ),
                           ),
-                        if (containerRequestsRow?.food?.isNotEmpty ?? false)
+                        if (containerRequestsRow?.food.isNotEmpty)
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 40.0, 0.0, 0.0),
@@ -1274,6 +1278,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                     List<RequestsFoodVarRow>
                                         columnRequestsFoodVarRowList =
                                         snapshot.data!;
+
                                     return Column(
                                       mainAxisSize: MainAxisSize.min,
                                       crossAxisAlignment:

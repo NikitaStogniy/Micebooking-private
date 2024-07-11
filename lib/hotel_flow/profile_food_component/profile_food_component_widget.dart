@@ -140,6 +140,7 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                 );
               }
               List<FoodRow> containerFoodRowList = snapshot.data!;
+
               return ClipRRect(
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(16.0),
@@ -265,6 +266,7 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                                   ),
                                 );
                               }
+
                               return Column(
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,

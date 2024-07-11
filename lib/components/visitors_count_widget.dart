@@ -392,6 +392,7 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                           builder: (context) {
                             final seatingsCol =
                                 _model.seatings.toList().take(3).toList();
+
                             return Column(
                               mainAxisSize: MainAxisSize.max,
                               children: List.generate(seatingsCol.length,

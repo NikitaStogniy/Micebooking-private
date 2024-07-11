@@ -76,6 +76,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
           );
         }
         List<HotelRow> containerHotelRowList = snapshot.data!;
+
         final containerHotelRow = containerHotelRowList.isNotEmpty
             ? containerHotelRowList.first
             : null;
@@ -109,6 +110,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                       );
                     }
                     List<CityRow> rowCityRowList = snapshot.data!;
+
                     final rowCityRow =
                         rowCityRowList.isNotEmpty ? rowCityRowList.first : null;
                     return Row(
@@ -612,6 +614,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                                         final images = containerHotelRow.images
                                                 .toList() ??
                                             [];
+
                                         return ListView.builder(
                                           padding: EdgeInsets.zero,
                                           scrollDirection: Axis.horizontal,
@@ -719,6 +722,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                                 List<ServiceCategoryRow>
                                     staggeredViewServiceCategoryRowList =
                                     snapshot.data!;
+
                                 return MasonryGridView.builder(
                                   gridDelegate:
                                       const SliverSimpleGridDelegateWithFixedCrossAxisCount(
@@ -804,6 +808,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                                                 List<ServiceRow>
                                                     listViewServiceRowList =
                                                     snapshot.data!;
+
                                                 return ListView.separated(
                                                   padding: EdgeInsets.zero,
                                                   shrinkWrap: true,

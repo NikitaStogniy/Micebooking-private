@@ -109,6 +109,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                       );
                     }
                     List<CityRow> dropDownCityRowList = snapshot.data!;
+
                     return FlutterFlowDropDown<String>(
                       controller: _model.dropDownValueController ??=
                           FormFieldController<String>(null),
@@ -310,6 +311,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                             }
                             List<HotelRow> decsCityOnHotelRowList =
                                 snapshot.data!;
+
                             if (decsCityOnHotelRowList.isEmpty) {
                               return const FavoriteEmptyWidget();
                             }
@@ -558,6 +560,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                           }
                           List<HotelRow> decsCityOffHotelRowList =
                               snapshot.data!;
+
                           if (decsCityOffHotelRowList.isEmpty) {
                             return const FavoriteEmptyWidget();
                           }
@@ -800,6 +803,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                             );
                           }
                           List<HotelRow> mobCityOnHotelRowList = snapshot.data!;
+
                           if (mobCityOnHotelRowList.isEmpty) {
                             return const FavoriteEmptyWidget();
                           }
@@ -940,6 +944,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                           }
                           List<HotelRow> mobCityOffHotelRowList =
                               snapshot.data!;
+
                           if (mobCityOffHotelRowList.isEmpty) {
                             return const FavoriteEmptyWidget();
                           }

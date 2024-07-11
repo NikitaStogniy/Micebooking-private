@@ -74,6 +74,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
           );
         }
         List<RoomRow> containerRoomRowList = snapshot.data!;
+
         final containerRoomRow =
             containerRoomRowList.isNotEmpty ? containerRoomRowList.first : null;
         return Container(
@@ -106,6 +107,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                       );
                     }
                     List<HotelRow> rowHotelRowList = snapshot.data!;
+
                     final rowHotelRow = rowHotelRowList.isNotEmpty
                         ? rowHotelRowList.first
                         : null;
@@ -137,6 +139,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                                 );
                               }
                               List<CityRow> textCityRowList = snapshot.data!;
+
                               final textCityRow = textCityRowList.isNotEmpty
                                   ? textCityRowList.first
                                   : null;
@@ -306,6 +309,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                                           child: ImagesEmptyWidget(),
                                         );
                                       }
+
                                       return ListView.builder(
                                         padding: EdgeInsets.zero,
                                         scrollDirection: Axis.horizontal,
@@ -575,6 +579,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                                 List<ServiceCategoryRow>
                                     staggeredViewServiceCategoryRowList =
                                     snapshot.data!;
+
                                 return MasonryGridView.builder(
                                   gridDelegate:
                                       const SliverSimpleGridDelegateWithFixedCrossAxisCount(
@@ -660,6 +665,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                                                 List<ServiceRow>
                                                     listViewServiceRowList =
                                                     snapshot.data!;
+
                                                 return ListView.separated(
                                                   padding: EdgeInsets.zero,
                                                   shrinkWrap: true,

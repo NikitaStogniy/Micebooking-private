@@ -115,6 +115,7 @@ class _ProfileHallsComponentWidgetState
                 );
               }
               List<HallRow> containerHallRowList = snapshot.data!;
+
               return ClipRRect(
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(16.0),
@@ -254,6 +255,7 @@ class _ProfileHallsComponentWidgetState
                               ),
                             );
                           }
+
                           return Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,

@@ -94,6 +94,7 @@ class _ClientFavoriteComponentWidgetState
                   );
                 }
                 List<HotelRow> containerHotelRowList = snapshot.data!;
+
                 return ClipRRect(
                   borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(16.0),
@@ -192,6 +193,7 @@ class _ClientFavoriteComponentWidgetState
                         Builder(
                           builder: (context) {
                             final hotels = containerHotelRowList.toList();
+
                             return Column(
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -285,6 +287,7 @@ class _ClientFavoriteComponentWidgetState
                                               }
                                               List<CityRow> textCityRowList =
                                                   snapshot.data!;
+
                                               final textCityRow =
                                                   textCityRowList.isNotEmpty
                                                       ? textCityRowList.first

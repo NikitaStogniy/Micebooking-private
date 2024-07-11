@@ -4,6 +4,7 @@ import '/backend/supabase/supabase.dart';
 import '/client/client_favorite/client_favorite_widget.dart';
 import '/client/client_profile/client_profile_widget.dart';
 import '/client/client_request/client_request_widget.dart';
+import '/client/client_request_mob_for_test/client_request_mob_for_test_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -68,6 +69,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
           );
         }
         List<UsersRow> clientHomeUsersRowList = snapshot.data!;
+
         final clientHomeUsersRow = clientHomeUsersRowList.isNotEmpty
             ? clientHomeUsersRowList.first
             : null;
@@ -450,6 +452,112 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                                     ),
                                   ),
                                 ),
+                              if (responsiveVisibility(
+                                context: context,
+                                tabletLandscape: false,
+                                desktop: false,
+                              ))
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 16.0, 0.0, 0.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          _model.currentPage =
+                                              EnumClientPage.PROFILE;
+                                          setState(() {});
+                                        },
+                                        child: Text(
+                                          'Профиль',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Commissioner',
+                                                color: _model.currentPage ==
+                                                        EnumClientPage.PROFILE
+                                                    ? FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary
+                                                    : FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                fontSize: 18.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      ),
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          _model.currentPage =
+                                              EnumClientPage.DESIRES;
+                                          setState(() {});
+                                        },
+                                        child: Text(
+                                          'Запросы КП',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Commissioner',
+                                                color: _model.currentPage ==
+                                                        EnumClientPage.DESIRES
+                                                    ? FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary
+                                                    : FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                fontSize: 18.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      ),
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          _model.currentPage =
+                                              EnumClientPage.FAVORITE;
+                                          setState(() {});
+                                        },
+                                        child: Text(
+                                          'Избранное',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Commissioner',
+                                                color: _model.currentPage ==
+                                                        EnumClientPage.FAVORITE
+                                                    ? FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary
+                                                    : FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                fontSize: 18.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      ),
+                                    ].divide(const SizedBox(width: 24.0)),
+                                  ),
+                                ),
                               if (_model.currentPage == EnumClientPage.PROFILE)
                                 Expanded(
                                   child: wrapWithModel(
@@ -478,6 +586,17 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                                     child: ClientFavoriteWidget(
                                       userId: clientHomeUsersRow!.id,
                                       user: clientHomeUsersRow,
+                                    ),
+                                  ),
+                                ),
+                              if (_model.currentPage == EnumClientPage.DESIRES)
+                                Expanded(
+                                  child: wrapWithModel(
+                                    model: _model.clientRequestMobForTestModel,
+                                    updateCallback: () => setState(() {}),
+                                    updateOnChange: true,
+                                    child: ClientRequestMobForTestWidget(
+                                      userId: clientHomeUsersRow!,
                                     ),
                                   ),
                                 ),

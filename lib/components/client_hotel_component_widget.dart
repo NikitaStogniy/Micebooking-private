@@ -95,6 +95,7 @@ class _ClientHotelComponentWidgetState
                             child: ImagesEmptyWidget(),
                           );
                         }
+
                         return SizedBox(
                           width: MediaQuery.sizeOf(context).width * 1.0,
                           child: Stack(
@@ -538,6 +539,7 @@ class _ClientHotelComponentWidgetState
                                       }
                                       List<RoomRow> containerRoomRowList =
                                           snapshot.data!;
+
                                       return Container(
                                         decoration: const BoxDecoration(),
                                         child: Column(
@@ -567,6 +569,7 @@ class _ClientHotelComponentWidgetState
                                                         .toList()
                                                         .take(5)
                                                         .toList();
+
                                                 return Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -668,6 +671,7 @@ class _ClientHotelComponentWidgetState
                                       }
                                       List<HallRow> containerHallRowList =
                                           snapshot.data!;
+
                                       return Container(
                                         constraints: const BoxConstraints(
                                           maxHeight: 100.0,

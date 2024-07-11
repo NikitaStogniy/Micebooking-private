@@ -137,6 +137,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
           );
         }
         List<UsersRow> containerUsersRowList = snapshot.data!;
+
         final containerUsersRow = containerUsersRowList.isNotEmpty
             ? containerUsersRowList.first
             : null;
@@ -169,6 +170,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
               }
               List<JuridicalInfoRow> containerJuridicalInfoRowList =
                   snapshot.data!;
+
               final containerJuridicalInfoRow =
                   containerJuridicalInfoRowList.isNotEmpty
                       ? containerJuridicalInfoRowList.first

@@ -460,6 +460,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                         final images = _model.uploadedImages
                                             .map((e) => e)
                                             .toList();
+
                                         return ListView.builder(
                                           padding: const EdgeInsets.fromLTRB(
                                             0,
@@ -801,6 +802,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                           Builder(
                             builder: (context) {
                               final seatings = _model.seating.toList();
+
                               return Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: List.generate(seatings.length,
@@ -924,6 +926,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                 List<ServiceCategoryRow>
                                     staggeredViewServiceCategoryRowList =
                                     snapshot.data!;
+
                                 return MasonryGridView.builder(
                                   gridDelegate:
                                       const SliverSimpleGridDelegateWithFixedCrossAxisCount(
@@ -1012,6 +1015,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                 List<ServiceRow>
                                                     listViewServiceRowList =
                                                     snapshot.data!;
+
                                                 return ListView.separated(
                                                   padding: EdgeInsets.zero,
                                                   shrinkWrap: true,
@@ -1584,7 +1588,8 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                               setState(() {
                                                 _model.nameEditTextController
                                                         ?.text =
-                                                    widget.initialHall!.name!;
+                                                    widget
+                                                        .initialHall!.name!;
                                                 _model.descriptionEditTextController
                                                         ?.text =
                                                     widget.initialHall!
@@ -1600,7 +1605,8 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                         .toString();
                                                 _model.priceEditTextController
                                                         ?.text =
-                                                    widget.initialHall!.price!
+                                                    widget
+                                                        .initialHall!.price!
                                                         .toString();
                                                 _model.halfPriceEditTextController
                                                         ?.text =

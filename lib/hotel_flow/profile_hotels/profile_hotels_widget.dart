@@ -194,10 +194,12 @@ class _ProfileHotelsWidgetState extends State<ProfileHotelsWidget>
                   );
                 }
                 final listViewSearchHotelWithOwnerResponse = snapshot.data!;
+
                 return Builder(
                   builder: (context) {
                     final hotelItems =
                         listViewSearchHotelWithOwnerResponse.jsonBody.toList();
+
                     return ListView.separated(
                       padding: EdgeInsets.zero,
                       primary: false,
@@ -237,6 +239,7 @@ class _ProfileHotelsWidgetState extends State<ProfileHotelsWidget>
                             }
                             List<HotelRow> containerHotelRowList =
                                 snapshot.data!;
+
                             final containerHotelRow =
                                 containerHotelRowList.isNotEmpty
                                     ? containerHotelRowList.first

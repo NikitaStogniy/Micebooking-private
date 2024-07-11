@@ -87,6 +87,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                               child: ImagesEmptyWidget(),
                             );
                           }
+
                           return SizedBox(
                             width: double.infinity,
                             child: Stack(
@@ -1130,7 +1131,8 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                           0.0, 0.0),
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      widget.hall?.seatingUshape
+                                                      widget
+                                                          .hall?.seatingUshape
                                                           ?.toString(),
                                                       '0',
                                                     ),
@@ -1198,7 +1200,8 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                           0.0, 0.0),
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      widget.hall?.seatingOshape
+                                                      widget
+                                                          .hall?.seatingOshape
                                                           ?.toString(),
                                                       '0',
                                                     ),
@@ -1266,7 +1269,8 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                           0.0, 0.0),
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      widget.hall?.seatingKabare
+                                                      widget
+                                                          .hall?.seatingKabare
                                                           ?.toString(),
                                                       '0',
                                                     ),
@@ -1334,7 +1338,8 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                           0.0, 0.0),
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      widget.hall?.seatingBanket
+                                                      widget
+                                                          .hall?.seatingBanket
                                                           ?.toString(),
                                                       '0',
                                                     ),

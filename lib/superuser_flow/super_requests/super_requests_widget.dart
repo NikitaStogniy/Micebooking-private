@@ -80,6 +80,7 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
                     );
                   }
                   List<HotelRow> columnHotelRowList = snapshot.data!;
+
                   final columnHotelRow = columnHotelRowList.isNotEmpty
                       ? columnHotelRowList.first
                       : null;
@@ -131,6 +132,7 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
                     );
                   }
                   List<RequestsRow> containerRequestsRowList = snapshot.data!;
+
                   final containerRequestsRow =
                       containerRequestsRowList.isNotEmpty
                           ? containerRequestsRowList.first
@@ -272,6 +274,7 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
                               );
                             }
                             List<UsersRow> columnUsersRowList = snapshot.data!;
+
                             final columnUsersRow = columnUsersRowList.isNotEmpty
                                 ? columnUsersRowList.first
                                 : null;
@@ -358,7 +361,7 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
                             );
                           },
                         ),
-                        if (containerRequestsRow?.halls?.isNotEmpty ?? false)
+                        if (containerRequestsRow?.halls.isNotEmpty)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -514,6 +517,7 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
                                   List<RequestsHallVarRow>
                                       columnRequestsHallVarRowList =
                                       snapshot.data!;
+
                                   return Column(
                                     mainAxisSize: MainAxisSize.min,
                                     crossAxisAlignment:
@@ -760,7 +764,7 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
                               ),
                             ],
                           ),
-                        if (containerRequestsRow?.food?.isNotEmpty ?? false)
+                        if (containerRequestsRow?.food.isNotEmpty)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -916,6 +920,7 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
                                   List<RequestsFoodVarRow>
                                       columnRequestsFoodVarRowList =
                                       snapshot.data!;
+
                                   return Column(
                                     mainAxisSize: MainAxisSize.min,
                                     crossAxisAlignment:
@@ -1163,7 +1168,7 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
                               ),
                             ],
                           ),
-                        if (containerRequestsRow?.rooms?.isNotEmpty ?? false)
+                        if (containerRequestsRow?.rooms.isNotEmpty)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1319,6 +1324,7 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
                                   List<RequestsRoomVarRow>
                                       columnRequestsRoomVarRowList =
                                       snapshot.data!;
+
                                   return Column(
                                     mainAxisSize: MainAxisSize.min,
                                     crossAxisAlignment:

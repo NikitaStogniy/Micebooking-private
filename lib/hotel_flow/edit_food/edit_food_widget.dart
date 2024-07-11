@@ -358,6 +358,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                               List<ServiceRow>
                                                   editCategoryServiceRowList =
                                                   snapshot.data!;
+
                                               return FlutterFlowDropDown<
                                                   String>(
                                                 controller: _model
@@ -605,6 +606,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                               Builder(
                                 builder: (context) {
                                   final menuListEdit = _model.menu.toList();
+
                                   return ListView.builder(
                                     padding: EdgeInsets.zero,
                                     shrinkWrap: true,

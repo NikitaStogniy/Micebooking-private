@@ -77,6 +77,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
           );
         }
         List<CmsRow> containerCmsRowList = snapshot.data!;
+
         final containerCmsRow =
             containerCmsRowList.isNotEmpty ? containerCmsRowList.first : null;
         return Container(

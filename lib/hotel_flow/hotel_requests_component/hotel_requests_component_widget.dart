@@ -77,6 +77,7 @@ class _HotelRequestsComponentWidgetState
           );
         }
         List<RequestsRow> containerRequestsRowList = snapshot.data!;
+
         return Container(
           decoration: const BoxDecoration(),
           child: Visibility(
@@ -346,6 +347,7 @@ class _HotelRequestsComponentWidgetState
                             if (requests.isEmpty) {
                               return const HotelRequestEmprtyWidget();
                             }
+
                             return Column(
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,

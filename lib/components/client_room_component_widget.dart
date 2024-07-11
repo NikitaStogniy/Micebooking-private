@@ -85,6 +85,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                         child: ImagesEmptyWidget(),
                       );
                     }
+
                     return SizedBox(
                       width: double.infinity,
                       child: Stack(

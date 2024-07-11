@@ -414,6 +414,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                                 List<CityRow>
                                                     dropDownCityRowList =
                                                     snapshot.data!;
+
                                                 return FlutterFlowDropDown<
                                                     String>(
                                                   controller: _model
@@ -1441,6 +1442,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                           builder: (context) {
                                             final images =
                                                 _model.uploadedImages.toList();
+
                                             return ListView.builder(
                                               padding: const EdgeInsets.fromLTRB(
                                                 0,
@@ -1610,6 +1612,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                     List<ServiceCategoryRow>
                                         staggeredViewServiceCategoryRowList =
                                         snapshot.data!;
+
                                     return MasonryGridView.builder(
                                       gridDelegate:
                                           const SliverSimpleGridDelegateWithFixedCrossAxisCount(
@@ -1702,6 +1705,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                                     List<ServiceRow>
                                                         listViewServiceRowList =
                                                         snapshot.data!;
+
                                                     return ListView.separated(
                                                       padding: EdgeInsets.zero,
                                                       shrinkWrap: true,
@@ -1909,6 +1913,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                     );
                   }
                   List<HotelRow> editHotelHotelRowList = snapshot.data!;
+
                   // Return an empty Container when the item does not exist.
                   if (snapshot.data!.isEmpty) {
                     return Container();

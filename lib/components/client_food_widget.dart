@@ -75,6 +75,7 @@ class _ClientFoodWidgetState extends State<ClientFoodWidget> {
           Builder(
             builder: (context) {
               final positionsCol = widget.positions!.toList();
+
               return Column(
                 mainAxisSize: MainAxisSize.max,
                 children:

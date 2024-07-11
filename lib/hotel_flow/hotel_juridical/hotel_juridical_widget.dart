@@ -112,6 +112,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                   );
                 }
                 List<UsersRow> containerUsersRowList = snapshot.data!;
+
                 final containerUsersRow = containerUsersRowList.isNotEmpty
                     ? containerUsersRowList.first
                     : null;
@@ -141,6 +142,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                       }
                       List<JuridicalInfoRow> containerJuridicalInfoRowList =
                           snapshot.data!;
+
                       final containerJuridicalInfoRow =
                           containerJuridicalInfoRowList.isNotEmpty
                               ? containerJuridicalInfoRowList.first

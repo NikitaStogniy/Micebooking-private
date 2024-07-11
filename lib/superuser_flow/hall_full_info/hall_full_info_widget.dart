@@ -76,6 +76,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
           );
         }
         List<HallRow> containerHallRowList = snapshot.data!;
+
         final containerHallRow =
             containerHallRowList.isNotEmpty ? containerHallRowList.first : null;
         return Container(
@@ -108,6 +109,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                       );
                     }
                     List<HotelRow> rowHotelRowList = snapshot.data!;
+
                     final rowHotelRow = rowHotelRowList.isNotEmpty
                         ? rowHotelRowList.first
                         : null;
@@ -139,6 +141,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                                 );
                               }
                               List<CityRow> textCityRowList = snapshot.data!;
+
                               final textCityRow = textCityRowList.isNotEmpty
                                   ? textCityRowList.first
                                   : null;
@@ -305,6 +308,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                                         final images = containerHallRow.images
                                                 .toList() ??
                                             [];
+
                                         return ListView.builder(
                                           padding: EdgeInsets.zero,
                                           scrollDirection: Axis.horizontal,
@@ -523,6 +527,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                               Builder(
                                 builder: (context) {
                                   final ss = _model.seatings.toList();
+
                                   return Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children:
@@ -584,6 +589,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                                 List<ServiceCategoryRow>
                                     staggeredViewServiceCategoryRowList =
                                     snapshot.data!;
+
                                 return MasonryGridView.builder(
                                   gridDelegate:
                                       const SliverSimpleGridDelegateWithFixedCrossAxisCount(
@@ -669,6 +675,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                                                 List<ServiceRow>
                                                     listViewServiceRowList =
                                                     snapshot.data!;
+
                                                 return ListView.separated(
                                                   padding: EdgeInsets.zero,
                                                   shrinkWrap: true,

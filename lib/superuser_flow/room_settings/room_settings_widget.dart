@@ -135,6 +135,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                           List<ServiceCategoryRow>
                               categoryListServiceCategoryRowList =
                               snapshot.data!;
+
                           return Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -493,6 +494,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                             List<ServiceCategoryRow>
                                 serviscesListServiceCategoryRowList =
                                 snapshot.data!;
+
                             return Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,

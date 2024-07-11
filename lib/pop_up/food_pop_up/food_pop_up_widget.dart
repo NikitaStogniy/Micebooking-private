@@ -175,6 +175,7 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
                     }
                     List<FoodPositionRow> staggeredViewFoodPositionRowList =
                         snapshot.data!;
+
                     return MasonryGridView.builder(
                       gridDelegate:
                           const SliverSimpleGridDelegateWithFixedCrossAxisCount(
@@ -231,6 +232,7 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
                                 }
                                 List<FoodPositionRow>
                                     columnFoodPositionRowList = snapshot.data!;
+
                                 return Column(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,

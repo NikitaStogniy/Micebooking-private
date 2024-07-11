@@ -172,6 +172,7 @@ class _RoomPopUpWidgetState extends State<RoomPopUpWidget> {
                                   child: ImagesEmptyWidget(),
                                 );
                               }
+
                               return SizedBox(
                                 width: double.infinity,
                                 height: 500.0,
@@ -459,6 +460,7 @@ class _RoomPopUpWidgetState extends State<RoomPopUpWidget> {
                       );
                     }
                     List<ServiceRow> columnServiceRowList = snapshot.data!;
+
                     return Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,

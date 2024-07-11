@@ -212,6 +212,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                     child: ImagesEmptyWidget(),
                                   );
                                 }
+
                                 return SizedBox(
                                   width: double.infinity,
                                   child: Stack(
@@ -511,6 +512,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                           List<ServiceCategoryRow>
                               staggeredViewServiceCategoryRowList =
                               snapshot.data!;
+
                           return MasonryGridView.builder(
                             gridDelegate:
                                 const SliverSimpleGridDelegateWithFixedCrossAxisCount(
@@ -574,6 +576,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                       }
                                       List<ServiceRow> columnServiceRowList =
                                           snapshot.data!;
+
                                       return Column(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
@@ -667,6 +670,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                   }
                                   List<RoomRow> columnRoomRowList =
                                       snapshot.data!;
+
                                   return Column(
                                     mainAxisSize: MainAxisSize.max,
                                     crossAxisAlignment:

@@ -249,7 +249,9 @@ class _CalendarMobileWidgetState extends State<CalendarMobileWidget> {
               Builder(
                 builder: (context) {
                   final daysGen =
-                      functions.calendarGenerator(widget.month)?.toList() ?? [];
+                      functions.calendarGenerator(widget.month)?.toList() ??
+                          [];
+
                   return GridView.builder(
                     padding: EdgeInsets.zero,
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

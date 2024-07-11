@@ -190,6 +190,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                     child: ImagesEmptyWidget(),
                                   );
                                 }
+
                                 return SizedBox(
                                   width: double.infinity,
                                   height: 500.0,
@@ -488,6 +489,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                           }
                           List<ServiceRow> staggeredViewServiceRowList =
                               snapshot.data!;
+
                           return MasonryGridView.builder(
                             gridDelegate:
                                 const SliverSimpleGridDelegateWithFixedCrossAxisCount(

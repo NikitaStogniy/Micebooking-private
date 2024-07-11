@@ -103,6 +103,7 @@ class _ProfileHallsWidgetState extends State<ProfileHallsWidget>
               );
             }
             List<HotelRow> listViewHotelRowList = snapshot.data!;
+
             return ListView.separated(
               padding: const EdgeInsets.fromLTRB(
                 0,

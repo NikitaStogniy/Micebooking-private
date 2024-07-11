@@ -108,6 +108,7 @@ class _ClientHallEditComponentWidgetState
                               child: ImagesEmptyWidget(),
                             );
                           }
+
                           return SizedBox(
                             width: double.infinity,
                             child: Stack(
@@ -664,7 +665,8 @@ class _ClientHallEditComponentWidgetState
                                         ),
                                       ),
                                     ),
-                                  if (widget.hall?.seatingCommunication != null)
+                                  if (widget.hall?.seatingCommunication !=
+                                      null)
                                     Expanded(
                                       flex: 2,
                                       child: Container(
@@ -971,7 +973,8 @@ class _ClientHallEditComponentWidgetState
                                         ),
                                       ),
                                     ),
-                                  if (widget.hall?.seatingCommunication != null)
+                                  if (widget.hall?.seatingCommunication !=
+                                      null)
                                     Expanded(
                                       flex: 2,
                                       child: Container(

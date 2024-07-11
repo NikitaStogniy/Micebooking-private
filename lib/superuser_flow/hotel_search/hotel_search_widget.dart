@@ -341,10 +341,12 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                       );
                     }
                     final columnSearchHotelResponse = snapshot.data!;
+
                     return Builder(
                       builder: (context) {
                         final hotels =
                             columnSearchHotelResponse.jsonBody.toList();
+
                         return Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -378,6 +380,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                 }
                                 List<HotelRow> containerHotelRowList =
                                     snapshot.data!;
+
                                 final containerHotelRow =
                                     containerHotelRowList.isNotEmpty
                                         ? containerHotelRowList.first
@@ -434,6 +437,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                       }
                                       List<UsersRow> rowUsersRowList =
                                           snapshot.data!;
+
                                       final rowUsersRow =
                                           rowUsersRowList.isNotEmpty
                                               ? rowUsersRowList.first

@@ -263,10 +263,12 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                       );
                     }
                     final columnSearchClientsResponse = snapshot.data!;
+
                     return Builder(
                       builder: (context) {
                         final clients =
                             columnSearchClientsResponse.jsonBody.toList();
+
                         return Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
