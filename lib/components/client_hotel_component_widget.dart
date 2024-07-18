@@ -515,10 +515,12 @@ class _ClientHotelComponentWidgetState
                                 Expanded(
                                   child: FutureBuilder<List<RoomRow>>(
                                     future: RoomTable().queryRows(
-                                      queryFn: (q) => q.in_(
-                                        'id',
-                                        widget.hotel!.rooms,
-                                      ),
+                                      queryFn: (q) => q
+                                          .in_(
+                                            'id',
+                                            widget.hotel!.rooms,
+                                          )
+                                          .order('price', ascending: true),
                                     ),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.

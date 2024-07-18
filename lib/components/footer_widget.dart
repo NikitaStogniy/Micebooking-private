@@ -246,7 +246,7 @@ class _FooterWidgetState extends State<FooterWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Text(
-                                        'Зарегестировать площадку',
+                                        'Зарегистрировать площадку',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -628,7 +628,7 @@ class _FooterWidgetState extends State<FooterWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Text(
-                                    'Зарегестировать площадку',
+                                    'Зарегистрировать площадку',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(

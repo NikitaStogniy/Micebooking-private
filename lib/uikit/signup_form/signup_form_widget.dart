@@ -70,7 +70,14 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            if (widget.isHotel == false)
+            if ((widget.isHotel == false) &&
+                responsiveVisibility(
+                  context: context,
+                  phone: false,
+                  tablet: false,
+                  tabletLandscape: false,
+                  desktop: false,
+                ))
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                 child: Container(

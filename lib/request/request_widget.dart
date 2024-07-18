@@ -65,6 +65,7 @@ class _RequestWidgetState extends State<RequestWidget> {
         _model.step = 0;
         _model.requestId =
             widget.requestWrapper!.requestsId.toList().cast<int>();
+        _model.wrapperId = widget.requestWrapper?.id;
         setState(() {});
       }
     });
@@ -1415,9 +1416,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                       onPressed: () async {
                                         _model.apiResultows =
                                             await SendemailCall.call(
-                                          requestWrapper:
-                                              widget.requestWrapper?.id,
-                                          email: currentUserEmail,
+                                          requestWrapper: _model.wrapperId,
                                         );
 
                                         if ((_model.apiResultows?.succeeded ??
@@ -1457,6 +1456,32 @@ class _RequestWidgetState extends State<RequestWidget> {
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .error,
+                                            ),
+                                          );
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                valueOrDefault<String>(
+                                                  getJsonField(
+                                                    (_model.apiResultows
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                    r'''$.request_wrapper''',
+                                                  )?.toString(),
+                                                  'error',
+                                                ),
+                                                style: TextStyle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                ),
+                                              ),
+                                              duration:
+                                                  const Duration(milliseconds: 4000),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
                                             ),
                                           );
                                         }
