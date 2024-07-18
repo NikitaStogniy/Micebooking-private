@@ -90,7 +90,6 @@ class SearchClientsCall {
 class SendemailCall {
   static Future<ApiCallResponse> call({
     int? requestWrapper,
-    String? email = '',
   }) async {
     const ffApiRequestBody = '''
 {

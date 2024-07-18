@@ -596,7 +596,14 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                if (_model.isHotel == false)
+                                if ((_model.isHotel == false) &&
+                                    responsiveVisibility(
+                                      context: context,
+                                      phone: false,
+                                      tablet: false,
+                                      tabletLandscape: false,
+                                      desktop: false,
+                                    ))
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 8.0, 0.0, 8.0),

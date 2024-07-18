@@ -1835,7 +1835,9 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       .gte(
                                                         'capacity',
                                                         widget.visitors,
-                                                      ),
+                                                      )
+                                                      .order('name',
+                                                          ascending: true),
                                                 ),
                                                 builder: (context, snapshot) {
                                                   // Customize what your widget looks like when it's loading.
@@ -2246,10 +2248,13 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                             decoration: const BoxDecoration(),
                                             child: FutureBuilder<List<FoodRow>>(
                                               future: FoodTable().queryRows(
-                                                queryFn: (q) => q.in_(
-                                                  'id',
-                                                  foodChoseHotelRow!.food,
-                                                ),
+                                                queryFn: (q) => q
+                                                    .in_(
+                                                      'id',
+                                                      foodChoseHotelRow!.food,
+                                                    )
+                                                    .order('price',
+                                                        ascending: true),
                                               ),
                                               builder: (context, snapshot) {
                                                 // Customize what your widget looks like when it's loading.
@@ -2545,7 +2550,9 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                 .in_(
                                                   'id',
                                                   _model.filteredRooms,
-                                                ),
+                                                )
+                                                .order('price',
+                                                    ascending: true),
                                           ),
                                           builder: (context, snapshot) {
                                             // Customize what your widget looks like when it's loading.

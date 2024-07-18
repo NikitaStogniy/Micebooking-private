@@ -243,7 +243,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
                                   context.pushNamed(
-                                    'AboutUs',
+                                    'why',
                                     extra: <String, dynamic>{
                                       kTransitionInfoKey: const TransitionInfo(
                                         hasTransition: true,
@@ -254,7 +254,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                   );
                                 },
                                 child: Text(
-                                  'О нас',
+                                  'Почему Micebooking',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -281,7 +281,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
                                   context.pushNamed(
-                                    'why',
+                                    'AboutUs',
                                     extra: <String, dynamic>{
                                       kTransitionInfoKey: const TransitionInfo(
                                         hasTransition: true,
@@ -292,7 +292,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                   );
                                 },
                                 child: Text(
-                                  'Почему Micebooking',
+                                  'О нас',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -474,7 +474,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
+                                            const AlignmentDirectional(1.0, -1.0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: const MobileMenuWidget(),

@@ -189,6 +189,27 @@ class _RequestWidgetState extends State<RequestWidget> {
                                   ),
                                 ],
                               ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    valueOrDefault<String>(
+                                      widget.requestWrapper?.id.toString(),
+                                      'ошибка',
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Commissioner',
+                                          fontSize: 32.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                ],
+                              ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 60.0, 0.0, 0.0),
@@ -1417,7 +1438,6 @@ class _RequestWidgetState extends State<RequestWidget> {
                                             await SendemailCall.call(
                                           requestWrapper:
                                               widget.requestWrapper?.id,
-                                          email: currentUserEmail,
                                         );
 
                                         if ((_model.apiResultows?.succeeded ??
