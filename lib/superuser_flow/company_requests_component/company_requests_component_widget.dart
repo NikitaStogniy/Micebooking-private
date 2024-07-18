@@ -945,7 +945,7 @@ class _CompanyRequestsComponentWidgetState
                           );
                         },
                       ),
-                      if (_model.request?.halls.isNotEmpty)
+if (_model.request?.halls?.length != 0)
                         Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -1329,7 +1329,7 @@ class _CompanyRequestsComponentWidgetState
                             ),
                           ],
                         ),
-                      if (_model.request?.food.isNotEmpty)
+if (_model.request?.food?.length != 0)
                         Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -1711,7 +1711,7 @@ class _CompanyRequestsComponentWidgetState
                             ),
                           ],
                         ),
-                      if (_model.request?.rooms.isNotEmpty)
+if (_model.request?.rooms?.length != 0)
                         Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,

@@ -1361,7 +1361,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                             );
                           },
                         ),
-                        if (containerRequestsRow?.halls.isNotEmpty)
+                        if (containerRequestsRow?.halls?.length != 0)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1764,7 +1764,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                               ),
                             ],
                           ),
-                        if (containerRequestsRow?.food.isNotEmpty)
+if (containerRequestsRow?.food?.length != 0)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -2172,7 +2172,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                               ),
                             ],
                           ),
-                        if (containerRequestsRow?.rooms.isNotEmpty)
+if (containerRequestsRow?.rooms?.length != 0)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -2215,7 +2215,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                 0.1,
                                         decoration: const BoxDecoration(),
                                         child: Text(
-                                          'Название зала',
+                                          'Название номера',
                                           textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
