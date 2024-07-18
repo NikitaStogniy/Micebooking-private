@@ -52,6 +52,8 @@ class RequestModel extends FlutterFlowModel<RequestWidget> {
   void updateRequestIdAtIndex(int index, Function(int) updateFn) =>
       requestId[index] = updateFn(requestId[index]);
 
+  int? wrapperId;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

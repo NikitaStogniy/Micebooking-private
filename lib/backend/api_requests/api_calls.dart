@@ -91,18 +91,20 @@ class SendemailCall {
   static Future<ApiCallResponse> call({
     int? requestWrapper,
   }) async {
-    const ffApiRequestBody = '''
+    final ffApiRequestBody = '''
 {
-    "id": request_wrapper.id
+  "id": "$requestWrapper"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'sendemail',
-      apiUrl: 'emailer.micebooking.ru/email',
+      apiUrl: 'https://emailer.micebooking.ru/email',
       callType: ApiCallType.POST,
-      headers: {},
+      headers: {
+        'Content-Type': 'application/json',
+      },
       params: {},
       body: ffApiRequestBody,
-      bodyType: BodyType.TEXT,
+      bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
