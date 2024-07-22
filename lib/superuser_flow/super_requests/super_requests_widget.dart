@@ -361,7 +361,7 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
                             );
                           },
                         ),
-if (containerRequestsRow?.halls?.length != 0)
+                        if (containerRequestsRow?.halls.isNotEmpty)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -764,7 +764,7 @@ if (containerRequestsRow?.halls?.length != 0)
                               ),
                             ],
                           ),
-if (containerRequestsRow?.food?.length != 0)
+                        if (containerRequestsRow?.food.isNotEmpty)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1168,7 +1168,7 @@ if (containerRequestsRow?.food?.length != 0)
                               ),
                             ],
                           ),
-if (containerRequestsRow?.rooms?.length != 0)
+                        if (containerRequestsRow?.rooms.isNotEmpty)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,

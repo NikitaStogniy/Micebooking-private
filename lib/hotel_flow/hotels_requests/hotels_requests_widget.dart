@@ -1361,7 +1361,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                             );
                           },
                         ),
-                        if (containerRequestsRow?.halls?.length != 0)
+                        if (containerRequestsRow?.halls.isNotEmpty)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1764,7 +1764,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                               ),
                             ],
                           ),
-if (containerRequestsRow?.food?.length != 0)
+                        if (containerRequestsRow?.food.isNotEmpty)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -2172,7 +2172,7 @@ if (containerRequestsRow?.food?.length != 0)
                               ),
                             ],
                           ),
-if (containerRequestsRow?.rooms?.length != 0)
+                        if (containerRequestsRow?.rooms.isNotEmpty)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -2215,7 +2215,7 @@ if (containerRequestsRow?.rooms?.length != 0)
                                                 0.1,
                                         decoration: const BoxDecoration(),
                                         child: Text(
-                                          'Название номера',
+                                          'Название зала',
                                           textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium

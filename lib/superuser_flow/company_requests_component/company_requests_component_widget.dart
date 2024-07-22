@@ -945,7 +945,7 @@ class _CompanyRequestsComponentWidgetState
                           );
                         },
                       ),
-if (_model.request?.halls?.length != 0)
+                      if (_model.request?.halls.isNotEmpty)
                         Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -1329,7 +1329,7 @@ if (_model.request?.halls?.length != 0)
                             ),
                           ],
                         ),
-if (_model.request?.food?.length != 0)
+                      if (_model.request?.food.isNotEmpty)
                         Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -1711,7 +1711,7 @@ if (_model.request?.food?.length != 0)
                             ),
                           ],
                         ),
-if (_model.request?.rooms?.length != 0)
+                      if (_model.request?.rooms.isNotEmpty)
                         Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
