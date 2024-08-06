@@ -73,6 +73,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
         final clientHomeUsersRow = clientHomeUsersRowList.isNotEmpty
             ? clientHomeUsersRowList.first
             : null;
+
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -139,155 +140,191 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                               ),
                               Align(
                                 alignment: const AlignmentDirectional(0.0, -0.6),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          valueOrDefault<String>(
-                                            clientHomeUsersRow?.name,
-                                            'Username',
+                                child: Container(
+                                  constraints: const BoxConstraints(
+                                    maxWidth: 200.0,
+                                  ),
+                                  decoration: const BoxDecoration(),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Expanded(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Expanded(
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          clientHomeUsersRow
+                                                              ?.name,
+                                                          'Username',
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Commissioner',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryBackground,
+                                                                  fontSize:
+                                                                      18.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Text(
+                                                  valueOrDefault<String>(
+                                                    clientHomeUsersRow
+                                                        ?.jobTitle,
+                                                    'Должность',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
+                                                        fontSize: 16.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                ),
+                                              ].divide(const SizedBox(height: 8.0)),
+                                            ),
                                           ),
+                                        ],
+                                      ),
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          _model.currentPage =
+                                              EnumClientPage.PROFILE;
+                                          setState(() {});
+                                        },
+                                        child: Text(
+                                          'Профиль',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Commissioner',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
+                                                color: valueOrDefault<Color>(
+                                                  _model.currentPage ==
+                                                          EnumClientPage.PROFILE
+                                                      ? FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryBackground
+                                                      : FlutterFlowTheme.of(
+                                                              context)
+                                                          .alternate,
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                                ),
                                                 fontSize: 18.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                        ),
-                                        Text(
-                                          valueOrDefault<String>(
-                                            clientHomeUsersRow?.jobTitle,
-                                            'Должность',
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Commissioner',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
-                                                fontSize: 16.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
-                                      ].divide(const SizedBox(height: 8.0)),
-                                    ),
-                                    InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        _model.currentPage =
-                                            EnumClientPage.PROFILE;
-                                        setState(() {});
-                                      },
-                                      child: Text(
-                                        'Профиль',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Commissioner',
-                                              color: valueOrDefault<Color>(
-                                                _model.currentPage ==
-                                                        EnumClientPage.PROFILE
-                                                    ? FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground
-                                                    : FlutterFlowTheme.of(
-                                                            context)
-                                                        .alternate,
-                                                FlutterFlowTheme.of(context)
-                                                    .alternate,
-                                              ),
-                                              fontSize: 18.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
-                                            ),
                                       ),
-                                    ),
-                                    InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        _model.currentPage =
-                                            EnumClientPage.REQUESTS;
-                                        setState(() {});
-                                      },
-                                      child: Text(
-                                        'Запросы КП',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Commissioner',
-                                              color: valueOrDefault<Color>(
-                                                _model.currentPage ==
-                                                        EnumClientPage.REQUESTS
-                                                    ? FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground
-                                                    : FlutterFlowTheme.of(
-                                                            context)
-                                                        .alternate,
-                                                FlutterFlowTheme.of(context)
-                                                    .alternate,
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          _model.currentPage =
+                                              EnumClientPage.REQUESTS;
+                                          setState(() {});
+                                        },
+                                        child: Text(
+                                          'Запросы КП',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Commissioner',
+                                                color: valueOrDefault<Color>(
+                                                  _model.currentPage ==
+                                                          EnumClientPage
+                                                              .REQUESTS
+                                                      ? FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryBackground
+                                                      : FlutterFlowTheme.of(
+                                                              context)
+                                                          .alternate,
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                                ),
+                                                fontSize: 18.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
                                               ),
-                                              fontSize: 18.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
-                                            ),
+                                        ),
                                       ),
-                                    ),
-                                    InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        _model.currentPage =
-                                            EnumClientPage.FAVORITE;
-                                        setState(() {});
-                                      },
-                                      child: Text(
-                                        'Избранное',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Commissioner',
-                                              color: valueOrDefault<Color>(
-                                                _model.currentPage ==
-                                                        EnumClientPage.FAVORITE
-                                                    ? FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground
-                                                    : FlutterFlowTheme.of(
-                                                            context)
-                                                        .alternate,
-                                                FlutterFlowTheme.of(context)
-                                                    .alternate,
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          _model.currentPage =
+                                              EnumClientPage.FAVORITE;
+                                          setState(() {});
+                                        },
+                                        child: Text(
+                                          'Избранное',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Commissioner',
+                                                color: valueOrDefault<Color>(
+                                                  _model.currentPage ==
+                                                          EnumClientPage
+                                                              .FAVORITE
+                                                      ? FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryBackground
+                                                      : FlutterFlowTheme.of(
+                                                              context)
+                                                          .alternate,
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                                ),
+                                                fontSize: 18.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
                                               ),
-                                              fontSize: 18.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
-                                            ),
+                                        ),
                                       ),
-                                    ),
-                                  ].divide(const SizedBox(height: 20.0)),
+                                    ].divide(const SizedBox(height: 20.0)),
+                                  ),
                                 ),
                               ),
                               Align(
@@ -442,6 +479,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                                       setState(() {});
                                       Navigator.pop(context);
                                     },
+                                    searchAction: () async {},
                                   ),
                                 ),
                               ),

@@ -244,6 +244,7 @@ class _ProfileHotelsWidgetState extends State<ProfileHotelsWidget>
                                 containerHotelRowList.isNotEmpty
                                     ? containerHotelRowList.first
                                     : null;
+
                             return Container(
                               width: MediaQuery.sizeOf(context).width * 1.0,
                               decoration: const BoxDecoration(),

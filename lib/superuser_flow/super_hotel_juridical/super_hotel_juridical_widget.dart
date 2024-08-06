@@ -114,6 +114,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                 final containerHotelRow = containerHotelRowList.isNotEmpty
                     ? containerHotelRowList.first
                     : null;
+
                 return Container(
                   decoration: const BoxDecoration(),
                   child: FutureBuilder<List<UsersRow>>(
@@ -143,6 +144,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                       final containerUsersRow = containerUsersRowList.isNotEmpty
                           ? containerUsersRowList.first
                           : null;
+
                       return Container(
                         decoration: const BoxDecoration(),
                         child: FutureBuilder<List<JuridicalInfoRow>>(
@@ -174,6 +176,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                 containerJuridicalInfoRowList.isNotEmpty
                                     ? containerJuridicalInfoRowList.first
                                     : null;
+
                             return Container(
                               decoration: const BoxDecoration(),
                               child: SingleChildScrollView(

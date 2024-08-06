@@ -125,6 +125,7 @@ class _ProfileRequestsComponentWidgetState
                         final rowCityRow = rowCityRowList.isNotEmpty
                             ? rowCityRowList.first
                             : null;
+
                         return Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -182,6 +183,7 @@ class _ProfileRequestsComponentWidgetState
                       final rowUsersRow = rowUsersRowList.isNotEmpty
                           ? rowUsersRowList.first
                           : null;
+
                       return Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -483,6 +485,7 @@ class _ProfileRequestsComponentWidgetState
                             if (columnRequestsRowList.isEmpty) {
                               return const HotelRequestEmprtyWidget();
                             }
+
                             return Column(
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,

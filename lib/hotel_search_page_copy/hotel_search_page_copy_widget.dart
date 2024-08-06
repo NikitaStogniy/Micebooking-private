@@ -3,8 +3,7 @@ import '/backend/schema/enums/enums.dart';
 import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/client_food_component_widget.dart';
-import '/components/client_hall_component_widget.dart';
-import '/components/client_hotel_component_widget.dart';
+import '/components/client_hall_edit_component_widget.dart';
 import '/components/client_optional_widget.dart';
 import '/components/client_room_component_widget.dart';
 import '/components/edit_request_hotel_component_widget.dart';
@@ -12,32 +11,38 @@ import '/components/footer_widget.dart';
 import '/components/hall_filter_widget.dart';
 import '/components/hotel_filter_widget.dart';
 import '/components/hotel_search_comp_widget.dart';
-import '/components/please_log_in_widget.dart';
 import '/empty_states/search_emprty/search_emprty_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/uikit/menu/menu_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'dart:async';
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'hotel_search_page_model.dart';
-export 'hotel_search_page_model.dart';
+import 'hotel_search_page_copy_model.dart';
+export 'hotel_search_page_copy_model.dart';
 
-class HotelSearchPageWidget extends StatefulWidget {
-  const HotelSearchPageWidget({
+class HotelSearchPageCopyWidget extends StatefulWidget {
+  /// step
+  const HotelSearchPageCopyWidget({
     super.key,
     required this.startDate,
     required this.duration,
     required this.city,
     required this.visitors,
     required this.user,
-    this.backRequestId,
+    this.request,
     this.hallFilter1,
     this.hallFilter2,
     this.hallFilter3,
+    this.hotel,
+    this.chosenHall,
+    this.chosenFood,
+    this.chosenRoom,
+    this.hallRequest,
+    this.foodRequest,
+    this.roomRequest,
   });
 
   final DateTime? startDate;
@@ -45,29 +50,41 @@ class HotelSearchPageWidget extends StatefulWidget {
   final CityRow? city;
   final int? visitors;
   final UsersRow? user;
-  final int? backRequestId;
+  final RequestsRow? request;
   final HotelSeatingStruct? hallFilter1;
   final HotelSeatingStruct? hallFilter2;
   final HotelSeatingStruct? hallFilter3;
+  final int? hotel;
+  final List<int>? chosenHall;
+  final List<int>? chosenFood;
+  final List<int>? chosenRoom;
+  final List<int>? hallRequest;
+  final List<int>? foodRequest;
+  final List<int>? roomRequest;
 
   @override
-  State<HotelSearchPageWidget> createState() => _HotelSearchPageWidgetState();
+  State<HotelSearchPageCopyWidget> createState() =>
+      _HotelSearchPageCopyWidgetState();
 }
 
-class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
-  late HotelSearchPageModel _model;
+class _HotelSearchPageCopyWidgetState extends State<HotelSearchPageCopyWidget> {
+  late HotelSearchPageCopyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => HotelSearchPageModel());
+    _model = createModel(context, () => HotelSearchPageCopyModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.favoriteHotelsList =
-          widget.user!.favoriteHotels.toList().cast<int>();
+      _model.choosenHall = widget.chosenHall!.toList().cast<int>();
+      _model.chosenFood = widget.chosenFood!.toList().cast<int>();
+      _model.choosenRooms = widget.chosenRoom!.toList().cast<int>();
+      _model.listHallRequest = widget.hallRequest!.toList().cast<int>();
+      _model.listFoodRequest = widget.foodRequest!.toList().cast<int>();
+      _model.listRoomRequest = widget.roomRequest!.toList().cast<int>();
       setState(() {});
       if ((widget.hallFilter1?.type == EnumSeating.theatre) ||
           (widget.hallFilter2?.type == EnumSeating.theatre) ||
@@ -256,8 +273,6 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
               _model.furshetMin,
             ),
       );
-      setState(() => _model.requestCompleter = null);
-      await _model.waitForRequestCompleted(minWait: 1000, maxWait: 3000);
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -297,11 +312,12 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
             ),
           );
         }
-        List<UsersRow> hotelSearchPageUsersRowList = snapshot.data!;
+        List<UsersRow> hotelSearchPageCopyUsersRowList = snapshot.data!;
 
-        final hotelSearchPageUsersRow = hotelSearchPageUsersRowList.isNotEmpty
-            ? hotelSearchPageUsersRowList.first
-            : null;
+        final hotelSearchPageCopyUsersRow =
+            hotelSearchPageCopyUsersRowList.isNotEmpty
+                ? hotelSearchPageCopyUsersRowList.first
+                : null;
 
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
@@ -422,7 +438,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                   setState(() {});
 
                                                   context.goNamed(
-                                                    'HotelSearchPage',
+                                                    'HotelSearchPageCopy',
                                                     queryParameters: {
                                                       'startDate':
                                                           serializeParam(
@@ -444,7 +460,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                         ParamType.int,
                                                       ),
                                                       'user': serializeParam(
-                                                        hotelSearchPageUsersRow,
+                                                        hotelSearchPageCopyUsersRow,
                                                         ParamType.SupabaseRow,
                                                       ),
                                                       'hallFilter1':
@@ -464,11 +480,6 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       ),
                                                     }.withoutNulls,
                                                   );
-
-                                                  setState(() => _model
-                                                      .requestCompleter = null);
-                                                  await _model
-                                                      .waitForRequestCompleted();
                                                 },
                                               ),
                                             ),
@@ -480,105 +491,6 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                 ),
                               ),
                             ),
-                          ),
-                        ),
-                        if (responsiveVisibility(
-                          context: context,
-                          phone: false,
-                          tablet: false,
-                        ))
-                          wrapWithModel(
-                            model: _model.hotelSearchCompModel,
-                            updateCallback: () => setState(() {}),
-                            updateOnChange: true,
-                            child: HotelSearchCompWidget(
-                              duration: widget.duration!,
-                              visitors: widget.visitors!,
-                              date: widget.startDate!,
-                              ciry: widget.city,
-                              hallFilter1: widget.hallFilter1,
-                              hallFilter2: widget.hallFilter2,
-                              hallFilter3: widget.hallFilter3,
-                              home: false,
-                              onSearch: (date,
-                                  duration,
-                                  city,
-                                  visitors,
-                                  seatings,
-                                  hallFilter1,
-                                  hallFilter2,
-                                  hallFilter3) async {
-                                _model.step = 0;
-                                setState(() {});
-
-                                context.goNamed(
-                                  'HotelSearchPage',
-                                  queryParameters: {
-                                    'startDate': serializeParam(
-                                      widget.startDate,
-                                      ParamType.DateTime,
-                                    ),
-                                    'duration': serializeParam(
-                                      duration,
-                                      ParamType.double,
-                                    ),
-                                    'city': serializeParam(
-                                      city,
-                                      ParamType.SupabaseRow,
-                                    ),
-                                    'visitors': serializeParam(
-                                      visitors,
-                                      ParamType.int,
-                                    ),
-                                    'user': serializeParam(
-                                      hotelSearchPageUsersRow,
-                                      ParamType.SupabaseRow,
-                                    ),
-                                    'hallFilter1': serializeParam(
-                                      hallFilter1,
-                                      ParamType.DataStruct,
-                                    ),
-                                    'hallFilter2': serializeParam(
-                                      hallFilter2,
-                                      ParamType.DataStruct,
-                                    ),
-                                    'hallFilter3': serializeParam(
-                                      hallFilter3,
-                                      ParamType.DataStruct,
-                                    ),
-                                  }.withoutNulls,
-                                );
-
-                                setState(() => _model.requestCompleter = null);
-                                await _model.waitForRequestCompleted();
-                              },
-                            ),
-                          ),
-                        Container(
-                          height: 30.0,
-                          decoration: const BoxDecoration(),
-                          child: Builder(
-                            builder: (context) {
-                              final test = _model.filteredRooms.toList();
-
-                              return Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children:
-                                    List.generate(test.length, (testIndex) {
-                                  final testItem = test[testIndex];
-                                  return Text(
-                                    testItem.toString(),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Commissioner',
-                                          color: const Color(0x0014181B),
-                                          letterSpacing: 0.0,
-                                        ),
-                                  );
-                                }).divide(const SizedBox(width: 40.0)),
-                              );
-                            },
                           ),
                         ),
                         if (_model.step == 0)
@@ -730,11 +642,6 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       _model.filterMaxPrice =
                                                           maxPrice;
                                                       setState(() {});
-                                                      setState(() => _model
-                                                              .requestCompleter =
-                                                          null);
-                                                      await _model
-                                                          .waitForRequestCompleted();
                                                     },
                                                   ),
                                                 ),
@@ -1024,10 +931,6 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                           .toList()
                                           .cast<int>();
                                       setState(() {});
-                                      setState(
-                                          () => _model.requestCompleter = null);
-                                      await _model.waitForRequestCompleted(
-                                          minWait: 1000, maxWait: 3000);
 
                                       setState(() {});
                                     },
@@ -1054,193 +957,6 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                       borderRadius: BorderRadius.circular(24.0),
                                     ),
                                   ),
-                                  if (responsiveVisibility(
-                                    context: context,
-                                    phone: false,
-                                    tablet: false,
-                                    tabletLandscape: false,
-                                    desktop: false,
-                                  ))
-                                    Expanded(
-                                      child: SingleChildScrollView(
-                                        scrollDirection: Axis.horizontal,
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                              child: Text(
-                                                'зал 1: ${widget.hallFilter1?.type.name}${widget.hallFilter1?.count.toString()}',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                              child: Text(
-                                                'зал 2: ${widget.hallFilter2?.type.name}${widget.hallFilter2?.count.toString()}',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                              child: Text(
-                                                'зал 3:  ${widget.hallFilter3?.type.name}${widget.hallFilter3?.count.toString()}',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                              child: Text(
-                                                'театр ${_model.theaterMin?.toString()}',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                              child: Text(
-                                                'класс${_model.classMin?.toString()}',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                              child: Text(
-                                                'комуник. ${valueOrDefault<String>(
-                                                  _model.comMin?.toString(),
-                                                  '0',
-                                                )}',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                              child: Text(
-                                                'юшейп. ${_model.uShapeMin?.toString()}',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                              child: Text(
-                                                'ошейп. ${_model.oShapeMin?.toString()}',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                              child: Text(
-                                                'кабаре  ${_model.cabareMin?.toString()}',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                              child: Text(
-                                                'фуршет  ${_model.furshetMin?.toString()}',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                              child: Text(
-                                                'банкет  ${_model.banketMin?.toString()}',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                          ].divide(const SizedBox(width: 20.0)),
-                                        ),
-                                      ),
-                                    ),
                                 ].divide(const SizedBox(width: 10.0)),
                               ),
                             ),
@@ -1330,50 +1046,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                         if (_model.step > 0)
                                           FFButtonWidget(
                                             onPressed: () async {
-                                              if (_model.chosenHotels.length ==
-                                                  1) {
-                                                _model.step = 0;
-                                                _model.removeFromChosenHotels(
-                                                    _model.choosedHotel!);
-                                                _model.chosenHotelName = null;
-                                                _model.chosenFood = [];
-                                                _model.choosenHall = [];
-                                                _model.choosenRooms = [];
-                                                _model.listHallRequest = [];
-                                                _model.listFoodRequest = [];
-                                                _model.listRoomRequest = [];
-                                                _model.foodIsOpen = false;
-                                                _model.roomsIsOpen = false;
-                                                _model.foodIsSkip = false;
-                                                _model.roomisSkip = false;
-                                                _model.priceHall = [];
-                                                _model.foodPrice = [];
-                                                _model.roomPrice = [];
-                                                setState(() {});
-                                                _model.choosedHotel = null;
-                                                setState(() {});
-                                              } else {
-                                                _model.step = 0;
-                                                _model.removeFromChosenHotels(
-                                                    _model.choosedHotel!);
-                                                _model.chosenHotelName = null;
-                                                _model.chosenFood = [];
-                                                _model.choosenHall = [];
-                                                _model.choosenRooms = [];
-                                                _model.listHallRequest = [];
-                                                _model.listFoodRequest = [];
-                                                _model.listRoomRequest = [];
-                                                _model.foodIsOpen = false;
-                                                _model.roomsIsOpen = false;
-                                                _model.foodIsSkip = false;
-                                                _model.roomisSkip = false;
-                                                _model.priceHall = [];
-                                                _model.foodPrice = [];
-                                                _model.roomPrice = [];
-                                                setState(() {});
-                                                _model.choosedHotel = null;
-                                                setState(() {});
-                                              }
+                                              context.safePop();
                                             },
                                             text: 'Назад',
                                             icon: const Icon(
@@ -1410,128 +1083,6 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                   BorderRadius.circular(24.0),
                                             ),
                                           ),
-                                        Expanded(
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: [
-                                              if ((_model.choosedHotel ==
-                                                      null) &&
-                                                  (_model.requestList.isNotEmpty))
-                                                FFButtonWidget(
-                                                  onPressed: () async {
-                                                    _model.requestWrapperCopy =
-                                                        await RequestWrapperTable()
-                                                            .insert({
-                                                      'requests_id': _model
-                                                          .requestList
-                                                          .map((e) => e.id)
-                                                          .toList(),
-                                                      'owner':
-                                                          hotelSearchPageUsersRow
-                                                              ?.id,
-                                                    });
-
-                                                    context.pushNamed(
-                                                      'Request',
-                                                      queryParameters: {
-                                                        'requestWrapper':
-                                                            serializeParam(
-                                                          _model
-                                                              .requestWrapperCopy,
-                                                          ParamType.SupabaseRow,
-                                                        ),
-                                                        'lastRequest':
-                                                            serializeParam(
-                                                          _model
-                                                              .requestList.last,
-                                                          ParamType.SupabaseRow,
-                                                        ),
-                                                        'wasEdited':
-                                                            serializeParam(
-                                                          false,
-                                                          ParamType.bool,
-                                                        ),
-                                                        'startDate':
-                                                            serializeParam(
-                                                          widget.startDate,
-                                                          ParamType.DateTime,
-                                                        ),
-                                                        'duration':
-                                                            serializeParam(
-                                                          widget.duration,
-                                                          ParamType.double,
-                                                        ),
-                                                        'city': serializeParam(
-                                                          widget.city,
-                                                          ParamType.SupabaseRow,
-                                                        ),
-                                                        'visitors':
-                                                            serializeParam(
-                                                          widget.visitors,
-                                                          ParamType.int,
-                                                        ),
-                                                        'hallFilter1':
-                                                            serializeParam(
-                                                          widget.hallFilter1,
-                                                          ParamType.DataStruct,
-                                                        ),
-                                                        'hallFilter2':
-                                                            serializeParam(
-                                                          widget.hallFilter2,
-                                                          ParamType.DataStruct,
-                                                        ),
-                                                        'hallFilter3':
-                                                            serializeParam(
-                                                          widget.hallFilter3,
-                                                          ParamType.DataStruct,
-                                                        ),
-                                                      }.withoutNulls,
-                                                    );
-
-                                                    setState(() {});
-                                                  },
-                                                  text: 'Получить кп',
-                                                  options: FFButtonOptions(
-                                                    width: 200.0,
-                                                    height: 40.0,
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(24.0, 0.0,
-                                                                24.0, 0.0),
-                                                    iconPadding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 0.0),
-                                                    color: const Color(0x002431A5),
-                                                    textStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                    elevation: 0.0,
-                                                    borderSide: BorderSide(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      width: 1.0,
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            24.0),
-                                                  ),
-                                                ),
-                                            ],
-                                          ),
-                                        ),
                                       ].divide(const SizedBox(width: 16.0)),
                                     ),
                                   ),
@@ -1540,926 +1091,391 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                             ),
                           ),
                         ),
-                        if (_model.step == 0)
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                valueOrDefault<double>(
-                                  MediaQuery.sizeOf(context).width > 1000.0
-                                      ? 0.0
-                                      : 16.0,
-                                  0.0,
-                                ),
-                                32.0,
-                                valueOrDefault<double>(
-                                  MediaQuery.sizeOf(context).width > 1000.0
-                                      ? 0.0
-                                      : 16.0,
-                                  0.0,
-                                ),
-                                0.0),
-                            child: Container(
-                              constraints: const BoxConstraints(
-                                maxWidth: 1250.0,
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              valueOrDefault<double>(
+                                MediaQuery.sizeOf(context).width > 1000.0
+                                    ? 0.0
+                                    : 16.0,
+                                0.0,
                               ),
-                              decoration: const BoxDecoration(),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  if ((_model.filterMinPrice! > 1.0) ||
-                                      (_model.filterMaxPrice! < 100000.0))
-                                    FutureBuilder<List<HotelRow>>(
-                                      future: (_model.requestCompleter ??=
-                                              Completer<List<HotelRow>>()
-                                                ..complete(
-                                                    HotelTable().queryRows(
-                                                  queryFn: (q) => q
-                                                      .eq(
-                                                        'city',
-                                                        widget.city?.id,
-                                                      )
-                                                      .gte(
-                                                        'Hall_max_capacity',
-                                                        widget.visitors,
-                                                      )
-                                                      .overlaps(
-                                                        'hall',
-                                                        _model.filteredHalls
-                                                            ?.map((e) => e.id)
-                                                            .toList(),
-                                                      )
-                                                      .eq(
-                                                        'isVisible',
-                                                        true,
-                                                      )
-                                                      .overlaps(
-                                                        'rooms',
-                                                        _model.filteredRooms,
-                                                      ),
-                                                )))
-                                          .future,
-                                      builder: (context, snapshot) {
-                                        // Customize what your widget looks like when it's loading.
-                                        if (!snapshot.hasData) {
-                                          return Center(
-                                            child: SizedBox(
-                                              width: 50.0,
-                                              height: 50.0,
-                                              child: CircularProgressIndicator(
-                                                valueColor:
-                                                    AlwaysStoppedAnimation<
-                                                        Color>(
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                                ),
-                                              ),
-                                            ),
-                                          );
-                                        }
-                                        List<HotelRow> hotelsHotelRowList =
-                                            snapshot.data!;
-
-                                        if (hotelsHotelRowList.isEmpty) {
-                                          return const Center(
-                                            child: SearchEmprtyWidget(),
-                                          );
-                                        }
-
-                                        return Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: List.generate(
-                                                  hotelsHotelRowList.length,
-                                                  (hotelsIndex) {
-                                            final hotelsHotelRow =
-                                                hotelsHotelRowList[hotelsIndex];
-                                            return Visibility(
-                                              visible: ((_model.hotelFilterStars
-                                                              .contains(
-                                                                  hotelsHotelRow
-                                                                      .stars) ==
-                                                          true) ||
-                                                      ((_model.hotelFilterStars
-                                                              .isNotEmpty) ==
-                                                          false)) &&
-                                                  ((hotelsHotelRow
-                                                              .distanceCenter! <=
-                                                          _model
-                                                              .hotelFilterMaxDistance!) &&
-                                                      (hotelsHotelRow
-                                                              .distanceCenter! >=
-                                                          _model
-                                                              .hotelFilterMinDistance!)),
-                                              child: Builder(
-                                                builder: (context) =>
-                                                    wrapWithModel(
-                                                  model: _model
-                                                      .clientHotelComponentModels1
-                                                      .getModel(
-                                                    hotelsHotelRow.id
-                                                        .toString(),
-                                                    hotelsIndex,
-                                                  ),
-                                                  updateCallback: () =>
-                                                      setState(() {}),
-                                                  updateOnChange: true,
-                                                  child:
-                                                      ClientHotelComponentWidget(
-                                                    key: Key(
-                                                      'Keyjyz_${hotelsHotelRow.id.toString()}',
-                                                    ),
-                                                    isChosen: (hotelsHotelRow
-                                                                .id ==
-                                                            _model
-                                                                .choosedHotel) ||
-                                                        (_model.chosenHotels
-                                                                .contains(
-                                                                    hotelsHotelRow
-                                                                        .id) ==
-                                                            true),
-                                                    hotel: hotelsHotelRow,
-                                                    hideAction: false,
-                                                    isFavorite: _model
-                                                            .favoriteHotelsList
-                                                            .contains(
-                                                                hotelsHotelRow
-                                                                    .id) ==
-                                                        true,
-                                                    chosed: (id) async {
-                                                      if (loggedIn == true) {
-                                                        _model.choosedHotel =
-                                                            hotelsHotelRow.id;
-                                                        _model
-                                                            .addToChosenHotels(
-                                                                hotelsHotelRow
-                                                                    .id);
-                                                        _model.chosenHotelName =
-                                                            hotelsHotelRow.name;
-                                                        setState(() {});
-                                                        _model.step =
-                                                            _model.step + 1;
-                                                        setState(() {});
-                                                      } else {
-                                                        await showDialog(
-                                                          barrierColor:
-                                                              const Color(0xE8FFFFFF),
-                                                          context: context,
-                                                          builder:
-                                                              (dialogContext) {
-                                                            return Dialog(
-                                                              elevation: 0,
-                                                              insetPadding:
-                                                                  EdgeInsets
-                                                                      .zero,
-                                                              backgroundColor:
-                                                                  Colors
-                                                                      .transparent,
-                                                              alignment: const AlignmentDirectional(
-                                                                      0.0, 0.0)
-                                                                  .resolve(
-                                                                      Directionality.of(
-                                                                          context)),
-                                                              child:
-                                                                  GestureDetector(
-                                                                onTap: () => _model
-                                                                        .unfocusNode
-                                                                        .canRequestFocus
-                                                                    ? FocusScope.of(
-                                                                            context)
-                                                                        .requestFocus(_model
-                                                                            .unfocusNode)
-                                                                    : FocusScope.of(
-                                                                            context)
-                                                                        .unfocus(),
-                                                                child:
-                                                                    SizedBox(
-                                                                  height: 400.0,
-                                                                  width: 900.0,
-                                                                  child:
-                                                                      PleaseLogInWidget(
-                                                                    startDate:
-                                                                        widget
-                                                                            .startDate!,
-                                                                    duration:
-                                                                        widget
-                                                                            .duration!,
-                                                                    city: widget
-                                                                        .city!,
-                                                                    visitors:
-                                                                        widget
-                                                                            .visitors!,
-                                                                    user: widget
-                                                                        .user!,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            );
-                                                          },
-                                                        ).then((value) =>
-                                                            setState(() {}));
-                                                      }
-                                                    },
-                                                    unchosen: (id) async {
-                                                      _model.choosedHotel =
-                                                          null;
-                                                      _model
-                                                          .removeFromChosenHotels(
-                                                              hotelsHotelRow
-                                                                  .id);
-                                                      setState(() {});
-                                                      await RequestsTable()
-                                                          .delete(
-                                                        matchingRows: (rows) =>
-                                                            rows
-                                                                .eq(
-                                                                  'hotel',
-                                                                  hotelsHotelRow
-                                                                      .id,
-                                                                )
-                                                                .in_(
-                                                                  'hotel',
-                                                                  _model
-                                                                      .chosenHotels,
-                                                                )
-                                                                .eq(
-                                                                  'wrapper_id',
-                                                                  0,
-                                                                ),
-                                                      );
-                                                    },
-                                                    addFavHotel: (id) async {
-                                                      if (loggedIn == true) {
-                                                        if (_model
-                                                                .favoriteHotelsList
-                                                                .contains(
-                                                                    hotelsHotelRow
-                                                                        .id) ==
-                                                            true) {
-                                                          _model
-                                                              .removeFromFavoriteHotelsList(
-                                                                  hotelsHotelRow
-                                                                      .id);
-                                                          setState(() {});
-                                                          await Future.delayed(
-                                                              const Duration(
-                                                                  milliseconds:
-                                                                      1000));
-                                                          await UsersTable()
-                                                              .update(
-                                                            data: {
-                                                              'favorite_hotels':
-                                                                  _model
-                                                                      .favoriteHotelsList,
-                                                            },
-                                                            matchingRows:
-                                                                (rows) =>
-                                                                    rows.eq(
-                                                              'uid',
-                                                              currentUserUid,
-                                                            ),
-                                                          );
-                                                        } else {
-                                                          _model
-                                                              .addToFavoriteHotelsList(
-                                                                  hotelsHotelRow
-                                                                      .id);
-                                                          setState(() {});
-                                                          await Future.delayed(
-                                                              const Duration(
-                                                                  milliseconds:
-                                                                      1000));
-                                                          await UsersTable()
-                                                              .update(
-                                                            data: {
-                                                              'favorite_hotels':
-                                                                  _model
-                                                                      .favoriteHotelsList,
-                                                            },
-                                                            matchingRows:
-                                                                (rows) =>
-                                                                    rows.eq(
-                                                              'uid',
-                                                              currentUserUid,
-                                                            ),
-                                                          );
-                                                        }
-                                                      }
-                                                    },
-                                                    deleteRequest: (id) async {
-                                                      _model.choosedHotel =
-                                                          null;
-                                                      _model
-                                                          .removeFromChosenHotels(
-                                                              hotelsHotelRow
-                                                                  .id);
-                                                      setState(() {});
-                                                      await RequestsTable()
-                                                          .delete(
-                                                        matchingRows: (rows) =>
-                                                            rows
-                                                                .eq(
-                                                                  'owner',
-                                                                  hotelSearchPageUsersRow
-                                                                      ?.id,
-                                                                )
-                                                                .eq(
-                                                                  'hotel',
-                                                                  id,
-                                                                )
-                                                                .eq(
-                                                                  'wrapper_id',
-                                                                  0,
-                                                                ),
-                                                      );
-                                                    },
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          })
-                                              .divide(
-                                                const SizedBox(height: 65.0),
-                                                filterFn: (hotelsIndex) {
-                                                  final hotelsHotelRow =
-                                                      hotelsHotelRowList[
-                                                          hotelsIndex];
-                                                  return ((_model.hotelFilterStars
-                                                                  .contains(
-                                                                      hotelsHotelRow
-                                                                          .stars) ==
-                                                              true) ||
-                                                          ((_model.hotelFilterStars
-                                                                  .isNotEmpty) ==
-                                                              false)) &&
-                                                      ((hotelsHotelRow
-                                                                  .distanceCenter! <=
-                                                              _model
-                                                                  .hotelFilterMaxDistance!) &&
-                                                          (hotelsHotelRow
-                                                                  .distanceCenter! >=
-                                                              _model
-                                                                  .hotelFilterMinDistance!));
-                                                },
-                                              )
-                                              .addToStart(
-                                                  const SizedBox(height: 48.0))
-                                              .addToEnd(const SizedBox(height: 72.0)),
-                                        );
-                                      },
-                                    ),
-                                  if ((_model.filterMinPrice == 1.0) &&
-                                      (_model.filterMaxPrice == 100000.0))
-                                    FutureBuilder<List<HotelRow>>(
-                                      future: HotelTable().queryRows(
-                                        queryFn: (q) => q
-                                            .eq(
-                                              'city',
-                                              widget.city?.id,
-                                            )
-                                            .gte(
-                                              'Hall_max_capacity',
-                                              widget.visitors,
-                                            )
-                                            .overlaps(
-                                              'hall',
-                                              _model.filteredHalls
-                                                  ?.map((e) => e.id)
-                                                  .toList(),
-                                            )
-                                            .eq(
-                                              'isVisible',
-                                              true,
-                                            ),
-                                      ),
-                                      builder: (context, snapshot) {
-                                        // Customize what your widget looks like when it's loading.
-                                        if (!snapshot.hasData) {
-                                          return Center(
-                                            child: SizedBox(
-                                              width: 50.0,
-                                              height: 50.0,
-                                              child: CircularProgressIndicator(
-                                                valueColor:
-                                                    AlwaysStoppedAnimation<
-                                                        Color>(
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                                ),
-                                              ),
-                                            ),
-                                          );
-                                        }
-                                        List<HotelRow> hotelsHotelRowList =
-                                            snapshot.data!;
-
-                                        if (hotelsHotelRowList.isEmpty) {
-                                          return const Center(
-                                            child: SearchEmprtyWidget(),
-                                          );
-                                        }
-
-                                        return Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: List.generate(
-                                                  hotelsHotelRowList.length,
-                                                  (hotelsIndex) {
-                                            final hotelsHotelRow =
-                                                hotelsHotelRowList[hotelsIndex];
-                                            return Visibility(
-                                              visible: ((_model.hotelFilterStars
-                                                              .contains(
-                                                                  hotelsHotelRow
-                                                                      .stars) ==
-                                                          true) ||
-                                                      ((_model.hotelFilterStars
-                                                              .isNotEmpty) ==
-                                                          false)) &&
-                                                  ((hotelsHotelRow
-                                                              .distanceCenter! <=
-                                                          _model
-                                                              .hotelFilterMaxDistance!) &&
-                                                      (hotelsHotelRow
-                                                              .distanceCenter! >=
-                                                          _model
-                                                              .hotelFilterMinDistance!)),
-                                              child: Builder(
-                                                builder: (context) =>
-                                                    wrapWithModel(
-                                                  model: _model
-                                                      .clientHotelComponentModels2
-                                                      .getModel(
-                                                    hotelsHotelRow.id
-                                                        .toString(),
-                                                    hotelsIndex,
-                                                  ),
-                                                  updateCallback: () =>
-                                                      setState(() {}),
-                                                  updateOnChange: true,
-                                                  child:
-                                                      ClientHotelComponentWidget(
-                                                    key: Key(
-                                                      'Key8ov_${hotelsHotelRow.id.toString()}',
-                                                    ),
-                                                    isChosen: (hotelsHotelRow
-                                                                .id ==
-                                                            _model
-                                                                .choosedHotel) ||
-                                                        (_model.chosenHotels
-                                                                .contains(
-                                                                    hotelsHotelRow
-                                                                        .id) ==
-                                                            true),
-                                                    hotel: hotelsHotelRow,
-                                                    hideAction: false,
-                                                    isFavorite: _model
-                                                            .favoriteHotelsList
-                                                            .contains(
-                                                                hotelsHotelRow
-                                                                    .id) ==
-                                                        true,
-                                                    chosed: (id) async {
-                                                      if (loggedIn == true) {
-                                                        _model.choosedHotel =
-                                                            hotelsHotelRow.id;
-                                                        _model
-                                                            .addToChosenHotels(
-                                                                hotelsHotelRow
-                                                                    .id);
-                                                        _model.chosenHotelName =
-                                                            hotelsHotelRow.name;
-                                                        setState(() {});
-                                                        _model.step =
-                                                            _model.step + 1;
-                                                        setState(() {});
-                                                      } else {
-                                                        await showDialog(
-                                                          barrierColor:
-                                                              const Color(0xE8FFFFFF),
-                                                          context: context,
-                                                          builder:
-                                                              (dialogContext) {
-                                                            return Dialog(
-                                                              elevation: 0,
-                                                              insetPadding:
-                                                                  EdgeInsets
-                                                                      .zero,
-                                                              backgroundColor:
-                                                                  Colors
-                                                                      .transparent,
-                                                              alignment: const AlignmentDirectional(
-                                                                      0.0, 0.0)
-                                                                  .resolve(
-                                                                      Directionality.of(
-                                                                          context)),
-                                                              child:
-                                                                  GestureDetector(
-                                                                onTap: () => _model
-                                                                        .unfocusNode
-                                                                        .canRequestFocus
-                                                                    ? FocusScope.of(
-                                                                            context)
-                                                                        .requestFocus(_model
-                                                                            .unfocusNode)
-                                                                    : FocusScope.of(
-                                                                            context)
-                                                                        .unfocus(),
-                                                                child:
-                                                                    SizedBox(
-                                                                  height: 400.0,
-                                                                  width: 900.0,
-                                                                  child:
-                                                                      PleaseLogInWidget(
-                                                                    startDate:
-                                                                        widget
-                                                                            .startDate!,
-                                                                    duration:
-                                                                        widget
-                                                                            .duration!,
-                                                                    city: widget
-                                                                        .city!,
-                                                                    visitors:
-                                                                        widget
-                                                                            .visitors!,
-                                                                    user: widget
-                                                                        .user!,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            );
-                                                          },
-                                                        ).then((value) =>
-                                                            setState(() {}));
-                                                      }
-                                                    },
-                                                    unchosen: (id) async {
-                                                      _model.choosedHotel =
-                                                          null;
-                                                      _model
-                                                          .removeFromChosenHotels(
-                                                              hotelsHotelRow
-                                                                  .id);
-                                                      setState(() {});
-                                                      await RequestsTable()
-                                                          .delete(
-                                                        matchingRows: (rows) =>
-                                                            rows
-                                                                .eq(
-                                                                  'hotel',
-                                                                  hotelsHotelRow
-                                                                      .id,
-                                                                )
-                                                                .in_(
-                                                                  'hotel',
-                                                                  _model
-                                                                      .chosenHotels,
-                                                                )
-                                                                .eq(
-                                                                  'wrapper_id',
-                                                                  0,
-                                                                ),
-                                                      );
-                                                    },
-                                                    addFavHotel: (id) async {
-                                                      if (loggedIn == true) {
-                                                        if (_model
-                                                                .favoriteHotelsList
-                                                                .contains(
-                                                                    hotelsHotelRow
-                                                                        .id) ==
-                                                            true) {
-                                                          _model
-                                                              .removeFromFavoriteHotelsList(
-                                                                  hotelsHotelRow
-                                                                      .id);
-                                                          setState(() {});
-                                                          await Future.delayed(
-                                                              const Duration(
-                                                                  milliseconds:
-                                                                      1000));
-                                                          await UsersTable()
-                                                              .update(
-                                                            data: {
-                                                              'favorite_hotels':
-                                                                  _model
-                                                                      .favoriteHotelsList,
-                                                            },
-                                                            matchingRows:
-                                                                (rows) =>
-                                                                    rows.eq(
-                                                              'uid',
-                                                              currentUserUid,
-                                                            ),
-                                                          );
-                                                        } else {
-                                                          _model
-                                                              .addToFavoriteHotelsList(
-                                                                  hotelsHotelRow
-                                                                      .id);
-                                                          setState(() {});
-                                                          await Future.delayed(
-                                                              const Duration(
-                                                                  milliseconds:
-                                                                      1000));
-                                                          await UsersTable()
-                                                              .update(
-                                                            data: {
-                                                              'favorite_hotels':
-                                                                  _model
-                                                                      .favoriteHotelsList,
-                                                            },
-                                                            matchingRows:
-                                                                (rows) =>
-                                                                    rows.eq(
-                                                              'uid',
-                                                              currentUserUid,
-                                                            ),
-                                                          );
-                                                        }
-                                                      }
-                                                    },
-                                                    deleteRequest: (id) async {
-                                                      _model.choosedHotel =
-                                                          null;
-                                                      _model
-                                                          .removeFromChosenHotels(
-                                                              hotelsHotelRow
-                                                                  .id);
-                                                      setState(() {});
-                                                      await RequestsTable()
-                                                          .delete(
-                                                        matchingRows: (rows) =>
-                                                            rows
-                                                                .eq(
-                                                                  'owner',
-                                                                  hotelSearchPageUsersRow
-                                                                      ?.id,
-                                                                )
-                                                                .eq(
-                                                                  'hotel',
-                                                                  id,
-                                                                )
-                                                                .eq(
-                                                                  'wrapper_id',
-                                                                  0,
-                                                                ),
-                                                      );
-                                                    },
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          })
-                                              .divide(
-                                                const SizedBox(height: 65.0),
-                                                filterFn: (hotelsIndex) {
-                                                  final hotelsHotelRow =
-                                                      hotelsHotelRowList[
-                                                          hotelsIndex];
-                                                  return ((_model.hotelFilterStars
-                                                                  .contains(
-                                                                      hotelsHotelRow
-                                                                          .stars) ==
-                                                              true) ||
-                                                          ((_model.hotelFilterStars
-                                                                  .isNotEmpty) ==
-                                                              false)) &&
-                                                      ((hotelsHotelRow
-                                                                  .distanceCenter! <=
-                                                              _model
-                                                                  .hotelFilterMaxDistance!) &&
-                                                          (hotelsHotelRow
-                                                                  .distanceCenter! >=
-                                                              _model
-                                                                  .hotelFilterMinDistance!));
-                                                },
-                                              )
-                                              .addToStart(
-                                                  const SizedBox(height: 48.0))
-                                              .addToEnd(const SizedBox(height: 72.0)),
-                                        );
-                                      },
-                                    ),
-                                ],
+                              16.0,
+                              valueOrDefault<double>(
+                                MediaQuery.sizeOf(context).width > 1000.0
+                                    ? 0.0
+                                    : 16.0,
+                                0.0,
                               ),
+                              0.0),
+                          child: Container(
+                            constraints: const BoxConstraints(
+                              maxWidth: 1250.0,
                             ),
-                          ),
-                        if (_model.step != 0)
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                valueOrDefault<double>(
-                                  MediaQuery.sizeOf(context).width > 1000.0
-                                      ? 0.0
-                                      : 16.0,
-                                  0.0,
-                                ),
-                                32.0,
-                                valueOrDefault<double>(
-                                  MediaQuery.sizeOf(context).width > 1000.0
-                                      ? 0.0
-                                      : 16.0,
-                                  0.0,
-                                ),
-                                56.0),
-                            child: FutureBuilder<List<HotelRow>>(
-                              future: HotelTable().querySingleRow(
-                                queryFn: (q) => q.eq(
-                                  'id',
-                                  _model.choosedHotel,
-                                ),
-                              ),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
-                                      child: CircularProgressIndicator(
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                          FlutterFlowTheme.of(context).primary,
+                            decoration: const BoxDecoration(),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                if (responsiveVisibility(
+                                  context: context,
+                                  phone: false,
+                                  tablet: false,
+                                  tabletLandscape: false,
+                                  desktop: false,
+                                ))
+                                  Text(
+                                    () {
+                                      if (_model.step == 0) {
+                                        return 'Подходящие площадки в городе ${valueOrDefault<String>(
+                                          widget.city?.name,
+                                          'City name',
+                                        )}';
+                                      } else if (_model.step == 1) {
+                                        return 'Выбор зала';
+                                      } else if (_model.step == 2) {
+                                        return 'Выбор питания';
+                                      } else if (_model.step == 3) {
+                                        return 'Выбор номера';
+                                      } else {
+                                        return 'Заголовок';
+                                      }
+                                    }(),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Commissioner',
+                                          fontSize: 32.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        valueOrDefault<double>(
+                                          MediaQuery.sizeOf(context).width >
+                                                  1000.0
+                                              ? 0.0
+                                              : 16.0,
+                                          0.0,
+                                        ),
+                                        24.0,
+                                        valueOrDefault<double>(
+                                          MediaQuery.sizeOf(context).width >
+                                                  1000.0
+                                              ? 0.0
+                                              : 16.0,
+                                          0.0,
+                                        ),
+                                        0.0),
+                                    child: FutureBuilder<List<HotelRow>>(
+                                      future: HotelTable().querySingleRow(
+                                        queryFn: (q) => q.eq(
+                                          'id',
+                                          widget.hotel,
                                         ),
                                       ),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              child: CircularProgressIndicator(
+                                                valueColor:
+                                                    AlwaysStoppedAnimation<
+                                                        Color>(
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        List<HotelRow> rowHotelRowList =
+                                            snapshot.data!;
+
+                                        final rowHotelRow =
+                                            rowHotelRowList.isNotEmpty
+                                                ? rowHotelRowList.first
+                                                : null;
+
+                                        return Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Expanded(
+                                              child: Text(
+                                                'Редактирование запроса в отель ${rowHotelRow?.name}',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          fontSize: 30.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                              ),
+                                            ),
+                                          ].divide(const SizedBox(width: 16.0)),
+                                        );
+                                      },
                                     ),
-                                  );
-                                }
-                                List<HotelRow> containerHotelRowList =
-                                    snapshot.data!;
-
-                                final containerHotelRow =
-                                    containerHotelRowList.isNotEmpty
-                                        ? containerHotelRowList.first
-                                        : null;
-
-                                return Container(
-                                  constraints: const BoxConstraints(
-                                    maxWidth: 1250.0,
                                   ),
-                                  decoration: const BoxDecoration(),
-                                  child: wrapWithModel(
-                                    model:
-                                        _model.editRequestHotelComponentModel,
-                                    updateCallback: () => setState(() {}),
-                                    child: EditRequestHotelComponentWidget(
-                                      hotel: containerHotelRow!,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              valueOrDefault<double>(
+                                MediaQuery.sizeOf(context).width > 1000.0
+                                    ? 0.0
+                                    : 16.0,
+                                0.0,
+                              ),
+                              32.0,
+                              valueOrDefault<double>(
+                                MediaQuery.sizeOf(context).width > 1000.0
+                                    ? 0.0
+                                    : 16.0,
+                                0.0,
+                              ),
+                              56.0),
+                          child: FutureBuilder<List<HotelRow>>(
+                            future: HotelTable().querySingleRow(
+                              queryFn: (q) => q.eq(
+                                'id',
+                                widget.hotel,
+                              ),
+                            ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50.0,
+                                    height: 50.0,
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                        FlutterFlowTheme.of(context).primary,
+                                      ),
                                     ),
                                   ),
                                 );
-                              },
-                            ),
-                          ),
-                        if (_model.step == 1)
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 56.0),
-                            child: FutureBuilder<List<HotelRow>>(
-                              future: HotelTable().querySingleRow(
-                                queryFn: (q) => q.eq(
-                                  'id',
-                                  _model.choosedHotel,
+                              }
+                              List<HotelRow> containerHotelRowList =
+                                  snapshot.data!;
+
+                              final containerHotelRow =
+                                  containerHotelRowList.isNotEmpty
+                                      ? containerHotelRowList.first
+                                      : null;
+
+                              return Container(
+                                constraints: const BoxConstraints(
+                                  maxWidth: 1250.0,
                                 ),
+                                decoration: const BoxDecoration(),
+                                child: wrapWithModel(
+                                  model: _model.editRequestHotelComponentModel,
+                                  updateCallback: () => setState(() {}),
+                                  child: EditRequestHotelComponentWidget(
+                                    hotel: containerHotelRow!,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 56.0),
+                          child: FutureBuilder<List<HotelRow>>(
+                            future: HotelTable().querySingleRow(
+                              queryFn: (q) => q.eq(
+                                'id',
+                                widget.hotel,
                               ),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
-                                      child: CircularProgressIndicator(
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                          FlutterFlowTheme.of(context).primary,
-                                        ),
+                            ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50.0,
+                                    height: 50.0,
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                        FlutterFlowTheme.of(context).primary,
                                       ),
                                     ),
-                                  );
-                                }
-                                List<HotelRow> hallChooseHotelRowList =
-                                    snapshot.data!;
-
-                                final hallChooseHotelRow =
-                                    hallChooseHotelRowList.isNotEmpty
-                                        ? hallChooseHotelRowList.first
-                                        : null;
-
-                                return Container(
-                                  constraints: const BoxConstraints(
-                                    maxWidth: 1250.0,
                                   ),
-                                  decoration: const BoxDecoration(),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            valueOrDefault<double>(
-                                              MediaQuery.sizeOf(context).width >
-                                                      1000.0
-                                                  ? 0.0
-                                                  : 16.0,
-                                              0.0,
-                                            ),
+                                );
+                              }
+                              List<HotelRow> hallChooseHotelRowList =
+                                  snapshot.data!;
+
+                              final hallChooseHotelRow =
+                                  hallChooseHotelRowList.isNotEmpty
+                                      ? hallChooseHotelRowList.first
+                                      : null;
+
+                              return Container(
+                                constraints: const BoxConstraints(
+                                  maxWidth: 1250.0,
+                                ),
+                                decoration: const BoxDecoration(),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          valueOrDefault<double>(
+                                            MediaQuery.sizeOf(context).width >
+                                                    1000.0
+                                                ? 0.0
+                                                : 16.0,
                                             0.0,
-                                            valueOrDefault<double>(
-                                              MediaQuery.sizeOf(context).width >
-                                                      1000.0
-                                                  ? 0.0
-                                                  : 16.0,
-                                              0.0,
+                                          ),
+                                          0.0,
+                                          valueOrDefault<double>(
+                                            MediaQuery.sizeOf(context).width >
+                                                    1000.0
+                                                ? 0.0
+                                                : 16.0,
+                                            0.0,
+                                          ),
+                                          0.0),
+                                      child: Text(
+                                        'Подходящие залы в отеле под Ваше мероприятие:',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Commissioner',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              fontSize: 24.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.bold,
                                             ),
-                                            0.0),
-                                        child: Text(
-                                          'Подходящие залы в отеле под Ваше мероприятие:',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Commissioner',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                fontSize: 24.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                        ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 32.0, 0.0, 0.0),
-                                        child: Container(
-                                          decoration: const BoxDecoration(),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              FutureBuilder<List<HallRow>>(
-                                                future: HallTable().queryRows(
-                                                  queryFn: (q) => q
-                                                      .in_(
-                                                        'id',
-                                                        hallChooseHotelRow!
-                                                            .hall,
-                                                      )
-                                                      .in_(
-                                                        'id',
-                                                        _model.filteredHalls!
-                                                            .map((e) => e.id)
-                                                            .toList(),
-                                                      )
-                                                      .gte(
-                                                        'capacity',
-                                                        widget.visitors,
-                                                      )
-                                                      .order('name',
-                                                          ascending: true),
-                                                ),
-                                                builder: (context, snapshot) {
-                                                  // Customize what your widget looks like when it's loading.
-                                                  if (!snapshot.hasData) {
-                                                    return Center(
-                                                      child: SizedBox(
-                                                        width: 50.0,
-                                                        height: 50.0,
-                                                        child:
-                                                            CircularProgressIndicator(
-                                                          valueColor:
-                                                              AlwaysStoppedAnimation<
-                                                                  Color>(
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                          ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 32.0, 0.0, 0.0),
+                                      child: Container(
+                                        decoration: const BoxDecoration(),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            FutureBuilder<List<HallRow>>(
+                                              future: HallTable().queryRows(
+                                                queryFn: (q) => q
+                                                    .in_(
+                                                      'id',
+                                                      hallChooseHotelRow!.hall,
+                                                    )
+                                                    .order('name',
+                                                        ascending: true),
+                                              ),
+                                              builder: (context, snapshot) {
+                                                // Customize what your widget looks like when it's loading.
+                                                if (!snapshot.hasData) {
+                                                  return Center(
+                                                    child: SizedBox(
+                                                      width: 50.0,
+                                                      height: 50.0,
+                                                      child:
+                                                          CircularProgressIndicator(
+                                                        valueColor:
+                                                            AlwaysStoppedAnimation<
+                                                                Color>(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
                                                         ),
                                                       ),
-                                                    );
-                                                  }
-                                                  List<HallRow>
-                                                      columnHallRowList =
-                                                      snapshot.data!;
+                                                    ),
+                                                  );
+                                                }
+                                                List<HallRow>
+                                                    columnHallRowList =
+                                                    snapshot.data!;
 
-                                                  if (columnHallRowList
-                                                      .isEmpty) {
-                                                    return const SearchEmprtyWidget();
-                                                  }
+                                                if (columnHallRowList.isEmpty) {
+                                                  return const SearchEmprtyWidget();
+                                                }
 
-                                                  return Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: List.generate(
-                                                        columnHallRowList
-                                                            .length,
-                                                        (columnIndex) {
-                                                      final columnHallRow =
-                                                          columnHallRowList[
-                                                              columnIndex];
-                                                      return Visibility(
-                                                        visible: (columnIndex <
-                                                                2) ||
-                                                            (_model.showMoreHalls ==
-                                                                true),
-                                                        child: wrapWithModel(
+                                                return Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: List.generate(
+                                                      columnHallRowList.length,
+                                                      (columnIndex) {
+                                                    final columnHallRow =
+                                                        columnHallRowList[
+                                                            columnIndex];
+                                                    return FutureBuilder<
+                                                        List<
+                                                            RequestsHallVarRow>>(
+                                                      future:
+                                                          RequestsHallVarTable()
+                                                              .querySingleRow(
+                                                        queryFn: (q) => q
+                                                            .eq(
+                                                              'hall_id',
+                                                              columnHallRow.id,
+                                                            )
+                                                            .eq(
+                                                              'request_id',
+                                                              widget
+                                                                  .request?.id,
+                                                            ),
+                                                      ),
+                                                      builder:
+                                                          (context, snapshot) {
+                                                        // Customize what your widget looks like when it's loading.
+                                                        if (!snapshot.hasData) {
+                                                          return Center(
+                                                            child: SizedBox(
+                                                              width: 50.0,
+                                                              height: 50.0,
+                                                              child:
+                                                                  CircularProgressIndicator(
+                                                                valueColor:
+                                                                    AlwaysStoppedAnimation<
+                                                                        Color>(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        }
+                                                        List<RequestsHallVarRow>
+                                                            clientHallEditComponentRequestsHallVarRowList =
+                                                            snapshot.data!;
+
+                                                        final clientHallEditComponentRequestsHallVarRow =
+                                                            clientHallEditComponentRequestsHallVarRowList
+                                                                    .isNotEmpty
+                                                                ? clientHallEditComponentRequestsHallVarRowList
+                                                                    .first
+                                                                : null;
+
+                                                        return wrapWithModel(
                                                           model: _model
-                                                              .clientHallComponentModels
+                                                              .clientHallEditComponentModels
                                                               .getModel(
                                                             columnHallRow.id
                                                                 .toString(),
@@ -2468,17 +1484,18 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           updateCallback: () =>
                                                               setState(() {}),
                                                           child:
-                                                              ClientHallComponentWidget(
+                                                              ClientHallEditComponentWidget(
                                                             key: Key(
-                                                              'Key9ob_${columnHallRow.id.toString()}',
+                                                              'Key8pm_${columnHallRow.id.toString()}',
                                                             ),
                                                             isChosen: _model
-                                                                    .choosenHall
-                                                                    .contains(
-                                                                        columnHallRow
-                                                                            .id) ==
-                                                                true,
+                                                                .choosenHall
+                                                                .contains(
+                                                                    columnHallRow
+                                                                        .id),
                                                             hall: columnHallRow,
+                                                            request:
+                                                                clientHallEditComponentRequestsHallVarRow,
                                                             chooseAction: (idHall,
                                                                 days,
                                                                 price,
@@ -2495,16 +1512,16 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                   matchingRows:
                                                                       (rows) => rows
                                                                           .eq(
-                                                                            'owner',
-                                                                            hotelSearchPageUsersRow?.id,
-                                                                          )
-                                                                          .eq(
                                                                             'hall_id',
                                                                             columnHallRow.id,
                                                                           )
+                                                                          .in_(
+                                                                            'hall_id',
+                                                                            _model.choosenHall,
+                                                                          )
                                                                           .eq(
                                                                             'request_id',
-                                                                            _model.lastRequestId ?? 0,
+                                                                            widget.request?.id,
                                                                           ),
                                                                 );
                                                                 _model.removeFromChoosenHall(
@@ -2514,323 +1531,137 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                     .removeFromPriceHall(
                                                                         price!);
                                                                 setState(() {});
-                                                                _model.removeFromListHallRequest(
-                                                                    _model
-                                                                        .deletedHall!
-                                                                        .first
-                                                                        .id);
-                                                                setState(() {});
                                                               } else {
                                                                 _model.addToChoosenHall(
                                                                     columnHallRow
                                                                         .id);
                                                                 setState(() {});
-                                                                _model.hallRequest =
+                                                                _model.newHallRequstVAr =
                                                                     await RequestsHallVarTable()
                                                                         .insert({
+                                                                  'days': days,
                                                                   'hall_id':
                                                                       idHall,
-                                                                  'days': days,
-                                                                  'price':
-                                                                      price,
                                                                   'hall_name':
                                                                       nameHall,
+                                                                  'price':
+                                                                      price,
                                                                   'owner':
-                                                                      hotelSearchPageUsersRow
+                                                                      hotelSearchPageCopyUsersRow
                                                                           ?.id,
-                                                                  'seating':
-                                                                      seating,
+                                                                  'request_id':
+                                                                      widget
+                                                                          .request
+                                                                          ?.id,
                                                                 });
                                                                 _model.addToListHallRequest(
                                                                     _model
-                                                                        .hallRequest!
+                                                                        .newHallRequstVAr!
                                                                         .id);
-                                                                _model.addToPriceHall(
-                                                                    _model
-                                                                        .hallRequest!
-                                                                        .price!);
+                                                                _model
+                                                                    .addToPriceHall(
+                                                                        price!);
                                                                 setState(() {});
                                                               }
 
                                                               setState(() {});
                                                             },
+                                                            onLoad:
+                                                                (price) async {
+                                                              _model
+                                                                  .addToPriceHall(
+                                                                      price!);
+                                                              setState(() {});
+                                                            },
                                                           ),
-                                                        ),
-                                                      );
-                                                    }).divide(
-                                                      const SizedBox(height: 40.0),
-                                                      filterFn: (columnIndex) {
-                                                        final columnHallRow =
-                                                            columnHallRowList[
-                                                                columnIndex];
-                                                        return (columnIndex <
-                                                                2) ||
-                                                            (_model.showMoreHalls ==
-                                                                true);
+                                                        );
                                                       },
-                                                    ),
-                                                  );
-                                                },
-                                              ),
-                                            ],
-                                          ),
+                                                    );
+                                                  }).divide(
+                                                      const SizedBox(height: 40.0)),
+                                                );
+                                              },
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 24.0, 0.0, 0.0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            if (responsiveVisibility(
-                                              context: context,
-                                              phone: false,
-                                              tablet: false,
-                                            ))
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        valueOrDefault<double>(
-                                                          MediaQuery.sizeOf(
-                                                                          context)
-                                                                      .width >
-                                                                  1000.0
-                                                              ? 0.0
-                                                              : 16.0,
-                                                          0.0,
-                                                        ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 24.0, 0.0, 0.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          if (responsiveVisibility(
+                                            context: context,
+                                            phone: false,
+                                            tablet: false,
+                                          ))
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      valueOrDefault<double>(
+                                                        MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .width >
+                                                                1000.0
+                                                            ? 0.0
+                                                            : 16.0,
                                                         0.0,
-                                                        valueOrDefault<double>(
-                                                          MediaQuery.sizeOf(
-                                                                          context)
-                                                                      .width >
-                                                                  1000.0
-                                                              ? 0.0
-                                                              : 16.0,
-                                                          0.0,
-                                                        ),
-                                                        0.0),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    if ((_model.filteredHalls!
-                                                                .where((e) =>
-                                                                    hallChooseHotelRow!
-                                                                        .hall
-                                                                        .contains(
-                                                                            e.id))
-                                                                .toList()
-                                                                .length -
-                                                            2) >
-                                                        0)
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          if (_model
-                                                                  .showMoreHalls ==
-                                                              false)
-                                                            InkWell(
-                                                              splashColor: Colors
-                                                                  .transparent,
-                                                              focusColor: Colors
-                                                                  .transparent,
-                                                              hoverColor: Colors
-                                                                  .transparent,
-                                                              highlightColor:
-                                                                  Colors
-                                                                      .transparent,
-                                                              onTap: () async {
-                                                                _model.showMoreHalls =
-                                                                    true;
-                                                                setState(() {});
-                                                              },
-                                                              child: Text(
-                                                                'Показать ешё ${(_model.filteredHalls!.where((e) => hallChooseHotelRow!.hall.contains(e.id)).toList().length - 2).toString()} зал(ов)',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Commissioner',
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
-                                                                      fontSize:
-                                                                          18.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      decoration:
-                                                                          TextDecoration
-                                                                              .underline,
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                          if (_model
-                                                                  .showMoreHalls ==
-                                                              true)
-                                                            InkWell(
-                                                              splashColor: Colors
-                                                                  .transparent,
-                                                              focusColor: Colors
-                                                                  .transparent,
-                                                              hoverColor: Colors
-                                                                  .transparent,
-                                                              highlightColor:
-                                                                  Colors
-                                                                      .transparent,
-                                                              onTap: () async {
-                                                                _model.showMoreHalls =
-                                                                    false;
-                                                                setState(() {});
-                                                              },
-                                                              child: Text(
-                                                                'Показать меньше',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Commissioner',
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
-                                                                      fontSize:
-                                                                          18.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      decoration:
-                                                                          TextDecoration
-                                                                              .underline,
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                        ],
                                                       ),
-                                                    if (_model
-                                                            .priceHall.isNotEmpty)
-                                                      Expanded(
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .end,
-                                                          children: [
-                                                            Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .end,
-                                                              children: [
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          2.0),
-                                                                  child: Text(
-                                                                    'Итоговая сумма',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Commissioner',
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primary,
-                                                                          fontSize:
-                                                                              18.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight:
-                                                                              FontWeight.bold,
-                                                                        ),
-                                                                  ),
-                                                                ),
-                                                                Text(
-                                                                  '${formatNumber(
-                                                                    functions.sumList(_model
-                                                                        .priceHall
-                                                                        .toList()),
-                                                                    formatType:
-                                                                        FormatType
-                                                                            .decimal,
-                                                                    decimalType:
-                                                                        DecimalType
-                                                                            .automatic,
-                                                                  )} руб',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Commissioner',
-                                                                        fontSize:
-                                                                            34.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                      ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ],
-                                                        ),
+                                                      0.0,
+                                                      valueOrDefault<double>(
+                                                        MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .width >
+                                                                1000.0
+                                                            ? 0.0
+                                                            : 16.0,
+                                                        0.0,
                                                       ),
-                                                  ],
-                                                ),
-                                              ),
-                                            if (responsiveVisibility(
-                                              context: context,
-                                              tabletLandscape: false,
-                                              desktop: false,
-                                            ))
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        16.0, 0.0, 16.0, 0.0),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    if (_model
-                                                            .priceHall.isNotEmpty)
-                                                      Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        2.0),
+                                                      0.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  if ((_model.filteredHalls!
+                                                              .where((e) =>
+                                                                  hallChooseHotelRow!
+                                                                      .hall
+                                                                      .contains(
+                                                                          e.id))
+                                                              .toList()
+                                                              .length -
+                                                          2) >
+                                                      0)
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        if (_model
+                                                                .showMoreHalls ==
+                                                            false)
+                                                          InkWell(
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            onTap: () async {
+                                                              _model.showMoreHalls =
+                                                                  true;
+                                                              setState(() {});
+                                                            },
                                                             child: Text(
-                                                              'Итоговая сумма:',
+                                                              'Показать ешё ${(_model.filteredHalls!.where((e) => hallChooseHotelRow!.hall.contains(e.id)).toList().length - 2).toString()} зал(ов)',
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
@@ -2841,36 +1672,184 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                             context)
                                                                         .primary,
                                                                     fontSize:
-                                                                        16.0,
+                                                                        18.0,
                                                                     letterSpacing:
                                                                         0.0,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .bold,
+                                                                    decoration:
+                                                                        TextDecoration
+                                                                            .underline,
                                                                   ),
                                                             ),
                                                           ),
-                                                          Text(
-                                                            '${formatNumber(
-                                                              functions.sumList(
-                                                                  _model
+                                                        if (_model
+                                                                .showMoreHalls ==
+                                                            true)
+                                                          InkWell(
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            onTap: () async {
+                                                              _model.showMoreHalls =
+                                                                  false;
+                                                              setState(() {});
+                                                            },
+                                                            child: Text(
+                                                              'Показать меньше',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Commissioner',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                    fontSize:
+                                                                        18.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    decoration:
+                                                                        TextDecoration
+                                                                            .underline,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                      ],
+                                                    ),
+                                                  if (_model.priceHall.isNotEmpty)
+                                                    Expanded(
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .end,
+                                                        children: [
+                                                          Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .end,
+                                                            children: [
+                                                              Padding(
+                                                                padding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            2.0),
+                                                                child: Text(
+                                                                  'Итоговая сумма',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Commissioner',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primary,
+                                                                        fontSize:
+                                                                            18.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.bold,
+                                                                      ),
+                                                                ),
+                                                              ),
+                                                              Text(
+                                                                '${formatNumber(
+                                                                  functions.sumList(_model
                                                                       .priceHall
                                                                       .toList()),
-                                                              formatType:
-                                                                  FormatType
-                                                                      .decimal,
-                                                              decimalType:
-                                                                  DecimalType
-                                                                      .automatic,
-                                                            )} руб',
+                                                                  formatType:
+                                                                      FormatType
+                                                                          .decimal,
+                                                                  decimalType:
+                                                                      DecimalType
+                                                                          .automatic,
+                                                                )} руб',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Commissioner',
+                                                                      fontSize:
+                                                                          34.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                    ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                ],
+                                              ),
+                                            ),
+                                          if (responsiveVisibility(
+                                            context: context,
+                                            tabletLandscape: false,
+                                            desktop: false,
+                                          ))
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      16.0, 0.0, 16.0, 0.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  if (_model.priceHall.isNotEmpty)
+                                                    Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      2.0),
+                                                          child: Text(
+                                                            'Итоговая сумма:',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Commissioner',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
                                                                   fontSize:
-                                                                      25.0,
+                                                                      16.0,
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight:
@@ -2878,125 +1857,154 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                           .bold,
                                                                 ),
                                                           ),
-                                                        ].divide(const SizedBox(
-                                                            height: 4.0)),
-                                                      ),
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Expanded(
-                                                          child: Container(
-                                                            constraints:
-                                                                const BoxConstraints(
-                                                              maxWidth: 500.0,
-                                                            ),
-                                                            decoration:
-                                                                const BoxDecoration(),
-                                                            child: Visibility(
-                                                              visible: (_model
-                                                                          .filteredHalls!
-                                                                          .where((e) => hallChooseHotelRow!
-                                                                              .hall
-                                                                              .contains(e.id))
-                                                                          .toList()
-                                                                          .length -
-                                                                      2) >
-                                                                  0,
-                                                              child:
-                                                                  FFButtonWidget(
-                                                                onPressed:
-                                                                    () async {
-                                                                  if (_model
-                                                                          .showMoreHalls ==
-                                                                      true) {
-                                                                    _model.showMoreHalls =
-                                                                        false;
-                                                                    setState(
-                                                                        () {});
-                                                                  } else {
-                                                                    _model.showMoreHalls =
-                                                                        true;
-                                                                    setState(
-                                                                        () {});
-                                                                  }
-                                                                },
-                                                                text: _model.showMoreHalls ==
-                                                                        false
-                                                                    ? 'Показать ешё ${(_model.filteredHalls!.where((e) => hallChooseHotelRow!.hall.contains(e.id)).toList().length - 2).toString()} зал(ов)'
-                                                                    : 'Показать меньше',
-                                                                options:
-                                                                    FFButtonOptions(
-                                                                  height: 56.0,
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          24.0,
-                                                                          0.0,
-                                                                          24.0,
-                                                                          0.0),
-                                                                  iconPadding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                  color: _model
-                                                                              .showMoreHalls ==
-                                                                          false
-                                                                      ? FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary
-                                                                      : Colors
-                                                                          .transparent,
-                                                                  textStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Commissioner',
-                                                                        color: _model.showMoreHalls ==
-                                                                                false
-                                                                            ? FlutterFlowTheme.of(context).secondaryBackground
-                                                                            : FlutterFlowTheme.of(context).primary,
-                                                                        letterSpacing:
+                                                        ),
+                                                        Text(
+                                                          '${formatNumber(
+                                                            functions.sumList(
+                                                                _model.priceHall
+                                                                    .toList()),
+                                                            formatType:
+                                                                FormatType
+                                                                    .decimal,
+                                                            decimalType:
+                                                                DecimalType
+                                                                    .automatic,
+                                                          )} руб',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Commissioner',
+                                                                fontSize: 25.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                        ),
+                                                      ].divide(const SizedBox(
+                                                          height: 4.0)),
+                                                    ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Container(
+                                                          constraints:
+                                                              const BoxConstraints(
+                                                            maxWidth: 500.0,
+                                                          ),
+                                                          decoration:
+                                                              const BoxDecoration(),
+                                                          child: Visibility(
+                                                            visible: (_model
+                                                                        .filteredHalls!
+                                                                        .where((e) => hallChooseHotelRow!
+                                                                            .hall
+                                                                            .contains(e.id))
+                                                                        .toList()
+                                                                        .length -
+                                                                    2) >
+                                                                0,
+                                                            child:
+                                                                FFButtonWidget(
+                                                              onPressed:
+                                                                  () async {
+                                                                if (_model
+                                                                        .showMoreHalls ==
+                                                                    true) {
+                                                                  _model.showMoreHalls =
+                                                                      false;
+                                                                  setState(
+                                                                      () {});
+                                                                } else {
+                                                                  _model.showMoreHalls =
+                                                                      true;
+                                                                  setState(
+                                                                      () {});
+                                                                }
+                                                              },
+                                                              text: _model.showMoreHalls ==
+                                                                      false
+                                                                  ? 'Показать ешё ${(_model.filteredHalls!.where((e) => hallChooseHotelRow!.hall.contains(e.id)).toList().length - 2).toString()} зал(ов)'
+                                                                  : 'Показать меньше',
+                                                              options:
+                                                                  FFButtonOptions(
+                                                                height: 56.0,
+                                                                padding: const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        24.0,
+                                                                        0.0,
+                                                                        24.0,
+                                                                        0.0),
+                                                                iconPadding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
                                                                             0.0,
-                                                                      ),
-                                                                  elevation:
-                                                                      0.0,
-                                                                  borderSide:
-                                                                      BorderSide(
-                                                                    color: FlutterFlowTheme.of(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                color: _model
+                                                                            .showMoreHalls ==
+                                                                        false
+                                                                    ? FlutterFlowTheme.of(
                                                                             context)
-                                                                        .primary,
-                                                                    width: 1.0,
-                                                                  ),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              30.0),
+                                                                        .primary
+                                                                    : Colors
+                                                                        .transparent,
+                                                                textStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Commissioner',
+                                                                      color: _model.showMoreHalls ==
+                                                                              false
+                                                                          ? FlutterFlowTheme.of(context)
+                                                                              .secondaryBackground
+                                                                          : FlutterFlowTheme.of(context)
+                                                                              .primary,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                                elevation: 0.0,
+                                                                borderSide:
+                                                                    BorderSide(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                  width: 1.0,
                                                                 ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            30.0),
                                                               ),
                                                             ),
                                                           ),
                                                         ),
-                                                      ],
-                                                    ),
-                                                  ].divide(
-                                                      const SizedBox(height: 40.0)),
-                                                ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ].divide(
+                                                    const SizedBox(height: 40.0)),
                                               ),
-                                          ],
-                                        ),
+                                            ),
+                                        ],
                                       ),
-                                    ]
-                                        .divide(const SizedBox(height: 0.0))
-                                        .addToStart(const SizedBox(height: 0.0))
-                                        .addToEnd(const SizedBox(height: 0.0)),
-                                  ),
-                                );
-                              },
-                            ),
+                                    ),
+                                  ]
+                                      .divide(const SizedBox(height: 0.0))
+                                      .addToStart(const SizedBox(height: 0.0))
+                                      .addToEnd(const SizedBox(height: 0.0)),
+                                ),
+                              );
+                            },
                           ),
+                        ),
                         if (_model.foodIsOpen && (_model.step == 1))
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
@@ -3145,7 +2153,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       child:
                                                           ClientFoodComponentWidget(
                                                         key: Key(
-                                                          'Keylqx_${columnFoodRow.id.toString()}',
+                                                          'Key7id_${columnFoodRow.id.toString()}',
                                                         ),
                                                         isChosen: _model
                                                                 .chosenFood
@@ -3179,7 +2187,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                       )
                                                                       .eq(
                                                                         'owner',
-                                                                        hotelSearchPageUsersRow
+                                                                        hotelSearchPageCopyUsersRow
                                                                             ?.id,
                                                                       ),
                                                             );
@@ -3205,7 +2213,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                               'price': price,
                                                               'name': name,
                                                               'owner':
-                                                                  hotelSearchPageUsersRow
+                                                                  hotelSearchPageCopyUsersRow
                                                                       ?.id,
                                                               'persons_count':
                                                                   persons,
@@ -3599,7 +2607,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                     child:
                                                         ClientRoomComponentWidget(
                                                       key: Key(
-                                                        'Keyvv3_${columnRoomRow.id.toString()}',
+                                                        'Keywta_${columnRoomRow.id.toString()}',
                                                       ),
                                                       isChosen: _model
                                                               .choosenRooms
@@ -3642,7 +2650,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                     )
                                                                     .eq(
                                                                       'owner',
-                                                                      hotelSearchPageUsersRow
+                                                                      hotelSearchPageCopyUsersRow
                                                                           ?.id,
                                                                     ),
                                                           );
@@ -3659,7 +2667,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                   .insert({
                                                             'price': price,
                                                             'owner':
-                                                                hotelSearchPageUsersRow
+                                                                hotelSearchPageCopyUsersRow
                                                                     ?.id,
                                                             'room_id': roomId,
                                                             'days': days,
@@ -4043,7 +3051,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                             await RequestsTable()
                                                                 .insert({
                                                           'owner':
-                                                              hotelSearchPageUsersRow
+                                                              hotelSearchPageCopyUsersRow
                                                                   ?.id,
                                                           'rooms': _model
                                                               .listRoomRequest,
@@ -4108,7 +3116,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                               .formatMonthYear(
                                                                   getCurrentTimestamp),
                                                           'client_network':
-                                                              hotelSearchPageUsersRow
+                                                              hotelSearchPageCopyUsersRow
                                                                   ?.network,
                                                           'duration':
                                                               widget.duration,
@@ -4123,7 +3131,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                               (rows) => rows
                                                                   .eq(
                                                                     'owner',
-                                                                    hotelSearchPageUsersRow
+                                                                    hotelSearchPageCopyUsersRow
                                                                         ?.id,
                                                                   )
                                                                   .in_(
@@ -4147,7 +3155,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                   )
                                                                   .eq(
                                                                     'owner',
-                                                                    hotelSearchPageUsersRow
+                                                                    hotelSearchPageCopyUsersRow
                                                                         ?.id,
                                                                   ),
                                                         );
@@ -4166,7 +3174,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                   )
                                                                   .eq(
                                                                     'owner',
-                                                                    hotelSearchPageUsersRow
+                                                                    hotelSearchPageCopyUsersRow
                                                                         ?.id,
                                                                   ),
                                                         );
@@ -4184,7 +3192,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                               .map((e) => e.id)
                                                               .toList(),
                                                           'owner':
-                                                              hotelSearchPageUsersRow
+                                                              hotelSearchPageCopyUsersRow
                                                                   ?.id,
                                                         });
                                                         await UsersTable()
@@ -4198,7 +3206,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           matchingRows:
                                                               (rows) => rows.eq(
                                                             'id',
-                                                            hotelSearchPageUsersRow
+                                                            hotelSearchPageCopyUsersRow
                                                                 ?.id,
                                                           ),
                                                         );
@@ -4349,7 +3357,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                             await RequestsTable()
                                                                 .insert({
                                                           'owner':
-                                                              hotelSearchPageUsersRow
+                                                              hotelSearchPageCopyUsersRow
                                                                   ?.id,
                                                           'rooms': _model
                                                               .listRoomRequest,
@@ -4404,7 +3412,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                               .formatMonthYear(
                                                                   getCurrentTimestamp),
                                                           'client_network':
-                                                              hotelSearchPageUsersRow
+                                                              hotelSearchPageCopyUsersRow
                                                                   ?.network,
                                                           'duration':
                                                               widget.duration,
@@ -4419,7 +3427,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                               (rows) => rows
                                                                   .eq(
                                                                     'owner',
-                                                                    hotelSearchPageUsersRow
+                                                                    hotelSearchPageCopyUsersRow
                                                                         ?.id,
                                                                   )
                                                                   .eq(
@@ -4451,7 +3459,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                   )
                                                                   .eq(
                                                                     'owner',
-                                                                    hotelSearchPageUsersRow
+                                                                    hotelSearchPageCopyUsersRow
                                                                         ?.id,
                                                                   ),
                                                         );
@@ -4474,7 +3482,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                   )
                                                                   .eq(
                                                                     'owner',
-                                                                    hotelSearchPageUsersRow
+                                                                    hotelSearchPageCopyUsersRow
                                                                         ?.id,
                                                                   ),
                                                         );
@@ -4489,7 +3497,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           matchingRows:
                                                               (rows) => rows.eq(
                                                             'id',
-                                                            hotelSearchPageUsersRow
+                                                            hotelSearchPageCopyUsersRow
                                                                 ?.id,
                                                           ),
                                                         );
@@ -5029,7 +4037,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                     await RequestsTable()
                                                                         .insert({
                                                                   'owner':
-                                                                      hotelSearchPageUsersRow
+                                                                      hotelSearchPageCopyUsersRow
                                                                           ?.id,
                                                                   'rooms': _model
                                                                       .listRoomRequest,
@@ -5093,7 +4101,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                       .formatMonthYear(
                                                                           getCurrentTimestamp),
                                                                   'client_network':
-                                                                      hotelSearchPageUsersRow
+                                                                      hotelSearchPageCopyUsersRow
                                                                           ?.network,
                                                                   'duration':
                                                                       widget
@@ -5111,7 +4119,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                       (rows) => rows
                                                                           .eq(
                                                                             'owner',
-                                                                            hotelSearchPageUsersRow?.id,
+                                                                            hotelSearchPageCopyUsersRow?.id,
                                                                           )
                                                                           .in_(
                                                                             'id',
@@ -5134,7 +4142,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                           )
                                                                           .eq(
                                                                             'owner',
-                                                                            hotelSearchPageUsersRow?.id,
+                                                                            hotelSearchPageCopyUsersRow?.id,
                                                                           ),
                                                                 );
                                                                 await RequestsRoomVarTable()
@@ -5153,7 +4161,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                           )
                                                                           .eq(
                                                                             'owner',
-                                                                            hotelSearchPageUsersRow?.id,
+                                                                            hotelSearchPageCopyUsersRow?.id,
                                                                           ),
                                                                 );
                                                                 _model.addToRequestList(
@@ -5173,7 +4181,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                           e.id)
                                                                       .toList(),
                                                                   'owner':
-                                                                      hotelSearchPageUsersRow
+                                                                      hotelSearchPageCopyUsersRow
                                                                           ?.id,
                                                                 });
                                                                 await UsersTable()
@@ -5187,7 +4195,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                       (rows) =>
                                                                           rows.eq(
                                                                     'id',
-                                                                    hotelSearchPageUsersRow
+                                                                    hotelSearchPageCopyUsersRow
                                                                         ?.id,
                                                                   ),
                                                                 );
@@ -5361,7 +4369,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                     await RequestsTable()
                                                                         .insert({
                                                                   'owner':
-                                                                      hotelSearchPageUsersRow
+                                                                      hotelSearchPageCopyUsersRow
                                                                           ?.id,
                                                                   'rooms': _model
                                                                       .listRoomRequest,
@@ -5412,7 +4420,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                       .formatMonthYear(
                                                                           getCurrentTimestamp),
                                                                   'client_network':
-                                                                      hotelSearchPageUsersRow
+                                                                      hotelSearchPageCopyUsersRow
                                                                           ?.network,
                                                                   'duration':
                                                                       widget
@@ -5430,7 +4438,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                       (rows) => rows
                                                                           .eq(
                                                                             'owner',
-                                                                            hotelSearchPageUsersRow?.id,
+                                                                            hotelSearchPageCopyUsersRow?.id,
                                                                           )
                                                                           .eq(
                                                                             'request_id',
@@ -5461,7 +4469,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                           )
                                                                           .eq(
                                                                             'owner',
-                                                                            hotelSearchPageUsersRow?.id,
+                                                                            hotelSearchPageCopyUsersRow?.id,
                                                                           ),
                                                                 );
                                                                 await RequestsRoomVarTable()
@@ -5484,7 +4492,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                           )
                                                                           .eq(
                                                                             'owner',
-                                                                            hotelSearchPageUsersRow?.id,
+                                                                            hotelSearchPageCopyUsersRow?.id,
                                                                           ),
                                                                 );
                                                                 await UsersTable()
@@ -5498,7 +4506,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                       (rows) =>
                                                                           rows.eq(
                                                                     'id',
-                                                                    hotelSearchPageUsersRow
+                                                                    hotelSearchPageCopyUsersRow
                                                                         ?.id,
                                                                   ),
                                                                 );

@@ -87,6 +87,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
         final containerHotelRow = containerHotelRowList.isNotEmpty
             ? containerHotelRowList.first
             : null;
+
         return Container(
           height: MediaQuery.sizeOf(context).height * 1.0,
           decoration: const BoxDecoration(),
@@ -120,6 +121,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
 
                     final rowCityRow =
                         rowCityRowList.isNotEmpty ? rowCityRowList.first : null;
+
                     return Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -452,6 +454,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                               hallsItem.name,
                                                               'Name',
                                                             ),
+                                                            maxLines: 1,
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium
@@ -994,6 +997,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                                   foodItem.name,
                                                                   'Name',
                                                                 ),
+                                                                maxLines: 1,
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -1404,6 +1408,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                               roomsItem.name,
                                                               'Name',
                                                             ),
+                                                            maxLines: 1,
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium

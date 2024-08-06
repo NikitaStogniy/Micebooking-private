@@ -75,6 +75,7 @@ class _FavoriteComponentWidgetState extends State<FavoriteComponentWidget> {
         final containerUsersRow = containerUsersRowList.isNotEmpty
             ? containerUsersRowList.first
             : null;
+
         return Container(
           decoration: const BoxDecoration(),
           child: FutureBuilder<List<FavoriteHotelsRow>>(

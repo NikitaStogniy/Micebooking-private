@@ -214,6 +214,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                   containerHotelRowList.isNotEmpty
                                       ? containerHotelRowList.first
                                       : null;
+
                               return Container(
                                 decoration: const BoxDecoration(),
                                 child: Visibility(
@@ -1135,6 +1136,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                       containerRequestsRowList.isNotEmpty
                           ? containerRequestsRowList.first
                           : null;
+
                   return Container(
                     decoration: const BoxDecoration(),
                     child: Column(
@@ -1278,6 +1280,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                             final columnUsersRow = columnUsersRowList.isNotEmpty
                                 ? columnUsersRowList.first
                                 : null;
+
                             return Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [

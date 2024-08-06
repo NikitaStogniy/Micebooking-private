@@ -67,6 +67,7 @@ class _AboutBottomsheetWidgetState extends State<AboutBottomsheetWidget> {
 
         final containerCmsRow =
             containerCmsRowList.isNotEmpty ? containerCmsRowList.first : null;
+
         return Container(
           width: double.infinity,
           decoration: BoxDecoration(

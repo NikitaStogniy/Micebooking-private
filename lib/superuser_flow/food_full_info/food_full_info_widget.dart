@@ -72,6 +72,7 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
 
         final containerFoodRow =
             containerFoodRowList.isNotEmpty ? containerFoodRowList.first : null;
+
         return Container(
           decoration: const BoxDecoration(),
           child: SingleChildScrollView(
@@ -106,6 +107,7 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                     final rowHotelRow = rowHotelRowList.isNotEmpty
                         ? rowHotelRowList.first
                         : null;
+
                     return Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -138,6 +140,7 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                               final textCityRow = textCityRowList.isNotEmpty
                                   ? textCityRowList.first
                                   : null;
+
                               return Text(
                                 '${containerFoodRow?.name}, ${textCityRow?.name}, ${rowHotelRow?.name}',
                                 style: FlutterFlowTheme.of(context)

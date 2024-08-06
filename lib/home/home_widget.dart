@@ -102,6 +102,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                     final descUsersRow = descUsersRowList.isNotEmpty
                         ? descUsersRowList.first
                         : null;
+
                     return Container(
                       width: double.infinity,
                       height: MediaQuery.sizeOf(context).height * 1.0,
@@ -136,6 +137,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     clientProfile: () async {},
                                     clientRequest: () async {},
                                     clientFavorite: () async {},
+                                    searchAction: () async {},
                                   ),
                                 ),
                               ),
@@ -734,6 +736,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                     final mobUsersRow = mobUsersRowList.isNotEmpty
                         ? mobUsersRowList.first
                         : null;
+
                     return Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
@@ -767,6 +770,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     clientProfile: () async {},
                                     clientRequest: () async {},
                                     clientFavorite: () async {},
+                                    searchAction: () async {},
                                   ),
                                 ),
                               ),

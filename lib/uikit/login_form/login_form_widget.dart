@@ -304,11 +304,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                               backgroundColor: Colors.transparent,
                               alignment: const AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
-                              child: SizedBox(
-                                height: MediaQuery.sizeOf(context).height * 0.7,
-                                width: MediaQuery.sizeOf(context).width * 0.7,
-                                child: const ChangePasswordWidget(),
-                              ),
+                              child: const ChangePasswordWidget(),
                             );
                           },
                         ).then((value) => setState(() {}));
@@ -320,7 +316,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                           color: Color(0x00FFFFFF),
                         ),
                         child: Align(
-                          alignment: const AlignmentDirectional(-1.0, 0.0),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Text(
                             'Забыли пароль?',
                             style: FlutterFlowTheme.of(context)

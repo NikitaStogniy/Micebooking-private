@@ -88,6 +88,7 @@ class _CompanyRequestsComponentWidgetState
         final containerUsersRow = containerUsersRowList.isNotEmpty
             ? containerUsersRowList.first
             : null;
+
         return Container(
           height: MediaQuery.sizeOf(context).height * 1.0,
           decoration: const BoxDecoration(),
@@ -496,6 +497,7 @@ class _CompanyRequestsComponentWidgetState
                                       if (columnRequestsRowList.isEmpty) {
                                         return const HotelRequestEmprtyWidget();
                                       }
+
                                       return Column(
                                         mainAxisSize: MainAxisSize.min,
                                         crossAxisAlignment:
@@ -862,6 +864,7 @@ class _CompanyRequestsComponentWidgetState
                           final columnUsersRow = columnUsersRowList.isNotEmpty
                               ? columnUsersRowList.first
                               : null;
+
                           return Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [

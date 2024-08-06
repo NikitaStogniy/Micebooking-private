@@ -315,6 +315,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                             if (decsCityOnHotelRowList.isEmpty) {
                               return const FavoriteEmptyWidget();
                             }
+
                             return Column(
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -564,6 +565,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                           if (decsCityOffHotelRowList.isEmpty) {
                             return const FavoriteEmptyWidget();
                           }
+
                           return Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -807,6 +809,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                           if (mobCityOnHotelRowList.isEmpty) {
                             return const FavoriteEmptyWidget();
                           }
+
                           return Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -948,6 +951,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                           if (mobCityOffHotelRowList.isEmpty) {
                             return const FavoriteEmptyWidget();
                           }
+
                           return Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,

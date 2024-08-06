@@ -70,6 +70,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
 
         final containerCmsRow =
             containerCmsRowList.isNotEmpty ? containerCmsRowList.first : null;
+
         return Container(
           decoration: const BoxDecoration(),
           child: SingleChildScrollView(

@@ -116,6 +116,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                 final containerUsersRow = containerUsersRowList.isNotEmpty
                     ? containerUsersRowList.first
                     : null;
+
                 return Container(
                   decoration: const BoxDecoration(),
                   child: FutureBuilder<List<JuridicalInfoRow>>(
@@ -147,6 +148,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                           containerJuridicalInfoRowList.isNotEmpty
                               ? containerJuridicalInfoRowList.first
                               : null;
+
                       return Container(
                         decoration: const BoxDecoration(),
                         child: SingleChildScrollView(
@@ -2745,13 +2747,125 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                               Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  if (!_model.isEdit)
-                                    FFButtonWidget(
+                                  Builder(
+                                    builder: (context) => FFButtonWidget(
                                       onPressed: () async {
-                                        _model.isEdit = true;
-                                        setState(() {});
+                                        await showDialog(
+                                          context: context,
+                                          builder: (dialogContext) {
+                                            return Dialog(
+                                              elevation: 0,
+                                              insetPadding: EdgeInsets.zero,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              alignment:
+                                                  const AlignmentDirectional(0.0, 0.0)
+                                                      .resolve(
+                                                          Directionality.of(
+                                                              context)),
+                                              child: ConfirmActionWidget(
+                                                title:
+                                                    'Вы действительно хотите сохранить изменения?',
+                                                successText: 'Сохранить',
+                                                cancelText: 'Отменить',
+                                                successAction: () async {
+                                                  await UsersTable().update(
+                                                    data: {
+                                                      'phone': _model
+                                                          .jurAddressTextController
+                                                          .text,
+                                                      'email': _model
+                                                          .emailTextController
+                                                          .text,
+                                                    },
+                                                    matchingRows: (rows) =>
+                                                        rows.eq(
+                                                      'uid',
+                                                      currentUserUid,
+                                                    ),
+                                                  );
+                                                  await JuridicalInfoTable()
+                                                      .update(
+                                                    data: {
+                                                      'name': _model
+                                                          .jurNameTextController
+                                                          .text,
+                                                      'address': _model
+                                                          .jurAddressTextController
+                                                          .text,
+                                                      'lead': _model
+                                                          .jurLeadTextController
+                                                          .text,
+                                                      'KPP': _model
+                                                          .jurKppTextController
+                                                          .text,
+                                                      'INN': _model
+                                                          .jurInnTextController
+                                                          .text,
+                                                      'OGRN': _model
+                                                          .jurOgrnTextController
+                                                          .text,
+                                                      'OKPO': _model
+                                                          .jurOkpoTextController
+                                                          .text,
+                                                      'bank_name': _model
+                                                          .bankNameTextController
+                                                          .text,
+                                                      'bank_korr': _model
+                                                          .bankKorrTextController
+                                                          .text,
+                                                      'bank_RC': _model
+                                                          .bankRcTextController
+                                                          .text,
+                                                      'bank_BIC': _model
+                                                          .bankBicTextController
+                                                          .text,
+                                                      'bank_INN': _model
+                                                          .bankInnTextController
+                                                          .text,
+                                                      'bank_KPP': _model
+                                                          .bankKppTextController
+                                                          .text,
+                                                    },
+                                                    matchingRows: (rows) =>
+                                                        rows.eq(
+                                                      'owner',
+                                                      containerUsersRow?.id,
+                                                    ),
+                                                  );
+                                                  _model.isEdit = false;
+                                                  setState(() {});
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                        'Ваши изменения успешно сохранены',
+                                                        style: TextStyle(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                        ),
+                                                      ),
+                                                      duration: const Duration(
+                                                          milliseconds: 4000),
+                                                      backgroundColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondary,
+                                                    ),
+                                                  );
+                                                  await widget.onDone?.call();
+                                                  Navigator.pop(context);
+                                                },
+                                                cancelAction: () async {
+                                                  Navigator.pop(context);
+                                                },
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => setState(() {}));
                                       },
-                                      text: 'Редактировать',
+                                      text: 'Сохранить',
                                       options: FFButtonOptions(
                                         height: 50.0,
                                         padding: const EdgeInsetsDirectional.fromSTEB(
@@ -2777,279 +2891,130 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                             BorderRadius.circular(24.0),
                                       ),
                                     ),
-                                  if (_model.isEdit)
-                                    Builder(
-                                      builder: (context) => FFButtonWidget(
-                                        onPressed: () async {
-                                          await showDialog(
-                                            context: context,
-                                            builder: (dialogContext) {
-                                              return Dialog(
-                                                elevation: 0,
-                                                insetPadding: EdgeInsets.zero,
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                alignment: const AlignmentDirectional(
-                                                        0.0, 0.0)
-                                                    .resolve(Directionality.of(
-                                                        context)),
-                                                child: ConfirmActionWidget(
-                                                  title:
-                                                      'Вы действительно хотите сохранить изменения?',
-                                                  successText: 'Сохранить',
-                                                  cancelText: 'Отменить',
-                                                  successAction: () async {
-                                                    await UsersTable().update(
-                                                      data: {
-                                                        'phone': _model
-                                                            .jurAddressTextController
-                                                            .text,
-                                                        'email': _model
-                                                            .emailTextController
-                                                            .text,
-                                                      },
-                                                      matchingRows: (rows) =>
-                                                          rows.eq(
-                                                        'uid',
-                                                        currentUserUid,
-                                                      ),
-                                                    );
-                                                    await JuridicalInfoTable()
-                                                        .update(
-                                                      data: {
-                                                        'name': _model
-                                                            .jurNameTextController
-                                                            .text,
-                                                        'address': _model
-                                                            .jurAddressTextController
-                                                            .text,
-                                                        'lead': _model
-                                                            .jurLeadTextController
-                                                            .text,
-                                                        'KPP': _model
-                                                            .jurKppTextController
-                                                            .text,
-                                                        'INN': _model
-                                                            .jurInnTextController
-                                                            .text,
-                                                        'OGRN': _model
-                                                            .jurOgrnTextController
-                                                            .text,
-                                                        'OKPO': _model
-                                                            .jurOkpoTextController
-                                                            .text,
-                                                        'bank_name': _model
-                                                            .bankNameTextController
-                                                            .text,
-                                                        'bank_korr': _model
-                                                            .bankKorrTextController
-                                                            .text,
-                                                        'bank_RC': _model
-                                                            .bankRcTextController
-                                                            .text,
-                                                        'bank_BIC': _model
-                                                            .bankBicTextController
-                                                            .text,
-                                                        'bank_INN': _model
-                                                            .bankInnTextController
-                                                            .text,
-                                                        'bank_KPP': _model
-                                                            .bankKppTextController
-                                                            .text,
-                                                      },
-                                                      matchingRows: (rows) =>
-                                                          rows.eq(
-                                                        'owner',
-                                                        containerUsersRow?.id,
-                                                      ),
-                                                    );
-                                                    _model.isEdit = false;
-                                                    setState(() {});
-                                                    ScaffoldMessenger.of(
-                                                            context)
-                                                        .showSnackBar(
-                                                      SnackBar(
-                                                        content: Text(
-                                                          'Ваши изменения успешно сохранены',
-                                                          style: TextStyle(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryText,
-                                                          ),
-                                                        ),
-                                                        duration: const Duration(
-                                                            milliseconds: 4000),
-                                                        backgroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondary,
-                                                      ),
-                                                    );
-                                                    await widget.onDone?.call();
-                                                    Navigator.pop(context);
-                                                  },
-                                                  cancelAction: () async {
-                                                    Navigator.pop(context);
-                                                  },
-                                                ),
-                                              );
-                                            },
-                                          ).then((value) => setState(() {}));
-                                        },
-                                        text: 'Сохранить',
-                                        options: FFButtonOptions(
-                                          height: 50.0,
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  64.0, 24.0, 64.0, 24.0),
-                                          iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmall
-                                                  .override(
-                                                    fontFamily: 'Commissioner',
-                                                    color: Colors.white,
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                          elevation: 0.0,
-                                          borderSide: const BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(24.0),
+                                  ),
+                                  Builder(
+                                    builder: (context) => FFButtonWidget(
+                                      onPressed: () async {
+                                        await showDialog(
+                                          context: context,
+                                          builder: (dialogContext) {
+                                            return Dialog(
+                                              elevation: 0,
+                                              insetPadding: EdgeInsets.zero,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              alignment:
+                                                  const AlignmentDirectional(0.0, 0.0)
+                                                      .resolve(
+                                                          Directionality.of(
+                                                              context)),
+                                              child: ConfirmActionWidget(
+                                                title:
+                                                    'Вы действительно хотите отменить изменения?',
+                                                successText: 'Отменить',
+                                                cancelText:
+                                                    'Продолжить редактирование',
+                                                successAction: () async {
+                                                  setState(() {
+                                                    _model.jurNameTextController
+                                                            ?.text =
+                                                        containerJuridicalInfoRow!
+                                                            .name!;
+                                                    _model.jurAddressTextController
+                                                            ?.text =
+                                                        containerJuridicalInfoRow!
+                                                            .address!;
+                                                    _model.phoneTextController
+                                                            ?.text =
+                                                        containerUsersRow!
+                                                            .phone!;
+                                                    _model.jurLeadTextController
+                                                            ?.text =
+                                                        containerJuridicalInfoRow!
+                                                            .lead!;
+                                                    _model.jurKppTextController
+                                                            ?.text =
+                                                        containerJuridicalInfoRow!
+                                                            .kpp!;
+                                                    _model.jurInnTextController
+                                                            ?.text =
+                                                        containerJuridicalInfoRow!
+                                                            .inn!;
+                                                    _model.jurOgrnTextController
+                                                            ?.text =
+                                                        containerJuridicalInfoRow!
+                                                            .ogrn!;
+                                                    _model.jurOkpoTextController
+                                                            ?.text =
+                                                        containerJuridicalInfoRow!
+                                                            .okpo!;
+                                                    _model.bankNameTextController
+                                                            ?.text =
+                                                        containerJuridicalInfoRow!
+                                                            .bankName!;
+                                                    _model.bankKorrTextController
+                                                            ?.text =
+                                                        containerJuridicalInfoRow!
+                                                            .bankKorr!;
+                                                    _model.bankRcTextController
+                                                            ?.text =
+                                                        containerJuridicalInfoRow!
+                                                            .bankRC!;
+                                                    _model.bankBicTextController
+                                                            ?.text =
+                                                        containerJuridicalInfoRow!
+                                                            .bankBIC!;
+                                                    _model.bankInnTextController
+                                                            ?.text =
+                                                        containerJuridicalInfoRow!
+                                                            .bankINN!;
+                                                    _model.bankKppTextController
+                                                            ?.text =
+                                                        containerJuridicalInfoRow!
+                                                            .bankKPP!;
+                                                    _model.emailTextController
+                                                            ?.text =
+                                                        containerUsersRow!
+                                                            .email!;
+                                                  });
+                                                  _model.isEdit = false;
+                                                  setState(() {});
+                                                  await widget.onDone?.call();
+                                                },
+                                                cancelAction: () async {
+                                                  Navigator.pop(context);
+                                                },
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => setState(() {}));
+                                      },
+                                      text: 'Отменить изменения',
+                                      options: FFButtonOptions(
+                                        height: 50.0,
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            64.0, 24.0, 64.0, 24.0),
+                                        iconPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: const Color(0xFFBE3030),
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Commissioner',
+                                              color: Colors.white,
+                                              letterSpacing: 0.0,
+                                            ),
+                                        elevation: 0.0,
+                                        borderSide: const BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
                                         ),
+                                        borderRadius:
+                                            BorderRadius.circular(24.0),
                                       ),
                                     ),
-                                  if (_model.isEdit)
-                                    Builder(
-                                      builder: (context) => FFButtonWidget(
-                                        onPressed: () async {
-                                          await showDialog(
-                                            context: context,
-                                            builder: (dialogContext) {
-                                              return Dialog(
-                                                elevation: 0,
-                                                insetPadding: EdgeInsets.zero,
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                alignment: const AlignmentDirectional(
-                                                        0.0, 0.0)
-                                                    .resolve(Directionality.of(
-                                                        context)),
-                                                child: ConfirmActionWidget(
-                                                  title:
-                                                      'Вы действительно хотите отменить изменения?',
-                                                  successText: 'Отменить',
-                                                  cancelText:
-                                                      'Продолжить редактирование',
-                                                  successAction: () async {
-                                                    setState(() {
-                                                      _model.jurNameTextController
-                                                              ?.text =
-                                                          containerJuridicalInfoRow!
-                                                              .name!;
-                                                      _model.jurAddressTextController
-                                                              ?.text =
-                                                          containerJuridicalInfoRow!
-                                                              .address!;
-                                                      _model.phoneTextController
-                                                              ?.text =
-                                                          containerUsersRow!
-                                                              .phone!;
-                                                      _model.jurLeadTextController
-                                                              ?.text =
-                                                          containerJuridicalInfoRow!
-                                                              .lead!;
-                                                      _model.jurKppTextController
-                                                              ?.text =
-                                                          containerJuridicalInfoRow!
-                                                              .kpp!;
-                                                      _model.jurInnTextController
-                                                              ?.text =
-                                                          containerJuridicalInfoRow!
-                                                              .inn!;
-                                                      _model.jurOgrnTextController
-                                                              ?.text =
-                                                          containerJuridicalInfoRow!
-                                                              .ogrn!;
-                                                      _model.jurOkpoTextController
-                                                              ?.text =
-                                                          containerJuridicalInfoRow!
-                                                              .okpo!;
-                                                      _model.bankNameTextController
-                                                              ?.text =
-                                                          containerJuridicalInfoRow!
-                                                              .bankName!;
-                                                      _model.bankKorrTextController
-                                                              ?.text =
-                                                          containerJuridicalInfoRow!
-                                                              .bankKorr!;
-                                                      _model.bankRcTextController
-                                                              ?.text =
-                                                          containerJuridicalInfoRow!
-                                                              .bankRC!;
-                                                      _model.bankBicTextController
-                                                              ?.text =
-                                                          containerJuridicalInfoRow!
-                                                              .bankBIC!;
-                                                      _model.bankInnTextController
-                                                              ?.text =
-                                                          containerJuridicalInfoRow!
-                                                              .bankINN!;
-                                                      _model.bankKppTextController
-                                                              ?.text =
-                                                          containerJuridicalInfoRow!
-                                                              .bankKPP!;
-                                                      _model.emailTextController
-                                                              ?.text =
-                                                          containerUsersRow!
-                                                              .email!;
-                                                    });
-                                                    _model.isEdit = false;
-                                                    setState(() {});
-                                                    await widget.onDone?.call();
-                                                  },
-                                                  cancelAction: () async {
-                                                    Navigator.pop(context);
-                                                  },
-                                                ),
-                                              );
-                                            },
-                                          ).then((value) => setState(() {}));
-                                        },
-                                        text: 'Отменить изменения',
-                                        options: FFButtonOptions(
-                                          height: 50.0,
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  64.0, 24.0, 64.0, 24.0),
-                                          iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          color: const Color(0xFFBE3030),
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmall
-                                                  .override(
-                                                    fontFamily: 'Commissioner',
-                                                    color: Colors.white,
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                          elevation: 0.0,
-                                          borderSide: const BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(24.0),
-                                        ),
-                                      ),
-                                    ),
+                                  ),
                                 ].divide(const SizedBox(width: 16.0)),
                               ),
                             ]

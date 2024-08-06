@@ -84,6 +84,7 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
                   final columnHotelRow = columnHotelRowList.isNotEmpty
                       ? columnHotelRowList.first
                       : null;
+
                   return Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -137,6 +138,7 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
                       containerRequestsRowList.isNotEmpty
                           ? containerRequestsRowList.first
                           : null;
+
                   return Container(
                     decoration: const BoxDecoration(),
                     child: Column(
@@ -278,6 +280,7 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
                             final columnUsersRow = columnUsersRowList.isNotEmpty
                                 ? columnUsersRowList.first
                                 : null;
+
                             return Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [

@@ -25,6 +25,14 @@ class EditFoodComponentModel extends FlutterFlowModel<EditFoodComponentWidget> {
   FocusNode? personsFocusNode;
   TextEditingController? personsTextController;
   String? Function(BuildContext, String?)? personsTextControllerValidator;
+  // State field(s) for countmob widget.
+  FocusNode? countmobFocusNode1;
+  TextEditingController? countmobTextController1;
+  String? Function(BuildContext, String?)? countmobTextController1Validator;
+  // State field(s) for countmob widget.
+  FocusNode? countmobFocusNode2;
+  TextEditingController? countmobTextController2;
+  String? Function(BuildContext, String?)? countmobTextController2Validator;
 
   @override
   void initState(BuildContext context) {}
@@ -36,5 +44,11 @@ class EditFoodComponentModel extends FlutterFlowModel<EditFoodComponentWidget> {
 
     personsFocusNode?.dispose();
     personsTextController?.dispose();
+
+    countmobFocusNode1?.dispose();
+    countmobTextController1?.dispose();
+
+    countmobFocusNode2?.dispose();
+    countmobTextController2?.dispose();
   }
 }

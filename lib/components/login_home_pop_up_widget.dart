@@ -52,11 +52,11 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
     super.initState();
     _model = createModel(context, () => LoginHomePopUpModel());
 
-    _model.emailTextController1 ??= TextEditingController();
-    _model.textFieldFocusNode1 ??= FocusNode();
+    _model.emailLogTextController ??= TextEditingController();
+    _model.emailLogFocusNode ??= FocusNode();
 
-    _model.passwordTextController1 ??= TextEditingController();
-    _model.textFieldFocusNode2 ??= FocusNode();
+    _model.passwordLogTextController ??= TextEditingController();
+    _model.passwordLogFocusNode ??= FocusNode();
 
     _model.fioTextController ??= TextEditingController();
     _model.fioFocusNode ??= FocusNode();
@@ -95,15 +95,22 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            borderRadius: BorderRadius.circular(50.0),
+            borderRadius: BorderRadius.circular(valueOrDefault<double>(
+              MediaQuery.sizeOf(context).width > 1000.0 ? 50.0 : 16.0,
+              0.0,
+            )),
           ),
           alignment: const AlignmentDirectional(0.0, 0.0),
           child: Padding(
-            padding: const EdgeInsets.all(24.0),
+            padding: EdgeInsets.all(valueOrDefault<double>(
+              MediaQuery.sizeOf(context).width > 1000.0 ? 24.0 : 0.0,
+              0.0,
+            )),
             child: SingleChildScrollView(
               primary: false,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     _model.isRegister == false
@@ -117,6 +124,55 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                           fontWeight: FontWeight.bold,
                         ),
                   ),
+                  if (_model.lastEmail != null && _model.lastEmail != '')
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 8.0),
+                      child: Container(
+                        width: MediaQuery.sizeOf(context).width * 1.0,
+                        constraints: const BoxConstraints(
+                          maxWidth: 500.0,
+                        ),
+                        decoration: BoxDecoration(
+                          color: const Color(0x17000000),
+                          borderRadius: BorderRadius.circular(16.0),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              8.0, 16.0, 8.0, 16.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Icon(
+                                    Icons.info_outline_rounded,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 16.0,
+                                  ),
+                                ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 2.0, 0.0, 0.0),
+                                child: Text(
+                                  'Указанная почта ${_model.lastEmail} ещё не подтверждена. Перед входом в аккаунт, пожалуйста, перейдите по ссылке из письма',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Commissioner',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
                   Container(
                     constraints: const BoxConstraints(
                       maxWidth: 500.0,
@@ -124,7 +180,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                     decoration: const BoxDecoration(),
                   ),
                   Container(
-                    width: 700.0,
+                    width: 500.0,
                     decoration: const BoxDecoration(),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -154,8 +210,9 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 8.0, 0.0),
                                       child: TextFormField(
-                                        controller: _model.emailTextController1,
-                                        focusNode: _model.textFieldFocusNode1,
+                                        controller:
+                                            _model.emailLogTextController,
+                                        focusNode: _model.emailLogFocusNode,
                                         autofocus: false,
                                         obscureText: false,
                                         decoration: InputDecoration(
@@ -233,7 +290,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                 maxLength}) =>
                                             null,
                                         validator: _model
-                                            .emailTextController1Validator
+                                            .emailLogTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -258,11 +315,11 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                           8.0, 0.0, 8.0, 0.0),
                                       child: TextFormField(
                                         controller:
-                                            _model.passwordTextController1,
-                                        focusNode: _model.textFieldFocusNode2,
+                                            _model.passwordLogTextController,
+                                        focusNode: _model.passwordLogFocusNode,
                                         autofocus: false,
                                         obscureText:
-                                            !_model.passwordVisibility1,
+                                            !_model.passwordLogVisibility,
                                         decoration: InputDecoration(
                                           labelStyle:
                                               FlutterFlowTheme.of(context)
@@ -324,13 +381,14 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                           fillColor: const Color(0xFFF0F0FA),
                                           suffixIcon: InkWell(
                                             onTap: () => setState(
-                                              () => _model.passwordVisibility1 =
-                                                  !_model.passwordVisibility1,
+                                              () => _model
+                                                      .passwordLogVisibility =
+                                                  !_model.passwordLogVisibility,
                                             ),
                                             focusNode:
                                                 FocusNode(skipTraversal: true),
                                             child: Icon(
-                                              _model.passwordVisibility1
+                                              _model.passwordLogVisibility
                                                   ? Icons.visibility_outlined
                                                   : Icons
                                                       .visibility_off_outlined,
@@ -353,7 +411,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                 maxLength}) =>
                                             null,
                                         validator: _model
-                                            .passwordTextController1Validator
+                                            .passwordLogTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -365,146 +423,191 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          FFButtonWidget(
-                                            onPressed: () async {
-                                              GoRouter.of(context)
-                                                  .prepareAuthEvent(true);
+                                      Container(
+                                        constraints: const BoxConstraints(
+                                          maxWidth: 350.0,
+                                        ),
+                                        decoration: const BoxDecoration(),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Expanded(
+                                              child: FFButtonWidget(
+                                                onPressed: () async {
+                                                  GoRouter.of(context)
+                                                      .prepareAuthEvent(true);
 
-                                              final user = await authManager
-                                                  .signInWithEmail(
-                                                context,
-                                                _model
-                                                    .emailTextController1.text,
-                                                _model.passwordTextController1
-                                                    .text,
-                                              );
-                                              if (user == null) {
-                                                return;
-                                              }
+                                                  final user = await authManager
+                                                      .signInWithEmail(
+                                                    context,
+                                                    _model
+                                                        .emailLogTextController
+                                                        .text,
+                                                    _model
+                                                        .passwordLogTextController
+                                                        .text,
+                                                  );
+                                                  if (user == null) {
+                                                    return;
+                                                  }
 
-                                              context.pushNamedAuth(
-                                                'HotelSearchPage',
-                                                context.mounted,
-                                                queryParameters: {
-                                                  'startDate': serializeParam(
-                                                    widget.startDate,
-                                                    ParamType.DateTime,
-                                                  ),
-                                                  'duration': serializeParam(
-                                                    widget.duration,
-                                                    ParamType.double,
-                                                  ),
-                                                  'city': serializeParam(
-                                                    widget.city,
-                                                    ParamType.SupabaseRow,
-                                                  ),
-                                                  'visitors': serializeParam(
-                                                    widget.visitors,
-                                                    ParamType.int,
-                                                  ),
-                                                  'hallFilter1': serializeParam(
-                                                    widget.filter1,
-                                                    ParamType.DataStruct,
-                                                  ),
-                                                  'hallFilter2': serializeParam(
-                                                    widget.filter2,
-                                                    ParamType.DataStruct,
-                                                  ),
-                                                  'hallFilter3': serializeParam(
-                                                    widget.filter3,
-                                                    ParamType.DataStruct,
-                                                  ),
-                                                  'user': serializeParam(
-                                                    _model.newUserClient,
-                                                    ParamType.SupabaseRow,
-                                                  ),
-                                                }.withoutNulls,
-                                                ignoreRedirect: true,
-                                              );
-
-                                              Navigator.pop(context);
-                                            },
-                                            text: 'Войти',
-                                            options: FFButtonOptions(
-                                              width: 350.0,
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      24.0, 24.0, 24.0, 24.0),
-                                              iconPadding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            'Commissioner',
-                                                        color: Colors.white,
-                                                        letterSpacing: 0.0,
+                                                  context.pushNamedAuth(
+                                                    'HotelSearchPage',
+                                                    context.mounted,
+                                                    queryParameters: {
+                                                      'startDate':
+                                                          serializeParam(
+                                                        widget.startDate,
+                                                        ParamType.DateTime,
                                                       ),
-                                              elevation: 3.0,
-                                              borderSide: const BorderSide(
-                                                color: Colors.transparent,
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(24.0),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 24.0, 0.0, 0.0),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            _model.isRegister =
-                                                !_model.isRegister;
-                                            setState(() {});
-                                          },
-                                          text: valueOrDefault<String>(
-                                            _model.isRegister
-                                                ? 'Назад'
-                                                : 'Регистрация в личном кабинете',
-                                            'Регистрация в личном кабинете',
-                                          ),
-                                          options: FFButtonOptions(
-                                            width: 350.0,
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    24.0, 24.0, 24.0, 24.0),
-                                            iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
-                                            textStyle: FlutterFlowTheme.of(
-                                                    context)
-                                                .titleSmall
-                                                .override(
-                                                  fontFamily: 'Commissioner',
+                                                      'duration':
+                                                          serializeParam(
+                                                        widget.duration,
+                                                        ParamType.double,
+                                                      ),
+                                                      'city': serializeParam(
+                                                        widget.city,
+                                                        ParamType.SupabaseRow,
+                                                      ),
+                                                      'visitors':
+                                                          serializeParam(
+                                                        widget.visitors,
+                                                        ParamType.int,
+                                                      ),
+                                                      'hallFilter1':
+                                                          serializeParam(
+                                                        widget.filter1,
+                                                        ParamType.DataStruct,
+                                                      ),
+                                                      'hallFilter2':
+                                                          serializeParam(
+                                                        widget.filter2,
+                                                        ParamType.DataStruct,
+                                                      ),
+                                                      'hallFilter3':
+                                                          serializeParam(
+                                                        widget.filter3,
+                                                        ParamType.DataStruct,
+                                                      ),
+                                                      'user': serializeParam(
+                                                        _model.newUserClient,
+                                                        ParamType.SupabaseRow,
+                                                      ),
+                                                    }.withoutNulls,
+                                                    ignoreRedirect: true,
+                                                  );
+
+                                                  Navigator.pop(context);
+                                                },
+                                                text: 'Войти',
+                                                options: FFButtonOptions(
+                                                  width: 350.0,
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(24.0, 24.0,
+                                                          24.0, 24.0),
+                                                  iconPadding:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(0.0, 0.0,
+                                                              0.0, 0.0),
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primary,
-                                                  letterSpacing: 0.0,
+                                                  textStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmall
+                                                          .override(
+                                                            fontFamily:
+                                                                'Commissioner',
+                                                            color: Colors.white,
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                  elevation: 3.0,
+                                                  borderSide: const BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24.0),
                                                 ),
-                                            elevation: 0.0,
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              width: 2.0,
+                                              ),
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(24.0),
-                                          ),
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        constraints: const BoxConstraints(
+                                          maxWidth: 350.0,
+                                        ),
+                                        decoration: const BoxDecoration(),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Expanded(
+                                              child: Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 24.0, 0.0, 0.0),
+                                                child: FFButtonWidget(
+                                                  onPressed: () async {
+                                                    _model.isRegister =
+                                                        !_model.isRegister;
+                                                    setState(() {});
+                                                  },
+                                                  text: valueOrDefault<String>(
+                                                    _model.isRegister
+                                                        ? 'Назад'
+                                                        : 'Регистрация в личном кабинете',
+                                                    'Регистрация в личном кабинете',
+                                                  ),
+                                                  options: FFButtonOptions(
+                                                    width: 350.0,
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                24.0,
+                                                                24.0,
+                                                                24.0,
+                                                                24.0),
+                                                    iconPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 0.0),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryBackground,
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    elevation: 0.0,
+                                                    borderSide: BorderSide(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      width: 2.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            24.0),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                       Align(
@@ -533,18 +636,8 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                             .resolve(
                                                                 Directionality.of(
                                                                     context)),
-                                                    child: SizedBox(
-                                                      height: MediaQuery.sizeOf(
-                                                                  context)
-                                                              .height *
-                                                          0.7,
-                                                      width: MediaQuery.sizeOf(
-                                                                  context)
-                                                              .width *
-                                                          0.7,
-                                                      child:
-                                                          const ChangePasswordWidget(),
-                                                    ),
+                                                    child:
+                                                        const ChangePasswordWidget(),
                                                   );
                                                 },
                                               ).then(
@@ -558,7 +651,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                               ),
                                               child: Align(
                                                 alignment: const AlignmentDirectional(
-                                                    -1.0, 0.0),
+                                                    0.0, 0.0),
                                                 child: Text(
                                                   'Забыли пароль?',
                                                   style: FlutterFlowTheme.of(
@@ -1081,8 +1174,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                             _model.passwordTextController,
                                         focusNode: _model.passwordFocusNode,
                                         autofocus: false,
-                                        obscureText:
-                                            !_model.passwordVisibility2,
+                                        obscureText: !_model.passwordVisibility,
                                         decoration: InputDecoration(
                                           labelStyle:
                                               FlutterFlowTheme.of(context)
@@ -1154,13 +1246,13 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                           fillColor: const Color(0xFFF0F0FA),
                                           suffixIcon: InkWell(
                                             onTap: () => setState(
-                                              () => _model.passwordVisibility2 =
-                                                  !_model.passwordVisibility2,
+                                              () => _model.passwordVisibility =
+                                                  !_model.passwordVisibility,
                                             ),
                                             focusNode:
                                                 FocusNode(skipTraversal: true),
                                             child: Icon(
-                                              _model.passwordVisibility2
+                                              _model.passwordVisibility
                                                   ? Icons.visibility_outlined
                                                   : Icons
                                                       .visibility_off_outlined,
@@ -1239,86 +1331,91 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                       .info,
                                             ),
                                           ),
-                                          Builder(
-                                            builder: (context) => InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                await showDialog(
-                                                  barrierColor:
-                                                      const Color(0x56000000),
-                                                  context: context,
-                                                  builder: (dialogContext) {
-                                                    return Dialog(
-                                                      elevation: 0,
-                                                      insetPadding:
-                                                          EdgeInsets.zero,
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      alignment:
-                                                          const AlignmentDirectional(
-                                                                  0.0, 0.0)
-                                                              .resolve(
-                                                                  Directionality.of(
-                                                                      context)),
-                                                      child: const PopUpPPWidget(),
-                                                    );
-                                                  },
-                                                ).then(
-                                                    (value) => setState(() {}));
-                                              },
-                                              child: RichText(
-                                                textScaler:
-                                                    MediaQuery.of(context)
-                                                        .textScaler,
-                                                text: TextSpan(
-                                                  children: [
-                                                    TextSpan(
-                                                      text:
-                                                          'Нажимая кнопку, соглашаюсь с ',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Commissioner',
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryText,
-                                                            fontSize: 18.0,
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                    ),
-                                                    TextSpan(
-                                                      text:
-                                                          'условиями обработки данных',
-                                                      style: TextStyle(
-                                                        color:
+                                          Expanded(
+                                            child: Builder(
+                                              builder: (context) => InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  await showDialog(
+                                                    barrierColor:
+                                                        const Color(0x56000000),
+                                                    context: context,
+                                                    builder: (dialogContext) {
+                                                      return Dialog(
+                                                        elevation: 0,
+                                                        insetPadding:
+                                                            EdgeInsets.zero,
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                    0.0, 0.0)
+                                                                .resolve(
+                                                                    Directionality.of(
+                                                                        context)),
+                                                        child: const PopUpPPWidget(),
+                                                      );
+                                                    },
+                                                  ).then((value) =>
+                                                      setState(() {}));
+                                                },
+                                                child: RichText(
+                                                  textScaler:
+                                                      MediaQuery.of(context)
+                                                          .textScaler,
+                                                  text: TextSpan(
+                                                    children: [
+                                                      TextSpan(
+                                                        text:
+                                                            'Нажимая кнопку, соглашаюсь с ',
+                                                        style:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .primaryText,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontSize: 18.0,
-                                                        decoration:
-                                                            TextDecoration
-                                                                .underline,
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Commissioner',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  fontSize:
+                                                                      18.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
                                                       ),
-                                                    )
-                                                  ],
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Commissioner',
-                                                        letterSpacing: 0.0,
-                                                      ),
+                                                      TextSpan(
+                                                        text:
+                                                            'условиями обработки данных',
+                                                        style: TextStyle(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontSize: 18.0,
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .underline,
+                                                        ),
+                                                      )
+                                                    ],
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -1343,51 +1440,134 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                         ''))
                                             ? null
                                             : () async {
-                                                GoRouter.of(context)
-                                                    .prepareAuthEvent();
-
-                                                final user = await authManager
-                                                    .createAccountWithEmail(
-                                                  context,
-                                                  _model
-                                                      .mailTextController.text,
-                                                  _model.passwordTextController
-                                                      .text,
+                                                _model.userCheck =
+                                                    await UsersTable()
+                                                        .queryRows(
+                                                  queryFn: (q) => q.eq(
+                                                    'email',
+                                                    _model.mailTextController
+                                                        .text,
+                                                  ),
                                                 );
-                                                if (user == null) {
-                                                  return;
-                                                }
-
-                                                _model.newUserClient =
-                                                    await UsersTable().insert({
-                                                  'uid': currentUserUid,
-                                                  'email': _model
-                                                      .mailTextController.text,
-                                                  'name': _model
-                                                      .fioTextController.text,
-                                                  'phone': _model
-                                                      .phoneRegTextController
-                                                      .text,
-                                                  'network': _model
-                                                      .companyNameTextController
-                                                      .text,
-                                                  'role': widget.hotel == true
-                                                      ? EnumRole.HOTEL.name
-                                                      : EnumRole.CLIENT.name,
-                                                });
-                                                await JuridicalInfoTable()
-                                                    .insert({
-                                                  'name':
-                                                      valueOrDefault<String>(
-                                                    _model
+                                                if ((_model.userCheck != null &&
+                                                        (_model.userCheck)!
+                                                            .isNotEmpty) ==
+                                                    true) {
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                        'Почта уже используется другим аккаунтом. Попробуйте восстановить пароль',
+                                                        style: TextStyle(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                        ),
+                                                      ),
+                                                      duration: const Duration(
+                                                          milliseconds: 4000),
+                                                      backgroundColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .error,
+                                                    ),
+                                                  );
+                                                } else {
+                                                  _model.newUserClient =
+                                                      await UsersTable()
+                                                          .insert({
+                                                    'email': _model
+                                                        .mailTextController
+                                                        .text,
+                                                    'name': _model
+                                                        .fioTextController.text,
+                                                    'phone': _model
+                                                        .phoneRegTextController
+                                                        .text,
+                                                    'network': _model
                                                         .companyNameTextController
                                                         .text,
-                                                    'company_name',
-                                                  ),
-                                                  'owner':
-                                                      _model.newUserClient?.id,
-                                                });
-                                                Navigator.pop(context);
+                                                    'role': widget.hotel ==
+                                                            true
+                                                        ? EnumRole.HOTEL.name
+                                                        : EnumRole.CLIENT.name,
+                                                  });
+                                                  await JuridicalInfoTable()
+                                                      .insert({
+                                                    'name': _model
+                                                        .companyNameTextController
+                                                        .text,
+                                                    'owner': _model
+                                                        .newUserClient?.id,
+                                                  });
+                                                  _model.isRegister = false;
+                                                  _model.lastEmail = _model
+                                                      .mailTextController.text;
+                                                  setState(() {});
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                        'На вашу почту отправлено письмо с потверждением',
+                                                        style: TextStyle(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          fontSize: 16.0,
+                                                        ),
+                                                      ),
+                                                      duration: const Duration(
+                                                          milliseconds: 4000),
+                                                      backgroundColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondary,
+                                                    ),
+                                                  );
+                                                  setState(() {
+                                                    _model.emailLogTextController
+                                                            ?.text =
+                                                        _model
+                                                            .mailTextController
+                                                            .text;
+                                                    _model.emailLogTextController
+                                                            ?.selection =
+                                                        TextSelection.collapsed(
+                                                            offset: _model
+                                                                .emailLogTextController!
+                                                                .text
+                                                                .length);
+                                                  });
+                                                  setState(() {
+                                                    _model.passwordLogTextController
+                                                            ?.text =
+                                                        _model
+                                                            .passwordTextController
+                                                            .text;
+                                                    _model.passwordLogTextController
+                                                            ?.selection =
+                                                        TextSelection.collapsed(
+                                                            offset: _model
+                                                                .passwordLogTextController!
+                                                                .text
+                                                                .length);
+                                                  });
+                                                  GoRouter.of(context)
+                                                      .prepareAuthEvent();
+
+                                                  final user = await authManager
+                                                      .createAccountWithEmail(
+                                                    context,
+                                                    _model.mailTextController
+                                                        .text,
+                                                    _model
+                                                        .passwordTextController
+                                                        .text,
+                                                  );
+                                                  if (user == null) {
+                                                    return;
+                                                  }
+                                                }
 
                                                 setState(() {});
                                               },
@@ -1426,13 +1606,44 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                     ].divide(const SizedBox(height: 20.0)),
                                   ),
                                 ),
-                              ].divide(const SizedBox(height: 18.0)),
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    _model.isRegister = false;
+                                    setState(() {});
+                                  },
+                                  child: Container(
+                                    height: 40.0,
+                                    decoration: const BoxDecoration(
+                                      color: Color(0x00FFFFFF),
+                                    ),
+                                    child: Text(
+                                      'У меня уже есть аккаунт',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Commissioner',
+                                            color: const Color(0xFF2431A5),
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
+                                            decoration:
+                                                TextDecoration.underline,
+                                            lineHeight: 1.0,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                              ].divide(const SizedBox(height: 24.0)),
                             ),
                           ),
                       ],
                     ),
                   ),
-                ].divide(const SizedBox(height: 32.0)),
+                ].divide(const SizedBox(height: 8.0)),
               ),
             ),
           ),

@@ -14,9 +14,11 @@ class SignupFormWidget extends StatefulWidget {
   const SignupFormWidget({
     super.key,
     bool? isHotel,
+    this.action,
   }) : isHotel = isHotel ?? false;
 
   final bool isHotel;
+  final Future Function()? action;
 
   @override
   State<SignupFormWidget> createState() => _SignupFormWidgetState();
@@ -626,87 +628,129 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                       ),
                     ],
                   ),
-                  FFButtonWidget(
-                    onPressed: !_model.checkboxValue!
-                        ? null
-                        : () async {
-                            _model.newUserPlatform = await UsersTable().insert({
-                              'role': widget.isHotel
-                                  ? EnumRole.HOTEL.name
-                                  : EnumRole.CLIENT.name,
-                              'email': _model.mailTextController.text,
-                              'name': _model.nameTextController.text,
-                              'network': _model.companyNameTextController.text,
-                              'phone': _model.phoneTextController.text,
-                            });
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'На вашу почту отправлено письмо с потверждением',
-                                  style: TextStyle(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    fontSize: 16.0,
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: const BoxDecoration(),
+                          child: FFButtonWidget(
+                            onPressed: !_model.checkboxValue!
+                                ? null
+                                : () async {
+                                    _model.userCheck =
+                                        await UsersTable().queryRows(
+                                      queryFn: (q) => q.eq(
+                                        'email',
+                                        _model.mailTextController.text,
+                                      ),
+                                    );
+                                    if ((_model.userCheck != null &&
+                                            (_model.userCheck)!.isNotEmpty) ==
+                                        true) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Почта уже используется другим аккаунтом. Попробуйте восстановить пароль',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                            ),
+                                          ),
+                                          duration:
+                                              const Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .error,
+                                        ),
+                                      );
+                                    } else {
+                                      _model.newUserPlatform =
+                                          await UsersTable().insert({
+                                        'role': widget.isHotel
+                                            ? EnumRole.HOTEL.name
+                                            : EnumRole.CLIENT.name,
+                                        'email': _model.mailTextController.text,
+                                        'name': _model.nameTextController.text,
+                                        'network': _model
+                                            .companyNameTextController.text,
+                                        'phone':
+                                            _model.phoneTextController.text,
+                                      });
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'На вашу почту отправлено письмо с потверждением',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              fontSize: 16.0,
+                                            ),
+                                          ),
+                                          duration:
+                                              const Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondary,
+                                        ),
+                                      );
+                                      await JuridicalInfoTable().insert({
+                                        'name': valueOrDefault<String>(
+                                          _model.companyNameTextController.text,
+                                          'company_name',
+                                        ),
+                                        'owner': _model.newUserPlatform?.id,
+                                      });
+                                      await widget.action?.call();
+                                      GoRouter.of(context).prepareAuthEvent();
+
+                                      final user = await authManager
+                                          .createAccountWithEmail(
+                                        context,
+                                        _model.mailTextController.text,
+                                        _model.passwordTextController.text,
+                                      );
+                                      if (user == null) {
+                                        return;
+                                      }
+                                    }
+
+                                    setState(() {});
+                                  },
+                            text: 'Зарегистрироваться',
+                            options: FFButtonOptions(
+                              width: 350.0,
+                              height: 60.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 24.0, 24.0, 24.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).primary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Commissioner',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
                                   ),
-                                ),
-                                duration: const Duration(milliseconds: 4000),
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).secondary,
+                              elevation: 0.0,
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
                               ),
-                            );
-                            await JuridicalInfoTable().insert({
-                              'name': valueOrDefault<String>(
-                                _model.companyNameTextController.text,
-                                'company_name',
-                              ),
-                              'owner': _model.newUserPlatform?.id,
-                            });
-                            GoRouter.of(context).prepareAuthEvent();
-
-                            final user =
-                                await authManager.createAccountWithEmail(
-                              context,
-                              _model.mailTextController.text,
-                              _model.passwordTextController.text,
-                            );
-                            if (user == null) {
-                              return;
-                            }
-
-                            if (_model.newUserPlatform?.role ==
-                                EnumRole.CLIENT.name) {
-                              context.pushNamedAuth('Home', context.mounted);
-                            } else {
-                              context.pushNamedAuth(
-                                  'HOTEL_HOME', context.mounted);
-                            }
-
-                            setState(() {});
-                          },
-                    text: 'Зарегистрироваться',
-                    options: FFButtonOptions(
-                      width: 350.0,
-                      height: 60.0,
-                      padding: const EdgeInsetsDirectional.fromSTEB(
-                          24.0, 24.0, 24.0, 24.0),
-                      iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Commissioner',
-                                color: Colors.white,
-                                letterSpacing: 0.0,
-                              ),
-                      elevation: 0.0,
-                      borderSide: const BorderSide(
-                        color: Colors.transparent,
-                        width: 1.0,
+                              borderRadius: BorderRadius.circular(240.0),
+                              disabledColor: const Color(0xFFECECEC),
+                              disabledTextColor: const Color(0xFF383838),
+                            ),
+                          ),
+                        ),
                       ),
-                      borderRadius: BorderRadius.circular(240.0),
-                      disabledColor: const Color(0xFFECECEC),
-                      disabledTextColor: const Color(0xFF383838),
-                    ),
+                    ],
                   ),
                 ].divide(const SizedBox(height: 20.0)),
               ),

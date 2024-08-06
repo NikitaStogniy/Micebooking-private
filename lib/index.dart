@@ -15,3 +15,5 @@ export '/edit_request_page/edit_request_page_widget.dart'
     show EditRequestPageWidget;
 export '/cms/about_us/about_us_widget.dart' show AboutUsWidget;
 export '/cms/qa/qa_widget.dart' show QaWidget;
+export '/hotel_search_page_copy/hotel_search_page_copy_widget.dart'
+    show HotelSearchPageCopyWidget;

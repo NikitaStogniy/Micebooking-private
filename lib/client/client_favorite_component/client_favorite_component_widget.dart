@@ -292,6 +292,7 @@ class _ClientFavoriteComponentWidgetState
                                                   textCityRowList.isNotEmpty
                                                       ? textCityRowList.first
                                                       : null;
+
                                               return Text(
                                                 valueOrDefault<String>(
                                                   textCityRow?.name,

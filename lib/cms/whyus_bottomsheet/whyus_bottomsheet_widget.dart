@@ -68,6 +68,7 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
 
         final containerCmsRow =
             containerCmsRowList.isNotEmpty ? containerCmsRowList.first : null;
+
         return Container(
           width: double.infinity,
           decoration: BoxDecoration(

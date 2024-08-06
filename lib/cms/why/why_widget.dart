@@ -75,6 +75,7 @@ class _WhyWidgetState extends State<WhyWidget> {
               final containerCmsRow = containerCmsRowList.isNotEmpty
                   ? containerCmsRowList.first
                   : null;
+
               return Container(
                 width: double.infinity,
                 height: MediaQuery.sizeOf(context).height * 1.0,
@@ -118,6 +119,7 @@ class _WhyWidgetState extends State<WhyWidget> {
                                   clientProfile: () async {},
                                   clientRequest: () async {},
                                   clientFavorite: () async {},
+                                  searchAction: () async {},
                                 ),
                               ),
                             ),

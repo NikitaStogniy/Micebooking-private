@@ -866,6 +866,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
 
                                 return Column(
                                   mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: List.generate(seatings.length,
                                       (seatingsIndex) {
                                     final seatingsItem =
@@ -1610,8 +1611,8 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                 .cast<int>();
                             _model.hotel = null;
                             _model.selectedServices = List.generate(
-                                    random_data.randomInteger(5, 5),
-                                    (index) => random_data.randomInteger(0, 10))
+                                    random_data.randomInteger(0, 0),
+                                    (index) => random_data.randomInteger(0, 0))
                                 .toList()
                                 .cast<int>();
                             _model.uploadedImages = List.generate(
@@ -1688,6 +1689,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                   final editHallHallRow = editHallHallRowList.isNotEmpty
                       ? editHallHallRowList.first
                       : null;
+
                   return wrapWithModel(
                     model: _model.editHallModel,
                     updateCallback: () => setState(() {}),
