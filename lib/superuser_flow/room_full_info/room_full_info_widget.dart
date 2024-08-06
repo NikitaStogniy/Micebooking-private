@@ -77,6 +77,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
 
         final containerRoomRow =
             containerRoomRowList.isNotEmpty ? containerRoomRowList.first : null;
+
         return Container(
           decoration: const BoxDecoration(),
           child: SingleChildScrollView(
@@ -111,6 +112,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                     final rowHotelRow = rowHotelRowList.isNotEmpty
                         ? rowHotelRowList.first
                         : null;
+
                     return Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -143,6 +145,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                               final textCityRow = textCityRowList.isNotEmpty
                                   ? textCityRowList.first
                                   : null;
+
                               return Text(
                                 '${containerRoomRow?.name}, ${textCityRow?.name}, ${rowHotelRow?.name}',
                                 style: FlutterFlowTheme.of(context)

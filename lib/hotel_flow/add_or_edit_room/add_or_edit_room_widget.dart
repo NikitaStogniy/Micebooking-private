@@ -1309,6 +1309,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                   final editRoomRoomRow = editRoomRoomRowList.isNotEmpty
                       ? editRoomRoomRowList.first
                       : null;
+
                   return wrapWithModel(
                     model: _model.editRoomModel,
                     updateCallback: () => setState(() {}),

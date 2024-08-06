@@ -13,23 +13,25 @@ class ChangePasswordModel extends FlutterFlowModel<ChangePasswordWidget> {
   FocusNode? textFieldFocusNode1;
   TextEditingController? emailTextController;
   String? Function(BuildContext, String?)? emailTextControllerValidator;
+  // State field(s) for PinCode widget.
+  TextEditingController? pinCodeController;
+  String? Function(BuildContext, String?)? pinCodeControllerValidator;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController1;
+  late bool passwordVisibility1;
   String? Function(BuildContext, String?)? textController1Validator;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode3;
   TextEditingController? textController2;
-  late bool passwordVisibility1;
-  String? Function(BuildContext, String?)? textController2Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode4;
-  TextEditingController? textController3;
   late bool passwordVisibility2;
-  String? Function(BuildContext, String?)? textController3Validator;
+  String? Function(BuildContext, String?)? textController2Validator;
+  // Stores action output result for [Custom Action - verifyOtpAndChangePassword] action in Button widget.
+  String? passwordChange;
 
   @override
   void initState(BuildContext context) {
+    pinCodeController = TextEditingController();
     passwordVisibility1 = false;
     passwordVisibility2 = false;
   }
@@ -39,13 +41,11 @@ class ChangePasswordModel extends FlutterFlowModel<ChangePasswordWidget> {
     textFieldFocusNode1?.dispose();
     emailTextController?.dispose();
 
+    pinCodeController?.dispose();
     textFieldFocusNode2?.dispose();
     textController1?.dispose();
 
     textFieldFocusNode3?.dispose();
     textController2?.dispose();
-
-    textFieldFocusNode4?.dispose();
-    textController3?.dispose();
   }
 }

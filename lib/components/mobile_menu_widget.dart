@@ -73,6 +73,7 @@ class _MobileMenuWidgetState extends State<MobileMenuWidget> {
           final containerUsersRow = containerUsersRowList.isNotEmpty
               ? containerUsersRowList.first
               : null;
+
           return Container(
             width: MediaQuery.sizeOf(context).width * 0.9,
             constraints: const BoxConstraints(

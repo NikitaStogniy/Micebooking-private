@@ -88,6 +88,7 @@ class _QaWidgetState extends State<QaWidget> {
                               clientProfile: () async {},
                               clientRequest: () async {},
                               clientFavorite: () async {},
+                              searchAction: () async {},
                             ),
                           ),
                           Column(

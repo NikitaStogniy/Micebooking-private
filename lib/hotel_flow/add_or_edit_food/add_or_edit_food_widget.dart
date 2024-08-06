@@ -928,6 +928,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                   final containerFoodRow = containerFoodRowList.isNotEmpty
                       ? containerFoodRowList.first
                       : null;
+
                   return Container(
                     decoration: const BoxDecoration(),
                     child: FutureBuilder<List<FoodPositionRow>>(

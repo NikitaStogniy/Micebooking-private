@@ -32,6 +32,8 @@ class SignupFormModel extends FlutterFlowModel<SignupFormWidget> {
   String? Function(BuildContext, String?)? passwordTextControllerValidator;
   // State field(s) for Checkbox widget.
   bool? checkboxValue;
+  // Stores action output result for [Backend Call - Query Rows] action in Button widget.
+  List<UsersRow>? userCheck;
   // Stores action output result for [Backend Call - Insert Row] action in Button widget.
   UsersRow? newUserPlatform;
 

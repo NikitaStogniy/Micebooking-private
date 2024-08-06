@@ -78,6 +78,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
         final containerUsersRow = containerUsersRowList.isNotEmpty
             ? containerUsersRowList.first
             : null;
+
         return Container(
           decoration: const BoxDecoration(),
           child: SingleChildScrollView(

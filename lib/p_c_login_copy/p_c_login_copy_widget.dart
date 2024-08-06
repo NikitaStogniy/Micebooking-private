@@ -91,6 +91,7 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                         clientProfile: () async {},
                         clientRequest: () async {},
                         clientFavorite: () async {},
+                        searchAction: () async {},
                       ),
                     ),
                   ),
@@ -110,7 +111,8 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                       ),
                       alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Padding(
-                        padding: const EdgeInsets.all(24.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            12.0, 25.0, 12.0, 25.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -128,6 +130,59 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                     fontWeight: FontWeight.bold,
                                   ),
                             ),
+                            if (_model.lastEmail != null &&
+                                _model.lastEmail != '')
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 16.0, 0.0, 8.0),
+                                child: Container(
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
+                                  constraints: const BoxConstraints(
+                                    maxWidth: 500.0,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: const Color(0x17000000),
+                                    borderRadius: BorderRadius.circular(16.0),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        8.0, 16.0, 8.0, 16.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Icon(
+                                              Icons.info_outline_rounded,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              size: 16.0,
+                                            ),
+                                          ],
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 2.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Указанная почта ${_model.lastEmail} ещё не подтверждена. Перед входом в аккаунт, пожалуйста, перейдите по ссылке из письма',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Commissioner',
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
                             Container(
                               constraints: const BoxConstraints(
                                 maxWidth: 500.0,
@@ -263,51 +318,115 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                       updateOnChange: true,
                                       child: SignupFormWidget(
                                         isHotel: _model.isHotel,
+                                        action: () async {
+                                          _model.isRegister = false;
+                                          _model.lastEmail = _model
+                                              .signupFormModel
+                                              .mailTextController
+                                              .text;
+                                          setState(() {});
+                                          setState(() {
+                                            _model.loginFormModel
+                                                    .emailTextController?.text =
+                                                _model.signupFormModel
+                                                    .mailTextController.text;
+                                            _model
+                                                    .loginFormModel
+                                                    .emailTextController
+                                                    ?.selection =
+                                                TextSelection.collapsed(
+                                                    offset: _model
+                                                        .loginFormModel
+                                                        .emailTextController!
+                                                        .text
+                                                        .length);
+                                          });
+                                          setState(() {
+                                            _model
+                                                    .loginFormModel
+                                                    .passwordTextController
+                                                    ?.text =
+                                                _model
+                                                    .signupFormModel
+                                                    .passwordTextController
+                                                    .text;
+                                            _model
+                                                    .loginFormModel
+                                                    .passwordTextController
+                                                    ?.selection =
+                                                TextSelection.collapsed(
+                                                    offset: _model
+                                                        .loginFormModel
+                                                        .passwordTextController!
+                                                        .text
+                                                        .length);
+                                          });
+                                        },
                                       ),
                                     ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 24.0, 0.0, 0.0),
-                                    child: FFButtonWidget(
-                                      onPressed: () async {
-                                        _model.isRegister = !_model.isRegister;
-                                        setState(() {});
-                                      },
-                                      text: valueOrDefault<String>(
-                                        _model.isRegister
-                                            ? 'Назад'
-                                            : 'Регистрация в личном кабинете',
-                                        'Регистрация в личном кабинете',
-                                      ),
-                                      options: FFButtonOptions(
-                                        width: 350.0,
-                                        height: 60.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            24.0, 24.0, 24.0, 24.0),
-                                        iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily: 'Commissioner',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Expanded(
+                                        child: Container(
+                                          decoration: const BoxDecoration(),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 24.0, 0.0, 0.0),
+                                            child: FFButtonWidget(
+                                              onPressed: () async {
+                                                _model.isRegister =
+                                                    !_model.isRegister;
+                                                setState(() {});
+                                              },
+                                              text: valueOrDefault<String>(
+                                                _model.isRegister
+                                                    ? 'Назад'
+                                                    : 'Регистрация в личном кабинете',
+                                                'Регистрация в личном кабинете',
+                                              ),
+                                              options: FFButtonOptions(
+                                                width: 350.0,
+                                                height: 60.0,
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        24.0, 24.0, 24.0, 24.0),
+                                                iconPadding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                elevation: 0.0,
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
                                                       .primary,
-                                              letterSpacing: 0.0,
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        240.0),
+                                              ),
                                             ),
-                                        elevation: 0.0,
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          width: 2.0,
+                                          ),
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(240.0),
                                       ),
-                                    ),
+                                    ],
                                   ),
                                 ],
                               ),

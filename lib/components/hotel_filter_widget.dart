@@ -1048,7 +1048,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                           FlutterFlowTheme.of(context)
                                               .alternate,
                                       min: 1.0,
-                                      max: 10000.0,
+                                      max: 100000.0,
                                       value: _model.minPriceValue ??=
                                           valueOrDefault<double>(
                                         widget.initialMinPrice,
@@ -1082,11 +1082,11 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                           FlutterFlowTheme.of(context)
                                               .alternate,
                                       min: 1.0,
-                                      max: 10000.0,
+                                      max: 100000.0,
                                       value: _model.maxPriceValue ??=
                                           valueOrDefault<double>(
                                         widget.initialMaxPrice,
-                                        10000.0,
+                                        100000.0,
                                       ),
                                       label: _model.maxPriceValue
                                           ?.toStringAsFixed(0),

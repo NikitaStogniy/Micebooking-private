@@ -1,5 +1,4 @@
 import '/backend/schema/structs/index.dart';
-import '/components/hall_seating_comp_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/uikit/check_box/check_box_widget.dart';
 import 'edit_hall_widget.dart' show EditHallWidget;
@@ -60,8 +59,38 @@ class EditHallModel extends FlutterFlowModel<EditHallWidget> {
   FocusNode? capacityEditFocusNode;
   TextEditingController? capacityEditTextController;
   String? Function(BuildContext, String?)? capacityEditTextControllerValidator;
-  // Models for hall_seating_comp dynamic component.
-  late FlutterFlowDynamicModels<HallSeatingCompModel> hallSeatingCompModels;
+  // State field(s) for theatre widget.
+  FocusNode? theatreFocusNode;
+  TextEditingController? theatreTextController;
+  String? Function(BuildContext, String?)? theatreTextControllerValidator;
+  // State field(s) for clas widget.
+  FocusNode? clasFocusNode;
+  TextEditingController? clasTextController;
+  String? Function(BuildContext, String?)? clasTextControllerValidator;
+  // State field(s) for comm widget.
+  FocusNode? commFocusNode;
+  TextEditingController? commTextController;
+  String? Function(BuildContext, String?)? commTextControllerValidator;
+  // State field(s) for ushape widget.
+  FocusNode? ushapeFocusNode;
+  TextEditingController? ushapeTextController;
+  String? Function(BuildContext, String?)? ushapeTextControllerValidator;
+  // State field(s) for oshape widget.
+  FocusNode? oshapeFocusNode;
+  TextEditingController? oshapeTextController;
+  String? Function(BuildContext, String?)? oshapeTextControllerValidator;
+  // State field(s) for kabare widget.
+  FocusNode? kabareFocusNode;
+  TextEditingController? kabareTextController;
+  String? Function(BuildContext, String?)? kabareTextControllerValidator;
+  // State field(s) for banket widget.
+  FocusNode? banketFocusNode;
+  TextEditingController? banketTextController;
+  String? Function(BuildContext, String?)? banketTextControllerValidator;
+  // State field(s) for furshet widget.
+  FocusNode? furshetFocusNode;
+  TextEditingController? furshetTextController;
+  String? Function(BuildContext, String?)? furshetTextControllerValidator;
   // Models for checkBox dynamic component.
   late FlutterFlowDynamicModels<CheckBoxModel> checkBoxModels;
   // State field(s) for price_edit widget.
@@ -75,8 +104,6 @@ class EditHallModel extends FlutterFlowModel<EditHallWidget> {
 
   @override
   void initState(BuildContext context) {
-    hallSeatingCompModels =
-        FlutterFlowDynamicModels(() => HallSeatingCompModel());
     checkBoxModels = FlutterFlowDynamicModels(() => CheckBoxModel());
   }
 
@@ -94,7 +121,30 @@ class EditHallModel extends FlutterFlowModel<EditHallWidget> {
     capacityEditFocusNode?.dispose();
     capacityEditTextController?.dispose();
 
-    hallSeatingCompModels.dispose();
+    theatreFocusNode?.dispose();
+    theatreTextController?.dispose();
+
+    clasFocusNode?.dispose();
+    clasTextController?.dispose();
+
+    commFocusNode?.dispose();
+    commTextController?.dispose();
+
+    ushapeFocusNode?.dispose();
+    ushapeTextController?.dispose();
+
+    oshapeFocusNode?.dispose();
+    oshapeTextController?.dispose();
+
+    kabareFocusNode?.dispose();
+    kabareTextController?.dispose();
+
+    banketFocusNode?.dispose();
+    banketTextController?.dispose();
+
+    furshetFocusNode?.dispose();
+    furshetTextController?.dispose();
+
     checkBoxModels.dispose();
     priceEditFocusNode?.dispose();
     priceEditTextController?.dispose();

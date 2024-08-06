@@ -1760,8 +1760,6 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                                                     label:
                                                                         listViewServiceRow
                                                                             .name,
-                                                                    charLimit:
-                                                                        20000,
                                                                     onClick:
                                                                         () async {
                                                                       if (_model
@@ -1847,6 +1845,20 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                               'isVisible': false,
                               'city_name': _model.dropDownValue,
                             });
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Ваш отель успешно отправлен на модерацию! После проверки он появится в общем списке',
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                                duration: const Duration(milliseconds: 8000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).secondary,
+                              ),
+                            );
                             await widget.doneCallback?.call(
                               valueOrDefault<int>(
                                 _model.newHot?.id,
@@ -1921,6 +1933,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                   final editHotelHotelRow = editHotelHotelRowList.isNotEmpty
                       ? editHotelHotelRowList.first
                       : null;
+
                   return wrapWithModel(
                     model: _model.editHotelModel,
                     updateCallback: () => setState(() {}),

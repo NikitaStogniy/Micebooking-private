@@ -11,19 +11,21 @@ class LoginHomePopUpModel extends FlutterFlowModel<LoginHomePopUpWidget> {
 
   bool isHotel = true;
 
+  String? lastEmail;
+
   ///  State fields for stateful widgets in this component.
 
   final formKey1 = GlobalKey<FormState>();
   final formKey2 = GlobalKey<FormState>();
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
-  TextEditingController? emailTextController1;
-  String? Function(BuildContext, String?)? emailTextController1Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? passwordTextController1;
-  late bool passwordVisibility1;
-  String? Function(BuildContext, String?)? passwordTextController1Validator;
+  // State field(s) for email_log widget.
+  FocusNode? emailLogFocusNode;
+  TextEditingController? emailLogTextController;
+  String? Function(BuildContext, String?)? emailLogTextControllerValidator;
+  // State field(s) for password_log widget.
+  FocusNode? passwordLogFocusNode;
+  TextEditingController? passwordLogTextController;
+  late bool passwordLogVisibility;
+  String? Function(BuildContext, String?)? passwordLogTextControllerValidator;
   // State field(s) for fio widget.
   FocusNode? fioFocusNode;
   TextEditingController? fioTextController;
@@ -44,26 +46,28 @@ class LoginHomePopUpModel extends FlutterFlowModel<LoginHomePopUpWidget> {
   // State field(s) for password widget.
   FocusNode? passwordFocusNode;
   TextEditingController? passwordTextController;
-  late bool passwordVisibility2;
+  late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordTextControllerValidator;
   // State field(s) for Checkbox widget.
   bool? checkboxValue;
+  // Stores action output result for [Backend Call - Query Rows] action in Button widget.
+  List<UsersRow>? userCheck;
   // Stores action output result for [Backend Call - Insert Row] action in Button widget.
   UsersRow? newUserClient;
 
   @override
   void initState(BuildContext context) {
-    passwordVisibility1 = false;
-    passwordVisibility2 = false;
+    passwordLogVisibility = false;
+    passwordVisibility = false;
   }
 
   @override
   void dispose() {
-    textFieldFocusNode1?.dispose();
-    emailTextController1?.dispose();
+    emailLogFocusNode?.dispose();
+    emailLogTextController?.dispose();
 
-    textFieldFocusNode2?.dispose();
-    passwordTextController1?.dispose();
+    passwordLogFocusNode?.dispose();
+    passwordLogTextController?.dispose();
 
     fioFocusNode?.dispose();
     fioTextController?.dispose();

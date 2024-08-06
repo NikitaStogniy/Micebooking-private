@@ -486,6 +486,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                 final containerRequestsRow = containerRequestsRowList.isNotEmpty
                     ? containerRequestsRowList.first
                     : null;
+
                 return Container(
                   decoration: const BoxDecoration(),
                   child: Column(
@@ -627,6 +628,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                           final columnHotelRow = columnHotelRowList.isNotEmpty
                               ? columnHotelRowList.first
                               : null;
+
                           return Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -661,6 +663,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                       columnUsersRowList.isNotEmpty
                                           ? columnUsersRowList.first
                                           : null;
+
                                   return Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
@@ -1454,13 +1457,14 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                   ),
                                 ),
                                 Container(
-                                  width: 250,
+                              width: 250,
                                   height: 40,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
                                   ),
                                   child: Align(
+
                                     alignment: const AlignmentDirectional(-1, 0),
                                     child: Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
@@ -1478,6 +1482,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryText,
+
                                               fontSize: 19,
                                               letterSpacing: 0,
                                               fontWeight: FontWeight.w600,

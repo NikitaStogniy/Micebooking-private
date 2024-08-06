@@ -65,6 +65,7 @@ class _PopUpPPWidgetState extends State<PopUpPPWidget> {
 
         final containerCmsRow =
             containerCmsRowList.isNotEmpty ? containerCmsRowList.first : null;
+
         return Container(
           width: MediaQuery.sizeOf(context).width * 0.9,
           height: MediaQuery.sizeOf(context).height * 0.9,

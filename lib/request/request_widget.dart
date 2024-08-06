@@ -114,6 +114,7 @@ class _RequestWidgetState extends State<RequestWidget> {
 
         final requestUsersRow =
             requestUsersRowList.isNotEmpty ? requestUsersRowList.first : null;
+
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -156,6 +157,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                               clientProfile: () async {},
                               clientRequest: () async {},
                               clientFavorite: () async {},
+                              searchAction: () async {},
                             ),
                           ),
                         ),
@@ -612,6 +614,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                   ? columnHotelRowList
                                                                       .first
                                                                   : null;
+
                                                           return Column(
                                                             mainAxisSize:
                                                                 MainAxisSize
@@ -1425,7 +1428,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                               .showSnackBar(
                                             SnackBar(
                                               content: Text(
-                                                'Ваш запрос отрпавлен по адресу ${requestUsersRow?.email}',
+                                                'Ваш запрос отправлен по адресу ${requestUsersRow?.email}',
                                                 style: TextStyle(
                                                   color: FlutterFlowTheme.of(
                                                           context)

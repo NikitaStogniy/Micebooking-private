@@ -3,6 +3,7 @@ import '/backend/schema/enums/enums.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/mobile_menu_widget.dart';
 import '/components/support_bottomsheet_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -19,14 +20,19 @@ class MenuWidget extends StatefulWidget {
     this.clientProfile,
     this.clientRequest,
     this.clientFavorite,
+    bool? search,
+    this.searchAction,
   })  : isBlue = isBlue ?? false,
-        page = page ?? 'home';
+        page = page ?? 'home',
+        search = search ?? false;
 
   final bool isBlue;
   final String page;
   final Future Function()? clientProfile;
   final Future Function()? clientRequest;
   final Future Function()? clientFavorite;
+  final bool search;
+  final Future Function()? searchAction;
 
   @override
   State<MenuWidget> createState() => _MenuWidgetState();
@@ -90,6 +96,7 @@ class _MenuWidgetState extends State<MenuWidget> {
               final containerUsersRow = containerUsersRowList.isNotEmpty
                   ? containerUsersRowList.first
                   : null;
+
               return Container(
                 width: double.infinity,
                 height: MediaQuery.sizeOf(context).width < 1000.0 ? 50.0 : 85.0,
@@ -449,59 +456,86 @@ class _MenuWidgetState extends State<MenuWidget> {
                             ),
                           ),
                         ),
-                      if (responsiveVisibility(
-                        context: context,
-                        tabletLandscape: false,
-                        desktop: false,
-                      ))
-                        Align(
-                          alignment: const AlignmentDirectional(1.0, 0.0),
-                          child: Builder(
-                            builder: (context) => Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 16.0, 0.0),
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  await showDialog(
+                      Align(
+                        alignment: const AlignmentDirectional(1.0, 0.0),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 16.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              if ((widget.search == true) &&
+                                  responsiveVisibility(
                                     context: context,
-                                    builder: (dialogContext) {
-                                      return Dialog(
-                                        elevation: 0,
-                                        insetPadding: EdgeInsets.zero,
-                                        backgroundColor: Colors.transparent,
-                                        alignment:
-                                            const AlignmentDirectional(1.0, -1.0)
+                                    tabletLandscape: false,
+                                    desktop: false,
+                                  ))
+                                FlutterFlowIconButton(
+                                  borderRadius: 20.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 48.0,
+                                  icon: Icon(
+                                    Icons.search_rounded,
+                                    color: widget.isBlue
+                                        ? Colors.white
+                                        : FlutterFlowTheme.of(context).primary,
+                                    size: 24.0,
+                                  ),
+                                  onPressed: () async {
+                                    await widget.searchAction?.call();
+                                  },
+                                ),
+                              if (responsiveVisibility(
+                                context: context,
+                                tabletLandscape: false,
+                                desktop: false,
+                              ))
+                                Builder(
+                                  builder: (context) => InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (dialogContext) {
+                                          return Dialog(
+                                            elevation: 0,
+                                            insetPadding: EdgeInsets.zero,
+                                            backgroundColor: Colors.transparent,
+                                            alignment: const AlignmentDirectional(
+                                                    1.0, -1.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                        child: const MobileMenuWidget(),
-                                      );
+                                            child: const MobileMenuWidget(),
+                                          );
+                                        },
+                                      ).then((value) => setState(() {}));
                                     },
-                                  ).then((value) => setState(() {}));
-                                },
-                                child: Container(
-                                  width: 48.0,
-                                  height: 48.0,
-                                  decoration: const BoxDecoration(),
-                                  child: Align(
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
-                                    child: Icon(
-                                      Icons.menu_rounded,
-                                      color: widget.isBlue
-                                          ? Colors.white
-                                          : FlutterFlowTheme.of(context)
-                                              .primary,
-                                      size: 24.0,
+                                    child: Container(
+                                      width: 48.0,
+                                      height: 48.0,
+                                      decoration: const BoxDecoration(),
+                                      child: Align(
+                                        alignment:
+                                            const AlignmentDirectional(0.0, 0.0),
+                                        child: Icon(
+                                          Icons.menu_rounded,
+                                          color: widget.isBlue
+                                              ? Colors.white
+                                              : FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          size: 24.0,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ),
+                            ].divide(const SizedBox(width: 16.0)),
                           ),
                         ),
+                      ),
                       if (!widget.isBlue &&
                           responsiveVisibility(
                             context: context,

@@ -122,6 +122,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
         final editRequestPageUsersRow = editRequestPageUsersRowList.isNotEmpty
             ? editRequestPageUsersRowList.first
             : null;
+
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -157,6 +158,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                               clientProfile: () async {},
                               clientRequest: () async {},
                               clientFavorite: () async {},
+                              searchAction: () async {},
                             ),
                           ),
                         ),
@@ -195,43 +197,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                       32.0, 0.0, 0.0, 0.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
-                                      if (_model.chosenHotels.length == 1) {
-                                        _model.step = 0;
-                                        _model.removeFromChosenHotels(
-                                            _model.choosedHotel!);
-                                        _model.chosenHotelName = null;
-                                        _model.chosenFood = [];
-                                        _model.choosenHall = [];
-                                        _model.choosenRooms = [];
-                                        _model.listHallRequest = [];
-                                        _model.listFoodRequest = [];
-                                        _model.listRoomRequest = [];
-                                        _model.foodIsOpen = false;
-                                        _model.roomsIsOpen = false;
-                                        _model.foodIsSkip = false;
-                                        _model.roomisSkip = false;
-                                        setState(() {});
-                                        _model.choosedHotel = null;
-                                        setState(() {});
-                                      } else {
-                                        _model.step = 0;
-                                        _model.removeFromChosenHotels(
-                                            _model.choosedHotel!);
-                                        _model.chosenHotelName = null;
-                                        _model.chosenFood = [];
-                                        _model.choosenHall = [];
-                                        _model.choosenRooms = [];
-                                        _model.listHallRequest = [];
-                                        _model.listFoodRequest = [];
-                                        _model.listRoomRequest = [];
-                                        _model.foodIsOpen = false;
-                                        _model.roomsIsOpen = false;
-                                        _model.foodIsSkip = false;
-                                        _model.roomisSkip = false;
-                                        setState(() {});
-                                        _model.choosedHotel = null;
-                                        setState(() {});
-                                      }
+                                      context.safePop();
                                     },
                                     text: 'Назад',
                                     icon: const Icon(
@@ -305,6 +271,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                             final columnHotelRow = columnHotelRowList.isNotEmpty
                                 ? columnHotelRowList.first
                                 : null;
+
                             return Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -352,6 +319,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                             hallChooseHotelRowList.isNotEmpty
                                 ? hallChooseHotelRowList.first
                                 : null;
+
                         return Container(
                           constraints: const BoxConstraints(
                             maxWidth: 1250.0,
@@ -378,10 +346,12 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                 decoration: const BoxDecoration(),
                                 child: FutureBuilder<List<HallRow>>(
                                   future: HallTable().queryRows(
-                                    queryFn: (q) => q.in_(
-                                      'id',
-                                      hallChooseHotelRow!.hall,
-                                    ),
+                                    queryFn: (q) => q
+                                        .in_(
+                                          'id',
+                                          hallChooseHotelRow!.hall,
+                                        )
+                                        .order('name', ascending: true),
                                   ),
                                   builder: (context, snapshot) {
                                     // Customize what your widget looks like when it's loading.
@@ -454,6 +424,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                     ? clientHallEditComponentRequestsHallVarRowList
                                                         .first
                                                     : null;
+
                                             return wrapWithModel(
                                               model: _model
                                                   .clientHallEditComponentModels
@@ -527,6 +498,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                               ?.id,
                                                       'request_id':
                                                           widget.request?.id,
+                                                      'seating': seating,
                                                     });
                                                     _model.addToListHallRequest(
                                                         _model.newHallRequstVAr!
@@ -548,7 +520,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                           },
                                         );
                                       })
-                                          .divide(const SizedBox(height: 16.0))
+                                          .divide(const SizedBox(height: 32.0))
                                           .addToStart(const SizedBox(height: 24.0))
                                           .addToEnd(const SizedBox(height: 72.0)),
                                     );
@@ -658,274 +630,286 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                             foodChoseHotelRowList.isNotEmpty
                                 ? foodChoseHotelRowList.first
                                 : null;
+
                         return Container(
                           constraints: const BoxConstraints(
                             maxWidth: 1250.0,
                           ),
                           decoration: const BoxDecoration(),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Варианты питания',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Commissioner',
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      fontSize: 24.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.bold,
+                          child: Visibility(
+                            visible: foodChoseHotelRow!.food.isNotEmpty,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Варианты питания',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Commissioner',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        fontSize: 24.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ),
+                                Container(
+                                  decoration: const BoxDecoration(),
+                                  child: FutureBuilder<List<FoodRow>>(
+                                    future: FoodTable().queryRows(
+                                      queryFn: (q) => q.in_(
+                                        'id',
+                                        foodChoseHotelRow.food,
+                                      ),
                                     ),
-                              ),
-                              Container(
-                                decoration: const BoxDecoration(),
-                                child: FutureBuilder<List<FoodRow>>(
-                                  future: FoodTable().queryRows(
-                                    queryFn: (q) => q.in_(
-                                      'id',
-                                      foodChoseHotelRow!.food,
-                                    ),
-                                  ),
-                                  builder: (context, snapshot) {
-                                    // Customize what your widget looks like when it's loading.
-                                    if (!snapshot.hasData) {
-                                      return Center(
-                                        child: SizedBox(
-                                          width: 50.0,
-                                          height: 50.0,
-                                          child: CircularProgressIndicator(
-                                            valueColor:
-                                                AlwaysStoppedAnimation<Color>(
-                                              FlutterFlowTheme.of(context)
-                                                  .primary,
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50.0,
+                                            height: 50.0,
+                                            child: CircularProgressIndicator(
+                                              valueColor:
+                                                  AlwaysStoppedAnimation<Color>(
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      );
-                                    }
-                                    List<FoodRow> columnFoodRowList =
-                                        snapshot.data!;
+                                        );
+                                      }
+                                      List<FoodRow> columnFoodRowList =
+                                          snapshot.data!;
 
-                                    return Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: List.generate(
-                                              columnFoodRowList.length,
-                                              (columnIndex) {
-                                        final columnFoodRow =
-                                            columnFoodRowList[columnIndex];
-                                        return FutureBuilder<
-                                            List<RequestsFoodVarRow>>(
-                                          future: RequestsFoodVarTable()
-                                              .querySingleRow(
-                                            queryFn: (q) => q
-                                                .eq(
-                                                  'food_id',
-                                                  columnFoodRow.id,
-                                                )
-                                                .eq(
-                                                  'request_id',
-                                                  widget.request?.id,
-                                                ),
-                                          ),
-                                          builder: (context, snapshot) {
-                                            // Customize what your widget looks like when it's loading.
-                                            if (!snapshot.hasData) {
-                                              return Center(
-                                                child: SizedBox(
-                                                  width: 50.0,
-                                                  height: 50.0,
-                                                  child:
-                                                      CircularProgressIndicator(
-                                                    valueColor:
-                                                        AlwaysStoppedAnimation<
-                                                            Color>(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
+                                      return Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: List.generate(
+                                                columnFoodRowList.length,
+                                                (columnIndex) {
+                                          final columnFoodRow =
+                                              columnFoodRowList[columnIndex];
+                                          return FutureBuilder<
+                                              List<RequestsFoodVarRow>>(
+                                            future: RequestsFoodVarTable()
+                                                .querySingleRow(
+                                              queryFn: (q) => q
+                                                  .eq(
+                                                    'food_id',
+                                                    columnFoodRow.id,
+                                                  )
+                                                  .eq(
+                                                    'request_id',
+                                                    widget.request?.id,
+                                                  ),
+                                            ),
+                                            builder: (context, snapshot) {
+                                              // Customize what your widget looks like when it's loading.
+                                              if (!snapshot.hasData) {
+                                                return Center(
+                                                  child: SizedBox(
+                                                    width: 50.0,
+                                                    height: 50.0,
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                      valueColor:
+                                                          AlwaysStoppedAnimation<
+                                                              Color>(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primary,
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
-                                              );
-                                            }
-                                            List<RequestsFoodVarRow>
-                                                editFoodComponentRequestsFoodVarRowList =
-                                                snapshot.data!;
+                                                );
+                                              }
+                                              List<RequestsFoodVarRow>
+                                                  editFoodComponentRequestsFoodVarRowList =
+                                                  snapshot.data!;
 
-                                            final editFoodComponentRequestsFoodVarRow =
-                                                editFoodComponentRequestsFoodVarRowList
-                                                        .isNotEmpty
-                                                    ? editFoodComponentRequestsFoodVarRowList
-                                                        .first
-                                                    : null;
-                                            return wrapWithModel(
-                                              model: _model
-                                                  .editFoodComponentModels
-                                                  .getModel(
-                                                columnFoodRow.id.toString(),
-                                                columnIndex,
-                                              ),
-                                              updateCallback: () =>
-                                                  setState(() {}),
-                                              child: EditFoodComponentWidget(
-                                                key: Key(
-                                                  'Keys1r_${columnFoodRow.id.toString()}',
+                                              final editFoodComponentRequestsFoodVarRow =
+                                                  editFoodComponentRequestsFoodVarRowList
+                                                          .isNotEmpty
+                                                      ? editFoodComponentRequestsFoodVarRowList
+                                                          .first
+                                                      : null;
+
+                                              return wrapWithModel(
+                                                model: _model
+                                                    .editFoodComponentModels
+                                                    .getModel(
+                                                  columnFoodRow.id.toString(),
+                                                  columnIndex,
                                                 ),
-                                                isChosen: _model.chosenFood
-                                                        .contains(
-                                                            columnFoodRow.id) ==
-                                                    true,
-                                                food: columnFoodRow,
-                                                request:
-                                                    editFoodComponentRequestsFoodVarRow,
-                                                chooseAction: (foodId,
-                                                    name,
-                                                    count,
-                                                    persons,
-                                                    price) async {
-                                                  if (_model.chosenFood
+                                                updateCallback: () =>
+                                                    setState(() {}),
+                                                child: EditFoodComponentWidget(
+                                                  key: Key(
+                                                    'Keys1r_${columnFoodRow.id.toString()}',
+                                                  ),
+                                                  isChosen: _model.chosenFood
                                                           .contains(
                                                               columnFoodRow
                                                                   .id) ==
-                                                      true) {
-                                                    _model.removeFromChosenFood(
-                                                        columnFoodRow.id);
-                                                    _model.removeFromFoodPrice(
-                                                        price!);
-                                                    setState(() {});
-                                                    await RequestsFoodVarTable()
-                                                        .delete(
-                                                      matchingRows: (rows) =>
-                                                          rows
-                                                              .eq(
-                                                                'food_id',
+                                                      true,
+                                                  food: columnFoodRow,
+                                                  request:
+                                                      editFoodComponentRequestsFoodVarRow,
+                                                  chooseAction: (foodId,
+                                                      name,
+                                                      count,
+                                                      persons,
+                                                      price) async {
+                                                    if (_model.chosenFood
+                                                            .contains(
                                                                 columnFoodRow
-                                                                    .id,
-                                                              )
-                                                              .eq(
-                                                                'request_id',
-                                                                widget.request
-                                                                    ?.id,
-                                                              ),
-                                                    );
-                                                  } else {
-                                                    _model.addToChosenFood(
-                                                        columnFoodRow.id);
-                                                    setState(() {});
-                                                    _model.newFoodRequstVar =
-                                                        await RequestsFoodVarTable()
-                                                            .insert({
-                                                      'price': price,
-                                                      'owner':
-                                                          editRequestPageUsersRow
-                                                              ?.id,
-                                                      'food_id': foodId,
-                                                      'count': count,
-                                                      'persons_count': persons,
-                                                      'name': name,
-                                                      'request_id':
-                                                          widget.request?.id,
-                                                    });
-                                                    _model.addToListFoodRequest(
-                                                        _model.newFoodRequstVar!
-                                                            .id);
-                                                    _model.addToFoodPrice(_model
-                                                        .newFoodRequstVar!
-                                                        .price!);
-                                                    setState(() {});
-                                                  }
+                                                                    .id) ==
+                                                        true) {
+                                                      _model
+                                                          .removeFromChosenFood(
+                                                              columnFoodRow.id);
+                                                      _model
+                                                          .removeFromFoodPrice(
+                                                              price!);
+                                                      setState(() {});
+                                                      await RequestsFoodVarTable()
+                                                          .delete(
+                                                        matchingRows: (rows) =>
+                                                            rows
+                                                                .eq(
+                                                                  'food_id',
+                                                                  columnFoodRow
+                                                                      .id,
+                                                                )
+                                                                .eq(
+                                                                  'request_id',
+                                                                  widget
+                                                                      .request
+                                                                      ?.id,
+                                                                ),
+                                                      );
+                                                    } else {
+                                                      _model.addToChosenFood(
+                                                          columnFoodRow.id);
+                                                      setState(() {});
+                                                      _model.newFoodRequstVar =
+                                                          await RequestsFoodVarTable()
+                                                              .insert({
+                                                        'price': price,
+                                                        'owner':
+                                                            editRequestPageUsersRow
+                                                                ?.id,
+                                                        'food_id': foodId,
+                                                        'count': count,
+                                                        'persons_count':
+                                                            persons,
+                                                        'name': name,
+                                                        'request_id':
+                                                            widget.request?.id,
+                                                      });
+                                                      _model.addToListFoodRequest(
+                                                          _model
+                                                              .newFoodRequstVar!
+                                                              .id);
+                                                      _model.addToFoodPrice(
+                                                          _model
+                                                              .newFoodRequstVar!
+                                                              .price!);
+                                                      setState(() {});
+                                                    }
 
-                                                  setState(() {});
-                                                },
-                                                onLoad: (price) async {
-                                                  _model.addToFoodPrice(price!);
-                                                  setState(() {});
-                                                },
-                                              ),
-                                            );
-                                          },
-                                        );
-                                      })
-                                          .divide(const SizedBox(height: 16.0))
-                                          .addToStart(const SizedBox(height: 24.0))
-                                          .addToEnd(const SizedBox(height: 72.0)),
-                                    );
-                                  },
+                                                    setState(() {});
+                                                  },
+                                                  onLoad: (price) async {
+                                                    _model
+                                                        .addToFoodPrice(price!);
+                                                    setState(() {});
+                                                  },
+                                                ),
+                                              );
+                                            },
+                                          );
+                                        })
+                                            .divide(const SizedBox(height: 32.0))
+                                            .addToStart(const SizedBox(height: 24.0))
+                                            .addToEnd(const SizedBox(height: 72.0)),
+                                      );
+                                    },
+                                  ),
                                 ),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  if (_model.foodPrice.isNotEmpty)
-                                    Expanded(
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.end,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 2.0),
-                                                child: Text(
-                                                  'Итоговая сумма',
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    if (_model.foodPrice.isNotEmpty)
+                                      Expanded(
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.end,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 0.0, 2.0),
+                                                  child: Text(
+                                                    'Итоговая сумма',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                          fontSize: 18.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  '${formatNumber(
+                                                    functions.sumList(_model
+                                                        .foodPrice
+                                                        .toList()),
+                                                    formatType:
+                                                        FormatType.decimal,
+                                                    decimalType:
+                                                        DecimalType.automatic,
+                                                  )} руб',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
                                                             'Commissioner',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        fontSize: 18.0,
+                                                        fontSize: 34.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.bold,
                                                       ),
                                                 ),
-                                              ),
-                                              Text(
-                                                '${formatNumber(
-                                                  functions.sumList(_model
-                                                      .foodPrice
-                                                      .toList()),
-                                                  formatType:
-                                                      FormatType.decimal,
-                                                  decimalType:
-                                                      DecimalType.automatic,
-                                                )} руб',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          fontSize: 34.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                                              ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                ],
-                              ),
-                            ]
-                                .divide(const SizedBox(height: 48.0))
-                                .addToStart(const SizedBox(height: 48.0))
-                                .addToEnd(const SizedBox(height: 72.0)),
+                                  ],
+                                ),
+                              ]
+                                  .divide(const SizedBox(height: 48.0))
+                                  .addToStart(const SizedBox(height: 48.0))
+                                  .addToEnd(const SizedBox(height: 72.0)),
+                            ),
                           ),
                         );
                       },
@@ -958,272 +942,283 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                             roomChooseHotelRowList.isNotEmpty
                                 ? roomChooseHotelRowList.first
                                 : null;
+
                         return Container(
                           constraints: const BoxConstraints(
                             maxWidth: 1250.0,
                           ),
                           decoration: const BoxDecoration(),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Варианты проживания',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Commissioner',
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      fontSize: 24.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.bold,
+                          child: Visibility(
+                            visible: roomChooseHotelRow!.rooms.isNotEmpty,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Варианты проживания',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Commissioner',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        fontSize: 24.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ),
+                                Container(
+                                  decoration: const BoxDecoration(),
+                                  child: FutureBuilder<List<RoomRow>>(
+                                    future: RoomTable().queryRows(
+                                      queryFn: (q) => q.in_(
+                                        'id',
+                                        roomChooseHotelRow.rooms,
+                                      ),
                                     ),
-                              ),
-                              Container(
-                                decoration: const BoxDecoration(),
-                                child: FutureBuilder<List<RoomRow>>(
-                                  future: RoomTable().queryRows(
-                                    queryFn: (q) => q.in_(
-                                      'id',
-                                      roomChooseHotelRow!.rooms,
-                                    ),
-                                  ),
-                                  builder: (context, snapshot) {
-                                    // Customize what your widget looks like when it's loading.
-                                    if (!snapshot.hasData) {
-                                      return Center(
-                                        child: SizedBox(
-                                          width: 50.0,
-                                          height: 50.0,
-                                          child: CircularProgressIndicator(
-                                            valueColor:
-                                                AlwaysStoppedAnimation<Color>(
-                                              FlutterFlowTheme.of(context)
-                                                  .primary,
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50.0,
+                                            height: 50.0,
+                                            child: CircularProgressIndicator(
+                                              valueColor:
+                                                  AlwaysStoppedAnimation<Color>(
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      );
-                                    }
-                                    List<RoomRow> columnRoomRowList =
-                                        snapshot.data!;
+                                        );
+                                      }
+                                      List<RoomRow> columnRoomRowList =
+                                          snapshot.data!;
 
-                                    return Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: List.generate(
-                                              columnRoomRowList.length,
-                                              (columnIndex) {
-                                        final columnRoomRow =
-                                            columnRoomRowList[columnIndex];
-                                        return FutureBuilder<
-                                            List<RequestsRoomVarRow>>(
-                                          future: RequestsRoomVarTable()
-                                              .querySingleRow(
-                                            queryFn: (q) => q
-                                                .eq(
-                                                  'room_id',
-                                                  columnRoomRow.id,
-                                                )
-                                                .eq(
-                                                  'request_id',
-                                                  widget.request?.id,
-                                                ),
-                                          ),
-                                          builder: (context, snapshot) {
-                                            // Customize what your widget looks like when it's loading.
-                                            if (!snapshot.hasData) {
-                                              return Center(
-                                                child: SizedBox(
-                                                  width: 50.0,
-                                                  height: 50.0,
-                                                  child:
-                                                      CircularProgressIndicator(
-                                                    valueColor:
-                                                        AlwaysStoppedAnimation<
-                                                            Color>(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
+                                      return Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: List.generate(
+                                                columnRoomRowList.length,
+                                                (columnIndex) {
+                                          final columnRoomRow =
+                                              columnRoomRowList[columnIndex];
+                                          return FutureBuilder<
+                                              List<RequestsRoomVarRow>>(
+                                            future: RequestsRoomVarTable()
+                                                .querySingleRow(
+                                              queryFn: (q) => q
+                                                  .eq(
+                                                    'room_id',
+                                                    columnRoomRow.id,
+                                                  )
+                                                  .eq(
+                                                    'request_id',
+                                                    widget.request?.id,
+                                                  ),
+                                            ),
+                                            builder: (context, snapshot) {
+                                              // Customize what your widget looks like when it's loading.
+                                              if (!snapshot.hasData) {
+                                                return Center(
+                                                  child: SizedBox(
+                                                    width: 50.0,
+                                                    height: 50.0,
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                      valueColor:
+                                                          AlwaysStoppedAnimation<
+                                                              Color>(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primary,
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
-                                              );
-                                            }
-                                            List<RequestsRoomVarRow>
-                                                editRoomComponentRequestsRoomVarRowList =
-                                                snapshot.data!;
+                                                );
+                                              }
+                                              List<RequestsRoomVarRow>
+                                                  editRoomComponentRequestsRoomVarRowList =
+                                                  snapshot.data!;
 
-                                            final editRoomComponentRequestsRoomVarRow =
-                                                editRoomComponentRequestsRoomVarRowList
-                                                        .isNotEmpty
-                                                    ? editRoomComponentRequestsRoomVarRowList
-                                                        .first
-                                                    : null;
-                                            return wrapWithModel(
-                                              model: _model
-                                                  .editRoomComponentModels
-                                                  .getModel(
-                                                columnRoomRow.id.toString(),
-                                                columnIndex,
-                                              ),
-                                              updateCallback: () =>
-                                                  setState(() {}),
-                                              child: EditRoomComponentWidget(
-                                                key: Key(
-                                                  'Keys7b_${columnRoomRow.id.toString()}',
+                                              final editRoomComponentRequestsRoomVarRow =
+                                                  editRoomComponentRequestsRoomVarRowList
+                                                          .isNotEmpty
+                                                      ? editRoomComponentRequestsRoomVarRowList
+                                                          .first
+                                                      : null;
+
+                                              return wrapWithModel(
+                                                model: _model
+                                                    .editRoomComponentModels
+                                                    .getModel(
+                                                  columnRoomRow.id.toString(),
+                                                  columnIndex,
                                                 ),
-                                                isChosen: _model.choosenRooms
-                                                        .contains(
-                                                            columnRoomRow.id) ==
-                                                    true,
-                                                room: columnRoomRow,
-                                                request:
-                                                    editRoomComponentRequestsRoomVarRow,
-                                                choseAction: (roomId, roomName,
-                                                    price, count, days) async {
-                                                  if (_model.choosenRooms
+                                                updateCallback: () =>
+                                                    setState(() {}),
+                                                child: EditRoomComponentWidget(
+                                                  key: Key(
+                                                    'Keys7b_${columnRoomRow.id.toString()}',
+                                                  ),
+                                                  isChosen: _model.choosenRooms
                                                           .contains(
                                                               columnRoomRow
                                                                   .id) ==
-                                                      true) {
-                                                    _model
-                                                        .removeFromChoosenRooms(
-                                                            columnRoomRow.id);
-                                                    _model.removeFromRoomPrice(
-                                                        price!);
-                                                    setState(() {});
-                                                    await RequestsRoomVarTable()
-                                                        .delete(
-                                                      matchingRows: (rows) =>
-                                                          rows
-                                                              .eq(
-                                                                'room_id',
+                                                      true,
+                                                  room: columnRoomRow,
+                                                  request:
+                                                      editRoomComponentRequestsRoomVarRow,
+                                                  choseAction: (roomId,
+                                                      roomName,
+                                                      price,
+                                                      count,
+                                                      days) async {
+                                                    if (_model.choosenRooms
+                                                            .contains(
                                                                 columnRoomRow
-                                                                    .id,
-                                                              )
-                                                              .eq(
-                                                                'request_id',
-                                                                widget.request
-                                                                    ?.id,
-                                                              ),
-                                                    );
-                                                  } else {
-                                                    _model.addToChoosenRooms(
-                                                        columnRoomRow.id);
+                                                                    .id) ==
+                                                        true) {
+                                                      _model
+                                                          .removeFromChoosenRooms(
+                                                              columnRoomRow.id);
+                                                      _model
+                                                          .removeFromRoomPrice(
+                                                              price!);
+                                                      setState(() {});
+                                                      await RequestsRoomVarTable()
+                                                          .delete(
+                                                        matchingRows: (rows) =>
+                                                            rows
+                                                                .eq(
+                                                                  'room_id',
+                                                                  columnRoomRow
+                                                                      .id,
+                                                                )
+                                                                .eq(
+                                                                  'request_id',
+                                                                  widget
+                                                                      .request
+                                                                      ?.id,
+                                                                ),
+                                                      );
+                                                    } else {
+                                                      _model.addToChoosenRooms(
+                                                          columnRoomRow.id);
+                                                      setState(() {});
+                                                      _model.newRoomRequestVar =
+                                                          await RequestsRoomVarTable()
+                                                              .insert({
+                                                        'room_id': roomId,
+                                                        'days': days,
+                                                        'price': price,
+                                                        'room_name': roomName,
+                                                        'room_count': count,
+                                                        'owner':
+                                                            editRequestPageUsersRow
+                                                                ?.id,
+                                                        'request_id':
+                                                            widget.request?.id,
+                                                      });
+                                                      _model.addToListRoomRequest(
+                                                          _model
+                                                              .newRoomRequestVar!
+                                                              .id);
+                                                      _model.addToRoomPrice(
+                                                          price!);
+                                                      setState(() {});
+                                                    }
+
                                                     setState(() {});
-                                                    _model.newRoomRequestVar =
-                                                        await RequestsRoomVarTable()
-                                                            .insert({
-                                                      'room_id': roomId,
-                                                      'days': days,
-                                                      'price': price,
-                                                      'room_name': roomName,
-                                                      'room_count': count,
-                                                      'owner':
-                                                          editRequestPageUsersRow
-                                                              ?.id,
-                                                      'request_id':
-                                                          widget.request?.id,
-                                                    });
-                                                    _model.addToListRoomRequest(
-                                                        _model
-                                                            .newRoomRequestVar!
-                                                            .id);
+                                                  },
+                                                  onLoad: (price) async {
                                                     _model
                                                         .addToRoomPrice(price!);
                                                     setState(() {});
-                                                  }
-
-                                                  setState(() {});
-                                                },
-                                                onLoad: (price) async {
-                                                  _model.addToRoomPrice(price!);
-                                                  setState(() {});
-                                                },
-                                              ),
-                                            );
-                                          },
-                                        );
-                                      })
-                                          .divide(const SizedBox(height: 16.0))
-                                          .addToStart(const SizedBox(height: 24.0))
-                                          .addToEnd(const SizedBox(height: 72.0)),
-                                    );
-                                  },
+                                                  },
+                                                ),
+                                              );
+                                            },
+                                          );
+                                        })
+                                            .divide(const SizedBox(height: 32.0))
+                                            .addToStart(const SizedBox(height: 24.0))
+                                            .addToEnd(const SizedBox(height: 72.0)),
+                                      );
+                                    },
+                                  ),
                                 ),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  if (_model.roomPrice.isNotEmpty)
-                                    Expanded(
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.end,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 2.0),
-                                                child: Text(
-                                                  'Итоговая сумма',
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    if (_model.roomPrice.isNotEmpty)
+                                      Expanded(
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.end,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 0.0, 2.0),
+                                                  child: Text(
+                                                    'Итоговая сумма',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                          fontSize: 18.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  '${formatNumber(
+                                                    functions.sumList(_model
+                                                        .roomPrice
+                                                        .toList()),
+                                                    formatType:
+                                                        FormatType.decimal,
+                                                    decimalType:
+                                                        DecimalType.automatic,
+                                                  )} руб',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
                                                             'Commissioner',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        fontSize: 18.0,
+                                                        fontSize: 34.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.bold,
                                                       ),
                                                 ),
-                                              ),
-                                              Text(
-                                                '${formatNumber(
-                                                  functions.sumList(_model
-                                                      .roomPrice
-                                                      .toList()),
-                                                  formatType:
-                                                      FormatType.decimal,
-                                                  decimalType:
-                                                      DecimalType.automatic,
-                                                )} руб',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          fontSize: 34.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                                              ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                ],
-                              ),
-                            ]
-                                .divide(const SizedBox(height: 48.0))
-                                .addToStart(const SizedBox(height: 48.0))
-                                .addToEnd(const SizedBox(height: 72.0)),
+                                  ],
+                                ),
+                              ]
+                                  .divide(const SizedBox(height: 48.0))
+                                  .addToStart(const SizedBox(height: 48.0))
+                                  .addToEnd(const SizedBox(height: 72.0)),
+                            ),
                           ),
                         );
                       },

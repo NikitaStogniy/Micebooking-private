@@ -75,6 +75,7 @@ class _AboutserviceWidgetState extends State<AboutserviceWidget> {
               final containerCmsRow = containerCmsRowList.isNotEmpty
                   ? containerCmsRowList.first
                   : null;
+
               return Container(
                 width: double.infinity,
                 height: MediaQuery.sizeOf(context).height * 1.0,
@@ -117,6 +118,7 @@ class _AboutserviceWidgetState extends State<AboutserviceWidget> {
                                   clientProfile: () async {},
                                   clientRequest: () async {},
                                   clientFavorite: () async {},
+                                  searchAction: () async {},
                                 ),
                               ),
                               Column(

@@ -17,17 +17,29 @@ class ClientRoomComponentModel
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for PageView widget.
-  PageController? pageViewController;
+  PageController? pageViewController1;
 
-  int get pageViewCurrentIndex => pageViewController != null &&
-          pageViewController!.hasClients &&
-          pageViewController!.page != null
-      ? pageViewController!.page!.round()
+  int get pageViewCurrentIndex1 => pageViewController1 != null &&
+          pageViewController1!.hasClients &&
+          pageViewController1!.page != null
+      ? pageViewController1!.page!.round()
       : 0;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
+  TextEditingController? textController1;
+  String? Function(BuildContext, String?)? textController1Validator;
+  // State field(s) for PageView widget.
+  PageController? pageViewController2;
+
+  int get pageViewCurrentIndex2 => pageViewController2 != null &&
+          pageViewController2!.hasClients &&
+          pageViewController2!.page != null
+      ? pageViewController2!.page!.round()
+      : 0;
+  // State field(s) for countmob widget.
+  FocusNode? countmobFocusNode;
+  TextEditingController? countmobTextController;
+  String? Function(BuildContext, String?)? countmobTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
@@ -35,6 +47,9 @@ class ClientRoomComponentModel
   @override
   void dispose() {
     textFieldFocusNode?.dispose();
-    textController?.dispose();
+    textController1?.dispose();
+
+    countmobFocusNode?.dispose();
+    countmobTextController?.dispose();
   }
 }

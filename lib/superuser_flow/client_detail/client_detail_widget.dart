@@ -76,6 +76,7 @@ class _ClientDetailWidgetState extends State<ClientDetailWidget> {
         final containerUsersRow = containerUsersRowList.isNotEmpty
             ? containerUsersRowList.first
             : null;
+
         return Container(
           height: MediaQuery.sizeOf(context).height * 1.0,
           decoration: const BoxDecoration(),

@@ -915,6 +915,7 @@ class _ClientRequestMobForTestWidgetState
                       containerRequestsRowList.isNotEmpty
                           ? containerRequestsRowList.first
                           : null;
+
                   return Container(
                     decoration: const BoxDecoration(),
                     child: Column(
@@ -1063,6 +1064,7 @@ class _ClientRequestMobForTestWidgetState
                             final columnHotelRow = columnHotelRowList.isNotEmpty
                                 ? columnHotelRowList.first
                                 : null;
+
                             return Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -1097,6 +1099,7 @@ class _ClientRequestMobForTestWidgetState
                                         columnUsersRowList.isNotEmpty
                                             ? columnUsersRowList.first
                                             : null;
+
                                     return Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
@@ -1169,7 +1172,7 @@ class _ClientRequestMobForTestWidgetState
                             );
                           },
                         ),
-                        if (containerRequestsRow?.halls?.length != 0)
+                        if (containerRequestsRow?.halls.isNotEmpty)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1641,7 +1644,7 @@ class _ClientRequestMobForTestWidgetState
                               ),
                             ],
                           ),
-                        if (containerRequestsRow?.food?.length != 0)
+                        if (containerRequestsRow?.food.isNotEmpty)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -2106,7 +2109,7 @@ class _ClientRequestMobForTestWidgetState
                               ),
                             ],
                           ),
-                        if (containerRequestsRow?.rooms?.length != 0)
+                        if (containerRequestsRow?.rooms.isNotEmpty)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,

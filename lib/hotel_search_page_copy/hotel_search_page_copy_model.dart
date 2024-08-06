@@ -1,19 +1,17 @@
 import '/backend/supabase/supabase.dart';
 import '/components/client_food_component_widget.dart';
-import '/components/client_hall_component_widget.dart';
-import '/components/client_hotel_component_widget.dart';
+import '/components/client_hall_edit_component_widget.dart';
 import '/components/client_optional_widget.dart';
 import '/components/client_room_component_widget.dart';
 import '/components/edit_request_hotel_component_widget.dart';
 import '/components/footer_widget.dart';
-import '/components/hotel_search_comp_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/uikit/menu/menu_widget.dart';
-import 'dart:async';
-import 'hotel_search_page_widget.dart' show HotelSearchPageWidget;
+import 'hotel_search_page_copy_widget.dart' show HotelSearchPageCopyWidget;
 import 'package:flutter/material.dart';
 
-class HotelSearchPageModel extends FlutterFlowModel<HotelSearchPageWidget> {
+class HotelSearchPageCopyModel
+    extends FlutterFlowModel<HotelSearchPageCopyWidget> {
   ///  Local state fields for this page.
 
   bool isRegister = false;
@@ -233,34 +231,21 @@ class HotelSearchPageModel extends FlutterFlowModel<HotelSearchPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Backend Call - Query Rows] action in HotelSearchPage widget.
+  // Stores action output result for [Backend Call - Query Rows] action in HotelSearchPageCopy widget.
   List<HallRow>? filteredHalls;
-  Completer<List<HotelRow>>? requestCompleter;
   // Model for Menu component.
   late MenuModel menuModel;
-  // Model for HotelSearchComp component.
-  late HotelSearchCompModel hotelSearchCompModel;
   // Stores action output result for [Backend Call - Query Rows] action in Container widget.
   List<RoomRow>? rooms;
   // Stores action output result for [Backend Call - Query Rows] action in Button widget.
   List<RoomRow>? deleteFiltersRooms;
-  // Stores action output result for [Backend Call - Insert Row] action in Button widget.
-  RequestWrapperRow? requestWrapperCopy;
-  // Models for ClientHotelComponent dynamic component.
-  late FlutterFlowDynamicModels<ClientHotelComponentModel>
-      clientHotelComponentModels1;
-  // Models for ClientHotelComponent dynamic component.
-  late FlutterFlowDynamicModels<ClientHotelComponentModel>
-      clientHotelComponentModels2;
   // Model for EditRequestHotelComponent component.
   late EditRequestHotelComponentModel editRequestHotelComponentModel;
-  // Models for Client_Hall_Component dynamic component.
-  late FlutterFlowDynamicModels<ClientHallComponentModel>
-      clientHallComponentModels;
-  // Stores action output result for [Backend Call - Delete Row(s)] action in Client_Hall_Component widget.
-  List<RequestsHallVarRow>? deletedHall;
-  // Stores action output result for [Backend Call - Insert Row] action in Client_Hall_Component widget.
-  RequestsHallVarRow? hallRequest;
+  // Models for Client_Hall_Edit_Component dynamic component.
+  late FlutterFlowDynamicModels<ClientHallEditComponentModel>
+      clientHallEditComponentModels;
+  // Stores action output result for [Backend Call - Insert Row] action in Client_Hall_Edit_Component widget.
+  RequestsHallVarRow? newHallRequstVAr;
   // Models for Client_Food_Component dynamic component.
   late FlutterFlowDynamicModels<ClientFoodComponentModel>
       clientFoodComponentModels;
@@ -293,15 +278,10 @@ class HotelSearchPageModel extends FlutterFlowModel<HotelSearchPageWidget> {
   @override
   void initState(BuildContext context) {
     menuModel = createModel(context, () => MenuModel());
-    hotelSearchCompModel = createModel(context, () => HotelSearchCompModel());
-    clientHotelComponentModels1 =
-        FlutterFlowDynamicModels(() => ClientHotelComponentModel());
-    clientHotelComponentModels2 =
-        FlutterFlowDynamicModels(() => ClientHotelComponentModel());
     editRequestHotelComponentModel =
         createModel(context, () => EditRequestHotelComponentModel());
-    clientHallComponentModels =
-        FlutterFlowDynamicModels(() => ClientHallComponentModel());
+    clientHallEditComponentModels =
+        FlutterFlowDynamicModels(() => ClientHallEditComponentModel());
     clientFoodComponentModels =
         FlutterFlowDynamicModels(() => ClientFoodComponentModel());
     clientRoomComponentModels =
@@ -315,31 +295,12 @@ class HotelSearchPageModel extends FlutterFlowModel<HotelSearchPageWidget> {
   void dispose() {
     unfocusNode.dispose();
     menuModel.dispose();
-    hotelSearchCompModel.dispose();
-    clientHotelComponentModels1.dispose();
-    clientHotelComponentModels2.dispose();
     editRequestHotelComponentModel.dispose();
-    clientHallComponentModels.dispose();
+    clientHallEditComponentModels.dispose();
     clientFoodComponentModels.dispose();
     clientRoomComponentModels.dispose();
     clientOptionalModel1.dispose();
     clientOptionalModel2.dispose();
     footerModel.dispose();
-  }
-
-  /// Additional helper methods.
-  Future waitForRequestCompleted({
-    double minWait = 0,
-    double maxWait = double.infinity,
-  }) async {
-    final stopwatch = Stopwatch()..start();
-    while (true) {
-      await Future.delayed(const Duration(milliseconds: 50));
-      final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = requestCompleter?.isCompleted ?? false;
-      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
-        break;
-      }
-    }
   }
 }

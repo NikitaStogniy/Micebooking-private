@@ -141,6 +141,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
         final containerUsersRow = containerUsersRowList.isNotEmpty
             ? containerUsersRowList.first
             : null;
+
         return Container(
           constraints: const BoxConstraints(
             maxHeight: 900.0,
@@ -175,6 +176,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                   containerJuridicalInfoRowList.isNotEmpty
                       ? containerJuridicalInfoRowList.first
                       : null;
+
               return Container(
                 decoration: const BoxDecoration(),
                 child: SingleChildScrollView(

@@ -79,6 +79,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
 
         final containerHallRow =
             containerHallRowList.isNotEmpty ? containerHallRowList.first : null;
+
         return Container(
           decoration: const BoxDecoration(),
           child: SingleChildScrollView(
@@ -113,6 +114,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                     final rowHotelRow = rowHotelRowList.isNotEmpty
                         ? rowHotelRowList.first
                         : null;
+
                     return Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -145,6 +147,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                               final textCityRow = textCityRowList.isNotEmpty
                                   ? textCityRowList.first
                                   : null;
+
                               return Text(
                                 '${containerHallRow?.name}, ${textCityRow?.name}, ${rowHotelRow?.name}',
                                 style: FlutterFlowTheme.of(context)

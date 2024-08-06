@@ -80,6 +80,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
         final containerHotelRow = containerHotelRowList.isNotEmpty
             ? containerHotelRowList.first
             : null;
+
         return Container(
           decoration: const BoxDecoration(),
           child: SingleChildScrollView(
@@ -113,6 +114,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
 
                     final rowCityRow =
                         rowCityRowList.isNotEmpty ? rowCityRowList.first : null;
+
                     return Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

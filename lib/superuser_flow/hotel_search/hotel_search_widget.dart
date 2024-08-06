@@ -385,6 +385,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                     containerHotelRowList.isNotEmpty
                                         ? containerHotelRowList.first
                                         : null;
+
                                 return Container(
                                   width: MediaQuery.sizeOf(context).width * 1.0,
                                   height: 40.0,
@@ -442,6 +443,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                           rowUsersRowList.isNotEmpty
                                               ? rowUsersRowList.first
                                               : null;
+
                                       return Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [

@@ -12,6 +12,8 @@ class PCLoginCopyModel extends FlutterFlowModel<PCLoginCopyWidget> {
 
   bool isHotel = true;
 
+  String? lastEmail;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
