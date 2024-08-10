@@ -30,15 +30,15 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
 
     _model.whyusTitle1FocusNode1 ??= FocusNode();
 
-    _model.whyusText1FocusNode1 ??= FocusNode();
+    _model.whyusText1FocusNode ??= FocusNode();
 
     _model.whyusTitle2FocusNode ??= FocusNode();
 
-    _model.whyusText1FocusNode2 ??= FocusNode();
+    _model.whyusText2FocusNode ??= FocusNode();
 
     _model.whyusTitle1FocusNode2 ??= FocusNode();
 
-    _model.whyusText1FocusNode3 ??= FocusNode();
+    _model.whyusText3FocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -190,11 +190,11 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                 ),
                           ),
                           TextFormField(
-                            controller: _model.whyusText1TextController1 ??=
+                            controller: _model.whyusText1TextController ??=
                                 TextEditingController(
                               text: containerCmsRow?.text1,
                             ),
-                            focusNode: _model.whyusText1FocusNode1,
+                            focusNode: _model.whyusText1FocusNode,
                             autofocus: false,
                             readOnly: !_model.isEdit,
                             obscureText: false,
@@ -250,7 +250,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             maxLines: 8,
-                            validator: _model.whyusText1TextController1Validator
+                            validator: _model.whyusText1TextControllerValidator
                                 .asValidator(context),
                           ),
                         ].divide(const SizedBox(height: 24.0)),
@@ -359,11 +359,11 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                 ),
                           ),
                           TextFormField(
-                            controller: _model.whyusText1TextController2 ??=
+                            controller: _model.whyusText2TextController ??=
                                 TextEditingController(
                               text: containerCmsRow?.text2,
                             ),
-                            focusNode: _model.whyusText1FocusNode2,
+                            focusNode: _model.whyusText2FocusNode,
                             autofocus: false,
                             readOnly: !_model.isEdit,
                             obscureText: false,
@@ -419,7 +419,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             maxLines: 8,
-                            validator: _model.whyusText1TextController2Validator
+                            validator: _model.whyusText2TextControllerValidator
                                 .asValidator(context),
                           ),
                         ].divide(const SizedBox(height: 24.0)),
@@ -529,11 +529,11 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                 ),
                           ),
                           TextFormField(
-                            controller: _model.whyusText1TextController3 ??=
+                            controller: _model.whyusText3TextController ??=
                                 TextEditingController(
                               text: containerCmsRow?.text3,
                             ),
-                            focusNode: _model.whyusText1FocusNode3,
+                            focusNode: _model.whyusText3FocusNode,
                             autofocus: false,
                             readOnly: !_model.isEdit,
                             obscureText: false,
@@ -589,7 +589,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             maxLines: 8,
-                            validator: _model.whyusText1TextController3Validator
+                            validator: _model.whyusText3TextControllerValidator
                                 .asValidator(context),
                           ),
                         ].divide(const SizedBox(height: 24.0)),
@@ -633,10 +633,10 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                         onPressed: () async {
                           await CmsTable().update(
                             data: {
-                              'text1': _model.whyusText1TextController1.text,
-                              'text2': containerCmsRow?.text2,
+                              'text1': _model.whyusText1TextController.text,
+                              'text2': _model.whyusText2TextController.text,
                               'title1': _model.whyusTitle1TextController1.text,
-                              'text3': _model.whyusText1TextController3.text,
+                              'text3': _model.whyusText3TextController.text,
                               'title3': _model.whyusTitle1TextController2.text,
                               'title2': _model.whyusTitle2TextController.text,
                             },
@@ -676,15 +676,15 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                           setState(() {
                             _model.whyusTitle1TextController1?.text =
                                 containerCmsRow!.title1!;
-                            _model.whyusText1TextController1?.text =
+                            _model.whyusText1TextController?.text =
                                 containerCmsRow!.text1!;
-                            _model.whyusText1TextController2?.text =
+                            _model.whyusText2TextController?.text =
                                 containerCmsRow!.text2!;
                             _model.whyusTitle2TextController?.text =
                                 containerCmsRow!.title2!;
                             _model.whyusTitle1TextController2?.text =
                                 containerCmsRow!.title3!;
-                            _model.whyusText1TextController3?.text =
+                            _model.whyusText3TextController?.text =
                                 containerCmsRow!.text3!;
                           });
                           _model.image = null;

@@ -342,7 +342,7 @@ class _ClientHallEditComponentWidgetState
                                             ),
                                           );
                                         },
-                                      ).then((value) => setState(() {}));
+                                      );
                                     },
                                     child: Container(
                                       width: 32.0,
@@ -606,7 +606,7 @@ class _ClientHallEditComponentWidgetState
                                               ),
                                             );
                                           },
-                                        ).then((value) => setState(() {}));
+                                        );
                                       },
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -637,7 +637,7 @@ class _ClientHallEditComponentWidgetState
                                   ),
                                 ),
                                 Text(
-                                  'Цена за пол дня / день:',
+                                  'Цена за полдня / день:',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -1828,8 +1828,7 @@ class _ClientHallEditComponentWidgetState
                                                     ),
                                                   );
                                                 },
-                                              ).then(
-                                                  (value) => setState(() {}));
+                                              );
                                             },
                                             child: ClipRRect(
                                               borderRadius:
@@ -2051,7 +2050,7 @@ class _ClientHallEditComponentWidgetState
                               ),
                             );
                           },
-                        ).then((value) => setState(() {}));
+                        );
                       },
                       child: Row(
                         mainAxisSize: MainAxisSize.max,

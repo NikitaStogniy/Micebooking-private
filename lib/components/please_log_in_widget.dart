@@ -118,7 +118,7 @@ class _PleaseLogInWidgetState extends State<PleaseLogInWidget> {
                               ),
                             );
                           },
-                        ).then((value) => setState(() {}));
+                        );
                       },
                       text: 'Войти или создать аккаунт',
                       options: FFButtonOptions(

@@ -307,7 +307,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                               child: const ChangePasswordWidget(),
                             );
                           },
-                        ).then((value) => setState(() {}));
+                        );
                       },
                       child: Container(
                         width: 150.0,

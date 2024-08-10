@@ -26,7 +26,6 @@ class HotelHomeModel extends FlutterFlowModel<HotelHomeWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for ManagerInfo component.
   late ManagerInfoModel managerInfoModel;
   // Model for profile_hotels component.
@@ -70,7 +69,6 @@ class HotelHomeModel extends FlutterFlowModel<HotelHomeWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     managerInfoModel.dispose();
     profileHotelsModel.dispose();
     addOrEditHotelModel.dispose();

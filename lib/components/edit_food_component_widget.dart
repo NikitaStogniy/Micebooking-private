@@ -197,7 +197,7 @@ class _EditFoodComponentWidgetState extends State<EditFoodComponentWidget> {
                                             ),
                                           );
                                         },
-                                      ).then((value) => setState(() {}));
+                                      );
                                     },
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -799,7 +799,7 @@ class _EditFoodComponentWidgetState extends State<EditFoodComponentWidget> {
                                 ),
                               );
                             },
-                          ).then((value) => setState(() {}));
+                          );
                         },
                         child: Row(
                           mainAxisSize: MainAxisSize.max,

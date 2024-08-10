@@ -10,8 +10,10 @@ import '/superuser_flow/client_search/client_search_widget.dart';
 import '/superuser_flow/company_requests_component/company_requests_component_widget.dart';
 import '/superuser_flow/edit_about/edit_about_widget.dart';
 import '/superuser_flow/edit_about_us/edit_about_us_widget.dart';
+import '/superuser_flow/edit_p_i/edit_p_i_widget.dart';
 import '/superuser_flow/edit_p_p/edit_p_p_widget.dart';
 import '/superuser_flow/edit_q_a/edit_q_a_widget.dart';
+import '/superuser_flow/edit_terms/edit_terms_widget.dart';
 import '/superuser_flow/edit_whyus/edit_whyus_widget.dart';
 import '/superuser_flow/food_full_info/food_full_info_widget.dart';
 import '/superuser_flow/food_settings/food_settings_widget.dart';
@@ -60,9 +62,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -442,7 +442,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                         Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 64.0, 0.0, 64.0),
+                                                  0.0, 32.0, 0.0, 32.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             crossAxisAlignment:
@@ -684,7 +684,108 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                   );
                                                 },
                                                 child: Text(
-                                                  'Политика\nконфиденциальности ',
+                                                  'Политика конф.',
+                                                  style:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Commissioner',
+                                                            color:
+                                                                valueOrDefault<
+                                                                    Color>(
+                                                              _model.activePage ==
+                                                                      SuperUserPage
+                                                                          .cms_about
+                                                                  ? FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground
+                                                                  : FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .alternate,
+                                                            ),
+                                                            fontSize: 18.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                ),
+                                              ),
+                                              InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  _model.activePage =
+                                                      SuperUserPage.terms;
+                                                  setState(() {});
+                                                  await _model.columnController2
+                                                      ?.animateTo(
+                                                    0,
+                                                    duration: const Duration(
+                                                        milliseconds: 100),
+                                                    curve: Curves.ease,
+                                                  );
+                                                },
+                                                child: Text(
+                                                  'Польз. соглашение',
+                                                  style:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Commissioner',
+                                                            color:
+                                                                valueOrDefault<
+                                                                    Color>(
+                                                              _model.activePage ==
+                                                                      SuperUserPage
+                                                                          .cms_about
+                                                                  ? FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground
+                                                                  : FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .alternate,
+                                                            ),
+                                                            fontSize: 18.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                ),
+                                              ),
+                                              InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  _model.activePage =
+                                                      SuperUserPage
+                                                          .personal_info;
+                                                  setState(() {});
+                                                  await _model.columnController2
+                                                      ?.animateTo(
+                                                    0,
+                                                    duration: const Duration(
+                                                        milliseconds: 100),
+                                                    curve: Curves.ease,
+                                                  );
+                                                },
+                                                child: Text(
+                                                  'Обработка перс.\nданных',
                                                   style:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -797,7 +898,9 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                 SuperUserPage.room_full_info) &&
                             (_model.activePage != SuperUserPage.client_cp) &&
                             (_model.activePage != SuperUserPage.PP) &&
-                            (_model.activePage != SuperUserPage.hotel_jur))
+                            (_model.activePage != SuperUserPage.hotel_jur) &&
+                            (_model.activePage != SuperUserPage.terms) &&
+                            (_model.activePage != SuperUserPage.personal_info))
                           Text(
                             () {
                               if (_model.activePage ==
@@ -892,6 +995,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                 wrapWithModel(
                                   model: _model.hallSettingsModel,
                                   updateCallback: () => setState(() {}),
+                                  updateOnChange: true,
                                   child: const HallSettingsWidget(),
                                 ),
                               if (_model.activePage ==
@@ -899,6 +1003,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                 wrapWithModel(
                                   model: _model.foodSettingsModel,
                                   updateCallback: () => setState(() {}),
+                                  updateOnChange: true,
                                   child: const FoodSettingsWidget(),
                                 ),
                               if (_model.activePage ==
@@ -1193,6 +1298,19 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                   model: _model.editPPModel,
                                   updateCallback: () => setState(() {}),
                                   child: const EditPPWidget(),
+                                ),
+                              if (_model.activePage == SuperUserPage.terms)
+                                wrapWithModel(
+                                  model: _model.editTermsModel,
+                                  updateCallback: () => setState(() {}),
+                                  child: const EditTermsWidget(),
+                                ),
+                              if (_model.activePage ==
+                                  SuperUserPage.personal_info)
+                                wrapWithModel(
+                                  model: _model.editPIModel,
+                                  updateCallback: () => setState(() {}),
+                                  child: const EditPIWidget(),
                                 ),
                             ],
                           ),

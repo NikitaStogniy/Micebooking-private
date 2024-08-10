@@ -159,7 +159,7 @@ class _CityDropDownWidgetState extends State<CityDropDownWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Все города:',
+                          'Все города / регионы:',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Commissioner',

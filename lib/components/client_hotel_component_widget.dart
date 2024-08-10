@@ -337,7 +337,7 @@ class _ClientHotelComponentWidgetState
                                           ),
                                         );
                                       },
-                                    ).then((value) => setState(() {}));
+                                    );
                                   },
                                   child: Container(
                                     width: 32.0,
@@ -457,7 +457,7 @@ class _ClientHotelComponentWidgetState
                                                 ),
                                               );
                                             },
-                                          ).then((value) => setState(() {}));
+                                          );
                                         },
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -1085,7 +1085,7 @@ class _ClientHotelComponentWidgetState
                                                   ),
                                                 );
                                               },
-                                            ).then((value) => setState(() {}));
+                                            );
                                           },
                                           child: ClipRRect(
                                             borderRadius:

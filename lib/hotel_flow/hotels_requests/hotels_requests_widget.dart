@@ -791,7 +791,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                           valueOrDefault<
                                                                               String>(
                                                                             dateTimeFormat(
-                                                                              'd/M/y',
+                                                                              "d/M/y",
                                                                               requestsItem.createdAt,
                                                                               locale: FFLocalizations.of(context).languageCode,
                                                                             ),
@@ -847,7 +847,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                           valueOrDefault<
                                                                               String>(
                                                                             dateTimeFormat(
-                                                                              'd/M/y',
+                                                                              "d/M/y",
                                                                               requestsItem.dayStart,
                                                                               locale: FFLocalizations.of(context).languageCode,
                                                                             ),
@@ -1225,7 +1225,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                 ),
                                 Text(
                                   '${dateTimeFormat(
-                                    'd/M/y',
+                                    "d/M/y",
                                     containerRequestsRow?.dayStart,
                                     locale: FFLocalizations.of(context)
                                         .languageCode,

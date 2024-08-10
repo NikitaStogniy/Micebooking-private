@@ -60,9 +60,7 @@ class _HomeWidgetState extends State<HomeWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -291,16 +289,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                         context)),
                                                             child:
                                                                 GestureDetector(
-                                                              onTap: () => _model
-                                                                      .unfocusNode
-                                                                      .canRequestFocus
-                                                                  ? FocusScope.of(
-                                                                          context)
-                                                                      .requestFocus(
-                                                                          _model
-                                                                              .unfocusNode)
-                                                                  : FocusScope.of(
-                                                                          context)
+                                                              onTap: () =>
+                                                                  FocusScope.of(
+                                                                          dialogContext)
                                                                       .unfocus(),
                                                               child: SizedBox(
                                                                 height: MediaQuery.sizeOf(
@@ -319,8 +310,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                             ),
                                                           );
                                                         },
-                                                      ).then((value) =>
-                                                          setState(() {}));
+                                                      );
                                                     },
                                                     child: Text(
                                                       'Зарегистрировать площадку',
@@ -356,14 +346,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     context: context,
                                                     builder: (context) {
                                                       return GestureDetector(
-                                                        onTap: () => _model
-                                                                .unfocusNode
-                                                                .canRequestFocus
-                                                            ? FocusScope.of(
-                                                                    context)
-                                                                .requestFocus(_model
-                                                                    .unfocusNode)
-                                                            : FocusScope.of(
+                                                        onTap: () =>
+                                                            FocusScope.of(
                                                                     context)
                                                                 .unfocus(),
                                                         child: Padding(
@@ -647,15 +631,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                   Directionality.of(
                                                                       context)),
                                                       child: GestureDetector(
-                                                        onTap: () => _model
-                                                                .unfocusNode
-                                                                .canRequestFocus
-                                                            ? FocusScope.of(
-                                                                    context)
-                                                                .requestFocus(_model
-                                                                    .unfocusNode)
-                                                            : FocusScope.of(
-                                                                    context)
+                                                        onTap: () =>
+                                                            FocusScope.of(
+                                                                    dialogContext)
                                                                 .unfocus(),
                                                         child: SizedBox(
                                                           height:
@@ -686,8 +664,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       ),
                                                     );
                                                   },
-                                                ).then(
-                                                    (value) => setState(() {}));
+                                                );
                                               }
                                             },
                                           ),
@@ -900,15 +877,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                 Directionality.of(
                                                                     context)),
                                                     child: GestureDetector(
-                                                      onTap: () => _model
-                                                              .unfocusNode
-                                                              .canRequestFocus
-                                                          ? FocusScope.of(
-                                                                  context)
-                                                              .requestFocus(_model
-                                                                  .unfocusNode)
-                                                          : FocusScope.of(
-                                                                  context)
+                                                      onTap: () =>
+                                                          FocusScope.of(
+                                                                  dialogContext)
                                                               .unfocus(),
                                                       child: SizedBox(
                                                         height:
@@ -936,8 +907,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     ),
                                                   );
                                                 },
-                                              ).then(
-                                                  (value) => setState(() {}));
+                                              );
                                             }
                                           },
                                         ),

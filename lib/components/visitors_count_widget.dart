@@ -90,6 +90,9 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
+          constraints: const BoxConstraints(
+            maxWidth: 340.0,
+          ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
             borderRadius: BorderRadius.circular(24.0),
@@ -102,7 +105,7 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
               children: [
                 Row(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
@@ -114,223 +117,215 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                             fontWeight: FontWeight.bold,
                           ),
                     ),
-                    Expanded(
-                      child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            if (_model.fieldActive == true)
-                              Expanded(
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(100.0),
-                                  child: Container(
-                                    width: 100.0,
-                                    height: 30.0,
-                                    decoration: BoxDecoration(
-                                      color: const Color(0xFFC0C4EC),
-                                      borderRadius:
-                                          BorderRadius.circular(100.0),
-                                    ),
-                                    child: Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            8.0, 0.0, 8.0, 0.0),
-                                        child: TextFormField(
-                                          controller: _model.textController,
-                                          focusNode: _model.textFieldFocusNode,
-                                          onChanged: (_) =>
-                                              EasyDebounce.debounce(
-                                            '_model.textController',
-                                            const Duration(milliseconds: 100),
-                                            () async {
-                                              await widget.onType?.call(
-                                                int.tryParse(
-                                                    _model.textController.text),
-                                              );
-                                              _model.countDublicate =
-                                                  int.tryParse(_model
-                                                      .textController.text);
-                                              _model.updatePage(() {});
-                                            },
-                                          ),
-                                          autofocus: true,
-                                          obscureText: false,
-                                          decoration: InputDecoration(
-                                            labelStyle: FlutterFlowTheme.of(
-                                                    context)
-                                                .labelMedium
-                                                .override(
-                                                  fontFamily: 'Commissioner',
-                                                  fontSize: 16.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                            hintText: 'Кол-во участников...',
-                                            hintStyle: FlutterFlowTheme.of(
-                                                    context)
-                                                .labelMedium
-                                                .override(
-                                                  fontFamily: 'Commissioner',
-                                                  fontSize: 16.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                            enabledBorder: InputBorder.none,
-                                            focusedBorder: InputBorder.none,
-                                            errorBorder: InputBorder.none,
-                                            focusedErrorBorder:
-                                                InputBorder.none,
-                                            contentPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 16.0),
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Commissioner',
-                                                fontSize: 16.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                          minLines: 1,
-                                          validator: _model
-                                              .textControllerValidator
-                                              .asValidator(context),
-                                          inputFormatters: [
-                                            FilteringTextInputFormatter.allow(
-                                                RegExp('[0-9]'))
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            if (_model.fieldActive == false)
-                              Expanded(
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    _model.fieldActive = true;
-                                    setState(() {});
-                                    setState(() {
-                                      _model.textController?.clear();
-                                    });
-                                  },
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(100.0),
-                                    child: Container(
-                                      width: 100.0,
-                                      height: 30.0,
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xFFC0C4EC),
-                                        borderRadius:
-                                            BorderRadius.circular(100.0),
-                                      ),
-                                      child: Align(
-                                        alignment:
-                                            const AlignmentDirectional(-1.0, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  8.0, 0.0, 9.0, 0.0),
-                                          child: Text(
-                                            valueOrDefault<String>(
-                                              _model.countDublicate?.toString(),
-                                              '0',
-                                            ),
-                                            maxLines: 1,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Commissioner',
-                                                  fontSize: 16.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                await widget.onRemove?.call();
-                                if (_model.countDublicate! >= 1) {
-                                  _model.countDublicate =
-                                      _model.countDublicate! + -1;
-                                  setState(() {});
-                                  _model.fieldActive = false;
-                                  setState(() {});
-                                }
-                              },
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          if (_model.fieldActive == true)
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(100.0),
                               child: Container(
-                                width: 24.0,
-                                height: 24.0,
+                                width: 70.0,
+                                height: 30.0,
                                 decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    width: 2.0,
-                                  ),
+                                  color: const Color(0xFFC0C4EC),
+                                  borderRadius: BorderRadius.circular(100.0),
                                 ),
                                 child: Align(
                                   alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: FaIcon(
-                                    FontAwesomeIcons.minus,
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    size: 18.0,
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        8.0, 0.0, 8.0, 0.0),
+                                    child: TextFormField(
+                                      controller: _model.textController,
+                                      focusNode: _model.textFieldFocusNode,
+                                      onChanged: (_) => EasyDebounce.debounce(
+                                        '_model.textController',
+                                        const Duration(milliseconds: 100),
+                                        () async {
+                                          await widget.onType?.call(
+                                            int.tryParse(
+                                                _model.textController.text),
+                                          );
+                                          _model.countDublicate = int.tryParse(
+                                              _model.textController.text);
+                                          _model.updatePage(() {});
+                                        },
+                                      ),
+                                      autofocus: true,
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        labelStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Commissioner',
+                                              fontSize: 16.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                        hintText: 'Кол-во участников...',
+                                        hintStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Commissioner',
+                                              fontSize: 16.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                        enabledBorder: InputBorder.none,
+                                        focusedBorder: InputBorder.none,
+                                        errorBorder: InputBorder.none,
+                                        focusedErrorBorder: InputBorder.none,
+                                        contentPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 16.0),
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Commissioner',
+                                            fontSize: 16.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                      minLines: 1,
+                                      maxLength: 5,
+                                      maxLengthEnforcement:
+                                          MaxLengthEnforcement.enforced,
+                                      buildCounter: (context,
+                                              {required currentLength,
+                                              required isFocused,
+                                              maxLength}) =>
+                                          null,
+                                      validator: _model.textControllerValidator
+                                          .asValidator(context),
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.allow(
+                                            RegExp('[0-9]'))
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
+                          if (_model.fieldActive == false)
                             InkWell(
                               splashColor: Colors.transparent,
                               focusColor: Colors.transparent,
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                await widget.onAdd?.call();
+                                _model.fieldActive = true;
+                                setState(() {});
+                                setState(() {
+                                  _model.textController?.clear();
+                                });
+                              },
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(100.0),
+                                child: Container(
+                                  width: 70.0,
+                                  height: 30.0,
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFFC0C4EC),
+                                    borderRadius: BorderRadius.circular(100.0),
+                                  ),
+                                  child: Align(
+                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          8.0, 0.0, 9.0, 0.0),
+                                      child: Text(
+                                        valueOrDefault<String>(
+                                          _model.countDublicate?.toString(),
+                                          '0',
+                                        ),
+                                        maxLines: 1,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Commissioner',
+                                              fontSize: 16.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              await widget.onRemove?.call();
+                              if (_model.countDublicate! >= 1) {
                                 _model.countDublicate =
-                                    _model.countDublicate! + 1;
+                                    _model.countDublicate! + -1;
                                 setState(() {});
                                 _model.fieldActive = false;
                                 setState(() {});
-                              },
-                              child: Container(
-                                width: 24.0,
-                                height: 24.0,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    width: 2.0,
-                                  ),
+                              }
+                            },
+                            child: Container(
+                              width: 24.0,
+                              height: 24.0,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  width: 2.0,
                                 ),
-                                child: Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: FaIcon(
-                                    FontAwesomeIcons.plus,
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    size: 18.0,
-                                  ),
+                              ),
+                              child: Align(
+                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                child: FaIcon(
+                                  FontAwesomeIcons.minus,
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  size: 18.0,
                                 ),
                               ),
                             ),
-                          ].divide(const SizedBox(width: 8.0)),
-                        ),
+                          ),
+                          InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              await widget.onAdd?.call();
+                              _model.countDublicate =
+                                  _model.countDublicate! + 1;
+                              setState(() {});
+                              _model.fieldActive = false;
+                              setState(() {});
+                            },
+                            child: Container(
+                              width: 24.0,
+                              height: 24.0,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  width: 2.0,
+                                ),
+                              ),
+                              child: Align(
+                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                child: FaIcon(
+                                  FontAwesomeIcons.plus,
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  size: 18.0,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ].divide(const SizedBox(width: 8.0)),
                       ),
                     ),
                   ],

@@ -597,8 +597,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                           ),
                                                         );
                                                       },
-                                                    ).then((value) =>
-                                                        setState(() {}));
+                                                    );
                                                   },
                                                   child: Text(
                                                     'Изменить пароль',
@@ -2863,7 +2862,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                               ),
                                             );
                                           },
-                                        ).then((value) => setState(() {}));
+                                        );
                                       },
                                       text: 'Сохранить',
                                       options: FFButtonOptions(
@@ -2987,7 +2986,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                               ),
                                             );
                                           },
-                                        ).then((value) => setState(() {}));
+                                        );
                                       },
                                       text: 'Отменить изменения',
                                       options: FFButtonOptions(

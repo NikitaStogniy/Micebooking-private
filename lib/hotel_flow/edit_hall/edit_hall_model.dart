@@ -1,6 +1,6 @@
 import '/backend/schema/structs/index.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/uikit/check_box/check_box_widget.dart';
 import 'edit_hall_widget.dart' show EditHallWidget;
 import 'package:flutter/material.dart';
 
@@ -91,8 +91,11 @@ class EditHallModel extends FlutterFlowModel<EditHallWidget> {
   FocusNode? furshetFocusNode;
   TextEditingController? furshetTextController;
   String? Function(BuildContext, String?)? furshetTextControllerValidator;
-  // Models for checkBox dynamic component.
-  late FlutterFlowDynamicModels<CheckBoxModel> checkBoxModels;
+  // State field(s) for Checkbox widget.
+  Map<ServiceRow, bool> checkboxValueMap = {};
+  List<ServiceRow> get checkboxCheckedItems =>
+      checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
+
   // State field(s) for price_edit widget.
   FocusNode? priceEditFocusNode;
   TextEditingController? priceEditTextController;
@@ -103,9 +106,7 @@ class EditHallModel extends FlutterFlowModel<EditHallWidget> {
   String? Function(BuildContext, String?)? halfPriceEditTextControllerValidator;
 
   @override
-  void initState(BuildContext context) {
-    checkBoxModels = FlutterFlowDynamicModels(() => CheckBoxModel());
-  }
+  void initState(BuildContext context) {}
 
   @override
   void dispose() {
@@ -145,7 +146,6 @@ class EditHallModel extends FlutterFlowModel<EditHallWidget> {
     furshetFocusNode?.dispose();
     furshetTextController?.dispose();
 
-    checkBoxModels.dispose();
     priceEditFocusNode?.dispose();
     priceEditTextController?.dispose();
 

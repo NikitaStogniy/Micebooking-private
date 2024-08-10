@@ -391,7 +391,7 @@ class _RoomPopUpWidgetState extends State<RoomPopUpWidget> {
                                           ),
                                         );
                                       },
-                                    ).then((value) => setState(() {}));
+                                    );
                                   },
                                   child: Container(
                                     width: 32.0,

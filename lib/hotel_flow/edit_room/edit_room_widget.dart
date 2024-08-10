@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
-import '/uikit/check_box/check_box_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
@@ -745,68 +744,100 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                                                         mainAxisSize:
                                                             MainAxisSize.max,
                                                         children: [
-                                                          Expanded(
-                                                            child: Align(
-                                                              alignment:
-                                                                  const AlignmentDirectional(
-                                                                      -1.0,
-                                                                      0.0),
-                                                              child:
-                                                                  wrapWithModel(
-                                                                model: _model
-                                                                    .checkBoxModels
-                                                                    .getModel(
-                                                                  listViewServiceRow
-                                                                      .id
-                                                                      .toString(),
-                                                                  listViewIndex,
-                                                                ),
-                                                                updateCallback:
-                                                                    () => setState(
-                                                                        () {}),
-                                                                updateOnChange:
-                                                                    true,
-                                                                child:
-                                                                    CheckBoxWidget(
-                                                                  key: Key(
-                                                                    'Keycrm_${listViewServiceRow.id.toString()}',
-                                                                  ),
-                                                                  variant: 2,
-                                                                  isChecked: (_model
-                                                                              .selectedServices.isNotEmpty) &&
-                                                                      _model
-                                                                          .selectedServices
-                                                                          .contains(
-                                                                              listViewServiceRow.id),
-                                                                  label:
-                                                                      listViewServiceRow
-                                                                          .name,
-                                                                  charLimit:
-                                                                      20000,
-                                                                  onClick:
-                                                                      () async {
-                                                                    if (_model
-                                                                        .selectedServices
-                                                                        .contains(
-                                                                            listViewServiceRow.id)) {
-                                                                      _model.removeFromSelectedServices(
-                                                                          listViewServiceRow
-                                                                              .id);
-                                                                      setState(
-                                                                          () {});
-                                                                    } else {
-                                                                      _model.addToSelectedServices(
-                                                                          listViewServiceRow
-                                                                              .id);
-                                                                      setState(
-                                                                          () {});
-                                                                    }
-                                                                  },
+                                                          Theme(
+                                                            data: ThemeData(
+                                                              checkboxTheme:
+                                                                  CheckboxThemeData(
+                                                                visualDensity:
+                                                                    VisualDensity
+                                                                        .compact,
+                                                                materialTapTargetSize:
+                                                                    MaterialTapTargetSize
+                                                                        .shrinkWrap,
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              4.0),
                                                                 ),
                                                               ),
+                                                              unselectedWidgetColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                            ),
+                                                            child: Checkbox(
+                                                              value: _model
+                                                                          .checkboxValueMap1[
+                                                                      listViewServiceRow] ??=
+                                                                  _model
+                                                                      .selectedServices
+                                                                      .contains(
+                                                                          listViewServiceRow
+                                                                              .id),
+                                                              onChanged:
+                                                                  (newValue) async {
+                                                                setState(() =>
+                                                                    _model.checkboxValueMap1[
+                                                                            listViewServiceRow] =
+                                                                        newValue!);
+                                                                if (newValue!) {
+                                                                  _model.addToSelectedServices(
+                                                                      listViewServiceRow
+                                                                          .id);
+                                                                  setState(
+                                                                      () {});
+                                                                } else {
+                                                                  _model.removeFromSelectedServices(
+                                                                      listViewServiceRow
+                                                                          .id);
+                                                                  setState(
+                                                                      () {});
+                                                                }
+                                                              },
+                                                              side: BorderSide(
+                                                                width: 2,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                              ),
+                                                              activeColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                              checkColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .info,
                                                             ),
                                                           ),
-                                                        ],
+                                                          Expanded(
+                                                            child: Text(
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                listViewServiceRow
+                                                                    .name,
+                                                                'Без названия',
+                                                              ),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Commissioner',
+                                                                    fontSize:
+                                                                        15.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ].divide(const SizedBox(
+                                                            width: 4.0)),
                                                       );
                                                     },
                                                   );
@@ -976,11 +1007,11 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                                                 .secondaryText,
                                       ),
                                       child: Checkbox(
-                                        value: _model.checkboxValue ??=
+                                        value: _model.checkboxValue2 ??=
                                             widget.initialRoom!.showSingle!,
                                         onChanged: (newValue) async {
-                                          setState(() =>
-                                              _model.checkboxValue = newValue!);
+                                          setState(() => _model.checkboxValue2 =
+                                              newValue!);
                                         },
                                         side: BorderSide(
                                           width: 2,

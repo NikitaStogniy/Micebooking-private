@@ -26,6 +26,8 @@ enum SuperUserPage {
   client_cp,
   hotel_jur,
   PP,
+  terms,
+  personal_info,
 }
 
 enum EnumType {
@@ -70,6 +72,9 @@ enum EnumCms {
   ABOUT_US,
   QA,
   PRIVACY_POLICY,
+  ABOUT_ELEMENT,
+  TERMS_OF_USE,
+  PERSONAL_INFO,
 }
 
 enum EnumSeating {

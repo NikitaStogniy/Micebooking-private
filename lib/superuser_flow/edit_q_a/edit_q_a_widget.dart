@@ -189,7 +189,7 @@ class _EditQAWidgetState extends State<EditQAWidget> {
                                         fontSize: 18.0,
                                         letterSpacing: 0.0,
                                       ),
-                                  hintText: 'Заголовок новго вопроса',
+                                  hintText: 'Заголовок нового вопроса',
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(

@@ -1,3 +1,4 @@
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'profile_requests_component_widget.dart'
     show ProfileRequestsComponentWidget;
@@ -16,7 +17,13 @@ class ProfileRequestsComponentModel
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for Checkbox widget.
-  bool? checkboxValue;
+  bool? checkboxValue1;
+  // State field(s) for Checkbox widget.
+  Map<RequestsRow, bool> checkboxValueMap2 = {};
+  List<RequestsRow> get checkboxCheckedItems2 => checkboxValueMap2.entries
+      .where((e) => e.value)
+      .map((e) => e.key)
+      .toList();
 
   @override
   void initState(BuildContext context) {}

@@ -511,7 +511,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                             child: const MobileMenuWidget(),
                                           );
                                         },
-                                      ).then((value) => setState(() {}));
+                                      );
                                     },
                                     child: Container(
                                       width: 48.0,

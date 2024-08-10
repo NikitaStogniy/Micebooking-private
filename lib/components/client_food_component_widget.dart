@@ -180,7 +180,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                             ),
                                           );
                                         },
-                                      ).then((value) => setState(() {}));
+                                      );
                                     },
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -782,7 +782,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                 ),
                               );
                             },
-                          ).then((value) => setState(() {}));
+                          );
                         },
                         child: Row(
                           mainAxisSize: MainAxisSize.max,

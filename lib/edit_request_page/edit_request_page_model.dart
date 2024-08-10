@@ -144,7 +144,6 @@ class EditRequestPageModel extends FlutterFlowModel<EditRequestPageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for Menu component.
   late MenuModel menuModel;
   // Model for EditRequestHotelComponent component.
@@ -180,7 +179,6 @@ class EditRequestPageModel extends FlutterFlowModel<EditRequestPageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     menuModel.dispose();
     editRequestHotelComponentModel.dispose();
     clientHallEditComponentModels.dispose();

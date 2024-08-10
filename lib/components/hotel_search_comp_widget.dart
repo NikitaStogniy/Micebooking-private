@@ -133,8 +133,9 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                             return Padding(
                               padding: MediaQuery.viewInsetsOf(context),
                               child: SizedBox(
-                                height: 459.0,
+                                height: 530.0,
                                 child: CalendarRowWidget(
+                                  chosen: _model.startDate == widget.date,
                                   onClick: (selectedDate) async {
                                     _model.startDate = selectedDate;
                                     setState(() {});
@@ -188,7 +189,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                       ),
                                       Text(
                                         dateTimeFormat(
-                                          'd/M/y',
+                                          "d/M/y",
                                           _model.startDate,
                                           locale: FFLocalizations.of(context)
                                               .languageCode,
@@ -266,7 +267,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                 ),
                               );
                             },
-                          ).then((value) => setState(() {}));
+                          );
                         },
                         child: Container(
                           height: 100.0,
@@ -382,7 +383,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                 ),
                               );
                             },
-                          ).then((value) => setState(() {}));
+                          );
                         },
                         child: Container(
                           width: 230.0,
@@ -420,7 +421,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            'Город',
+                                            'Город / регион',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -491,7 +492,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                               return Material(
                                 color: Colors.transparent,
                                 child: SizedBox(
-                                  width: 500.0,
+                                  width: 340.0,
                                   child: VisitorsCountWidget(
                                     count: _model.visitors!,
                                     filter1: _model.hallFilter1,
@@ -551,7 +552,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                 ),
                               );
                             },
-                          ).then((value) => setState(() {}));
+                          );
                         },
                         child: Container(
                           height: 100.0,
@@ -765,7 +766,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                               ),
                             );
                           },
-                        ).then((value) => setState(() {}));
+                        );
                       },
                       child: Container(
                         height: 60.0,
@@ -816,7 +817,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                       ),
                                       Text(
                                         dateTimeFormat(
-                                          'd/M/y',
+                                          "d/M/y",
                                           _model.startDate,
                                           locale: FFLocalizations.of(context)
                                               .languageCode,
@@ -886,7 +887,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                               ),
                             );
                           },
-                        ).then((value) => setState(() {}));
+                        );
                       },
                       child: Container(
                         height: 60.0,
@@ -993,7 +994,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                               ),
                             );
                           },
-                        ).then((value) => setState(() {}));
+                        );
                       },
                       child: Container(
                         width: MediaQuery.sizeOf(context).width * 1.0,
@@ -1153,7 +1154,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                               ),
                             );
                           },
-                        ).then((value) => setState(() {}));
+                        );
                       },
                       child: Container(
                         height: 60.0,

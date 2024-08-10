@@ -153,7 +153,6 @@ class _CheckBoxWidgetState extends State<CheckBoxWidget> {
                               widget.label,
                               'label',
                             ),
-                            maxLines: 1,
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(

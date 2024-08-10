@@ -436,7 +436,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                             ),
                                           );
                                         },
-                                      ).then((value) => setState(() {}));
+                                      );
                                     },
                                     child: Container(
                                       width: 32.0,

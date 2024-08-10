@@ -139,226 +139,263 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                         fontWeight: FontWeight.w500,
                       ),
                 ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                  child: TextFormField(
-                    controller: _model.nameTextController,
-                    focusNode: _model.nameFocusNode,
-                    autofocus: false,
-                    textInputAction: TextInputAction.next,
-                    obscureText: false,
-                    decoration: InputDecoration(
-                      hintText: 'Фамилия Имя Отчество',
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          width: 2.0,
+                Container(
+                  height: 38.0,
+                  decoration: const BoxDecoration(),
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                    child: TextFormField(
+                      controller: _model.nameTextController,
+                      focusNode: _model.nameFocusNode,
+                      autofocus: false,
+                      textInputAction: TextInputAction.next,
+                      obscureText: false,
+                      decoration: InputDecoration(
+                        hintText: 'Фамилия Имя Отчество',
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).alternate,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(24.0),
                         ),
-                        borderRadius: BorderRadius.circular(24.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).primary,
-                          width: 2.0,
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).primary,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(24.0),
                         ),
-                        borderRadius: BorderRadius.circular(24.0),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 2.0,
+                        errorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).error,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(24.0),
                         ),
-                        borderRadius: BorderRadius.circular(24.0),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 2.0,
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).error,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(24.0),
                         ),
-                        borderRadius: BorderRadius.circular(24.0),
+                        filled: true,
+                        fillColor: const Color(0xFFF0F0FA),
+                        contentPadding:
+                            const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
                       ),
-                      filled: true,
-                      fillColor: const Color(0xFFF0F0FA),
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Commissioner',
+                            letterSpacing: 0.0,
+                          ),
+                      maxLength: 50,
+                      maxLengthEnforcement: MaxLengthEnforcement.none,
+                      buildCounter: (context,
+                              {required currentLength,
+                              required isFocused,
+                              maxLength}) =>
+                          null,
+                      validator: _model.nameTextControllerValidator
+                          .asValidator(context),
                     ),
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Commissioner',
-                          letterSpacing: 0.0,
-                        ),
-                    maxLength: 50,
-                    maxLengthEnforcement: MaxLengthEnforcement.none,
-                    buildCounter: (context,
-                            {required currentLength,
-                            required isFocused,
-                            maxLength}) =>
-                        null,
-                    validator:
-                        _model.nameTextControllerValidator.asValidator(context),
                   ),
                 ),
               ].divide(const SizedBox(height: 13.0)),
             ),
-            Column(
+            Row(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Text(
-                  'Адрес электронной почты',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Commissioner',
-                        fontSize: 18.0,
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.w500,
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        'Адрес эл. почты',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Commissioner',
+                              fontSize: 18.0,
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.w500,
+                            ),
                       ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                  child: TextFormField(
-                    controller: _model.mailTextController,
-                    focusNode: _model.mailFocusNode,
-                    autofocus: false,
-                    textInputAction: TextInputAction.next,
-                    obscureText: false,
-                    decoration: InputDecoration(
-                      labelStyle:
-                          FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Commissioner',
-                                letterSpacing: 0.0,
+                      Container(
+                        height: 38.0,
+                        decoration: const BoxDecoration(),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              8.0, 0.0, 8.0, 0.0),
+                          child: TextFormField(
+                            controller: _model.mailTextController,
+                            focusNode: _model.mailFocusNode,
+                            autofocus: false,
+                            textInputAction: TextInputAction.next,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Commissioner',
+                                    letterSpacing: 0.0,
+                                  ),
+                              hintText: 'mail@mail.com',
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Commissioner',
+                                    letterSpacing: 0.0,
+                                  ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
                               ),
-                      hintText: 'mail@mail.com',
-                      hintStyle:
-                          FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Commissioner',
-                                letterSpacing: 0.0,
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
                               ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          width: 2.0,
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              filled: true,
+                              fillColor: const Color(0xFFF0F0FA),
+                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  8.0, 0.0, 0.0, 0.0),
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Commissioner',
+                                  letterSpacing: 0.0,
+                                ),
+                            maxLength: 50,
+                            maxLengthEnforcement: MaxLengthEnforcement.none,
+                            buildCounter: (context,
+                                    {required currentLength,
+                                    required isFocused,
+                                    maxLength}) =>
+                                null,
+                            keyboardType: TextInputType.emailAddress,
+                            validator: _model.mailTextControllerValidator
+                                .asValidator(context),
+                          ),
                         ),
-                        borderRadius: BorderRadius.circular(24.0),
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).primary,
-                          width: 2.0,
-                        ),
-                        borderRadius: BorderRadius.circular(24.0),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 2.0,
-                        ),
-                        borderRadius: BorderRadius.circular(24.0),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 2.0,
-                        ),
-                        borderRadius: BorderRadius.circular(24.0),
-                      ),
-                      filled: true,
-                      fillColor: const Color(0xFFF0F0FA),
-                    ),
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Commissioner',
-                          letterSpacing: 0.0,
-                        ),
-                    maxLength: 50,
-                    maxLengthEnforcement: MaxLengthEnforcement.none,
-                    buildCounter: (context,
-                            {required currentLength,
-                            required isFocused,
-                            maxLength}) =>
-                        null,
-                    keyboardType: TextInputType.emailAddress,
-                    validator:
-                        _model.mailTextControllerValidator.asValidator(context),
+                    ].divide(const SizedBox(height: 13.0)),
                   ),
                 ),
-              ].divide(const SizedBox(height: 13.0)),
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Text(
-                  'Телефон',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Commissioner',
-                        fontSize: 18.0,
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.w500,
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        'Телефон',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Commissioner',
+                              fontSize: 18.0,
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.w500,
+                            ),
                       ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                  child: TextFormField(
-                    controller: _model.phoneTextController,
-                    focusNode: _model.phoneFocusNode,
-                    autofocus: false,
-                    textInputAction: TextInputAction.next,
-                    obscureText: false,
-                    decoration: InputDecoration(
-                      labelStyle:
-                          FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Commissioner',
-                                letterSpacing: 0.0,
+                      Container(
+                        height: 38.0,
+                        decoration: const BoxDecoration(),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              8.0, 0.0, 8.0, 0.0),
+                          child: TextFormField(
+                            controller: _model.phoneTextController,
+                            focusNode: _model.phoneFocusNode,
+                            autofocus: false,
+                            textInputAction: TextInputAction.next,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Commissioner',
+                                    letterSpacing: 0.0,
+                                  ),
+                              hintText: '+7 987 654 32 10',
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Commissioner',
+                                    letterSpacing: 0.0,
+                                  ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
                               ),
-                      hintText: '+7 987 654 32 10',
-                      hintStyle:
-                          FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Commissioner',
-                                letterSpacing: 0.0,
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
                               ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          width: 2.0,
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              filled: true,
+                              fillColor: const Color(0xFFF0F0FA),
+                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  8.0, 0.0, 0.0, 0.0),
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Commissioner',
+                                  letterSpacing: 0.0,
+                                ),
+                            maxLength: 50,
+                            maxLengthEnforcement: MaxLengthEnforcement.none,
+                            buildCounter: (context,
+                                    {required currentLength,
+                                    required isFocused,
+                                    maxLength}) =>
+                                null,
+                            keyboardType: TextInputType.phone,
+                            validator: _model.phoneTextControllerValidator
+                                .asValidator(context),
+                            inputFormatters: [_model.phoneMask],
+                          ),
                         ),
-                        borderRadius: BorderRadius.circular(24.0),
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).primary,
-                          width: 2.0,
-                        ),
-                        borderRadius: BorderRadius.circular(24.0),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 2.0,
-                        ),
-                        borderRadius: BorderRadius.circular(24.0),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 2.0,
-                        ),
-                        borderRadius: BorderRadius.circular(24.0),
-                      ),
-                      filled: true,
-                      fillColor: const Color(0xFFF0F0FA),
-                    ),
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Commissioner',
-                          letterSpacing: 0.0,
-                        ),
-                    maxLength: 50,
-                    maxLengthEnforcement: MaxLengthEnforcement.none,
-                    buildCounter: (context,
-                            {required currentLength,
-                            required isFocused,
-                            maxLength}) =>
-                        null,
-                    keyboardType: TextInputType.phone,
-                    validator: _model.phoneTextControllerValidator
-                        .asValidator(context),
-                    inputFormatters: [_model.phoneMask],
+                    ].divide(const SizedBox(height: 13.0)),
                   ),
                 ),
-              ].divide(const SizedBox(height: 13.0)),
+              ].divide(const SizedBox(width: 18.0)),
             ),
             Column(
               mainAxisSize: MainAxisSize.max,
@@ -374,67 +411,75 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                 ),
               ].divide(const SizedBox(height: 13.0)),
             ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-              child: TextFormField(
-                controller: _model.companyNameTextController,
-                focusNode: _model.companyNameFocusNode,
-                autofocus: false,
-                obscureText: false,
-                decoration: InputDecoration(
-                  labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
+            Container(
+              height: 38.0,
+              decoration: const BoxDecoration(),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                child: TextFormField(
+                  controller: _model.companyNameTextController,
+                  focusNode: _model.companyNameFocusNode,
+                  autofocus: false,
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    labelStyle:
+                        FlutterFlowTheme.of(context).labelMedium.override(
+                              fontFamily: 'Commissioner',
+                              letterSpacing: 0.0,
+                            ),
+                    hintText: 'ООО “Название”',
+                    hintStyle:
+                        FlutterFlowTheme.of(context).labelMedium.override(
+                              fontFamily: 'Commissioner',
+                              letterSpacing: 0.0,
+                            ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: FlutterFlowTheme.of(context).alternate,
+                        width: 2.0,
+                      ),
+                      borderRadius: BorderRadius.circular(24.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: FlutterFlowTheme.of(context).primary,
+                        width: 2.0,
+                      ),
+                      borderRadius: BorderRadius.circular(24.0),
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: FlutterFlowTheme.of(context).error,
+                        width: 2.0,
+                      ),
+                      borderRadius: BorderRadius.circular(24.0),
+                    ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: FlutterFlowTheme.of(context).error,
+                        width: 2.0,
+                      ),
+                      borderRadius: BorderRadius.circular(24.0),
+                    ),
+                    filled: true,
+                    fillColor: const Color(0xFFF0F0FA),
+                    contentPadding:
+                        const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
+                  ),
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Commissioner',
                         letterSpacing: 0.0,
                       ),
-                  hintText: 'ООО “Название”',
-                  hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                        fontFamily: 'Commissioner',
-                        letterSpacing: 0.0,
-                      ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).alternate,
-                      width: 2.0,
-                    ),
-                    borderRadius: BorderRadius.circular(24.0),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).primary,
-                      width: 2.0,
-                    ),
-                    borderRadius: BorderRadius.circular(24.0),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).error,
-                      width: 2.0,
-                    ),
-                    borderRadius: BorderRadius.circular(24.0),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).error,
-                      width: 2.0,
-                    ),
-                    borderRadius: BorderRadius.circular(24.0),
-                  ),
-                  filled: true,
-                  fillColor: const Color(0xFFF0F0FA),
+                  maxLength: 50,
+                  maxLengthEnforcement: MaxLengthEnforcement.none,
+                  buildCounter: (context,
+                          {required currentLength,
+                          required isFocused,
+                          maxLength}) =>
+                      null,
+                  validator: _model.companyNameTextControllerValidator
+                      .asValidator(context),
                 ),
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Commissioner',
-                      letterSpacing: 0.0,
-                    ),
-                maxLength: 50,
-                maxLengthEnforcement: MaxLengthEnforcement.none,
-                buildCounter: (context,
-                        {required currentLength,
-                        required isFocused,
-                        maxLength}) =>
-                    null,
-                validator: _model.companyNameTextControllerValidator
-                    .asValidator(context),
               ),
             ),
             Column(
@@ -449,82 +494,88 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                         fontWeight: FontWeight.w500,
                       ),
                 ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                  child: TextFormField(
-                    controller: _model.passwordTextController,
-                    focusNode: _model.passwordFocusNode,
-                    autofocus: false,
-                    obscureText: !_model.passwordVisibility,
-                    decoration: InputDecoration(
-                      labelStyle:
-                          FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Commissioner',
-                                letterSpacing: 0.0,
-                              ),
-                      hintText: '*****',
-                      hintStyle:
-                          FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Commissioner',
-                                letterSpacing: 0.0,
-                              ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          width: 2.0,
+                Container(
+                  height: 38.0,
+                  decoration: const BoxDecoration(),
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                    child: TextFormField(
+                      controller: _model.passwordTextController,
+                      focusNode: _model.passwordFocusNode,
+                      autofocus: false,
+                      obscureText: !_model.passwordVisibility,
+                      decoration: InputDecoration(
+                        labelStyle:
+                            FlutterFlowTheme.of(context).labelMedium.override(
+                                  fontFamily: 'Commissioner',
+                                  letterSpacing: 0.0,
+                                ),
+                        hintText: '*****',
+                        hintStyle:
+                            FlutterFlowTheme.of(context).labelMedium.override(
+                                  fontFamily: 'Commissioner',
+                                  letterSpacing: 0.0,
+                                ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).alternate,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(24.0),
                         ),
-                        borderRadius: BorderRadius.circular(24.0),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).primary,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(24.0),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).error,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(24.0),
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).error,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(24.0),
+                        ),
+                        filled: true,
+                        fillColor: const Color(0xFFF0F0FA),
+                        contentPadding:
+                            const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
+                        suffixIcon: InkWell(
+                          onTap: () => setState(
+                            () => _model.passwordVisibility =
+                                !_model.passwordVisibility,
+                          ),
+                          focusNode: FocusNode(skipTraversal: true),
+                          child: Icon(
+                            _model.passwordVisibility
+                                ? Icons.visibility_outlined
+                                : Icons.visibility_off_outlined,
+                            size: 16.0,
+                          ),
+                        ),
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).primary,
-                          width: 2.0,
-                        ),
-                        borderRadius: BorderRadius.circular(24.0),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 2.0,
-                        ),
-                        borderRadius: BorderRadius.circular(24.0),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 2.0,
-                        ),
-                        borderRadius: BorderRadius.circular(24.0),
-                      ),
-                      filled: true,
-                      fillColor: const Color(0xFFF0F0FA),
-                      suffixIcon: InkWell(
-                        onTap: () => setState(
-                          () => _model.passwordVisibility =
-                              !_model.passwordVisibility,
-                        ),
-                        focusNode: FocusNode(skipTraversal: true),
-                        child: Icon(
-                          _model.passwordVisibility
-                              ? Icons.visibility_outlined
-                              : Icons.visibility_off_outlined,
-                          size: 16.0,
-                        ),
-                      ),
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Commissioner',
+                            letterSpacing: 0.0,
+                          ),
+                      maxLength: 50,
+                      maxLengthEnforcement: MaxLengthEnforcement.none,
+                      buildCounter: (context,
+                              {required currentLength,
+                              required isFocused,
+                              maxLength}) =>
+                          null,
+                      validator: _model.passwordTextControllerValidator
+                          .asValidator(context),
                     ),
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Commissioner',
-                          letterSpacing: 0.0,
-                        ),
-                    maxLength: 50,
-                    maxLengthEnforcement: MaxLengthEnforcement.none,
-                    buildCounter: (context,
-                            {required currentLength,
-                            required isFocused,
-                            maxLength}) =>
-                        null,
-                    validator: _model.passwordTextControllerValidator
-                        .asValidator(context),
                   ),
                 ),
               ].divide(const SizedBox(height: 13.0)),
@@ -585,7 +636,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                     child: const PopUpPPWidget(),
                                   );
                                 },
-                              ).then((value) => setState(() {}));
+                              );
                             },
                             child: RichText(
                               textScaler: MediaQuery.of(context).textScaler,
@@ -635,117 +686,138 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                       Expanded(
                         child: Container(
                           decoration: const BoxDecoration(),
-                          child: FFButtonWidget(
-                            onPressed: !_model.checkboxValue!
-                                ? null
-                                : () async {
-                                    _model.userCheck =
-                                        await UsersTable().queryRows(
-                                      queryFn: (q) => q.eq(
-                                        'email',
-                                        _model.mailTextController.text,
-                                      ),
-                                    );
-                                    if ((_model.userCheck != null &&
-                                            (_model.userCheck)!.isNotEmpty) ==
-                                        true) {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            'Почта уже используется другим аккаунтом. Попробуйте восстановить пароль',
-                                            style: TextStyle(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                            ),
-                                          ),
-                                          duration:
-                                              const Duration(milliseconds: 4000),
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .error,
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                16.0, 0.0, 16.0, 0.0),
+                            child: FFButtonWidget(
+                              onPressed: ((_model
+                                                  .nameTextController.text ==
+                                              '') ||
+                                      (_model
+                                                  .mailTextController.text ==
+                                              '') ||
+                                      (_model
+                                                  .phoneTextController.text ==
+                                              '') ||
+                                      (_model
+                                                  .companyNameTextController.text ==
+                                              '') ||
+                                      (_model.passwordTextController.text ==
+                                              '') ||
+                                      (_model.checkboxValue == false))
+                                  ? null
+                                  : () async {
+                                      _model.userCheck =
+                                          await UsersTable().queryRows(
+                                        queryFn: (q) => q.eq(
+                                          'email',
+                                          _model.mailTextController.text,
                                         ),
                                       );
-                                    } else {
-                                      _model.newUserPlatform =
-                                          await UsersTable().insert({
-                                        'role': widget.isHotel
-                                            ? EnumRole.HOTEL.name
-                                            : EnumRole.CLIENT.name,
-                                        'email': _model.mailTextController.text,
-                                        'name': _model.nameTextController.text,
-                                        'network': _model
-                                            .companyNameTextController.text,
-                                        'phone':
-                                            _model.phoneTextController.text,
-                                      });
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            'На вашу почту отправлено письмо с потверждением',
-                                            style: TextStyle(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              fontSize: 16.0,
+                                      if ((_model.userCheck != null &&
+                                              (_model.userCheck)!.isNotEmpty) ==
+                                          true) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'Почта уже используется другим аккаунтом. Попробуйте восстановить пароль',
+                                              style: TextStyle(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                              ),
                                             ),
+                                            duration:
+                                                const Duration(milliseconds: 4000),
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .error,
                                           ),
-                                          duration:
-                                              const Duration(milliseconds: 4000),
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondary,
-                                        ),
-                                      );
-                                      await JuridicalInfoTable().insert({
-                                        'name': valueOrDefault<String>(
-                                          _model.companyNameTextController.text,
-                                          'company_name',
-                                        ),
-                                        'owner': _model.newUserPlatform?.id,
-                                      });
-                                      await widget.action?.call();
-                                      GoRouter.of(context).prepareAuthEvent();
+                                        );
+                                      } else {
+                                        _model.newUserPlatform =
+                                            await UsersTable().insert({
+                                          'role': widget.isHotel
+                                              ? EnumRole.HOTEL.name
+                                              : EnumRole.CLIENT.name,
+                                          'email':
+                                              _model.mailTextController.text,
+                                          'name':
+                                              _model.nameTextController.text,
+                                          'network': _model
+                                              .companyNameTextController.text,
+                                          'phone':
+                                              _model.phoneTextController.text,
+                                        });
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'На вашу почту отправлено письмо с потверждением',
+                                              style: TextStyle(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                fontSize: 16.0,
+                                              ),
+                                            ),
+                                            duration:
+                                                const Duration(milliseconds: 4000),
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondary,
+                                          ),
+                                        );
+                                        await JuridicalInfoTable().insert({
+                                          'name': valueOrDefault<String>(
+                                            _model
+                                                .companyNameTextController.text,
+                                            'company_name',
+                                          ),
+                                          'owner': _model.newUserPlatform?.id,
+                                        });
+                                        await widget.action?.call();
+                                        GoRouter.of(context).prepareAuthEvent();
 
-                                      final user = await authManager
-                                          .createAccountWithEmail(
-                                        context,
-                                        _model.mailTextController.text,
-                                        _model.passwordTextController.text,
-                                      );
-                                      if (user == null) {
-                                        return;
+                                        final user = await authManager
+                                            .createAccountWithEmail(
+                                          context,
+                                          _model.mailTextController.text,
+                                          _model.passwordTextController.text,
+                                        );
+                                        if (user == null) {
+                                          return;
+                                        }
                                       }
-                                    }
 
-                                    setState(() {});
-                                  },
-                            text: 'Зарегистрироваться',
-                            options: FFButtonOptions(
-                              width: 350.0,
-                              height: 60.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 24.0, 24.0, 24.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Commissioner',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                              elevation: 0.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
+                                      setState(() {});
+                                    },
+                              text: 'Зарегистрироваться',
+                              options: FFButtonOptions(
+                                width: 350.0,
+                                height: 60.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 24.0, 24.0, 24.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).primary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Commissioner',
+                                      color: Colors.white,
+                                      letterSpacing: 0.0,
+                                    ),
+                                elevation: 0.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(40.0),
+                                disabledColor: const Color(0xFFECECEC),
+                                disabledTextColor: const Color(0xFF383838),
                               ),
-                              borderRadius: BorderRadius.circular(240.0),
-                              disabledColor: const Color(0xFFECECEC),
-                              disabledTextColor: const Color(0xFF383838),
                             ),
                           ),
                         ),

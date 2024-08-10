@@ -320,7 +320,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                             ),
                                           );
                                         },
-                                      ).then((value) => setState(() {}));
+                                      );
                                     },
                                     child: Container(
                                       width: 32.0,
@@ -584,7 +584,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                               ),
                                             );
                                           },
-                                        ).then((value) => setState(() {}));
+                                        );
                                       },
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -615,7 +615,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   ),
                                 ),
                                 Text(
-                                  'Цена за пол дня / день:',
+                                  'Цена за полдня / день:',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -1806,8 +1806,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                     ),
                                                   );
                                                 },
-                                              ).then(
-                                                  (value) => setState(() {}));
+                                              );
                                             },
                                             child: ClipRRect(
                                               borderRadius:
@@ -2032,7 +2031,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                               ),
                             );
                           },
-                        ).then((value) => setState(() {}));
+                        );
                       },
                       child: Row(
                         mainAxisSize: MainAxisSize.max,

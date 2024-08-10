@@ -1,7 +1,6 @@
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/uikit/check_box/check_box_widget.dart';
 import 'edit_hotel_widget.dart' show EditHotelWidget;
 import 'package:flutter/material.dart';
 
@@ -94,15 +93,16 @@ class EditHotelModel extends FlutterFlowModel<EditHotelWidget> {
   List<FFUploadedFile> uploadedLocalFiles = [];
   List<String> uploadedFileUrls = [];
 
-  // Models for checkBox dynamic component.
-  late FlutterFlowDynamicModels<CheckBoxModel> checkBoxModels;
+  // State field(s) for Checkbox widget.
+  Map<ServiceRow, bool> checkboxValueMap = {};
+  List<ServiceRow> get checkboxCheckedItems =>
+      checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
+
   // Stores action output result for [Backend Call - Update Row(s)] action in Button widget.
   List<HotelRow>? editHotCopy;
 
   @override
-  void initState(BuildContext context) {
-    checkBoxModels = FlutterFlowDynamicModels(() => CheckBoxModel());
-  }
+  void initState(BuildContext context) {}
 
   @override
   void dispose() {
@@ -129,7 +129,5 @@ class EditHotelModel extends FlutterFlowModel<EditHotelWidget> {
 
     hotelDescriptionEditFocusNode?.dispose();
     hotelDescriptionEditTextController?.dispose();
-
-    checkBoxModels.dispose();
   }
 }

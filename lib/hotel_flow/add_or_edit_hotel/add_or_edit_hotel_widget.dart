@@ -10,7 +10,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/hotel_flow/edit_hotel/edit_hotel_widget.dart';
-import '/uikit/check_box/check_box_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
@@ -364,7 +363,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                       width: 200.0,
                                       decoration: const BoxDecoration(),
                                       child: Text(
-                                        'Город',
+                                        'Город / регион',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -1637,155 +1636,191 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                             child: ExpandableNotifier(
                                               initialExpanded: true,
                                               child: ExpandablePanel(
-                                                header: Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 0.0, 20.0),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Text(
-                                                        valueOrDefault<String>(
-                                                          staggeredViewServiceCategoryRow
-                                                              .name,
-                                                          '0',
-                                                        ),
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Commissioner',
-                                                              fontSize: 18.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                            ),
+                                                header: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      valueOrDefault<String>(
+                                                        staggeredViewServiceCategoryRow
+                                                            .name,
+                                                        '0',
                                                       ),
-                                                    ],
-                                                  ),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Commissioner',
+                                                            fontSize: 18.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                    ),
+                                                  ],
                                                 ),
                                                 collapsed: Container(),
-                                                expanded: FutureBuilder<
-                                                    List<ServiceRow>>(
-                                                  future:
-                                                      ServiceTable().queryRows(
-                                                    queryFn: (q) => q.eq(
-                                                      'category',
-                                                      staggeredViewServiceCategoryRow
-                                                          .id,
+                                                expanded: Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 20.0, 0.0, 0.0),
+                                                  child: FutureBuilder<
+                                                      List<ServiceRow>>(
+                                                    future: ServiceTable()
+                                                        .queryRows(
+                                                      queryFn: (q) => q.eq(
+                                                        'category',
+                                                        staggeredViewServiceCategoryRow
+                                                            .id,
+                                                      ),
                                                     ),
-                                                  ),
-                                                  builder: (context, snapshot) {
-                                                    // Customize what your widget looks like when it's loading.
-                                                    if (!snapshot.hasData) {
-                                                      return Center(
-                                                        child: SizedBox(
-                                                          width: 50.0,
-                                                          height: 50.0,
-                                                          child:
-                                                              CircularProgressIndicator(
-                                                            valueColor:
-                                                                AlwaysStoppedAnimation<
-                                                                    Color>(
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .primary,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      );
-                                                    }
-                                                    List<ServiceRow>
-                                                        listViewServiceRowList =
-                                                        snapshot.data!;
-
-                                                    return ListView.separated(
-                                                      padding: EdgeInsets.zero,
-                                                      shrinkWrap: true,
-                                                      scrollDirection:
-                                                          Axis.vertical,
-                                                      itemCount:
-                                                          listViewServiceRowList
-                                                              .length,
-                                                      separatorBuilder:
-                                                          (_, __) => const SizedBox(
-                                                              height: 12.0),
-                                                      itemBuilder: (context,
-                                                          listViewIndex) {
-                                                        final listViewServiceRow =
-                                                            listViewServiceRowList[
-                                                                listViewIndex];
-                                                        return Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Expanded(
-                                                              child: Align(
-                                                                alignment:
-                                                                    const AlignmentDirectional(
-                                                                        -1.0,
-                                                                        0.0),
-                                                                child:
-                                                                    wrapWithModel(
-                                                                  model: _model
-                                                                      .checkBoxModels
-                                                                      .getModel(
-                                                                    listViewServiceRow
-                                                                        .id
-                                                                        .toString(),
-                                                                    listViewIndex,
-                                                                  ),
-                                                                  updateCallback:
-                                                                      () => setState(
-                                                                          () {}),
-                                                                  updateOnChange:
-                                                                      true,
-                                                                  child:
-                                                                      CheckBoxWidget(
-                                                                    key: Key(
-                                                                      'Key3ax_${listViewServiceRow.id.toString()}',
-                                                                    ),
-                                                                    variant: 2,
-                                                                    isChecked: (_model.selectedServices.isNotEmpty) &&
-                                                                        _model
-                                                                            .selectedServices
-                                                                            .contains(listViewServiceRow.id),
-                                                                    label:
-                                                                        listViewServiceRow
-                                                                            .name,
-                                                                    onClick:
-                                                                        () async {
-                                                                      if (_model
-                                                                          .selectedServices
-                                                                          .contains(
-                                                                              listViewServiceRow.id)) {
-                                                                        _model.removeFromSelectedServices(
-                                                                            listViewServiceRow.id);
-                                                                        setState(
-                                                                            () {});
-                                                                      } else {
-                                                                        _model.addToSelectedServices(
-                                                                            listViewServiceRow.id);
-                                                                        setState(
-                                                                            () {});
-                                                                      }
-                                                                    },
-                                                                  ),
-                                                                ),
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      // Customize what your widget looks like when it's loading.
+                                                      if (!snapshot.hasData) {
+                                                        return Center(
+                                                          child: SizedBox(
+                                                            width: 50.0,
+                                                            height: 50.0,
+                                                            child:
+                                                                CircularProgressIndicator(
+                                                              valueColor:
+                                                                  AlwaysStoppedAnimation<
+                                                                      Color>(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
                                                               ),
                                                             ),
-                                                          ],
+                                                          ),
                                                         );
-                                                      },
-                                                    );
-                                                  },
+                                                      }
+                                                      List<ServiceRow>
+                                                          listViewServiceRowList =
+                                                          snapshot.data!;
+
+                                                      return ListView.separated(
+                                                        padding:
+                                                            EdgeInsets.zero,
+                                                        shrinkWrap: true,
+                                                        scrollDirection:
+                                                            Axis.vertical,
+                                                        itemCount:
+                                                            listViewServiceRowList
+                                                                .length,
+                                                        separatorBuilder:
+                                                            (_, __) => const SizedBox(
+                                                                height: 8.0),
+                                                        itemBuilder: (context,
+                                                            listViewIndex) {
+                                                          final listViewServiceRow =
+                                                              listViewServiceRowList[
+                                                                  listViewIndex];
+                                                          return Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Theme(
+                                                                data: ThemeData(
+                                                                  checkboxTheme:
+                                                                      CheckboxThemeData(
+                                                                    visualDensity:
+                                                                        VisualDensity
+                                                                            .compact,
+                                                                    materialTapTargetSize:
+                                                                        MaterialTapTargetSize
+                                                                            .shrinkWrap,
+                                                                    shape:
+                                                                        RoundedRectangleBorder(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              4.0),
+                                                                    ),
+                                                                  ),
+                                                                  unselectedWidgetColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryText,
+                                                                ),
+                                                                child: Checkbox(
+                                                                  value: _model
+                                                                          .checkboxValueMap[
+                                                                      listViewServiceRow] ??= (_model
+                                                                              .selectedServices.isNotEmpty) &&
+                                                                      _model
+                                                                          .selectedServices
+                                                                          .contains(
+                                                                              listViewServiceRow.id),
+                                                                  onChanged:
+                                                                      (newValue) async {
+                                                                    setState(() =>
+                                                                        _model.checkboxValueMap[listViewServiceRow] =
+                                                                            newValue!);
+                                                                    if (newValue!) {
+                                                                      _model.addToSelectedServices(
+                                                                          listViewServiceRow
+                                                                              .id);
+                                                                      setState(
+                                                                          () {});
+                                                                    } else {
+                                                                      _model.removeFromSelectedServices(
+                                                                          listViewServiceRow
+                                                                              .id);
+                                                                      setState(
+                                                                          () {});
+                                                                    }
+                                                                  },
+                                                                  side:
+                                                                      BorderSide(
+                                                                    width: 2,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                  ),
+                                                                  activeColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                  checkColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .info,
+                                                                ),
+                                                              ),
+                                                              Expanded(
+                                                                child: Text(
+                                                                  valueOrDefault<
+                                                                      String>(
+                                                                    listViewServiceRow
+                                                                        .name,
+                                                                    'Без названия',
+                                                                  ),
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Commissioner',
+                                                                        fontSize:
+                                                                            15.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.normal,
+                                                                      ),
+                                                                ),
+                                                              ),
+                                                            ].divide(const SizedBox(
+                                                                width: 4.0)),
+                                                          );
+                                                        },
+                                                      );
+                                                    },
+                                                  ),
                                                 ),
                                                 theme: ExpandableThemeData(
                                                   tapHeaderToExpand: true,

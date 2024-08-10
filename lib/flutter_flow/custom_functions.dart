@@ -118,12 +118,10 @@ int? totalCapacity(List<int>? hallsCap) {
 }
 
 List<DateTime>? calendarGenerator(DateTime? currentMonth) {
-  // If currentMonth is null, return null
   if (currentMonth == null) {
     return null;
   }
 
-  // List to store the dates
   List<DateTime> daysInMonth = [];
 
   final int daysInCurrentMonth =
@@ -132,24 +130,31 @@ List<DateTime>? calendarGenerator(DateTime? currentMonth) {
       DateTime(currentMonth.year, currentMonth.month, 1);
   final int weekdayOfFirstDay = firstDayOfMonth.weekday;
 
-  // Fill the days before the first day of the month to complete the week
-  for (int i = 1 - weekdayOfFirstDay; i < 1; i++) {
-    daysInMonth.add(DateTime(currentMonth.year, currentMonth.month, i));
+  // Заполняем дни до начала месяца
+  for (int i = 1; i < weekdayOfFirstDay; i++) {
+    DateTime dayOfPreviousMonth = DateTime(
+        currentMonth.year,
+        currentMonth.month - 1,
+        DateTime(currentMonth.year, currentMonth.month, 0).day -
+            (weekdayOfFirstDay - i) +
+            1);
+    daysInMonth.add(dayOfPreviousMonth);
   }
 
-  // Add the days of the current month
+  // Добавляем дни текущего месяца
   for (int i = 1; i <= daysInCurrentMonth; i++) {
     daysInMonth.add(DateTime(currentMonth.year, currentMonth.month, i));
   }
 
-  // Add the days after the last day of the month to complete the week
+  // Заполняем дни после конца месяца
   final DateTime lastDayOfMonth =
       DateTime(currentMonth.year, currentMonth.month, daysInCurrentMonth);
   final int weekdayOfLastDay = lastDayOfMonth.weekday;
 
   for (int i = 1; i <= 7 - weekdayOfLastDay; i++) {
-    daysInMonth.add(DateTime(
-        currentMonth.year, currentMonth.month, daysInCurrentMonth + i));
+    DateTime dayOfNextMonth =
+        DateTime(currentMonth.year, currentMonth.month + 1, i);
+    daysInMonth.add(dayOfNextMonth);
   }
 
   return daysInMonth;
@@ -267,4 +272,68 @@ double? findMaxValueInList(List<double> intList) {
   double maxValue = intList.reduce((curr, next) => curr > next ? curr : next);
 
   return maxValue;
+}
+
+List<DateTime>? calendarGeneratorTest(DateTime currentMonth) {
+  // Если currentMonth равен null, возвращаем пустой список
+  List<DateTime> calendarGeneratorTest(DateTime currentMonth) {
+    // Если currentMonth равен null, возвращаем пустой список
+    if (currentMonth == null) {
+      print('Error: currentMonth is null');
+      return [];
+    }
+
+    // Список для хранения дат
+    List<DateTime> daysInMonth = [];
+
+    // Получаем общее количество дней в текущем месяце
+    final int daysInCurrentMonth =
+        DateTime(currentMonth.year, currentMonth.month + 1, 0).day;
+    print('daysInCurrentMonth: $daysInCurrentMonth');
+
+    // Получаем первый и последний день текущего месяца
+    final DateTime firstDayOfMonth =
+        DateTime(currentMonth.year, currentMonth.month, 1);
+    final DateTime lastDayOfMonth =
+        DateTime(currentMonth.year, currentMonth.month, daysInCurrentMonth);
+    print('firstDayOfMonth: $firstDayOfMonth');
+    print('lastDayOfMonth: $lastDayOfMonth');
+
+    // Получаем день недели для первого дня месяца (1 - Понедельник, 7 - Воскресенье)
+    final int weekdayOfFirstDay = firstDayOfMonth.weekday;
+    print('weekdayOfFirstDay: $weekdayOfFirstDay');
+
+    // Заполняем дни перед первым днем месяца для завершения недели
+    if (weekdayOfFirstDay != 1) {
+      // Количество дней в предыдущем месяце
+      final int daysInPreviousMonth =
+          DateTime(currentMonth.year, currentMonth.month, 0).day;
+      for (int i = weekdayOfFirstDay - 1; i > 0; i--) {
+        daysInMonth.add(DateTime(currentMonth.year, currentMonth.month - 1,
+            daysInPreviousMonth - i + 1));
+      }
+    }
+
+    // Добавляем дни текущего месяца
+    for (int i = 1; i <= daysInCurrentMonth; i++) {
+      daysInMonth.add(DateTime(currentMonth.year, currentMonth.month, i));
+    }
+
+    // Получаем день недели для последнего дня месяца (1 - Понедельник, 7 - Воскресенье)
+    final int weekdayOfLastDay = lastDayOfMonth.weekday;
+    print('weekdayOfLastDay: $weekdayOfLastDay');
+
+    // Добавляем дни после последнего дня месяца для завершения недели
+    if (weekdayOfLastDay != 7) {
+      for (int i = 1; i <= 7 - weekdayOfLastDay; i++) {
+        daysInMonth.add(DateTime(currentMonth.year, currentMonth.month + 1, i));
+      }
+    }
+
+    return daysInMonth;
+  }
+}
+
+int getDayOfMonth(DateTime date) {
+  return date.day;
 }

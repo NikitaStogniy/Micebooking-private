@@ -488,7 +488,7 @@ class _HotelRequestsComponentWidgetState
                                             child: Text(
                                               valueOrDefault<String>(
                                                 dateTimeFormat(
-                                                  'd/M/y',
+                                                  "d/M/y",
                                                   requestsItem.createdAt,
                                                   locale: FFLocalizations.of(
                                                           context)
@@ -542,7 +542,7 @@ class _HotelRequestsComponentWidgetState
                                             child: Text(
                                               valueOrDefault<String>(
                                                 dateTimeFormat(
-                                                  'd/M/y',
+                                                  "d/M/y",
                                                   requestsItem.dayStart,
                                                   locale: FFLocalizations.of(
                                                           context)

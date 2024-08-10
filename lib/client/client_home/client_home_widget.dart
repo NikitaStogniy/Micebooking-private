@@ -75,9 +75,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
             : null;
 
         return GestureDetector(
-          onTap: () => _model.unfocusNode.canRequestFocus
-              ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-              : FocusScope.of(context).unfocus(),
+          onTap: () => FocusScope.of(context).unfocus(),
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -169,7 +167,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                                                         valueOrDefault<String>(
                                                           clientHomeUsersRow
                                                               ?.name,
-                                                          'Username',
+                                                          'Ваше ФИО',
                                                         ),
                                                         style:
                                                             FlutterFlowTheme.of(

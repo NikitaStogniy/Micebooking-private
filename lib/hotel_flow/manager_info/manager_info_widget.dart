@@ -254,7 +254,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                             ),
                                           );
                                         },
-                                      ).then((value) => setState(() {}));
+                                      );
                                     },
                                     child: Text(
                                       'Изменить пароль',
@@ -610,7 +610,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                   ),
                                 );
                               },
-                            ).then((value) => setState(() {}));
+                            );
                           },
                           text: 'Сохранить',
                           options: FFButtonOptions(
@@ -677,7 +677,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                   ),
                                 );
                               },
-                            ).then((value) => setState(() {}));
+                            );
                           },
                           text: 'Отменить изменения',
                           options: FFButtonOptions(

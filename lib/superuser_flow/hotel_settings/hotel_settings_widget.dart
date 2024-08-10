@@ -1,9 +1,11 @@
 import '/backend/schema/enums/enums.dart';
 import '/backend/supabase/supabase.dart';
 import '/cms/super_service_elment/super_service_elment_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/pop_up/confirm_action/confirm_action_widget.dart';
 import '/superuser_flow/add_new/add_new_widget.dart';
 import '/superuser_flow/info_component/info_component_widget.dart';
 import 'dart:async';
@@ -945,6 +947,81 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                   ),
                                                 ),
                                               ].divide(const SizedBox(width: 12.0)),
+                                            ),
+                                            Builder(
+                                              builder: (context) => Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        32.0, 0.0, 0.0, 0.0),
+                                                child: FlutterFlowIconButton(
+                                                  borderRadius: 32.0,
+                                                  borderWidth: 1.0,
+                                                  buttonSize: 32.0,
+                                                  fillColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .error,
+                                                  icon: const Icon(
+                                                    Icons.delete_forever,
+                                                    color: Colors.white,
+                                                    size: 16.0,
+                                                  ),
+                                                  onPressed: () async {
+                                                    await showDialog(
+                                                      context: context,
+                                                      builder: (dialogContext) {
+                                                        return Dialog(
+                                                          elevation: 0,
+                                                          insetPadding:
+                                                              EdgeInsets.zero,
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          alignment: const AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                          child:
+                                                              ConfirmActionWidget(
+                                                            title:
+                                                                'Вы точно хотите удалить \"${citysCityRow.name}\" из списка городов?',
+                                                            successText:
+                                                                'Да, удалить из списка',
+                                                            cancelText:
+                                                                'Нет, не удалять из списка',
+                                                            successAction:
+                                                                () async {
+                                                              await CityTable()
+                                                                  .delete(
+                                                                matchingRows:
+                                                                    (rows) =>
+                                                                        rows.eq(
+                                                                  'id',
+                                                                  citysCityRow
+                                                                      .id,
+                                                                ),
+                                                              );
+                                                              setState(() =>
+                                                                  _model.requestCompleter4 =
+                                                                      null);
+                                                              await _model
+                                                                  .waitForRequestCompleted4();
+                                                              Navigator.pop(
+                                                                  context);
+                                                            },
+                                                            cancelAction:
+                                                                () async {
+                                                              Navigator.pop(
+                                                                  context);
+                                                            },
+                                                          ),
+                                                        );
+                                                      },
+                                                    );
+                                                  },
+                                                ),
+                                              ),
                                             ),
                                           ].divide(const SizedBox(width: 16.0)),
                                         ),

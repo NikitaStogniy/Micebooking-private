@@ -121,6 +121,7 @@ class _SupportBottomsheetWidgetState extends State<SupportBottomsheetWidget> {
                         ),
                         FFButtonWidget(
                           onPressed: () async {
+                            await launchURL('https://t.me/micebooking');
                             Navigator.pop(context);
                           },
                           text: 'Перейти в телеграм-бот',

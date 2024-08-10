@@ -266,46 +266,57 @@ class _CalendarMobileWidgetState extends State<CalendarMobileWidget> {
                     itemCount: daysGen.length,
                     itemBuilder: (context, daysGenIndex) {
                       final daysGenItem = daysGen[daysGenIndex];
-                      return Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
-                        child: InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            if (daysGenItem > getCurrentTimestamp) {
-                              await widget.onClick?.call(
-                                daysGenItem,
-                              );
-                            }
-                          },
+                      return Visibility(
+                        visible:
+                            !(((functions.getDayOfMonth(daysGenItem) < 11) &&
+                                    (daysGenIndex > 21)) ||
+                                ((functions.getDayOfMonth(daysGenItem) > 20) &&
+                                    (daysGenIndex < 7))),
+                        child: Align(
+                          alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Container(
-                            width: 36.0,
-                            height: 36.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            child: Align(
-                              alignment: const AlignmentDirectional(0.0, 0.0),
-                              child: Text(
-                                dateTimeFormat(
-                                  'd',
-                                  daysGenItem,
-                                  locale:
-                                      FFLocalizations.of(context).languageCode,
+                            decoration: const BoxDecoration(),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                if (daysGenItem > getCurrentTimestamp) {
+                                  await widget.onClick?.call(
+                                    daysGenItem,
+                                  );
+                                }
+                              },
+                              child: Container(
+                                width: 36.0,
+                                height: 36.0,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Commissioner',
-                                      color: daysGenItem >= getCurrentTimestamp
-                                          ? const Color(0xFF0A1811)
-                                          : const Color(0x190A1811),
-                                      fontSize: 12.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.bold,
+                                child: Align(
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  child: Text(
+                                    dateTimeFormat(
+                                      "d",
+                                      daysGenItem,
+                                      locale: FFLocalizations.of(context)
+                                          .languageCode,
                                     ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Commissioner',
+                                          color:
+                                              daysGenItem >= getCurrentTimestamp
+                                                  ? const Color(0xFF0A1811)
+                                                  : const Color(0x190A1811),
+                                          fontSize: 12.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                ),
                               ),
                             ),
                           ),

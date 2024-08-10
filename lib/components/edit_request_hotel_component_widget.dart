@@ -356,7 +356,7 @@ class _EditRequestHotelComponentWidgetState
                                               ),
                                             );
                                           },
-                                        ).then((value) => setState(() {}));
+                                        );
                                       },
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -593,7 +593,7 @@ class _EditRequestHotelComponentWidgetState
                                                   ),
                                                 );
                                               },
-                                            ).then((value) => setState(() {}));
+                                            );
                                           },
                                           child: ClipRRect(
                                             borderRadius:

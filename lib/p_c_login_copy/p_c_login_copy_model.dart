@@ -16,7 +16,6 @@ class PCLoginCopyModel extends FlutterFlowModel<PCLoginCopyWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for Menu component.
   late MenuModel menuModel;
   // Model for login_form component.
@@ -33,7 +32,6 @@ class PCLoginCopyModel extends FlutterFlowModel<PCLoginCopyWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     menuModel.dispose();
     loginFormModel.dispose();
     signupFormModel.dispose();

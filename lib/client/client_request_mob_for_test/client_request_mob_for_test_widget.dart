@@ -449,7 +449,7 @@ class _ClientRequestMobForTestWidgetState
                                                             valueOrDefault<
                                                                 String>(
                                                               dateTimeFormat(
-                                                                'd/M/y',
+                                                                "d/M/y",
                                                                 requestsMobItem
                                                                     .createdAt,
                                                                 locale: FFLocalizations.of(
@@ -623,7 +623,7 @@ class _ClientRequestMobForTestWidgetState
                                                             valueOrDefault<
                                                                 String>(
                                                               dateTimeFormat(
-                                                                'd/M/y',
+                                                                "d/M/y",
                                                                 requestsMobItem
                                                                     .dayStart,
                                                                 locale: FFLocalizations.of(
@@ -1010,7 +1010,7 @@ class _ClientRequestMobForTestWidgetState
                                 Expanded(
                                   child: Text(
                                     '${dateTimeFormat(
-                                      'd/M/y',
+                                      "d/M/y",
                                       containerRequestsRow?.dayStart,
                                       locale: FFLocalizations.of(context)
                                           .languageCode,
