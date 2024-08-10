@@ -640,8 +640,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                         const ChangePasswordWidget(),
                                                   );
                                                 },
-                                              ).then(
-                                                  (value) => setState(() {}));
+                                              );
                                             },
                                             child: Container(
                                               width: 150.0,
@@ -1360,8 +1359,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                         child: const PopUpPPWidget(),
                                                       );
                                                     },
-                                                  ).then((value) =>
-                                                      setState(() {}));
+                                                  );
                                                 },
                                                 child: RichText(
                                                   textScaler:

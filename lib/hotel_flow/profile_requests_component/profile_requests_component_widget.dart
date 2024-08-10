@@ -228,11 +228,11 @@ class _ProfileRequestsComponentWidgetState
                                   FlutterFlowTheme.of(context).secondaryText,
                             ),
                             child: Checkbox(
-                              value: _model.checkboxValue ??=
+                              value: _model.checkboxValue1 ??=
                                   _model.completeOnly == true,
                               onChanged: (newValue) async {
                                 setState(
-                                    () => _model.checkboxValue = newValue!);
+                                    () => _model.checkboxValue1 = newValue!);
                                 if (newValue!) {
                                   _model.completeOnly = true;
                                   setState(() {});
@@ -371,6 +371,43 @@ class _ProfileRequestsComponentWidgetState
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
+                              Container(
+                                width: 80.0,
+                                decoration: const BoxDecoration(),
+                                child: Text(
+                                  'Прошло',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Commissioner',
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        fontSize: 19.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 3,
+                                child: Container(
+                                  width: 80.0,
+                                  decoration: const BoxDecoration(),
+                                  child: Text(
+                                    'Организация',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Commissioner',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          fontSize: 19.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                  ),
+                                ),
+                              ),
                               Expanded(
                                 flex: 3,
                                 child: Container(
@@ -520,6 +557,106 @@ class _ProfileRequestsComponentWidgetState
                                     child: Row(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
+                                        Container(
+                                          width: 80.0,
+                                          decoration: const BoxDecoration(),
+                                          child: Align(
+                                            alignment:
+                                                const AlignmentDirectional(0.0, 0.0),
+                                            child: Theme(
+                                              data: ThemeData(
+                                                checkboxTheme:
+                                                    CheckboxThemeData(
+                                                  visualDensity:
+                                                      VisualDensity.compact,
+                                                  materialTapTargetSize:
+                                                      MaterialTapTargetSize
+                                                          .shrinkWrap,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            4.0),
+                                                  ),
+                                                ),
+                                                unselectedWidgetColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                              ),
+                                              child: Checkbox(
+                                                value: _model.checkboxValueMap2[
+                                                        columnRequestsRow] ??=
+                                                    columnRequestsRow
+                                                            .complete ==
+                                                        true,
+                                                onChanged: (newValue) async {
+                                                  setState(() => _model
+                                                              .checkboxValueMap2[
+                                                          columnRequestsRow] =
+                                                      newValue!);
+                                                  if (newValue!) {
+                                                    await RequestsTable()
+                                                        .update(
+                                                      data: {
+                                                        'Complete': true,
+                                                      },
+                                                      matchingRows: (rows) =>
+                                                          rows.eq(
+                                                        'id',
+                                                        columnRequestsRow.id,
+                                                      ),
+                                                    );
+                                                  } else {
+                                                    await RequestsTable()
+                                                        .update(
+                                                      data: {
+                                                        'Complete': false,
+                                                      },
+                                                      matchingRows: (rows) =>
+                                                          rows.eq(
+                                                        'id',
+                                                        columnRequestsRow.id,
+                                                      ),
+                                                    );
+                                                  }
+                                                },
+                                                side: BorderSide(
+                                                  width: 2,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                ),
+                                                activeColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                checkColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .info,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 3,
+                                          child: Container(
+                                            width: 80.0,
+                                            decoration: const BoxDecoration(),
+                                            child: Text(
+                                              valueOrDefault<String>(
+                                                columnRequestsRow.clientNetwork,
+                                                'Без названия',
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        fontSize: 19.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                            ),
+                                          ),
+                                        ),
                                         Expanded(
                                           flex: 3,
                                           child: Container(
@@ -548,7 +685,7 @@ class _ProfileRequestsComponentWidgetState
                                           child: Text(
                                             valueOrDefault<String>(
                                               dateTimeFormat(
-                                                'd/M/y',
+                                                "d/M/y",
                                                 columnRequestsRow.dayStart,
                                                 locale:
                                                     FFLocalizations.of(context)
@@ -592,7 +729,7 @@ class _ProfileRequestsComponentWidgetState
                                           decoration: const BoxDecoration(),
                                           child: Text(
                                             dateTimeFormat(
-                                              'd/M/y',
+                                              "d/M/y",
                                               columnRequestsRow.createdAt,
                                               locale:
                                                   FFLocalizations.of(context)

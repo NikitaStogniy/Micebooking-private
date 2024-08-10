@@ -132,7 +132,7 @@ class _FavoriteComponentWidgetState extends State<FavoriteComponentWidget> {
                                 ),
                               );
                             },
-                          ).then((value) => setState(() {}));
+                          );
                         },
                         child: wrapWithModel(
                           model: _model.favoriteModel,

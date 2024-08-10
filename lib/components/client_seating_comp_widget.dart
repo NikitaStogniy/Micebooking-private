@@ -73,15 +73,15 @@ class _ClientSeatingCompWidgetState extends State<ClientSeatingCompWidget> {
       children: [
         Row(
           mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Expanded(
-              flex: 1,
+            Flexible(
               child: Container(
-                width: 150.0,
+                width: 130.0,
                 decoration: const BoxDecoration(),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
                       'Зал ${widget.index.toString()}:',
@@ -93,11 +93,11 @@ class _ClientSeatingCompWidgetState extends State<ClientSeatingCompWidget> {
                             fontWeight: FontWeight.bold,
                           ),
                     ),
-                    Expanded(
+                    Flexible(
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(100.0),
                         child: Container(
-                          width: 100.0,
+                          width: 60.0,
                           height: 30.0,
                           decoration: BoxDecoration(
                             color: const Color(0xFFC0C4EC),
@@ -155,6 +155,14 @@ class _ClientSeatingCompWidgetState extends State<ClientSeatingCompWidget> {
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
                                   ),
+                              maxLength: 4,
+                              maxLengthEnforcement:
+                                  MaxLengthEnforcement.enforced,
+                              buildCounter: (context,
+                                      {required currentLength,
+                                      required isFocused,
+                                      maxLength}) =>
+                                  null,
                               keyboardType: TextInputType.number,
                               validator: _model.countTextControllerValidator
                                   .asValidator(context),
@@ -171,165 +179,159 @@ class _ClientSeatingCompWidgetState extends State<ClientSeatingCompWidget> {
                 ),
               ),
             ),
-            Expanded(
-              flex: 1,
-              child: Container(
-                width: 150.0,
-                decoration: const BoxDecoration(),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                await widget.onChangeSeating?.call(
-                                  functions.enumChange(
-                                      widget.seating!.type, -1),
-                                  int.tryParse(_model.countTextController.text),
-                                );
-                              },
-                              child: Icon(
-                                Icons.arrow_left_sharp,
-                                color: FlutterFlowTheme.of(context).primary,
-                                size: 40.0,
-                              ),
+            Container(
+              decoration: const BoxDecoration(),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              await widget.onChangeSeating?.call(
+                                functions.enumChange(widget.seating!.type, -1),
+                                int.tryParse(_model.countTextController.text),
+                              );
+                            },
+                            child: Icon(
+                              Icons.arrow_left_sharp,
+                              color: FlutterFlowTheme.of(context).primary,
+                              size: 40.0,
                             ),
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Container(
-                                  width: 40.0,
-                                  height: 40.0,
-                                  decoration: const BoxDecoration(),
-                                  child: Align(
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
-                                    child: wrapWithModel(
-                                      model: _model.seatingIconModel,
-                                      updateCallback: () => setState(() {}),
-                                      updateOnChange: true,
-                                      child: SeatingIconWidget(
-                                        type: widget.seating!.type,
-                                      ),
+                          ),
+                          Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Container(
+                                width: 40.0,
+                                height: 40.0,
+                                decoration: const BoxDecoration(),
+                                child: Align(
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  child: wrapWithModel(
+                                    model: _model.seatingIconModel,
+                                    updateCallback: () => setState(() {}),
+                                    updateOnChange: true,
+                                    child: SeatingIconWidget(
+                                      type: widget.seating!.type,
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
-                            InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                await widget.onChangeSeating?.call(
-                                  functions.enumChange(
-                                      widget.seating!.type, 1),
-                                  int.tryParse(_model.countTextController.text),
-                                );
-                              },
-                              child: Icon(
-                                Icons.arrow_right_sharp,
-                                color: FlutterFlowTheme.of(context).primary,
-                                size: 40.0,
                               ),
-                            ),
-                          ],
-                        ),
-                        Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              () {
-                                if (widget.seating?.type ==
-                                    EnumSeating.theatre) {
-                                  return 'Театр';
-                                } else if (widget.seating?.type ==
-                                    EnumSeating.klass) {
-                                  return 'Класс';
-                                } else if (widget.seating?.type ==
-                                    EnumSeating.communication) {
-                                  return 'Переговорная';
-                                } else if (widget.seating?.type ==
-                                    EnumSeating.ushape) {
-                                  return 'П-образная';
-                                } else if (widget.seating?.type ==
-                                    EnumSeating.oshape) {
-                                  return 'О-образная';
-                                } else if (widget.seating?.type ==
-                                    EnumSeating.cabare) {
-                                  return 'Кабаре';
-                                } else if (widget.seating?.type ==
-                                    EnumSeating.banket) {
-                                  return 'Банкет';
-                                } else if (widget.seating?.type ==
-                                    EnumSeating.furshet) {
-                                  return 'Фуршет';
-                                } else {
-                                  return 'Ошибка';
-                                }
-                              }(),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Commissioner',
-                                    fontSize: 16.0,
-                                    letterSpacing: 0.0,
-                                  ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            await widget.onNew?.call();
-                          },
-                          child: Icon(
-                            Icons.add_circle,
-                            color: FlutterFlowTheme.of(context).secondary,
-                            size: 24.0,
+                            ],
                           ),
-                        ),
-                        InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            await widget.onDelete?.call();
-                          },
-                          child: Icon(
-                            Icons.highlight_off,
-                            color: FlutterFlowTheme.of(context).error,
-                            size: 24.0,
+                          InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              await widget.onChangeSeating?.call(
+                                functions.enumChange(widget.seating!.type, 1),
+                                int.tryParse(_model.countTextController.text),
+                              );
+                            },
+                            child: Icon(
+                              Icons.arrow_right_sharp,
+                              color: FlutterFlowTheme.of(context).primary,
+                              size: 40.0,
+                            ),
                           ),
+                        ],
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            () {
+                              if (widget.seating?.type ==
+                                  EnumSeating.theatre) {
+                                return 'Театр';
+                              } else if (widget.seating?.type ==
+                                  EnumSeating.klass) {
+                                return 'Класс';
+                              } else if (widget.seating?.type ==
+                                  EnumSeating.communication) {
+                                return 'Переговорная';
+                              } else if (widget.seating?.type ==
+                                  EnumSeating.ushape) {
+                                return 'П-образная';
+                              } else if (widget.seating?.type ==
+                                  EnumSeating.oshape) {
+                                return 'О-образная';
+                              } else if (widget.seating?.type ==
+                                  EnumSeating.cabare) {
+                                return 'Кабаре';
+                              } else if (widget.seating?.type ==
+                                  EnumSeating.banket) {
+                                return 'Банкет';
+                              } else if (widget.seating?.type ==
+                                  EnumSeating.furshet) {
+                                return 'Фуршет';
+                              } else {
+                                return 'Ошибка';
+                              }
+                            }(),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Commissioner',
+                                  fontSize: 16.0,
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await widget.onNew?.call();
+                        },
+                        child: Icon(
+                          Icons.add_circle,
+                          color: FlutterFlowTheme.of(context).secondary,
+                          size: 24.0,
                         ),
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await widget.onDelete?.call();
+                        },
+                        child: Icon(
+                          Icons.highlight_off,
+                          color: FlutterFlowTheme.of(context).error,
+                          size: 24.0,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
-          ].divide(const SizedBox(width: 8.0)),
+          ].divide(const SizedBox(width: 12.0)),
         ),
         if (widget.mainCount < _model.currentHallCount)
           Text(

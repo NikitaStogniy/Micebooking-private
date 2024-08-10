@@ -2,7 +2,6 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/hotel_flow/edit_hotel/edit_hotel_widget.dart';
-import '/uikit/check_box/check_box_widget.dart';
 import 'add_or_edit_hotel_widget.dart' show AddOrEditHotelWidget;
 import 'package:flutter/material.dart';
 
@@ -91,8 +90,11 @@ class AddOrEditHotelModel extends FlutterFlowModel<AddOrEditHotelWidget> {
   List<FFUploadedFile> uploadedLocalFiles = [];
   List<String> uploadedFileUrls = [];
 
-  // Models for checkBox dynamic component.
-  late FlutterFlowDynamicModels<CheckBoxModel> checkBoxModels;
+  // State field(s) for Checkbox widget.
+  Map<ServiceRow, bool> checkboxValueMap = {};
+  List<ServiceRow> get checkboxCheckedItems =>
+      checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
+
   // Stores action output result for [Backend Call - Insert Row] action in Button widget.
   HotelRow? newHot;
   // Model for edit_hotel component.
@@ -100,7 +102,6 @@ class AddOrEditHotelModel extends FlutterFlowModel<AddOrEditHotelWidget> {
 
   @override
   void initState(BuildContext context) {
-    checkBoxModels = FlutterFlowDynamicModels(() => CheckBoxModel());
     editHotelModel = createModel(context, () => EditHotelModel());
   }
 
@@ -130,7 +131,6 @@ class AddOrEditHotelModel extends FlutterFlowModel<AddOrEditHotelWidget> {
     descFocusNode?.dispose();
     descTextController?.dispose();
 
-    checkBoxModels.dispose();
     editHotelModel.dispose();
   }
 }

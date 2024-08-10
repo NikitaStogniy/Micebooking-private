@@ -964,8 +964,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                           ),
                                                         );
                                                       },
-                                                    ).then((value) =>
-                                                        setState(() {}));
+                                                    );
                                                   },
                                                   child: Text(
                                                     'Изменить пароль',
@@ -3482,7 +3481,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                 ),
                                               );
                                             },
-                                          ).then((value) => setState(() {}));
+                                          );
                                         },
                                         text: 'Сохранить',
                                         options: FFButtonOptions(
@@ -3549,7 +3548,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                 ),
                                               );
                                             },
-                                          ).then((value) => setState(() {}));
+                                          );
                                         },
                                         text: 'Отменить изменения',
                                         options: FFButtonOptions(
@@ -4266,8 +4265,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                     ),
                                                   );
                                                 },
-                                              ).then(
-                                                  (value) => setState(() {}));
+                                              );
                                             },
                                             child: Text(
                                               'Изменить пароль',

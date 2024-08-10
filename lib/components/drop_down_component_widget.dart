@@ -90,7 +90,7 @@ class _DropDownComponentWidgetState extends State<DropDownComponentWidget> {
                   ),
                 );
               },
-            ).then((value) => setState(() {}));
+            );
           }
         },
         child: Container(

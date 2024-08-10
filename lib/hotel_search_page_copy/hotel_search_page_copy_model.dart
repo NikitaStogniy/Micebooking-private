@@ -230,7 +230,6 @@ class HotelSearchPageCopyModel
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - Query Rows] action in HotelSearchPageCopy widget.
   List<HallRow>? filteredHalls;
   // Model for Menu component.
@@ -293,7 +292,6 @@ class HotelSearchPageCopyModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     menuModel.dispose();
     editRequestHotelComponentModel.dispose();
     clientHallEditComponentModels.dispose();

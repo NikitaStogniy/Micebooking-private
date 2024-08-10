@@ -415,7 +415,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                             ),
                                           );
                                         },
-                                      ).then((value) => setState(() {}));
+                                      );
                                     },
                                     child: Container(
                                       width: 32.0,
@@ -1512,7 +1512,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Text(
-                                  'Цена за пол дня',
+                                  'Цена за полдня',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(

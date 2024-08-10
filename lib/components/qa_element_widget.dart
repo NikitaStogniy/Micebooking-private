@@ -11,10 +11,15 @@ class QaElementWidget extends StatefulWidget {
     super.key,
     required this.qa,
     required this.index,
-  });
+    String? title,
+    String? title2,
+  })  : title = title ?? 'Элемент',
+        title2 = title2 ?? 'Текст';
 
   final CmsRow? qa;
   final int? index;
+  final String title;
+  final String title2;
 
   @override
   State<QaElementWidget> createState() => _QaElementWidgetState();
@@ -64,7 +69,7 @@ class _QaElementWidgetState extends State<QaElementWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Вопрос ${valueOrDefault<String>(
+                '${widget.title} ${valueOrDefault<String>(
                   widget.index?.toString(),
                   '1',
                 )}',
@@ -156,7 +161,7 @@ class _QaElementWidgetState extends State<QaElementWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Ответ  ${valueOrDefault<String>(
+                '${widget.title2} ${valueOrDefault<String>(
                   widget.index?.toString(),
                   '1',
                 )}',

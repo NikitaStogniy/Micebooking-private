@@ -1,8 +1,5 @@
 import '/backend/schema/enums/enums.dart';
-import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
-import '/components/hall_seating_comp_widget.dart';
-import '/components/seating_popup_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -11,7 +8,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/hotel_flow/edit_hall/edit_hall_widget.dart';
-import '/uikit/check_box/check_box_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:easy_debounce/easy_debounce.dart';
@@ -77,6 +73,30 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
     _model.capacityTextController ??= TextEditingController();
     _model.capacityFocusNode ??= FocusNode();
 
+    _model.theatreTextController ??= TextEditingController();
+    _model.theatreFocusNode ??= FocusNode();
+
+    _model.clasTextController ??= TextEditingController();
+    _model.clasFocusNode ??= FocusNode();
+
+    _model.commTextController ??= TextEditingController();
+    _model.commFocusNode ??= FocusNode();
+
+    _model.ushapeTextController ??= TextEditingController();
+    _model.ushapeFocusNode ??= FocusNode();
+
+    _model.oshapeTextController ??= TextEditingController();
+    _model.oshapeFocusNode ??= FocusNode();
+
+    _model.kabareTextController ??= TextEditingController();
+    _model.kabareFocusNode ??= FocusNode();
+
+    _model.banketTextController ??= TextEditingController();
+    _model.banketFocusNode ??= FocusNode();
+
+    _model.furshetTextController ??= TextEditingController();
+    _model.furshetFocusNode ??= FocusNode();
+
     _model.priceTextController ??= TextEditingController();
     _model.priceFocusNode ??= FocusNode();
 
@@ -105,7 +125,16 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
       ),
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
+          _model.theatreTextController?.text = '0';
+          _model.clasTextController?.text = '0';
+          _model.commTextController?.text = '0';
+          _model.ushapeTextController?.text = '0';
+          _model.oshapeTextController?.text = '0';
+          _model.kabareTextController?.text = '0';
+          _model.banketTextController?.text = '0';
+          _model.furshetTextController?.text = '0';
+        }));
   }
 
   @override
@@ -860,103 +889,1163 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Builder(
-                              builder: (context) {
-                                final seatings = _model.seating.toList();
-
-                                return Column(
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Column(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: List.generate(seatings.length,
-                                      (seatingsIndex) {
-                                    final seatingsItem =
-                                        seatings[seatingsIndex];
-                                    return wrapWithModel(
-                                      model:
-                                          _model.hallSeatingCompModels.getModel(
-                                        seatingsIndex.toString(),
-                                        seatingsIndex,
-                                      ),
-                                      updateCallback: () => setState(() {}),
-                                      updateOnChange: true,
-                                      child: HallSeatingCompWidget(
-                                        key: Key(
-                                          'Key87j_${seatingsIndex.toString()}',
-                                        ),
-                                        seating: seatingsItem,
-                                        maxCapacity: int.parse(
-                                            _model.capacityTextController.text),
-                                        onChange: (count) async {
-                                          _model.updateSeatingAtIndex(
-                                            seatingsIndex,
-                                            (e) => e
-                                              ..count = valueOrDefault<int>(
-                                                count,
-                                                0,
-                                              ),
-                                          );
-                                          setState(() {});
-                                        },
-                                      ),
-                                    );
-                                  }).divide(const SizedBox(height: 8.0)),
-                                );
-                              },
-                            ),
-                            Builder(
-                              builder: (context) => InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  await showDialog(
-                                    context: context,
-                                    builder: (dialogContext) {
-                                      return Dialog(
-                                        elevation: 0,
-                                        insetPadding: EdgeInsets.zero,
-                                        backgroundColor: Colors.transparent,
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
-                                                .resolve(
-                                                    Directionality.of(context)),
-                                        child: SeatingPopupWidget(
-                                          onClick: (type) async {
-                                            _model.addToSeating(
-                                                HotelSeatingStruct(
-                                              type: type,
-                                              count: 1,
-                                            ));
-                                            setState(() {});
-                                            Navigator.pop(context);
-                                          },
-                                        ),
-                                      );
-                                    },
-                                  ).then((value) => setState(() {}));
-                                },
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Icon(
-                                      Icons.add_circle,
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      size: 24.0,
-                                    ),
-                                    Text(
-                                      'Добавить рассадку',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Commissioner',
-                                            letterSpacing: 0.0,
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 16.0, 0.0, 8.0),
+                                      child: Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                1.0,
+                                        constraints: const BoxConstraints(
+                                          maxWidth: 500.0,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: const Color(0x17000000),
+                                          borderRadius:
+                                              BorderRadius.circular(16.0),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  8.0, 16.0, 8.0, 16.0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Icon(
+                                                    Icons.info_outline_rounded,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    size: 16.0,
+                                                  ),
+                                                ],
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 2.0, 0.0, 0.0),
+                                                child: Text(
+                                                  'Если в зале не предполагается определенный вид рассадки, оставьте значение \"0\" в его поле',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
+                                        ),
+                                      ),
                                     ),
-                                  ].divide(const SizedBox(width: 8.0)),
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 12.0, 0.0, 0.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                'Театр:',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                              ),
+                                              SizedBox(
+                                                width: 100.0,
+                                                child: TextFormField(
+                                                  controller: _model
+                                                      .theatreTextController,
+                                                  focusNode:
+                                                      _model.theatreFocusNode,
+                                                  autofocus: false,
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    isDense: true,
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    filled: true,
+                                                    fillColor:
+                                                        const Color(0xFFF0F0FA),
+                                                    contentPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(8.0, 8.0,
+                                                                8.0, 8.0),
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                  validator: _model
+                                                      .theatreTextControllerValidator
+                                                      .asValidator(context),
+                                                  inputFormatters: [
+                                                    FilteringTextInputFormatter
+                                                        .allow(RegExp('[0-9]'))
+                                                  ],
+                                                ),
+                                              ),
+                                              Text(
+                                                'человек',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
+                                            ].divide(const SizedBox(width: 24.0)),
+                                          ),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                'Класс:',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                              ),
+                                              SizedBox(
+                                                width: 100.0,
+                                                child: TextFormField(
+                                                  controller:
+                                                      _model.clasTextController,
+                                                  focusNode:
+                                                      _model.clasFocusNode,
+                                                  autofocus: false,
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    isDense: true,
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    filled: true,
+                                                    fillColor:
+                                                        const Color(0xFFF0F0FA),
+                                                    contentPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(8.0, 8.0,
+                                                                8.0, 8.0),
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                  validator: _model
+                                                      .clasTextControllerValidator
+                                                      .asValidator(context),
+                                                  inputFormatters: [
+                                                    FilteringTextInputFormatter
+                                                        .allow(RegExp('[0-9]'))
+                                                  ],
+                                                ),
+                                              ),
+                                              Text(
+                                                'человек',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
+                                            ].divide(const SizedBox(width: 24.0)),
+                                          ),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                'Переговорная:',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                              ),
+                                              SizedBox(
+                                                width: 100.0,
+                                                child: TextFormField(
+                                                  controller:
+                                                      _model.commTextController,
+                                                  focusNode:
+                                                      _model.commFocusNode,
+                                                  autofocus: false,
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    isDense: true,
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    filled: true,
+                                                    fillColor:
+                                                        const Color(0xFFF0F0FA),
+                                                    contentPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(8.0, 8.0,
+                                                                8.0, 8.0),
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                  validator: _model
+                                                      .commTextControllerValidator
+                                                      .asValidator(context),
+                                                  inputFormatters: [
+                                                    FilteringTextInputFormatter
+                                                        .allow(RegExp('[0-9]'))
+                                                  ],
+                                                ),
+                                              ),
+                                              Text(
+                                                'человек',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
+                                            ].divide(const SizedBox(width: 24.0)),
+                                          ),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                'U-образная:',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                              ),
+                                              SizedBox(
+                                                width: 100.0,
+                                                child: TextFormField(
+                                                  controller: _model
+                                                      .ushapeTextController,
+                                                  focusNode:
+                                                      _model.ushapeFocusNode,
+                                                  autofocus: false,
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    isDense: true,
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    filled: true,
+                                                    fillColor:
+                                                        const Color(0xFFF0F0FA),
+                                                    contentPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(8.0, 8.0,
+                                                                8.0, 8.0),
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                  validator: _model
+                                                      .ushapeTextControllerValidator
+                                                      .asValidator(context),
+                                                  inputFormatters: [
+                                                    FilteringTextInputFormatter
+                                                        .allow(RegExp('[0-9]'))
+                                                  ],
+                                                ),
+                                              ),
+                                              Text(
+                                                'человек',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
+                                            ].divide(const SizedBox(width: 24.0)),
+                                          ),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                'О-образная:',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                              ),
+                                              SizedBox(
+                                                width: 100.0,
+                                                child: TextFormField(
+                                                  controller: _model
+                                                      .oshapeTextController,
+                                                  focusNode:
+                                                      _model.oshapeFocusNode,
+                                                  autofocus: false,
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    isDense: true,
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    filled: true,
+                                                    fillColor:
+                                                        const Color(0xFFF0F0FA),
+                                                    contentPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(8.0, 8.0,
+                                                                8.0, 8.0),
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                  validator: _model
+                                                      .oshapeTextControllerValidator
+                                                      .asValidator(context),
+                                                  inputFormatters: [
+                                                    FilteringTextInputFormatter
+                                                        .allow(RegExp('[0-9]'))
+                                                  ],
+                                                ),
+                                              ),
+                                              Text(
+                                                'человек',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
+                                            ].divide(const SizedBox(width: 24.0)),
+                                          ),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                'Кабаре:',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                              ),
+                                              SizedBox(
+                                                width: 100.0,
+                                                child: TextFormField(
+                                                  controller: _model
+                                                      .kabareTextController,
+                                                  focusNode:
+                                                      _model.kabareFocusNode,
+                                                  autofocus: false,
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    isDense: true,
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    filled: true,
+                                                    fillColor:
+                                                        const Color(0xFFF0F0FA),
+                                                    contentPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(8.0, 8.0,
+                                                                8.0, 8.0),
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                  validator: _model
+                                                      .kabareTextControllerValidator
+                                                      .asValidator(context),
+                                                  inputFormatters: [
+                                                    FilteringTextInputFormatter
+                                                        .allow(RegExp('[0-9]'))
+                                                  ],
+                                                ),
+                                              ),
+                                              Text(
+                                                'человек',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
+                                            ].divide(const SizedBox(width: 24.0)),
+                                          ),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                'Банкет:',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                              ),
+                                              SizedBox(
+                                                width: 100.0,
+                                                child: TextFormField(
+                                                  controller: _model
+                                                      .banketTextController,
+                                                  focusNode:
+                                                      _model.banketFocusNode,
+                                                  autofocus: false,
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    isDense: true,
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    filled: true,
+                                                    fillColor:
+                                                        const Color(0xFFF0F0FA),
+                                                    contentPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(8.0, 8.0,
+                                                                8.0, 8.0),
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                  validator: _model
+                                                      .banketTextControllerValidator
+                                                      .asValidator(context),
+                                                  inputFormatters: [
+                                                    FilteringTextInputFormatter
+                                                        .allow(RegExp('[0-9]'))
+                                                  ],
+                                                ),
+                                              ),
+                                              Text(
+                                                'человек',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
+                                            ].divide(const SizedBox(width: 24.0)),
+                                          ),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                'Фуршет:',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                              ),
+                                              SizedBox(
+                                                width: 100.0,
+                                                child: TextFormField(
+                                                  controller: _model
+                                                      .furshetTextController,
+                                                  focusNode:
+                                                      _model.furshetFocusNode,
+                                                  autofocus: false,
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    isDense: true,
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    filled: true,
+                                                    fillColor:
+                                                        const Color(0xFFF0F0FA),
+                                                    contentPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(8.0, 8.0,
+                                                                8.0, 8.0),
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                  validator: _model
+                                                      .furshetTextControllerValidator
+                                                      .asValidator(context),
+                                                  inputFormatters: [
+                                                    FilteringTextInputFormatter
+                                                        .allow(RegExp('[0-9]'))
+                                                  ],
+                                                ),
+                                              ),
+                                              Text(
+                                                'человек',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
+                                            ].divide(const SizedBox(width: 24.0)),
+                                          ),
+                                        ].divide(const SizedBox(height: 8.0)),
+                                      ),
+                                    ),
+                                  ].divide(const SizedBox(height: 8.0)),
                                 ),
-                              ),
+                              ].divide(const SizedBox(height: 8.0)),
                             ),
                           ].divide(const SizedBox(height: 8.0)),
                         ),
@@ -1103,68 +2192,95 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                         mainAxisSize:
                                                             MainAxisSize.max,
                                                         children: [
-                                                          Expanded(
-                                                            child: Align(
-                                                              alignment:
-                                                                  const AlignmentDirectional(
-                                                                      -1.0,
-                                                                      0.0),
-                                                              child:
-                                                                  wrapWithModel(
-                                                                model: _model
-                                                                    .checkBoxModels
-                                                                    .getModel(
-                                                                  listViewServiceRow
-                                                                      .id
-                                                                      .toString(),
-                                                                  listViewIndex,
-                                                                ),
-                                                                updateCallback:
-                                                                    () => setState(
-                                                                        () {}),
-                                                                updateOnChange:
-                                                                    true,
-                                                                child:
-                                                                    CheckBoxWidget(
-                                                                  key: Key(
-                                                                    'Keyrzk_${listViewServiceRow.id.toString()}',
-                                                                  ),
-                                                                  variant: 2,
-                                                                  isChecked: (_model
-                                                                              .selectedServices.isNotEmpty) &&
-                                                                      _model
-                                                                          .selectedServices
-                                                                          .contains(
-                                                                              listViewServiceRow.id),
-                                                                  label:
-                                                                      listViewServiceRow
-                                                                          .name,
-                                                                  charLimit:
-                                                                      20000,
-                                                                  onClick:
-                                                                      () async {
-                                                                    if (_model
-                                                                        .selectedServices
-                                                                        .contains(
-                                                                            listViewServiceRow.id)) {
-                                                                      _model.removeFromSelectedServices(
-                                                                          listViewServiceRow
-                                                                              .id);
-                                                                      setState(
-                                                                          () {});
-                                                                    } else {
-                                                                      _model.addToSelectedServices(
-                                                                          listViewServiceRow
-                                                                              .id);
-                                                                      setState(
-                                                                          () {});
-                                                                    }
-                                                                  },
+                                                          Theme(
+                                                            data: ThemeData(
+                                                              checkboxTheme:
+                                                                  CheckboxThemeData(
+                                                                visualDensity:
+                                                                    VisualDensity
+                                                                        .compact,
+                                                                materialTapTargetSize:
+                                                                    MaterialTapTargetSize
+                                                                        .shrinkWrap,
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              4.0),
                                                                 ),
                                                               ),
+                                                              unselectedWidgetColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                            ),
+                                                            child: Checkbox(
+                                                              value: _model
+                                                                      .checkboxValueMap[
+                                                                  listViewServiceRow] ??= false,
+                                                              onChanged:
+                                                                  (newValue) async {
+                                                                setState(() =>
+                                                                    _model.checkboxValueMap[
+                                                                            listViewServiceRow] =
+                                                                        newValue!);
+                                                                if (newValue!) {
+                                                                  _model.addToSelectedServices(
+                                                                      listViewServiceRow
+                                                                          .id);
+                                                                  setState(
+                                                                      () {});
+                                                                } else {
+                                                                  _model.removeFromSelectedServices(
+                                                                      listViewServiceRow
+                                                                          .id);
+                                                                  setState(
+                                                                      () {});
+                                                                }
+                                                              },
+                                                              side: BorderSide(
+                                                                width: 2,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                              ),
+                                                              activeColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                              checkColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .info,
                                                             ),
                                                           ),
-                                                        ],
+                                                          Expanded(
+                                                            child: Text(
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                listViewServiceRow
+                                                                    .name,
+                                                                'Без названия',
+                                                              ),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Commissioner',
+                                                                    fontSize:
+                                                                        15.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ].divide(const SizedBox(
+                                                            width: 4.0)),
                                                       );
                                                     },
                                                   );
@@ -1303,7 +2419,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Text(
-                                  'Цена за пол дня',
+                                  'Цена за полдня',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -1402,7 +2518,15 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                             (_model.descriptionTextController.text == '') ||
                             (_model.sizeTextController.text == '') ||
                             (_model.capacityTextController.text == '') ||
-                            (_model.priceTextController.text == ''))
+                            (_model.priceTextController.text == '') ||
+                            ((_model.theatreTextController.text == '0') &&
+                                (_model.clasTextController.text == '0') &&
+                                (_model.commTextController.text == '0') &&
+                                (_model.ushapeTextController.text == '0') &&
+                                (_model.oshapeTextController.text == '0') &&
+                                (_model.kabareTextController.text == '0') &&
+                                (_model.banketTextController.text == '0') &&
+                                (_model.furshetTextController.text == '0')))
                         ? null
                         : () async {
                             _model.hotelOfHall = await HotelTable().queryRows(
@@ -1434,168 +2558,28 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                   _model.halfPriceTextController.text),
                               'description':
                                   _model.descriptionTextController.text,
+                              'seating_theater': int.tryParse(
+                                  _model.theatreTextController.text),
+                              'seating_class':
+                                  int.tryParse(_model.clasTextController.text),
+                              'seating_communication':
+                                  int.tryParse(_model.commTextController.text),
+                              'seating_ushape': int.tryParse(
+                                  _model.ushapeTextController.text),
+                              'seating_oshape': int.tryParse(
+                                  _model.oshapeTextController.text),
+                              'seating_kabare': int.tryParse(
+                                  _model.kabareTextController.text),
+                              'seating_banket': int.tryParse(
+                                  _model.banketTextController.text),
+                              'seating_furshet': int.tryParse(
+                                  _model.furshetTextController.text),
                             });
-                            if (_model.seating
-                                    .where((e) => e.type == EnumSeating.theatre)
-                                    .toList().isNotEmpty) {
-                              await HallTable().update(
-                                data: {
-                                  'seating_theater': _model.seating
-                                      .where(
-                                          (e) => e.type == EnumSeating.theatre)
-                                      .toList()
-                                      .first
-                                      .count,
-                                },
-                                matchingRows: (rows) => rows.eq(
-                                  'id',
-                                  _model.newHall?.id,
-                                ),
-                              );
-                            }
-                            if (_model.seating
-                                    .where((e) => e.type == EnumSeating.klass)
-                                    .toList().isNotEmpty) {
-                              await HallTable().update(
-                                data: {
-                                  'seating_class': _model.seating
-                                      .where((e) => e.type == EnumSeating.klass)
-                                      .toList()
-                                      .first
-                                      .count,
-                                },
-                                matchingRows: (rows) => rows.eq(
-                                  'id',
-                                  _model.newHall?.id,
-                                ),
-                              );
-                            }
-                            if (_model.seating
-                                    .where((e) =>
-                                        e.type == EnumSeating.communication)
-                                    .toList().isNotEmpty) {
-                              await HallTable().update(
-                                data: {
-                                  'seating_communication': _model.seating
-                                      .where((e) =>
-                                          e.type == EnumSeating.communication)
-                                      .toList()
-                                      .first
-                                      .count,
-                                },
-                                matchingRows: (rows) => rows.eq(
-                                  'id',
-                                  _model.newHall?.id,
-                                ),
-                              );
-                            }
-                            if (_model.seating
-                                    .where((e) => e.type == EnumSeating.ushape)
-                                    .toList().isNotEmpty) {
-                              await HallTable().update(
-                                data: {
-                                  'seating_ushape': _model.seating
-                                      .where(
-                                          (e) => e.type == EnumSeating.ushape)
-                                      .toList()
-                                      .first
-                                      .count,
-                                },
-                                matchingRows: (rows) => rows.eq(
-                                  'id',
-                                  _model.newHall?.id,
-                                ),
-                              );
-                            }
-                            if (_model.seating
-                                    .where((e) => e.type == EnumSeating.oshape)
-                                    .toList().isNotEmpty) {
-                              await HallTable().update(
-                                data: {
-                                  'seating_oshape': _model.seating
-                                      .where(
-                                          (e) => e.type == EnumSeating.oshape)
-                                      .toList()
-                                      .first
-                                      .count,
-                                },
-                                matchingRows: (rows) => rows.eq(
-                                  'id',
-                                  _model.newHall?.id,
-                                ),
-                              );
-                            }
-                            if (_model.seating
-                                    .where((e) => e.type == EnumSeating.cabare)
-                                    .toList().isNotEmpty) {
-                              await HallTable().update(
-                                data: {
-                                  'seating_kabare': _model.seating
-                                      .where(
-                                          (e) => e.type == EnumSeating.cabare)
-                                      .toList()
-                                      .first
-                                      .count,
-                                },
-                                matchingRows: (rows) => rows.eq(
-                                  'id',
-                                  _model.newHall?.id,
-                                ),
-                              );
-                            }
-                            if (_model.seating
-                                    .where((e) => e.type == EnumSeating.banket)
-                                    .toList().isNotEmpty) {
-                              await HallTable().update(
-                                data: {
-                                  'seating_banket': _model.seating
-                                      .where(
-                                          (e) => e.type == EnumSeating.banket)
-                                      .toList()
-                                      .first
-                                      .count,
-                                },
-                                matchingRows: (rows) => rows.eq(
-                                  'id',
-                                  _model.newHall?.id,
-                                ),
-                              );
-                            }
-                            if (_model.seating
-                                    .where((e) => e.type == EnumSeating.furshet)
-                                    .toList().isNotEmpty) {
-                              await HallTable().update(
-                                data: {
-                                  'seating_furshet': _model.seating
-                                      .where(
-                                          (e) => e.type == EnumSeating.furshet)
-                                      .toList()
-                                      .first
-                                      .count,
-                                },
-                                matchingRows: (rows) => rows.eq(
-                                  'id',
-                                  _model.newHall?.id,
-                                ),
-                              );
-                            }
                             _model.addToHallList(valueOrDefault<int>(
                               _model.newHall?.id,
                               88,
                             ));
                             setState(() {});
-                            await HotelTable().update(
-                              data: {
-                                'hall': _model.hallList,
-                              },
-                              matchingRows: (rows) => rows.eq(
-                                'id',
-                                valueOrDefault<int>(
-                                  widget.hotelId,
-                                  88,
-                                ),
-                              ),
-                            );
                             setState(() {
                               _model.nameTextController?.clear();
                               _model.descriptionTextController?.clear();
@@ -1604,6 +2588,15 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                               _model.priceTextController?.clear();
                               _model.halfPriceTextController?.clear();
                             });
+                            await HotelTable().update(
+                              data: {
+                                'hall': _model.hallList,
+                              },
+                              matchingRows: (rows) => rows.eq(
+                                'id',
+                                widget.hotelId,
+                              ),
+                            );
                             _model.hallList = List.generate(
                                     random_data.randomInteger(5, 5),
                                     (index) => random_data.randomInteger(0, 10))

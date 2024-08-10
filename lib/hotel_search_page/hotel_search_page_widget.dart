@@ -275,8 +275,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
     return FutureBuilder<List<UsersRow>>(
       future: UsersTable().querySingleRow(
         queryFn: (q) => q.eq(
-          'uid',
-          currentUserUid,
+          'email',
+          currentUserEmail,
         ),
       ),
       builder: (context, snapshot) {
@@ -304,9 +304,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
             : null;
 
         return GestureDetector(
-          onTap: () => _model.unfocusNode.canRequestFocus
-              ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-              : FocusScope.of(context).unfocus(),
+          onTap: () => FocusScope.of(context).unfocus(),
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -384,12 +382,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                               .resolve(
                                                   Directionality.of(context)),
                                           child: GestureDetector(
-                                            onTap: () => _model
-                                                    .unfocusNode.canRequestFocus
-                                                ? FocusScope.of(context)
-                                                    .requestFocus(
-                                                        _model.unfocusNode)
-                                                : FocusScope.of(context)
+                                            onTap: () =>
+                                                FocusScope.of(dialogContext)
                                                     .unfocus(),
                                             child: SizedBox(
                                               height: MediaQuery.sizeOf(context)
@@ -475,7 +469,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                           ),
                                         );
                                       },
-                                    ).then((value) => setState(() {}));
+                                    );
                                   },
                                 ),
                               ),
@@ -630,12 +624,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                             return Material(
                                               color: Colors.transparent,
                                               child: GestureDetector(
-                                                onTap: () => _model.unfocusNode
-                                                        .canRequestFocus
-                                                    ? FocusScope.of(context)
-                                                        .requestFocus(
-                                                            _model.unfocusNode)
-                                                    : FocusScope.of(context)
+                                                onTap: () =>
+                                                    FocusScope.of(dialogContext)
                                                         .unfocus(),
                                                 child: SizedBox(
                                                   height: 500.0,
@@ -741,7 +731,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                               ),
                                             );
                                           },
-                                        ).then((value) => setState(() {}));
+                                        );
 
                                         setState(() {});
                                       },
@@ -857,14 +847,9 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                               return Material(
                                                 color: Colors.transparent,
                                                 child: GestureDetector(
-                                                  onTap: () => _model
-                                                          .unfocusNode
-                                                          .canRequestFocus
-                                                      ? FocusScope.of(context)
-                                                          .requestFocus(_model
-                                                              .unfocusNode)
-                                                      : FocusScope.of(context)
-                                                          .unfocus(),
+                                                  onTap: () => FocusScope.of(
+                                                          dialogContext)
+                                                      .unfocus(),
                                                   child: HallFilterWidget(
                                                     maxCapacity: _model
                                                         .hallFilterMaxCapacity,
@@ -906,7 +891,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                 ),
                                               );
                                             },
-                                          ).then((value) => setState(() {}));
+                                          );
                                         },
                                         child: Container(
                                           width: 300.0,
@@ -1719,15 +1704,9 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                           context)),
                                                               child:
                                                                   GestureDetector(
-                                                                onTap: () => _model
-                                                                        .unfocusNode
-                                                                        .canRequestFocus
-                                                                    ? FocusScope.of(
-                                                                            context)
-                                                                        .requestFocus(_model
-                                                                            .unfocusNode)
-                                                                    : FocusScope.of(
-                                                                            context)
+                                                                onTap: () =>
+                                                                    FocusScope.of(
+                                                                            dialogContext)
                                                                         .unfocus(),
                                                                 child:
                                                                     SizedBox(
@@ -1753,8 +1732,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                               ),
                                                             );
                                                           },
-                                                        ).then((value) =>
-                                                            setState(() {}));
+                                                        );
                                                       }
                                                     },
                                                     unchosen: (id) async {
@@ -2051,15 +2029,9 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                           context)),
                                                               child:
                                                                   GestureDetector(
-                                                                onTap: () => _model
-                                                                        .unfocusNode
-                                                                        .canRequestFocus
-                                                                    ? FocusScope.of(
-                                                                            context)
-                                                                        .requestFocus(_model
-                                                                            .unfocusNode)
-                                                                    : FocusScope.of(
-                                                                            context)
+                                                                onTap: () =>
+                                                                    FocusScope.of(
+                                                                            dialogContext)
                                                                         .unfocus(),
                                                                 child:
                                                                     SizedBox(
@@ -2085,8 +2057,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                               ),
                                                             );
                                                           },
-                                                        ).then((value) =>
-                                                            setState(() {}));
+                                                        );
                                                       }
                                                     },
                                                     unchosen: (id) async {

@@ -1,7 +1,6 @@
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/hotel_flow/edit_room/edit_room_widget.dart';
-import '/uikit/check_box/check_box_widget.dart';
 import 'add_or_edit_room_widget.dart' show AddOrEditRoomWidget;
 import 'package:flutter/material.dart';
 
@@ -57,14 +56,19 @@ class AddOrEditRoomModel extends FlutterFlowModel<AddOrEditRoomWidget> {
   List<FFUploadedFile> uploadedLocalFiles = [];
   List<String> uploadedFileUrls = [];
 
-  // Models for checkBox dynamic component.
-  late FlutterFlowDynamicModels<CheckBoxModel> checkBoxModels;
+  // State field(s) for Checkbox widget.
+  Map<ServiceRow, bool> checkboxValueMap1 = {};
+  List<ServiceRow> get checkboxCheckedItems1 => checkboxValueMap1.entries
+      .where((e) => e.value)
+      .map((e) => e.key)
+      .toList();
+
   // State field(s) for count widget.
   FocusNode? countFocusNode;
   TextEditingController? countTextController;
   String? Function(BuildContext, String?)? countTextControllerValidator;
   // State field(s) for Checkbox widget.
-  bool? checkboxValue;
+  bool? checkboxValue2;
   // State field(s) for price widget.
   FocusNode? priceFocusNode;
   TextEditingController? priceTextController;
@@ -82,7 +86,6 @@ class AddOrEditRoomModel extends FlutterFlowModel<AddOrEditRoomWidget> {
 
   @override
   void initState(BuildContext context) {
-    checkBoxModels = FlutterFlowDynamicModels(() => CheckBoxModel());
     editRoomModel = createModel(context, () => EditRoomModel());
   }
 
@@ -94,7 +97,6 @@ class AddOrEditRoomModel extends FlutterFlowModel<AddOrEditRoomWidget> {
     hotelNameFocusNode2?.dispose();
     hotelNameTextController2?.dispose();
 
-    checkBoxModels.dispose();
     countFocusNode?.dispose();
     countTextController?.dispose();
 

@@ -232,7 +232,6 @@ class HotelSearchPageModel extends FlutterFlowModel<HotelSearchPageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - Query Rows] action in HotelSearchPage widget.
   List<HallRow>? filteredHalls;
   Completer<List<HotelRow>>? requestCompleter;
@@ -313,7 +312,6 @@ class HotelSearchPageModel extends FlutterFlowModel<HotelSearchPageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     menuModel.dispose();
     hotelSearchCompModel.dispose();
     clientHotelComponentModels1.dispose();

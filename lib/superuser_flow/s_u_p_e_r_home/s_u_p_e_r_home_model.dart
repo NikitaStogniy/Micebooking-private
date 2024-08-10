@@ -7,8 +7,10 @@ import '/superuser_flow/client_search/client_search_widget.dart';
 import '/superuser_flow/company_requests_component/company_requests_component_widget.dart';
 import '/superuser_flow/edit_about/edit_about_widget.dart';
 import '/superuser_flow/edit_about_us/edit_about_us_widget.dart';
+import '/superuser_flow/edit_p_i/edit_p_i_widget.dart';
 import '/superuser_flow/edit_p_p/edit_p_p_widget.dart';
 import '/superuser_flow/edit_q_a/edit_q_a_widget.dart';
+import '/superuser_flow/edit_terms/edit_terms_widget.dart';
 import '/superuser_flow/edit_whyus/edit_whyus_widget.dart';
 import '/superuser_flow/food_full_info/food_full_info_widget.dart';
 import '/superuser_flow/food_settings/food_settings_widget.dart';
@@ -42,7 +44,6 @@ class SUPERHomeModel extends FlutterFlowModel<SUPERHomeWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for Column widget.
   ScrollController? columnController1;
   // State field(s) for Column widget.
@@ -91,6 +92,10 @@ class SUPERHomeModel extends FlutterFlowModel<SUPERHomeWidget> {
   late SuperHotelJuridicalModel superHotelJuridicalModel;
   // Model for EditPP component.
   late EditPPModel editPPModel;
+  // Model for EditTerms component.
+  late EditTermsModel editTermsModel;
+  // Model for EditPI component.
+  late EditPIModel editPIModel;
 
   @override
   void initState(BuildContext context) {
@@ -120,11 +125,12 @@ class SUPERHomeModel extends FlutterFlowModel<SUPERHomeWidget> {
     superHotelJuridicalModel =
         createModel(context, () => SuperHotelJuridicalModel());
     editPPModel = createModel(context, () => EditPPModel());
+    editTermsModel = createModel(context, () => EditTermsModel());
+    editPIModel = createModel(context, () => EditPIModel());
   }
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     columnController1?.dispose();
     columnController2?.dispose();
     hotelSettingsModel.dispose();
@@ -149,5 +155,7 @@ class SUPERHomeModel extends FlutterFlowModel<SUPERHomeWidget> {
     companyRequestsComponentModel.dispose();
     superHotelJuridicalModel.dispose();
     editPPModel.dispose();
+    editTermsModel.dispose();
+    editPIModel.dispose();
   }
 }

@@ -305,7 +305,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                   containerRequestsRow?.name,
                                   'Без названия',
                                 )}, ${dateTimeFormat(
-                                  'd/M/y',
+                                  "d/M/y",
                                   containerRequestsRow?.dayStart,
                                   locale:
                                       FFLocalizations.of(context).languageCode,

@@ -56,7 +56,6 @@ class RequestModel extends FlutterFlowModel<RequestWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for Menu component.
   late MenuModel menuModel;
   // State field(s) for EventNam widget.
@@ -75,7 +74,6 @@ class RequestModel extends FlutterFlowModel<RequestWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     menuModel.dispose();
     eventNamFocusNode?.dispose();
     eventNamTextController?.dispose();

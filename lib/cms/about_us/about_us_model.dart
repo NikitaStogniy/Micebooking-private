@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 class AboutUsModel extends FlutterFlowModel<AboutUsWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for Menu component.
   late MenuModel menuModel;
   // Model for footer component.
@@ -21,7 +20,6 @@ class AboutUsModel extends FlutterFlowModel<AboutUsWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     menuModel.dispose();
     footerModel.dispose();
   }

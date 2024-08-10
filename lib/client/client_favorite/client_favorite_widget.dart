@@ -445,8 +445,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                                       ),
                                                     );
                                                   },
-                                                ).then(
-                                                    (value) => setState(() {}));
+                                                );
                                               },
                                               child: Text(
                                                 'Открыть',
@@ -691,8 +690,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                                     ),
                                                   );
                                                 },
-                                              ).then(
-                                                  (value) => setState(() {}));
+                                              );
                                             },
                                             child: Text(
                                               'Открыть',

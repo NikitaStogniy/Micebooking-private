@@ -230,7 +230,7 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
                                 ),
                                 Text(
                                   '${dateTimeFormat(
-                                    'd/M/y',
+                                    "d/M/y",
                                     containerRequestsRow?.dayStart,
                                     locale: FFLocalizations.of(context)
                                         .languageCode,
