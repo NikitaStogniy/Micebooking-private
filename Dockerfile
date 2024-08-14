@@ -3,6 +3,7 @@ FROM dart:2.18 AS build
 
 # Устанавливаем Flutter
 RUN git clone https://github.com/flutter/flutter.git /flutter
+RUN cd /flutter && git fetch && git checkout 3.22.2
 ENV PATH="/flutter/bin:/flutter/bin/cache/dart-sdk/bin:${PATH}"
 
 # Устанавливаем Chrome для поддержки Flutter Web
@@ -16,10 +17,11 @@ WORKDIR /app
 COPY . .
 
 # Устанавливаем зависимости и строим проект
-RUN flutter channel stable
-RUN flutter upgrade
+# RUN flutter channel stable
+# RUN flutter upgrade
 RUN flutter config --enable-web
 RUN flutter pub get
+RUN flutter --version
 RUN flutter build web
 
 # Используем официальный Docker образ nginx для хостинга нашего веб-приложения
