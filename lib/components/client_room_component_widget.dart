@@ -1472,7 +1472,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                                   width: 0.0,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(8.0),
+                                                    BorderRadius.circular(0.0),
                                               ),
                                               focusedBorder:
                                                   UnderlineInputBorder(
@@ -1481,7 +1481,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                                   width: 0.0,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(8.0),
+                                                    BorderRadius.circular(0.0),
                                               ),
                                               errorBorder: UnderlineInputBorder(
                                                 borderSide: const BorderSide(
@@ -1489,7 +1489,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                                   width: 0.0,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(8.0),
+                                                    BorderRadius.circular(0.0),
                                               ),
                                               focusedErrorBorder:
                                                   UnderlineInputBorder(
@@ -1498,7 +1498,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                                   width: 0.0,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(8.0),
+                                                    BorderRadius.circular(0.0),
                                               ),
                                             ),
                                             style: FlutterFlowTheme.of(context)
@@ -1508,9 +1508,22 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                                   letterSpacing: 0.0,
                                                 ),
                                             minLines: 1,
+                                            maxLength: 4,
+                                            maxLengthEnforcement:
+                                                MaxLengthEnforcement.enforced,
+                                            buildCounter: (context,
+                                                    {required currentLength,
+                                                    required isFocused,
+                                                    maxLength}) =>
+                                                null,
+                                            keyboardType: TextInputType.number,
                                             validator: _model
                                                 .countmobTextControllerValidator
                                                 .asValidator(context),
+                                            inputFormatters: [
+                                              FilteringTextInputFormatter.allow(
+                                                  RegExp('[0-9]'))
+                                            ],
                                           ),
                                         ),
                                       ),

@@ -11,10 +11,12 @@ class CalendarRowWidget extends StatefulWidget {
     super.key,
     required this.onClick,
     bool? chosen,
+    required this.chosenDay,
   }) : chosen = chosen ?? false;
 
   final Future Function(DateTime selectedDate)? onClick;
   final bool chosen;
+  final DateTime? chosenDay;
 
   @override
   State<CalendarRowWidget> createState() => _CalendarRowWidgetState();
@@ -95,6 +97,7 @@ class _CalendarRowWidgetState extends State<CalendarRowWidget> {
                 updateOnChange: true,
                 child: CalendarWidget(
                   month: _model.firstMonth!,
+                  chosenday: widget.chosenDay!,
                   onClick: (date) async {
                     await widget.onClick?.call(
                       date,
@@ -121,6 +124,7 @@ class _CalendarRowWidgetState extends State<CalendarRowWidget> {
                 updateOnChange: true,
                 child: CalendarWidget(
                   month: functions.monthModify(_model.firstMonth, 1)!,
+                  chosenday: widget.chosenDay!,
                   onClick: (date) async {
                     await widget.onClick?.call(
                       date,
@@ -147,6 +151,7 @@ class _CalendarRowWidgetState extends State<CalendarRowWidget> {
                 updateOnChange: true,
                 child: CalendarWidget(
                   month: functions.monthModify(_model.firstMonth, 2)!,
+                  chosenday: widget.chosenDay!,
                   onClick: (date) async {
                     await widget.onClick?.call(
                       date,

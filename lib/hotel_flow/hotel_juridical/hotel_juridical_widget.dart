@@ -242,8 +242,6 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                         textInputAction:
                                                             TextInputAction
                                                                 .next,
-                                                        readOnly:
-                                                            !_model.isEdit,
                                                         obscureText: false,
                                                         decoration:
                                                             InputDecoration(

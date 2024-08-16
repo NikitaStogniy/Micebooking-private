@@ -3196,7 +3196,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       ),
                                                     );
                                                   }).divide(
-                                                      const SizedBox(height: 16.0)),
+                                                      const SizedBox(height: 32.0)),
                                                 );
                                               },
                                             ),

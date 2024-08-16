@@ -190,7 +190,6 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                     child: FFButtonWidget(
                                       onPressed: () async {
                                         _model.isHotel = false;
-                                        _model.isRegister = false;
                                         setState(() {});
                                       },
                                       text: 'Я –  Организатор',
@@ -242,7 +241,6 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                     child: FFButtonWidget(
                                       onPressed: () async {
                                         _model.isHotel = true;
-                                        _model.isRegister = false;
                                         setState(() {});
                                       },
                                       text: 'Я – Отель',

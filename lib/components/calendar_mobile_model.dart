@@ -3,6 +3,10 @@ import 'calendar_mobile_widget.dart' show CalendarMobileWidget;
 import 'package:flutter/material.dart';
 
 class CalendarMobileModel extends FlutterFlowModel<CalendarMobileWidget> {
+  ///  Local state fields for this component.
+
+  DateTime? currentDate;
+
   @override
   void initState(BuildContext context) {}
 

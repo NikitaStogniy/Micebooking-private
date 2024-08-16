@@ -70,9 +70,9 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
       setState(() {});
     });
 
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
-    _model.textFieldFocusNode!.addListener(() => setState(() {}));
+    _model.countmobTextController ??= TextEditingController();
+    _model.countmobFocusNode ??= FocusNode();
+
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -128,83 +128,146 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                               borderRadius: BorderRadius.circular(100.0),
                               child: Container(
                                 width: 70.0,
-                                height: 30.0,
+                                height: 40.0,
                                 decoration: BoxDecoration(
                                   color: const Color(0xFFC0C4EC),
                                   borderRadius: BorderRadius.circular(100.0),
                                 ),
-                                child: Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        8.0, 0.0, 8.0, 0.0),
-                                    child: TextFormField(
-                                      controller: _model.textController,
-                                      focusNode: _model.textFieldFocusNode,
-                                      onChanged: (_) => EasyDebounce.debounce(
-                                        '_model.textController',
-                                        const Duration(milliseconds: 100),
-                                        () async {
-                                          await widget.onType?.call(
-                                            int.tryParse(
-                                                _model.textController.text),
-                                          );
-                                          _model.countDublicate = int.tryParse(
-                                              _model.textController.text);
-                                          _model.updatePage(() {});
-                                        },
+                                child: Visibility(
+                                  visible: _model.fieldActive == true,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(100.0),
+                                    child: Container(
+                                      width: 70.0,
+                                      height: 40.0,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFFC0C4EC),
+                                        borderRadius:
+                                            BorderRadius.circular(100.0),
                                       ),
-                                      autofocus: true,
-                                      obscureText: false,
-                                      decoration: InputDecoration(
-                                        labelStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Commissioner',
-                                              fontSize: 16.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
+                                      child: Visibility(
+                                        visible: _model.fieldActive == true,
+                                        child: Align(
+                                          alignment:
+                                              const AlignmentDirectional(-1.0, 0.0),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    8.0, 0.0, 8.0, 10.0),
+                                            child: TextFormField(
+                                              controller:
+                                                  _model.countmobTextController,
+                                              focusNode:
+                                                  _model.countmobFocusNode,
+                                              onChanged: (_) =>
+                                                  EasyDebounce.debounce(
+                                                '_model.countmobTextController',
+                                                const Duration(milliseconds: 200),
+                                                () async {
+                                                  await widget.onType?.call(
+                                                    int.tryParse(_model
+                                                        .countmobTextController
+                                                        .text),
+                                                  );
+                                                  _model.countDublicate =
+                                                      int.tryParse(_model
+                                                          .countmobTextController
+                                                          .text);
+                                                  _model.updatePage(() {});
+                                                },
+                                              ),
+                                              autofocus: true,
+                                              obscureText: false,
+                                              decoration: InputDecoration(
+                                                labelStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                hintText:
+                                                    'Кол-во участников...',
+                                                hintStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                enabledBorder:
+                                                    UnderlineInputBorder(
+                                                  borderSide: const BorderSide(
+                                                    color: Color(0x00000000),
+                                                    width: 0.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          0.0),
+                                                ),
+                                                focusedBorder:
+                                                    UnderlineInputBorder(
+                                                  borderSide: const BorderSide(
+                                                    color: Color(0x00000000),
+                                                    width: 0.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          0.0),
+                                                ),
+                                                errorBorder:
+                                                    UnderlineInputBorder(
+                                                  borderSide: const BorderSide(
+                                                    color: Color(0x00000000),
+                                                    width: 0.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          0.0),
+                                                ),
+                                                focusedErrorBorder:
+                                                    UnderlineInputBorder(
+                                                  borderSide: const BorderSide(
+                                                    color: Color(0x00000000),
+                                                    width: 0.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          0.0),
+                                                ),
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                              minLines: 1,
+                                              maxLength: 4,
+                                              maxLengthEnforcement:
+                                                  MaxLengthEnforcement.enforced,
+                                              buildCounter: (context,
+                                                      {required currentLength,
+                                                      required isFocused,
+                                                      maxLength}) =>
+                                                  null,
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              validator: _model
+                                                  .countmobTextControllerValidator
+                                                  .asValidator(context),
+                                              inputFormatters: [
+                                                FilteringTextInputFormatter
+                                                    .allow(RegExp('[0-9]'))
+                                              ],
                                             ),
-                                        hintText: 'Кол-во участников...',
-                                        hintStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Commissioner',
-                                              fontSize: 16.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                        enabledBorder: InputBorder.none,
-                                        focusedBorder: InputBorder.none,
-                                        errorBorder: InputBorder.none,
-                                        focusedErrorBorder: InputBorder.none,
-                                        contentPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 16.0),
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Commissioner',
-                                            fontSize: 16.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
                                           ),
-                                      minLines: 1,
-                                      maxLength: 5,
-                                      maxLengthEnforcement:
-                                          MaxLengthEnforcement.enforced,
-                                      buildCounter: (context,
-                                              {required currentLength,
-                                              required isFocused,
-                                              maxLength}) =>
-                                          null,
-                                      validator: _model.textControllerValidator
-                                          .asValidator(context),
-                                      inputFormatters: [
-                                        FilteringTextInputFormatter.allow(
-                                            RegExp('[0-9]'))
-                                      ],
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -220,14 +283,14 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                 _model.fieldActive = true;
                                 setState(() {});
                                 setState(() {
-                                  _model.textController?.clear();
+                                  _model.countmobTextController?.clear();
                                 });
                               },
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(100.0),
                                 child: Container(
                                   width: 70.0,
-                                  height: 30.0,
+                                  height: 40.0,
                                   decoration: BoxDecoration(
                                     color: const Color(0xFFC0C4EC),
                                     borderRadius: BorderRadius.circular(100.0),

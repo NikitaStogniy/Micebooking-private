@@ -46,10 +46,10 @@ class VisitorsCountModel extends FlutterFlowModel<VisitorsCountWidget> {
 
   ///  State fields for stateful widgets in this component.
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
+  // State field(s) for countmob widget.
+  FocusNode? countmobFocusNode;
+  TextEditingController? countmobTextController;
+  String? Function(BuildContext, String?)? countmobTextControllerValidator;
   // Models for ClientSeating_comp dynamic component.
   late FlutterFlowDynamicModels<ClientSeatingCompModel> clientSeatingCompModels;
 
@@ -61,8 +61,8 @@ class VisitorsCountModel extends FlutterFlowModel<VisitorsCountWidget> {
 
   @override
   void dispose() {
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
+    countmobFocusNode?.dispose();
+    countmobTextController?.dispose();
 
     clientSeatingCompModels.dispose();
   }

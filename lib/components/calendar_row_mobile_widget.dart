@@ -10,9 +10,11 @@ class CalendarRowMobileWidget extends StatefulWidget {
   const CalendarRowMobileWidget({
     super.key,
     required this.onClick,
+    required this.chosenDay,
   });
 
   final Future Function(DateTime selectedDate)? onClick;
+  final DateTime? chosenDay;
 
   @override
   State<CalendarRowMobileWidget> createState() =>
@@ -73,6 +75,7 @@ class _CalendarRowMobileWidgetState extends State<CalendarRowMobileWidget> {
             updateCallback: () => setState(() {}),
             child: CalendarMobileWidget(
               month: _model.firstMonth!,
+              chosenDay: widget.chosenDay!,
               onClick: (date) async {
                 await widget.onClick?.call(
                   date,

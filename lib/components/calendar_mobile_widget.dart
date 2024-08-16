@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'calendar_mobile_model.dart';
 export 'calendar_mobile_model.dart';
 
@@ -13,12 +14,14 @@ class CalendarMobileWidget extends StatefulWidget {
     required this.onClick,
     this.plus,
     this.minus,
+    required this.chosenDay,
   });
 
   final DateTime? month;
   final Future Function(DateTime date)? onClick;
   final Future Function()? plus;
   final Future Function()? minus;
+  final DateTime? chosenDay;
 
   @override
   State<CalendarMobileWidget> createState() => _CalendarMobileWidgetState();
@@ -37,6 +40,12 @@ class _CalendarMobileWidgetState extends State<CalendarMobileWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CalendarMobileModel());
+
+    // On component load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.currentDate = widget.chosenDay;
+      setState(() {});
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -292,7 +301,10 @@ class _CalendarMobileWidgetState extends State<CalendarMobileWidget> {
                                 width: 36.0,
                                 height: 36.0,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8.0),
+                                  color: _model.currentDate == daysGenItem
+                                      ? FlutterFlowTheme.of(context).primary
+                                      : Colors.transparent,
+                                  borderRadius: BorderRadius.circular(32.0),
                                 ),
                                 child: Align(
                                   alignment: const AlignmentDirectional(0.0, 0.0),
@@ -307,10 +319,17 @@ class _CalendarMobileWidgetState extends State<CalendarMobileWidget> {
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Commissioner',
-                                          color:
-                                              daysGenItem >= getCurrentTimestamp
-                                                  ? const Color(0xFF0A1811)
-                                                  : const Color(0x190A1811),
+                                          color: () {
+                                            if (_model.currentDate ==
+                                                daysGenItem) {
+                                              return const Color(0xFFFAFAFA);
+                                            } else if (daysGenItem >
+                                                getCurrentTimestamp) {
+                                              return const Color(0xFF0A1811);
+                                            } else {
+                                              return const Color(0x190A1811);
+                                            }
+                                          }(),
                                           fontSize: 12.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.bold,
