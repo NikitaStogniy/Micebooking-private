@@ -64,8 +64,12 @@ class RequestModel extends FlutterFlowModel<RequestWidget> {
   String? Function(BuildContext, String?)? eventNamTextControllerValidator;
   // Stores action output result for [Backend Call - Update Row(s)] action in Button widget.
   List<RequestWrapperRow>? request;
+  // Stores action output result for [Backend Call - Update Row(s)] action in Button widget.
+  List<RequestWrapperRow>? requestMob;
   // Stores action output result for [Backend Call - API (sendemail)] action in Button widget.
   ApiCallResponse? apiResultows;
+  // Stores action output result for [Backend Call - API (sendemail)] action in Button widget.
+  ApiCallResponse? apiResultows2;
 
   @override
   void initState(BuildContext context) {

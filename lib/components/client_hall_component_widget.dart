@@ -2013,21 +2013,17 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                               backgroundColor: Colors.transparent,
                               alignment: const AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
-                              child: SizedBox(
-                                height: MediaQuery.sizeOf(context).height * 0.9,
-                                width: MediaQuery.sizeOf(context).width * 0.8,
-                                child: HallPopUpWidget(
-                                  hall: widget.hall!,
-                                  isChosen: false,
-                                  chosed: (id) async {
-                                    await Future.delayed(
-                                        const Duration(milliseconds: 10));
-                                  },
-                                  hallRequest: (id) async {
-                                    await Future.delayed(
-                                        const Duration(milliseconds: 10));
-                                  },
-                                ),
+                              child: HallPopUpWidget(
+                                hall: widget.hall!,
+                                isChosen: false,
+                                chosed: (id) async {
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 10));
+                                },
+                                hallRequest: (id) async {
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 10));
+                                },
                               ),
                             );
                           },
@@ -2137,6 +2133,72 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         children: [
+                          if (widget.hall!.seatingTheater! > 0)
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Align(
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  child: Text(
+                                    'Театр',
+                                    textAlign: TextAlign.center,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Commissioner',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          fontSize: 15.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 12.0, 0.0, 0.0),
+                                    child: Text(
+                                      valueOrDefault<String>(
+                                        widget.hall?.seatingTheater
+                                            ?.toString(),
+                                        '0',
+                                      ),
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Commissioner',
+                                            color: const Color(0xFF636363),
+                                            fontSize: 13.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 12.0, 0.0, 0.0),
+                                  child: wrapWithModel(
+                                    model: _model.checkBoxModel9,
+                                    updateCallback: () => setState(() {}),
+                                    updateOnChange: true,
+                                    child: CheckBoxWidget(
+                                      isChecked: _model.seating == 'Театр',
+                                      onClick: () async {
+                                        if (!widget.isChosen) {
+                                          _model.seating = 'Театр';
+                                          setState(() {});
+                                        }
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           if (widget.hall!.seatingClass! > 0)
                             Column(
                               mainAxisSize: MainAxisSize.min,
@@ -2185,7 +2247,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 12.0, 0.0, 0.0),
                                   child: wrapWithModel(
-                                    model: _model.checkBoxModel9,
+                                    model: _model.checkBoxModel10,
                                     updateCallback: () => setState(() {}),
                                     updateOnChange: true,
                                     child: CheckBoxWidget(
@@ -2250,7 +2312,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 12.0, 0.0, 0.0),
                                   child: wrapWithModel(
-                                    model: _model.checkBoxModel10,
+                                    model: _model.checkBoxModel11,
                                     updateCallback: () => setState(() {}),
                                     updateOnChange: true,
                                     child: CheckBoxWidget(
@@ -2315,7 +2377,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 12.0, 0.0, 0.0),
                                   child: wrapWithModel(
-                                    model: _model.checkBoxModel11,
+                                    model: _model.checkBoxModel12,
                                     updateCallback: () => setState(() {}),
                                     updateOnChange: true,
                                     child: CheckBoxWidget(
@@ -2379,7 +2441,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 12.0, 0.0, 0.0),
                                   child: wrapWithModel(
-                                    model: _model.checkBoxModel12,
+                                    model: _model.checkBoxModel13,
                                     updateCallback: () => setState(() {}),
                                     updateOnChange: true,
                                     child: CheckBoxWidget(
@@ -2443,7 +2505,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 12.0, 0.0, 0.0),
                                   child: wrapWithModel(
-                                    model: _model.checkBoxModel13,
+                                    model: _model.checkBoxModel14,
                                     updateCallback: () => setState(() {}),
                                     updateOnChange: true,
                                     child: CheckBoxWidget(
@@ -2507,7 +2569,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 12.0, 0.0, 0.0),
                                   child: wrapWithModel(
-                                    model: _model.checkBoxModel14,
+                                    model: _model.checkBoxModel15,
                                     updateCallback: () => setState(() {}),
                                     updateOnChange: true,
                                     child: CheckBoxWidget(
@@ -2572,7 +2634,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 12.0, 0.0, 0.0),
                                   child: wrapWithModel(
-                                    model: _model.checkBoxModel15,
+                                    model: _model.checkBoxModel16,
                                     updateCallback: () => setState(() {}),
                                     updateOnChange: true,
                                     child: CheckBoxWidget(
@@ -2580,72 +2642,6 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                       onClick: () async {
                                         if (!widget.isChosen) {
                                           _model.seating = 'Фуршет';
-                                          setState(() {});
-                                        }
-                                      },
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          if (widget.hall!.seatingTheater! > 0)
-                            Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: Text(
-                                    'Театр',
-                                    textAlign: TextAlign.center,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Commissioner',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          fontSize: 15.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 12.0, 0.0, 0.0),
-                                    child: Text(
-                                      valueOrDefault<String>(
-                                        widget.hall?.seatingTheater
-                                            ?.toString(),
-                                        '0',
-                                      ),
-                                      textAlign: TextAlign.center,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Commissioner',
-                                            color: const Color(0xFF636363),
-                                            fontSize: 13.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 12.0, 0.0, 0.0),
-                                  child: wrapWithModel(
-                                    model: _model.checkBoxModel16,
-                                    updateCallback: () => setState(() {}),
-                                    updateOnChange: true,
-                                    child: CheckBoxWidget(
-                                      isChecked: _model.seating == 'Театр',
-                                      onClick: () async {
-                                        if (!widget.isChosen) {
-                                          _model.seating = 'Театр';
                                           setState(() {});
                                         }
                                       },
@@ -2821,7 +2817,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                       iconPadding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: widget.isChosen
-                          ? FlutterFlowTheme.of(context).success
+                          ? const Color(0xFF24A541)
                           : FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(

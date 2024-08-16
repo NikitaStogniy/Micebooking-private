@@ -136,6 +136,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                 height: 530.0,
                                 child: CalendarRowWidget(
                                   chosen: _model.startDate == widget.date,
+                                  chosenDay: _model.startDate!,
                                   onClick: (selectedDate) async {
                                     _model.startDate = selectedDate;
                                     setState(() {});
@@ -758,6 +759,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                 height: 470.0,
                                 width: MediaQuery.sizeOf(context).width * 0.95,
                                 child: CalendarRowMobileWidget(
+                                  chosenDay: _model.startDate!,
                                   onClick: (selectedDate) async {
                                     _model.startDate = selectedDate;
                                     setState(() {});

@@ -114,28 +114,63 @@ class _PopUpPERSONALINFOWidgetState extends State<PopUpPERSONALINFOWidget> {
                     ],
                   ),
                   Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(40.0, 32.0, 40.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(
+                        valueOrDefault<double>(
+                          MediaQuery.sizeOf(context).width > 1000.0
+                              ? 40.0
+                              : 0.0,
+                          0.0,
+                        ),
+                        32.0,
+                        valueOrDefault<double>(
+                          MediaQuery.sizeOf(context).width > 1000.0
+                              ? 40.0
+                              : 0.0,
+                          0.0,
+                        ),
+                        0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          'Политика в отношении обработки персональных данных',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Commissioner',
-                                    fontSize: 36.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
+                        Expanded(
+                          child: Text(
+                            'Политика в отношении обработки персональных данных',
+                            textAlign: TextAlign.center,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Commissioner',
+                                  fontSize: valueOrDefault<double>(
+                                    MediaQuery.sizeOf(context).width > 1000.0
+                                        ? 36.0
+                                        : 24.0,
+                                    24.0,
                                   ),
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ),
                         ),
                       ],
                     ),
                   ),
                   Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(40.0, 32.0, 40.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(
+                        valueOrDefault<double>(
+                          MediaQuery.sizeOf(context).width > 1000.0
+                              ? 40.0
+                              : 0.0,
+                          0.0,
+                        ),
+                        32.0,
+                        valueOrDefault<double>(
+                          MediaQuery.sizeOf(context).width > 1000.0
+                              ? 40.0
+                              : 0.0,
+                          0.0,
+                        ),
+                        0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,

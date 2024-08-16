@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'calendar_model.dart';
 export 'calendar_model.dart';
 
@@ -10,10 +11,12 @@ class CalendarWidget extends StatefulWidget {
     super.key,
     required this.month,
     required this.onClick,
+    required this.chosenday,
   });
 
   final DateTime? month;
   final Future Function(DateTime date)? onClick;
+  final DateTime? chosenday;
 
   @override
   State<CalendarWidget> createState() => _CalendarWidgetState();
@@ -32,6 +35,12 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CalendarModel());
+
+    // On component load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.currentDate = widget.chosenday;
+      setState(() {});
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -198,7 +207,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                           width: 36.0,
                           height: 36.0,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0),
+                            borderRadius: BorderRadius.circular(90.0),
                           ),
                           child: Visibility(
                             visible: !(((functions.getDayOfMonth(daysGenItem) <
@@ -218,13 +227,18 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                                     await widget.onClick?.call(
                                       daysGenItem,
                                     );
+                                    _model.currentDate = daysGenItem;
+                                    setState(() {});
                                   }
                                 },
                                 child: Container(
                                   width: 36.0,
                                   height: 36.0,
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8.0),
+                                    color: _model.currentDate == daysGenItem
+                                        ? FlutterFlowTheme.of(context).primary
+                                        : Colors.transparent,
+                                    borderRadius: BorderRadius.circular(32.0),
                                   ),
                                   alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Text(
@@ -238,10 +252,17 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Commissioner',
-                                          color:
-                                              daysGenItem > getCurrentTimestamp
-                                                  ? const Color(0xFF0A1811)
-                                                  : const Color(0x190A1811),
+                                          color: () {
+                                            if (_model.currentDate ==
+                                                daysGenItem) {
+                                              return const Color(0xFFFAFAFA);
+                                            } else if (daysGenItem >
+                                                getCurrentTimestamp) {
+                                              return const Color(0xFF0A1811);
+                                            } else {
+                                              return const Color(0x190A1811);
+                                            }
+                                          }(),
                                           fontSize: 12.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.bold,

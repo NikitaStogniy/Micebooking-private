@@ -763,22 +763,17 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                 backgroundColor: Colors.transparent,
                                 alignment: const AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
-                                child: SizedBox(
-                                  height:
-                                      MediaQuery.sizeOf(context).height * 0.8,
-                                  width: MediaQuery.sizeOf(context).width * 0.8,
-                                  child: FoodPopUpWidget(
-                                    food: widget.food!,
-                                    isChosen: false,
-                                    chosed: (id) async {
-                                      await Future.delayed(
-                                          const Duration(milliseconds: 10));
-                                    },
-                                    foodRequest: (id) async {
-                                      await Future.delayed(
-                                          const Duration(milliseconds: 10));
-                                    },
-                                  ),
+                                child: FoodPopUpWidget(
+                                  food: widget.food!,
+                                  isChosen: false,
+                                  chosed: (id) async {
+                                    await Future.delayed(
+                                        const Duration(milliseconds: 10));
+                                  },
+                                  foodRequest: (id) async {
+                                    await Future.delayed(
+                                        const Duration(milliseconds: 10));
+                                  },
                                 ),
                               );
                             },
