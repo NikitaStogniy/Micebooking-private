@@ -92,6 +92,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
         child: Container(
           constraints: const BoxConstraints(
             maxWidth: 1250.0,
+            maxHeight: 800.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -109,37 +110,32 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
               primary: false,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  if (responsiveVisibility(
-                    context: context,
-                    tabletLandscape: false,
-                    desktop: false,
-                  ))
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 8.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              Navigator.pop(context);
-                            },
-                            child: Icon(
-                              Icons.close_rounded,
-                              color: FlutterFlowTheme.of(context).primary,
-                              size: 32.0,
-                            ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 8.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            Navigator.pop(context);
+                          },
+                          child: Icon(
+                            Icons.close_rounded,
+                            color: FlutterFlowTheme.of(context).primary,
+                            size: 32.0,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
+                  ),
                   Text(
                     _model.isRegister == false
                         ? 'Вход в личный кабинет'
@@ -233,7 +229,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                     .override(
                                       fontFamily: 'Commissioner',
                                       color: valueOrDefault<Color>(
-                                        !_model.isHotel
+                                        _model.isHotel
                                             ? const Color(0xFFF0F0FA)
                                             : FlutterFlowTheme.of(context)
                                                 .primary,

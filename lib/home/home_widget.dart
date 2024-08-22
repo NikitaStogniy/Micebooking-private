@@ -635,31 +635,16 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                             FocusScope.of(
                                                                     dialogContext)
                                                                 .unfocus(),
-                                                        child: SizedBox(
-                                                          height:
-                                                              MediaQuery.sizeOf(
-                                                                          context)
-                                                                      .height *
-                                                                  0.9,
-                                                          width:
-                                                              MediaQuery.sizeOf(
-                                                                          context)
-                                                                      .width *
-                                                                  0.8,
-                                                          child:
-                                                              LoginHomePopUpWidget(
-                                                            startDate: date,
-                                                            duration: duration,
-                                                            city: city,
-                                                            visitors: visitors,
-                                                            filter1:
-                                                                hallFilter1,
-                                                            filter2:
-                                                                hallFilter2,
-                                                            filter3:
-                                                                hallFilter3,
-                                                            hotel: false,
-                                                          ),
+                                                        child:
+                                                            LoginHomePopUpWidget(
+                                                          startDate: date,
+                                                          duration: duration,
+                                                          city: city,
+                                                          visitors: visitors,
+                                                          filter1: hallFilter1,
+                                                          filter2: hallFilter2,
+                                                          filter3: hallFilter3,
+                                                          hotel: false,
                                                         ),
                                                       ),
                                                     );

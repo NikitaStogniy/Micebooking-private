@@ -562,7 +562,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                   hotelId: _model.hotelId!,
                                   doneCallback: () async {
                                     _model.page = EnumHotelPage.ROOMS;
-                                    _model.id = null;
+                                    _model.id = 0;
                                     setState(() {});
                                   },
                                 ),
@@ -642,7 +642,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                   hotelId: _model.hotelId!,
                                   doneCallback: () async {
                                     _model.page = EnumHotelPage.HALLS;
-                                    _model.id = null;
+                                    _model.id = 0;
                                     setState(() {});
                                   },
                                 ),

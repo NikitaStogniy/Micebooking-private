@@ -160,14 +160,13 @@ class _WhyWidgetState extends State<WhyWidget> {
                                   Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Expanded(
-                                            child: Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 16.0, 0.0, 0.0),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 16.0, 0.0, 0.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Expanded(
                                               child: Text(
                                                 valueOrDefault<String>(
                                                   containerCmsRow?.title1,
@@ -186,30 +185,124 @@ class _WhyWidgetState extends State<WhyWidget> {
                                                         ),
                                               ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Expanded(
-                                            child: Text(
-                                              valueOrDefault<String>(
-                                                containerCmsRow?.text1,
-                                                'text',
-                                              ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Commissioner',
-                                                    fontSize: 20.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
+                                      FutureBuilder<List<CmsRow>>(
+                                        future: CmsTable().queryRows(
+                                          queryFn: (q) => q
+                                              .eq(
+                                                'type',
+                                                EnumCms.WHY_ELEMENT_1.name,
+                                              )
+                                              .order('created_at',
+                                                  ascending: true),
+                                        ),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50.0,
+                                                height: 50.0,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                          Color>(
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
                                                   ),
-                                            ),
-                                          ),
-                                        ],
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          List<CmsRow> listViewCmsRowList =
+                                              snapshot.data!;
+
+                                          return ListView.separated(
+                                            padding: EdgeInsets.zero,
+                                            primary: false,
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.vertical,
+                                            itemCount:
+                                                listViewCmsRowList.length,
+                                            separatorBuilder: (_, __) =>
+                                                const SizedBox(height: 32.0),
+                                            itemBuilder:
+                                                (context, listViewIndex) {
+                                              final listViewCmsRow =
+                                                  listViewCmsRowList[
+                                                      listViewIndex];
+                                              return Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            listViewCmsRow
+                                                                .title1,
+                                                            'Ошибка залоговка',
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Commissioner',
+                                                                fontSize: 20.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            listViewCmsRow
+                                                                .text1,
+                                                            'текст 1',
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Commissioner',
+                                                                fontSize: 18.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ].divide(
+                                                    const SizedBox(height: 16.0)),
+                                              );
+                                            },
+                                          );
+                                        },
                                       ),
                                     ].divide(const SizedBox(height: 24.0)),
                                   ),
@@ -245,27 +338,121 @@ class _WhyWidgetState extends State<WhyWidget> {
                                           ),
                                         ],
                                       ),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Expanded(
-                                            child: Text(
-                                              valueOrDefault<String>(
-                                                containerCmsRow?.text2,
-                                                'text',
-                                              ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Commissioner',
-                                                    fontSize: 20.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
+                                      FutureBuilder<List<CmsRow>>(
+                                        future: CmsTable().queryRows(
+                                          queryFn: (q) => q
+                                              .eq(
+                                                'type',
+                                                EnumCms.WHY_ELEMENT_2.name,
+                                              )
+                                              .order('created_at',
+                                                  ascending: true),
+                                        ),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50.0,
+                                                height: 50.0,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                          Color>(
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
                                                   ),
-                                            ),
-                                          ),
-                                        ],
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          List<CmsRow> listViewCmsRowList =
+                                              snapshot.data!;
+
+                                          return ListView.separated(
+                                            padding: EdgeInsets.zero,
+                                            primary: false,
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.vertical,
+                                            itemCount:
+                                                listViewCmsRowList.length,
+                                            separatorBuilder: (_, __) =>
+                                                const SizedBox(height: 32.0),
+                                            itemBuilder:
+                                                (context, listViewIndex) {
+                                              final listViewCmsRow =
+                                                  listViewCmsRowList[
+                                                      listViewIndex];
+                                              return Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            listViewCmsRow
+                                                                .title1,
+                                                            'Ошибка залоговка',
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Commissioner',
+                                                                fontSize: 20.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            listViewCmsRow
+                                                                .text1,
+                                                            'текст 1',
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Commissioner',
+                                                                fontSize: 18.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ].divide(
+                                                    const SizedBox(height: 16.0)),
+                                              );
+                                            },
+                                          );
+                                        },
                                       ),
                                     ].divide(const SizedBox(height: 24.0)),
                                   ),
@@ -301,27 +488,121 @@ class _WhyWidgetState extends State<WhyWidget> {
                                           ),
                                         ],
                                       ),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Expanded(
-                                            child: Text(
-                                              valueOrDefault<String>(
-                                                containerCmsRow?.text3,
-                                                'text',
-                                              ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Commissioner',
-                                                    fontSize: 20.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
+                                      FutureBuilder<List<CmsRow>>(
+                                        future: CmsTable().queryRows(
+                                          queryFn: (q) => q
+                                              .eq(
+                                                'type',
+                                                EnumCms.WHY_ELEMENT_3.name,
+                                              )
+                                              .order('created_at',
+                                                  ascending: true),
+                                        ),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50.0,
+                                                height: 50.0,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                          Color>(
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
                                                   ),
-                                            ),
-                                          ),
-                                        ],
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          List<CmsRow> listViewCmsRowList =
+                                              snapshot.data!;
+
+                                          return ListView.separated(
+                                            padding: EdgeInsets.zero,
+                                            primary: false,
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.vertical,
+                                            itemCount:
+                                                listViewCmsRowList.length,
+                                            separatorBuilder: (_, __) =>
+                                                const SizedBox(height: 32.0),
+                                            itemBuilder:
+                                                (context, listViewIndex) {
+                                              final listViewCmsRow =
+                                                  listViewCmsRowList[
+                                                      listViewIndex];
+                                              return Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            listViewCmsRow
+                                                                .title1,
+                                                            'Ошибка залоговка',
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Commissioner',
+                                                                fontSize: 20.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            listViewCmsRow
+                                                                .text1,
+                                                            'текст 1',
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Commissioner',
+                                                                fontSize: 18.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ].divide(
+                                                    const SizedBox(height: 16.0)),
+                                              );
+                                            },
+                                          );
+                                        },
                                       ),
                                     ].divide(const SizedBox(height: 24.0)),
                                   ),

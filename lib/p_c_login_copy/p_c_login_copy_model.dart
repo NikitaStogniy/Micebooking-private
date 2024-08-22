@@ -10,7 +10,7 @@ class PCLoginCopyModel extends FlutterFlowModel<PCLoginCopyWidget> {
 
   bool isRegister = false;
 
-  bool isHotel = true;
+  bool isHotel = false;
 
   String? lastEmail;
 

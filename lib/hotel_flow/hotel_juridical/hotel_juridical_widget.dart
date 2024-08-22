@@ -225,23 +225,12 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                         ),
                                                         focusNode: _model
                                                             .emailFocusNode,
-                                                        onChanged: (_) =>
-                                                            EasyDebounce
-                                                                .debounce(
-                                                          '_model.emailTextController',
-                                                          const Duration(
-                                                              milliseconds:
-                                                                  200),
-                                                          () async {
-                                                            _model.isEdit =
-                                                                true;
-                                                            setState(() {});
-                                                          },
-                                                        ),
                                                         autofocus: false,
                                                         textInputAction:
                                                             TextInputAction
                                                                 .next,
+                                                        readOnly:
+                                                            !_model.isEdit,
                                                         obscureText: false,
                                                         decoration:
                                                             InputDecoration(
@@ -402,19 +391,6 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                         ),
                                                         focusNode: _model
                                                             .phoneFocusNode,
-                                                        onChanged: (_) =>
-                                                            EasyDebounce
-                                                                .debounce(
-                                                          '_model.phoneTextController',
-                                                          const Duration(
-                                                              milliseconds:
-                                                                  200),
-                                                          () async {
-                                                            _model.isEdit =
-                                                                true;
-                                                            setState(() {});
-                                                          },
-                                                        ),
                                                         autofocus: false,
                                                         textInputAction:
                                                             TextInputAction
@@ -683,10 +659,6 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                   const Duration(milliseconds: 200),
                                                   () => setState(() {}),
                                                 ),
-                                                onFieldSubmitted: (_) async {
-                                                  _model.isEdit = true;
-                                                  setState(() {});
-                                                },
                                                 autofocus: false,
                                                 textInputAction:
                                                     TextInputAction.next,
@@ -831,10 +803,6 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                   const Duration(milliseconds: 200),
                                                   () => setState(() {}),
                                                 ),
-                                                onFieldSubmitted: (_) async {
-                                                  _model.isEdit = true;
-                                                  setState(() {});
-                                                },
                                                 autofocus: false,
                                                 textInputAction:
                                                     TextInputAction.done,
@@ -981,10 +949,6 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                   const Duration(milliseconds: 200),
                                                   () => setState(() {}),
                                                 ),
-                                                onFieldSubmitted: (_) async {
-                                                  _model.isEdit = true;
-                                                  setState(() {});
-                                                },
                                                 autofocus: false,
                                                 textInputAction:
                                                     TextInputAction.done,
@@ -1151,11 +1115,6 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                                   200),
                                                           () => setState(() {}),
                                                         ),
-                                                        onFieldSubmitted:
-                                                            (_) async {
-                                                          _model.isEdit = true;
-                                                          setState(() {});
-                                                        },
                                                         autofocus: false,
                                                         textInputAction:
                                                             TextInputAction
@@ -1333,11 +1292,6 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                                   200),
                                                           () => setState(() {}),
                                                         ),
-                                                        onFieldSubmitted:
-                                                            (_) async {
-                                                          _model.isEdit = true;
-                                                          setState(() {});
-                                                        },
                                                         autofocus: false,
                                                         textInputAction:
                                                             TextInputAction
@@ -1531,12 +1485,6 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                               () => setState(
                                                                   () {}),
                                                             ),
-                                                            onFieldSubmitted:
-                                                                (_) async {
-                                                              _model.isEdit =
-                                                                  true;
-                                                              setState(() {});
-                                                            },
                                                             autofocus: false,
                                                             textInputAction:
                                                                 TextInputAction
@@ -1639,7 +1587,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                             maxLength: 13,
                                                             maxLengthEnforcement:
                                                                 MaxLengthEnforcement
-                                                                    .none,
+                                                                    .enforced,
                                                             keyboardType:
                                                                 TextInputType
                                                                     .number,
@@ -1720,12 +1668,6 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                               () => setState(
                                                                   () {}),
                                                             ),
-                                                            onFieldSubmitted:
-                                                                (_) async {
-                                                              _model.isEdit =
-                                                                  true;
-                                                              setState(() {});
-                                                            },
                                                             autofocus: false,
                                                             textInputAction:
                                                                 TextInputAction
@@ -1828,7 +1770,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                             maxLength: 10,
                                                             maxLengthEnforcement:
                                                                 MaxLengthEnforcement
-                                                                    .none,
+                                                                    .enforced,
                                                             keyboardType:
                                                                 TextInputType
                                                                     .number,
@@ -1913,10 +1855,6 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                             const Duration(milliseconds: 200),
                                             () => setState(() {}),
                                           ),
-                                          onFieldSubmitted: (_) async {
-                                            _model.isEdit = true;
-                                            setState(() {});
-                                          },
                                           autofocus: false,
                                           textInputAction: TextInputAction.next,
                                           readOnly: !_model.isEdit,
@@ -2042,10 +1980,6 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                             const Duration(milliseconds: 200),
                                             () => setState(() {}),
                                           ),
-                                          onFieldSubmitted: (_) async {
-                                            _model.isEdit = true;
-                                            setState(() {});
-                                          },
                                           autofocus: false,
                                           textInputAction: TextInputAction.next,
                                           readOnly: !_model.isEdit,
@@ -2115,10 +2049,14 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                               ),
                                           maxLength: 20,
                                           maxLengthEnforcement:
-                                              MaxLengthEnforcement.none,
+                                              MaxLengthEnforcement.enforced,
                                           validator: _model
                                               .bankKorrTextControllerValidator
                                               .asValidator(context),
+                                          inputFormatters: [
+                                            FilteringTextInputFormatter.allow(
+                                                RegExp('[0-9]'))
+                                          ],
                                         ),
                                       ),
                                     ),
@@ -2175,10 +2113,6 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                   const Duration(milliseconds: 200),
                                                   () => setState(() {}),
                                                 ),
-                                                onFieldSubmitted: (_) async {
-                                                  _model.isEdit = true;
-                                                  setState(() {});
-                                                },
                                                 autofocus: false,
                                                 textInputAction:
                                                     TextInputAction.done,
@@ -2264,7 +2198,8 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                         ),
                                                 maxLength: 13,
                                                 maxLengthEnforcement:
-                                                    MaxLengthEnforcement.none,
+                                                    MaxLengthEnforcement
+                                                        .enforced,
                                                 keyboardType:
                                                     TextInputType.number,
                                                 validator: _model
@@ -2326,10 +2261,6 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                   const Duration(milliseconds: 200),
                                                   () => setState(() {}),
                                                 ),
-                                                onFieldSubmitted: (_) async {
-                                                  _model.isEdit = true;
-                                                  setState(() {});
-                                                },
                                                 autofocus: false,
                                                 textInputAction:
                                                     TextInputAction.done,
@@ -2415,7 +2346,8 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                         ),
                                                 maxLength: 9,
                                                 maxLengthEnforcement:
-                                                    MaxLengthEnforcement.none,
+                                                    MaxLengthEnforcement
+                                                        .enforced,
                                                 keyboardType:
                                                     TextInputType.number,
                                                 validator: _model
@@ -2482,10 +2414,6 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                   const Duration(milliseconds: 200),
                                                   () => setState(() {}),
                                                 ),
-                                                onFieldSubmitted: (_) async {
-                                                  _model.isEdit = true;
-                                                  setState(() {});
-                                                },
                                                 autofocus: false,
                                                 textInputAction:
                                                     TextInputAction.done,
@@ -2571,7 +2499,8 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                         ),
                                                 maxLength: 20,
                                                 maxLengthEnforcement:
-                                                    MaxLengthEnforcement.none,
+                                                    MaxLengthEnforcement
+                                                        .enforced,
                                                 keyboardType:
                                                     TextInputType.number,
                                                 validator: _model
@@ -2633,10 +2562,6 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                   const Duration(milliseconds: 200),
                                                   () => setState(() {}),
                                                 ),
-                                                onFieldSubmitted: (_) async {
-                                                  _model.isEdit = true;
-                                                  setState(() {});
-                                                },
                                                 autofocus: false,
                                                 textInputAction:
                                                     TextInputAction.done,
@@ -2722,7 +2647,8 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                         ),
                                                 maxLength: 9,
                                                 maxLengthEnforcement:
-                                                    MaxLengthEnforcement.none,
+                                                    MaxLengthEnforcement
+                                                        .enforced,
                                                 keyboardType:
                                                     TextInputType.number,
                                                 validator: _model
@@ -2744,6 +2670,66 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                               Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
+                                  if (!_model.isEdit)
+                                    FFButtonWidget(
+                                      onPressed: () async {
+                                        _model.isEdit = true;
+                                        setState(() {});
+                                      },
+                                      text: 'Редактировать',
+                                      options: FFButtonOptions(
+                                        height: 50.0,
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            64.0, 24.0, 64.0, 24.0),
+                                        iconPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Commissioner',
+                                              color: Colors.white,
+                                              letterSpacing: 0.0,
+                                            ),
+                                        elevation: 0.0,
+                                        borderSide: const BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(24.0),
+                                      ),
+                                    ),
+                                  FFButtonWidget(
+                                    onPressed: () async {
+                                      await widget.onDone?.call();
+                                    },
+                                    text: 'Далее',
+                                    options: FFButtonOptions(
+                                      height: 50.0,
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          64.0, 24.0, 64.0, 24.0),
+                                      iconPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color: const Color(0x002431A5),
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Commissioner',
+                                            color: const Color(0xFF2431A5),
+                                            letterSpacing: 0.0,
+                                          ),
+                                      elevation: 0.0,
+                                      borderSide: const BorderSide(
+                                        color: Color(0xFF2431A5),
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(24.0),
+                                    ),
+                                  ),
                                   Builder(
                                     builder: (context) => FFButtonWidget(
                                       onPressed: () async {
@@ -2769,7 +2755,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                   await UsersTable().update(
                                                     data: {
                                                       'phone': _model
-                                                          .jurAddressTextController
+                                                          .phoneTextController
                                                           .text,
                                                       'email': _model
                                                           .emailTextController
@@ -2976,6 +2962,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                   });
                                                   _model.isEdit = false;
                                                   setState(() {});
+                                                  Navigator.pop(context);
                                                   await widget.onDone?.call();
                                                 },
                                                 cancelAction: () async {

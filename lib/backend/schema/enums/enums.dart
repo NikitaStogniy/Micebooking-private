@@ -75,6 +75,9 @@ enum EnumCms {
   ABOUT_ELEMENT,
   TERMS_OF_USE,
   PERSONAL_INFO,
+  WHY_ELEMENT_1,
+  WHY_ELEMENT_2,
+  WHY_ELEMENT_3,
 }
 
 enum EnumSeating {

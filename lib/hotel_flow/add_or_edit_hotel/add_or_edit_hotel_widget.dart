@@ -845,6 +845,119 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                               Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
+                                  Theme(
+                                    data: ThemeData(
+                                      checkboxTheme: CheckboxThemeData(
+                                        visualDensity: VisualDensity.compact,
+                                        materialTapTargetSize:
+                                            MaterialTapTargetSize.shrinkWrap,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(4.0),
+                                        ),
+                                      ),
+                                      unselectedWidgetColor:
+                                          FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                    ),
+                                    child: Checkbox(
+                                      value: _model.checkboxValue1 ??= false,
+                                      onChanged: (newValue) async {
+                                        setState(() =>
+                                            _model.checkboxValue1 = newValue!);
+                                        if (newValue!) {
+                                          _model.haventCity = true;
+                                          setState(() {});
+                                        } else {
+                                          _model.haventCity = false;
+                                          setState(() {});
+                                        }
+                                      },
+                                      side: BorderSide(
+                                        width: 2,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                      ),
+                                      activeColor:
+                                          FlutterFlowTheme.of(context).primary,
+                                      checkColor:
+                                          FlutterFlowTheme.of(context).info,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Моего города нет в списке',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Commissioner',
+                                          fontSize: 16.0,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                              if (_model.haventCity == true)
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 16.0, 0.0, 8.0),
+                                  child: Container(
+                                    width: 350.0,
+                                    constraints: const BoxConstraints(
+                                      maxWidth: 500.0,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: const Color(0x17000000),
+                                      borderRadius: BorderRadius.circular(16.0),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          8.0, 16.0, 8.0, 16.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Icon(
+                                                Icons.info_outline_rounded,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                size: 16.0,
+                                              ),
+                                            ],
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 2.0, 0.0, 0.0),
+                                            child: Text(
+                                              'Текст подсказка для отелей у которых нет города',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ].divide(const SizedBox(width: 24.0)),
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
                                   Container(
                                     width: 200.0,
                                     decoration: const BoxDecoration(),
@@ -1190,7 +1303,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                 decoration: const BoxDecoration(),
                                 child: Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 8.0, 0.0, 0.0),
+                                      0.0, 16.0, 0.0, 0.0),
                                   child: Text(
                                     'Описание отеля',
                                     style: FlutterFlowTheme.of(context)
@@ -1270,7 +1383,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                           fontFamily: 'Commissioner',
                                           letterSpacing: 0.0,
                                         ),
-                                    maxLines: 3,
+                                    maxLines: null,
                                     validator: _model
                                         .descTextControllerValidator
                                         .asValidator(context),
@@ -1430,6 +1543,8 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                 Expanded(
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Container(
                                         width:
@@ -1572,6 +1687,22 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                           },
                                         ),
                                       ),
+                                      if (_model.uploadedImages.length > 4)
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 4.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Для прокрутки фотографий зажмите левую кнопку мыши или используйте свайп по тачпаду.',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Commissioner',
+                                                  fontSize: 16.0,
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                        ),
                                     ],
                                   ),
                                 ),
@@ -1748,7 +1879,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                                                 ),
                                                                 child: Checkbox(
                                                                   value: _model
-                                                                          .checkboxValueMap[
+                                                                          .checkboxValueMap2[
                                                                       listViewServiceRow] ??= (_model
                                                                               .selectedServices.isNotEmpty) &&
                                                                       _model
@@ -1758,7 +1889,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                                                   onChanged:
                                                                       (newValue) async {
                                                                     setState(() =>
-                                                                        _model.checkboxValueMap[listViewServiceRow] =
+                                                                        _model.checkboxValueMap2[listViewServiceRow] =
                                                                             newValue!);
                                                                     if (newValue!) {
                                                                       _model.addToSelectedServices(
@@ -1859,27 +1990,69 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                       children: [
                         FFButtonWidget(
                           onPressed: () async {
-                            _model.newHot = await HotelTable().insert({
-                              'name': _model.hotelNameTextController.text,
-                              'address': _model.adressTextController.text,
-                              'description': _model.descTextController.text,
-                              'stars': _model.ratingBarValue?.round(),
-                              'services': _model.selectedServices,
-                              'images': _model.uploadedImages,
-                              'owner_id': (String var1) {
-                                return [var1];
-                              }(currentUserUid),
-                              'city': _model.cityId?.first.id,
-                              'Capacity': int.tryParse(
-                                  _model.capacityTextController.text),
-                              'Hall_max_capacity': int.tryParse(
-                                  _model.maxCapacityTextController.text),
-                              'map_link': _model.linkTextController.text,
-                              'distance_center': int.tryParse(
-                                  _model.canterTextController.text),
-                              'isVisible': false,
-                              'city_name': _model.dropDownValue,
-                            });
+                            if (_model.haventCity == true) {
+                              _model.newHot2 = await HotelTable().insert({
+                                'name': _model.hotelNameTextController.text,
+                                'address': _model.adressTextController.text,
+                                'description': _model.descTextController.text,
+                                'stars': _model.ratingBarValue?.round(),
+                                'services': _model.selectedServices,
+                                'images': _model.uploadedImages,
+                                'owner_id': (String var1) {
+                                  return [var1];
+                                }(currentUserUid),
+                                'city': 0,
+                                'Capacity': int.tryParse(
+                                    _model.capacityTextController.text),
+                                'Hall_max_capacity': int.tryParse(
+                                    _model.maxCapacityTextController.text),
+                                'map_link': _model.linkTextController.text,
+                                'distance_center': double.tryParse(
+                                    _model.canterTextController.text),
+                                'isVisible': false,
+                                'city_name': 'Другой',
+                              });
+                              _model.uploadedImages = [];
+                              _model.selectedServices = [];
+                              _model.currentCity = null;
+                              setState(() {});
+                              await widget.doneCallback?.call(
+                                _model.newHot2?.id,
+                              );
+                            } else {
+                              _model.newHot = await HotelTable().insert({
+                                'name': _model.hotelNameTextController.text,
+                                'address': _model.adressTextController.text,
+                                'description': _model.descTextController.text,
+                                'stars': _model.ratingBarValue?.round(),
+                                'services': _model.selectedServices,
+                                'images': _model.uploadedImages,
+                                'owner_id': (String var1) {
+                                  return [var1];
+                                }(currentUserUid),
+                                'city': _model.cityId?.first.id,
+                                'Capacity': int.tryParse(
+                                    _model.capacityTextController.text),
+                                'Hall_max_capacity': int.tryParse(
+                                    _model.maxCapacityTextController.text),
+                                'map_link': _model.linkTextController.text,
+                                'distance_center': double.tryParse(
+                                    _model.canterTextController.text),
+                                'isVisible': false,
+                                'city_name': _model.dropDownValue,
+                              });
+                              _model.uploadedImages = [];
+                              _model.selectedServices = [];
+                              _model.currentCity = null;
+                              setState(() {});
+                              await widget.doneCallback?.call(
+                                valueOrDefault<int>(
+                                  _model.newHot?.id,
+                                  88,
+                                ),
+                              );
+                            }
+
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
@@ -1894,16 +2067,10 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                     FlutterFlowTheme.of(context).secondary,
                               ),
                             );
-                            await widget.doneCallback?.call(
-                              valueOrDefault<int>(
-                                _model.newHot?.id,
-                                88,
-                              ),
-                            );
 
                             setState(() {});
                           },
-                          text: 'Далее',
+                          text: 'Далее к реквизитам',
                           options: FFButtonOptions(
                             height: 50.0,
                             padding: const EdgeInsetsDirectional.fromSTEB(

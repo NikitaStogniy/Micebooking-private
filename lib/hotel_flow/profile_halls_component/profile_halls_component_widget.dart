@@ -172,68 +172,60 @@ class _ProfileHallsComponentWidgetState
                                   ),
                                 ),
                               ),
-                              Expanded(
-                                child: Container(
-                                  width:
-                                      MediaQuery.sizeOf(context).width * 0.233,
-                                  decoration: const BoxDecoration(),
-                                  child: Text(
-                                    'Площадь м2',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Commissioner',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          fontSize: 19.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                  ),
+                              Container(
+                                width: MediaQuery.sizeOf(context).width * 0.1,
+                                decoration: const BoxDecoration(),
+                                child: Text(
+                                  'Площадь м2',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Commissioner',
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        fontSize: 19.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.normal,
+                                      ),
                                 ),
                               ),
-                              Expanded(
-                                child: Container(
-                                  width:
-                                      MediaQuery.sizeOf(context).width * 0.233,
-                                  decoration: const BoxDecoration(),
-                                  child: Text(
-                                    'Вместимость (чел.)',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Commissioner',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          fontSize: 19.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                  ),
+                              Container(
+                                width: MediaQuery.sizeOf(context).width * 0.15,
+                                decoration: const BoxDecoration(),
+                                child: Text(
+                                  'Вместимость (чел.)',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Commissioner',
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        fontSize: 19.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.normal,
+                                      ),
                                 ),
                               ),
-                              Expanded(
-                                child: Container(
-                                  width:
-                                      MediaQuery.sizeOf(context).width * 0.233,
-                                  decoration: const BoxDecoration(),
-                                  child: Text(
-                                    'Цена руб. / день',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Commissioner',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          fontSize: 19.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                  ),
+                              Container(
+                                width: MediaQuery.sizeOf(context).width * 0.1,
+                                decoration: const BoxDecoration(),
+                                child: Text(
+                                  'Цена / день',
+                                  textAlign: TextAlign.end,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Commissioner',
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        fontSize: 19.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                 ),
                               ),
                             ]
-                                .divide(const SizedBox(width: 40.0))
+                                .divide(const SizedBox(width: 16.0))
                                 .addToStart(const SizedBox(width: 16.0))
                                 .addToEnd(const SizedBox(width: 16.0)),
                           ),
@@ -244,7 +236,7 @@ class _ProfileHallsComponentWidgetState
                           if (halls.isEmpty) {
                             return Center(
                               child: SizedBox(
-                                width: 300.0,
+                                width: 700.0,
                                 height: 300.0,
                                 child: HallFoodRoomEmptyWidget(
                                   type: EnumType.HALL,
@@ -263,7 +255,6 @@ class _ProfileHallsComponentWidgetState
                               final hallsItem = halls[hallsIndex];
                               return Container(
                                 width: MediaQuery.sizeOf(context).width * 1.0,
-                                height: 40.0,
                                 decoration: BoxDecoration(
                                   color: valueOrDefault<Color>(
                                     valueOrDefault<int>(
@@ -284,158 +275,166 @@ class _ProfileHallsComponentWidgetState
                                     topRight: Radius.circular(0.0),
                                   ),
                                 ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      flex: 2,
-                                      child: Container(
-                                        width:
-                                            MediaQuery.sizeOf(context).width *
-                                                0.3,
-                                        decoration: const BoxDecoration(),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                valueOrDefault<String>(
-                                                  hallsItem.name,
-                                                  'Name',
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 8.0, 0.0, 8.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        flex: 2,
+                                        child: Container(
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  0.3,
+                                          decoration: const BoxDecoration(),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  valueOrDefault<String>(
+                                                    hallsItem.name,
+                                                    'Name',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontSize: 19.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
                                                 ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 19.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
                                               ),
-                                            ),
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    _model.newHalls = widget
-                                                        .hotel!.hall
-                                                        .toList()
-                                                        .cast<int>();
-                                                    setState(() {});
-                                                    _model.newHallCopy =
-                                                        await HallTable()
-                                                            .insert({
-                                                      'created_at': supaSerialize<
-                                                              DateTime>(
-                                                          getCurrentTimestamp),
-                                                      'name': hallsItem.name,
-                                                      'price': hallsItem.price,
-                                                      'services':
-                                                          hallsItem.services,
-                                                      'size': hallsItem.size,
-                                                      'capacity':
-                                                          hallsItem.capacity,
-                                                      'halfprice':
-                                                          hallsItem.halfprice,
-                                                      'seatings':
-                                                          hallsItem.seatings,
-                                                      'description':
-                                                          hallsItem.description,
-                                                      'images':
-                                                          hallsItem.images,
-                                                    });
-                                                    _model.addToNewHalls(
-                                                        _model.newHallCopy!.id);
-                                                    setState(() {});
-                                                    await HotelTable().update(
-                                                      data: {
-                                                        'hall': _model.newHalls,
-                                                      },
-                                                      matchingRows: (rows) =>
-                                                          rows.eq(
-                                                        'id',
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      _model.newHalls = widget
+                                                          .hotel!.hall
+                                                          .toList()
+                                                          .cast<int>();
+                                                      setState(() {});
+                                                      _model.newHallCopy =
+                                                          await HallTable()
+                                                              .insert({
+                                                        'created_at': supaSerialize<
+                                                                DateTime>(
+                                                            getCurrentTimestamp),
+                                                        'name': hallsItem.name,
+                                                        'price':
+                                                            hallsItem.price,
+                                                        'services':
+                                                            hallsItem.services,
+                                                        'size': hallsItem.size,
+                                                        'capacity':
+                                                            hallsItem.capacity,
+                                                        'halfprice':
+                                                            hallsItem.halfprice,
+                                                        'seatings':
+                                                            hallsItem.seatings,
+                                                        'description': hallsItem
+                                                            .description,
+                                                        'images':
+                                                            hallsItem.images,
+                                                      });
+                                                      _model.addToNewHalls(
+                                                          _model
+                                                              .newHallCopy!.id);
+                                                      setState(() {});
+                                                      await HotelTable().update(
+                                                        data: {
+                                                          'hall':
+                                                              _model.newHalls,
+                                                        },
+                                                        matchingRows: (rows) =>
+                                                            rows.eq(
+                                                          'id',
+                                                          valueOrDefault<int>(
+                                                            widget.hotel?.id,
+                                                            88,
+                                                          ),
+                                                        ),
+                                                      );
+                                                      _model
+                                                          .newHalls = List.generate(
+                                                              random_data
+                                                                  .randomInteger(
+                                                                      5, 5),
+                                                              (index) => random_data
+                                                                  .randomInteger(
+                                                                      0, 10))
+                                                          .toList()
+                                                          .cast<int>();
+                                                      setState(() {});
+
+                                                      setState(() {});
+                                                    },
+                                                    child: Icon(
+                                                      Icons.file_copy,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      size: 24.0,
+                                                    ),
+                                                  ),
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      await widget.editCallback
+                                                          ?.call(
                                                         valueOrDefault<int>(
-                                                          widget.hotel?.id,
+                                                          hallsItem.id,
                                                           88,
                                                         ),
-                                                      ),
-                                                    );
-                                                    _model
-                                                        .newHalls = List.generate(
-                                                            random_data
-                                                                .randomInteger(
-                                                                    5, 5),
-                                                            (index) => random_data
-                                                                .randomInteger(
-                                                                    0, 10))
-                                                        .toList()
-                                                        .cast<int>();
-                                                    setState(() {});
-
-                                                    setState(() {});
-                                                  },
-                                                  child: Icon(
-                                                    Icons.file_copy,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    size: 24.0,
+                                                      );
+                                                    },
+                                                    child: Icon(
+                                                      Icons.edit,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      size: 24.0,
+                                                    ),
                                                   ),
-                                                ),
-                                                InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    await widget.editCallback
-                                                        ?.call(
-                                                      valueOrDefault<int>(
-                                                        hallsItem.id,
-                                                        88,
-                                                      ),
-                                                    );
-                                                  },
-                                                  child: Icon(
-                                                    Icons.edit,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    size: 24.0,
-                                                  ),
-                                                ),
-                                              ].divide(const SizedBox(width: 8.0)),
-                                            ),
-                                          ],
+                                                ].divide(const SizedBox(width: 8.0)),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    Expanded(
-                                      child: Container(
+                                      Container(
                                         width:
                                             MediaQuery.sizeOf(context).width *
-                                                0.233,
+                                                0.1,
                                         decoration: const BoxDecoration(),
                                         child: Text(
                                           valueOrDefault<String>(
@@ -455,12 +454,10 @@ class _ProfileHallsComponentWidgetState
                                               ),
                                         ),
                                       ),
-                                    ),
-                                    Expanded(
-                                      child: Container(
+                                      Container(
                                         width:
                                             MediaQuery.sizeOf(context).width *
-                                                0.233,
+                                                0.15,
                                         decoration: const BoxDecoration(),
                                         child: Text(
                                           valueOrDefault<String>(
@@ -480,18 +477,22 @@ class _ProfileHallsComponentWidgetState
                                               ),
                                         ),
                                       ),
-                                    ),
-                                    Expanded(
-                                      child: Container(
+                                      Container(
                                         width:
                                             MediaQuery.sizeOf(context).width *
-                                                0.233,
+                                                0.1,
                                         decoration: const BoxDecoration(),
                                         child: Text(
                                           valueOrDefault<String>(
-                                            hallsItem.price?.toString(),
+                                            formatNumber(
+                                              hallsItem.price,
+                                              formatType: FormatType.decimal,
+                                              decimalType:
+                                                  DecimalType.automatic,
+                                            ),
                                             'Price',
                                           ),
+                                          textAlign: TextAlign.end,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -505,11 +506,11 @@ class _ProfileHallsComponentWidgetState
                                               ),
                                         ),
                                       ),
-                                    ),
-                                  ]
-                                      .divide(const SizedBox(width: 40.0))
-                                      .addToStart(const SizedBox(width: 16.0))
-                                      .addToEnd(const SizedBox(width: 16.0)),
+                                    ]
+                                        .divide(const SizedBox(width: 16.0))
+                                        .addToStart(const SizedBox(width: 16.0))
+                                        .addToEnd(const SizedBox(width: 16.0)),
+                                  ),
                                 ),
                               );
                             }),

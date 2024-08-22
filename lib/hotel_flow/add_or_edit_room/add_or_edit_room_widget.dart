@@ -442,6 +442,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                               Expanded(
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
                                       width: MediaQuery.sizeOf(context).width *
@@ -582,6 +583,21 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                         },
                                       ),
                                     ),
+                                    if (_model.uploadedImages.length > 4)
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 4.0, 0.0, 0.0),
+                                        child: Text(
+                                          'Для прокрутки фотографий зажмите левую кнопку мыши или используйте свайп по тачпаду.',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Commissioner',
+                                                fontSize: 16.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ),
                                   ],
                                 ),
                               ),
@@ -1236,9 +1252,8 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                         'count': int.tryParse(_model.countTextController.text),
                         'price':
                             double.tryParse(_model.priceTextController.text),
-                        'show_single': _model.singlePerson,
-                        'single_price': double.tryParse(
-                            _model.singlePriceTextController.text),
+                        'single_price': 0.0,
+                        'show_single': false,
                       });
                       _model.hotel = await HotelTable().queryRows(
                         queryFn: (q) => q.eq(

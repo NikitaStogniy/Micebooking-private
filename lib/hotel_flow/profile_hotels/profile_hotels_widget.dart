@@ -193,21 +193,18 @@ class _ProfileHotelsWidgetState extends State<ProfileHotelsWidget>
                     ),
                   );
                 }
-                final listViewSearchHotelWithOwnerResponse = snapshot.data!;
+                final columnSearchHotelWithOwnerResponse = snapshot.data!;
 
                 return Builder(
                   builder: (context) {
                     final hotelItems =
-                        listViewSearchHotelWithOwnerResponse.jsonBody.toList();
+                        columnSearchHotelWithOwnerResponse.jsonBody.toList();
 
-                    return ListView.separated(
-                      padding: EdgeInsets.zero,
-                      primary: false,
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      itemCount: hotelItems.length,
-                      separatorBuilder: (_, __) => const SizedBox(height: 40.0),
-                      itemBuilder: (context, hotelItemsIndex) {
+                    return Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children:
+                          List.generate(hotelItems.length, (hotelItemsIndex) {
                         final hotelItemsItem = hotelItems[hotelItemsIndex];
                         return FutureBuilder<List<HotelRow>>(
                           future: HotelTable().querySingleRow(
@@ -237,115 +234,118 @@ class _ProfileHotelsWidgetState extends State<ProfileHotelsWidget>
                                 ),
                               );
                             }
-                            List<HotelRow> containerHotelRowList =
-                                snapshot.data!;
+                            List<HotelRow> columnHotelRowList = snapshot.data!;
 
-                            final containerHotelRow =
-                                containerHotelRowList.isNotEmpty
-                                    ? containerHotelRowList.first
-                                    : null;
+                            final columnHotelRow = columnHotelRowList.isNotEmpty
+                                ? columnHotelRowList.first
+                                : null;
 
-                            return Container(
-                              width: MediaQuery.sizeOf(context).width * 1.0,
-                              decoration: const BoxDecoration(),
-                              child: Visibility(
-                                visible: containerHotelRow?.ownerId
+                            return Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                if (columnHotelRow?.ownerId
                                         .contains(currentUserUid) ==
-                                    true,
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Container(
-                                          constraints: BoxConstraints(
-                                            maxWidth: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                0.8,
+                                    true)
+                                  Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Container(
+                                            constraints: BoxConstraints(
+                                              maxWidth:
+                                                  MediaQuery.sizeOf(context)
+                                                          .width *
+                                                      0.8,
+                                            ),
+                                            decoration: const BoxDecoration(),
+                                            child: Text(
+                                              getJsonField(
+                                                hotelItemsItem,
+                                                r'''$.name''',
+                                              ).toString(),
+                                              maxLines: 1,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Commissioner',
+                                                    fontSize: 38.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                            ),
                                           ),
-                                          decoration: const BoxDecoration(),
-                                          child: Text(
-                                            getJsonField(
-                                              hotelItemsItem,
-                                              r'''$.name''',
-                                            ).toString(),
-                                            maxLines: 1,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Commissioner',
-                                                  fontSize: 38.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.bold,
+                                          InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              await widget.editCallback?.call(
+                                                valueOrDefault<int>(
+                                                  getJsonField(
+                                                    hotelItemsItem,
+                                                    r'''$.id''',
+                                                  ),
+                                                  1,
                                                 ),
+                                              );
+                                            },
+                                            child: Icon(
+                                              Icons.edit,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              size: 24.0,
+                                            ),
                                           ),
-                                        ),
-                                        InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            await widget.editCallback?.call(
-                                              valueOrDefault<int>(
-                                                getJsonField(
-                                                  hotelItemsItem,
-                                                  r'''$.id''',
-                                                ),
-                                                1,
-                                              ),
-                                            );
-                                          },
-                                          child: Icon(
-                                            Icons.edit,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            size: 24.0,
+                                          InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              await widget.seeCallback?.call(
+                                                columnHotelRow,
+                                              );
+                                            },
+                                            child: Icon(
+                                              Icons.remove_red_eye,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              size: 24.0,
+                                            ),
                                           ),
-                                        ),
-                                        InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            await widget.seeCallback?.call(
-                                              containerHotelRow,
-                                            );
-                                          },
-                                          child: Icon(
-                                            Icons.remove_red_eye,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            size: 24.0,
-                                          ),
-                                        ),
-                                      ].divide(const SizedBox(width: 8.0)),
-                                    ),
-                                    Text(
-                                      getJsonField(
-                                        hotelItemsItem,
-                                        r'''$.address''',
-                                      ).toString(),
-                                      maxLines: 1,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Commissioner',
-                                            fontSize: 18.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                    ),
-                                  ].divide(const SizedBox(height: 8.0)),
-                                ),
-                              ),
+                                        ].divide(const SizedBox(width: 8.0)),
+                                      ),
+                                      Text(
+                                        getJsonField(
+                                          hotelItemsItem,
+                                          r'''$.address''',
+                                        ).toString(),
+                                        maxLines: 1,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Commissioner',
+                                              fontSize: 18.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                      ),
+                                    ].divide(const SizedBox(height: 8.0)),
+                                  ),
+                              ],
                             );
                           },
                         );
-                      },
+                      }).divide(const SizedBox(height: 32.0)),
                     );
                   },
                 );

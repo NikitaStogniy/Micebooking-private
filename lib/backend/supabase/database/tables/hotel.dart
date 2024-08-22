@@ -56,8 +56,9 @@ class HotelRow extends SupabaseDataRow {
   int? get city => getField<int>('city');
   set city(int? value) => setField<int>('city', value);
 
-  int? get distanceCenter => getField<int>('distance_center');
-  set distanceCenter(int? value) => setField<int>('distance_center', value);
+  double? get distanceCenter => getField<double>('distance_center');
+  set distanceCenter(double? value) =>
+      setField<double>('distance_center', value);
 
   int? get capacity => getField<int>('Capacity');
   set capacity(int? value) => setField<int>('Capacity', value);
@@ -70,7 +71,4 @@ class HotelRow extends SupabaseDataRow {
 
   String? get cityName => getField<String>('city_name');
   set cityName(String? value) => setField<String>('city_name', value);
-
-  String? get owner => getField<String>('owner');
-  set owner(String? value) => setField<String>('owner', value);
 }

@@ -1014,11 +1014,7 @@ class _ClientRequestMobForTestWidgetState
                                       containerRequestsRow?.dayStart,
                                       locale: FFLocalizations.of(context)
                                           .languageCode,
-                                    )}, продолжительность ${valueOrDefault<String>(
-                                      functions.daysGen(
-                                          containerRequestsRow?.duration),
-                                      '2 дня',
-                                    )}, ${valueOrDefault<String>(
+                                    )}, продолжительность ${containerRequestsRow?.duration?.toString()}дн. , ${valueOrDefault<String>(
                                       functions.personsGen(containerRequestsRow
                                           ?.peopleCount
                                           ?.toDouble()),

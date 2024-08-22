@@ -115,28 +115,28 @@ class _QaElementWidgetState extends State<QaElementWidget> {
                       color: Color(0xFFF0F0FA),
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(80.0),
+                    borderRadius: BorderRadius.circular(4.0),
                   ),
                   focusedBorder: UnderlineInputBorder(
                     borderSide: const BorderSide(
                       color: Color(0x00000000),
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(80.0),
+                    borderRadius: BorderRadius.circular(4.0),
                   ),
                   errorBorder: UnderlineInputBorder(
                     borderSide: const BorderSide(
                       color: Color(0x00000000),
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(80.0),
+                    borderRadius: BorderRadius.circular(4.0),
                   ),
                   focusedErrorBorder: UnderlineInputBorder(
                     borderSide: const BorderSide(
                       color: Color(0x00000000),
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(80.0),
+                    borderRadius: BorderRadius.circular(4.0),
                   ),
                   filled: true,
                   fillColor: const Color(0xFFF0F0FA),
@@ -209,28 +209,28 @@ class _QaElementWidgetState extends State<QaElementWidget> {
                       color: Color(0xFFF0F0FA),
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(80.0),
+                    borderRadius: BorderRadius.circular(4.0),
                   ),
                   focusedBorder: UnderlineInputBorder(
                     borderSide: const BorderSide(
                       color: Color(0x00000000),
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(80.0),
+                    borderRadius: BorderRadius.circular(4.0),
                   ),
                   errorBorder: UnderlineInputBorder(
                     borderSide: const BorderSide(
                       color: Color(0x00000000),
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(80.0),
+                    borderRadius: BorderRadius.circular(4.0),
                   ),
                   focusedErrorBorder: UnderlineInputBorder(
                     borderSide: const BorderSide(
                       color: Color(0x00000000),
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(80.0),
+                    borderRadius: BorderRadius.circular(4.0),
                   ),
                   filled: true,
                   fillColor: const Color(0xFFF0F0FA),

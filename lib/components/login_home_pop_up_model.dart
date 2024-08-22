@@ -9,7 +9,7 @@ class LoginHomePopUpModel extends FlutterFlowModel<LoginHomePopUpWidget> {
 
   bool isRegister = false;
 
-  bool isHotel = true;
+  bool isHotel = false;
 
   String? lastEmail;
 

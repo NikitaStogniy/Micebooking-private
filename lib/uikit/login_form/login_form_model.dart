@@ -9,13 +9,15 @@ class LoginFormModel extends FlutterFlowModel<LoginFormWidget> {
   final formKey = GlobalKey<FormState>();
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
-  TextEditingController? emailTextController;
-  String? Function(BuildContext, String?)? emailTextControllerValidator;
+  TextEditingController? textController1;
+  String? Function(BuildContext, String?)? textController1Validator;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode2;
-  TextEditingController? passwordTextController;
+  TextEditingController? textController2;
   late bool passwordVisibility;
-  String? Function(BuildContext, String?)? passwordTextControllerValidator;
+  String? Function(BuildContext, String?)? textController2Validator;
+  // Stores action output result for [Custom Action - customLoginAction] action in Button widget.
+  String? login;
   // Stores action output result for [Backend Call - Query Rows] action in Button widget.
   List<UsersRow>? user;
 
@@ -27,9 +29,9 @@ class LoginFormModel extends FlutterFlowModel<LoginFormWidget> {
   @override
   void dispose() {
     textFieldFocusNode1?.dispose();
-    emailTextController?.dispose();
+    textController1?.dispose();
 
     textFieldFocusNode2?.dispose();
-    passwordTextController?.dispose();
+    textController2?.dispose();
   }
 }

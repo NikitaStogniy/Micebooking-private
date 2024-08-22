@@ -156,7 +156,9 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Commissioner',
+                                      fontSize: 18.0,
                                       letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
                                     ),
                               ),
                             ),
@@ -238,6 +240,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Row(
                               mainAxisSize: MainAxisSize.max,
@@ -248,7 +251,9 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Commissioner',
+                                        fontSize: 18.0,
                                         letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                 ),
                                 FutureBuilder<List<ServiceRow>>(
@@ -333,7 +338,9 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Commissioner',
+                                        fontSize: 18.0,
                                         letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                 ),
                                 SizedBox(
@@ -465,7 +472,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Container(
-                                                width: 100.0,
+                                                width: 150.0,
                                                 decoration: const BoxDecoration(
                                                   color: Color(0x00FFFFFF),
                                                 ),
@@ -481,7 +488,10 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                       .override(
                                                         fontFamily:
                                                             'Commissioner',
+                                                        fontSize: 18.0,
                                                         letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
                                                       ),
                                                 ),
                                               ),

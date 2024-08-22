@@ -1913,7 +1913,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                 decimalType:
                                                                     DecimalType
                                                                         .automatic,
-                                                              )}',
+                                                              )}₽',
                                                               textAlign:
                                                                   TextAlign
                                                                       .start,
@@ -2342,34 +2342,6 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                         FlutterFlowTheme.of(
                                                                 context)
                                                             .error,
-                                                  ),
-                                                );
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                  SnackBar(
-                                                    content: Text(
-                                                      valueOrDefault<String>(
-                                                        getJsonField(
-                                                          (_model.apiResultows2
-                                                                  ?.jsonBody ??
-                                                              ''),
-                                                          r'''$.request_wrapper''',
-                                                        )?.toString(),
-                                                        'error',
-                                                      ),
-                                                      style: TextStyle(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                      ),
-                                                    ),
-                                                    duration: const Duration(
-                                                        milliseconds: 4000),
-                                                    backgroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .secondary,
                                                   ),
                                                 );
                                               }

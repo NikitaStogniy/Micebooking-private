@@ -1628,11 +1628,13 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                   ((hotelsHotelRow
                                                               .distanceCenter! <=
                                                           _model
-                                                              .hotelFilterMaxDistance!) &&
+                                                              .hotelFilterMaxDistance!
+                                                              .toDouble()) &&
                                                       (hotelsHotelRow
                                                               .distanceCenter! >=
                                                           _model
-                                                              .hotelFilterMinDistance!)),
+                                                              .hotelFilterMinDistance!
+                                                              .toDouble())),
                                               child: Builder(
                                                 builder: (context) =>
                                                     wrapWithModel(
@@ -1870,11 +1872,13 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       ((hotelsHotelRow
                                                                   .distanceCenter! <=
                                                               _model
-                                                                  .hotelFilterMaxDistance!) &&
+                                                                  .hotelFilterMaxDistance!
+                                                                  .toDouble()) &&
                                                           (hotelsHotelRow
                                                                   .distanceCenter! >=
                                                               _model
-                                                                  .hotelFilterMinDistance!));
+                                                                  .hotelFilterMinDistance!
+                                                                  .toDouble()));
                                                 },
                                               )
                                               .addToStart(
@@ -1953,11 +1957,13 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                   ((hotelsHotelRow
                                                               .distanceCenter! <=
                                                           _model
-                                                              .hotelFilterMaxDistance!) &&
+                                                              .hotelFilterMaxDistance!
+                                                              .toDouble()) &&
                                                       (hotelsHotelRow
                                                               .distanceCenter! >=
                                                           _model
-                                                              .hotelFilterMinDistance!)),
+                                                              .hotelFilterMinDistance!
+                                                              .toDouble())),
                                               child: Builder(
                                                 builder: (context) =>
                                                     wrapWithModel(
@@ -2195,11 +2201,13 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       ((hotelsHotelRow
                                                                   .distanceCenter! <=
                                                               _model
-                                                                  .hotelFilterMaxDistance!) &&
+                                                                  .hotelFilterMaxDistance!
+                                                                  .toDouble()) &&
                                                           (hotelsHotelRow
                                                                   .distanceCenter! >=
                                                               _model
-                                                                  .hotelFilterMinDistance!));
+                                                                  .hotelFilterMinDistance!
+                                                                  .toDouble()));
                                                 },
                                               )
                                               .addToStart(

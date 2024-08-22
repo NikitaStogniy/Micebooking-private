@@ -96,23 +96,37 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                             Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
+                                Text(
+                                  valueOrDefault<String>(
+                                    widget.food?.name,
+                                    'название еды',
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Commissioner',
+                                        fontSize: 24.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ),
                                 Expanded(
                                   child: Text(
                                     valueOrDefault<String>(
-                                      widget.food?.name,
-                                      'название еды',
+                                      widget.food?.type,
+                                      'Тип еды',
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Commissioner',
-                                          fontSize: 24.0,
+                                          fontSize: 18.0,
                                           letterSpacing: 0.0,
-                                          fontWeight: FontWeight.bold,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                   ),
                                 ),
-                              ],
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
                             Row(
                               mainAxisSize: MainAxisSize.max,

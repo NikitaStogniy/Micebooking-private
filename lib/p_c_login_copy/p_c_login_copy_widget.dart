@@ -318,36 +318,30 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                             .text;
                                         setState(() {});
                                         setState(() {
-                                          _model.loginFormModel
-                                                  .emailTextController?.text =
+                                          _model.loginFormModel.textController1
+                                                  ?.text =
                                               _model.signupFormModel
                                                   .mailTextController.text;
-                                          _model
-                                                  .loginFormModel
-                                                  .emailTextController
+                                          _model.loginFormModel.textController1
                                                   ?.selection =
                                               TextSelection.collapsed(
                                                   offset: _model
                                                       .loginFormModel
-                                                      .emailTextController!
+                                                      .textController1!
                                                       .text
                                                       .length);
                                         });
                                         setState(() {
-                                          _model
-                                                  .loginFormModel
-                                                  .passwordTextController
+                                          _model.loginFormModel.textController2
                                                   ?.text =
                                               _model.signupFormModel
                                                   .passwordTextController.text;
-                                          _model
-                                                  .loginFormModel
-                                                  .passwordTextController
+                                          _model.loginFormModel.textController2
                                                   ?.selection =
                                               TextSelection.collapsed(
                                                   offset: _model
                                                       .loginFormModel
-                                                      .passwordTextController!
+                                                      .textController2!
                                                       .text
                                                       .length);
                                         });

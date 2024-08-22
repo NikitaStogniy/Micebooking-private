@@ -191,27 +191,33 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                                                     ),
                                                   ],
                                                 ),
-                                                Text(
-                                                  valueOrDefault<String>(
+                                                if (clientHomeUsersRow
+                                                            ?.jobTitle !=
+                                                        null &&
                                                     clientHomeUsersRow
-                                                        ?.jobTitle,
-                                                    'Должность',
+                                                            ?.jobTitle !=
+                                                        '')
+                                                  Text(
+                                                    valueOrDefault<String>(
+                                                      clientHomeUsersRow
+                                                          ?.jobTitle,
+                                                      'Должность',
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryBackground,
+                                                          fontSize: 16.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Commissioner',
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .primaryBackground,
-                                                        fontSize: 16.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                ),
                                               ].divide(const SizedBox(height: 8.0)),
                                             ),
                                           ),
@@ -262,7 +268,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                                           setState(() {});
                                         },
                                         child: Text(
-                                          'Запросы КП',
+                                          'Мои запросы',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(

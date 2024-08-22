@@ -160,7 +160,9 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Commissioner',
+                                      fontSize: 18.0,
                                       letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
                                     ),
                               ),
                             ),
@@ -257,7 +259,9 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Commissioner',
+                                            fontSize: 18.0,
                                             letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
                                           ),
                                     ),
                                   ),
@@ -466,38 +470,14 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Text(
-                                  'Тип пакета:',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Commissioner',
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ].divide(const SizedBox(width: 8.0)),
-                            ),
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Text(
-                                  valueOrDefault<String>(
-                                    widget.initialFood?.price?.toString(),
-                                    '0',
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Commissioner',
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                                Text(
                                   'Цена за персону:',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Commissioner',
+                                        fontSize: 18.0,
                                         letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                 ),
                                 SizedBox(
@@ -625,7 +605,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Container(
-                                                width: 100.0,
+                                                width: 150.0,
                                                 decoration: const BoxDecoration(
                                                   color: Color(0x00FFFFFF),
                                                 ),
@@ -641,7 +621,10 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                       .override(
                                                         fontFamily:
                                                             'Commissioner',
+                                                        fontSize: 18.0,
                                                         letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
                                                       ),
                                                 ),
                                               ),

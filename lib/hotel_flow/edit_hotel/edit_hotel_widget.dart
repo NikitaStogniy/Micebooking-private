@@ -57,17 +57,23 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
         _model.hotelNameEditTextController?.text = widget.initialHotel!.name!;
         _model.hotelAddressEditTextController?.text =
             widget.initialHotel!.address!;
+        _model.textController3?.clear();
+        _model.canterTextController?.text =
+            widget.initialHotel!.distanceCenter!.toString();
+        _model.capacityTextController?.text =
+            widget.initialHotel!.capacity!.toString();
+        _model.maxCapacityTextController?.text =
+            widget.initialHotel!.hallMaxCapacity!.toString();
+        _model.linkTextController?.text = widget.initialHotel!.mapLink!;
         _model.hotelDescriptionEditTextController?.text =
             widget.initialHotel!.description!;
       });
-      _model.editableHotel = widget.initialHotel;
       _model.currentCityId = widget.initialHotel?.city;
       _model.currentCity = widget.initialHotel?.cityName;
-      _model.updatePage(() {});
       _model.uploadedImages =
-          _model.editableHotel!.images.toList().cast<String>();
+          widget.initialHotel!.images.toList().cast<String>();
       _model.selectedServices =
-          _model.editableHotel!.services.toList().cast<int>();
+          widget.initialHotel!.services.toList().cast<int>();
       _model.updatePage(() {});
     });
 
@@ -141,7 +147,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                 ),
                 Text(
                   valueOrDefault<String>(
-                    _model.editableHotel?.name,
+                    widget.initialHotel?.name,
                     'Отель',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -171,7 +177,9 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Commissioner',
+                                    fontSize: 18.0,
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
                                   ),
                         ),
                       ),
@@ -253,7 +261,9 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Commissioner',
+                                    fontSize: 18.0,
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
                                   ),
                         ),
                       ),
@@ -346,7 +356,9 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Commissioner',
+                                      fontSize: 18.0,
                                       letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
                                     ),
                               ),
                             ),
@@ -497,41 +509,6 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                         );
                                       },
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          8.0, 0.0, 0.0, 0.0),
-                                      child: InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          _model.newCity = true;
-                                          setState(() {});
-                                        },
-                                        child: Container(
-                                          width: 40.0,
-                                          height: 40.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            borderRadius:
-                                                BorderRadius.circular(80.0),
-                                          ),
-                                          child: Align(
-                                            alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
-                                            child: Icon(
-                                              Icons.add_rounded,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              size: 24.0,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
                                   ],
                                 ),
                               ),
@@ -681,12 +658,14 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                 width: 200.0,
                                 decoration: const BoxDecoration(),
                                 child: Text(
-                                  'Расстояние от центра (км)',
+                                  'Расстояние от\nцентра (км)',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Commissioner',
+                                        fontSize: 18.0,
                                         letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                 ),
                               ),
@@ -793,7 +772,9 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Commissioner',
+                                    fontSize: 18.0,
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
                                   ),
                             ),
                           ),
@@ -876,7 +857,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Container(
-                            width: 120.0,
+                            width: 200.0,
                             decoration: const BoxDecoration(),
                             child: Text(
                               'Максимальная вместимость зала',
@@ -884,7 +865,9 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Commissioner',
+                                    fontSize: 18.0,
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
                                   ),
                             ),
                           ),
@@ -964,109 +947,107 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                         ],
                       ),
                       Expanded(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              40.0, 0.0, 0.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Container(
-                                width: 120.0,
-                                decoration: const BoxDecoration(),
-                                child: Text(
-                                  'Ссылка на карту',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Commissioner',
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Container(
+                              width: 120.0,
+                              decoration: const BoxDecoration(),
+                              child: Text(
+                                'Ссылка на карту',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Commissioner',
+                                      fontSize: 18.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                               ),
-                              Expanded(
-                                child: Container(
-                                  width: 200.0,
-                                  decoration: const BoxDecoration(),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        8.0, 0.0, 8.0, 0.0),
-                                    child: TextFormField(
-                                      controller: _model.linkTextController,
-                                      focusNode: _model.linkFocusNode,
-                                      autofocus: false,
-                                      obscureText: false,
-                                      decoration: InputDecoration(
-                                        labelStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Commissioner',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        hintStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Commissioner',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                            color: Color(0xFFF0F0FA),
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(24.0),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(24.0),
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(24.0),
-                                        ),
-                                        focusedErrorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(24.0),
-                                        ),
-                                        filled: true,
-                                        fillColor: const Color(0xFFF0F0FA),
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                            ),
+                            Expanded(
+                              child: Container(
+                                width: 200.0,
+                                decoration: const BoxDecoration(),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      8.0, 0.0, 8.0, 0.0),
+                                  child: TextFormField(
+                                    controller: _model.linkTextController,
+                                    focusNode: _model.linkFocusNode,
+                                    autofocus: false,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
                                           .override(
                                             fontFamily: 'Commissioner',
                                             letterSpacing: 0.0,
                                           ),
-                                      maxLength: 150,
-                                      buildCounter: (context,
-                                              {required currentLength,
-                                              required isFocused,
-                                              maxLength}) =>
-                                          null,
-                                      validator: _model
-                                          .linkTextControllerValidator
-                                          .asValidator(context),
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Commissioner',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: const BorderSide(
+                                          color: Color(0xFFF0F0FA),
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(24.0),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(24.0),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(24.0),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(24.0),
+                                      ),
+                                      filled: true,
+                                      fillColor: const Color(0xFFF0F0FA),
                                     ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Commissioner',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    maxLength: 150,
+                                    buildCounter: (context,
+                                            {required currentLength,
+                                            required isFocused,
+                                            maxLength}) =>
+                                        null,
+                                    validator: _model
+                                        .linkTextControllerValidator
+                                        .asValidator(context),
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ].divide(const SizedBox(width: 40.0)),
@@ -1087,7 +1068,9 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Commissioner',
+                                  fontSize: 18.0,
                                   letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
                                 ),
                           ),
                         ),
@@ -1152,7 +1135,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                   fontFamily: 'Commissioner',
                                   letterSpacing: 0.0,
                                 ),
-                            maxLines: 3,
+                            maxLines: null,
                             validator: _model
                                 .hotelDescriptionEditTextControllerValidator
                                 .asValidator(context),
@@ -1173,7 +1156,9 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Commissioner',
+                                    fontSize: 18.0,
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
                                   ),
                         ),
                       ),
@@ -1210,26 +1195,17 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Commissioner',
+                                  fontSize: 18.0,
                                   letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
                                 ),
                           ),
                         ),
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
-                        child: FlutterFlowIconButton(
-                          borderColor: FlutterFlowTheme.of(context).primary,
-                          borderRadius: 20.0,
-                          borderWidth: 1.0,
-                          buttonSize: 40.0,
-                          fillColor: FlutterFlowTheme.of(context).primary,
-                          icon: Icon(
-                            Icons.add,
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            size: 24.0,
-                          ),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 24.0, 0.0),
+                        child: FFButtonWidget(
                           onPressed: () async {
                             final selectedMedia = await selectMedia(
                               storageFolderPath: 'users/uploaded',
@@ -1289,12 +1265,40 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                               _model.uploadedFileUrls = [];
                             });
                           },
+                          text: '',
+                          icon: const Icon(
+                            Icons.add,
+                            size: 24.0,
+                          ),
+                          options: FFButtonOptions(
+                            width: 40.0,
+                            height: 40.0,
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).primary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Commissioner',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                ),
+                            elevation: 0.0,
+                            borderSide: const BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(24.0),
+                          ),
                         ),
                       ),
                       if (_model.uploadedImages.isNotEmpty)
                         Expanded(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
                                 width: MediaQuery.sizeOf(context).width * 0.7,
@@ -1302,16 +1306,12 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                 decoration: const BoxDecoration(),
                                 child: Builder(
                                   builder: (context) {
-                                    final images =
-                                        _model.uploadedImages.toList();
+                                    final images = _model.uploadedImages
+                                        .map((e) => e)
+                                        .toList();
 
                                     return ListView.builder(
-                                      padding: const EdgeInsets.fromLTRB(
-                                        0,
-                                        0,
-                                        32.0,
-                                        0,
-                                      ),
+                                      padding: EdgeInsets.zero,
                                       scrollDirection: Axis.horizontal,
                                       itemCount: images.length,
                                       itemBuilder: (context, imagesIndex) {
@@ -1423,6 +1423,21 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                   },
                                 ),
                               ),
+                              if (_model.uploadedImages.length > 4)
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 4.0, 0.0, 0.0),
+                                  child: Text(
+                                    'Для прокрутки фотографий зажмите левую кнопку мыши или используйте свайп по тачпаду.',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Commissioner',
+                                          fontSize: 16.0,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ),
                             ],
                           ),
                         ),
@@ -1507,7 +1522,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                                           fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
-                                                              FontWeight.bold,
+                                                              FontWeight.w600,
                                                         ),
                                               ),
                                             ],
@@ -1564,70 +1579,87 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   children: [
-                                                    Theme(
-                                                      data: ThemeData(
-                                                        checkboxTheme:
-                                                            CheckboxThemeData(
-                                                          visualDensity:
-                                                              VisualDensity
-                                                                  .compact,
-                                                          materialTapTargetSize:
-                                                              MaterialTapTargetSize
-                                                                  .shrinkWrap,
-                                                          shape:
-                                                              RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        4.0),
-                                                          ),
-                                                        ),
-                                                        unselectedWidgetColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                      ),
-                                                      child: Checkbox(
-                                                        value: _model
-                                                                .checkboxValueMap[
-                                                            listViewServiceRow] ??= _model
-                                                                .selectedServices
-                                                                .contains(
-                                                                    listViewServiceRow
-                                                                        .id) ==
-                                                            true,
-                                                        onChanged:
-                                                            (newValue) async {
-                                                          setState(() => _model
-                                                                      .checkboxValueMap[
-                                                                  listViewServiceRow] =
-                                                              newValue!);
-                                                          if (newValue!) {
-                                                            _model.addToSelectedServices(
+                                                    InkWell(
+                                                      splashColor:
+                                                          Colors.transparent,
+                                                      focusColor:
+                                                          Colors.transparent,
+                                                      hoverColor:
+                                                          Colors.transparent,
+                                                      highlightColor:
+                                                          Colors.transparent,
+                                                      onTap: () async {
+                                                        if (_model
+                                                            .selectedServices
+                                                            .contains(
                                                                 listViewServiceRow
-                                                                    .id);
-                                                            setState(() {});
-                                                          } else {
-                                                            _model.removeFromSelectedServices(
-                                                                listViewServiceRow
-                                                                    .id);
-                                                            setState(() {});
-                                                          }
-                                                        },
-                                                        side: BorderSide(
-                                                          width: 2,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                        ),
-                                                        activeColor:
+                                                                    .id)) {
+                                                          _model.removeFromSelectedServices(
+                                                              listViewServiceRow
+                                                                  .id);
+                                                          setState(() {});
+                                                        } else {
+                                                          _model.addToSelectedServices(
+                                                              listViewServiceRow
+                                                                  .id);
+                                                          setState(() {});
+                                                        }
+                                                      },
+                                                      child: Container(
+                                                        width: 20.0,
+                                                        height: 20.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: valueOrDefault<
+                                                              Color>(
+                                                            _model.selectedServices
+                                                                    .contains(
+                                                                        listViewServiceRow
+                                                                            .id)
+                                                                ? FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary
+                                                                : Colors
+                                                                    .transparent,
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primary,
-                                                        checkColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .info,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      4.0),
+                                                          border: Border.all(
+                                                            color: _model
+                                                                    .selectedServices
+                                                                    .contains(
+                                                                        listViewServiceRow
+                                                                            .id)
+                                                                ? const Color(
+                                                                    0x00EEEEEE)
+                                                                : const Color(
+                                                                    0xFF57636C),
+                                                          ),
+                                                        ),
+                                                        child: Visibility(
+                                                          visible: _model
+                                                              .selectedServices
+                                                              .contains(
+                                                                  listViewServiceRow
+                                                                      .id),
+                                                          child: const Align(
+                                                            alignment:
+                                                                AlignmentDirectional(
+                                                                    0.0, 0.0),
+                                                            child: Icon(
+                                                              Icons
+                                                                  .check_rounded,
+                                                              color: Color(
+                                                                  0xFFFAFAFA),
+                                                              size: 16.0,
+                                                            ),
+                                                          ),
+                                                        ),
                                                       ),
                                                     ),
                                                     Expanded(
@@ -1688,7 +1720,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                     ],
                   ),
                 ]
-                    .divide(const SizedBox(height: 10.0))
+                    .divide(const SizedBox(height: 24.0))
                     .addToStart(const SizedBox(height: 16.0))
                     .addToEnd(const SizedBox(height: 16.0)),
               ),
@@ -1732,7 +1764,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                             _model.ratingBarEditValue?.round(),
                                         'services': _model.selectedServices,
                                         'images': _model.uploadedImages,
-                                        'distance_center': int.tryParse(
+                                        'distance_center': double.tryParse(
                                             _model.canterTextController.text),
                                         'Capacity': int.tryParse(
                                             _model.capacityTextController.text),
@@ -1745,9 +1777,12 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                       },
                                       matchingRows: (rows) => rows.eq(
                                         'id',
-                                        _model.editableHotel?.id,
+                                        widget.initialHotel?.id,
                                       ),
                                     );
+                                    _model.uploadedImages = [];
+                                    _model.selectedServices = [];
+                                    setState(() {});
                                     await widget.doneCallback?.call(
                                       widget.id,
                                     );
@@ -1763,7 +1798,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
 
                           setState(() {});
                         },
-                        text: 'Далее',
+                        text: 'Далее к реквизитам',
                         options: FFButtonOptions(
                           height: 50.0,
                           padding: const EdgeInsetsDirectional.fromSTEB(
@@ -1804,7 +1839,33 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                   successText: 'Да, отменить',
                                   cancelText: 'Продолжить редактирование',
                                   successAction: () async {
+                                    _model.uploadedImages = [];
+                                    _model.selectedServices = [];
+                                    setState(() {});
+                                    setState(() {
+                                      _model.hotelNameEditTextController?.text =
+                                          widget.initialHotel!.name!;
+                                      _model.hotelAddressEditTextController
+                                              ?.text =
+                                          widget.initialHotel!.address!;
+                                      _model.textController3?.clear();
+                                      _model.canterTextController?.text =
+                                          widget.initialHotel!.distanceCenter!
+                                              .toString();
+                                      _model.capacityTextController?.text =
+                                          widget.initialHotel!.capacity!
+                                              .toString();
+                                      _model.maxCapacityTextController?.text =
+                                          widget.initialHotel!.hallMaxCapacity!
+                                              .toString();
+                                      _model.linkTextController?.text =
+                                          widget.initialHotel!.mapLink!;
+                                      _model.hotelDescriptionEditTextController
+                                              ?.text =
+                                          widget.initialHotel!.description!;
+                                    });
                                     await widget.goBack?.call();
+                                    Navigator.pop(context);
                                   },
                                   cancelAction: () async {
                                     Navigator.pop(context);

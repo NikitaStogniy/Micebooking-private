@@ -1,3 +1,4 @@
+import '/backend/schema/enums/enums.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -162,11 +163,11 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
                 Container(
                   width: MediaQuery.sizeOf(context).width * 0.6,
                   decoration: const BoxDecoration(),
-                  child: FutureBuilder<List<FoodPositionRow>>(
-                    future: FoodPositionTable().queryRows(
-                      queryFn: (q) => q.in_(
-                        'id',
-                        widget.food!.positions,
+                  child: FutureBuilder<List<ServiceCategoryRow>>(
+                    future: ServiceCategoryTable().queryRows(
+                      queryFn: (q) => q.eq(
+                        'type',
+                        EnumType.FOOD.name,
                       ),
                     ),
                     builder: (context, snapshot) {
@@ -184,8 +185,8 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
                           ),
                         );
                       }
-                      List<FoodPositionRow> staggeredViewFoodPositionRowList =
-                          snapshot.data!;
+                      List<ServiceCategoryRow>
+                          staggeredViewServiceCategoryRowList = snapshot.data!;
 
                       return MasonryGridView.builder(
                         gridDelegate:
@@ -195,11 +196,11 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
                         ),
                         crossAxisSpacing: 40.0,
                         mainAxisSpacing: 24.0,
-                        itemCount: staggeredViewFoodPositionRowList.length,
+                        itemCount: staggeredViewServiceCategoryRowList.length,
                         shrinkWrap: true,
                         itemBuilder: (context, staggeredViewIndex) {
-                          final staggeredViewFoodPositionRow =
-                              staggeredViewFoodPositionRowList[
+                          final staggeredViewServiceCategoryRow =
+                              staggeredViewServiceCategoryRowList[
                                   staggeredViewIndex];
                           return Column(
                             mainAxisSize: MainAxisSize.max,
@@ -207,7 +208,7 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
                             children: [
                               Text(
                                 valueOrDefault<String>(
-                                  staggeredViewFoodPositionRow.type,
+                                  staggeredViewServiceCategoryRow.type,
                                   '0',
                                 ),
                                 style: FlutterFlowTheme.of(context)
