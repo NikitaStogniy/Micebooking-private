@@ -8,6 +8,9 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
 import 'hotels_requests_model.dart';
 export 'hotels_requests_model.dart';
 
@@ -53,8 +56,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.sizeOf(context).height * 1.0,
-      decoration: const BoxDecoration(),
+      height: MediaQuery.sizeOf(context).height * 1,
+      decoration: BoxDecoration(),
       child: SingleChildScrollView(
         primary: false,
         child: Column(
@@ -63,7 +66,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
           children: [
             if (_model.requestOpen == false)
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 50.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 50),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -71,21 +74,20 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                       'Поиск:',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Commissioner',
-                            fontSize: 38.0,
-                            letterSpacing: 0.0,
+                            fontSize: 38,
+                            letterSpacing: 0,
                             fontWeight: FontWeight.bold,
                           ),
                     ),
                     Expanded(
                       child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
                         child: TextFormField(
                           controller: _model.textController,
                           focusNode: _model.textFieldFocusNode,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController',
-                            const Duration(milliseconds: 200),
+                            Duration(milliseconds: 200),
                             () => setState(() {}),
                           ),
                           autofocus: false,
@@ -95,52 +97,52 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                 .labelMedium
                                 .override(
                                   fontFamily: 'Commissioner',
-                                  letterSpacing: 0.0,
+                                  letterSpacing: 0,
                                 ),
                             hintText: 'Введите название отеля ',
                             hintStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
                                   fontFamily: 'Commissioner',
-                                  fontSize: 16.0,
-                                  letterSpacing: 0.0,
+                                  fontSize: 16,
+                                  letterSpacing: 0,
                                 ),
                             enabledBorder: UnderlineInputBorder(
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Color(0x00000000),
-                                width: 2.0,
+                                width: 2,
                               ),
-                              borderRadius: BorderRadius.circular(40.0),
+                              borderRadius: BorderRadius.circular(40),
                             ),
                             focusedBorder: UnderlineInputBorder(
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Color(0x00000000),
-                                width: 2.0,
+                                width: 2,
                               ),
-                              borderRadius: BorderRadius.circular(40.0),
+                              borderRadius: BorderRadius.circular(40),
                             ),
                             errorBorder: UnderlineInputBorder(
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Color(0x00000000),
-                                width: 2.0,
+                                width: 2,
                               ),
-                              borderRadius: BorderRadius.circular(40.0),
+                              borderRadius: BorderRadius.circular(40),
                             ),
                             focusedErrorBorder: UnderlineInputBorder(
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Color(0x00000000),
-                                width: 2.0,
+                                width: 2,
                               ),
-                              borderRadius: BorderRadius.circular(40.0),
+                              borderRadius: BorderRadius.circular(40),
                             ),
                             filled: true,
-                            fillColor: const Color(0xFFF0F0FA),
+                            fillColor: Color(0xFFF0F0FA),
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Commissioner',
-                                    fontSize: 16.0,
-                                    letterSpacing: 0.0,
+                                    fontSize: 16,
+                                    letterSpacing: 0,
                                   ),
                           validator: _model.textControllerValidator
                               .asValidator(context),
@@ -160,8 +162,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                   if (!snapshot.hasData) {
                     return Center(
                       child: SizedBox(
-                        width: 50.0,
-                        height: 50.0,
+                        width: 50,
+                        height: 50,
                         child: CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation<Color>(
                             FlutterFlowTheme.of(context).primary,
@@ -197,8 +199,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                               if (!snapshot.hasData) {
                                 return Center(
                                   child: SizedBox(
-                                    width: 50.0,
-                                    height: 50.0,
+                                    width: 50,
+                                    height: 50,
                                     child: CircularProgressIndicator(
                                       valueColor: AlwaysStoppedAnimation<Color>(
                                         FlutterFlowTheme.of(context).primary,
@@ -216,10 +218,10 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                       : null;
 
                               return Container(
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Visibility(
                                   visible: containerHotelRow?.ownerId
-                                          .contains(currentUserUid) ??
+                                          ?.contains(currentUserUid) ??
                                       true,
                                   child: FutureBuilder<List<RequestsRow>>(
                                     future: RequestsTable().queryRows(
@@ -241,8 +243,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                       if (!snapshot.hasData) {
                                         return Center(
                                           child: SizedBox(
-                                            width: 50.0,
-                                            height: 50.0,
+                                            width: 50,
+                                            height: 50,
                                             child: CircularProgressIndicator(
                                               valueColor:
                                                   AlwaysStoppedAnimation<Color>(
@@ -258,7 +260,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                           snapshot.data!;
 
                                       return Container(
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
                                           crossAxisAlignment:
@@ -279,17 +281,17 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Commissioner',
-                                                          fontSize: 38.0,
-                                                          letterSpacing: 0.0,
+                                                          fontSize: 38,
+                                                          letterSpacing: 0,
                                                           fontWeight:
                                                               FontWeight.bold,
                                                         ),
                                                   ),
                                                 ),
-                                              ].divide(const SizedBox(width: 24.0)),
+                                              ].divide(SizedBox(width: 24)),
                                             ),
                                             Container(
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
@@ -307,8 +309,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                           .override(
                                                             fontFamily:
                                                                 'Commissioner',
-                                                            fontSize: 18.0,
-                                                            letterSpacing: 0.0,
+                                                            fontSize: 18,
+                                                            letterSpacing: 0,
                                                             fontWeight:
                                                                 FontWeight.w500,
                                                           ),
@@ -317,26 +319,24 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                               ),
                                             ),
                                             ClipRRect(
-                                              borderRadius: const BorderRadius.only(
-                                                bottomLeft:
-                                                    Radius.circular(16.0),
+                                              borderRadius: BorderRadius.only(
+                                                bottomLeft: Radius.circular(16),
                                                 bottomRight:
-                                                    Radius.circular(16.0),
-                                                topLeft: Radius.circular(0.0),
-                                                topRight: Radius.circular(0.0),
+                                                    Radius.circular(16),
+                                                topLeft: Radius.circular(0),
+                                                topRight: Radius.circular(0),
                                               ),
                                               child: Container(
-                                                decoration: const BoxDecoration(
+                                                decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.only(
                                                     bottomLeft:
-                                                        Radius.circular(16.0),
+                                                        Radius.circular(16),
                                                     bottomRight:
-                                                        Radius.circular(16.0),
-                                                    topLeft:
-                                                        Radius.circular(0.0),
+                                                        Radius.circular(16),
+                                                    topLeft: Radius.circular(0),
                                                     topRight:
-                                                        Radius.circular(0.0),
+                                                        Radius.circular(0),
                                                   ),
                                                 ),
                                                 child: Column(
@@ -345,51 +345,49 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    if (hotelElementRequestsRowList.isNotEmpty)
+                                                    if (hotelElementRequestsRowList
+                                                            .length >
+                                                        0)
                                                       Container(
                                                         width:
                                                             MediaQuery.sizeOf(
-                                                                        context)
-                                                                    .width *
-                                                                1.0,
+                                                                    context)
+                                                                .width,
                                                         decoration:
                                                             BoxDecoration(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primary,
                                                           borderRadius:
-                                                              const BorderRadius.only(
+                                                              BorderRadius.only(
                                                             bottomLeft:
                                                                 Radius.circular(
-                                                                    0.0),
+                                                                    0),
                                                             bottomRight:
                                                                 Radius.circular(
-                                                                    0.0),
+                                                                    0),
                                                             topLeft:
                                                                 Radius.circular(
-                                                                    16.0),
+                                                                    16),
                                                             topRight:
                                                                 Radius.circular(
-                                                                    16.0),
+                                                                    16),
                                                           ),
                                                         ),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      4.0,
-                                                                      0.0,
-                                                                      4.0),
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      4, 0, 4),
                                                           child: Row(
                                                             mainAxisSize:
                                                                 MainAxisSize
                                                                     .min,
                                                             children: [
                                                               Container(
-                                                                width: 80.0,
+                                                                width: 80,
                                                                 decoration:
-                                                                    const BoxDecoration(),
+                                                                    BoxDecoration(),
                                                                 child: Text(
                                                                   'В работе',
                                                                   textAlign:
@@ -404,18 +402,18 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .secondaryBackground,
                                                                         fontSize:
-                                                                            15.0,
+                                                                            15,
                                                                         letterSpacing:
-                                                                            0.0,
+                                                                            0,
                                                                         fontWeight:
                                                                             FontWeight.w500,
                                                                       ),
                                                                 ),
                                                               ),
                                                               Container(
-                                                                width: 80.0,
+                                                                width: 80,
                                                                 decoration:
-                                                                    const BoxDecoration(),
+                                                                    BoxDecoration(),
                                                                 child: Text(
                                                                   '№ запроса',
                                                                   style: FlutterFlowTheme.of(
@@ -427,18 +425,18 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .secondaryBackground,
                                                                         fontSize:
-                                                                            15.0,
+                                                                            15,
                                                                         letterSpacing:
-                                                                            0.0,
+                                                                            0,
                                                                         fontWeight:
                                                                             FontWeight.w500,
                                                                       ),
                                                                 ),
                                                               ),
                                                               Container(
-                                                                width: 130.0,
+                                                                width: 130,
                                                                 decoration:
-                                                                    const BoxDecoration(),
+                                                                    BoxDecoration(),
                                                                 child: Text(
                                                                   'Дата запроса',
                                                                   style: FlutterFlowTheme.of(
@@ -450,9 +448,9 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .secondaryBackground,
                                                                         fontSize:
-                                                                            15.0,
+                                                                            15,
                                                                         letterSpacing:
-                                                                            0.0,
+                                                                            0,
                                                                         fontWeight:
                                                                             FontWeight.w500,
                                                                       ),
@@ -466,7 +464,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                           .width *
                                                                       0.233,
                                                                   decoration:
-                                                                      const BoxDecoration(),
+                                                                      BoxDecoration(),
                                                                   child: Text(
                                                                     'Организация',
                                                                     style: FlutterFlowTheme.of(
@@ -478,9 +476,9 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                           color:
                                                                               FlutterFlowTheme.of(context).secondaryBackground,
                                                                           fontSize:
-                                                                              15.0,
+                                                                              15,
                                                                           letterSpacing:
-                                                                              0.0,
+                                                                              0,
                                                                           fontWeight:
                                                                               FontWeight.w500,
                                                                         ),
@@ -490,9 +488,9 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                               Flexible(
                                                                 child:
                                                                     Container(
-                                                                  width: 120.0,
+                                                                  width: 120,
                                                                   decoration:
-                                                                      const BoxDecoration(),
+                                                                      BoxDecoration(),
                                                                   child: Text(
                                                                     'Дата начала',
                                                                     style: FlutterFlowTheme.of(
@@ -504,9 +502,9 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                           color:
                                                                               FlutterFlowTheme.of(context).secondaryBackground,
                                                                           fontSize:
-                                                                              15.0,
+                                                                              15,
                                                                           letterSpacing:
-                                                                              0.0,
+                                                                              0,
                                                                           fontWeight:
                                                                               FontWeight.w500,
                                                                         ),
@@ -519,7 +517,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                         .width *
                                                                     0.08,
                                                                 decoration:
-                                                                    const BoxDecoration(),
+                                                                    BoxDecoration(),
                                                                 child: Text(
                                                                   'Прод.',
                                                                   style: FlutterFlowTheme.of(
@@ -531,9 +529,9 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .secondaryBackground,
                                                                         fontSize:
-                                                                            15.0,
+                                                                            15,
                                                                         letterSpacing:
-                                                                            0.0,
+                                                                            0,
                                                                         fontWeight:
                                                                             FontWeight.w500,
                                                                       ),
@@ -545,7 +543,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                         .width *
                                                                     0.08,
                                                                 decoration:
-                                                                    const BoxDecoration(),
+                                                                    BoxDecoration(),
                                                                 child: Text(
                                                                   'Сумма',
                                                                   textAlign:
@@ -560,23 +558,23 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .secondaryBackground,
                                                                         fontSize:
-                                                                            15.0,
+                                                                            15,
                                                                         letterSpacing:
-                                                                            0.0,
+                                                                            0,
                                                                         fontWeight:
                                                                             FontWeight.w500,
                                                                       ),
                                                                 ),
                                                               ),
                                                               Container(
-                                                                width: 80.0,
+                                                                width: 80,
                                                                 decoration:
-                                                                    const BoxDecoration(),
+                                                                    BoxDecoration(),
                                                               ),
                                                               Container(
-                                                                width: 100.0,
+                                                                width: 100,
                                                                 decoration:
-                                                                    const BoxDecoration(),
+                                                                    BoxDecoration(),
                                                                 child: Text(
                                                                   'Мероприятие\nпрошло?',
                                                                   textAlign:
@@ -591,25 +589,27 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .secondaryBackground,
                                                                         fontSize:
-                                                                            15.0,
+                                                                            15,
                                                                         letterSpacing:
-                                                                            0.0,
+                                                                            0,
                                                                         fontWeight:
                                                                             FontWeight.w500,
                                                                       ),
                                                                 ),
                                                               ),
                                                             ]
-                                                                .divide(const SizedBox(
-                                                                    width:
-                                                                        20.0))
-                                                                .addToStart(
-                                                                    const SizedBox(
+                                                                .divide(
+                                                                    SizedBox(
                                                                         width:
-                                                                            16.0))
-                                                                .addToEnd(const SizedBox(
-                                                                    width:
-                                                                        16.0)),
+                                                                            20))
+                                                                .addToStart(
+                                                                    SizedBox(
+                                                                        width:
+                                                                            16))
+                                                                .addToEnd(
+                                                                    SizedBox(
+                                                                        width:
+                                                                            16)),
                                                           ),
                                                         ),
                                                       ),
@@ -619,7 +619,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                             hotelElementRequestsRowList
                                                                 .toList();
                                                         if (requests.isEmpty) {
-                                                          return const HotelRequestEmprtyWidget();
+                                                          return HotelRequestEmprtyWidget();
                                                         }
 
                                                         return Column(
@@ -639,10 +639,10 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                   requestsIndex <
                                                                       5,
                                                               child: Container(
-                                                                width: MediaQuery.sizeOf(
+                                                                width: MediaQuery
+                                                                        .sizeOf(
                                                                             context)
-                                                                        .width *
-                                                                    1.0,
+                                                                    .width,
                                                                 decoration:
                                                                     BoxDecoration(
                                                                   color:
@@ -658,29 +658,29 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                         .primaryBackground,
                                                                   ),
                                                                   borderRadius:
-                                                                      const BorderRadius
+                                                                      BorderRadius
                                                                           .only(
                                                                     bottomLeft:
                                                                         Radius.circular(
-                                                                            0.0),
+                                                                            0),
                                                                     bottomRight:
                                                                         Radius.circular(
-                                                                            0.0),
+                                                                            0),
                                                                     topLeft: Radius
                                                                         .circular(
-                                                                            0.0),
+                                                                            0),
                                                                     topRight: Radius
                                                                         .circular(
-                                                                            0.0),
+                                                                            0),
                                                                   ),
                                                                 ),
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          0.0,
-                                                                          4.0,
-                                                                          0.0,
-                                                                          4.0),
+                                                                          0,
+                                                                          4,
+                                                                          0,
+                                                                          4),
                                                                   child: Row(
                                                                     mainAxisSize:
                                                                         MainAxisSize
@@ -688,14 +688,14 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                     children: [
                                                                       Container(
                                                                         width:
-                                                                            80.0,
+                                                                            80,
                                                                         decoration:
-                                                                            const BoxDecoration(),
+                                                                            BoxDecoration(),
                                                                         child:
                                                                             Align(
-                                                                          alignment: const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
+                                                                          alignment: AlignmentDirectional(
+                                                                              0,
+                                                                              0),
                                                                           child:
                                                                               Theme(
                                                                             data:
@@ -704,7 +704,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                                 visualDensity: VisualDensity.compact,
                                                                                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                                                                 shape: RoundedRectangleBorder(
-                                                                                  borderRadius: BorderRadius.circular(4.0),
+                                                                                  borderRadius: BorderRadius.circular(4),
                                                                                 ),
                                                                               ),
                                                                               unselectedWidgetColor: FlutterFlowTheme.of(context).secondaryText,
@@ -752,9 +752,9 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                       ),
                                                                       Container(
                                                                         width:
-                                                                            80.0,
+                                                                            80,
                                                                         decoration:
-                                                                            const BoxDecoration(),
+                                                                            BoxDecoration(),
                                                                         child:
                                                                             Text(
                                                                           requestsItem
@@ -765,17 +765,17 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                               .override(
                                                                                 fontFamily: 'Commissioner',
                                                                                 color: FlutterFlowTheme.of(context).primaryText,
-                                                                                fontSize: 18.0,
-                                                                                letterSpacing: 0.0,
+                                                                                fontSize: 18,
+                                                                                letterSpacing: 0,
                                                                                 fontWeight: FontWeight.normal,
                                                                               ),
                                                                         ),
                                                                       ),
                                                                       Container(
                                                                         width:
-                                                                            130.0,
+                                                                            130,
                                                                         decoration:
-                                                                            const BoxDecoration(),
+                                                                            BoxDecoration(),
                                                                         child:
                                                                             Text(
                                                                           valueOrDefault<
@@ -792,8 +792,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                               .override(
                                                                                 fontFamily: 'Commissioner',
                                                                                 color: FlutterFlowTheme.of(context).primaryText,
-                                                                                fontSize: 18.0,
-                                                                                letterSpacing: 0.0,
+                                                                                fontSize: 18,
+                                                                                letterSpacing: 0,
                                                                                 fontWeight: FontWeight.normal,
                                                                               ),
                                                                         ),
@@ -804,7 +804,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                           width:
                                                                               MediaQuery.sizeOf(context).width * 0.233,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             valueOrDefault<String>(
@@ -814,8 +814,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                   fontFamily: 'Commissioner',
                                                                                   color: FlutterFlowTheme.of(context).primaryText,
-                                                                                  fontSize: 18.0,
-                                                                                  letterSpacing: 0.0,
+                                                                                  fontSize: 18,
+                                                                                  letterSpacing: 0,
                                                                                   fontWeight: FontWeight.normal,
                                                                                 ),
                                                                           ),
@@ -825,9 +825,9 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                         child:
                                                                             Container(
                                                                           width:
-                                                                              120.0,
+                                                                              120,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             valueOrDefault<String>(
@@ -841,8 +841,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                   fontFamily: 'Commissioner',
                                                                                   color: FlutterFlowTheme.of(context).primaryText,
-                                                                                  fontSize: 18.0,
-                                                                                  letterSpacing: 0.0,
+                                                                                  fontSize: 18,
+                                                                                  letterSpacing: 0,
                                                                                   fontWeight: FontWeight.normal,
                                                                                 ),
                                                                           ),
@@ -852,7 +852,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                         width: MediaQuery.sizeOf(context).width *
                                                                             0.08,
                                                                         decoration:
-                                                                            const BoxDecoration(),
+                                                                            BoxDecoration(),
                                                                         child:
                                                                             Text(
                                                                           valueOrDefault<
@@ -868,8 +868,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                               .override(
                                                                                 fontFamily: 'Commissioner',
                                                                                 color: FlutterFlowTheme.of(context).primaryText,
-                                                                                fontSize: 18.0,
-                                                                                letterSpacing: 0.0,
+                                                                                fontSize: 18,
+                                                                                letterSpacing: 0,
                                                                                 fontWeight: FontWeight.normal,
                                                                               ),
                                                                         ),
@@ -878,7 +878,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                         width: MediaQuery.sizeOf(context).width *
                                                                             0.08,
                                                                         decoration:
-                                                                            const BoxDecoration(),
+                                                                            BoxDecoration(),
                                                                         child:
                                                                             Text(
                                                                           valueOrDefault<
@@ -897,17 +897,17 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                               .override(
                                                                                 fontFamily: 'Commissioner',
                                                                                 color: FlutterFlowTheme.of(context).primaryText,
-                                                                                fontSize: 18.0,
-                                                                                letterSpacing: 0.0,
+                                                                                fontSize: 18,
+                                                                                letterSpacing: 0,
                                                                                 fontWeight: FontWeight.normal,
                                                                               ),
                                                                         ),
                                                                       ),
                                                                       Container(
                                                                         width:
-                                                                            80.0,
+                                                                            80,
                                                                         decoration:
-                                                                            const BoxDecoration(),
+                                                                            BoxDecoration(),
                                                                         child:
                                                                             InkWell(
                                                                           splashColor:
@@ -934,8 +934,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                   fontFamily: 'Commissioner',
                                                                                   color: FlutterFlowTheme.of(context).primaryText,
-                                                                                  fontSize: 18.0,
-                                                                                  letterSpacing: 0.0,
+                                                                                  fontSize: 18,
+                                                                                  letterSpacing: 0,
                                                                                   fontWeight: FontWeight.normal,
                                                                                   decoration: TextDecoration.underline,
                                                                                 ),
@@ -944,14 +944,14 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                       ),
                                                                       Container(
                                                                         width:
-                                                                            100.0,
+                                                                            100,
                                                                         decoration:
-                                                                            const BoxDecoration(),
+                                                                            BoxDecoration(),
                                                                         child:
                                                                             Align(
-                                                                          alignment: const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
+                                                                          alignment: AlignmentDirectional(
+                                                                              0,
+                                                                              0),
                                                                           child:
                                                                               Theme(
                                                                             data:
@@ -960,7 +960,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                                 visualDensity: VisualDensity.compact,
                                                                                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                                                                 shape: RoundedRectangleBorder(
-                                                                                  borderRadius: BorderRadius.circular(4.0),
+                                                                                  borderRadius: BorderRadius.circular(4),
                                                                                 ),
                                                                               ),
                                                                               unselectedWidgetColor: FlutterFlowTheme.of(context).secondaryText,
@@ -1003,15 +1003,15 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                         ),
                                                                       ),
                                                                     ]
-                                                                        .divide(const SizedBox(
+                                                                        .divide(SizedBox(
                                                                             width:
-                                                                                20.0))
-                                                                        .addToStart(const SizedBox(
+                                                                                20))
+                                                                        .addToStart(SizedBox(
                                                                             width:
-                                                                                16.0))
-                                                                        .addToEnd(const SizedBox(
+                                                                                16))
+                                                                        .addToEnd(SizedBox(
                                                                             width:
-                                                                                16.0)),
+                                                                                16)),
                                                                   ),
                                                                 ),
                                                               ),
@@ -1039,15 +1039,13 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                 },
                                                 text: 'Показать все',
                                                 options: FFButtonOptions(
-                                                  width: 300.0,
-                                                  height: 50.0,
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          24.0, 0.0, 24.0, 0.0),
+                                                  width: 300,
+                                                  height: 50,
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(24, 0, 24, 0),
                                                   iconPadding:
-                                                      const EdgeInsetsDirectional
-                                                          .fromSTEB(0.0, 0.0,
-                                                              0.0, 0.0),
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(0, 0, 0, 0),
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primary,
@@ -1059,16 +1057,15 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                             fontFamily:
                                                                 'Commissioner',
                                                             color: Colors.white,
-                                                            fontSize: 18.0,
-                                                            letterSpacing: 0.0,
+                                                            fontSize: 18,
+                                                            letterSpacing: 0,
                                                           ),
-                                                  elevation: 0.0,
+                                                  elevation: 0,
                                                   borderRadius:
-                                                      BorderRadius.circular(
-                                                          80.0),
+                                                      BorderRadius.circular(80),
                                                 ),
                                               ),
-                                          ].divide(const SizedBox(height: 22.0)),
+                                          ].divide(SizedBox(height: 22)),
                                         ),
                                       );
                                     },
@@ -1077,7 +1074,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                               );
                             },
                           );
-                        }).divide(const SizedBox(height: 40.0)),
+                        }).divide(SizedBox(height: 40)),
                       );
                     },
                   );
@@ -1096,8 +1093,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                   if (!snapshot.hasData) {
                     return Center(
                       child: SizedBox(
-                        width: 50.0,
-                        height: 50.0,
+                        width: 50,
+                        height: 50,
                         child: CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation<Color>(
                             FlutterFlowTheme.of(context).primary,
@@ -1114,7 +1111,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                           : null;
 
                   return Container(
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -1129,18 +1126,18 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                             setState(() {});
                           },
                           child: Container(
-                            width: 40.0,
-                            height: 40.0,
+                            width: 40,
+                            height: 40,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context).primary,
                               shape: BoxShape.circle,
                             ),
-                            child: const Align(
-                              alignment: AlignmentDirectional(0.0, 0.0),
+                            child: Align(
+                              alignment: AlignmentDirectional(0, 0),
                               child: Icon(
                                 Icons.arrow_back_ios_new_rounded,
                                 color: Colors.white,
-                                size: 20.0,
+                                size: 20,
                               ),
                             ),
                           ),
@@ -1150,13 +1147,13 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                           children: [
                             Expanded(
                               child: Text(
-                                'Запрос №${containerRequestsRow?.id.toString()} в отель ${containerRequestsRow?.hotelName}',
+                                'Запрос №${containerRequestsRow?.id?.toString()} в отель ${containerRequestsRow?.hotelName}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Commissioner',
-                                      fontSize: 38.0,
-                                      letterSpacing: 0.0,
+                                      fontSize: 38,
+                                      letterSpacing: 0,
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
@@ -1175,8 +1172,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Commissioner',
-                                        fontSize: 18.0,
-                                        letterSpacing: 0.0,
+                                        fontSize: 18,
+                                        letterSpacing: 0,
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ),
@@ -1194,8 +1191,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Commissioner',
-                                        fontSize: 18.0,
-                                        letterSpacing: 0.0,
+                                        fontSize: 18,
+                                        letterSpacing: 0,
                                         fontWeight: FontWeight.bold,
                                       ),
                                 ),
@@ -1221,13 +1218,13 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Commissioner',
-                                        fontSize: 18.0,
-                                        letterSpacing: 0.0,
+                                        fontSize: 18,
+                                        letterSpacing: 0,
                                       ),
                                 ),
-                              ].divide(const SizedBox(width: 16.0)),
+                              ].divide(SizedBox(width: 16)),
                             ),
-                          ].divide(const SizedBox(height: 16.0)),
+                          ].divide(SizedBox(height: 16)),
                         ),
                         FutureBuilder<List<UsersRow>>(
                           future: UsersTable().querySingleRow(
@@ -1241,8 +1238,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                             if (!snapshot.hasData) {
                               return Center(
                                 child: SizedBox(
-                                  width: 50.0,
-                                  height: 50.0,
+                                  width: 50,
+                                  height: 50,
                                   child: CircularProgressIndicator(
                                     valueColor: AlwaysStoppedAnimation<Color>(
                                       FlutterFlowTheme.of(context).primary,
@@ -1269,8 +1266,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Commissioner',
-                                            fontSize: 18.0,
-                                            letterSpacing: 0.0,
+                                            fontSize: 18,
+                                            letterSpacing: 0,
                                             fontWeight: FontWeight.w500,
                                           ),
                                     ),
@@ -1288,8 +1285,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Commissioner',
-                                            fontSize: 18.0,
-                                            letterSpacing: 0.0,
+                                            fontSize: 18,
+                                            letterSpacing: 0,
                                             fontWeight: FontWeight.w500,
                                           ),
                                     ),
@@ -1299,8 +1296,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Commissioner',
-                                            fontSize: 18.0,
-                                            letterSpacing: 0.0,
+                                            fontSize: 18,
+                                            letterSpacing: 0,
                                             fontWeight: FontWeight.w500,
                                           ),
                                     ),
@@ -1313,8 +1310,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Commissioner',
-                                            fontSize: 18.0,
-                                            letterSpacing: 0.0,
+                                            fontSize: 18,
+                                            letterSpacing: 0,
                                             fontWeight: FontWeight.w500,
                                           ),
                                     ),
@@ -1329,47 +1326,47 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Commissioner',
-                                              fontSize: 18.0,
-                                              letterSpacing: 0.0,
+                                              fontSize: 18,
+                                              letterSpacing: 0,
                                               fontWeight: FontWeight.w500,
                                             ),
                                       ),
-                                  ].divide(const SizedBox(width: 40.0)),
+                                  ].divide(SizedBox(width: 40)),
                                 ),
-                              ].divide(const SizedBox(height: 16.0)),
+                              ].divide(SizedBox(height: 16)),
                             );
                           },
                         ),
-                        if (containerRequestsRow?.halls.isNotEmpty)
+                        if (containerRequestsRow?.halls?.length != 0)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 16.0),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                 child: Text(
                                   'Залы:',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Commissioner',
-                                        fontSize: 18.0,
-                                        letterSpacing: 0.0,
+                                        fontSize: 18,
+                                        letterSpacing: 0,
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ),
                               ),
                               Container(
-                                width: MediaQuery.sizeOf(context).width * 1.0,
-                                height: 40.0,
+                                width: MediaQuery.sizeOf(context).width,
+                                height: 40,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context).primary,
-                                  borderRadius: const BorderRadius.only(
-                                    bottomLeft: Radius.circular(0.0),
-                                    bottomRight: Radius.circular(0.0),
-                                    topLeft: Radius.circular(16.0),
-                                    topRight: Radius.circular(16.0),
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(0),
+                                    bottomRight: Radius.circular(0),
+                                    topLeft: Radius.circular(16),
+                                    topRight: Radius.circular(16),
                                   ),
                                 ),
                                 child: Row(
@@ -1381,7 +1378,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.1,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Название зала',
                                           textAlign: TextAlign.start,
@@ -1392,8 +1389,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                fontSize: 19.0,
-                                                letterSpacing: 0.0,
+                                                fontSize: 19,
+                                                letterSpacing: 0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
@@ -1405,7 +1402,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Рассадка',
                                           style: FlutterFlowTheme.of(context)
@@ -1415,8 +1412,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                fontSize: 19.0,
-                                                letterSpacing: 0.0,
+                                                fontSize: 19,
+                                                letterSpacing: 0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
@@ -1428,7 +1425,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Количество дней',
                                           style: FlutterFlowTheme.of(context)
@@ -1438,16 +1435,16 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                fontSize: 19.0,
-                                                letterSpacing: 0.0,
+                                                fontSize: 19,
+                                                letterSpacing: 0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
                                       ),
                                     ),
                                     Container(
-                                      width: 200.0,
-                                      decoration: const BoxDecoration(),
+                                      width: 200,
+                                      decoration: BoxDecoration(),
                                       child: Text(
                                         'Стоимость',
                                         style: FlutterFlowTheme.of(context)
@@ -1457,16 +1454,16 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
-                                              fontSize: 19.0,
-                                              letterSpacing: 0.0,
+                                              fontSize: 19,
+                                              letterSpacing: 0,
                                               fontWeight: FontWeight.w500,
                                             ),
                                       ),
                                     ),
                                   ]
-                                      .divide(const SizedBox(width: 8.0))
-                                      .addToStart(const SizedBox(width: 16.0))
-                                      .addToEnd(const SizedBox(width: 16.0)),
+                                      .divide(SizedBox(width: 8))
+                                      .addToStart(SizedBox(width: 16))
+                                      .addToEnd(SizedBox(width: 16)),
                                 ),
                               ),
                               FutureBuilder<List<RequestsHallVarRow>>(
@@ -1481,8 +1478,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                   if (!snapshot.hasData) {
                                     return Center(
                                       child: SizedBox(
-                                        width: 50.0,
-                                        height: 50.0,
+                                        width: 50,
+                                        height: 50,
                                         child: CircularProgressIndicator(
                                           valueColor:
                                               AlwaysStoppedAnimation<Color>(
@@ -1508,10 +1505,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                           columnRequestsHallVarRowList[
                                               columnIndex];
                                       return Container(
-                                        width:
-                                            MediaQuery.sizeOf(context).width *
-                                                1.0,
-                                        height: 40.0,
+                                        width: MediaQuery.sizeOf(context).width,
+                                        height: 40,
                                         decoration: BoxDecoration(
                                           color: valueOrDefault<Color>(
                                             columnIndex.isOdd
@@ -1522,11 +1517,11 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                             FlutterFlowTheme.of(context)
                                                 .primaryBackground,
                                           ),
-                                          borderRadius: const BorderRadius.only(
-                                            bottomLeft: Radius.circular(0.0),
-                                            bottomRight: Radius.circular(0.0),
-                                            topLeft: Radius.circular(0.0),
-                                            topRight: Radius.circular(0.0),
+                                          borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(0),
+                                            bottomRight: Radius.circular(0),
+                                            topLeft: Radius.circular(0),
+                                            topRight: Radius.circular(0),
                                           ),
                                         ),
                                         child: Row(
@@ -1539,7 +1534,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         0.1,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     columnRequestsHallVarRow
@@ -1556,8 +1551,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 19.0,
-                                                        letterSpacing: 0.0,
+                                                        fontSize: 19,
+                                                        letterSpacing: 0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -1571,7 +1566,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         0.5,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     columnRequestsHallVarRow
@@ -1588,8 +1583,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 19.0,
-                                                        letterSpacing: 0.0,
+                                                        fontSize: 19,
+                                                        letterSpacing: 0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -1603,7 +1598,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         0.5,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     columnRequestsHallVarRow
@@ -1621,8 +1616,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 19.0,
-                                                        letterSpacing: 0.0,
+                                                        fontSize: 19,
+                                                        letterSpacing: 0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -1630,8 +1625,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                               ),
                                             ),
                                             Container(
-                                              width: 200.0,
-                                              decoration: const BoxDecoration(),
+                                              width: 200,
+                                              decoration: BoxDecoration(),
                                               child: Text(
                                                 valueOrDefault<String>(
                                                   formatNumber(
@@ -1650,8 +1645,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Commissioner',
-                                                          fontSize: 19.0,
-                                                          letterSpacing: 0.0,
+                                                          fontSize: 19,
+                                                          letterSpacing: 0,
                                                           fontWeight:
                                                               FontWeight.normal,
                                                           decoration:
@@ -1661,9 +1656,9 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                               ),
                                             ),
                                           ]
-                                              .divide(const SizedBox(width: 8.0))
-                                              .addToStart(const SizedBox(width: 16.0))
-                                              .addToEnd(const SizedBox(width: 16.0)),
+                                              .divide(SizedBox(width: 8))
+                                              .addToStart(SizedBox(width: 16))
+                                              .addToEnd(SizedBox(width: 16)),
                                         ),
                                       );
                                     }),
@@ -1675,20 +1670,20 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Container(
-                                    width: 100.0,
-                                    height: 40.0,
+                                    width: 100,
+                                    height: 40,
                                     decoration: BoxDecoration(
                                       color:
                                           FlutterFlowTheme.of(context).primary,
-                                      borderRadius: const BorderRadius.only(
-                                        bottomLeft: Radius.circular(8.0),
-                                        bottomRight: Radius.circular(0.0),
-                                        topLeft: Radius.circular(0.0),
-                                        topRight: Radius.circular(0.0),
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(8),
+                                        bottomRight: Radius.circular(0),
+                                        topLeft: Radius.circular(0),
+                                        topRight: Radius.circular(0),
                                       ),
                                     ),
                                     child: Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0, 0),
                                       child: Text(
                                         'Итого:',
                                         textAlign: TextAlign.end,
@@ -1699,25 +1694,24 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
-                                              fontSize: 19.0,
-                                              letterSpacing: 0.0,
+                                              fontSize: 19,
+                                              letterSpacing: 0,
                                             ),
                                       ),
                                     ),
                                   ),
                                   Container(
-                                    width: 250.0,
-                                    height: 40.0,
+                                    width: 250,
+                                    height: 40,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
                                     ),
                                     child: Align(
-                                      alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
+                                      alignment: AlignmentDirectional(-1, 0),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            34.0, 0.0, 16.0, 0.0),
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            34, 0, 16, 0),
                                         child: Text(
                                           '${formatNumber(
                                             containerRequestsRow?.hallPrice,
@@ -1731,8 +1725,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryText,
-                                                fontSize: 19.0,
-                                                letterSpacing: 0.0,
+                                                fontSize: 19,
+                                                letterSpacing: 0,
                                                 fontWeight: FontWeight.w600,
                                               ),
                                         ),
@@ -1743,36 +1737,36 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                               ),
                             ],
                           ),
-                        if (containerRequestsRow?.food.isNotEmpty)
+                        if (containerRequestsRow?.food?.length != 0)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 16.0),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                 child: Text(
                                   'Питание:',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Commissioner',
-                                        fontSize: 18.0,
-                                        letterSpacing: 0.0,
+                                        fontSize: 18,
+                                        letterSpacing: 0,
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ),
                               ),
                               Container(
-                                width: MediaQuery.sizeOf(context).width * 1.0,
-                                height: 40.0,
+                                width: MediaQuery.sizeOf(context).width,
+                                height: 40,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context).primary,
-                                  borderRadius: const BorderRadius.only(
-                                    bottomLeft: Radius.circular(0.0),
-                                    bottomRight: Radius.circular(0.0),
-                                    topLeft: Radius.circular(16.0),
-                                    topRight: Radius.circular(16.0),
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(0),
+                                    bottomRight: Radius.circular(0),
+                                    topLeft: Radius.circular(16),
+                                    topRight: Radius.circular(16),
                                   ),
                                 ),
                                 child: Row(
@@ -1784,7 +1778,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.1,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Категория питания',
                                           textAlign: TextAlign.start,
@@ -1795,8 +1789,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                fontSize: 19.0,
-                                                letterSpacing: 0.0,
+                                                fontSize: 19,
+                                                letterSpacing: 0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
@@ -1808,7 +1802,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Количество порций',
                                           style: FlutterFlowTheme.of(context)
@@ -1818,8 +1812,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                fontSize: 19.0,
-                                                letterSpacing: 0.0,
+                                                fontSize: 19,
+                                                letterSpacing: 0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
@@ -1831,7 +1825,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Количество персон',
                                           style: FlutterFlowTheme.of(context)
@@ -1841,16 +1835,16 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                fontSize: 19.0,
-                                                letterSpacing: 0.0,
+                                                fontSize: 19,
+                                                letterSpacing: 0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
                                       ),
                                     ),
                                     Container(
-                                      width: 200.0,
-                                      decoration: const BoxDecoration(),
+                                      width: 200,
+                                      decoration: BoxDecoration(),
                                       child: Text(
                                         'Стоимость',
                                         style: FlutterFlowTheme.of(context)
@@ -1860,16 +1854,16 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
-                                              fontSize: 19.0,
-                                              letterSpacing: 0.0,
+                                              fontSize: 19,
+                                              letterSpacing: 0,
                                               fontWeight: FontWeight.w500,
                                             ),
                                       ),
                                     ),
                                   ]
-                                      .divide(const SizedBox(width: 8.0))
-                                      .addToStart(const SizedBox(width: 16.0))
-                                      .addToEnd(const SizedBox(width: 16.0)),
+                                      .divide(SizedBox(width: 8))
+                                      .addToStart(SizedBox(width: 16))
+                                      .addToEnd(SizedBox(width: 16)),
                                 ),
                               ),
                               FutureBuilder<List<RequestsFoodVarRow>>(
@@ -1884,8 +1878,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                   if (!snapshot.hasData) {
                                     return Center(
                                       child: SizedBox(
-                                        width: 50.0,
-                                        height: 50.0,
+                                        width: 50,
+                                        height: 50,
                                         child: CircularProgressIndicator(
                                           valueColor:
                                               AlwaysStoppedAnimation<Color>(
@@ -1911,10 +1905,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                           columnRequestsFoodVarRowList[
                                               columnIndex];
                                       return Container(
-                                        width:
-                                            MediaQuery.sizeOf(context).width *
-                                                1.0,
-                                        height: 40.0,
+                                        width: MediaQuery.sizeOf(context).width,
+                                        height: 40,
                                         decoration: BoxDecoration(
                                           color: valueOrDefault<Color>(
                                             columnIndex.isOdd
@@ -1925,11 +1917,11 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                             FlutterFlowTheme.of(context)
                                                 .primaryBackground,
                                           ),
-                                          borderRadius: const BorderRadius.only(
-                                            bottomLeft: Radius.circular(0.0),
-                                            bottomRight: Radius.circular(0.0),
-                                            topLeft: Radius.circular(0.0),
-                                            topRight: Radius.circular(0.0),
+                                          borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(0),
+                                            bottomRight: Radius.circular(0),
+                                            topLeft: Radius.circular(0),
+                                            topRight: Radius.circular(0),
                                           ),
                                         ),
                                         child: Row(
@@ -1942,7 +1934,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         0.1,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     columnRequestsFoodVarRow
@@ -1959,8 +1951,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 19.0,
-                                                        letterSpacing: 0.0,
+                                                        fontSize: 19,
+                                                        letterSpacing: 0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -1974,7 +1966,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         0.5,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     columnRequestsFoodVarRow
@@ -1992,8 +1984,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 19.0,
-                                                        letterSpacing: 0.0,
+                                                        fontSize: 19,
+                                                        letterSpacing: 0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -2007,7 +1999,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         0.5,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     columnRequestsFoodVarRow
@@ -2025,8 +2017,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 19.0,
-                                                        letterSpacing: 0.0,
+                                                        fontSize: 19,
+                                                        letterSpacing: 0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -2034,8 +2026,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                               ),
                                             ),
                                             Container(
-                                              width: 200.0,
-                                              decoration: const BoxDecoration(),
+                                              width: 200,
+                                              decoration: BoxDecoration(),
                                               child: Text(
                                                 valueOrDefault<String>(
                                                   formatNumber(
@@ -2054,8 +2046,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Commissioner',
-                                                          fontSize: 19.0,
-                                                          letterSpacing: 0.0,
+                                                          fontSize: 19,
+                                                          letterSpacing: 0,
                                                           fontWeight:
                                                               FontWeight.normal,
                                                           decoration:
@@ -2065,9 +2057,9 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                               ),
                                             ),
                                           ]
-                                              .divide(const SizedBox(width: 8.0))
-                                              .addToStart(const SizedBox(width: 16.0))
-                                              .addToEnd(const SizedBox(width: 16.0)),
+                                              .divide(SizedBox(width: 8))
+                                              .addToStart(SizedBox(width: 16))
+                                              .addToEnd(SizedBox(width: 16)),
                                         ),
                                       );
                                     }),
@@ -2079,20 +2071,20 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Container(
-                                    width: 100.0,
-                                    height: 40.0,
+                                    width: 100,
+                                    height: 40,
                                     decoration: BoxDecoration(
                                       color:
                                           FlutterFlowTheme.of(context).primary,
-                                      borderRadius: const BorderRadius.only(
-                                        bottomLeft: Radius.circular(8.0),
-                                        bottomRight: Radius.circular(0.0),
-                                        topLeft: Radius.circular(0.0),
-                                        topRight: Radius.circular(0.0),
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(8),
+                                        bottomRight: Radius.circular(0),
+                                        topLeft: Radius.circular(0),
+                                        topRight: Radius.circular(0),
                                       ),
                                     ),
                                     child: Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0, 0),
                                       child: Text(
                                         'Итого:',
                                         textAlign: TextAlign.end,
@@ -2103,25 +2095,24 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
-                                              fontSize: 19.0,
-                                              letterSpacing: 0.0,
+                                              fontSize: 19,
+                                              letterSpacing: 0,
                                             ),
                                       ),
                                     ),
                                   ),
                                   Container(
-                                    width: 250.0,
-                                    height: 40.0,
+                                    width: 250,
+                                    height: 40,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
                                     ),
                                     child: Align(
-                                      alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
+                                      alignment: AlignmentDirectional(-1, 0),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            34.0, 0.0, 16.0, 0.0),
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            34, 0, 16, 0),
                                         child: Text(
                                           '${valueOrDefault<String>(
                                             formatNumber(
@@ -2139,8 +2130,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryText,
-                                                fontSize: 19.0,
-                                                letterSpacing: 0.0,
+                                                fontSize: 19,
+                                                letterSpacing: 0,
                                                 fontWeight: FontWeight.w600,
                                               ),
                                         ),
@@ -2151,36 +2142,36 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                               ),
                             ],
                           ),
-                        if (containerRequestsRow?.rooms.isNotEmpty)
+                        if (containerRequestsRow?.rooms?.length != 0)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 16.0),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                 child: Text(
                                   'Номера:',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Commissioner',
-                                        fontSize: 18.0,
-                                        letterSpacing: 0.0,
+                                        fontSize: 18,
+                                        letterSpacing: 0,
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ),
                               ),
                               Container(
-                                width: MediaQuery.sizeOf(context).width * 1.0,
-                                height: 40.0,
+                                width: MediaQuery.sizeOf(context).width,
+                                height: 40,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context).primary,
-                                  borderRadius: const BorderRadius.only(
-                                    bottomLeft: Radius.circular(0.0),
-                                    bottomRight: Radius.circular(0.0),
-                                    topLeft: Radius.circular(16.0),
-                                    topRight: Radius.circular(16.0),
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(0),
+                                    bottomRight: Radius.circular(0),
+                                    topLeft: Radius.circular(16),
+                                    topRight: Radius.circular(16),
                                   ),
                                 ),
                                 child: Row(
@@ -2192,7 +2183,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.1,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Название зала',
                                           textAlign: TextAlign.start,
@@ -2203,8 +2194,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                fontSize: 19.0,
-                                                letterSpacing: 0.0,
+                                                fontSize: 19,
+                                                letterSpacing: 0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
@@ -2216,7 +2207,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Количество',
                                           style: FlutterFlowTheme.of(context)
@@ -2226,8 +2217,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                fontSize: 19.0,
-                                                letterSpacing: 0.0,
+                                                fontSize: 19,
+                                                letterSpacing: 0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
@@ -2239,7 +2230,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Количество дней',
                                           style: FlutterFlowTheme.of(context)
@@ -2249,16 +2240,16 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                fontSize: 19.0,
-                                                letterSpacing: 0.0,
+                                                fontSize: 19,
+                                                letterSpacing: 0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
                                       ),
                                     ),
                                     Container(
-                                      width: 200.0,
-                                      decoration: const BoxDecoration(),
+                                      width: 200,
+                                      decoration: BoxDecoration(),
                                       child: Text(
                                         'Стоимость',
                                         style: FlutterFlowTheme.of(context)
@@ -2268,16 +2259,16 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
-                                              fontSize: 19.0,
-                                              letterSpacing: 0.0,
+                                              fontSize: 19,
+                                              letterSpacing: 0,
                                               fontWeight: FontWeight.w500,
                                             ),
                                       ),
                                     ),
                                   ]
-                                      .divide(const SizedBox(width: 8.0))
-                                      .addToStart(const SizedBox(width: 16.0))
-                                      .addToEnd(const SizedBox(width: 16.0)),
+                                      .divide(SizedBox(width: 8))
+                                      .addToStart(SizedBox(width: 16))
+                                      .addToEnd(SizedBox(width: 16)),
                                 ),
                               ),
                               FutureBuilder<List<RequestsRoomVarRow>>(
@@ -2292,8 +2283,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                   if (!snapshot.hasData) {
                                     return Center(
                                       child: SizedBox(
-                                        width: 50.0,
-                                        height: 50.0,
+                                        width: 50,
+                                        height: 50,
                                         child: CircularProgressIndicator(
                                           valueColor:
                                               AlwaysStoppedAnimation<Color>(
@@ -2319,10 +2310,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                           columnRequestsRoomVarRowList[
                                               columnIndex];
                                       return Container(
-                                        width:
-                                            MediaQuery.sizeOf(context).width *
-                                                1.0,
-                                        height: 40.0,
+                                        width: MediaQuery.sizeOf(context).width,
+                                        height: 40,
                                         decoration: BoxDecoration(
                                           color: valueOrDefault<Color>(
                                             columnIndex.isOdd
@@ -2333,11 +2322,11 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                             FlutterFlowTheme.of(context)
                                                 .primaryBackground,
                                           ),
-                                          borderRadius: const BorderRadius.only(
-                                            bottomLeft: Radius.circular(0.0),
-                                            bottomRight: Radius.circular(0.0),
-                                            topLeft: Radius.circular(0.0),
-                                            topRight: Radius.circular(0.0),
+                                          borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(0),
+                                            bottomRight: Radius.circular(0),
+                                            topLeft: Radius.circular(0),
+                                            topRight: Radius.circular(0),
                                           ),
                                         ),
                                         child: Row(
@@ -2350,7 +2339,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         0.1,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     columnRequestsRoomVarRow
@@ -2367,8 +2356,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 19.0,
-                                                        letterSpacing: 0.0,
+                                                        fontSize: 19,
+                                                        letterSpacing: 0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -2382,7 +2371,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         0.5,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     columnRequestsRoomVarRow
@@ -2400,8 +2389,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 19.0,
-                                                        letterSpacing: 0.0,
+                                                        fontSize: 19,
+                                                        letterSpacing: 0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -2415,7 +2404,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         0.5,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     columnRequestsRoomVarRow
@@ -2433,8 +2422,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 19.0,
-                                                        letterSpacing: 0.0,
+                                                        fontSize: 19,
+                                                        letterSpacing: 0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -2442,8 +2431,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                               ),
                                             ),
                                             Container(
-                                              width: 200.0,
-                                              decoration: const BoxDecoration(),
+                                              width: 200,
+                                              decoration: BoxDecoration(),
                                               child: Text(
                                                 valueOrDefault<String>(
                                                   formatNumber(
@@ -2462,8 +2451,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Commissioner',
-                                                          fontSize: 19.0,
-                                                          letterSpacing: 0.0,
+                                                          fontSize: 19,
+                                                          letterSpacing: 0,
                                                           fontWeight:
                                                               FontWeight.normal,
                                                           decoration:
@@ -2473,9 +2462,9 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                               ),
                                             ),
                                           ]
-                                              .divide(const SizedBox(width: 8.0))
-                                              .addToStart(const SizedBox(width: 16.0))
-                                              .addToEnd(const SizedBox(width: 16.0)),
+                                              .divide(SizedBox(width: 8))
+                                              .addToStart(SizedBox(width: 16))
+                                              .addToEnd(SizedBox(width: 16)),
                                         ),
                                       );
                                     }),
@@ -2487,20 +2476,20 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Container(
-                                    width: 100.0,
-                                    height: 40.0,
+                                    width: 100,
+                                    height: 40,
                                     decoration: BoxDecoration(
                                       color:
                                           FlutterFlowTheme.of(context).primary,
-                                      borderRadius: const BorderRadius.only(
-                                        bottomLeft: Radius.circular(8.0),
-                                        bottomRight: Radius.circular(0.0),
-                                        topLeft: Radius.circular(0.0),
-                                        topRight: Radius.circular(0.0),
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(8),
+                                        bottomRight: Radius.circular(0),
+                                        topLeft: Radius.circular(0),
+                                        topRight: Radius.circular(0),
                                       ),
                                     ),
                                     child: Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0, 0),
                                       child: Text(
                                         'Итого:',
                                         textAlign: TextAlign.end,
@@ -2511,25 +2500,24 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
-                                              fontSize: 19.0,
-                                              letterSpacing: 0.0,
+                                              fontSize: 19,
+                                              letterSpacing: 0,
                                             ),
                                       ),
                                     ),
                                   ),
                                   Container(
-                                    width: 250.0,
-                                    height: 40.0,
+                                    width: 250,
+                                    height: 40,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
                                     ),
                                     child: Align(
-                                      alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
+                                      alignment: AlignmentDirectional(-1, 0),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            34.0, 0.0, 16.0, 0.0),
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            34, 0, 16, 0),
                                         child: Text(
                                           '${containerRequestsRow?.roomPrice?.toString()} руб.',
                                           style: FlutterFlowTheme.of(context)
@@ -2539,8 +2527,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryText,
-                                                fontSize: 19.0,
-                                                letterSpacing: 0.0,
+                                                fontSize: 19,
+                                                letterSpacing: 0,
                                                 fontWeight: FontWeight.w600,
                                               ),
                                         ),
@@ -2559,7 +2547,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                               flex: 3,
                               child: Container(
                                 width: MediaQuery.sizeOf(context).width * 0.5,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Text(
                                   'Общий итог: ',
                                   textAlign: TextAlign.end,
@@ -2567,15 +2555,15 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Commissioner',
-                                        fontSize: 18.0,
-                                        letterSpacing: 0.0,
+                                        fontSize: 18,
+                                        letterSpacing: 0,
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ),
                               ),
                             ),
                             Container(
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Text(
                                 '${formatNumber(
                                   containerRequestsRow?.price,
@@ -2586,19 +2574,19 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Commissioner',
-                                      color: const Color(0xFF2431A5),
-                                      fontSize: 20.0,
-                                      letterSpacing: 0.0,
+                                      color: Color(0xFF2431A5),
+                                      fontSize: 20,
+                                      letterSpacing: 0,
                                       fontWeight: FontWeight.w600,
                                     ),
                               ),
                             ),
                           ]
-                              .divide(const SizedBox(width: 8.0))
-                              .addToStart(const SizedBox(width: 16.0))
-                              .addToEnd(const SizedBox(width: 16.0)),
+                              .divide(SizedBox(width: 8))
+                              .addToStart(SizedBox(width: 16))
+                              .addToEnd(SizedBox(width: 16)),
                         ),
-                      ].divide(const SizedBox(height: 40.0)),
+                      ].divide(SizedBox(height: 40)),
                     ),
                   );
                 },
