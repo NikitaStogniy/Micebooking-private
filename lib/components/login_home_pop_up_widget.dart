@@ -221,7 +221,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                 iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: valueOrDefault<Color>(
-                                  !_model.isHotel
+                                  _model.isHotel
                                       ? FlutterFlowTheme.of(context).primary
                                       : const Color(0xFFF0F0FA),
                                   const Color(0xFFF0F0FA),
@@ -1798,6 +1798,45 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                               ].divide(const SizedBox(height: 24.0)),
                             ),
                           ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 24.0, 16.0, 0.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              _model.isRegister = !_model.isRegister;
+                              setState(() {});
+                            },
+                            text: valueOrDefault<String>(
+                              _model.isRegister
+                                  ? 'У меня уже есть аккаунт'
+                                  : 'Регистрация в личном кабинете',
+                              'Регистрация в личном кабинете',
+                            ),
+                            options: FFButtonOptions(
+                              width: 350.0,
+                              height: 60.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 24.0, 24.0, 24.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Commissioner',
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    letterSpacing: 0.0,
+                                  ),
+                              elevation: 0.0,
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).primary,
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.circular(240.0),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),

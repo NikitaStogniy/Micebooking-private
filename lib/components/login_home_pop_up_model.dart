@@ -9,9 +9,9 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 class LoginHomePopUpModel extends FlutterFlowModel<LoginHomePopUpWidget> {
   ///  Local state fields for this component.
 
-  bool isRegister = false;
+  bool isRegister = true;
 
-  bool isHotel = false;
+  bool isHotel = true;
 
   String? lastEmail;
 
