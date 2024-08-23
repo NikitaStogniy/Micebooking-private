@@ -258,7 +258,10 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                                   EnumRole.HOTEL.name) {
                                 context.pushNamed('HOTEL_HOME');
                               } else {
-                                context.pushNamed('SUPER_Home');
+                                if (_model.user?.first.role ==
+                                    EnumRole.SUPERUSER.name) {
+                                  context.pushNamed('SUPER_Home');
+                                }
                               }
                             }
                           }

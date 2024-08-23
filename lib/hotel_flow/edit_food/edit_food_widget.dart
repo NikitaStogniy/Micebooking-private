@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -19,13 +20,11 @@ class EditFoodWidget extends StatefulWidget {
     this.id,
     required this.isSubmit,
     required this.initialFood,
-    required this.menuList,
   });
 
   final int? id;
   final Future Function()? isSubmit;
   final FoodRow? initialFood;
-  final List<FoodPositionRow>? menuList;
 
   @override
   State<EditFoodWidget> createState() => _EditFoodWidgetState();
@@ -47,35 +46,36 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.editableFood = null;
-      _model.name = widget.initialFood!.name!;
-      _model.type = widget.initialFood?.type;
-      setState(() {});
-      _model.editableFood = widget.initialFood;
-      setState(() {});
+      setState(() {
+        _model.editNameTextController?.text = widget.initialFood!.name!;
+        _model.addMenuPositionTextController?.clear();
+        _model.editPriceTextController?.text =
+            widget.initialFood!.price!.toString();
+      });
       setState(() {
         _model.editCategoryValueController?.reset();
       });
-      setState(() {
-        _model.editNameTextController?.text = _model.name;
-        _model.editPriceTextController?.text = valueOrDefault<String>(
-          widget.initialFood?.price?.toString(),
-          '123',
-        );
-        _model.addMenuPositionTextController?.clear();
-      });
-      _model.menu = widget.menuList!.toList().cast<FoodPositionRow>();
+      _model.menuTest = widget.initialFood!.positions.toList().cast<int>();
+      setState(() {});
+      setState(() => _model.requestCompleter = null);
+      await _model.waitForRequestCompleted();
+      _model.foodInitialCategoty = await ServiceCategoryTable().queryRows(
+        queryFn: (q) => q.eq(
+          'id',
+          widget.initialFood?.category,
+        ),
+      );
+      _model.editableFood = widget.initialFood;
+      _model.categooryName = _model.foodInitialCategoty?.first.name;
       setState(() {});
     });
 
-    _model.editNameTextController ??= TextEditingController(text: _model.name);
+    _model.editNameTextController ??=
+        TextEditingController(text: widget.initialFood?.name);
     _model.editNameFocusNode ??= FocusNode();
 
-    _model.editPriceTextController ??= TextEditingController(
-        text: valueOrDefault<String>(
-      widget.initialFood?.price?.toString(),
-      '123',
-    ));
+    _model.editPriceTextController ??=
+        TextEditingController(text: widget.initialFood?.price?.toString());
     _model.editPriceFocusNode ??= FocusNode();
 
     _model.addMenuPositionTextController ??= TextEditingController();
@@ -124,13 +124,17 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                           size: 24.0,
                         ),
                         onPressed: () async {
+                          _model.typeChange = false;
+                          _model.menu = [];
+                          _model.categooryName = null;
+                          setState(() {});
                           await widget.isSubmit?.call();
                         },
                       ),
                       Text(
                         valueOrDefault<String>(
-                          _model.editableFood?.name,
-                          'Название пакета',
+                          widget.initialFood?.name,
+                          'нет',
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Commissioner',
@@ -276,7 +280,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                         children: [
                                           Text(
                                             valueOrDefault<String>(
-                                              _model.type,
+                                              _model.categooryName,
                                               'Ошибка',
                                             ),
                                             style: FlutterFlowTheme.of(context)
@@ -332,8 +336,10 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          FutureBuilder<List<ServiceRow>>(
-                                            future: ServiceTable().queryRows(
+                                          FutureBuilder<
+                                              List<ServiceCategoryRow>>(
+                                            future: ServiceCategoryTable()
+                                                .queryRows(
                                               queryFn: (q) => q.eq(
                                                 'type',
                                                 EnumType.FOOD.name,
@@ -359,8 +365,8 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                   ),
                                                 );
                                               }
-                                              List<ServiceRow>
-                                                  editCategoryServiceRowList =
+                                              List<ServiceCategoryRow>
+                                                  editCategoryServiceCategoryRowList =
                                                   snapshot.data!;
 
                                               return FlutterFlowDropDown<
@@ -369,25 +375,32 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                         .editCategoryValueController ??=
                                                     FormFieldController<String>(
                                                   _model.editCategoryValue ??=
-                                                      valueOrDefault<String>(
-                                                    widget.initialFood?.type,
-                                                    'Фуршет',
-                                                  ),
+                                                      _model.categooryName,
                                                 ),
                                                 options:
-                                                    editCategoryServiceRowList
-                                                        .unique((e) => e.id)
-                                                        .map((e) =>
-                                                            valueOrDefault<
-                                                                String>(
-                                                              e.name,
-                                                              'Name',
-                                                            ))
+                                                    editCategoryServiceCategoryRowList
+                                                        .map((e) => e.name)
+                                                        .withoutNulls
                                                         .toList(),
-                                                onChanged: (val) => setState(
-                                                    () => _model
-                                                            .editCategoryValue =
-                                                        val),
+                                                onChanged: (val) async {
+                                                  setState(() => _model
+                                                      .editCategoryValue = val);
+                                                  _model.category =
+                                                      await ServiceCategoryTable()
+                                                          .queryRows(
+                                                    queryFn: (q) => q.eq(
+                                                      'name',
+                                                      _model.editCategoryValue,
+                                                    ),
+                                                  );
+                                                  _model.categoryId = _model
+                                                      .category?.first.id;
+                                                  _model.categooryName = _model
+                                                      .category?.first.name;
+                                                  setState(() {});
+
+                                                  setState(() {});
+                                                },
                                                 width: 285.0,
                                                 height: 40.0,
                                                 textStyle:
@@ -438,7 +451,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                   Colors.transparent,
                                               onTap: () async {
                                                 _model.typeChange = false;
-                                                _model.type =
+                                                _model.categooryName =
                                                     _model.editCategoryValue;
                                                 setState(() {});
                                               },
@@ -582,166 +595,191 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                     letterSpacing: 0.0,
                                   ),
                             ),
-                            if (widget.menuList!.isNotEmpty)
-                              Builder(
-                                builder: (context) {
-                                  final menuListEdit = _model.menu.toList();
-
-                                  return ListView.builder(
-                                    padding: EdgeInsets.zero,
-                                    shrinkWrap: true,
-                                    scrollDirection: Axis.vertical,
-                                    itemCount: menuListEdit.length,
-                                    itemBuilder: (context, menuListEditIndex) {
-                                      final menuListEditItem =
-                                          menuListEdit[menuListEditIndex];
-                                      return Container(
-                                        decoration: const BoxDecoration(),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 8.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Container(
-                                                width: 150.0,
-                                                decoration: const BoxDecoration(
-                                                  color: Color(0x00FFFFFF),
-                                                ),
-                                                child: Text(
-                                                  'Позиция ${valueOrDefault<String>(
-                                                    (menuListEditIndex + 1)
-                                                        .toString(),
-                                                    '1',
-                                                  )}:',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Commissioner',
-                                                        fontSize: 18.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: Container(
-                                                  width: 100.0,
-                                                  height: 40.0,
-                                                  decoration: BoxDecoration(
-                                                    color: const Color(0xFFF0F0FA),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            100.0),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(16.0, 0.0,
-                                                                16.0, 0.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            menuListEditItem
-                                                                .name,
-                                                            'name',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Commissioner',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                        ),
-                                                        Align(
-                                                          alignment:
-                                                              const AlignmentDirectional(
-                                                                  1.0, 0.0),
-                                                          child: InkWell(
-                                                            splashColor: Colors
-                                                                .transparent,
-                                                            focusColor: Colors
-                                                                .transparent,
-                                                            hoverColor: Colors
-                                                                .transparent,
-                                                            highlightColor:
-                                                                Colors
-                                                                    .transparent,
-                                                            onTap: () async {
-                                                              _model.removeFromMenu(
-                                                                  menuListEditItem);
-                                                              setState(() {});
-                                                            },
-                                                            child: Icon(
-                                                              Icons.close,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
-                                                              size: 24.0,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              wrapWithModel(
-                                                model: _model.dropdownCompModels
-                                                    .getModel(
-                                                  menuListEditItem.id
-                                                      .toString(),
-                                                  menuListEditIndex,
-                                                ),
-                                                updateCallback: () =>
-                                                    setState(() {}),
-                                                updateOnChange: true,
-                                                child: DropdownCompWidget(
-                                                  key: Key(
-                                                    'Keyc9l_${menuListEditItem.id.toString()}',
-                                                  ),
-                                                  initial:
-                                                      valueOrDefault<String>(
-                                                    menuListEditItem.type,
-                                                    'Холодные закуски',
-                                                  ),
-                                                  onChange: (data) async {
-                                                    await FoodPositionTable()
-                                                        .update(
-                                                      data: {
-                                                        'type': data,
-                                                      },
-                                                      matchingRows: (rows) =>
-                                                          rows.eq(
-                                                        'id',
-                                                        menuListEditItem.id,
-                                                      ),
-                                                    );
-                                                  },
-                                                ),
-                                              ),
-                                            ].divide(const SizedBox(width: 16.0)),
-                                          ),
+                            FutureBuilder<List<FoodPositionRow>>(
+                              future: (_model.requestCompleter ??= Completer<
+                                      List<FoodPositionRow>>()
+                                    ..complete(FoodPositionTable().queryRows(
+                                      queryFn: (q) => q.in_(
+                                        'id',
+                                        _model.menuTest,
+                                      ),
+                                    )))
+                                  .future,
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 50.0,
+                                      height: 50.0,
+                                      child: CircularProgressIndicator(
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                          FlutterFlowTheme.of(context).primary,
                                         ),
-                                      );
-                                    },
+                                      ),
+                                    ),
                                   );
-                                },
-                              ),
+                                }
+                                List<FoodPositionRow>
+                                    listViewFoodPositionRowList =
+                                    snapshot.data!;
+
+                                return ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: listViewFoodPositionRowList.length,
+                                  itemBuilder: (context, listViewIndex) {
+                                    final listViewFoodPositionRow =
+                                        listViewFoodPositionRowList[
+                                            listViewIndex];
+                                    return Container(
+                                      decoration: const BoxDecoration(),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 8.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Container(
+                                              width: 150.0,
+                                              decoration: const BoxDecoration(
+                                                color: Color(0x00FFFFFF),
+                                              ),
+                                              child: Text(
+                                                'Позиция ${valueOrDefault<String>(
+                                                  (listViewIndex + 1)
+                                                      .toString(),
+                                                  '1',
+                                                )}:',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          fontSize: 18.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: Container(
+                                                width: 100.0,
+                                                height: 40.0,
+                                                decoration: BoxDecoration(
+                                                  color: const Color(0xFFF0F0FA),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          100.0),
+                                                ),
+                                                child: Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          16.0, 0.0, 16.0, 0.0),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Text(
+                                                        valueOrDefault<String>(
+                                                          listViewFoodPositionRow
+                                                              .name,
+                                                          'Без категории',
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Commissioner',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
+                                                      Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                1.0, 0.0),
+                                                        child: InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            _model.removeFromMenu(
+                                                                listViewFoodPositionRow);
+                                                            _model.removeFromMenuTest(
+                                                                listViewFoodPositionRow
+                                                                    .id);
+                                                            setState(() {});
+                                                          },
+                                                          child: Icon(
+                                                            Icons.close,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                            size: 24.0,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            wrapWithModel(
+                                              model: _model.dropdownCompModels
+                                                  .getModel(
+                                                listViewFoodPositionRow.id
+                                                    .toString(),
+                                                listViewIndex,
+                                              ),
+                                              updateCallback: () =>
+                                                  setState(() {}),
+                                              updateOnChange: true,
+                                              child: DropdownCompWidget(
+                                                key: Key(
+                                                  'Keyc9l_${listViewFoodPositionRow.id.toString()}',
+                                                ),
+                                                initial: listViewFoodPositionRow
+                                                    .type,
+                                                onChange: (data, id) async {
+                                                  await FoodPositionTable()
+                                                      .update(
+                                                    data: {
+                                                      'type': data,
+                                                      'category': id,
+                                                    },
+                                                    matchingRows: (rows) =>
+                                                        rows.eq(
+                                                      'id',
+                                                      listViewFoodPositionRow
+                                                          .id,
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                          ].divide(const SizedBox(width: 16.0)),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                            ),
                             Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -847,6 +885,8 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                             'type': 'Холодные закуски',
                                           });
                                           _model.addToMenu(_model.newRow!);
+                                          _model
+                                              .addToMenuTest(_model.newRow!.id);
                                           _model.updatePage(() {});
                                           setState(() {
                                             _model.addMenuPositionTextController
@@ -854,6 +894,10 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                           });
                                           _model.addMenuOpen = false;
                                           setState(() {});
+                                          setState(() =>
+                                              _model.requestCompleter = null);
+                                          await _model
+                                              .waitForRequestCompleted();
 
                                           setState(() {});
                                         },
@@ -984,29 +1028,31 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                   'name': _model.editNameTextController.text,
                                   'price': double.tryParse(
                                       _model.editPriceTextController.text),
-                                  'positions':
-                                      _model.menu.map((e) => e.id).toList(),
-                                  'type': _model.type,
+                                  'positions': _model.menuTest,
+                                  'category': _model.categoryId,
                                 },
                                 matchingRows: (rows) => rows.eq(
                                   'id',
-                                  _model.editableFood?.id,
+                                  widget.initialFood?.id,
                                 ),
                               );
+                              _model.typeChange = false;
+                              _model.menu = [];
+                              _model.categooryName = null;
+                              setState(() {});
                               setState(() {
                                 _model.editCategoryValueController?.reset();
                               });
                               setState(() {
                                 _model.editNameTextController?.text =
-                                    _model.name;
+                                    widget.initialFood!.name!;
                                 _model.editPriceTextController?.text =
-                                    valueOrDefault<String>(
-                                  widget.initialFood?.price?.toString(),
-                                  '123',
-                                );
+                                    widget.initialFood!.price!.toString();
                                 _model.addMenuPositionTextController?.clear();
                               });
                               await widget.isSubmit?.call();
+
+                              setState(() {});
                             },
                             text: 'Обновить',
                             options: FFButtonOptions(
@@ -1033,6 +1079,9 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                           ),
                           FFButtonWidget(
                             onPressed: () async {
+                              _model.typeChange = false;
+                              _model.menu = [];
+                              setState(() {});
                               await widget.isSubmit?.call();
                             },
                             text: 'Отменить изменения',
@@ -1065,7 +1114,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                           await FoodTable().delete(
                             matchingRows: (rows) => rows.eq(
                               'id',
-                              widget.id,
+                              widget.initialFood?.id,
                             ),
                           );
                           await widget.isSubmit?.call();

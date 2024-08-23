@@ -1053,28 +1053,77 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                                 0.233,
                                                         decoration:
                                                             const BoxDecoration(),
-                                                        child: Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            foodItem.type,
-                                                            'Price',
+                                                        child: FutureBuilder<
+                                                            List<
+                                                                ServiceCategoryRow>>(
+                                                          future:
+                                                              ServiceCategoryTable()
+                                                                  .querySingleRow(
+                                                            queryFn: (q) =>
+                                                                q.eq(
+                                                              'id',
+                                                              foodItem.category,
+                                                            ),
                                                           ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Commissioner',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                                fontSize: 19.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
+                                                          builder: (context,
+                                                              snapshot) {
+                                                            // Customize what your widget looks like when it's loading.
+                                                            if (!snapshot
+                                                                .hasData) {
+                                                              return Center(
+                                                                child: SizedBox(
+                                                                  width: 50.0,
+                                                                  height: 50.0,
+                                                                  child:
+                                                                      CircularProgressIndicator(
+                                                                    valueColor:
+                                                                        AlwaysStoppedAnimation<
+                                                                            Color>(
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            }
+                                                            List<ServiceCategoryRow>
+                                                                textServiceCategoryRowList =
+                                                                snapshot.data!;
+
+                                                            final textServiceCategoryRow =
+                                                                textServiceCategoryRowList
+                                                                        .isNotEmpty
+                                                                    ? textServiceCategoryRowList
+                                                                        .first
+                                                                    : null;
+
+                                                            return Text(
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                textServiceCategoryRow
+                                                                    ?.name,
+                                                                'Без категории',
                                                               ),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Commissioner',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
+                                                                    fontSize:
+                                                                        19.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                  ),
+                                                            );
+                                                          },
                                                         ),
                                                       ),
                                                     ),

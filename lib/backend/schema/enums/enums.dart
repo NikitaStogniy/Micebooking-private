@@ -35,6 +35,7 @@ enum EnumType {
   ROOM,
   HALL,
   FOOD,
+  FOOD_POSITION,
 }
 
 enum EnumRole {

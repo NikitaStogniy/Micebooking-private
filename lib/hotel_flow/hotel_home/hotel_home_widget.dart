@@ -536,10 +536,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                   },
                                   editCallback: (id) async {
                                     _model.page = EnumHotelPage.EDIT_ROOMS;
-                                    _model.id = valueOrDefault<int>(
-                                      id,
-                                      88,
-                                    );
+                                    _model.id = id;
                                     setState(() {});
                                   },
                                 ),
@@ -665,7 +662,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                   hotelId: _model.hotelId!,
                                   isSubmit: () async {
                                     _model.page = EnumHotelPage.FOOD;
-                                    _model.id = null;
+                                    _model.id = 0;
                                     setState(() {});
                                   },
                                 ),

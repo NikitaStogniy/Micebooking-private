@@ -55,6 +55,9 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
       padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
       child: Container(
         height: MediaQuery.sizeOf(context).height * 0.9,
+        constraints: const BoxConstraints(
+          maxWidth: 1250.0,
+        ),
         decoration: BoxDecoration(
           color: const Color(0xFFF9F9F9),
           borderRadius: BorderRadius.circular(23.0),
@@ -137,18 +140,52 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Text(
-                        valueOrDefault<String>(
-                          widget.food?.type,
-                          '0',
+                      FutureBuilder<List<ServiceCategoryRow>>(
+                        future: ServiceCategoryTable().querySingleRow(
+                          queryFn: (q) => q.eq(
+                            'id',
+                            widget.food?.category,
+                          ),
                         ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Commissioner',
-                              color: FlutterFlowTheme.of(context).primary,
-                              fontSize: 18.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w600,
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+                          List<ServiceCategoryRow> textServiceCategoryRowList =
+                              snapshot.data!;
+
+                          final textServiceCategoryRow =
+                              textServiceCategoryRowList.isNotEmpty
+                                  ? textServiceCategoryRowList.first
+                                  : null;
+
+                          return Text(
+                            valueOrDefault<String>(
+                              textServiceCategoryRow?.name,
+                              'Без категории',
                             ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Commissioner',
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  fontSize: 18.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          );
+                        },
                       ),
                     ],
                   ),
@@ -167,7 +204,7 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
                     future: ServiceCategoryTable().queryRows(
                       queryFn: (q) => q.eq(
                         'type',
-                        EnumType.FOOD.name,
+                        EnumType.FOOD_POSITION.name,
                       ),
                     ),
                     builder: (context, snapshot) {
@@ -208,7 +245,7 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
                             children: [
                               Text(
                                 valueOrDefault<String>(
-                                  staggeredViewServiceCategoryRow.type,
+                                  staggeredViewServiceCategoryRow.name,
                                   '0',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -222,10 +259,15 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
                               ),
                               FutureBuilder<List<FoodPositionRow>>(
                                 future: FoodPositionTable().queryRows(
-                                  queryFn: (q) => q.in_(
-                                    'id',
-                                    widget.food!.positions,
-                                  ),
+                                  queryFn: (q) => q
+                                      .in_(
+                                        'id',
+                                        widget.food!.positions,
+                                      )
+                                      .eq(
+                                        'category',
+                                        staggeredViewServiceCategoryRow.id,
+                                      ),
                                 ),
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.

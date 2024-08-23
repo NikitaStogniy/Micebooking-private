@@ -256,8 +256,8 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ),
-                                FutureBuilder<List<ServiceRow>>(
-                                  future: ServiceTable().queryRows(
+                                FutureBuilder<List<ServiceCategoryRow>>(
+                                  future: ServiceCategoryTable().queryRows(
                                     queryFn: (q) => q.eq(
                                       'type',
                                       EnumType.FOOD.name,
@@ -280,8 +280,8 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                         ),
                                       );
                                     }
-                                    List<ServiceRow>
-                                        createCategoryServiceRowList =
+                                    List<ServiceCategoryRow>
+                                        createCategoryServiceCategoryRowList =
                                         snapshot.data!;
 
                                     return FlutterFlowDropDown<String>(
@@ -290,12 +290,28 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                           FormFieldController<String>(
                                         _model.createCategoryValue ??= 'Фуршет',
                                       ),
-                                      options: createCategoryServiceRowList
-                                          .map((e) => e.name)
-                                          .withoutNulls
-                                          .toList(),
-                                      onChanged: (val) => setState(() =>
-                                          _model.createCategoryValue = val),
+                                      options:
+                                          createCategoryServiceCategoryRowList
+                                              .map((e) => e.name)
+                                              .withoutNulls
+                                              .toList(),
+                                      onChanged: (val) async {
+                                        setState(() =>
+                                            _model.createCategoryValue = val);
+                                        _model.currentcategotyId =
+                                            await ServiceCategoryTable()
+                                                .queryRows(
+                                          queryFn: (q) => q.eq(
+                                            'name',
+                                            _model.createCategoryValue,
+                                          ),
+                                        );
+                                        _model.categoryId =
+                                            _model.currentcategotyId?.first.id;
+                                        setState(() {});
+
+                                        setState(() {});
+                                      },
                                       width: 285.0,
                                       height: 40.0,
                                       textStyle: FlutterFlowTheme.of(context)
@@ -444,7 +460,9 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Commissioner',
+                                    fontSize: 20.0,
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
                                   ),
                             ),
                             Builder(
@@ -551,6 +569,16 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                               _model.removeFromMenu(
                                                                   menuList1Item);
                                                               setState(() {});
+                                                              await FoodPositionTable()
+                                                                  .delete(
+                                                                matchingRows:
+                                                                    (rows) =>
+                                                                        rows.eq(
+                                                                  'id',
+                                                                  menuList1Item
+                                                                      .id,
+                                                                ),
+                                                              );
                                                             },
                                                             child: Icon(
                                                               Icons.close,
@@ -579,11 +607,12 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                     'Keyn35_${menuList1Item.id.toString()}',
                                                   ),
                                                   initial: menuList1Item.type,
-                                                  onChange: (data) async {
+                                                  onChange: (data, id) async {
                                                     await FoodPositionTable()
                                                         .update(
                                                       data: {
                                                         'type': data,
+                                                        'category': id,
                                                       },
                                                       matchingRows: (rows) =>
                                                           rows.eq(
@@ -708,6 +737,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                             'name': _model
                                                 .createAddmenuTextController
                                                 .text,
+                                            'category': 38,
                                           });
                                           _model.addToMenu(_model.newPosition!);
                                           setState(() {});
@@ -840,23 +870,26 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                         'price': double.tryParse(
                             _model.createPriceTextController.text),
                         'positions': _model.menu.map((e) => e.id).toList(),
-                        'type': _model.createCategoryValue,
+                        'category': _model.categoryId,
                       });
                       _model.submitHotel = await HotelTable().queryRows(
-                        queryFn: (q) => q.eq(
-                          'id',
-                          valueOrDefault<int>(
-                            widget.hotelId,
-                            88,
-                          ),
-                        ),
+                        queryFn: (q) => q
+                            .eq(
+                              'id',
+                              valueOrDefault<int>(
+                                widget.hotelId,
+                                88,
+                              ),
+                            )
+                            .order('created_at'),
                       );
-                      _model.editableHotel = _model.submitHotel?.first;
+                      _model.hotel = _model.submitHotel?.first;
                       setState(() {});
                       _model.newFoodSet =
-                          _model.editableHotel!.food.toList().cast<int>();
+                          _model.hotel!.food.toList().cast<int>();
                       setState(() {});
                       _model.addToNewFoodSet(_model.newFood!.id);
+                      _model.menu = [];
                       setState(() {});
                       await HotelTable().update(
                         data: {
@@ -941,45 +974,17 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
 
                   return Container(
                     decoration: const BoxDecoration(),
-                    child: FutureBuilder<List<FoodPositionRow>>(
-                      future: FoodPositionTable().queryRows(
-                        queryFn: (q) => q.in_(
-                          'id',
-                          containerFoodRow!.positions,
-                        ),
+                    child: wrapWithModel(
+                      model: _model.editFoodModel,
+                      updateCallback: () => setState(() {}),
+                      updateOnChange: true,
+                      child: EditFoodWidget(
+                        id: containerFoodRow?.id,
+                        initialFood: containerFoodRow!,
+                        isSubmit: () async {
+                          await widget.isSubmit?.call();
+                        },
                       ),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 50.0,
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  FlutterFlowTheme.of(context).primary,
-                                ),
-                              ),
-                            ),
-                          );
-                        }
-                        List<FoodPositionRow> editFoodFoodPositionRowList =
-                            snapshot.data!;
-
-                        return wrapWithModel(
-                          model: _model.editFoodModel,
-                          updateCallback: () => setState(() {}),
-                          updateOnChange: true,
-                          child: EditFoodWidget(
-                            id: containerFoodRow?.id,
-                            initialFood: containerFoodRow!,
-                            menuList: editFoodFoodPositionRowList,
-                            isSubmit: () async {
-                              await widget.isSubmit?.call();
-                            },
-                          ),
-                        );
-                      },
                     ),
                   );
                 },

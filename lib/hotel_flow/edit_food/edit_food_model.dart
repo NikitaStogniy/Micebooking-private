@@ -2,6 +2,7 @@ import '/backend/supabase/supabase.dart';
 import '/components/dropdown_comp_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:async';
 import 'edit_food_widget.dart' show EditFoodWidget;
 import 'package:flutter/material.dart';
 
@@ -46,10 +47,24 @@ class EditFoodModel extends FlutterFlowModel<EditFoodWidget> {
 
   bool typeChange = false;
 
-  String? type;
+  String? categooryName;
+
+  int? categoryId;
+
+  List<int> menuTest = [];
+  void addToMenuTest(int item) => menuTest.add(item);
+  void removeFromMenuTest(int item) => menuTest.remove(item);
+  void removeAtIndexFromMenuTest(int index) => menuTest.removeAt(index);
+  void insertAtIndexInMenuTest(int index, int item) =>
+      menuTest.insert(index, item);
+  void updateMenuTestAtIndex(int index, Function(int) updateFn) =>
+      menuTest[index] = updateFn(menuTest[index]);
 
   ///  State fields for stateful widgets in this component.
 
+  Completer<List<FoodPositionRow>>? requestCompleter;
+  // Stores action output result for [Backend Call - Query Rows] action in edit_food widget.
+  List<ServiceCategoryRow>? foodInitialCategoty;
   // State field(s) for edit_name widget.
   FocusNode? editNameFocusNode;
   TextEditingController? editNameTextController;
@@ -57,6 +72,8 @@ class EditFoodModel extends FlutterFlowModel<EditFoodWidget> {
   // State field(s) for edit_category widget.
   String? editCategoryValue;
   FormFieldController<String>? editCategoryValueController;
+  // Stores action output result for [Backend Call - Query Rows] action in edit_category widget.
+  List<ServiceCategoryRow>? category;
   // State field(s) for edit_price widget.
   FocusNode? editPriceFocusNode;
   TextEditingController? editPriceTextController;
@@ -70,6 +87,8 @@ class EditFoodModel extends FlutterFlowModel<EditFoodWidget> {
       addMenuPositionTextControllerValidator;
   // Stores action output result for [Backend Call - Insert Row] action in Button widget.
   FoodPositionRow? newRow;
+  // Stores action output result for [Backend Call - Update Row(s)] action in Button widget.
+  List<FoodRow>? here;
 
   @override
   void initState(BuildContext context) {
@@ -87,5 +106,21 @@ class EditFoodModel extends FlutterFlowModel<EditFoodWidget> {
     dropdownCompModels.dispose();
     addMenuPositionFocusNode?.dispose();
     addMenuPositionTextController?.dispose();
+  }
+
+  /// Additional helper methods.
+  Future waitForRequestCompleted({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = requestCompleter?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
   }
 }

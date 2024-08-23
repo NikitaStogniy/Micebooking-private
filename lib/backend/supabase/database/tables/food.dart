@@ -29,6 +29,6 @@ class FoodRow extends SupabaseDataRow {
   List<int> get positions => getListField<int>('positions');
   set positions(List<int>? value) => setListField<int>('positions', value);
 
-  String? get type => getField<String>('type');
-  set type(String? value) => setField<String>('type', value);
+  int? get category => getField<int>('category');
+  set category(int? value) => setField<int>('category', value);
 }

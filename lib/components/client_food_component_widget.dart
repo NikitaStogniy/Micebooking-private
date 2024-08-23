@@ -110,22 +110,6 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                         fontWeight: FontWeight.bold,
                                       ),
                                 ),
-                                Expanded(
-                                  child: Text(
-                                    valueOrDefault<String>(
-                                      widget.food?.type,
-                                      'Тип еды',
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Commissioner',
-                                          fontSize: 18.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                  ),
-                                ),
                               ].divide(const SizedBox(width: 16.0)),
                             ),
                             Row(

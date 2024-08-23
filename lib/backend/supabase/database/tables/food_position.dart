@@ -28,4 +28,7 @@ class FoodPositionRow extends SupabaseDataRow {
 
   double? get price => getField<double>('price');
   set price(double? value) => setField<double>('price', value);
+
+  int? get category => getField<int>('category');
+  set category(int? value) => setField<int>('category', value);
 }

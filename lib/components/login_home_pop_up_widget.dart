@@ -7,6 +7,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pop_up/pop_up_p_p/pop_up_p_p_widget.dart';
+import '/uikit/login_form/login_form_widget.dart';
+import '/uikit/signup_form/signup_form_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'login_home_pop_up_model.dart';
@@ -311,6 +313,28 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         if (!_model.isRegister)
+                          wrapWithModel(
+                            model: _model.loginFormModel,
+                            updateCallback: () => setState(() {}),
+                            child: const LoginFormWidget(),
+                          ),
+                        if (_model.isRegister)
+                          wrapWithModel(
+                            model: _model.signupFormModel,
+                            updateCallback: () => setState(() {}),
+                            child: SignupFormWidget(
+                              isHotel: _model.isHotel,
+                              action: () async {},
+                            ),
+                          ),
+                        if (!_model.isRegister &&
+                            responsiveVisibility(
+                              context: context,
+                              phone: false,
+                              tablet: false,
+                              tabletLandscape: false,
+                              desktop: false,
+                            ))
                           Form(
                             key: _model.formKey1,
                             autovalidateMode: AutovalidateMode.disabled,
@@ -810,7 +834,14 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                               ].divide(const SizedBox(height: 18.0)),
                             ),
                           ),
-                        if (_model.isRegister)
+                        if (_model.isRegister &&
+                            responsiveVisibility(
+                              context: context,
+                              phone: false,
+                              tablet: false,
+                              tabletLandscape: false,
+                              desktop: false,
+                            ))
                           Form(
                             key: _model.formKey2,
                             autovalidateMode: AutovalidateMode.disabled,

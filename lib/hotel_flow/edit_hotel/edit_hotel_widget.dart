@@ -1783,10 +1783,10 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                     _model.uploadedImages = [];
                                     _model.selectedServices = [];
                                     setState(() {});
-                                    await widget.doneCallback?.call(
-                                      widget.id,
-                                    );
                                     Navigator.pop(context);
+                                    await widget.doneCallback?.call(
+                                      widget.initialHotel?.id,
+                                    );
                                   },
                                   cancelAction: () async {
                                     Navigator.pop(context);
