@@ -1,5 +1,4 @@
 import '/backend/schema/structs/index.dart';
-import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'edit_hall_widget.dart' show EditHallWidget;
 import 'package:flutter/material.dart';
@@ -91,11 +90,6 @@ class EditHallModel extends FlutterFlowModel<EditHallWidget> {
   FocusNode? furshetFocusNode;
   TextEditingController? furshetTextController;
   String? Function(BuildContext, String?)? furshetTextControllerValidator;
-  // State field(s) for Checkbox widget.
-  Map<ServiceRow, bool> checkboxValueMap = {};
-  List<ServiceRow> get checkboxCheckedItems =>
-      checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
-
   // State field(s) for price_edit widget.
   FocusNode? priceEditFocusNode;
   TextEditingController? priceEditTextController;

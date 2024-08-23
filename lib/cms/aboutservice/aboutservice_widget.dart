@@ -217,6 +217,7 @@ class _AboutserviceWidgetState extends State<AboutserviceWidget> {
 
                                   return ListView.separated(
                                     padding: EdgeInsets.zero,
+                                    primary: false,
                                     shrinkWrap: true,
                                     scrollDirection: Axis.vertical,
                                     itemCount: listViewCmsRowList.length,

@@ -7,6 +7,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pop_up/pop_up_p_p/pop_up_p_p_widget.dart';
+import '/uikit/login_form/login_form_widget.dart';
+import '/uikit/signup_form/signup_form_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'login_home_pop_up_model.dart';
@@ -92,6 +94,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
         child: Container(
           constraints: const BoxConstraints(
             maxWidth: 1250.0,
+            maxHeight: 800.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -109,37 +112,32 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
               primary: false,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  if (responsiveVisibility(
-                    context: context,
-                    tabletLandscape: false,
-                    desktop: false,
-                  ))
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 8.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              Navigator.pop(context);
-                            },
-                            child: Icon(
-                              Icons.close_rounded,
-                              color: FlutterFlowTheme.of(context).primary,
-                              size: 32.0,
-                            ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 8.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            Navigator.pop(context);
+                          },
+                          child: Icon(
+                            Icons.close_rounded,
+                            color: FlutterFlowTheme.of(context).primary,
+                            size: 32.0,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
+                  ),
                   Text(
                     _model.isRegister == false
                         ? 'Вход в личный кабинет'
@@ -223,7 +221,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                 iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: valueOrDefault<Color>(
-                                  !_model.isHotel
+                                  _model.isHotel
                                       ? FlutterFlowTheme.of(context).primary
                                       : const Color(0xFFF0F0FA),
                                   const Color(0xFFF0F0FA),
@@ -233,7 +231,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                     .override(
                                       fontFamily: 'Commissioner',
                                       color: valueOrDefault<Color>(
-                                        !_model.isHotel
+                                        _model.isHotel
                                             ? const Color(0xFFF0F0FA)
                                             : FlutterFlowTheme.of(context)
                                                 .primary,
@@ -315,6 +313,28 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         if (!_model.isRegister)
+                          wrapWithModel(
+                            model: _model.loginFormModel,
+                            updateCallback: () => setState(() {}),
+                            child: const LoginFormWidget(),
+                          ),
+                        if (_model.isRegister)
+                          wrapWithModel(
+                            model: _model.signupFormModel,
+                            updateCallback: () => setState(() {}),
+                            child: SignupFormWidget(
+                              isHotel: _model.isHotel,
+                              action: () async {},
+                            ),
+                          ),
+                        if (!_model.isRegister &&
+                            responsiveVisibility(
+                              context: context,
+                              phone: false,
+                              tablet: false,
+                              tabletLandscape: false,
+                              desktop: false,
+                            ))
                           Form(
                             key: _model.formKey1,
                             autovalidateMode: AutovalidateMode.disabled,
@@ -814,7 +834,14 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                               ].divide(const SizedBox(height: 18.0)),
                             ),
                           ),
-                        if (_model.isRegister)
+                        if (_model.isRegister &&
+                            responsiveVisibility(
+                              context: context,
+                              phone: false,
+                              tablet: false,
+                              tabletLandscape: false,
+                              desktop: false,
+                            ))
                           Form(
                             key: _model.formKey2,
                             autovalidateMode: AutovalidateMode.disabled,
@@ -1771,6 +1798,45 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                               ].divide(const SizedBox(height: 24.0)),
                             ),
                           ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 24.0, 16.0, 0.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              _model.isRegister = !_model.isRegister;
+                              setState(() {});
+                            },
+                            text: valueOrDefault<String>(
+                              _model.isRegister
+                                  ? 'У меня уже есть аккаунт'
+                                  : 'Регистрация в личном кабинете',
+                              'Регистрация в личном кабинете',
+                            ),
+                            options: FFButtonOptions(
+                              width: 350.0,
+                              height: 60.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 24.0, 24.0, 24.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Commissioner',
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    letterSpacing: 0.0,
+                                  ),
+                              elevation: 0.0,
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).primary,
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.circular(240.0),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),

@@ -45,6 +45,8 @@ class AddOrEditHotelModel extends FlutterFlowModel<AddOrEditHotelWidget> {
   void updateAllCityAtIndex(int index, Function(String) updateFn) =>
       allCity[index] = updateFn(allCity[index]);
 
+  bool haventCity = false;
+
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for hotelName widget.
@@ -68,6 +70,8 @@ class AddOrEditHotelModel extends FlutterFlowModel<AddOrEditHotelWidget> {
   FocusNode? canterFocusNode;
   TextEditingController? canterTextController;
   String? Function(BuildContext, String?)? canterTextControllerValidator;
+  // State field(s) for Checkbox widget.
+  bool? checkboxValue1;
   // State field(s) for capacity widget.
   FocusNode? capacityFocusNode;
   TextEditingController? capacityTextController;
@@ -91,10 +95,14 @@ class AddOrEditHotelModel extends FlutterFlowModel<AddOrEditHotelWidget> {
   List<String> uploadedFileUrls = [];
 
   // State field(s) for Checkbox widget.
-  Map<ServiceRow, bool> checkboxValueMap = {};
-  List<ServiceRow> get checkboxCheckedItems =>
-      checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
+  Map<ServiceRow, bool> checkboxValueMap2 = {};
+  List<ServiceRow> get checkboxCheckedItems2 => checkboxValueMap2.entries
+      .where((e) => e.value)
+      .map((e) => e.key)
+      .toList();
 
+  // Stores action output result for [Backend Call - Insert Row] action in Button widget.
+  HotelRow? newHot2;
   // Stores action output result for [Backend Call - Insert Row] action in Button widget.
   HotelRow? newHot;
   // Model for edit_hotel component.

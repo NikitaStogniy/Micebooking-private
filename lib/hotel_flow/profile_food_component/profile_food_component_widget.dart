@@ -167,7 +167,6 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                           if (widget.hotel!.food.isNotEmpty)
                             Container(
                               width: MediaQuery.sizeOf(context).width * 1.0,
-                              height: 40.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context).primary,
                                 borderRadius: const BorderRadius.only(
@@ -177,34 +176,37 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                                   topRight: Radius.circular(16.0),
                                 ),
                               ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Expanded(
-                                    child: Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          0.5,
-                                      decoration: const BoxDecoration(),
-                                      child: Text(
-                                        'Название пакета',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Commissioner',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              fontSize: 19.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
-                                            ),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 8.0, 0.0, 8.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                0.5,
+                                        decoration: const BoxDecoration(),
+                                        child: Text(
+                                          'Название пакета',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Commissioner',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                fontSize: 19.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Expanded(
-                                    child: Container(
+                                    Container(
                                       width: MediaQuery.sizeOf(context).width *
-                                          0.5,
+                                          0.25,
                                       decoration: const BoxDecoration(),
                                       child: Text(
                                         'Тип пакета',
@@ -221,14 +223,13 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                                             ),
                                       ),
                                     ),
-                                  ),
-                                  Expanded(
-                                    child: Container(
+                                    Container(
                                       width: MediaQuery.sizeOf(context).width *
-                                          0.5,
+                                          0.1,
                                       decoration: const BoxDecoration(),
                                       child: Text(
-                                        'Цена за персону (руб.)',
+                                        'Цена за чел.',
+                                        textAlign: TextAlign.end,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -242,11 +243,11 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                                             ),
                                       ),
                                     ),
-                                  ),
-                                ]
-                                    .divide(const SizedBox(width: 40.0))
-                                    .addToStart(const SizedBox(width: 16.0))
-                                    .addToEnd(const SizedBox(width: 16.0)),
+                                  ]
+                                      .divide(const SizedBox(width: 40.0))
+                                      .addToStart(const SizedBox(width: 16.0))
+                                      .addToEnd(const SizedBox(width: 16.0)),
+                                ),
                               ),
                             ),
                           Builder(
@@ -255,7 +256,7 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                               if (food.isEmpty) {
                                 return Center(
                                   child: SizedBox(
-                                    width: 300.0,
+                                    width: 700.0,
                                     height: 300.0,
                                     child: HallFoodRoomEmptyWidget(
                                       type: EnumType.FOOD,
@@ -276,7 +277,6 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                                   return Container(
                                     width:
                                         MediaQuery.sizeOf(context).width * 1.0,
-                                    height: 40.0,
                                     decoration: BoxDecoration(
                                       color: valueOrDefault<Color>(
                                         valueOrDefault<int>(
@@ -297,113 +297,158 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                                         topRight: Radius.circular(0.0),
                                       ),
                                     ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Expanded(
-                                          child: Container(
-                                            width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                0.3,
-                                            decoration: const BoxDecoration(),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Expanded(
-                                                  child: Text(
-                                                    valueOrDefault<String>(
-                                                      foodItem.name,
-                                                      'Name',
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 8.0, 0.0, 8.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Expanded(
+                                            child: Container(
+                                              width: MediaQuery.sizeOf(context)
+                                                      .width *
+                                                  0.3,
+                                              decoration: const BoxDecoration(),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Expanded(
+                                                    child: Text(
+                                                      valueOrDefault<String>(
+                                                        foodItem.name,
+                                                        'Name',
+                                                      ),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Commissioner',
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                            fontSize: 19.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          await widget
+                                                              .editCallback
+                                                              ?.call(
+                                                            valueOrDefault<int>(
+                                                              foodItem.id,
+                                                              88,
+                                                            ),
+                                                          );
+                                                        },
+                                                        child: Icon(
+                                                          Icons.edit,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primaryText,
-                                                          fontSize: 19.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
+                                                              .primary,
+                                                          size: 24.0,
                                                         ),
+                                                      ),
+                                                    ].divide(
+                                                        const SizedBox(width: 8.0)),
                                                   ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.25,
+                                            decoration: const BoxDecoration(),
+                                            child: FutureBuilder<
+                                                List<ServiceCategoryRow>>(
+                                              future: ServiceCategoryTable()
+                                                  .querySingleRow(
+                                                queryFn: (q) => q.eq(
+                                                  'id',
+                                                  foodItem.category,
                                                 ),
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        await widget
-                                                            .editCallback
-                                                            ?.call(
-                                                          valueOrDefault<int>(
-                                                            foodItem.id,
-                                                            88,
-                                                          ),
-                                                        );
-                                                      },
-                                                      child: Icon(
-                                                        Icons.edit,
+                                              ),
+                                              builder: (context, snapshot) {
+                                                // Customize what your widget looks like when it's loading.
+                                                if (!snapshot.hasData) {
+                                                  return Center(
+                                                    child: SizedBox(
+                                                      width: 50.0,
+                                                      height: 50.0,
+                                                      child:
+                                                          CircularProgressIndicator(
+                                                        valueColor:
+                                                            AlwaysStoppedAnimation<
+                                                                Color>(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  );
+                                                }
+                                                List<ServiceCategoryRow>
+                                                    textServiceCategoryRowList =
+                                                    snapshot.data!;
+
+                                                final textServiceCategoryRow =
+                                                    textServiceCategoryRowList
+                                                            .isNotEmpty
+                                                        ? textServiceCategoryRowList
+                                                            .first
+                                                        : null;
+
+                                                return Text(
+                                                  valueOrDefault<String>(
+                                                    textServiceCategoryRow
+                                                        ?.name,
+                                                    'Без категории',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .primary,
-                                                        size: 24.0,
+                                                                .primaryText,
+                                                        fontSize: 19.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
                                                       ),
-                                                    ),
-                                                  ].divide(
-                                                      const SizedBox(width: 8.0)),
-                                                ),
-                                              ],
+                                                );
+                                              },
                                             ),
                                           ),
-                                        ),
-                                        Expanded(
-                                          child: Container(
+                                          Container(
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
-                                                0.233,
-                                            decoration: const BoxDecoration(),
-                                            child: Text(
-                                              valueOrDefault<String>(
-                                                foodItem.type,
-                                                'Тип пакета',
-                                              ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Commissioner',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                    fontSize: 19.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Container(
-                                            width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                0.233,
+                                                0.1,
                                             decoration: const BoxDecoration(),
                                             child: Text(
                                               valueOrDefault<String>(
@@ -416,6 +461,7 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                                                 ),
                                                 'Price',
                                               ),
+                                              textAlign: TextAlign.end,
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .bodyMedium
@@ -430,11 +476,11 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                                                   ),
                                             ),
                                           ),
-                                        ),
-                                      ]
-                                          .divide(const SizedBox(width: 40.0))
-                                          .addToStart(const SizedBox(width: 16.0))
-                                          .addToEnd(const SizedBox(width: 16.0)),
+                                        ]
+                                            .divide(const SizedBox(width: 40.0))
+                                            .addToStart(const SizedBox(width: 16.0))
+                                            .addToEnd(const SizedBox(width: 16.0)),
+                                      ),
                                     ),
                                   );
                                 }),

@@ -9,16 +9,6 @@ import 'package:flutter/material.dart';
 class AddOrEditFoodModel extends FlutterFlowModel<AddOrEditFoodWidget> {
   ///  Local state fields for this component.
 
-  List<String> uploadedImages = [];
-  void addToUploadedImages(String item) => uploadedImages.add(item);
-  void removeFromUploadedImages(String item) => uploadedImages.remove(item);
-  void removeAtIndexFromUploadedImages(int index) =>
-      uploadedImages.removeAt(index);
-  void insertAtIndexInUploadedImages(int index, String item) =>
-      uploadedImages.insert(index, item);
-  void updateUploadedImagesAtIndex(int index, Function(String) updateFn) =>
-      uploadedImages[index] = updateFn(uploadedImages[index]);
-
   FoodRow? editableFood;
 
   List<int> newFoodSet = [];
@@ -29,8 +19,6 @@ class AddOrEditFoodModel extends FlutterFlowModel<AddOrEditFoodWidget> {
       newFoodSet.insert(index, item);
   void updateNewFoodSetAtIndex(int index, Function(int) updateFn) =>
       newFoodSet[index] = updateFn(newFoodSet[index]);
-
-  HotelRow? editableHotel;
 
   List<FoodPositionRow> menu = [];
   void addToMenu(FoodPositionRow item) => menu.add(item);
@@ -43,6 +31,10 @@ class AddOrEditFoodModel extends FlutterFlowModel<AddOrEditFoodWidget> {
 
   bool addMenuOpen = false;
 
+  int? categoryId = 11;
+
+  HotelRow? hotel;
+
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for create_name widget.
@@ -52,6 +44,8 @@ class AddOrEditFoodModel extends FlutterFlowModel<AddOrEditFoodWidget> {
   // State field(s) for create_category widget.
   String? createCategoryValue;
   FormFieldController<String>? createCategoryValueController;
+  // Stores action output result for [Backend Call - Query Rows] action in create_category widget.
+  List<ServiceCategoryRow>? currentcategotyId;
   // State field(s) for create_price widget.
   FocusNode? createPriceFocusNode;
   TextEditingController? createPriceTextController;

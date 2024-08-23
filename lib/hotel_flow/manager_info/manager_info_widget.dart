@@ -327,7 +327,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     hintText:
-                                        'Введите название сети или площадки',
+                                        'Введите название сети (для сетевых отелей) или название площадки',
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -705,144 +705,152 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                       ),
                   ].divide(const SizedBox(width: 16.0)),
                 ),
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
-                      child: Text(
-                        'Настройка рассылок:',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Commissioner',
-                              fontSize: 18.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.bold,
-                            ),
+                if (responsiveVisibility(
+                  context: context,
+                  phone: false,
+                  tablet: false,
+                  tabletLandscape: false,
+                  desktop: false,
+                ))
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                        child: Text(
+                          'Настройка рассылок:',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Commissioner',
+                                    fontSize: 18.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                        ),
                       ),
-                    ),
-                    wrapWithModel(
-                      model: _model.hotelModel,
-                      updateCallback: () => setState(() {}),
-                      updateOnChange: true,
-                      child: CheckBoxCompWidget(
-                        isChecked: containerUsersRow!.notificationHotel!,
-                        label:
-                            'Оповещение при внесение изменений в блок об отеле',
-                        onClick: (isChecked) async {
-                          await UsersTable().update(
-                            data: {
-                              'notification_hotel': valueOrDefault<bool>(
-                                isChecked,
-                                true,
+                      wrapWithModel(
+                        model: _model.hotelModel,
+                        updateCallback: () => setState(() {}),
+                        updateOnChange: true,
+                        child: CheckBoxCompWidget(
+                          isChecked: containerUsersRow!.notificationHotel!,
+                          label:
+                              'Оповещение при внесение изменений в блок об отеле',
+                          onClick: (isChecked) async {
+                            await UsersTable().update(
+                              data: {
+                                'notification_hotel': valueOrDefault<bool>(
+                                  isChecked,
+                                  true,
+                                ),
+                              },
+                              matchingRows: (rows) => rows.eq(
+                                'id',
+                                containerUsersRow.id,
                               ),
-                            },
-                            matchingRows: (rows) => rows.eq(
-                              'id',
-                              containerUsersRow.id,
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        ),
                       ),
-                    ),
-                    wrapWithModel(
-                      model: _model.roomModel,
-                      updateCallback: () => setState(() {}),
-                      updateOnChange: true,
-                      child: CheckBoxCompWidget(
-                        isChecked: containerUsersRow.notificationRoom!,
-                        label:
-                            'Оповещение при внесение изменений в блок о номерах',
-                        onClick: (isChecked) async {
-                          await UsersTable().update(
-                            data: {
-                              'notification_room': valueOrDefault<bool>(
-                                isChecked,
-                                true,
+                      wrapWithModel(
+                        model: _model.roomModel,
+                        updateCallback: () => setState(() {}),
+                        updateOnChange: true,
+                        child: CheckBoxCompWidget(
+                          isChecked: containerUsersRow.notificationRoom!,
+                          label:
+                              'Оповещение при внесение изменений в блок о номерах',
+                          onClick: (isChecked) async {
+                            await UsersTable().update(
+                              data: {
+                                'notification_room': valueOrDefault<bool>(
+                                  isChecked,
+                                  true,
+                                ),
+                              },
+                              matchingRows: (rows) => rows.eq(
+                                'id',
+                                containerUsersRow.id,
                               ),
-                            },
-                            matchingRows: (rows) => rows.eq(
-                              'id',
-                              containerUsersRow.id,
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        ),
                       ),
-                    ),
-                    wrapWithModel(
-                      model: _model.hallModel,
-                      updateCallback: () => setState(() {}),
-                      updateOnChange: true,
-                      child: CheckBoxCompWidget(
-                        isChecked: containerUsersRow.notificationHall!,
-                        label:
-                            'Оповещение при внесение изменений в блок о залах  ',
-                        onClick: (isChecked) async {
-                          await UsersTable().update(
-                            data: {
-                              'notification_hall': valueOrDefault<bool>(
-                                isChecked,
-                                true,
+                      wrapWithModel(
+                        model: _model.hallModel,
+                        updateCallback: () => setState(() {}),
+                        updateOnChange: true,
+                        child: CheckBoxCompWidget(
+                          isChecked: containerUsersRow.notificationHall!,
+                          label:
+                              'Оповещение при внесение изменений в блок о залах  ',
+                          onClick: (isChecked) async {
+                            await UsersTable().update(
+                              data: {
+                                'notification_hall': valueOrDefault<bool>(
+                                  isChecked,
+                                  true,
+                                ),
+                              },
+                              matchingRows: (rows) => rows.eq(
+                                'id',
+                                containerUsersRow.id,
                               ),
-                            },
-                            matchingRows: (rows) => rows.eq(
-                              'id',
-                              containerUsersRow.id,
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        ),
                       ),
-                    ),
-                    wrapWithModel(
-                      model: _model.foodModel,
-                      updateCallback: () => setState(() {}),
-                      updateOnChange: true,
-                      child: CheckBoxCompWidget(
-                        isChecked: containerUsersRow.notificationFood!,
-                        label:
-                            'Оповещение при внесение изменений в блок о пакетах питания  ',
-                        onClick: (isChecked) async {
-                          await UsersTable().update(
-                            data: {
-                              'notification_food': valueOrDefault<bool>(
-                                isChecked,
-                                true,
+                      wrapWithModel(
+                        model: _model.foodModel,
+                        updateCallback: () => setState(() {}),
+                        updateOnChange: true,
+                        child: CheckBoxCompWidget(
+                          isChecked: containerUsersRow.notificationFood!,
+                          label:
+                              'Оповещение при внесение изменений в блок о пакетах питания  ',
+                          onClick: (isChecked) async {
+                            await UsersTable().update(
+                              data: {
+                                'notification_food': valueOrDefault<bool>(
+                                  isChecked,
+                                  true,
+                                ),
+                              },
+                              matchingRows: (rows) => rows.eq(
+                                'id',
+                                containerUsersRow.id,
                               ),
-                            },
-                            matchingRows: (rows) => rows.eq(
-                              'id',
-                              containerUsersRow.id,
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        ),
                       ),
-                    ),
-                    wrapWithModel(
-                      model: _model.priceModel,
-                      updateCallback: () => setState(() {}),
-                      updateOnChange: true,
-                      child: CheckBoxCompWidget(
-                        isChecked: containerUsersRow.notificationPrice!,
-                        label: 'Оповещение при внесение изменений в цены',
-                        onClick: (isChecked) async {
-                          await UsersTable().update(
-                            data: {
-                              'notification_price': valueOrDefault<bool>(
-                                isChecked,
-                                true,
+                      wrapWithModel(
+                        model: _model.priceModel,
+                        updateCallback: () => setState(() {}),
+                        updateOnChange: true,
+                        child: CheckBoxCompWidget(
+                          isChecked: containerUsersRow.notificationPrice!,
+                          label: 'Оповещение при внесение изменений в цены',
+                          onClick: (isChecked) async {
+                            await UsersTable().update(
+                              data: {
+                                'notification_price': valueOrDefault<bool>(
+                                  isChecked,
+                                  true,
+                                ),
+                              },
+                              matchingRows: (rows) => rows.eq(
+                                'id',
+                                containerUsersRow.id,
                               ),
-                            },
-                            matchingRows: (rows) => rows.eq(
-                              'id',
-                              containerUsersRow.id,
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        ),
                       ),
-                    ),
-                  ].divide(const SizedBox(height: 16.0)),
-                ),
+                    ].divide(const SizedBox(height: 16.0)),
+                  ),
               ].divide(const SizedBox(height: 30.0)).addToEnd(const SizedBox(height: 72.0)),
             ),
           ),

@@ -46,15 +46,6 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.uploadedImages = [];
-      setState(() {});
-      _model.uploadedImages =
-          widget.initialRoom!.images.toList().cast<String>();
-      _model.selectedServices =
-          _model.editableRoom!.services.toList().cast<int>();
-      setState(() {});
-      _model.editableRoom = widget.initialRoom;
-      _model.updatePage(() {});
       setState(() {
         _model.hotelNameEditTextController?.text = widget.initialRoom!.name!;
         _model.hotelDescriptionEditTextController?.text =
@@ -66,6 +57,11 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
         _model.singlePriceEditTextController?.text =
             widget.initialRoom!.singlePrice!.toString();
       });
+      _model.uploadedImages =
+          widget.initialRoom!.images.toList().cast<String>();
+      _model.selectedServices =
+          widget.initialRoom!.services.toList().cast<int>();
+      setState(() {});
     });
 
     _model.hotelNameEditTextController ??=
@@ -129,6 +125,9 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                           size: 24.0,
                         ),
                         onPressed: () async {
+                          _model.uploadedImages = [];
+                          _model.selectedServices = [];
+                          setState(() {});
                           await widget.doneCallback?.call();
                         },
                       ),
@@ -328,7 +327,7 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                                         fontFamily: 'Commissioner',
                                         letterSpacing: 0.0,
                                       ),
-                                  maxLines: 3,
+                                  maxLines: null,
                                   validator: _model
                                       .hotelDescriptionEditTextControllerValidator
                                       .asValidator(context),
@@ -455,6 +454,7 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                               Expanded(
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
                                       width: MediaQuery.sizeOf(context).width *
@@ -596,6 +596,21 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                                         },
                                       ),
                                     ),
+                                    if (_model.uploadedImages.length > 4)
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 4.0, 0.0, 0.0),
+                                        child: Text(
+                                          'Для прокрутки фотографий зажмите левую кнопку мыши или используйте свайп по тачпаду.',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Commissioner',
+                                                fontSize: 16.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ),
                                   ],
                                 ),
                               ),
@@ -744,72 +759,89 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                                                         mainAxisSize:
                                                             MainAxisSize.max,
                                                         children: [
-                                                          Theme(
-                                                            data: ThemeData(
-                                                              checkboxTheme:
-                                                                  CheckboxThemeData(
-                                                                visualDensity:
-                                                                    VisualDensity
-                                                                        .compact,
-                                                                materialTapTargetSize:
-                                                                    MaterialTapTargetSize
-                                                                        .shrinkWrap,
-                                                                shape:
-                                                                    RoundedRectangleBorder(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              4.0),
-                                                                ),
-                                                              ),
-                                                              unselectedWidgetColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                            ),
-                                                            child: Checkbox(
-                                                              value: _model
-                                                                          .checkboxValueMap1[
-                                                                      listViewServiceRow] ??=
-                                                                  _model
-                                                                      .selectedServices
-                                                                      .contains(
+                                                          InkWell(
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            onTap: () async {
+                                                              if (_model
+                                                                  .selectedServices
+                                                                  .contains(
+                                                                      listViewServiceRow
+                                                                          .id)) {
+                                                                _model.removeFromSelectedServices(
+                                                                    listViewServiceRow
+                                                                        .id);
+                                                                setState(() {});
+                                                              } else {
+                                                                _model.addToSelectedServices(
+                                                                    listViewServiceRow
+                                                                        .id);
+                                                                setState(() {});
+                                                              }
+                                                            },
+                                                            child: Container(
+                                                              width: 20.0,
+                                                              height: 20.0,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color:
+                                                                    valueOrDefault<
+                                                                        Color>(
+                                                                  _model.selectedServices.contains(
                                                                           listViewServiceRow
-                                                                              .id),
-                                                              onChanged:
-                                                                  (newValue) async {
-                                                                setState(() =>
-                                                                    _model.checkboxValueMap1[
-                                                                            listViewServiceRow] =
-                                                                        newValue!);
-                                                                if (newValue!) {
-                                                                  _model.addToSelectedServices(
-                                                                      listViewServiceRow
-                                                                          .id);
-                                                                  setState(
-                                                                      () {});
-                                                                } else {
-                                                                  _model.removeFromSelectedServices(
-                                                                      listViewServiceRow
-                                                                          .id);
-                                                                  setState(
-                                                                      () {});
-                                                                }
-                                                              },
-                                                              side: BorderSide(
-                                                                width: 2,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                              ),
-                                                              activeColor:
+                                                                              .id)
+                                                                      ? FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary
+                                                                      : Colors
+                                                                          .transparent,
                                                                   FlutterFlowTheme.of(
                                                                           context)
                                                                       .primary,
-                                                              checkColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .info,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            4.0),
+                                                                border:
+                                                                    Border.all(
+                                                                  color: _model
+                                                                          .selectedServices
+                                                                          .contains(listViewServiceRow
+                                                                              .id)
+                                                                      ? const Color(
+                                                                          0x00EEEEEE)
+                                                                      : const Color(
+                                                                          0xFF57636C),
+                                                                ),
+                                                              ),
+                                                              child: Visibility(
+                                                                visible: _model
+                                                                    .selectedServices
+                                                                    .contains(
+                                                                        listViewServiceRow
+                                                                            .id),
+                                                                child: const Align(
+                                                                  alignment:
+                                                                      AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Icon(
+                                                                    Icons
+                                                                        .check_rounded,
+                                                                    color: Color(
+                                                                        0xFFFAFAFA),
+                                                                    size: 16.0,
+                                                                  ),
+                                                                ),
+                                                              ),
                                                             ),
                                                           ),
                                                           Expanded(
@@ -1007,11 +1039,11 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                                                 .secondaryText,
                                       ),
                                       child: Checkbox(
-                                        value: _model.checkboxValue2 ??=
+                                        value: _model.checkboxValue ??=
                                             widget.initialRoom!.showSingle!,
                                         onChanged: (newValue) async {
-                                          setState(() => _model.checkboxValue2 =
-                                              newValue!);
+                                          setState(() =>
+                                              _model.checkboxValue = newValue!);
                                         },
                                         side: BorderSide(
                                           width: 2,
@@ -1269,12 +1301,16 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                                       _model.countEditTextController.text),
                                   'price': double.tryParse(
                                       _model.priceEditTextController.text),
+                                  'single_price': 0.0,
                                 },
                                 matchingRows: (rows) => rows.eq(
                                   'id',
-                                  widget.id,
+                                  widget.initialRoom?.id,
                                 ),
                               );
+                              _model.uploadedImages = [];
+                              _model.selectedServices = [];
+                              setState(() {});
                               setState(() {
                                 _model.hotelNameEditTextController?.text =
                                     widget.initialRoom!.name!;
@@ -1315,6 +1351,9 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                           ),
                           FFButtonWidget(
                             onPressed: () async {
+                              _model.uploadedImages = [];
+                              _model.selectedServices = [];
+                              setState(() {});
                               await widget.doneCallback?.call();
                             },
                             text: 'Отменить изменения',

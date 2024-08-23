@@ -263,16 +263,6 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       focusNode:
                                                           _model.fioFocusNode,
-                                                      onChanged: (_) =>
-                                                          EasyDebounce.debounce(
-                                                        '_model.fioTextController',
-                                                        const Duration(
-                                                            milliseconds: 200),
-                                                        () async {
-                                                          _model.isEdit = true;
-                                                          setState(() {});
-                                                        },
-                                                      ),
                                                       autofocus: false,
                                                       textInputAction:
                                                           TextInputAction.next,
@@ -424,16 +414,6 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       focusNode:
                                                           _model.roleFocusNode,
-                                                      onChanged: (_) =>
-                                                          EasyDebounce.debounce(
-                                                        '_model.roleTextController',
-                                                        const Duration(
-                                                            milliseconds: 200),
-                                                        () async {
-                                                          _model.isEdit = true;
-                                                          setState(() {});
-                                                        },
-                                                      ),
                                                       autofocus: false,
                                                       textInputAction:
                                                           TextInputAction.next,
@@ -597,19 +577,6 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                         ),
                                                         focusNode: _model
                                                             .emailFocusNode,
-                                                        onChanged: (_) =>
-                                                            EasyDebounce
-                                                                .debounce(
-                                                          '_model.emailTextController',
-                                                          const Duration(
-                                                              milliseconds:
-                                                                  200),
-                                                          () async {
-                                                            _model.isEdit =
-                                                                true;
-                                                            setState(() {});
-                                                          },
-                                                        ),
                                                         autofocus: false,
                                                         textInputAction:
                                                             TextInputAction
@@ -771,19 +738,6 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                         ),
                                                         focusNode: _model
                                                             .phoneFocusNode,
-                                                        onChanged: (_) =>
-                                                            EasyDebounce
-                                                                .debounce(
-                                                          '_model.phoneTextController',
-                                                          const Duration(
-                                                              milliseconds:
-                                                                  200),
-                                                          () async {
-                                                            _model.isEdit =
-                                                                true;
-                                                            setState(() {});
-                                                          },
-                                                        ),
                                                         autofocus: false,
                                                         textInputAction:
                                                             TextInputAction
@@ -1067,11 +1021,6 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                   200),
                                                           () => setState(() {}),
                                                         ),
-                                                        onFieldSubmitted:
-                                                            (_) async {
-                                                          _model.isEdit = true;
-                                                          setState(() {});
-                                                        },
                                                         autofocus: false,
                                                         textInputAction:
                                                             TextInputAction
@@ -1239,11 +1188,6 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                   200),
                                                           () => setState(() {}),
                                                         ),
-                                                        onFieldSubmitted:
-                                                            (_) async {
-                                                          _model.isEdit = true;
-                                                          setState(() {});
-                                                        },
                                                         autofocus: false,
                                                         textInputAction:
                                                             TextInputAction
@@ -1423,11 +1367,6 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                   200),
                                                           () => setState(() {}),
                                                         ),
-                                                        onFieldSubmitted:
-                                                            (_) async {
-                                                          _model.isEdit = true;
-                                                          setState(() {});
-                                                        },
                                                         autofocus: false,
                                                         textInputAction:
                                                             TextInputAction
@@ -1630,13 +1569,6 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                     () => setState(
                                                                         () {}),
                                                                   ),
-                                                                  onFieldSubmitted:
-                                                                      (_) async {
-                                                                    _model.isEdit =
-                                                                        true;
-                                                                    setState(
-                                                                        () {});
-                                                                  },
                                                                   autofocus:
                                                                       false,
                                                                   textInputAction:
@@ -1734,7 +1666,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                   maxLength: 9,
                                                                   maxLengthEnforcement:
                                                                       MaxLengthEnforcement
-                                                                          .none,
+                                                                          .enforced,
                                                                   keyboardType:
                                                                       TextInputType
                                                                           .number,
@@ -1817,13 +1749,6 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                     () => setState(
                                                                         () {}),
                                                                   ),
-                                                                  onFieldSubmitted:
-                                                                      (_) async {
-                                                                    _model.isEdit =
-                                                                        true;
-                                                                    setState(
-                                                                        () {});
-                                                                  },
                                                                   autofocus:
                                                                       false,
                                                                   textInputAction:
@@ -1925,7 +1850,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                   maxLength: 10,
                                                                   maxLengthEnforcement:
                                                                       MaxLengthEnforcement
-                                                                          .none,
+                                                                          .enforced,
                                                                   keyboardType:
                                                                       TextInputType
                                                                           .number,
@@ -2015,13 +1940,6 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                     () => setState(
                                                                         () {}),
                                                                   ),
-                                                                  onFieldSubmitted:
-                                                                      (_) async {
-                                                                    _model.isEdit =
-                                                                        true;
-                                                                    setState(
-                                                                        () {});
-                                                                  },
                                                                   autofocus:
                                                                       false,
                                                                   textInputAction:
@@ -2119,7 +2037,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                   maxLength: 13,
                                                                   maxLengthEnforcement:
                                                                       MaxLengthEnforcement
-                                                                          .none,
+                                                                          .enforced,
                                                                   keyboardType:
                                                                       TextInputType
                                                                           .number,
@@ -2202,13 +2120,6 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                     () => setState(
                                                                         () {}),
                                                                   ),
-                                                                  onFieldSubmitted:
-                                                                      (_) async {
-                                                                    _model.isEdit =
-                                                                        true;
-                                                                    setState(
-                                                                        () {});
-                                                                  },
                                                                   autofocus:
                                                                       false,
                                                                   textInputAction:
@@ -2306,7 +2217,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                   maxLength: 9,
                                                                   maxLengthEnforcement:
                                                                       MaxLengthEnforcement
-                                                                          .none,
+                                                                          .enforced,
                                                                   keyboardType:
                                                                       TextInputType
                                                                           .number,
@@ -2398,10 +2309,6 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   const Duration(milliseconds: 200),
                                                   () => setState(() {}),
                                                 ),
-                                                onFieldSubmitted: (_) async {
-                                                  _model.isEdit = true;
-                                                  setState(() {});
-                                                },
                                                 autofocus: false,
                                                 textInputAction:
                                                     TextInputAction.next,
@@ -2550,10 +2457,6 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   const Duration(milliseconds: 200),
                                                   () => setState(() {}),
                                                 ),
-                                                onFieldSubmitted: (_) async {
-                                                  _model.isEdit = true;
-                                                  setState(() {});
-                                                },
                                                 autofocus: false,
                                                 textInputAction:
                                                     TextInputAction.next,
@@ -2639,10 +2542,15 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                         ),
                                                 maxLength: 20,
                                                 maxLengthEnforcement:
-                                                    MaxLengthEnforcement.none,
+                                                    MaxLengthEnforcement
+                                                        .enforced,
                                                 validator: _model
                                                     .bankKorrTextControllerValidator
                                                     .asValidator(context),
+                                                inputFormatters: [
+                                                  FilteringTextInputFormatter
+                                                      .allow(RegExp('[0-9]'))
+                                                ],
                                               ),
                                             ),
                                           ),
@@ -2707,11 +2615,6 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                           milliseconds: 200),
                                                       () => setState(() {}),
                                                     ),
-                                                    onFieldSubmitted:
-                                                        (_) async {
-                                                      _model.isEdit = true;
-                                                      setState(() {});
-                                                    },
                                                     autofocus: false,
                                                     textInputAction:
                                                         TextInputAction.done,
@@ -2863,11 +2766,6 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                           milliseconds: 200),
                                                       () => setState(() {}),
                                                     ),
-                                                    onFieldSubmitted:
-                                                        (_) async {
-                                                      _model.isEdit = true;
-                                                      setState(() {});
-                                                    },
                                                     autofocus: false,
                                                     textInputAction:
                                                         TextInputAction.done,
@@ -2952,7 +2850,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                     maxLength: 20,
                                                     maxLengthEnforcement:
                                                         MaxLengthEnforcement
-                                                            .none,
+                                                            .enforced,
                                                     keyboardType:
                                                         TextInputType.number,
                                                     validator: _model
@@ -3024,11 +2922,6 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                           milliseconds: 200),
                                                       () => setState(() {}),
                                                     ),
-                                                    onFieldSubmitted:
-                                                        (_) async {
-                                                      _model.isEdit = true;
-                                                      setState(() {});
-                                                    },
                                                     autofocus: false,
                                                     textInputAction:
                                                         TextInputAction.done,
@@ -3180,11 +3073,6 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                           milliseconds: 200),
                                                       () => setState(() {}),
                                                     ),
-                                                    onFieldSubmitted:
-                                                        (_) async {
-                                                      _model.isEdit = true;
-                                                      setState(() {});
-                                                    },
                                                     autofocus: false,
                                                     textInputAction:
                                                         TextInputAction.done,
@@ -3269,7 +3157,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                     maxLength: 9,
                                                     maxLengthEnforcement:
                                                         MaxLengthEnforcement
-                                                            .none,
+                                                            .enforced,
                                                     keyboardType:
                                                         TextInputType.number,
                                                     validator: _model

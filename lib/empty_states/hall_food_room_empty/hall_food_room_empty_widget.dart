@@ -48,13 +48,24 @@ class _HallFoodRoomEmptyWidgetState extends State<HallFoodRoomEmptyWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.sizeOf(context).width * 1.0,
-      height: MediaQuery.sizeOf(context).height * 1.0,
+      height: 80.0,
       decoration: const BoxDecoration(),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
           Text(
-            'Ничего нет',
+            'Ничего нет. Добавьте первый ${() {
+              if (widget.type == EnumType.HALL) {
+                return ' зал';
+              } else if (widget.type == EnumType.FOOD) {
+                return ' пакет еды';
+              } else if (widget.type == EnumType.ROOM) {
+                return ' номер';
+              } else {
+                return ' класс';
+              }
+            }()}',
+            textAlign: TextAlign.center,
             style: FlutterFlowTheme.of(context).bodyMedium.override(
                   fontFamily: 'Commissioner',
                   color: FlutterFlowTheme.of(context).primary,
@@ -62,28 +73,6 @@ class _HallFoodRoomEmptyWidgetState extends State<HallFoodRoomEmptyWidget> {
                   letterSpacing: 0.0,
                   fontWeight: FontWeight.w500,
                 ),
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-            child: Text(
-              'Создайте первый ${() {
-                if (widget.type == EnumType.HALL) {
-                  return ' зал';
-                } else if (widget.type == EnumType.FOOD) {
-                  return ' пакет еды';
-                } else if (widget.type == EnumType.ROOM) {
-                  return ' номер';
-                } else {
-                  return ' класс';
-                }
-              }()}',
-              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    fontFamily: 'Commissioner',
-                    color: FlutterFlowTheme.of(context).secondaryText,
-                    fontSize: 18.0,
-                    letterSpacing: 0.0,
-                  ),
-            ),
           ),
         ],
       ),

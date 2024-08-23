@@ -373,34 +373,17 @@ class _CompanyRequestsComponentWidgetState
                                         topRight: Radius.circular(16),
                                       ),
                                     ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Container(
-                                          width: 80,
-                                          decoration: BoxDecoration(),
-                                          child: Text(
-                                            'Прошло',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Commissioner',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                  fontSize: 19,
-                                                  letterSpacing: 0,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          flex: 3,
-                                          child: Container(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 8, 0, 8),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Container(
                                             width: 80,
                                             decoration: BoxDecoration(),
                                             child: Text(
-                                              'Организация',
+                                              'Прошло',
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .bodyMedium
@@ -415,14 +398,59 @@ class _CompanyRequestsComponentWidgetState
                                                   ),
                                             ),
                                           ),
-                                        ),
-                                        Expanded(
-                                          flex: 3,
-                                          child: Container(
-                                            width: 80,
+                                          Expanded(
+                                            flex: 3,
+                                            child: Container(
+                                              width: 80,
+                                              decoration: BoxDecoration(),
+                                              child: Text(
+                                                'Организация',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          fontSize: 19,
+                                                          letterSpacing: 0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 3,
+                                            child: Container(
+                                              width: 80,
+                                              decoration: BoxDecoration(),
+                                              child: Text(
+                                                'Название мероприятия',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          fontSize: 19,
+                                                          letterSpacing: 0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 120,
                                             decoration: BoxDecoration(),
                                             child: Text(
-                                              'Название мероприятия',
+                                              'Дата начала',
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .bodyMedium
@@ -437,69 +465,53 @@ class _CompanyRequestsComponentWidgetState
                                                   ),
                                             ),
                                           ),
-                                        ),
-                                        Container(
-                                          width: 120,
-                                          decoration: BoxDecoration(),
-                                          child: Text(
-                                            'Дата начала',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Commissioner',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                  fontSize: 19,
-                                                  letterSpacing: 0,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
+                                          Container(
+                                            width: 100,
+                                            decoration: BoxDecoration(),
+                                            child: Text(
+                                              '№ запроса',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Commissioner',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    fontSize: 19,
+                                                    letterSpacing: 0,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                            ),
                                           ),
-                                        ),
-                                        Container(
-                                          width: 100,
-                                          decoration: BoxDecoration(),
-                                          child: Text(
-                                            '№ запроса',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Commissioner',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                  fontSize: 19,
-                                                  letterSpacing: 0,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
+                                          Container(
+                                            width: 120,
+                                            decoration: BoxDecoration(),
+                                            child: Text(
+                                              'Дата запроса',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Commissioner',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    fontSize: 19,
+                                                    letterSpacing: 0,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                            ),
                                           ),
-                                        ),
-                                        Container(
-                                          width: 120,
-                                          decoration: BoxDecoration(),
-                                          child: Text(
-                                            'Дата запроса',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Commissioner',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                  fontSize: 19,
-                                                  letterSpacing: 0,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
+                                          Container(
+                                            width: 90,
+                                            decoration: BoxDecoration(),
                                           ),
-                                        ),
-                                        Container(
-                                          width: 90,
-                                          decoration: BoxDecoration(),
-                                        ),
-                                      ]
-                                          .divide(SizedBox(width: 40))
-                                          .addToStart(SizedBox(width: 16))
-                                          .addToEnd(SizedBox(width: 16)),
+                                        ]
+                                            .divide(SizedBox(width: 40))
+                                            .addToStart(SizedBox(width: 16))
+                                            .addToEnd(SizedBox(width: 16)),
+                                      ),
                                     ),
                                   ),
                                   FutureBuilder<List<RequestsRow>>(
@@ -1209,6 +1221,7 @@ class _CompanyRequestsComponentWidgetState
                                     decoration: BoxDecoration(),
                                     child: Text(
                                       'Стоимость',
+                                      textAlign: TextAlign.end,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -1391,6 +1404,7 @@ class _CompanyRequestsComponentWidgetState
                                                 ),
                                                 '0',
                                               ),
+                                              textAlign: TextAlign.end,
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .bodyMedium
@@ -1456,7 +1470,7 @@ class _CompanyRequestsComponentWidgetState
                                         .secondaryBackground,
                                   ),
                                   child: Align(
-                                    alignment: AlignmentDirectional(-1, 0),
+                                    alignment: AlignmentDirectional(1, 0),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           34, 0, 16, 0),
@@ -1592,6 +1606,7 @@ class _CompanyRequestsComponentWidgetState
                                     decoration: BoxDecoration(),
                                     child: Text(
                                       'Стоимость',
+                                      textAlign: TextAlign.end,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -1772,6 +1787,7 @@ class _CompanyRequestsComponentWidgetState
                                                 ),
                                                 '0',
                                               ),
+                                              textAlign: TextAlign.end,
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .bodyMedium
@@ -1837,7 +1853,7 @@ class _CompanyRequestsComponentWidgetState
                                         .secondaryBackground,
                                   ),
                                   child: Align(
-                                    alignment: AlignmentDirectional(-1, 0),
+                                    alignment: AlignmentDirectional(1, 0),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           34, 0, 16, 0),
@@ -1973,6 +1989,7 @@ class _CompanyRequestsComponentWidgetState
                                     decoration: BoxDecoration(),
                                     child: Text(
                                       'Стоимость',
+                                      textAlign: TextAlign.end,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -2156,6 +2173,7 @@ class _CompanyRequestsComponentWidgetState
                                                 ),
                                                 '0',
                                               ),
+                                              textAlign: TextAlign.end,
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .bodyMedium
@@ -2221,7 +2239,7 @@ class _CompanyRequestsComponentWidgetState
                                         .secondaryBackground,
                                   ),
                                   child: Align(
-                                    alignment: AlignmentDirectional(-1, 0),
+                                    alignment: AlignmentDirectional(1, 0),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           34, 0, 16, 0),
@@ -2281,6 +2299,7 @@ class _CompanyRequestsComponentWidgetState
                                 formatType: FormatType.decimal,
                                 decimalType: DecimalType.automatic,
                               )} руб.',
+                              textAlign: TextAlign.end,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(

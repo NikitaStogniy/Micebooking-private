@@ -1628,11 +1628,13 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                   ((hotelsHotelRow
                                                               .distanceCenter! <=
                                                           _model
-                                                              .hotelFilterMaxDistance!) &&
+                                                              .hotelFilterMaxDistance!
+                                                              .toDouble()) &&
                                                       (hotelsHotelRow
                                                               .distanceCenter! >=
                                                           _model
-                                                              .hotelFilterMinDistance!)),
+                                                              .hotelFilterMinDistance!
+                                                              .toDouble())),
                                               child: Builder(
                                                 builder: (context) =>
                                                     wrapWithModel(
@@ -1870,11 +1872,13 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       ((hotelsHotelRow
                                                                   .distanceCenter! <=
                                                               _model
-                                                                  .hotelFilterMaxDistance!) &&
+                                                                  .hotelFilterMaxDistance!
+                                                                  .toDouble()) &&
                                                           (hotelsHotelRow
                                                                   .distanceCenter! >=
                                                               _model
-                                                                  .hotelFilterMinDistance!));
+                                                                  .hotelFilterMinDistance!
+                                                                  .toDouble()));
                                                 },
                                               )
                                               .addToStart(
@@ -1953,11 +1957,13 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                   ((hotelsHotelRow
                                                               .distanceCenter! <=
                                                           _model
-                                                              .hotelFilterMaxDistance!) &&
+                                                              .hotelFilterMaxDistance!
+                                                              .toDouble()) &&
                                                       (hotelsHotelRow
                                                               .distanceCenter! >=
                                                           _model
-                                                              .hotelFilterMinDistance!)),
+                                                              .hotelFilterMinDistance!
+                                                              .toDouble())),
                                               child: Builder(
                                                 builder: (context) =>
                                                     wrapWithModel(
@@ -2195,11 +2201,13 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       ((hotelsHotelRow
                                                                   .distanceCenter! <=
                                                               _model
-                                                                  .hotelFilterMaxDistance!) &&
+                                                                  .hotelFilterMaxDistance!
+                                                                  .toDouble()) &&
                                                           (hotelsHotelRow
                                                                   .distanceCenter! >=
                                                               _model
-                                                                  .hotelFilterMinDistance!));
+                                                                  .hotelFilterMinDistance!
+                                                                  .toDouble()));
                                                 },
                                               )
                                               .addToStart(
@@ -3060,15 +3068,14 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                           ),
                                           Container(
                                             decoration: const BoxDecoration(),
-                                            child: FutureBuilder<List<FoodRow>>(
-                                              future: FoodTable().queryRows(
-                                                queryFn: (q) => q
-                                                    .in_(
-                                                      'id',
-                                                      foodChoseHotelRow!.food,
-                                                    )
-                                                    .order('price',
-                                                        ascending: true),
+                                            child: FutureBuilder<
+                                                List<ServiceCategoryRow>>(
+                                              future: ServiceCategoryTable()
+                                                  .queryRows(
+                                                queryFn: (q) => q.eq(
+                                                  'type',
+                                                  EnumType.FOOD.name,
+                                                ),
                                               ),
                                               builder: (context, snapshot) {
                                                 // Customize what your widget looks like when it's loading.
@@ -3090,113 +3097,205 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                     ),
                                                   );
                                                 }
-                                                List<FoodRow>
-                                                    columnFoodRowList =
+                                                List<ServiceCategoryRow>
+                                                    columnServiceCategoryRowList =
                                                     snapshot.data!;
 
                                                 return Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: List.generate(
-                                                      columnFoodRowList.length,
+                                                      columnServiceCategoryRowList
+                                                          .length,
                                                       (columnIndex) {
-                                                    final columnFoodRow =
-                                                        columnFoodRowList[
+                                                    final columnServiceCategoryRow =
+                                                        columnServiceCategoryRowList[
                                                             columnIndex];
-                                                    return wrapWithModel(
-                                                      model: _model
-                                                          .clientFoodComponentModels
-                                                          .getModel(
-                                                        columnFoodRow.id
-                                                            .toString(),
-                                                        columnIndex,
-                                                      ),
-                                                      updateCallback: () =>
-                                                          setState(() {}),
-                                                      child:
-                                                          ClientFoodComponentWidget(
-                                                        key: Key(
-                                                          'Keylqx_${columnFoodRow.id.toString()}',
+                                                    return Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            columnServiceCategoryRow
+                                                                .name,
+                                                            'Без названия',
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Commissioner',
+                                                                fontSize: 28.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
                                                         ),
-                                                        isChosen: _model
-                                                                .chosenFood
-                                                                .contains(
-                                                                    columnFoodRow
-                                                                        .id) ==
-                                                            true,
-                                                        food: columnFoodRow,
-                                                        chooseAction: (foodId,
-                                                            name,
-                                                            count,
-                                                            persons,
-                                                            price) async {
-                                                          if (_model.chosenFood
-                                                                  .contains(
-                                                                      columnFoodRow
-                                                                          .id) ==
-                                                              true) {
-                                                            await RequestsFoodVarTable()
-                                                                .delete(
-                                                              matchingRows:
-                                                                  (rows) => rows
-                                                                      .eq(
-                                                                        'food_id',
-                                                                        columnFoodRow
-                                                                            .id,
-                                                                      )
-                                                                      .eq(
-                                                                        'request_id',
-                                                                        _model.lastRequestId ?? 0,
-                                                                      )
-                                                                      .eq(
-                                                                        'owner',
-                                                                        hotelSearchPageUsersRow
-                                                                            ?.id,
-                                                                      ),
-                                                            );
-                                                            _model
-                                                                .removeFromChosenFood(
-                                                                    columnFoodRow
-                                                                        .id);
-                                                            _model
-                                                                .removeFromFoodPrice(
-                                                                    price!);
-                                                            setState(() {});
-                                                          } else {
-                                                            _model
-                                                                .addToChosenFood(
-                                                                    columnFoodRow
-                                                                        .id);
-                                                            setState(() {});
-                                                            _model.foodRequest =
-                                                                await RequestsFoodVarTable()
-                                                                    .insert({
-                                                              'food_id': foodId,
-                                                              'count': count,
-                                                              'price': price,
-                                                              'name': name,
-                                                              'owner':
-                                                                  hotelSearchPageUsersRow
-                                                                      ?.id,
-                                                              'persons_count':
-                                                                  persons,
-                                                            });
-                                                            _model.addToListFoodRequest(
-                                                                _model
-                                                                    .foodRequest!
-                                                                    .id);
-                                                            _model
-                                                                .addToFoodPrice(
-                                                                    price!);
-                                                            setState(() {});
-                                                          }
+                                                        FutureBuilder<
+                                                            List<FoodRow>>(
+                                                          future: FoodTable()
+                                                              .queryRows(
+                                                            queryFn: (q) => q
+                                                                .in_(
+                                                                  'id',
+                                                                  foodChoseHotelRow!
+                                                                      .food,
+                                                                )
+                                                                .eq(
+                                                                  'category',
+                                                                  columnServiceCategoryRow
+                                                                      .id,
+                                                                )
+                                                                .order('price',
+                                                                    ascending:
+                                                                        true),
+                                                          ),
+                                                          builder: (context,
+                                                              snapshot) {
+                                                            // Customize what your widget looks like when it's loading.
+                                                            if (!snapshot
+                                                                .hasData) {
+                                                              return Center(
+                                                                child: SizedBox(
+                                                                  width: 50.0,
+                                                                  height: 50.0,
+                                                                  child:
+                                                                      CircularProgressIndicator(
+                                                                    valueColor:
+                                                                        AlwaysStoppedAnimation<
+                                                                            Color>(
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            }
+                                                            List<FoodRow>
+                                                                foodsFoodRowList =
+                                                                snapshot.data!;
 
-                                                          setState(() {});
-                                                        },
-                                                      ),
+                                                            return Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: List.generate(
+                                                                  foodsFoodRowList
+                                                                      .length,
+                                                                  (foodsIndex) {
+                                                                final foodsFoodRow =
+                                                                    foodsFoodRowList[
+                                                                        foodsIndex];
+                                                                return wrapWithModel(
+                                                                  model: _model
+                                                                      .clientFoodComponentModels
+                                                                      .getModel(
+                                                                    foodsFoodRow
+                                                                        .id
+                                                                        .toString(),
+                                                                    foodsIndex,
+                                                                  ),
+                                                                  updateCallback:
+                                                                      () => setState(
+                                                                          () {}),
+                                                                  child:
+                                                                      ClientFoodComponentWidget(
+                                                                    key: Key(
+                                                                      'Keylqx_${foodsFoodRow.id.toString()}',
+                                                                    ),
+                                                                    isChosen: _model
+                                                                            .chosenFood
+                                                                            .contains(foodsFoodRow.id) ==
+                                                                        true,
+                                                                    food:
+                                                                        foodsFoodRow,
+                                                                    chooseAction: (foodId,
+                                                                        name,
+                                                                        count,
+                                                                        persons,
+                                                                        price) async {
+                                                                      if (_model
+                                                                              .chosenFood
+                                                                              .contains(foodsFoodRow.id) ==
+                                                                          true) {
+                                                                        await RequestsFoodVarTable()
+                                                                            .delete(
+                                                                          matchingRows: (rows) => rows
+                                                                              .eq(
+                                                                                'food_id',
+                                                                                foodsFoodRow.id,
+                                                                              )
+                                                                              .eq(
+                                                                                'request_id',
+                                                                                _model.lastRequestId ?? 0,
+                                                                              )
+                                                                              .eq(
+                                                                                'owner',
+                                                                                hotelSearchPageUsersRow?.id,
+                                                                              ),
+                                                                        );
+                                                                        _model.removeFromChosenFood(
+                                                                            foodsFoodRow.id);
+                                                                        _model.removeFromFoodPrice(
+                                                                            price!);
+                                                                        setState(
+                                                                            () {});
+                                                                      } else {
+                                                                        _model.addToChosenFood(
+                                                                            foodsFoodRow.id);
+                                                                        setState(
+                                                                            () {});
+                                                                        _model.foodRequest =
+                                                                            await RequestsFoodVarTable().insert({
+                                                                          'food_id':
+                                                                              foodId,
+                                                                          'count':
+                                                                              count,
+                                                                          'price':
+                                                                              price,
+                                                                          'name':
+                                                                              name,
+                                                                          'owner':
+                                                                              hotelSearchPageUsersRow?.id,
+                                                                          'persons_count':
+                                                                              persons,
+                                                                        });
+                                                                        _model.addToListFoodRequest(_model
+                                                                            .foodRequest!
+                                                                            .id);
+                                                                        _model.addToFoodPrice(
+                                                                            price!);
+                                                                        setState(
+                                                                            () {});
+                                                                      }
+
+                                                                      setState(
+                                                                          () {});
+                                                                    },
+                                                                  ),
+                                                                );
+                                                              }).divide(const SizedBox(
+                                                                  height:
+                                                                      32.0)),
+                                                            );
+                                                          },
+                                                        ),
+                                                      ].divide(const SizedBox(
+                                                          height: 24.0)),
                                                     );
                                                   }).divide(
-                                                      const SizedBox(height: 32.0)),
+                                                      const SizedBox(height: 40.0)),
                                                 );
                                               },
                                             ),

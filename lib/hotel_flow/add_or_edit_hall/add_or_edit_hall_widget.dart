@@ -9,11 +9,9 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/hotel_flow/edit_hall/edit_hall_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -53,13 +51,6 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => AddOrEditHallModel());
-
-    // On component load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.selectedServices = List.generate(random_data.randomInteger(0, 0),
-          (index) => random_data.randomInteger(0, 0)).toList().cast<int>();
-      setState(() {});
-    });
 
     _model.nameTextController ??= TextEditingController();
     _model.nameFocusNode ??= FocusNode();
@@ -374,7 +365,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                         fontFamily: 'Commissioner',
                                         letterSpacing: 0.0,
                                       ),
-                                  maxLines: 3,
+                                  maxLines: null,
                                   validator: _model
                                       .descriptionTextControllerValidator
                                       .asValidator(context),
@@ -493,6 +484,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                               Expanded(
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
                                       width: MediaQuery.sizeOf(context).width *
@@ -671,6 +663,21 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                         },
                                       ),
                                     ),
+                                    if (_model.uploadedImages.length > 4)
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 4.0, 0.0, 0.0),
+                                        child: Text(
+                                          'Для прокрутки фотографий зажмите левую кнопку мыши или используйте свайп по тачпаду.',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Commissioner',
+                                                fontSize: 16.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ),
                                   ],
                                 ),
                               ),
@@ -2597,23 +2604,10 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                 widget.hotelId,
                               ),
                             );
-                            _model.hallList = List.generate(
-                                    random_data.randomInteger(5, 5),
-                                    (index) => random_data.randomInteger(0, 10))
-                                .toList()
-                                .cast<int>();
                             _model.hotel = null;
-                            _model.selectedServices = List.generate(
-                                    random_data.randomInteger(0, 0),
-                                    (index) => random_data.randomInteger(0, 0))
-                                .toList()
-                                .cast<int>();
-                            _model.uploadedImages = List.generate(
-                                random_data.randomInteger(5, 5),
-                                (index) => random_data.randomImageUrl(
-                                      0,
-                                      0,
-                                    )).toList().cast<String>();
+                            _model.selectedServices = [0];
+                            _model.uploadedImages = [];
+                            _model.hallList = [];
                             setState(() {});
                             await widget.doneCallback?.call();
 

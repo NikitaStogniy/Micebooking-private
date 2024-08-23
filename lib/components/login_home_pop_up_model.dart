@@ -1,5 +1,7 @@
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/uikit/login_form/login_form_widget.dart';
+import '/uikit/signup_form/signup_form_widget.dart';
 import 'login_home_pop_up_widget.dart' show LoginHomePopUpWidget;
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -7,7 +9,7 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 class LoginHomePopUpModel extends FlutterFlowModel<LoginHomePopUpWidget> {
   ///  Local state fields for this component.
 
-  bool isRegister = false;
+  bool isRegister = true;
 
   bool isHotel = true;
 
@@ -17,6 +19,10 @@ class LoginHomePopUpModel extends FlutterFlowModel<LoginHomePopUpWidget> {
 
   final formKey1 = GlobalKey<FormState>();
   final formKey2 = GlobalKey<FormState>();
+  // Model for login_form component.
+  late LoginFormModel loginFormModel;
+  // Model for signup_form component.
+  late SignupFormModel signupFormModel;
   // State field(s) for email_log widget.
   FocusNode? emailLogFocusNode;
   TextEditingController? emailLogTextController;
@@ -57,12 +63,16 @@ class LoginHomePopUpModel extends FlutterFlowModel<LoginHomePopUpWidget> {
 
   @override
   void initState(BuildContext context) {
+    loginFormModel = createModel(context, () => LoginFormModel());
+    signupFormModel = createModel(context, () => SignupFormModel());
     passwordLogVisibility = false;
     passwordVisibility = false;
   }
 
   @override
   void dispose() {
+    loginFormModel.dispose();
+    signupFormModel.dispose();
     emailLogFocusNode?.dispose();
     emailLogTextController?.dispose();
 

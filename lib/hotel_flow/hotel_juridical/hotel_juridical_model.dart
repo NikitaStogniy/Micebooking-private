@@ -9,7 +9,7 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 class HotelJuridicalModel extends FlutterFlowModel<HotelJuridicalWidget> {
   ///  Local state fields for this component.
 
-  bool isEdit = true;
+  bool isEdit = false;
 
   ///  State fields for stateful widgets in this component.
 

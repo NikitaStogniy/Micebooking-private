@@ -178,9 +178,11 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                           );
                         },
                       ),
-                      if (widget.room!.images.length > 1)
-                        Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
+                      Container(
+                        height: 210.0,
+                        decoration: const BoxDecoration(),
+                        child: Visibility(
+                          visible: widget.room!.images.length > 1,
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 0.0, 8.0, 0.0),
@@ -265,11 +267,12 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                             ),
                           ),
                         ),
+                      ),
                       if (widget.room!.images.isNotEmpty)
                         Builder(
                           builder: (context) => Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                8.0, 16.0, 0.0, 0.0),
+                                8.0, 8.0, 0.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
                               focusColor: Colors.transparent,
@@ -1136,9 +1139,11 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                           );
                         },
                       ),
-                      if (widget.room!.images.length > 1)
-                        Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
+                      Container(
+                        height: 260.0,
+                        decoration: const BoxDecoration(),
+                        child: Visibility(
+                          visible: widget.room!.images.length > 1,
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 0.0, 8.0, 0.0),
@@ -1223,6 +1228,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                             ),
                           ),
                         ),
+                      ),
                     ],
                   ),
                 ),

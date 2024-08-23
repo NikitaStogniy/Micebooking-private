@@ -240,7 +240,7 @@ class _MobileMenuWidgetState extends State<MobileMenuWidget> {
                                     return Padding(
                                       padding: MediaQuery.viewInsetsOf(context),
                                       child: const SizedBox(
-                                        height: 300.0,
+                                        height: 600.0,
                                         child: SupportBottomsheetWidget(),
                                       ),
                                     );

@@ -145,7 +145,6 @@ class _ProfileRoomsComponentWidgetState
                       if (widget.hotel!.rooms.isNotEmpty)
                         Container(
                           width: MediaQuery.sizeOf(context).width * 1.0,
-                          height: 40.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context).primary,
                             borderRadius: const BorderRadius.only(
@@ -155,36 +154,39 @@ class _ProfileRoomsComponentWidgetState
                               topRight: Radius.circular(16.0),
                             ),
                           ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Expanded(
-                                flex: 3,
-                                child: Container(
-                                  width: MediaQuery.sizeOf(context).width * 0.3,
-                                  decoration: const BoxDecoration(),
-                                  child: Text(
-                                    'Название номера',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Commissioner',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          fontSize: 19.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 8.0, 0.0, 8.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Expanded(
+                                  flex: 3,
+                                  child: Container(
+                                    width:
+                                        MediaQuery.sizeOf(context).width * 0.3,
+                                    decoration: const BoxDecoration(),
+                                    child: Text(
+                                      'Название номера',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Commissioner',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            fontSize: 19.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Expanded(
-                                child: Container(
-                                  width:
-                                      MediaQuery.sizeOf(context).width * 0.233,
+                                Container(
+                                  width: MediaQuery.sizeOf(context).width * 0.1,
                                   decoration: const BoxDecoration(),
                                   child: Text(
                                     'Количество',
+                                    textAlign: TextAlign.start,
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -197,34 +199,40 @@ class _ProfileRoomsComponentWidgetState
                                         ),
                                   ),
                                 ),
-                              ),
-                              Expanded(
-                                child: Container(
-                                  width:
-                                      MediaQuery.sizeOf(context).width * 0.233,
-                                  decoration: const BoxDecoration(),
-                                  child: Text(
-                                    'Одн. размещение ',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Commissioner',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          fontSize: 19.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                                if (responsiveVisibility(
+                                  context: context,
+                                  phone: false,
+                                  tablet: false,
+                                  tabletLandscape: false,
+                                  desktop: false,
+                                ))
+                                  Expanded(
+                                    child: Container(
+                                      width: MediaQuery.sizeOf(context).width *
+                                          0.233,
+                                      decoration: const BoxDecoration(),
+                                      child: Text(
+                                        'Одн. размещение ',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Commissioner',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              fontSize: 19.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Container(
-                                  width:
-                                      MediaQuery.sizeOf(context).width * 0.233,
+                                Container(
+                                  width: MediaQuery.sizeOf(context).width * 0.1,
                                   decoration: const BoxDecoration(),
                                   child: Text(
                                     'Цена (руб.)',
+                                    textAlign: TextAlign.end,
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -237,11 +245,11 @@ class _ProfileRoomsComponentWidgetState
                                         ),
                                   ),
                                 ),
-                              ),
-                            ]
-                                .divide(const SizedBox(width: 32.0))
-                                .addToStart(const SizedBox(width: 16.0))
-                                .addToEnd(const SizedBox(width: 16.0)),
+                              ]
+                                  .divide(const SizedBox(width: 32.0))
+                                  .addToStart(const SizedBox(width: 16.0))
+                                  .addToEnd(const SizedBox(width: 16.0)),
+                            ),
                           ),
                         ),
                       Builder(
@@ -250,7 +258,7 @@ class _ProfileRoomsComponentWidgetState
                           if (rooms.isEmpty) {
                             return Center(
                               child: SizedBox(
-                                width: 300.0,
+                                width: 700.0,
                                 height: 300.0,
                                 child: HallFoodRoomEmptyWidget(
                                   type: EnumType.ROOM,
@@ -271,7 +279,6 @@ class _ProfileRoomsComponentWidgetState
                               final roomsItem = rooms[roomsIndex];
                               return Container(
                                 width: MediaQuery.sizeOf(context).width * 1.0,
-                                height: 40.0,
                                 decoration: BoxDecoration(
                                   color: valueOrDefault<Color>(
                                     valueOrDefault<int>(
@@ -292,176 +299,184 @@ class _ProfileRoomsComponentWidgetState
                                     topRight: Radius.circular(0.0),
                                   ),
                                 ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      flex: 3,
-                                      child: Container(
-                                        width:
-                                            MediaQuery.sizeOf(context).width *
-                                                0.3,
-                                        decoration: const BoxDecoration(),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                valueOrDefault<String>(
-                                                  roomsItem.name,
-                                                  'Name',
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 8.0, 0.0, 8.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        flex: 3,
+                                        child: Container(
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  0.3,
+                                          decoration: const BoxDecoration(),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  valueOrDefault<String>(
+                                                    roomsItem.name,
+                                                    'Name',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontSize: 19.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
                                                 ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 19.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
                                               ),
-                                            ),
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    _model.newItemCopy =
-                                                        await RoomTable()
-                                                            .insert({
-                                                      'name': valueOrDefault<
-                                                          String>(
-                                                        roomsItem.name,
-                                                        'name',
-                                                      ),
-                                                      'description':
-                                                          valueOrDefault<
-                                                              String>(
-                                                        roomsItem.description,
-                                                        'desc',
-                                                      ),
-                                                      'count':
-                                                          valueOrDefault<int>(
-                                                        roomsItem.count,
-                                                        1,
-                                                      ),
-                                                      'price': valueOrDefault<
-                                                          double>(
-                                                        roomsItem.price,
-                                                        1.0,
-                                                      ),
-                                                      'show_single':
-                                                          valueOrDefault<bool>(
-                                                        roomsItem.showSingle,
-                                                        false,
-                                                      ),
-                                                      'single_price':
-                                                          valueOrDefault<
-                                                              double>(
-                                                        roomsItem.singlePrice,
-                                                        1.0,
-                                                      ),
-                                                      'services':
-                                                          roomsItem.services,
-                                                      'images':
-                                                          roomsItem.images,
-                                                    });
-                                                    _model.newRooms = widget
-                                                        .hotel!.rooms
-                                                        .toList()
-                                                        .cast<int>();
-                                                    setState(() {});
-                                                    _model.addToNewRooms(
-                                                        _model.newItemCopy!.id);
-                                                    setState(() {});
-                                                    await HotelTable().update(
-                                                      data: {
-                                                        'rooms':
-                                                            _model.newRooms,
-                                                      },
-                                                      matchingRows: (rows) =>
-                                                          rows.eq(
-                                                        'id',
-                                                        valueOrDefault<int>(
-                                                          widget.hotel?.id,
-                                                          88,
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      _model.newItemCopy =
+                                                          await RoomTable()
+                                                              .insert({
+                                                        'name': valueOrDefault<
+                                                            String>(
+                                                          roomsItem.name,
+                                                          'name',
                                                         ),
-                                                      ),
-                                                    );
-                                                    _model
-                                                        .newRooms = List.generate(
-                                                            random_data
-                                                                .randomInteger(
-                                                                    5, 5),
-                                                            (index) => random_data
-                                                                .randomInteger(
-                                                                    0, 10))
-                                                        .toList()
-                                                        .cast<int>();
-                                                    setState(() {});
+                                                        'description':
+                                                            valueOrDefault<
+                                                                String>(
+                                                          roomsItem.description,
+                                                          'desc',
+                                                        ),
+                                                        'count':
+                                                            valueOrDefault<int>(
+                                                          roomsItem.count,
+                                                          1,
+                                                        ),
+                                                        'price': valueOrDefault<
+                                                            double>(
+                                                          roomsItem.price,
+                                                          1.0,
+                                                        ),
+                                                        'show_single':
+                                                            valueOrDefault<
+                                                                bool>(
+                                                          roomsItem.showSingle,
+                                                          false,
+                                                        ),
+                                                        'single_price':
+                                                            valueOrDefault<
+                                                                double>(
+                                                          roomsItem.singlePrice,
+                                                          1.0,
+                                                        ),
+                                                        'services':
+                                                            roomsItem.services,
+                                                        'images':
+                                                            roomsItem.images,
+                                                      });
+                                                      _model.newRooms = widget
+                                                          .hotel!.rooms
+                                                          .toList()
+                                                          .cast<int>();
+                                                      setState(() {});
+                                                      _model.addToNewRooms(
+                                                          _model
+                                                              .newItemCopy!.id);
+                                                      setState(() {});
+                                                      await HotelTable().update(
+                                                        data: {
+                                                          'rooms':
+                                                              _model.newRooms,
+                                                        },
+                                                        matchingRows: (rows) =>
+                                                            rows.eq(
+                                                          'id',
+                                                          valueOrDefault<int>(
+                                                            widget.hotel?.id,
+                                                            88,
+                                                          ),
+                                                        ),
+                                                      );
+                                                      _model
+                                                          .newRooms = List.generate(
+                                                              random_data
+                                                                  .randomInteger(
+                                                                      5, 5),
+                                                              (index) => random_data
+                                                                  .randomInteger(
+                                                                      0, 10))
+                                                          .toList()
+                                                          .cast<int>();
+                                                      setState(() {});
 
-                                                    setState(() {});
-                                                  },
-                                                  child: Icon(
-                                                    Icons.file_copy,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    size: 24.0,
+                                                      setState(() {});
+                                                    },
+                                                    child: Icon(
+                                                      Icons.file_copy,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      size: 24.0,
+                                                    ),
                                                   ),
-                                                ),
-                                                InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    await widget.editRoom?.call(
-                                                      valueOrDefault<int>(
-                                                        roomsItem.id,
-                                                        1,
-                                                      ),
-                                                    );
-                                                  },
-                                                  child: Icon(
-                                                    Icons.edit,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    size: 24.0,
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      await widget.editRoom
+                                                          ?.call(
+                                                        valueOrDefault<int>(
+                                                          roomsItem.id,
+                                                          1,
+                                                        ),
+                                                      );
+                                                    },
+                                                    child: Icon(
+                                                      Icons.edit,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      size: 24.0,
+                                                    ),
                                                   ),
-                                                ),
-                                              ].divide(const SizedBox(width: 8.0)),
-                                            ),
-                                          ],
+                                                ].divide(const SizedBox(width: 8.0)),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    Expanded(
-                                      child: Container(
+                                      Container(
                                         width:
                                             MediaQuery.sizeOf(context).width *
-                                                0.233,
+                                                0.1,
                                         decoration: const BoxDecoration(),
                                         child: Text(
                                           valueOrDefault<String>(
@@ -484,52 +499,66 @@ class _ProfileRoomsComponentWidgetState
                                               ),
                                         ),
                                       ),
-                                    ),
-                                    Expanded(
-                                      child: Container(
-                                        width:
-                                            MediaQuery.sizeOf(context).width *
+                                      if (responsiveVisibility(
+                                        context: context,
+                                        phone: false,
+                                        tablet: false,
+                                        tabletLandscape: false,
+                                        desktop: false,
+                                      ))
+                                        Expanded(
+                                          child: Container(
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
                                                 0.233,
-                                        decoration: const BoxDecoration(),
-                                        child: Text(
-                                          valueOrDefault<String>(
-                                            'Да, ${valueOrDefault<String>(
-                                              roomsItem.singlePrice?.toString(),
-                                              '0',
-                                            )} руб.',
-                                            'Нет',
-                                          ).maybeHandleOverflow(
-                                            maxChars: 6,
-                                            replacement: '…',
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Commissioner',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                fontSize: 19.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.normal,
+                                            decoration: const BoxDecoration(),
+                                            child: Text(
+                                              valueOrDefault<String>(
+                                                'Да, ${valueOrDefault<String>(
+                                                  roomsItem.singlePrice
+                                                      ?.toString(),
+                                                  '0',
+                                                )} руб.',
+                                                'Нет',
+                                              ).maybeHandleOverflow(
+                                                maxChars: 6,
+                                                replacement: '…',
                                               ),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Commissioner',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    fontSize: 19.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                  ),
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Container(
+                                      Container(
                                         width:
                                             MediaQuery.sizeOf(context).width *
-                                                0.233,
+                                                0.1,
                                         decoration: const BoxDecoration(),
                                         child: Text(
                                           valueOrDefault<String>(
-                                            roomsItem.price?.toString(),
+                                            formatNumber(
+                                              roomsItem.price,
+                                              formatType: FormatType.decimal,
+                                              decimalType:
+                                                  DecimalType.automatic,
+                                            ),
                                             'Price',
                                           ).maybeHandleOverflow(
                                             maxChars: 6,
                                             replacement: '…',
                                           ),
+                                          textAlign: TextAlign.end,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -543,11 +572,11 @@ class _ProfileRoomsComponentWidgetState
                                               ),
                                         ),
                                       ),
-                                    ),
-                                  ]
-                                      .divide(const SizedBox(width: 32.0))
-                                      .addToStart(const SizedBox(width: 16.0))
-                                      .addToEnd(const SizedBox(width: 16.0)),
+                                    ]
+                                        .divide(const SizedBox(width: 32.0))
+                                        .addToStart(const SizedBox(width: 16.0))
+                                        .addToEnd(const SizedBox(width: 16.0)),
+                                  ),
                                 ),
                               );
                             }),

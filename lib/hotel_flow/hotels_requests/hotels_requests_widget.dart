@@ -353,7 +353,6 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                             MediaQuery.sizeOf(
                                                                     context)
                                                                 .width,
-                                                        height: 40,
                                                         decoration:
                                                             BoxDecoration(
                                                           color: FlutterFlowTheme
@@ -375,40 +374,43 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                     16),
                                                           ),
                                                         ),
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          children: [
-                                                            Container(
-                                                              width: 80,
-                                                              decoration:
-                                                                  BoxDecoration(),
-                                                              child: Text(
-                                                                'В работе',
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Commissioner',
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryBackground,
-                                                                      fontSize:
-                                                                          15,
-                                                                      letterSpacing:
-                                                                          0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                    ),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      4, 0, 4),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            children: [
+                                                              Container(
+                                                                width: 80,
+                                                                decoration:
+                                                                    BoxDecoration(),
+                                                                child: Text(
+                                                                  'В работе',
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Commissioner',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryBackground,
+                                                                        fontSize:
+                                                                            15,
+                                                                        letterSpacing:
+                                                                            0,
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                      ),
+                                                                ),
                                                               ),
-                                                            ),
-                                                            Expanded(
-                                                              child: Container(
+                                                              Container(
                                                                 width: 80,
                                                                 decoration:
                                                                     BoxDecoration(),
@@ -431,10 +433,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                       ),
                                                                 ),
                                                               ),
-                                                            ),
-                                                            Expanded(
-                                                              child: Container(
-                                                                width: 100,
+                                                              Container(
+                                                                width: 130,
                                                                 decoration:
                                                                     BoxDecoration(),
                                                                 child: Text(
@@ -456,66 +456,66 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                       ),
                                                                 ),
                                                               ),
-                                                            ),
-                                                            Expanded(
-                                                              child: Container(
+                                                              Expanded(
+                                                                child:
+                                                                    Container(
+                                                                  width: MediaQuery.sizeOf(
+                                                                              context)
+                                                                          .width *
+                                                                      0.233,
+                                                                  decoration:
+                                                                      BoxDecoration(),
+                                                                  child: Text(
+                                                                    'Организация',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Commissioner',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).secondaryBackground,
+                                                                          fontSize:
+                                                                              15,
+                                                                          letterSpacing:
+                                                                              0,
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
+                                                                        ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Flexible(
+                                                                child:
+                                                                    Container(
+                                                                  width: 120,
+                                                                  decoration:
+                                                                      BoxDecoration(),
+                                                                  child: Text(
+                                                                    'Дата начала',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Commissioner',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).secondaryBackground,
+                                                                          fontSize:
+                                                                              15,
+                                                                          letterSpacing:
+                                                                              0,
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
+                                                                        ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Container(
                                                                 width: MediaQuery.sizeOf(
                                                                             context)
                                                                         .width *
-                                                                    0.233,
-                                                                decoration:
-                                                                    BoxDecoration(),
-                                                                child: Text(
-                                                                  'Организация',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Commissioner',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryBackground,
-                                                                        fontSize:
-                                                                            15,
-                                                                        letterSpacing:
-                                                                            0,
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            Flexible(
-                                                              child: Container(
-                                                                width: 120,
-                                                                decoration:
-                                                                    BoxDecoration(),
-                                                                child: Text(
-                                                                  'Дата начала',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Commissioner',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryBackground,
-                                                                        fontSize:
-                                                                            15,
-                                                                        letterSpacing:
-                                                                            0,
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            Expanded(
-                                                              child: Container(
-                                                                width: MediaQuery.sizeOf(
-                                                                            context)
-                                                                        .width *
-                                                                    0.233,
+                                                                    0.08,
                                                                 decoration:
                                                                     BoxDecoration(),
                                                                 child: Text(
@@ -537,17 +537,18 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                       ),
                                                                 ),
                                                               ),
-                                                            ),
-                                                            Expanded(
-                                                              child: Container(
+                                                              Container(
                                                                 width: MediaQuery.sizeOf(
                                                                             context)
                                                                         .width *
-                                                                    0.233,
+                                                                    0.08,
                                                                 decoration:
                                                                     BoxDecoration(),
                                                                 child: Text(
                                                                   'Сумма',
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .end,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
@@ -565,27 +566,17 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                       ),
                                                                 ),
                                                               ),
-                                                            ),
-                                                            Expanded(
-                                                              child: Container(
-                                                                width: MediaQuery.sizeOf(
-                                                                            context)
-                                                                        .width *
-                                                                    0.233,
+                                                              Container(
+                                                                width: 80,
                                                                 decoration:
                                                                     BoxDecoration(),
                                                               ),
-                                                            ),
-                                                            Expanded(
-                                                              child: Container(
-                                                                width: MediaQuery.sizeOf(
-                                                                            context)
-                                                                        .width *
-                                                                    0.233,
+                                                              Container(
+                                                                width: 100,
                                                                 decoration:
                                                                     BoxDecoration(),
                                                                 child: Text(
-                                                                  'Мероприятие прошло?',
+                                                                  'Мероприятие\nпрошло?',
                                                                   textAlign:
                                                                       TextAlign
                                                                           .center,
@@ -606,18 +597,20 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                       ),
                                                                 ),
                                                               ),
-                                                            ),
-                                                          ]
-                                                              .divide(SizedBox(
-                                                                  width: 20))
-                                                              .addToStart(
-                                                                  SizedBox(
-                                                                      width:
-                                                                          16))
-                                                              .addToEnd(
-                                                                  SizedBox(
-                                                                      width:
-                                                                          16)),
+                                                            ]
+                                                                .divide(
+                                                                    SizedBox(
+                                                                        width:
+                                                                            20))
+                                                                .addToStart(
+                                                                    SizedBox(
+                                                                        width:
+                                                                            16))
+                                                                .addToEnd(
+                                                                    SizedBox(
+                                                                        width:
+                                                                            16)),
+                                                          ),
                                                         ),
                                                       ),
                                                     Builder(
@@ -650,7 +643,6 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                         .sizeOf(
                                                                             context)
                                                                     .width,
-                                                                height: 40,
                                                                 decoration:
                                                                     BoxDecoration(
                                                                   color:
@@ -682,84 +674,83 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                             0),
                                                                   ),
                                                                 ),
-                                                                child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .min,
-                                                                  children: [
-                                                                    Container(
-                                                                      width: 80,
-                                                                      decoration:
-                                                                          BoxDecoration(),
-                                                                      child:
-                                                                          Align(
-                                                                        alignment: AlignmentDirectional(
-                                                                            0,
-                                                                            0),
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0,
+                                                                          4,
+                                                                          0,
+                                                                          4),
+                                                                  child: Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .min,
+                                                                    children: [
+                                                                      Container(
+                                                                        width:
+                                                                            80,
+                                                                        decoration:
+                                                                            BoxDecoration(),
                                                                         child:
-                                                                            Theme(
-                                                                          data:
-                                                                              ThemeData(
-                                                                            checkboxTheme:
-                                                                                CheckboxThemeData(
-                                                                              visualDensity: VisualDensity.compact,
-                                                                              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                                                              shape: RoundedRectangleBorder(
-                                                                                borderRadius: BorderRadius.circular(4),
-                                                                              ),
-                                                                            ),
-                                                                            unselectedWidgetColor:
-                                                                                FlutterFlowTheme.of(context).secondaryText,
-                                                                          ),
+                                                                            Align(
+                                                                          alignment: AlignmentDirectional(
+                                                                              0,
+                                                                              0),
                                                                           child:
-                                                                              Checkbox(
-                                                                            value: _model.checkboxValueMap1[requestsItem] ??=
-                                                                                requestsItem.inProgress == true,
-                                                                            onChanged:
-                                                                                (newValue) async {
-                                                                              setState(() => _model.checkboxValueMap1[requestsItem] = newValue!);
-                                                                              if (newValue!) {
-                                                                                await RequestsTable().update(
-                                                                                  data: {
-                                                                                    'inProgress': true,
-                                                                                  },
-                                                                                  matchingRows: (rows) => rows.eq(
-                                                                                    'id',
-                                                                                    requestsItem.id,
-                                                                                  ),
-                                                                                );
-                                                                                _model.rebuilder = _model.rebuilder! + 1;
-                                                                                setState(() {});
-                                                                              } else {
-                                                                                await RequestsTable().update(
-                                                                                  data: {
-                                                                                    'inProgress': false,
-                                                                                  },
-                                                                                  matchingRows: (rows) => rows.eq(
-                                                                                    'id',
-                                                                                    requestsItem.id,
-                                                                                  ),
-                                                                                );
-                                                                                _model.rebuilder = _model.rebuilder! + 1;
-                                                                                setState(() {});
-                                                                              }
-                                                                            },
-                                                                            side:
-                                                                                BorderSide(
-                                                                              width: 2,
-                                                                              color: FlutterFlowTheme.of(context).secondaryText,
+                                                                              Theme(
+                                                                            data:
+                                                                                ThemeData(
+                                                                              checkboxTheme: CheckboxThemeData(
+                                                                                visualDensity: VisualDensity.compact,
+                                                                                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                                                                shape: RoundedRectangleBorder(
+                                                                                  borderRadius: BorderRadius.circular(4),
+                                                                                ),
+                                                                              ),
+                                                                              unselectedWidgetColor: FlutterFlowTheme.of(context).secondaryText,
                                                                             ),
-                                                                            activeColor:
-                                                                                FlutterFlowTheme.of(context).primary,
-                                                                            checkColor:
-                                                                                FlutterFlowTheme.of(context).info,
+                                                                            child:
+                                                                                Checkbox(
+                                                                              value: _model.checkboxValueMap1[requestsItem] ??= requestsItem.inProgress == true,
+                                                                              onChanged: (newValue) async {
+                                                                                setState(() => _model.checkboxValueMap1[requestsItem] = newValue!);
+                                                                                if (newValue!) {
+                                                                                  await RequestsTable().update(
+                                                                                    data: {
+                                                                                      'inProgress': true,
+                                                                                    },
+                                                                                    matchingRows: (rows) => rows.eq(
+                                                                                      'id',
+                                                                                      requestsItem.id,
+                                                                                    ),
+                                                                                  );
+                                                                                  _model.rebuilder = _model.rebuilder! + 1;
+                                                                                  setState(() {});
+                                                                                } else {
+                                                                                  await RequestsTable().update(
+                                                                                    data: {
+                                                                                      'inProgress': false,
+                                                                                    },
+                                                                                    matchingRows: (rows) => rows.eq(
+                                                                                      'id',
+                                                                                      requestsItem.id,
+                                                                                    ),
+                                                                                  );
+                                                                                  _model.rebuilder = _model.rebuilder! + 1;
+                                                                                  setState(() {});
+                                                                                }
+                                                                              },
+                                                                              side: BorderSide(
+                                                                                width: 2,
+                                                                                color: FlutterFlowTheme.of(context).secondaryText,
+                                                                              ),
+                                                                              activeColor: FlutterFlowTheme.of(context).primary,
+                                                                              checkColor: FlutterFlowTheme.of(context).info,
+                                                                            ),
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                    ),
-                                                                    Expanded(
-                                                                      child:
-                                                                          Container(
+                                                                      Container(
                                                                         width:
                                                                             80,
                                                                         decoration:
@@ -780,12 +771,9 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                               ),
                                                                         ),
                                                                       ),
-                                                                    ),
-                                                                    Expanded(
-                                                                      child:
-                                                                          Container(
+                                                                      Container(
                                                                         width:
-                                                                            100,
+                                                                            130,
                                                                         decoration:
                                                                             BoxDecoration(),
                                                                         child:
@@ -810,68 +798,59 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                               ),
                                                                         ),
                                                                       ),
-                                                                    ),
-                                                                    Expanded(
-                                                                      child:
-                                                                          Container(
-                                                                        width: MediaQuery.sizeOf(context).width *
-                                                                            0.233,
-                                                                        decoration:
-                                                                            BoxDecoration(),
+                                                                      Expanded(
                                                                         child:
-                                                                            Text(
-                                                                          valueOrDefault<
-                                                                              String>(
-                                                                            requestsItem.clientNetwork,
-                                                                            'Компания',
-                                                                          ),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .override(
-                                                                                fontFamily: 'Commissioner',
-                                                                                color: FlutterFlowTheme.of(context).primaryText,
-                                                                                fontSize: 18,
-                                                                                letterSpacing: 0,
-                                                                                fontWeight: FontWeight.normal,
-                                                                              ),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                    Flexible(
-                                                                      child:
-                                                                          Container(
-                                                                        width:
-                                                                            120,
-                                                                        decoration:
-                                                                            BoxDecoration(),
-                                                                        child:
-                                                                            Text(
-                                                                          valueOrDefault<
-                                                                              String>(
-                                                                            dateTimeFormat(
-                                                                              "d/M/y",
-                                                                              requestsItem.dayStart,
-                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            Container(
+                                                                          width:
+                                                                              MediaQuery.sizeOf(context).width * 0.233,
+                                                                          decoration:
+                                                                              BoxDecoration(),
+                                                                          child:
+                                                                              Text(
+                                                                            valueOrDefault<String>(
+                                                                              requestsItem.clientNetwork,
+                                                                              'Компания',
                                                                             ),
-                                                                            'Ошибка',
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Commissioner',
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
+                                                                                  fontSize: 18,
+                                                                                  letterSpacing: 0,
+                                                                                  fontWeight: FontWeight.normal,
+                                                                                ),
                                                                           ),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .override(
-                                                                                fontFamily: 'Commissioner',
-                                                                                color: FlutterFlowTheme.of(context).primaryText,
-                                                                                fontSize: 18,
-                                                                                letterSpacing: 0,
-                                                                                fontWeight: FontWeight.normal,
-                                                                              ),
                                                                         ),
                                                                       ),
-                                                                    ),
-                                                                    Expanded(
-                                                                      child:
-                                                                          Container(
+                                                                      Flexible(
+                                                                        child:
+                                                                            Container(
+                                                                          width:
+                                                                              120,
+                                                                          decoration:
+                                                                              BoxDecoration(),
+                                                                          child:
+                                                                              Text(
+                                                                            valueOrDefault<String>(
+                                                                              dateTimeFormat(
+                                                                                "d/M/y",
+                                                                                requestsItem.dayStart,
+                                                                                locale: FFLocalizations.of(context).languageCode,
+                                                                              ),
+                                                                              'Ошибка',
+                                                                            ),
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Commissioner',
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
+                                                                                  fontSize: 18,
+                                                                                  letterSpacing: 0,
+                                                                                  fontWeight: FontWeight.normal,
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                      Container(
                                                                         width: MediaQuery.sizeOf(context).width *
-                                                                            0.233,
+                                                                            0.08,
                                                                         decoration:
                                                                             BoxDecoration(),
                                                                         child:
@@ -895,12 +874,9 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                               ),
                                                                         ),
                                                                       ),
-                                                                    ),
-                                                                    Expanded(
-                                                                      child:
-                                                                          Container(
+                                                                      Container(
                                                                         width: MediaQuery.sizeOf(context).width *
-                                                                            0.233,
+                                                                            0.08,
                                                                         decoration:
                                                                             BoxDecoration(),
                                                                         child:
@@ -914,6 +890,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                             ),
                                                                             'Ошибка',
                                                                           ),
+                                                                          textAlign:
+                                                                              TextAlign.end,
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
                                                                               .override(
@@ -925,12 +903,9 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                               ),
                                                                         ),
                                                                       ),
-                                                                    ),
-                                                                    Expanded(
-                                                                      child:
-                                                                          Container(
-                                                                        width: MediaQuery.sizeOf(context).width *
-                                                                            0.233,
+                                                                      Container(
+                                                                        width:
+                                                                            80,
                                                                         decoration:
                                                                             BoxDecoration(),
                                                                         child:
@@ -954,6 +929,8 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                           child:
                                                                               Text(
                                                                             'Открыть',
+                                                                            textAlign:
+                                                                                TextAlign.center,
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                   fontFamily: 'Commissioner',
                                                                                   color: FlutterFlowTheme.of(context).primaryText,
@@ -965,12 +942,9 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                    ),
-                                                                    Expanded(
-                                                                      child:
-                                                                          Container(
-                                                                        width: MediaQuery.sizeOf(context).width *
-                                                                            0.233,
+                                                                      Container(
+                                                                        width:
+                                                                            100,
                                                                         decoration:
                                                                             BoxDecoration(),
                                                                         child:
@@ -1028,17 +1002,17 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                    ),
-                                                                  ]
-                                                                      .divide(SizedBox(
-                                                                          width:
-                                                                              20))
-                                                                      .addToStart(SizedBox(
-                                                                          width:
-                                                                              16))
-                                                                      .addToEnd(SizedBox(
-                                                                          width:
-                                                                              16)),
+                                                                    ]
+                                                                        .divide(SizedBox(
+                                                                            width:
+                                                                                20))
+                                                                        .addToStart(SizedBox(
+                                                                            width:
+                                                                                16))
+                                                                        .addToEnd(SizedBox(
+                                                                            width:
+                                                                                16)),
+                                                                  ),
                                                                 ),
                                                               ),
                                                             );

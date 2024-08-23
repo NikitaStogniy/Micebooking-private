@@ -211,7 +211,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                       ),
                                     ),
                                     Expanded(
-                                      flex: 3,
+                                      flex: 1,
                                       child: Container(
                                         width:
                                             MediaQuery.sizeOf(context).width *
@@ -219,6 +219,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                         decoration: BoxDecoration(),
                                         child: Text(
                                           'Сумма',
+                                          textAlign: TextAlign.end,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -369,7 +370,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                               ),
                                             ),
                                             Expanded(
-                                              flex: 3,
+                                              flex: 1,
                                               child: Container(
                                                 width:
                                                     MediaQuery.sizeOf(context)
@@ -387,6 +388,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                                     ),
                                                     'price',
                                                   ),
+                                                  textAlign: TextAlign.end,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -579,11 +581,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                   containerRequestsRow?.dayStart,
                                   locale:
                                       FFLocalizations.of(context).languageCode,
-                                )}, продолжительность ${valueOrDefault<String>(
-                                  functions
-                                      .daysGen(containerRequestsRow?.duration),
-                                  '2 дня',
-                                )}, ${valueOrDefault<String>(
+                                )}, продолжительность ${containerRequestsRow?.duration?.toString()}дн. , ${valueOrDefault<String>(
                                   functions.personsGen(containerRequestsRow
                                       ?.peopleCount
                                       ?.toDouble()),
@@ -786,7 +784,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                     ),
                                   ),
                                   Expanded(
-                                    flex: 3,
+                                    flex: 1,
                                     child: Container(
                                       width: MediaQuery.sizeOf(context).width *
                                           0.5,
@@ -808,7 +806,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                     ),
                                   ),
                                   Expanded(
-                                    flex: 3,
+                                    flex: 1,
                                     child: Container(
                                       width: MediaQuery.sizeOf(context).width *
                                           0.5,
@@ -829,21 +827,26 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    width: 200,
-                                    decoration: BoxDecoration(),
-                                    child: Text(
-                                      'Стоимость',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Commissioner',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            fontSize: 19,
-                                            letterSpacing: 0,
-                                            fontWeight: FontWeight.w500,
-                                          ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Container(
+                                      width: 200,
+                                      decoration: BoxDecoration(),
+                                      child: Text(
+                                        'Стоимость',
+                                        textAlign: TextAlign.end,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Commissioner',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              fontSize: 19,
+                                              letterSpacing: 0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                      ),
                                     ),
                                   ),
                                 ]
@@ -942,7 +945,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                             ),
                                           ),
                                           Expanded(
-                                            flex: 3,
+                                            flex: 1,
                                             child: Container(
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
@@ -972,7 +975,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                             ),
                                           ),
                                           Expanded(
-                                            flex: 3,
+                                            flex: 1,
                                             child: Container(
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
@@ -1001,33 +1004,39 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                               ),
                                             ),
                                           ),
-                                          Container(
-                                            width: 200,
-                                            decoration: BoxDecoration(),
-                                            child: Text(
-                                              valueOrDefault<String>(
-                                                formatNumber(
-                                                  columnRequestsHallVarRow
-                                                      .price,
-                                                  formatType:
-                                                      FormatType.decimal,
-                                                  decimalType:
-                                                      DecimalType.automatic,
-                                                ),
-                                                '0',
-                                              ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Commissioner',
-                                                    fontSize: 19,
-                                                    letterSpacing: 0,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                    decoration: TextDecoration
-                                                        .underline,
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              width: 200,
+                                              decoration: BoxDecoration(),
+                                              child: Text(
+                                                valueOrDefault<String>(
+                                                  formatNumber(
+                                                    columnRequestsHallVarRow
+                                                        .price,
+                                                    formatType:
+                                                        FormatType.decimal,
+                                                    decimalType:
+                                                        DecimalType.automatic,
                                                   ),
+                                                  '0',
+                                                ),
+                                                textAlign: TextAlign.end,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          fontSize: 19,
+                                                          letterSpacing: 0,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .underline,
+                                                        ),
+                                              ),
                                             ),
                                           ),
                                         ]
@@ -1081,7 +1090,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                         .secondaryBackground,
                                   ),
                                   child: Align(
-                                    alignment: AlignmentDirectional(-1, 0),
+                                    alignment: AlignmentDirectional(1, 0),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           34, 0, 16, 0),
@@ -1169,7 +1178,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                     ),
                                   ),
                                   Expanded(
-                                    flex: 3,
+                                    flex: 1,
                                     child: Container(
                                       width: MediaQuery.sizeOf(context).width *
                                           0.5,
@@ -1191,7 +1200,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                     ),
                                   ),
                                   Expanded(
-                                    flex: 3,
+                                    flex: 1,
                                     child: Container(
                                       width: MediaQuery.sizeOf(context).width *
                                           0.5,
@@ -1212,21 +1221,26 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    width: 200,
-                                    decoration: BoxDecoration(),
-                                    child: Text(
-                                      'Стоимость',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Commissioner',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            fontSize: 19,
-                                            letterSpacing: 0,
-                                            fontWeight: FontWeight.w500,
-                                          ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Container(
+                                      width: 200,
+                                      decoration: BoxDecoration(),
+                                      child: Text(
+                                        'Стоимость',
+                                        textAlign: TextAlign.end,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Commissioner',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              fontSize: 19,
+                                              letterSpacing: 0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                      ),
                                     ),
                                   ),
                                 ]
@@ -1324,7 +1338,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                             ),
                                           ),
                                           Expanded(
-                                            flex: 3,
+                                            flex: 1,
                                             child: Container(
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
@@ -1354,7 +1368,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                             ),
                                           ),
                                           Expanded(
-                                            flex: 3,
+                                            flex: 1,
                                             child: Container(
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
@@ -1384,33 +1398,39 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                               ),
                                             ),
                                           ),
-                                          Container(
-                                            width: 200,
-                                            decoration: BoxDecoration(),
-                                            child: Text(
-                                              valueOrDefault<String>(
-                                                formatNumber(
-                                                  columnRequestsFoodVarRow
-                                                      .price,
-                                                  formatType:
-                                                      FormatType.decimal,
-                                                  decimalType:
-                                                      DecimalType.automatic,
-                                                ),
-                                                '0',
-                                              ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Commissioner',
-                                                    fontSize: 19,
-                                                    letterSpacing: 0,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                    decoration: TextDecoration
-                                                        .underline,
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              width: 200,
+                                              decoration: BoxDecoration(),
+                                              child: Text(
+                                                valueOrDefault<String>(
+                                                  formatNumber(
+                                                    columnRequestsFoodVarRow
+                                                        .price,
+                                                    formatType:
+                                                        FormatType.decimal,
+                                                    decimalType:
+                                                        DecimalType.automatic,
                                                   ),
+                                                  '0',
+                                                ),
+                                                textAlign: TextAlign.end,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          fontSize: 19,
+                                                          letterSpacing: 0,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .underline,
+                                                        ),
+                                              ),
                                             ),
                                           ),
                                         ]
@@ -1464,7 +1484,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                         .secondaryBackground,
                                   ),
                                   child: Align(
-                                    alignment: AlignmentDirectional(-1, 0),
+                                    alignment: AlignmentDirectional(1, 0),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           34, 0, 16, 0),
@@ -1552,7 +1572,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                     ),
                                   ),
                                   Expanded(
-                                    flex: 3,
+                                    flex: 1,
                                     child: Container(
                                       width: MediaQuery.sizeOf(context).width *
                                           0.5,
@@ -1574,7 +1594,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                     ),
                                   ),
                                   Expanded(
-                                    flex: 3,
+                                    flex: 1,
                                     child: Container(
                                       width: MediaQuery.sizeOf(context).width *
                                           0.5,
@@ -1595,21 +1615,25 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    width: 200,
-                                    decoration: BoxDecoration(),
-                                    child: Text(
-                                      'Стоимость',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Commissioner',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            fontSize: 19,
-                                            letterSpacing: 0,
-                                            fontWeight: FontWeight.w500,
-                                          ),
+                                  Expanded(
+                                    child: Container(
+                                      width: 200,
+                                      decoration: BoxDecoration(),
+                                      child: Text(
+                                        'Стоимость',
+                                        textAlign: TextAlign.end,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Commissioner',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              fontSize: 19,
+                                              letterSpacing: 0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                      ),
                                     ),
                                   ),
                                 ]
@@ -1708,7 +1732,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                             ),
                                           ),
                                           Expanded(
-                                            flex: 3,
+                                            flex: 1,
                                             child: Container(
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
@@ -1739,7 +1763,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                             ),
                                           ),
                                           Expanded(
-                                            flex: 3,
+                                            flex: 1,
                                             child: Container(
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
@@ -1768,33 +1792,38 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                               ),
                                             ),
                                           ),
-                                          Container(
-                                            width: 200,
-                                            decoration: BoxDecoration(),
-                                            child: Text(
-                                              valueOrDefault<String>(
-                                                formatNumber(
-                                                  columnRequestsRoomVarRow
-                                                      .price,
-                                                  formatType:
-                                                      FormatType.decimal,
-                                                  decimalType:
-                                                      DecimalType.automatic,
-                                                ),
-                                                '0',
-                                              ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Commissioner',
-                                                    fontSize: 19,
-                                                    letterSpacing: 0,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                    decoration: TextDecoration
-                                                        .underline,
+                                          Expanded(
+                                            child: Container(
+                                              width: 200,
+                                              decoration: BoxDecoration(),
+                                              child: Text(
+                                                valueOrDefault<String>(
+                                                  formatNumber(
+                                                    columnRequestsRoomVarRow
+                                                        .price,
+                                                    formatType:
+                                                        FormatType.decimal,
+                                                    decimalType:
+                                                        DecimalType.automatic,
                                                   ),
+                                                  '0',
+                                                ),
+                                                textAlign: TextAlign.end,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          fontSize: 19,
+                                                          letterSpacing: 0,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .underline,
+                                                        ),
+                                              ),
                                             ),
                                           ),
                                         ]
@@ -1848,7 +1877,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                         .secondaryBackground,
                                   ),
                                   child: Align(
-                                    alignment: AlignmentDirectional(-1, 0),
+                                    alignment: AlignmentDirectional(1, 0),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           34, 0, 16, 0),

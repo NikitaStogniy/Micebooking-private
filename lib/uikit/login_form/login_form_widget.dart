@@ -1,9 +1,10 @@
-import '/auth/supabase_auth/auth_util.dart';
+import '/backend/schema/enums/enums.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/change_password_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'login_form_model.dart';
@@ -30,10 +31,10 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
     super.initState();
     _model = createModel(context, () => LoginFormModel());
 
-    _model.emailTextController ??= TextEditingController();
+    _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
 
-    _model.passwordTextController ??= TextEditingController();
+    _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -69,7 +70,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                 child: TextFormField(
-                  controller: _model.emailTextController,
+                  controller: _model.textController1,
                   focusNode: _model.textFieldFocusNode1,
                   autofocus: false,
                   obscureText: false,
@@ -128,7 +129,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                           maxLength}) =>
                       null,
                   validator:
-                      _model.emailTextControllerValidator.asValidator(context),
+                      _model.textController1Validator.asValidator(context),
                 ),
               ),
             ].divide(const SizedBox(height: 13.0)),
@@ -148,7 +149,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                 child: TextFormField(
-                  controller: _model.passwordTextController,
+                  controller: _model.textController2,
                   focusNode: _model.textFieldFocusNode2,
                   autofocus: false,
                   obscureText: !_model.passwordVisibility,
@@ -219,8 +220,8 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                           required isFocused,
                           maxLength}) =>
                       null,
-                  validator: _model.passwordTextControllerValidator
-                      .asValidator(context),
+                  validator:
+                      _model.textController2Validator.asValidator(context),
                 ),
               ),
             ].divide(const SizedBox(height: 13.0)),
@@ -237,25 +238,33 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                     Expanded(
                       child: FFButtonWidget(
                         onPressed: () async {
-                          GoRouter.of(context).prepareAuthEvent();
-
-                          final user = await authManager.signInWithEmail(
+                          _model.login = await actions.customLoginAction(
                             context,
-                            _model.emailTextController.text,
-                            _model.passwordTextController.text,
+                            _model.textController1.text,
+                            _model.textController2.text,
                           );
-                          if (user == null) {
-                            return;
+                          if (_model.login == 'Вход выполнен успешно') {
+                            _model.user = await UsersTable().queryRows(
+                              queryFn: (q) => q.eq(
+                                'email',
+                                _model.textController1.text,
+                              ),
+                            );
+                            if (_model.user?.first.role ==
+                                EnumRole.CLIENT.name) {
+                              context.goNamed('Home');
+                            } else {
+                              if (_model.user?.first.role ==
+                                  EnumRole.HOTEL.name) {
+                                context.pushNamed('HOTEL_HOME');
+                              } else {
+                                if (_model.user?.first.role ==
+                                    EnumRole.SUPERUSER.name) {
+                                  context.pushNamed('SUPER_Home');
+                                }
+                              }
+                            }
                           }
-
-                          _model.user = await UsersTable().queryRows(
-                            queryFn: (q) => q.eq(
-                              'email',
-                              currentUserEmail,
-                            ),
-                          );
-
-                          context.goNamedAuth('Home', context.mounted);
 
                           setState(() {});
                         },

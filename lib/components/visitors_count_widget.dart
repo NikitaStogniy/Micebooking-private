@@ -185,7 +185,10 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Commissioner',
+                                                          fontSize: 16.0,
                                                           letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
                                                         ),
                                                 hintText:
                                                     'Кол-во участников...',
@@ -195,7 +198,10 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Commissioner',
+                                                          fontSize: 16.0,
                                                           letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
                                                         ),
                                                 enabledBorder:
                                                     UnderlineInputBorder(
@@ -238,16 +244,17 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                                           0.0),
                                                 ),
                                               ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Commissioner',
-                                                        letterSpacing: 0.0,
-                                                      ),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Commissioner',
+                                                    fontSize: 16.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
                                               minLines: 1,
-                                              maxLength: 4,
+                                              maxLength: 5,
                                               maxLengthEnforcement:
                                                   MaxLengthEnforcement.enforced,
                                               buildCounter: (context,

@@ -93,11 +93,6 @@ class EditHotelModel extends FlutterFlowModel<EditHotelWidget> {
   List<FFUploadedFile> uploadedLocalFiles = [];
   List<String> uploadedFileUrls = [];
 
-  // State field(s) for Checkbox widget.
-  Map<ServiceRow, bool> checkboxValueMap = {};
-  List<ServiceRow> get checkboxCheckedItems =>
-      checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
-
   // Stores action output result for [Backend Call - Update Row(s)] action in Button widget.
   List<HotelRow>? editHotCopy;
 

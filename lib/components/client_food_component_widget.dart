@@ -96,23 +96,21 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                             Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Expanded(
-                                  child: Text(
-                                    valueOrDefault<String>(
-                                      widget.food?.name,
-                                      'название еды',
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Commissioner',
-                                          fontSize: 24.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                Text(
+                                  valueOrDefault<String>(
+                                    widget.food?.name,
+                                    'название еды',
                                   ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Commissioner',
+                                        fontSize: 24.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                 ),
-                              ],
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
                             Row(
                               mainAxisSize: MainAxisSize.max,

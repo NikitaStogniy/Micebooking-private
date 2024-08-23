@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/pop_up/confirm_action/confirm_action_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -76,8 +77,6 @@ class _EditHallWidgetState extends State<EditHallWidget> {
         _model.kabareTextController?.text =
             widget.initialHall!.seatingKabare!.toString();
       });
-
-      setState(() {});
       _model.uploadedImages =
           widget.initialHall!.images.toList().cast<String>();
       _model.selectedServices =
@@ -104,23 +103,73 @@ class _EditHallWidgetState extends State<EditHallWidget> {
     _model.theatreTextController ??= TextEditingController(
         text: widget.initialHall?.seatingTheater?.toString());
     _model.theatreFocusNode ??= FocusNode();
-
+    _model.theatreFocusNode!.addListener(
+      () async {
+        if (_model.theatreTextController.text == '') {
+          setState(() {
+            _model.theatreTextController?.text = '0';
+            _model.theatreTextController?.selection = TextSelection.collapsed(
+                offset: _model.theatreTextController!.text.length);
+          });
+        }
+      },
+    );
     _model.clasTextController ??= TextEditingController(
         text: widget.initialHall?.seatingClass?.toString());
     _model.clasFocusNode ??= FocusNode();
-
+    _model.clasFocusNode!.addListener(
+      () async {
+        if (_model.clasTextController.text == '') {
+          setState(() {
+            _model.clasTextController?.text = '0';
+            _model.clasTextController?.selection = TextSelection.collapsed(
+                offset: _model.clasTextController!.text.length);
+          });
+        }
+      },
+    );
     _model.commTextController ??= TextEditingController(
         text: widget.initialHall?.seatingCommunication?.toString());
     _model.commFocusNode ??= FocusNode();
-
+    _model.commFocusNode!.addListener(
+      () async {
+        if (_model.commTextController.text == '') {
+          setState(() {
+            _model.commTextController?.text = '0';
+            _model.commTextController?.selection = TextSelection.collapsed(
+                offset: _model.commTextController!.text.length);
+          });
+        }
+      },
+    );
     _model.ushapeTextController ??= TextEditingController(
         text: widget.initialHall?.seatingUshape?.toString());
     _model.ushapeFocusNode ??= FocusNode();
-
+    _model.ushapeFocusNode!.addListener(
+      () async {
+        if (_model.ushapeTextController.text == '') {
+          setState(() {
+            _model.ushapeTextController?.text = '0';
+            _model.ushapeTextController?.selection = TextSelection.collapsed(
+                offset: _model.ushapeTextController!.text.length);
+          });
+        }
+      },
+    );
     _model.oshapeTextController ??= TextEditingController(
         text: widget.initialHall?.seatingOshape?.toString());
     _model.oshapeFocusNode ??= FocusNode();
-
+    _model.oshapeFocusNode!.addListener(
+      () async {
+        if (_model.oshapeTextController.text == '') {
+          setState(() {
+            _model.oshapeTextController?.text = '0';
+            _model.oshapeTextController?.selection = TextSelection.collapsed(
+                offset: _model.oshapeTextController!.text.length);
+          });
+        }
+      },
+    );
     _model.kabareTextController ??= TextEditingController(
         text: widget.initialHall?.seatingKabare?.toString());
     _model.kabareFocusNode ??= FocusNode();
@@ -181,6 +230,41 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                         size: 24.0,
                       ),
                       onPressed: () async {
+                        setState(() {
+                          _model.nameEditTextController?.text =
+                              widget.initialHall!.name!;
+                          _model.descriptionEditTextController?.text =
+                              widget.initialHall!.description!;
+                          _model.sizeEditTextController?.text =
+                              widget.initialHall!.size!.toString();
+                          _model.capacityEditTextController?.text =
+                              widget.initialHall!.capacity!.toString();
+                          _model.priceEditTextController?.text =
+                              widget.initialHall!.price!.toString();
+                          _model.halfPriceEditTextController?.text =
+                              widget.initialHall!.halfprice!.toString();
+                          _model.clasTextController?.text =
+                              widget.initialHall!.seatingClass!.toString();
+                          _model.commTextController?.text = widget
+                              .initialHall!.seatingCommunication!
+                              .toString();
+                          _model.theatreTextController?.text =
+                              widget.initialHall!.seatingTheater!.toString();
+                          _model.ushapeTextController?.text =
+                              widget.initialHall!.seatingUshape!.toString();
+                          _model.oshapeTextController?.text =
+                              widget.initialHall!.seatingOshape!.toString();
+                          _model.kabareTextController?.text =
+                              widget.initialHall!.seatingKabare!.toString();
+                          _model.banketTextController?.text =
+                              widget.initialHall!.seatingBanket!.toString();
+                          _model.furshetTextController?.text =
+                              widget.initialHall!.seatingFurshet!.toString();
+                        });
+                        _model.uploadedImages = [];
+                        _model.selectedServices = [];
+                        _model.seating = [];
+                        setState(() {});
                         await widget.doneCallback?.call();
                       },
                     ),
@@ -375,7 +459,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                       fontFamily: 'Commissioner',
                                       letterSpacing: 0.0,
                                     ),
-                                maxLines: 3,
+                                maxLines: null,
                                 validator: _model
                                     .descriptionEditTextControllerValidator
                                     .asValidator(context),
@@ -494,6 +578,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                             Expanded(
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
                                     width: MediaQuery.sizeOf(context).width *
@@ -635,6 +720,21 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                       },
                                     ),
                                   ),
+                                  if (_model.uploadedImages.length > 4)
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 4.0, 0.0, 0.0),
+                                      child: Text(
+                                        'Для прокрутки фотографий зажмите левую кнопку мыши или используйте свайп по тачпаду.',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Commissioner',
+                                              fontSize: 16.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ),
                                 ],
                               ),
                             ),
@@ -895,6 +995,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                     .override(
                                                       fontFamily:
                                                           'Commissioner',
+                                                      fontSize: 16.0,
                                                       letterSpacing: 0.0,
                                                     ),
                                           ),
@@ -930,6 +1031,46 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                 _model.theatreTextController,
                                             focusNode:
                                                 _model.theatreFocusNode,
+                                            onChanged: (_) =>
+                                                EasyDebounce.debounce(
+                                              '_model.theatreTextController',
+                                              const Duration(milliseconds: 2000),
+                                              () async {
+                                                if (_model.theatreTextController
+                                                            .text ==
+                                                        '') {
+                                                  setState(() {
+                                                    _model
+                                                        .theatreTextController
+                                                        ?.text = '0';
+                                                    _model.theatreTextController
+                                                            ?.selection =
+                                                        TextSelection.collapsed(
+                                                            offset: _model
+                                                                .theatreTextController!
+                                                                .text
+                                                                .length);
+                                                  });
+                                                }
+                                              },
+                                            ),
+                                            onFieldSubmitted: (_) async {
+                                              if (_model.theatreTextController
+                                                          .text ==
+                                                      '') {
+                                                setState(() {
+                                                  _model.theatreTextController
+                                                      ?.text = '0';
+                                                  _model.theatreTextController
+                                                          ?.selection =
+                                                      TextSelection.collapsed(
+                                                          offset: _model
+                                                              .theatreTextController!
+                                                              .text
+                                                              .length);
+                                                });
+                                              }
+                                            },
                                             autofocus: false,
                                             obscureText: false,
                                             decoration: InputDecoration(
@@ -1053,6 +1194,45 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                             controller:
                                                 _model.clasTextController,
                                             focusNode: _model.clasFocusNode,
+                                            onChanged: (_) =>
+                                                EasyDebounce.debounce(
+                                              '_model.clasTextController',
+                                              const Duration(milliseconds: 2000),
+                                              () async {
+                                                if (_model.clasTextController
+                                                            .text ==
+                                                        '') {
+                                                  setState(() {
+                                                    _model.clasTextController
+                                                        ?.text = '0';
+                                                    _model.clasTextController
+                                                            ?.selection =
+                                                        TextSelection.collapsed(
+                                                            offset: _model
+                                                                .clasTextController!
+                                                                .text
+                                                                .length);
+                                                  });
+                                                }
+                                              },
+                                            ),
+                                            onFieldSubmitted: (_) async {
+                                              if (_model.clasTextController
+                                                          .text ==
+                                                      '') {
+                                                setState(() {
+                                                  _model.clasTextController
+                                                      ?.text = '0';
+                                                  _model.clasTextController
+                                                          ?.selection =
+                                                      TextSelection.collapsed(
+                                                          offset: _model
+                                                              .clasTextController!
+                                                              .text
+                                                              .length);
+                                                });
+                                              }
+                                            },
                                             autofocus: false,
                                             obscureText: false,
                                             decoration: InputDecoration(
@@ -1176,6 +1356,45 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                             controller:
                                                 _model.commTextController,
                                             focusNode: _model.commFocusNode,
+                                            onChanged: (_) =>
+                                                EasyDebounce.debounce(
+                                              '_model.commTextController',
+                                              const Duration(milliseconds: 2000),
+                                              () async {
+                                                if (_model.commTextController
+                                                            .text ==
+                                                        '') {
+                                                  setState(() {
+                                                    _model.commTextController
+                                                        ?.text = '0';
+                                                    _model.commTextController
+                                                            ?.selection =
+                                                        TextSelection.collapsed(
+                                                            offset: _model
+                                                                .commTextController!
+                                                                .text
+                                                                .length);
+                                                  });
+                                                }
+                                              },
+                                            ),
+                                            onFieldSubmitted: (_) async {
+                                              if (_model.commTextController
+                                                          .text ==
+                                                      '') {
+                                                setState(() {
+                                                  _model.commTextController
+                                                      ?.text = '0';
+                                                  _model.commTextController
+                                                          ?.selection =
+                                                      TextSelection.collapsed(
+                                                          offset: _model
+                                                              .commTextController!
+                                                              .text
+                                                              .length);
+                                                });
+                                              }
+                                            },
                                             autofocus: false,
                                             obscureText: false,
                                             decoration: InputDecoration(
@@ -1299,6 +1518,46 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                             controller:
                                                 _model.ushapeTextController,
                                             focusNode: _model.ushapeFocusNode,
+                                            onChanged: (_) =>
+                                                EasyDebounce.debounce(
+                                              '_model.ushapeTextController',
+                                              const Duration(milliseconds: 2000),
+                                              () async {
+                                                if (_model.ushapeTextController
+                                                            .text ==
+                                                        '') {
+                                                  setState(() {
+                                                    _model
+                                                        .ushapeTextController
+                                                        ?.text = '0';
+                                                    _model.ushapeTextController
+                                                            ?.selection =
+                                                        TextSelection.collapsed(
+                                                            offset: _model
+                                                                .ushapeTextController!
+                                                                .text
+                                                                .length);
+                                                  });
+                                                }
+                                              },
+                                            ),
+                                            onFieldSubmitted: (_) async {
+                                              if (_model.ushapeTextController
+                                                          .text ==
+                                                      '') {
+                                                setState(() {
+                                                  _model.ushapeTextController
+                                                      ?.text = '0';
+                                                  _model.ushapeTextController
+                                                          ?.selection =
+                                                      TextSelection.collapsed(
+                                                          offset: _model
+                                                              .ushapeTextController!
+                                                              .text
+                                                              .length);
+                                                });
+                                              }
+                                            },
                                             autofocus: false,
                                             obscureText: false,
                                             decoration: InputDecoration(
@@ -1422,6 +1681,46 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                             controller:
                                                 _model.oshapeTextController,
                                             focusNode: _model.oshapeFocusNode,
+                                            onChanged: (_) =>
+                                                EasyDebounce.debounce(
+                                              '_model.oshapeTextController',
+                                              const Duration(milliseconds: 2000),
+                                              () async {
+                                                if (_model.oshapeTextController
+                                                            .text ==
+                                                        '') {
+                                                  setState(() {
+                                                    _model
+                                                        .oshapeTextController
+                                                        ?.text = '0';
+                                                    _model.oshapeTextController
+                                                            ?.selection =
+                                                        TextSelection.collapsed(
+                                                            offset: _model
+                                                                .oshapeTextController!
+                                                                .text
+                                                                .length);
+                                                  });
+                                                }
+                                              },
+                                            ),
+                                            onFieldSubmitted: (_) async {
+                                              if (_model.oshapeTextController
+                                                          .text ==
+                                                      '') {
+                                                setState(() {
+                                                  _model.oshapeTextController
+                                                      ?.text = '0';
+                                                  _model.oshapeTextController
+                                                          ?.selection =
+                                                      TextSelection.collapsed(
+                                                          offset: _model
+                                                              .oshapeTextController!
+                                                              .text
+                                                              .length);
+                                                });
+                                              }
+                                            },
                                             autofocus: false,
                                             obscureText: false,
                                             decoration: InputDecoration(
@@ -2046,72 +2345,89 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                       mainAxisSize:
                                                           MainAxisSize.max,
                                                       children: [
-                                                        Theme(
-                                                          data: ThemeData(
-                                                            checkboxTheme:
-                                                                CheckboxThemeData(
-                                                              visualDensity:
-                                                                  VisualDensity
-                                                                      .compact,
-                                                              materialTapTargetSize:
-                                                                  MaterialTapTargetSize
-                                                                      .shrinkWrap,
-                                                              shape:
-                                                                  RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            4.0),
-                                                              ),
-                                                            ),
-                                                            unselectedWidgetColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                          ),
-                                                          child: Checkbox(
-                                                            value: _model
-                                                                    .checkboxValueMap[
-                                                                listViewServiceRow] ??= _model
-                                                                    .selectedServices
-                                                                    .contains(
+                                                        InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          onTap: () async {
+                                                            if (_model
+                                                                .selectedServices
+                                                                .contains(
+                                                                    listViewServiceRow
+                                                                        .id)) {
+                                                              _model.removeFromSelectedServices(
+                                                                  listViewServiceRow
+                                                                      .id);
+                                                              setState(() {});
+                                                            } else {
+                                                              _model.addToSelectedServices(
+                                                                  listViewServiceRow
+                                                                      .id);
+                                                              setState(() {});
+                                                            }
+                                                          },
+                                                          child: Container(
+                                                            width: 20.0,
+                                                            height: 20.0,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color:
+                                                                  valueOrDefault<
+                                                                      Color>(
+                                                                _model.selectedServices.contains(
                                                                         listViewServiceRow
-                                                                            .id) ==
-                                                                true,
-                                                            onChanged:
-                                                                (newValue) async {
-                                                              setState(() =>
-                                                                  _model.checkboxValueMap[
-                                                                          listViewServiceRow] =
-                                                                      newValue!);
-                                                              if (newValue!) {
-                                                                _model.addToSelectedServices(
-                                                                    listViewServiceRow
-                                                                        .id);
-                                                                setState(
-                                                                    () {});
-                                                              } else {
-                                                                _model.removeFromSelectedServices(
-                                                                    listViewServiceRow
-                                                                        .id);
-                                                                setState(
-                                                                    () {});
-                                                              }
-                                                            },
-                                                            side: BorderSide(
-                                                              width: 2,
-                                                              color: FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .secondaryText,
-                                                            ),
-                                                            activeColor:
+                                                                            .id)
+                                                                    ? FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary
+                                                                    : Colors
+                                                                        .transparent,
                                                                 FlutterFlowTheme.of(
                                                                         context)
                                                                     .primary,
-                                                            checkColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .info,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          4.0),
+                                                              border:
+                                                                  Border.all(
+                                                                color: _model
+                                                                        .selectedServices
+                                                                        .contains(listViewServiceRow
+                                                                            .id)
+                                                                    ? const Color(
+                                                                        0x00EEEEEE)
+                                                                    : const Color(
+                                                                        0xFF57636C),
+                                                              ),
+                                                            ),
+                                                            child: Visibility(
+                                                              visible: _model
+                                                                  .selectedServices
+                                                                  .contains(
+                                                                      listViewServiceRow
+                                                                          .id),
+                                                              child: const Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        0.0,
+                                                                        0.0),
+                                                                child: Icon(
+                                                                  Icons
+                                                                      .check_rounded,
+                                                                  color: Color(
+                                                                      0xFFFAFAFA),
+                                                                  size: 16.0,
+                                                                ),
+                                                              ),
+                                                            ),
                                                           ),
                                                         ),
                                                         Expanded(
@@ -2367,23 +2683,33 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                       children: [
                         Builder(
                           builder: (context) => FFButtonWidget(
-                            onPressed: ((_model.nameEditTextController
-                                                .text ==
+                            onPressed: ((_model.nameEditTextController.text ==
                                             '') ||
-                                    (_model.descriptionEditTextController
-                                                .text ==
+                                    (_model.descriptionEditTextController.text ==
                                             '') ||
-                                    (_model.sizeEditTextController
-                                                .text ==
+                                    (_model.sizeEditTextController.text ==
                                             '') ||
-                                    (_model.capacityEditTextController
-                                                .text ==
+                                    (_model.capacityEditTextController.text ==
                                             '') ||
                                     (_model.priceEditTextController.text ==
                                             '') ||
-                                    (_model.halfPriceEditTextController
-                                                .text ==
-                                            ''))
+                                    (_model.halfPriceEditTextController.text ==
+                                            '') ||
+                                    ((_model.theatreTextController.text == '0') &&
+                                        (_model.clasTextController.text ==
+                                            '0') &&
+                                        (_model.commTextController.text ==
+                                            '0') &&
+                                        (_model.ushapeTextController.text ==
+                                            '0') &&
+                                        (_model.oshapeTextController.text ==
+                                            '0') &&
+                                        (_model.kabareTextController.text ==
+                                            '0') &&
+                                        (_model.banketTextController.text ==
+                                            '0') &&
+                                        (_model.furshetTextController.text ==
+                                            '0')))
                                 ? null
                                 : () async {
                                     await showDialog(
@@ -2561,9 +2887,13 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                         .seatingFurshet!
                                                         .toString();
                                               });
-                                              Navigator.pop(context);
+                                              _model.uploadedImages = [];
+                                              _model.selectedServices = [];
+                                              _model.seating = [];
+                                              setState(() {});
                                               await widget.doneCallback
                                                   ?.call();
+                                              Navigator.pop(context);
                                             },
                                             cancelAction: () async {
                                               Navigator.pop(context);
@@ -2594,6 +2924,9 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                 width: 1.0,
                               ),
                               borderRadius: BorderRadius.circular(24.0),
+                              disabledColor: const Color(0xFFF1F4F8),
+                              disabledTextColor:
+                                  FlutterFlowTheme.of(context).secondaryText,
                             ),
                           ),
                         ),
@@ -2615,7 +2948,69 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                       successText: 'Да, отменить',
                                       cancelText: 'Продолжить редактирование',
                                       successAction: () async {
+                                        _model.uploadedImages = [];
+                                        _model.selectedServices = [];
+                                        _model.seating = [];
+                                        setState(() {});
+                                        setState(() {
+                                          _model.nameEditTextController
+                                                  ?.text =
+                                              widget.initialHall!.name!;
+                                          _model.descriptionEditTextController
+                                                  ?.text =
+                                              widget
+                                                  .initialHall!.description!;
+                                          _model.capacityEditTextController
+                                                  ?.text =
+                                              widget.initialHall!.capacity!
+                                                  .toString();
+                                          _model.sizeEditTextController
+                                                  ?.text =
+                                              widget.initialHall!.size!
+                                                  .toString();
+                                          _model.theatreTextController?.text =
+                                              widget.initialHall!
+                                                  .seatingTheater!
+                                                  .toString();
+                                          _model.commTextController?.text =
+                                              widget.initialHall!
+                                                  .seatingCommunication!
+                                                  .toString();
+                                          _model.ushapeTextController?.text =
+                                              widget
+                                                  .initialHall!.seatingUshape!
+                                                  .toString();
+                                          _model.clasTextController?.text =
+                                              widget
+                                                  .initialHall!.seatingClass!
+                                                  .toString();
+                                          _model.oshapeTextController?.text =
+                                              widget
+                                                  .initialHall!.seatingOshape!
+                                                  .toString();
+                                          _model.kabareTextController?.text =
+                                              widget
+                                                  .initialHall!.seatingKabare!
+                                                  .toString();
+                                          _model.banketTextController?.text =
+                                              widget
+                                                  .initialHall!.seatingBanket!
+                                                  .toString();
+                                          _model.furshetTextController?.text =
+                                              widget.initialHall!
+                                                  .seatingFurshet!
+                                                  .toString();
+                                          _model.priceEditTextController
+                                                  ?.text =
+                                              widget.initialHall!.price!
+                                                  .toString();
+                                          _model.halfPriceEditTextController
+                                                  ?.text =
+                                              widget.initialHall!.halfprice!
+                                                  .toString();
+                                        });
                                         await widget.doneCallback?.call();
+                                        Navigator.pop(context);
                                       },
                                       cancelAction: () async {
                                         Navigator.pop(context);

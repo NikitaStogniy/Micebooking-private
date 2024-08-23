@@ -245,19 +245,56 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                                 child: Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       22.0, 12.0, 22.0, 12.0),
-                                  child: Text(
-                                    valueOrDefault<String>(
-                                      containerFoodRow?.type,
-                                      'Без указано',
+                                  child:
+                                      FutureBuilder<List<ServiceCategoryRow>>(
+                                    future:
+                                        ServiceCategoryTable().querySingleRow(
+                                      queryFn: (q) => q.eq(
+                                        'id',
+                                        containerFoodRow?.category,
+                                      ),
                                     ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Commissioner',
-                                          fontSize: 18.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50.0,
+                                            height: 50.0,
+                                            child: CircularProgressIndicator(
+                                              valueColor:
+                                                  AlwaysStoppedAnimation<Color>(
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      List<ServiceCategoryRow>
+                                          textServiceCategoryRowList =
+                                          snapshot.data!;
+
+                                      final textServiceCategoryRow =
+                                          textServiceCategoryRowList.isNotEmpty
+                                              ? textServiceCategoryRowList.first
+                                              : null;
+
+                                      return Text(
+                                        valueOrDefault<String>(
+                                          textServiceCategoryRow?.name,
+                                          'Без категории',
                                         ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Commissioner',
+                                              fontSize: 18.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                      );
+                                    },
                                   ),
                                 ),
                               ),

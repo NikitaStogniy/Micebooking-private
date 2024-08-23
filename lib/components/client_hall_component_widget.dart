@@ -190,9 +190,11 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                 );
                               },
                             ),
-                            if (widget.hall!.images.length > 1)
-                              Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                            Container(
+                              height: 190.0,
+                              decoration: const BoxDecoration(),
+                              child: Visibility(
+                                visible: widget.hall!.images.length > 1,
                                 child: Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
@@ -284,11 +286,12 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   ),
                                 ),
                               ),
+                            ),
                             if (widget.hall!.images.isNotEmpty)
                               Builder(
                                 builder: (context) => Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      8.0, 16.0, 0.0, 0.0),
+                                      8.0, 8.0, 0.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
@@ -1817,7 +1820,6 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiFYZkovo6Uq69lsMtG9ZPzszPBTa55NlR85uUqbmjNRy6Zvdh7WSBwLFpivd_70aNtmU&usqp=CAU',
                                                 ),
                                                 width: 300.0,
-                                                height: 280.0,
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
@@ -1876,9 +1878,11 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                             );
                           },
                         ),
-                        if (widget.hall!.images.length > 1)
-                          Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                        Container(
+                          height: 260.0,
+                          decoration: const BoxDecoration(),
+                          child: Visibility(
+                            visible: widget.hall!.images.length > 1,
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 8.0, 0.0),
@@ -1964,6 +1968,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                               ),
                             ),
                           ),
+                        ),
                       ],
                     ),
                   ),

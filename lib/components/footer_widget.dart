@@ -43,7 +43,7 @@ class _FooterWidgetState extends State<FooterWidget>
         effectsBuilder: () => [
           FadeEffect(
             curve: Curves.easeInOut,
-            delay: 1350.0.ms,
+            delay: 1000.0.ms,
             duration: 300.0.ms,
             begin: 0.0,
             end: 1.0,

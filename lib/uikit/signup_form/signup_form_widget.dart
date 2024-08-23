@@ -401,7 +401,9 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Text(
-                  'Название организации',
+                  widget.isHotel
+                      ? 'Название сети / площадки'
+                      : 'Название организации',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Commissioner',
                         fontSize: 18.0,
@@ -427,7 +429,9 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                               fontFamily: 'Commissioner',
                               letterSpacing: 0.0,
                             ),
-                    hintText: 'ООО “Название”',
+                    hintText: widget.isHotel
+                        ? 'Название сети / площадки'
+                        : 'ООО \"Название\"',
                     hintStyle:
                         FlutterFlowTheme.of(context).labelMedium.override(
                               fontFamily: 'Commissioner',
@@ -770,11 +774,6 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                           ),
                                         );
                                         await JuridicalInfoTable().insert({
-                                          'name': valueOrDefault<String>(
-                                            _model
-                                                .companyNameTextController.text,
-                                            'company_name',
-                                          ),
                                           'owner': _model.newUserPlatform?.id,
                                         });
                                         await widget.action?.call();
