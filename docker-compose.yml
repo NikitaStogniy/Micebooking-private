@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  flutter-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    # Удаляем volume, чтобы избежать проблем с кэшированием
+    # volumes:
+    #   - .:/app
+    stdin_open: true
+    tty: true
