@@ -934,7 +934,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 2.0, 0.0, 0.0),
                                             child: Text(
-                                              'Текст подсказка для отелей у которых нет города',
+                                              'Если вашего города нет в сииске, напишите нам в поддержку',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -943,6 +943,41 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                                             'Commissioner',
                                                         letterSpacing: 0.0,
                                                       ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 2.0, 0.0, 0.0),
+                                            child: InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                await launchURL(
+                                                    'https://t.me/micebooking');
+                                              },
+                                              child: Text(
+                                                'Написать',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .underline,
+                                                        ),
+                                              ),
                                             ),
                                           ),
                                         ],

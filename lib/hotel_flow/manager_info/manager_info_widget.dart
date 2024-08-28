@@ -286,7 +286,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                               color: Color(0x00FFFFFF),
                             ),
                             child: Text(
-                              'Сеть / площадка',
+                              'Название отеля',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(

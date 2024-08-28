@@ -13,6 +13,15 @@ class HallSettingsModel extends FlutterFlowModel<HallSettingsWidget> {
 
   bool newCaterory = false;
 
+  List<int> servicesList = [];
+  void addToServicesList(int item) => servicesList.add(item);
+  void removeFromServicesList(int item) => servicesList.remove(item);
+  void removeAtIndexFromServicesList(int index) => servicesList.removeAt(index);
+  void insertAtIndexInServicesList(int index, int item) =>
+      servicesList.insert(index, item);
+  void updateServicesListAtIndex(int index, Function(int) updateFn) =>
+      servicesList[index] = updateFn(servicesList[index]);
+
   ///  State fields for stateful widgets in this component.
 
   Completer<List<ServiceCategoryRow>>? requestCompleter2;
@@ -23,6 +32,8 @@ class HallSettingsModel extends FlutterFlowModel<HallSettingsWidget> {
   String? Function(BuildContext, String?)? newCategoryTextControllerValidator;
   // Stores action output result for [Backend Call - Insert Row] action in Button widget.
   ServiceCategoryRow? newService;
+  // Stores action output result for [Backend Call - Insert Row] action in super_service_elment widget.
+  ServiceRow? newServiceHall;
 
   @override
   void initState(BuildContext context) {}

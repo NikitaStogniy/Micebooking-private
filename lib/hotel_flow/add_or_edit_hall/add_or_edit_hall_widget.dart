@@ -166,6 +166,9 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                           size: 24.0,
                         ),
                         onPressed: () async {
+                          _model.selectedServices = [0];
+                          _model.uploadedImages = [];
+                          setState(() {});
                           await widget.doneCallback?.call();
                         },
                       ),
@@ -2199,67 +2202,89 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                         mainAxisSize:
                                                             MainAxisSize.max,
                                                         children: [
-                                                          Theme(
-                                                            data: ThemeData(
-                                                              checkboxTheme:
-                                                                  CheckboxThemeData(
-                                                                visualDensity:
-                                                                    VisualDensity
-                                                                        .compact,
-                                                                materialTapTargetSize:
-                                                                    MaterialTapTargetSize
-                                                                        .shrinkWrap,
-                                                                shape:
-                                                                    RoundedRectangleBorder(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              4.0),
-                                                                ),
-                                                              ),
-                                                              unselectedWidgetColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                            ),
-                                                            child: Checkbox(
-                                                              value: _model
-                                                                      .checkboxValueMap[
-                                                                  listViewServiceRow] ??= false,
-                                                              onChanged:
-                                                                  (newValue) async {
-                                                                setState(() =>
-                                                                    _model.checkboxValueMap[
-                                                                            listViewServiceRow] =
-                                                                        newValue!);
-                                                                if (newValue!) {
-                                                                  _model.addToSelectedServices(
+                                                          InkWell(
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            onTap: () async {
+                                                              if (_model
+                                                                  .selectedServices
+                                                                  .contains(
                                                                       listViewServiceRow
-                                                                          .id);
-                                                                  setState(
-                                                                      () {});
-                                                                } else {
-                                                                  _model.removeFromSelectedServices(
-                                                                      listViewServiceRow
-                                                                          .id);
-                                                                  setState(
-                                                                      () {});
-                                                                }
-                                                              },
-                                                              side: BorderSide(
-                                                                width: 2,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                              ),
-                                                              activeColor:
+                                                                          .id)) {
+                                                                _model.removeFromSelectedServices(
+                                                                    listViewServiceRow
+                                                                        .id);
+                                                                setState(() {});
+                                                              } else {
+                                                                _model.addToSelectedServices(
+                                                                    listViewServiceRow
+                                                                        .id);
+                                                                setState(() {});
+                                                              }
+                                                            },
+                                                            child: Container(
+                                                              width: 20.0,
+                                                              height: 20.0,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color:
+                                                                    valueOrDefault<
+                                                                        Color>(
+                                                                  _model.selectedServices.contains(
+                                                                          listViewServiceRow
+                                                                              .id)
+                                                                      ? FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary
+                                                                      : Colors
+                                                                          .transparent,
                                                                   FlutterFlowTheme.of(
                                                                           context)
                                                                       .primary,
-                                                              checkColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .info,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            4.0),
+                                                                border:
+                                                                    Border.all(
+                                                                  color: _model
+                                                                          .selectedServices
+                                                                          .contains(listViewServiceRow
+                                                                              .id)
+                                                                      ? const Color(
+                                                                          0x00EEEEEE)
+                                                                      : const Color(
+                                                                          0xFF57636C),
+                                                                ),
+                                                              ),
+                                                              child: Visibility(
+                                                                visible: _model
+                                                                    .selectedServices
+                                                                    .contains(
+                                                                        listViewServiceRow
+                                                                            .id),
+                                                                child: const Align(
+                                                                  alignment:
+                                                                      AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Icon(
+                                                                    Icons
+                                                                        .check_rounded,
+                                                                    color: Color(
+                                                                        0xFFFAFAFA),
+                                                                    size: 16.0,
+                                                                  ),
+                                                                ),
+                                                              ),
                                                             ),
                                                           ),
                                                           Expanded(

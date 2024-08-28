@@ -1,5 +1,5 @@
 import '/backend/supabase/supabase.dart';
-import '/components/dropdown_comp_widget.dart';
+import '/components/food_position_element_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'dart:async';
@@ -60,11 +60,31 @@ class EditFoodModel extends FlutterFlowModel<EditFoodWidget> {
   void updateMenuTestAtIndex(int index, Function(int) updateFn) =>
       menuTest[index] = updateFn(menuTest[index]);
 
+  List<int> currentFoodId = [];
+  void addToCurrentFoodId(int item) => currentFoodId.add(item);
+  void removeFromCurrentFoodId(int item) => currentFoodId.remove(item);
+  void removeAtIndexFromCurrentFoodId(int index) =>
+      currentFoodId.removeAt(index);
+  void insertAtIndexInCurrentFoodId(int index, int item) =>
+      currentFoodId.insert(index, item);
+  void updateCurrentFoodIdAtIndex(int index, Function(int) updateFn) =>
+      currentFoodId[index] = updateFn(currentFoodId[index]);
+
+  int? menuCategoryId;
+
+  List<int> mergePosition = [];
+  void addToMergePosition(int item) => mergePosition.add(item);
+  void removeFromMergePosition(int item) => mergePosition.remove(item);
+  void removeAtIndexFromMergePosition(int index) =>
+      mergePosition.removeAt(index);
+  void insertAtIndexInMergePosition(int index, int item) =>
+      mergePosition.insert(index, item);
+  void updateMergePositionAtIndex(int index, Function(int) updateFn) =>
+      mergePosition[index] = updateFn(mergePosition[index]);
+
   ///  State fields for stateful widgets in this component.
 
-  Completer<List<FoodPositionRow>>? requestCompleter;
-  // Stores action output result for [Backend Call - Query Rows] action in edit_food widget.
-  List<ServiceCategoryRow>? foodInitialCategoty;
+  Completer<List<ServiceCategoryRow>>? requestCompleter1;
   // State field(s) for edit_name widget.
   FocusNode? editNameFocusNode;
   TextEditingController? editNameTextController;
@@ -78,21 +98,29 @@ class EditFoodModel extends FlutterFlowModel<EditFoodWidget> {
   FocusNode? editPriceFocusNode;
   TextEditingController? editPriceTextController;
   String? Function(BuildContext, String?)? editPriceTextControllerValidator;
-  // Models for dropdownComp dynamic component.
-  late FlutterFlowDynamicModels<DropdownCompModel> dropdownCompModels;
-  // State field(s) for AddMenuPosition widget.
-  FocusNode? addMenuPositionFocusNode;
-  TextEditingController? addMenuPositionTextController;
-  String? Function(BuildContext, String?)?
-      addMenuPositionTextControllerValidator;
+  // Models for food_position_element dynamic component.
+  late FlutterFlowDynamicModels<FoodPositionElementModel>
+      foodPositionElementModels;
+  // State field(s) for create_addmenu widget.
+  FocusNode? createAddmenuFocusNode;
+  TextEditingController? createAddmenuTextController;
+  String? Function(BuildContext, String?)? createAddmenuTextControllerValidator;
+  // State field(s) for menuCategory widget.
+  String? menuCategoryValue;
+  FormFieldController<String>? menuCategoryValueController;
+  // Stores action output result for [Backend Call - Query Rows] action in menuCategory widget.
+  List<ServiceCategoryRow>? categoryDrop;
+  Completer<List<ServiceCategoryRow>>? requestCompleter3;
   // Stores action output result for [Backend Call - Insert Row] action in Button widget.
-  FoodPositionRow? newRow;
+  FoodPositionRow? newPosition;
+  Completer<List<FoodPositionRow>>? requestCompleter2;
   // Stores action output result for [Backend Call - Update Row(s)] action in Button widget.
   List<FoodRow>? here;
 
   @override
   void initState(BuildContext context) {
-    dropdownCompModels = FlutterFlowDynamicModels(() => DropdownCompModel());
+    foodPositionElementModels =
+        FlutterFlowDynamicModels(() => FoodPositionElementModel());
   }
 
   @override
@@ -103,13 +131,13 @@ class EditFoodModel extends FlutterFlowModel<EditFoodWidget> {
     editPriceFocusNode?.dispose();
     editPriceTextController?.dispose();
 
-    dropdownCompModels.dispose();
-    addMenuPositionFocusNode?.dispose();
-    addMenuPositionTextController?.dispose();
+    foodPositionElementModels.dispose();
+    createAddmenuFocusNode?.dispose();
+    createAddmenuTextController?.dispose();
   }
 
   /// Additional helper methods.
-  Future waitForRequestCompleted({
+  Future waitForRequestCompleted1({
     double minWait = 0,
     double maxWait = double.infinity,
   }) async {
@@ -117,7 +145,37 @@ class EditFoodModel extends FlutterFlowModel<EditFoodWidget> {
     while (true) {
       await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = requestCompleter?.isCompleted ?? false;
+      final requestComplete = requestCompleter1?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
+  Future waitForRequestCompleted3({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = requestCompleter3?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
+  Future waitForRequestCompleted2({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = requestCompleter2?.isCompleted ?? false;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
         break;
       }

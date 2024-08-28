@@ -56,19 +56,12 @@ class AddOrEditRoomModel extends FlutterFlowModel<AddOrEditRoomWidget> {
   List<FFUploadedFile> uploadedLocalFiles = [];
   List<String> uploadedFileUrls = [];
 
-  // State field(s) for Checkbox widget.
-  Map<ServiceRow, bool> checkboxValueMap1 = {};
-  List<ServiceRow> get checkboxCheckedItems1 => checkboxValueMap1.entries
-      .where((e) => e.value)
-      .map((e) => e.key)
-      .toList();
-
   // State field(s) for count widget.
   FocusNode? countFocusNode;
   TextEditingController? countTextController;
   String? Function(BuildContext, String?)? countTextControllerValidator;
   // State field(s) for Checkbox widget.
-  bool? checkboxValue2;
+  bool? checkboxValue;
   // State field(s) for price widget.
   FocusNode? priceFocusNode;
   TextEditingController? priceTextController;

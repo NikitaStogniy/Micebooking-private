@@ -17,6 +17,15 @@ class RoomSettingsModel extends FlutterFlowModel<RoomSettingsWidget> {
 
   int? newServiceChosenCategory;
 
+  List<int> servicesList = [];
+  void addToServicesList(int item) => servicesList.add(item);
+  void removeFromServicesList(int item) => servicesList.remove(item);
+  void removeAtIndexFromServicesList(int index) => servicesList.removeAt(index);
+  void insertAtIndexInServicesList(int index, int item) =>
+      servicesList.insert(index, item);
+  void updateServicesListAtIndex(int index, Function(int) updateFn) =>
+      servicesList[index] = updateFn(servicesList[index]);
+
   ///  State fields for stateful widgets in this component.
 
   Completer<List<ServiceCategoryRow>>? requestCompleter2;
@@ -25,6 +34,8 @@ class RoomSettingsModel extends FlutterFlowModel<RoomSettingsWidget> {
   FocusNode? newCategoryFocusNode;
   TextEditingController? newCategoryTextController;
   String? Function(BuildContext, String?)? newCategoryTextControllerValidator;
+  // Stores action output result for [Backend Call - Insert Row] action in super_service_elment widget.
+  ServiceRow? newServiceRoom;
 
   @override
   void initState(BuildContext context) {}

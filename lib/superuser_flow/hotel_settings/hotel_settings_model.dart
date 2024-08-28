@@ -23,6 +23,15 @@ class HotelSettingsModel extends FlutterFlowModel<HotelSettingsWidget> {
 
   int? updater;
 
+  List<int> newServices = [];
+  void addToNewServices(int item) => newServices.add(item);
+  void removeFromNewServices(int item) => newServices.remove(item);
+  void removeAtIndexFromNewServices(int index) => newServices.removeAt(index);
+  void insertAtIndexInNewServices(int index, int item) =>
+      newServices.insert(index, item);
+  void updateNewServicesAtIndex(int index, Function(int) updateFn) =>
+      newServices[index] = updateFn(newServices[index]);
+
   ///  State fields for stateful widgets in this component.
 
   Completer<List<ServiceCategoryRow>>? requestCompleter1;
@@ -31,6 +40,8 @@ class HotelSettingsModel extends FlutterFlowModel<HotelSettingsWidget> {
   FocusNode? newCategoryFocusNode;
   TextEditingController? newCategoryTextController;
   String? Function(BuildContext, String?)? newCategoryTextControllerValidator;
+  // Stores action output result for [Backend Call - Insert Row] action in super_service_elment widget.
+  ServiceRow? newService;
   Completer<List<CityRow>>? requestCompleter4;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;

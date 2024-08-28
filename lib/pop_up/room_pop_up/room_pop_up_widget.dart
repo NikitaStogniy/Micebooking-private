@@ -1,3 +1,4 @@
+import '/backend/schema/enums/enums.dart';
 import '/backend/supabase/supabase.dart';
 import '/empty_states/images_empty/images_empty_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -6,6 +7,7 @@ import '/pop_up/pop_up_images/pop_up_images_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'room_pop_up_model.dart';
 export 'room_pop_up_model.dart';
 
@@ -496,131 +498,6 @@ class _RoomPopUpWidgetState extends State<RoomPopUpWidget> {
                                         ),
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 32.0, 0.0, 0.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Text(
-                                        'Удобства в номере:',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Commissioner',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              fontSize: 18.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 20.0, 0.0, 0.0),
-                                  child: FutureBuilder<List<ServiceRow>>(
-                                    future: ServiceTable().queryRows(
-                                      queryFn: (q) => q.in_(
-                                        'id',
-                                        widget.room!.services,
-                                      ),
-                                    ),
-                                    builder: (context, snapshot) {
-                                      // Customize what your widget looks like when it's loading.
-                                      if (!snapshot.hasData) {
-                                        return Center(
-                                          child: SizedBox(
-                                            width: 50.0,
-                                            height: 50.0,
-                                            child: CircularProgressIndicator(
-                                              valueColor:
-                                                  AlwaysStoppedAnimation<Color>(
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      }
-                                      List<ServiceRow> columnServiceRowList =
-                                          snapshot.data!;
-
-                                      return Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: List.generate(
-                                            columnServiceRowList.length,
-                                            (columnIndex) {
-                                          final columnServiceRow =
-                                              columnServiceRowList[columnIndex];
-                                          return Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 16.0),
-                                            child: Text(
-                                              valueOrDefault<String>(
-                                                columnServiceRow.name,
-                                                '0',
-                                              ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Commissioner',
-                                                    fontSize: 18.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                            ),
-                                          );
-                                        }),
-                                      );
-                                    },
-                                  ),
-                                ),
-                                Wrap(
-                                  spacing: 16.0,
-                                  runSpacing: 0.0,
-                                  alignment: WrapAlignment.start,
-                                  crossAxisAlignment: WrapCrossAlignment.center,
-                                  direction: Axis.horizontal,
-                                  runAlignment: WrapAlignment.start,
-                                  verticalDirection: VerticalDirection.down,
-                                  clipBehavior: Clip.none,
-                                  children: [
-                                    Text(
-                                      'Цена:',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Commissioner',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            fontSize: 18.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                    Text(
-                                      '${widget.room?.price?.toString()} / сутки',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Commissioner',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            fontSize: 30.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                  ],
-                                ),
                               ],
                             ),
                           ),
@@ -741,9 +618,11 @@ class _RoomPopUpWidgetState extends State<RoomPopUpWidget> {
                                   );
                                 },
                               ),
-                              if (widget.room!.images.length > 1)
-                                Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                              Container(
+                                height: 260.0,
+                                decoration: const BoxDecoration(),
+                                child: Visibility(
+                                  visible: widget.room!.images.length > 1,
                                   child: Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 8.0, 0.0),
@@ -835,11 +714,12 @@ class _RoomPopUpWidgetState extends State<RoomPopUpWidget> {
                                     ),
                                   ),
                                 ),
+                              ),
                               if (widget.room!.images.isNotEmpty)
                                 Builder(
                                   builder: (context) => Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        8.0, 16.0, 0.0, 0.0),
+                                        8.0, 8.0, 0.0, 0.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
                                       focusColor: Colors.transparent,
@@ -885,11 +765,15 @@ class _RoomPopUpWidgetState extends State<RoomPopUpWidget> {
                                               .secondaryBackground,
                                           shape: BoxShape.circle,
                                         ),
-                                        child: Icon(
-                                          Icons.add_rounded,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          size: 20.0,
+                                        child: Align(
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
+                                          child: Icon(
+                                            Icons.add_rounded,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 20.0,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -901,6 +785,220 @@ class _RoomPopUpWidgetState extends State<RoomPopUpWidget> {
                       ],
                     ),
                   ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        'Удобства в номере:',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Commissioner',
+                              color: FlutterFlowTheme.of(context).primary,
+                              fontSize: 18.0,
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.w600,
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                  child: FutureBuilder<List<ServiceCategoryRow>>(
+                    future: ServiceCategoryTable().queryRows(
+                      queryFn: (q) => q
+                          .eq(
+                            'type',
+                            EnumType.ROOM.name,
+                          )
+                          .overlaps(
+                            'services_id',
+                            widget.room?.services,
+                          ),
+                    ),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+                      List<ServiceCategoryRow> containerServiceCategoryRowList =
+                          snapshot.data!;
+
+                      return Container(
+                        width: MediaQuery.sizeOf(context).width * 0.65,
+                        decoration: const BoxDecoration(),
+                        child: Container(
+                          decoration: const BoxDecoration(),
+                          child: Builder(
+                            builder: (context) {
+                              final categories =
+                                  containerServiceCategoryRowList.toList();
+
+                              return MasonryGridView.builder(
+                                gridDelegate:
+                                    SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount:
+                                      MediaQuery.sizeOf(context).width < 1000.0
+                                          ? 1
+                                          : 2,
+                                ),
+                                crossAxisSpacing: 40.0,
+                                mainAxisSpacing: 40.0,
+                                itemCount: categories.length,
+                                shrinkWrap: true,
+                                itemBuilder: (context, categoriesIndex) {
+                                  final categoriesItem =
+                                      categories[categoriesIndex];
+                                  return FutureBuilder<List<ServiceRow>>(
+                                    future: ServiceTable().queryRows(
+                                      queryFn: (q) => q
+                                          .eq(
+                                            'category',
+                                            categoriesItem.id,
+                                          )
+                                          .in_(
+                                            'id',
+                                            widget.room!.services,
+                                          ),
+                                    ),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50.0,
+                                            height: 50.0,
+                                            child: CircularProgressIndicator(
+                                              valueColor:
+                                                  AlwaysStoppedAnimation<Color>(
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      List<ServiceRow> containerServiceRowList =
+                                          snapshot.data!;
+
+                                      return Container(
+                                        decoration: const BoxDecoration(),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              valueOrDefault<String>(
+                                                categoriesItem.name,
+                                                'Ошибка',
+                                              ),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Commissioner',
+                                                    fontSize: 18.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                            ),
+                                            Builder(
+                                              builder: (context) {
+                                                final services =
+                                                    containerServiceRowList
+                                                        .toList();
+
+                                                return Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: List.generate(
+                                                      services.length,
+                                                      (servicesIndex) {
+                                                    final servicesItem =
+                                                        services[servicesIndex];
+                                                    return Text(
+                                                      valueOrDefault<String>(
+                                                        servicesItem.name,
+                                                        'Без названия',
+                                                      ),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Commissioner',
+                                                            fontSize: 16.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
+                                                          ),
+                                                    );
+                                                  }).divide(
+                                                      const SizedBox(height: 16.0)),
+                                                );
+                                              },
+                                            ),
+                                          ].divide(const SizedBox(height: 24.0)),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                Wrap(
+                  spacing: 16.0,
+                  runSpacing: 0.0,
+                  alignment: WrapAlignment.start,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  direction: Axis.horizontal,
+                  runAlignment: WrapAlignment.start,
+                  verticalDirection: VerticalDirection.down,
+                  clipBehavior: Clip.none,
+                  children: [
+                    Text(
+                      'Цена:',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Commissioner',
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            fontSize: 18.0,
+                            letterSpacing: 0.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                    Text(
+                      '${widget.room?.price?.toString()} / сутки',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Commissioner',
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            fontSize: 30.0,
+                            letterSpacing: 0.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

@@ -179,7 +179,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                   setState(() {});
                                 },
                                 child: Text(
-                                  'Отели',
+                                  'Отель',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
