@@ -54,7 +54,7 @@ class _HallFoodRoomEmptyWidgetState extends State<HallFoodRoomEmptyWidget> {
         mainAxisSize: MainAxisSize.max,
         children: [
           Text(
-            'Ничего нет. Добавьте первый ${() {
+            'Добавьте первый ${() {
               if (widget.type == EnumType.HALL) {
                 return ' зал';
               } else if (widget.type == EnumType.FOOD) {

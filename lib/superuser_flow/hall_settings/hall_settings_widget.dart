@@ -4,6 +4,7 @@ import '/cms/super_service_elment/super_service_elment_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'hall_settings_model.dart';
@@ -60,10 +61,12 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                   future: (_model.requestCompleter2 ??=
                           Completer<List<ServiceCategoryRow>>()
                             ..complete(ServiceCategoryTable().queryRows(
-                              queryFn: (q) => q.eq(
-                                'type',
-                                EnumType.HALL.name,
-                              ),
+                              queryFn: (q) => q
+                                  .eq(
+                                    'type',
+                                    EnumType.HALL.name,
+                                  )
+                                  .order('created_at', ascending: true),
                             )))
                       .future,
                   builder: (context, snapshot) {
@@ -508,10 +511,12 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                           future: (_model.requestCompleter1 ??=
                                   Completer<List<ServiceCategoryRow>>()
                                     ..complete(ServiceCategoryTable().queryRows(
-                                      queryFn: (q) => q.eq(
-                                        'type',
-                                        EnumType.HALL.name,
-                                      ),
+                                      queryFn: (q) => q
+                                          .eq(
+                                            'type',
+                                            EnumType.HALL.name,
+                                          )
+                                          .order('created_at', ascending: true),
                                     )))
                               .future,
                           builder: (context, snapshot) {
@@ -552,15 +557,36 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                                   categoryId:
                                       serviscesListServiceCategoryRow.id,
                                   createNewService: (name) async {
-                                    await ServiceTable().insert({
+                                    _model.newServiceHall =
+                                        await ServiceTable().insert({
                                       'name': name,
                                       'category':
                                           serviscesListServiceCategoryRow.id,
                                       'type': EnumType.HALL.name,
                                     });
+                                    _model.addToServicesList(
+                                        _model.newServiceHall!.id);
+                                    setState(() {});
+                                    await ServiceCategoryTable().update(
+                                      data: {
+                                        'services_id': functions.mergeListsInt(
+                                            serviscesListServiceCategoryRow
+                                                .servicesId
+                                                .toList(),
+                                            _model.servicesList.toList()),
+                                      },
+                                      matchingRows: (rows) => rows.eq(
+                                        'id',
+                                        serviscesListServiceCategoryRow.id,
+                                      ),
+                                    );
+                                    _model.servicesList = [];
+                                    setState(() {});
                                     setState(
                                         () => _model.requestCompleter1 = null);
                                     await _model.waitForRequestCompleted1();
+
+                                    setState(() {});
                                   },
                                 );
                               }).divide(const SizedBox(height: 40.0)),

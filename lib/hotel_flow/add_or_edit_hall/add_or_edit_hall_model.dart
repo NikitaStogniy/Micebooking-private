@@ -102,11 +102,6 @@ class AddOrEditHallModel extends FlutterFlowModel<AddOrEditHallWidget> {
   FocusNode? furshetFocusNode;
   TextEditingController? furshetTextController;
   String? Function(BuildContext, String?)? furshetTextControllerValidator;
-  // State field(s) for Checkbox widget.
-  Map<ServiceRow, bool> checkboxValueMap = {};
-  List<ServiceRow> get checkboxCheckedItems =>
-      checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
-
   // State field(s) for price widget.
   FocusNode? priceFocusNode;
   TextEditingController? priceTextController;

@@ -15,6 +15,7 @@ class ClientHomeModel extends FlutterFlowModel<ClientHomeWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Model for Menu component.
   late MenuModel menuModel;
   // Model for Client_profile component.

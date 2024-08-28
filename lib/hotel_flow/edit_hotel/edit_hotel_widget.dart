@@ -1452,10 +1452,12 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                         decoration: const BoxDecoration(),
                         child: FutureBuilder<List<ServiceCategoryRow>>(
                           future: ServiceCategoryTable().queryRows(
-                            queryFn: (q) => q.eq(
-                              'type',
-                              EnumType.HOTEL.name,
-                            ),
+                            queryFn: (q) => q
+                                .eq(
+                                  'type',
+                                  EnumType.HOTEL.name,
+                                )
+                                .order('created_at'),
                           ),
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.

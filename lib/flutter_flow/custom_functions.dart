@@ -226,6 +226,14 @@ double? sumList(List<double> choseList) {
   return sum;
 }
 
+List<String>? mergeListsCopy(
+  List<String> list1,
+  List<String> list2,
+) {
+  list2.addAll(list1); // Добавляем все элементы из list1 в list2
+  return list2;
+}
+
 List<String>? mergeLists(
   List<String> list1,
   List<String> list2,

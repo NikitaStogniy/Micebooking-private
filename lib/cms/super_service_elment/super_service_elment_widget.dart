@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'super_service_elment_model.dart';
 export 'super_service_elment_model.dart';
 
@@ -103,10 +104,12 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
         FutureBuilder<List<ServiceRow>>(
           future: (_model.requestCompleter ??= Completer<List<ServiceRow>>()
                 ..complete(ServiceTable().queryRows(
-                  queryFn: (q) => q.eq(
-                    'category',
-                    widget.categoryId,
-                  ),
+                  queryFn: (q) => q
+                      .eq(
+                        'category',
+                        widget.categoryId,
+                      )
+                      .order('created_at', ascending: true),
                 )))
               .future,
           builder: (context, snapshot) {
@@ -136,30 +139,40 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
                     Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
-                      child: Container(
-                        width: 400.0,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFF0F0FA),
-                          borderRadius: BorderRadius.circular(40.0),
-                        ),
-                        child: Align(
-                          alignment: const AlignmentDirectional(-1.0, 0.0),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                20.0, 4.0, 0.0, 4.0),
-                            child: Text(
-                              valueOrDefault<String>(
-                                hotelServiceRow.name,
-                                'Без названия',
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await Clipboard.setData(
+                              ClipboardData(text: hotelServiceRow.name!));
+                        },
+                        child: Container(
+                          width: 400.0,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFF0F0FA),
+                            borderRadius: BorderRadius.circular(40.0),
+                          ),
+                          child: Align(
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 4.0, 0.0, 4.0),
+                              child: Text(
+                                valueOrDefault<String>(
+                                  hotelServiceRow.name,
+                                  'Без названия',
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Commissioner',
+                                      fontSize: 14.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                               ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Commissioner',
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
-                                  ),
                             ),
                           ),
                         ),

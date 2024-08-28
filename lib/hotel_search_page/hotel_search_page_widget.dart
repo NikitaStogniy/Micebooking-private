@@ -3072,10 +3072,15 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                 List<ServiceCategoryRow>>(
                                               future: ServiceCategoryTable()
                                                   .queryRows(
-                                                queryFn: (q) => q.eq(
-                                                  'type',
-                                                  EnumType.FOOD.name,
-                                                ),
+                                                queryFn: (q) => q
+                                                    .eq(
+                                                      'type',
+                                                      EnumType.FOOD.name,
+                                                    )
+                                                    .overlaps(
+                                                      'services_id',
+                                                      foodChoseHotelRow?.food,
+                                                    ),
                                               ),
                                               builder: (context, snapshot) {
                                                 // Customize what your widget looks like when it's loading.

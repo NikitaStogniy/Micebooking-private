@@ -422,8 +422,7 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
 
                                                 return Text(
                                                   valueOrDefault<String>(
-                                                    textServiceCategoryRow
-                                                        ?.name,
+                                                    foodItem.categoryName,
                                                     'Без категории',
                                                   ),
                                                   style: FlutterFlowTheme.of(

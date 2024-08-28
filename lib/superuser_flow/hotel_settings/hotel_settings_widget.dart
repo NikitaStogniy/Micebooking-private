@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pop_up/confirm_action/confirm_action_widget.dart';
 import '/superuser_flow/add_new/add_new_widget.dart';
 import '/superuser_flow/info_component/info_component_widget.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -138,10 +139,13 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                 List<ServiceCategoryRow>>()
                                               ..complete(ServiceCategoryTable()
                                                   .queryRows(
-                                                queryFn: (q) => q.eq(
-                                                  'type',
-                                                  EnumType.HOTEL.name,
-                                                ),
+                                                queryFn: (q) => q
+                                                    .eq(
+                                                      'type',
+                                                      EnumType.HOTEL.name,
+                                                    )
+                                                    .order('created_at',
+                                                        ascending: true),
                                               )))
                                             .future,
                                     builder: (context, snapshot) {
@@ -635,10 +639,13 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                 ..complete(
                                                     ServiceCategoryTable()
                                                         .queryRows(
-                                                  queryFn: (q) => q.eq(
-                                                    'type',
-                                                    EnumType.HOTEL.name,
-                                                  ),
+                                                  queryFn: (q) => q
+                                                      .eq(
+                                                        'type',
+                                                        EnumType.HOTEL.name,
+                                                      )
+                                                      .order('created_at',
+                                                          ascending: true),
                                                 )))
                                           .future,
                                       builder: (context, snapshot) {
@@ -687,17 +694,44 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                   serviscesListServiceCategoryRow
                                                       .id,
                                               createNewService: (name) async {
-                                                await ServiceTable().insert({
+                                                _model.newService =
+                                                    await ServiceTable()
+                                                        .insert({
                                                   'name': name,
                                                   'category':
                                                       serviscesListServiceCategoryRow
                                                           .id,
                                                   'type': EnumType.HOTEL.name,
                                                 });
+                                                _model.addToNewServices(
+                                                    _model.newService!.id);
+                                                setState(() {});
+                                                await ServiceCategoryTable()
+                                                    .update(
+                                                  data: {
+                                                    'services_id':
+                                                        functions.mergeListsInt(
+                                                            serviscesListServiceCategoryRow
+                                                                .servicesId
+                                                                .toList(),
+                                                            _model.newServices
+                                                                .toList()),
+                                                  },
+                                                  matchingRows: (rows) =>
+                                                      rows.eq(
+                                                    'id',
+                                                    serviscesListServiceCategoryRow
+                                                        .id,
+                                                  ),
+                                                );
+                                                _model.newServices = [];
+                                                setState(() {});
                                                 setState(() => _model
                                                     .requestCompleter2 = null);
                                                 await _model
                                                     .waitForRequestCompleted2();
+
+                                                setState(() {});
                                               },
                                             );
                                           }).divide(const SizedBox(height: 40.0)),

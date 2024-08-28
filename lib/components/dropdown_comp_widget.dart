@@ -105,11 +105,11 @@ class _DropdownCompWidgetState extends State<DropdownCompWidget> {
               setState(() {});
             },
             width: 285.0,
-            height: 42.0,
+            height: 48.0,
             textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                   fontFamily: 'Commissioner',
+                  fontSize: 16.0,
                   letterSpacing: 0.0,
-                  lineHeight: 0.01,
                 ),
             hintText: 'Категория...',
             icon: Icon(

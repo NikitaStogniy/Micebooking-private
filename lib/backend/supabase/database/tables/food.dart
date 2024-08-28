@@ -31,4 +31,7 @@ class FoodRow extends SupabaseDataRow {
 
   int? get category => getField<int>('category');
   set category(int? value) => setField<int>('category', value);
+
+  String? get categoryName => getField<String>('category_name');
+  set categoryName(String? value) => setField<String>('category_name', value);
 }

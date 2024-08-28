@@ -1,3 +1,4 @@
+import '/backend/schema/enums/enums.dart';
 import '/backend/supabase/supabase.dart';
 import '/empty_states/images_empty/images_empty_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -338,10 +339,12 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                         );
                                       },
                                     ),
-                                    if (widget.hall!.images.length > 1)
-                                      Align(
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                    Container(
+                                      height: 260.0,
+                                      decoration: const BoxDecoration(),
+                                      child: Visibility(
+                                        visible:
+                                            widget.hall!.images.length > 1,
                                         child: Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
@@ -450,12 +453,13 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                           ),
                                         ),
                                       ),
+                                    ),
                                     if (widget.hall!.images.isNotEmpty)
                                       Builder(
                                         builder: (context) => Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  8.0, 16.0, 0.0, 0.0),
+                                                  8.0, 8.0, 0.0, 0.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
                                             focusColor: Colors.transparent,
@@ -505,12 +509,16 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                         .secondaryBackground,
                                                 shape: BoxShape.circle,
                                               ),
-                                              child: Icon(
-                                                Icons.add_rounded,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                size: 20.0,
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: Icon(
+                                                  Icons.add_rounded,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  size: 20.0,
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -937,87 +945,178 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
-                          valueOrDefault<double>(
-                            MediaQuery.sizeOf(context).width < 1000.0
-                                ? 16.0
-                                : 0.0,
-                            0.0,
-                          ),
-                          24.0,
-                          valueOrDefault<double>(
-                            MediaQuery.sizeOf(context).width < 1000.0
-                                ? 16.0
-                                : 0.0,
-                            0.0,
-                          ),
-                          0.0),
-                      child: Container(
-                        width: MediaQuery.sizeOf(context).width * 0.6,
-                        decoration: const BoxDecoration(),
-                        child: FutureBuilder<List<ServiceRow>>(
-                          future: ServiceTable().queryRows(
-                            queryFn: (q) => q.in_(
-                              'id',
-                              widget.hall!.services,
-                            ),
-                          ),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 50.0,
-                                  height: 50.0,
-                                  child: CircularProgressIndicator(
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                      FlutterFlowTheme.of(context).primary,
-                                    ),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                      child: FutureBuilder<List<ServiceCategoryRow>>(
+                        future: ServiceCategoryTable().queryRows(
+                          queryFn: (q) => q
+                              .eq(
+                                'type',
+                                EnumType.HALL.name,
+                              )
+                              .overlaps(
+                                'services_id',
+                                widget.hall?.services,
+                              ),
+                        ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
                                   ),
                                 ),
-                              );
-                            }
-                            List<ServiceRow> staggeredViewServiceRowList =
-                                snapshot.data!;
-
-                            return MasonryGridView.builder(
-                              gridDelegate:
-                                  SliverSimpleGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount:
-                                    MediaQuery.sizeOf(context).width > 1000.0
-                                        ? 2
-                                        : 1,
                               ),
-                              crossAxisSpacing: 40.0,
-                              mainAxisSpacing: 20.0,
-                              itemCount: staggeredViewServiceRowList.length,
-                              shrinkWrap: true,
-                              itemBuilder: (context, staggeredViewIndex) {
-                                final staggeredViewServiceRow =
-                                    staggeredViewServiceRowList[
-                                        staggeredViewIndex];
-                                return Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 16.0),
-                                  child: Text(
-                                    valueOrDefault<String>(
-                                      staggeredViewServiceRow.name,
-                                      '0',
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Commissioner',
-                                          fontSize: 18.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                  ),
-                                );
-                              },
                             );
-                          },
-                        ),
+                          }
+                          List<ServiceCategoryRow>
+                              containerServiceCategoryRowList = snapshot.data!;
+
+                          return Container(
+                            width: MediaQuery.sizeOf(context).width * 0.65,
+                            decoration: const BoxDecoration(),
+                            child: Container(
+                              decoration: const BoxDecoration(),
+                              child: Builder(
+                                builder: (context) {
+                                  final categories =
+                                      containerServiceCategoryRowList.toList();
+
+                                  return MasonryGridView.builder(
+                                    gridDelegate:
+                                        SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount:
+                                          MediaQuery.sizeOf(context).width <
+                                                  1000.0
+                                              ? 1
+                                              : 2,
+                                    ),
+                                    crossAxisSpacing: 40.0,
+                                    mainAxisSpacing: 40.0,
+                                    itemCount: categories.length,
+                                    shrinkWrap: true,
+                                    itemBuilder: (context, categoriesIndex) {
+                                      final categoriesItem =
+                                          categories[categoriesIndex];
+                                      return FutureBuilder<List<ServiceRow>>(
+                                        future: ServiceTable().queryRows(
+                                          queryFn: (q) => q
+                                              .eq(
+                                                'category',
+                                                categoriesItem.id,
+                                              )
+                                              .in_(
+                                                'id',
+                                                widget.hall!.services,
+                                              ),
+                                        ),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50.0,
+                                                height: 50.0,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                          Color>(
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          List<ServiceRow>
+                                              containerServiceRowList =
+                                              snapshot.data!;
+
+                                          return Container(
+                                            decoration: const BoxDecoration(),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  valueOrDefault<String>(
+                                                    categoriesItem.name,
+                                                    'Ошибка',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        fontSize: 18.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                ),
+                                                Builder(
+                                                  builder: (context) {
+                                                    final services =
+                                                        containerServiceRowList
+                                                            .toList();
+
+                                                    return Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: List.generate(
+                                                          services.length,
+                                                          (servicesIndex) {
+                                                        final servicesItem =
+                                                            services[
+                                                                servicesIndex];
+                                                        return Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            servicesItem.name,
+                                                            'Без названия',
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Commissioner',
+                                                                fontSize: 16.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
+                                                        );
+                                                      }).divide(const SizedBox(
+                                                          height: 16.0)),
+                                                    );
+                                                  },
+                                                ),
+                                              ].divide(const SizedBox(height: 24.0)),
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
                     if (responsiveVisibility(
