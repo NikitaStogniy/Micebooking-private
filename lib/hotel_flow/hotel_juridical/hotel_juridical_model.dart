@@ -23,6 +23,11 @@ class HotelJuridicalModel extends FlutterFlowModel<HotelJuridicalWidget> {
   TextEditingController? phoneTextController;
   final phoneMask = MaskTextInputFormatter(mask: '+# (###) ###-##-##');
   String? Function(BuildContext, String?)? phoneTextControllerValidator;
+  // State field(s) for phone_extra widget.
+  FocusNode? phoneExtraFocusNode;
+  TextEditingController? phoneExtraTextController;
+  final phoneExtraMask = MaskTextInputFormatter(mask: '+# (###) ###-##-##');
+  String? Function(BuildContext, String?)? phoneExtraTextControllerValidator;
   // State field(s) for jur_name widget.
   FocusNode? jurNameFocusNode;
   TextEditingController? jurNameTextController;
@@ -131,6 +136,9 @@ class HotelJuridicalModel extends FlutterFlowModel<HotelJuridicalWidget> {
 
     phoneFocusNode?.dispose();
     phoneTextController?.dispose();
+
+    phoneExtraFocusNode?.dispose();
+    phoneExtraTextController?.dispose();
 
     jurNameFocusNode?.dispose();
     jurNameTextController?.dispose();

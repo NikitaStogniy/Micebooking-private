@@ -68,7 +68,7 @@ class SearchClientsCall {
     return ApiManager.instance.makeApiCall(
       callName: 'search clients',
       apiUrl:
-          'https://supabase.micebooking.ru/rest/v1/users?network=ilike.*$searchString*&select=*',
+          'https://supabase.micebooking.ru/rest/v1/users?network=ilike.*$searchString*&role=eq.CLIENT&select=*',
       callType: ApiCallType.GET,
       headers: {
         'apikey':

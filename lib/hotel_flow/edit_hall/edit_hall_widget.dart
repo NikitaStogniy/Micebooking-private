@@ -296,7 +296,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                             width: 200.0,
                             decoration: const BoxDecoration(),
                             child: Text(
-                              'Название зала',
+                              'Название зала*',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -388,7 +388,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 8.0, 0.0, 0.0),
                               child: Text(
-                                'Описание зала',
+                                'Описание зала*',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -483,7 +483,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                             child: Align(
                               alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: Text(
-                                'Фотографии',
+                                'Фотографии*',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -2749,7 +2749,8 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                         (_model.banketTextController.text ==
                                             '0') &&
                                         (_model.furshetTextController.text ==
-                                            '0')))
+                                            '0')) ||
+                                    (_model.uploadedImages.isEmpty))
                                 ? null
                                 : () async {
                                     await showDialog(

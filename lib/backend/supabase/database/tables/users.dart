@@ -70,4 +70,7 @@ class UsersRow extends SupabaseDataRow {
 
   String? get jobTitle => getField<String>('jobTitle');
   set jobTitle(String? value) => setField<String>('jobTitle', value);
+
+  String? get extraPhone => getField<String>('extra_phone');
+  set extraPhone(String? value) => setField<String>('extra_phone', value);
 }

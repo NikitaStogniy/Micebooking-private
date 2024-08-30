@@ -156,182 +156,197 @@ class _ProfileRequestsComponentWidgetState
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  FutureBuilder<List<UsersRow>>(
-                    future: UsersTable().querySingleRow(
-                      queryFn: (q) => q.in_(
-                        'uid',
-                        widget.hotels!.ownerId,
+                  Expanded(
+                    flex: 3,
+                    child: FutureBuilder<List<UsersRow>>(
+                      future: UsersTable().querySingleRow(
+                        queryFn: (q) => q.in_(
+                          'uid',
+                          widget.hotels!.ownerId,
+                        ),
                       ),
-                    ),
-                    builder: (context, snapshot) {
-                      // Customize what your widget looks like when it's loading.
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: SizedBox(
-                            width: 50.0,
-                            height: 50.0,
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                FlutterFlowTheme.of(context).primary,
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50.0,
+                              height: 50.0,
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  FlutterFlowTheme.of(context).primary,
+                                ),
                               ),
                             ),
-                          ),
-                        );
-                      }
-                      List<UsersRow> rowUsersRowList = snapshot.data!;
+                          );
+                        }
+                        List<UsersRow> rowUsersRowList = snapshot.data!;
 
-                      final rowUsersRow = rowUsersRowList.isNotEmpty
-                          ? rowUsersRowList.first
-                          : null;
+                        final rowUsersRow = rowUsersRowList.isNotEmpty
+                            ? rowUsersRowList.first
+                            : null;
 
-                      return Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Text(
-                            '${valueOrDefault<String>(
-                              rowUsersRow?.email,
-                              'Ошибка почты',
-                            )}, ${valueOrDefault<String>(
-                              rowUsersRow?.phone,
-                              'Телефон не указан',
-                            )}',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Commissioner',
-                                  fontSize: 20.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Theme(
-                            data: ThemeData(
-                              checkboxTheme: CheckboxThemeData(
-                                visualDensity: VisualDensity.compact,
-                                materialTapTargetSize:
-                                    MaterialTapTargetSize.shrinkWrap,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4.0),
-                                ),
-                              ),
-                              unselectedWidgetColor:
-                                  FlutterFlowTheme.of(context).secondaryText,
-                            ),
-                            child: Checkbox(
-                              value: _model.checkboxValue1 ??=
-                                  _model.completeOnly == true,
-                              onChanged: (newValue) async {
-                                setState(
-                                    () => _model.checkboxValue1 = newValue!);
-                                if (newValue!) {
-                                  _model.completeOnly = true;
-                                  setState(() {});
-                                } else {
-                                  _model.completeOnly = false;
-                                  setState(() {});
-                                }
-                              },
-                              side: BorderSide(
-                                width: 2,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                              ),
-                              activeColor: FlutterFlowTheme.of(context).primary,
-                              checkColor: FlutterFlowTheme.of(context).info,
-                            ),
-                          ),
-                          Text(
-                            'Показать только состоявшиеся мероприятия',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Commissioner',
-                                  fontSize: 18.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                          ),
-                        ].divide(const SizedBox(width: 14.0)),
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          FlutterFlowIconButton(
-                            borderColor: FlutterFlowTheme.of(context).primary,
-                            borderRadius: 20.0,
-                            borderWidth: 1.0,
-                            buttonSize: 32.0,
-                            fillColor: FlutterFlowTheme.of(context).primary,
-                            icon: Icon(
-                              Icons.arrow_back_ios_new_rounded,
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              size: 16.0,
-                            ),
-                            onPressed: () async {
-                              _model.currentDate =
-                                  functions.addOrSubtractMonthFromDate(
-                                      _model.currentDate!, -1);
-                              _model.formatedDate = functions
-                                  .formatMonthYear(_model.currentDate!);
-                              setState(() {});
-                            },
-                          ),
-                          Container(
-                            width: 150.0,
-                            decoration: const BoxDecoration(),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  _model.formatedDate,
+                        return Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Expanded(
+                              child: Container(
+                                width: 250.0,
+                                decoration: const BoxDecoration(),
+                                child: Text(
+                                  '${valueOrDefault<String>(
+                                    rowUsersRow?.email,
+                                    'Ошибка почты',
+                                  )}, ${valueOrDefault<String>(
+                                    rowUsersRow?.phone,
+                                    'Телефон не указан',
+                                  )}, ${widget.hotels?.address}',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Commissioner',
-                                        fontSize: 18.0,
+                                        fontSize: 20.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
-                          FlutterFlowIconButton(
-                            borderColor: FlutterFlowTheme.of(context).primary,
-                            borderRadius: 20.0,
-                            borderWidth: 1.0,
-                            buttonSize: 32.0,
-                            fillColor: FlutterFlowTheme.of(context).primary,
-                            icon: Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              size: 16.0,
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Theme(
+                              data: ThemeData(
+                                checkboxTheme: CheckboxThemeData(
+                                  visualDensity: VisualDensity.compact,
+                                  materialTapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(4.0),
+                                  ),
+                                ),
+                                unselectedWidgetColor:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                              ),
+                              child: Checkbox(
+                                value: _model.checkboxValue1 ??=
+                                    _model.completeOnly == true,
+                                onChanged: (newValue) async {
+                                  setState(
+                                      () => _model.checkboxValue1 = newValue!);
+                                  if (newValue!) {
+                                    _model.completeOnly = true;
+                                    setState(() {});
+                                  } else {
+                                    _model.completeOnly = false;
+                                    setState(() {});
+                                  }
+                                },
+                                side: BorderSide(
+                                  width: 2,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                ),
+                                activeColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                checkColor: FlutterFlowTheme.of(context).info,
+                              ),
                             ),
-                            onPressed: () async {
-                              _model.currentDate =
-                                  functions.addOrSubtractMonthFromDate(
-                                      _model.currentDate!, 1);
-                              _model.formatedDate = functions
-                                  .formatMonthYear(_model.currentDate!);
-                              setState(() {});
-                            },
-                          ),
-                        ].divide(const SizedBox(width: 16.0)),
-                      ),
-                    ].divide(const SizedBox(width: 40.0)),
+                            Expanded(
+                              child: Text(
+                                'Показать только состоявшиеся мероприятия',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Commissioner',
+                                      fontSize: 18.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                              ),
+                            ),
+                          ].divide(const SizedBox(width: 14.0)),
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            FlutterFlowIconButton(
+                              borderColor: FlutterFlowTheme.of(context).primary,
+                              borderRadius: 20.0,
+                              borderWidth: 1.0,
+                              buttonSize: 32.0,
+                              fillColor: FlutterFlowTheme.of(context).primary,
+                              icon: Icon(
+                                Icons.arrow_back_ios_new_rounded,
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                size: 16.0,
+                              ),
+                              onPressed: () async {
+                                _model.currentDate =
+                                    functions.addOrSubtractMonthFromDate(
+                                        _model.currentDate!, -1);
+                                _model.formatedDate = functions
+                                    .formatMonthYear(_model.currentDate!);
+                                setState(() {});
+                              },
+                            ),
+                            Container(
+                              width: 150.0,
+                              decoration: const BoxDecoration(),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    _model.formatedDate,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Commissioner',
+                                          fontSize: 18.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            FlutterFlowIconButton(
+                              borderColor: FlutterFlowTheme.of(context).primary,
+                              borderRadius: 20.0,
+                              borderWidth: 1.0,
+                              buttonSize: 32.0,
+                              fillColor: FlutterFlowTheme.of(context).primary,
+                              icon: Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                size: 16.0,
+                              ),
+                              onPressed: () async {
+                                _model.currentDate =
+                                    functions.addOrSubtractMonthFromDate(
+                                        _model.currentDate!, 1);
+                                _model.formatedDate = functions
+                                    .formatMonthYear(_model.currentDate!);
+                                setState(() {});
+                              },
+                            ),
+                          ].divide(const SizedBox(width: 16.0)),
+                        ),
+                      ].divide(const SizedBox(height: 24.0)),
+                    ),
                   ),
                 ].divide(const SizedBox(width: 40.0)),
               ),
@@ -358,7 +373,6 @@ class _ProfileRequestsComponentWidgetState
                       children: [
                         Container(
                           width: MediaQuery.sizeOf(context).width * 1.0,
-                          height: 40.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context).primary,
                             borderRadius: const BorderRadius.only(
@@ -368,33 +382,17 @@ class _ProfileRequestsComponentWidgetState
                               topRight: Radius.circular(16.0),
                             ),
                           ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Container(
-                                width: 80.0,
-                                decoration: const BoxDecoration(),
-                                child: Text(
-                                  'Прошло',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Commissioner',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        fontSize: 19.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 3,
-                                child: Container(
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 8.0, 0.0, 8.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Container(
                                   width: 80.0,
                                   decoration: const BoxDecoration(),
                                   child: Text(
-                                    'Организация',
+                                    'Прошло',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -407,14 +405,51 @@ class _ProfileRequestsComponentWidgetState
                                         ),
                                   ),
                                 ),
-                              ),
-                              Expanded(
-                                flex: 3,
-                                child: Container(
-                                  width: 80.0,
+                                Expanded(
+                                  flex: 3,
+                                  child: Container(
+                                    width: 80.0,
+                                    decoration: const BoxDecoration(),
+                                    child: Text(
+                                      'Организация',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Commissioner',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            fontSize: 19.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 3,
+                                  child: Container(
+                                    width: 80.0,
+                                    decoration: const BoxDecoration(),
+                                    child: Text(
+                                      'Название мероприятия',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Commissioner',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            fontSize: 19.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  width: 120.0,
                                   decoration: const BoxDecoration(),
                                   child: Text(
-                                    'Название мероприятия',
+                                    'Дата начала',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -427,66 +462,49 @@ class _ProfileRequestsComponentWidgetState
                                         ),
                                   ),
                                 ),
-                              ),
-                              Container(
-                                width: 120.0,
-                                decoration: const BoxDecoration(),
-                                child: Text(
-                                  'Дата начала',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Commissioner',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        fontSize: 19.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                                Container(
+                                  width: 100.0,
+                                  decoration: const BoxDecoration(),
+                                  child: Text(
+                                    '№ запроса',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Commissioner',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          fontSize: 19.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                  ),
                                 ),
-                              ),
-                              Container(
-                                width: 100.0,
-                                decoration: const BoxDecoration(),
-                                child: Text(
-                                  '№ запроса',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Commissioner',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        fontSize: 19.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                                Container(
+                                  width: 120.0,
+                                  decoration: const BoxDecoration(),
+                                  child: Text(
+                                    'Дата запроса',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Commissioner',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          fontSize: 19.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                  ),
                                 ),
-                              ),
-                              Container(
-                                width: 120.0,
-                                decoration: const BoxDecoration(),
-                                child: Text(
-                                  'Дата запроса',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Commissioner',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        fontSize: 19.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                                Container(
+                                  width: 80.0,
+                                  decoration: const BoxDecoration(),
                                 ),
-                              ),
-                              Container(
-                                width: 80.0,
-                                decoration: const BoxDecoration(),
-                              ),
-                            ]
-                                .divide(const SizedBox(width: 40.0))
-                                .addToStart(const SizedBox(width: 16.0))
-                                .addToEnd(const SizedBox(width: 16.0)),
+                              ]
+                                  .divide(const SizedBox(width: 40.0))
+                                  .addToStart(const SizedBox(width: 16.0))
+                                  .addToEnd(const SizedBox(width: 16.0)),
+                            ),
                           ),
                         ),
                         FutureBuilder<List<RequestsRow>>(
@@ -536,7 +554,6 @@ class _ProfileRequestsComponentWidgetState
                                   child: Container(
                                     width:
                                         MediaQuery.sizeOf(context).width * 1.0,
-                                    height: 40.0,
                                     decoration: BoxDecoration(
                                       color: valueOrDefault<Color>(
                                         columnIndex.isOdd
@@ -554,215 +571,154 @@ class _ProfileRequestsComponentWidgetState
                                         topRight: Radius.circular(0.0),
                                       ),
                                     ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Container(
-                                          width: 80.0,
-                                          decoration: const BoxDecoration(),
-                                          child: Align(
-                                            alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
-                                            child: Theme(
-                                              data: ThemeData(
-                                                checkboxTheme:
-                                                    CheckboxThemeData(
-                                                  visualDensity:
-                                                      VisualDensity.compact,
-                                                  materialTapTargetSize:
-                                                      MaterialTapTargetSize
-                                                          .shrinkWrap,
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            4.0),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 4.0, 0.0, 4.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Container(
+                                            width: 80.0,
+                                            decoration: const BoxDecoration(),
+                                            child: Align(
+                                              alignment: const AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Theme(
+                                                data: ThemeData(
+                                                  checkboxTheme:
+                                                      CheckboxThemeData(
+                                                    visualDensity:
+                                                        VisualDensity.compact,
+                                                    materialTapTargetSize:
+                                                        MaterialTapTargetSize
+                                                            .shrinkWrap,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4.0),
+                                                    ),
                                                   ),
+                                                  unselectedWidgetColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryText,
                                                 ),
-                                                unselectedWidgetColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                              ),
-                                              child: Checkbox(
-                                                value: _model.checkboxValueMap2[
-                                                        columnRequestsRow] ??=
-                                                    columnRequestsRow
-                                                            .complete ==
-                                                        true,
-                                                onChanged: (newValue) async {
-                                                  setState(() => _model
+                                                child: Checkbox(
+                                                  value: _model
                                                               .checkboxValueMap2[
-                                                          columnRequestsRow] =
-                                                      newValue!);
-                                                  if (newValue!) {
-                                                    await RequestsTable()
-                                                        .update(
-                                                      data: {
-                                                        'Complete': true,
-                                                      },
-                                                      matchingRows: (rows) =>
-                                                          rows.eq(
-                                                        'id',
-                                                        columnRequestsRow.id,
-                                                      ),
-                                                    );
-                                                  } else {
-                                                    await RequestsTable()
-                                                        .update(
-                                                      data: {
-                                                        'Complete': false,
-                                                      },
-                                                      matchingRows: (rows) =>
-                                                          rows.eq(
-                                                        'id',
-                                                        columnRequestsRow.id,
-                                                      ),
-                                                    );
-                                                  }
-                                                },
-                                                side: BorderSide(
-                                                  width: 2,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
+                                                          columnRequestsRow] ??=
+                                                      columnRequestsRow
+                                                              .complete ==
+                                                          true,
+                                                  onChanged: (newValue) async {
+                                                    setState(() => _model
+                                                                .checkboxValueMap2[
+                                                            columnRequestsRow] =
+                                                        newValue!);
+                                                    if (newValue!) {
+                                                      await RequestsTable()
+                                                          .update(
+                                                        data: {
+                                                          'Complete': true,
+                                                        },
+                                                        matchingRows: (rows) =>
+                                                            rows.eq(
+                                                          'id',
+                                                          columnRequestsRow.id,
+                                                        ),
+                                                      );
+                                                    } else {
+                                                      await RequestsTable()
+                                                          .update(
+                                                        data: {
+                                                          'Complete': false,
+                                                        },
+                                                        matchingRows: (rows) =>
+                                                            rows.eq(
+                                                          'id',
+                                                          columnRequestsRow.id,
+                                                        ),
+                                                      );
+                                                    }
+                                                  },
+                                                  side: BorderSide(
+                                                    width: 2,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                  ),
+                                                  activeColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                  checkColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .info,
                                                 ),
-                                                activeColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                checkColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .info,
                                               ),
                                             ),
                                           ),
-                                        ),
-                                        Expanded(
-                                          flex: 3,
-                                          child: Container(
-                                            width: 80.0,
+                                          Expanded(
+                                            flex: 3,
+                                            child: Container(
+                                              width: 80.0,
+                                              decoration: const BoxDecoration(),
+                                              child: Text(
+                                                valueOrDefault<String>(
+                                                  columnRequestsRow
+                                                      .clientNetwork,
+                                                  'Без названия',
+                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          fontSize: 19.0,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 3,
+                                            child: Container(
+                                              width: 80.0,
+                                              decoration: const BoxDecoration(),
+                                              child: Text(
+                                                valueOrDefault<String>(
+                                                  columnRequestsRow.name,
+                                                  'Без названия',
+                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          fontSize: 19.0,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 120.0,
                                             decoration: const BoxDecoration(),
                                             child: Text(
                                               valueOrDefault<String>(
-                                                columnRequestsRow.clientNetwork,
-                                                'Без названия',
-                                              ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Commissioner',
-                                                        fontSize: 19.0,
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          flex: 3,
-                                          child: Container(
-                                            width: 80.0,
-                                            decoration: const BoxDecoration(),
-                                            child: Text(
-                                              valueOrDefault<String>(
-                                                columnRequestsRow.name,
-                                                'Без названия',
-                                              ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Commissioner',
-                                                        fontSize: 19.0,
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          width: 120.0,
-                                          decoration: const BoxDecoration(),
-                                          child: Text(
-                                            valueOrDefault<String>(
-                                              dateTimeFormat(
-                                                "d/M/y",
-                                                columnRequestsRow.dayStart,
-                                                locale:
-                                                    FFLocalizations.of(context)
-                                                        .languageCode,
-                                              ),
-                                              '0',
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Commissioner',
-                                                  color: FlutterFlowTheme.of(
+                                                dateTimeFormat(
+                                                  "d/M/y",
+                                                  columnRequestsRow.dayStart,
+                                                  locale: FFLocalizations.of(
                                                           context)
-                                                      .primaryText,
-                                                  fontSize: 19.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.normal,
-                                                ),
-                                          ),
-                                        ),
-                                        Container(
-                                          width: 100.0,
-                                          decoration: const BoxDecoration(),
-                                          child: Text(
-                                            columnRequestsRow.id.toString(),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Commissioner',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                  fontSize: 19.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.normal,
-                                                ),
-                                          ),
-                                        ),
-                                        Container(
-                                          width: 120.0,
-                                          decoration: const BoxDecoration(),
-                                          child: Text(
-                                            dateTimeFormat(
-                                              "d/M/y",
-                                              columnRequestsRow.createdAt,
-                                              locale:
-                                                  FFLocalizations.of(context)
                                                       .languageCode,
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Commissioner',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                  fontSize: 19.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.normal,
                                                 ),
-                                          ),
-                                        ),
-                                        Container(
-                                          width: 80.0,
-                                          decoration: const BoxDecoration(),
-                                          child: InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              await widget.openRequest?.call(
-                                                columnRequestsRow,
-                                              );
-                                            },
-                                            child: Text(
-                                              'Открыть',
+                                                '0',
+                                              ),
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .bodyMedium
@@ -775,16 +731,96 @@ class _ProfileRequestsComponentWidgetState
                                                     letterSpacing: 0.0,
                                                     fontWeight:
                                                         FontWeight.normal,
-                                                    decoration: TextDecoration
-                                                        .underline,
                                                   ),
                                             ),
                                           ),
-                                        ),
-                                      ]
-                                          .divide(const SizedBox(width: 40.0))
-                                          .addToStart(const SizedBox(width: 16.0))
-                                          .addToEnd(const SizedBox(width: 16.0)),
+                                          Container(
+                                            width: 100.0,
+                                            decoration: const BoxDecoration(),
+                                            child: Text(
+                                              columnRequestsRow.id.toString(),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Commissioner',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    fontSize: 19.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                  ),
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 120.0,
+                                            decoration: const BoxDecoration(),
+                                            child: Text(
+                                              dateTimeFormat(
+                                                "d/M/y",
+                                                columnRequestsRow.createdAt,
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              ),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Commissioner',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    fontSize: 19.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                  ),
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 80.0,
+                                            decoration: const BoxDecoration(),
+                                            child: InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                await widget.openRequest?.call(
+                                                  columnRequestsRow,
+                                                );
+                                              },
+                                              child: Text(
+                                                'Открыть',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          fontSize: 19.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .underline,
+                                                        ),
+                                              ),
+                                            ),
+                                          ),
+                                        ]
+                                            .divide(const SizedBox(width: 40.0))
+                                            .addToStart(const SizedBox(width: 16.0))
+                                            .addToEnd(const SizedBox(width: 16.0)),
+                                      ),
                                     ),
                                   ),
                                 );

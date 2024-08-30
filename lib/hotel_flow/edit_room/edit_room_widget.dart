@@ -158,7 +158,7 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                               width: 200.0,
                               decoration: const BoxDecoration(),
                               child: Text(
-                                'Название номера',
+                                'Название номера*',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -251,7 +251,7 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 8.0, 0.0, 0.0),
                                 child: Text(
-                                  'Описание номера',
+                                  'Описание номера*',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -347,7 +347,7 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                               child: Align(
                                 alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: Text(
-                                  'Фотографии',
+                                  'Фотографии*',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -922,7 +922,7 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Text(
-                                  'Количество номеров:',
+                                  'Количество номеров*:',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -1087,7 +1087,7 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Text(
-                                  'Цена за ночь:',
+                                  'Цена за ночь*:',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -1297,44 +1297,63 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           FFButtonWidget(
-                            onPressed: () async {
-                              await RoomTable().update(
-                                data: {
-                                  'name':
-                                      _model.hotelNameEditTextController.text,
-                                  'description': _model
-                                      .hotelDescriptionEditTextController.text,
-                                  'services': _model.selectedServices,
-                                  'images': _model.uploadedImages,
-                                  'count': int.tryParse(
-                                      _model.countEditTextController.text),
-                                  'price': double.tryParse(
-                                      _model.priceEditTextController.text),
-                                  'single_price': 0.0,
-                                },
-                                matchingRows: (rows) => rows.eq(
-                                  'id',
-                                  widget.initialRoom?.id,
-                                ),
-                              );
-                              _model.uploadedImages = [];
-                              _model.selectedServices = [];
-                              setState(() {});
-                              setState(() {
-                                _model.hotelNameEditTextController?.text =
-                                    widget.initialRoom!.name!;
-                                _model.hotelDescriptionEditTextController
-                                    ?.text = widget.initialRoom!.description!;
-                                _model.countEditTextController?.text =
-                                    widget.initialRoom!.count!.toString();
-                                _model.priceEditTextController?.text =
-                                    widget.initialRoom!.price!.toString();
-                                _model.singlePriceEditTextController?.text =
-                                    widget.initialRoom!.singlePrice!
-                                        .toString();
-                              });
-                              await widget.doneCallback?.call();
-                            },
+                            onPressed: ((_model.hotelNameEditTextController
+                                                .text ==
+                                            '') ||
+                                    (_model.hotelDescriptionEditTextController
+                                                .text ==
+                                            '') ||
+                                    (/* NOT RECOMMENDED */ _model
+                                            .countEditTextController.text ==
+                                        'true') ||
+                                    (/* NOT RECOMMENDED */ _model
+                                            .priceEditTextController.text ==
+                                        'true') ||
+                                    (_model.uploadedImages.isEmpty))
+                                ? null
+                                : () async {
+                                    await RoomTable().update(
+                                      data: {
+                                        'name': _model
+                                            .hotelNameEditTextController.text,
+                                        'description': _model
+                                            .hotelDescriptionEditTextController
+                                            .text,
+                                        'services': _model.selectedServices,
+                                        'images': _model.uploadedImages,
+                                        'count': int.tryParse(_model
+                                            .countEditTextController.text),
+                                        'price': double.tryParse(_model
+                                            .priceEditTextController.text),
+                                        'single_price': 0.0,
+                                      },
+                                      matchingRows: (rows) => rows.eq(
+                                        'id',
+                                        widget.initialRoom?.id,
+                                      ),
+                                    );
+                                    _model.uploadedImages = [];
+                                    _model.selectedServices = [];
+                                    setState(() {});
+                                    setState(() {
+                                      _model.hotelNameEditTextController?.text =
+                                          widget.initialRoom!.name!;
+                                      _model.hotelDescriptionEditTextController
+                                              ?.text =
+                                          widget.initialRoom!.description!;
+                                      _model.countEditTextController?.text =
+                                          widget.initialRoom!.count!
+                                              .toString();
+                                      _model.priceEditTextController?.text =
+                                          widget.initialRoom!.price!
+                                              .toString();
+                                      _model.singlePriceEditTextController
+                                              ?.text =
+                                          widget.initialRoom!.singlePrice!
+                                              .toString();
+                                    });
+                                    await widget.doneCallback?.call();
+                                  },
                             text: 'Сохранить',
                             options: FFButtonOptions(
                               height: 50.0,
@@ -1356,6 +1375,10 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                                 width: 1.0,
                               ),
                               borderRadius: BorderRadius.circular(24.0),
+                              disabledColor: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
+                              disabledTextColor:
+                                  FlutterFlowTheme.of(context).secondaryText,
                             ),
                           ),
                           FFButtonWidget(

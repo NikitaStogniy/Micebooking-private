@@ -1738,71 +1738,98 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                   children: [
                     Builder(
                       builder: (context) => FFButtonWidget(
-                        onPressed: () async {
-                          await showDialog(
-                            context: context,
-                            builder: (dialogContext) {
-                              return Dialog(
-                                elevation: 0,
-                                insetPadding: EdgeInsets.zero,
-                                backgroundColor: Colors.transparent,
-                                alignment: const AlignmentDirectional(0.0, 0.0)
-                                    .resolve(Directionality.of(context)),
-                                child: ConfirmActionWidget(
-                                  title:
-                                      'Вы действительно хотите сохранить изменения?',
-                                  successText: 'Сохранить',
-                                  cancelText: 'Отменить',
-                                  successAction: () async {
-                                    await HotelTable().update(
-                                      data: {
-                                        'name': _model
-                                            .hotelNameEditTextController.text,
-                                        'address': _model
-                                            .hotelAddressEditTextController
-                                            .text,
-                                        'description': _model
-                                            .hotelDescriptionEditTextController
-                                            .text,
-                                        'stars':
-                                            _model.ratingBarEditValue?.round(),
-                                        'services': _model.selectedServices,
-                                        'images': _model.uploadedImages,
-                                        'distance_center': double.tryParse(
-                                            _model.canterTextController.text),
-                                        'Capacity': int.tryParse(
-                                            _model.capacityTextController.text),
-                                        'Hall_max_capacity': int.tryParse(_model
-                                            .maxCapacityTextController.text),
-                                        'city': _model.currentCityId,
-                                        'map_link':
-                                            _model.linkTextController.text,
-                                        'city_name': _model.currentCity,
-                                      },
-                                      matchingRows: (rows) => rows.eq(
-                                        'id',
-                                        widget.initialHotel?.id,
+                        onPressed: ((_model.hotelNameEditTextController.text ==
+                                        '') ||
+                                (_model.hotelAddressEditTextController
+                                            .text ==
+                                        '') ||
+                                (/* NOT RECOMMENDED */ _model
+                                        .canterTextController.text ==
+                                    'true') ||
+                                (_model.capacityTextController.text == '') ||
+                                (_model.maxCapacityTextController.text ==
+                                        '') ||
+                                (_model.linkTextController.text == '') ||
+                                (_model.hotelDescriptionEditTextController
+                                            .text ==
+                                        '') ||
+                                (_model.ratingBarEditValue == null) ||
+                                (_model.currentCity == null ||
+                                    _model.currentCity == '') ||
+                                (_model.currentCityId == null) ||
+                                (_model.uploadedImages.isEmpty))
+                            ? null
+                            : () async {
+                                await showDialog(
+                                  context: context,
+                                  builder: (dialogContext) {
+                                    return Dialog(
+                                      elevation: 0,
+                                      insetPadding: EdgeInsets.zero,
+                                      backgroundColor: Colors.transparent,
+                                      alignment: const AlignmentDirectional(0.0, 0.0)
+                                          .resolve(Directionality.of(context)),
+                                      child: ConfirmActionWidget(
+                                        title:
+                                            'Вы действительно хотите сохранить изменения?',
+                                        successText: 'Сохранить',
+                                        cancelText: 'Отменить',
+                                        successAction: () async {
+                                          await HotelTable().update(
+                                            data: {
+                                              'name': _model
+                                                  .hotelNameEditTextController
+                                                  .text,
+                                              'address': _model
+                                                  .hotelAddressEditTextController
+                                                  .text,
+                                              'description': _model
+                                                  .hotelDescriptionEditTextController
+                                                  .text,
+                                              'stars': _model.ratingBarEditValue
+                                                  ?.round(),
+                                              'services':
+                                                  _model.selectedServices,
+                                              'images': _model.uploadedImages,
+                                              'distance_center':
+                                                  double.tryParse(_model
+                                                      .canterTextController
+                                                      .text),
+                                              'Capacity': int.tryParse(_model
+                                                  .capacityTextController.text),
+                                              'Hall_max_capacity': int.tryParse(
+                                                  _model
+                                                      .maxCapacityTextController
+                                                      .text),
+                                              'city': _model.currentCityId,
+                                              'map_link': _model
+                                                  .linkTextController.text,
+                                              'city_name': _model.currentCity,
+                                            },
+                                            matchingRows: (rows) => rows.eq(
+                                              'id',
+                                              widget.initialHotel?.id,
+                                            ),
+                                          );
+                                          _model.uploadedImages = [];
+                                          _model.selectedServices = [];
+                                          _model.changeCity = false;
+                                          setState(() {});
+                                          Navigator.pop(context);
+                                          await widget.doneCallback?.call(
+                                            widget.initialHotel?.id,
+                                          );
+                                        },
+                                        cancelAction: () async {
+                                          Navigator.pop(context);
+                                        },
                                       ),
                                     );
-                                    _model.uploadedImages = [];
-                                    _model.selectedServices = [];
-                                    _model.changeCity = false;
-                                    setState(() {});
-                                    Navigator.pop(context);
-                                    await widget.doneCallback?.call(
-                                      widget.initialHotel?.id,
-                                    );
                                   },
-                                  cancelAction: () async {
-                                    Navigator.pop(context);
-                                  },
-                                ),
-                              );
-                            },
-                          );
+                                );
 
-                          setState(() {});
-                        },
+                                setState(() {});
+                              },
                         text: 'Далее к реквизитам',
                         options: FFButtonOptions(
                           height: 50.0,
@@ -1823,6 +1850,10 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                             width: 1.0,
                           ),
                           borderRadius: BorderRadius.circular(24.0),
+                          disabledColor:
+                              FlutterFlowTheme.of(context).primaryBackground,
+                          disabledTextColor:
+                              FlutterFlowTheme.of(context).secondaryText,
                         ),
                       ),
                     ),

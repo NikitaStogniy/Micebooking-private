@@ -43,6 +43,8 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
 
     _model.phoneFocusNode ??= FocusNode();
 
+    _model.phoneExtraFocusNode ??= FocusNode();
+
     _model.jurNameFocusNode ??= FocusNode();
 
     _model.jurAddressFocusNode ??= FocusNode();
@@ -348,7 +350,6 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Container(
-                                                width: 200.0,
                                                 decoration: const BoxDecoration(
                                                   color: Color(0x00FFFFFF),
                                                 ),
@@ -501,6 +502,172 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                                 context),
                                                         inputFormatters: [
                                                           _model.phoneMask
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Container(
+                                                decoration: const BoxDecoration(
+                                                  color: Color(0x00FFFFFF),
+                                                ),
+                                                child: Text(
+                                                  'Доп. телефон:',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        fontSize: 18.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Container(
+                                                  width: 200.0,
+                                                  decoration: const BoxDecoration(),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(8.0, 0.0,
+                                                                8.0, 0.0),
+                                                    child: SizedBox(
+                                                      width: MediaQuery.sizeOf(
+                                                                  context)
+                                                              .width *
+                                                          0.6,
+                                                      child: TextFormField(
+                                                        controller: _model
+                                                                .phoneExtraTextController ??=
+                                                            TextEditingController(
+                                                          text:
+                                                              containerUsersRow
+                                                                  ?.extraPhone,
+                                                        ),
+                                                        focusNode: _model
+                                                            .phoneExtraFocusNode,
+                                                        autofocus: false,
+                                                        textInputAction:
+                                                            TextInputAction
+                                                                .next,
+                                                        readOnly:
+                                                            !_model.isEdit,
+                                                        obscureText: false,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          hintText: 'Телефон',
+                                                          hintStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Commissioner',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                          enabledBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .alternate,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        24.0),
+                                                          ),
+                                                          focusedBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primary,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        24.0),
+                                                          ),
+                                                          errorBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        24.0),
+                                                          ),
+                                                          focusedErrorBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        24.0),
+                                                          ),
+                                                          filled: true,
+                                                          fillColor:
+                                                              const Color(0xFFF0F0FA),
+                                                        ),
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Commissioner',
+                                                              fontSize: 18.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                            ),
+                                                        maxLength: 50,
+                                                        maxLengthEnforcement:
+                                                            MaxLengthEnforcement
+                                                                .none,
+                                                        buildCounter: (context,
+                                                                {required currentLength,
+                                                                required isFocused,
+                                                                maxLength}) =>
+                                                            null,
+                                                        keyboardType:
+                                                            TextInputType.phone,
+                                                        validator: _model
+                                                            .phoneExtraTextControllerValidator
+                                                            .asValidator(
+                                                                context),
+                                                        inputFormatters: [
+                                                          _model.phoneExtraMask
                                                         ],
                                                       ),
                                                     ),
@@ -2761,6 +2928,9 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                             .text,
                                                         'email': _model
                                                             .emailTextController
+                                                            .text,
+                                                        'extra_phone': _model
+                                                            .phoneExtraTextController
                                                             .text,
                                                       },
                                                       matchingRows: (rows) =>

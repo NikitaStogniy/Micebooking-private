@@ -314,14 +314,14 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                         _model.isRegister = false;
                                         _model.lastEmail = _model
                                             .signupFormModel
-                                            .mailTextController
+                                            .emailDescTextController
                                             .text;
                                         setState(() {});
                                         setState(() {
                                           _model.loginFormModel.textController1
                                                   ?.text =
                                               _model.signupFormModel
-                                                  .mailTextController.text;
+                                                  .emailDescTextController.text;
                                           _model.loginFormModel.textController1
                                                   ?.selection =
                                               TextSelection.collapsed(
