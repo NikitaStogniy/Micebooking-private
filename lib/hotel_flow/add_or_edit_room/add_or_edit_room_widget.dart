@@ -155,7 +155,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                               width: 200.0,
                               decoration: const BoxDecoration(),
                               child: Text(
-                                'Название номера',
+                                'Название номера*',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -247,7 +247,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 8.0, 0.0, 0.0),
                                 child: Text(
-                                  'Описание номера',
+                                  'Описание номера*',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -321,7 +321,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                         fontFamily: 'Commissioner',
                                         letterSpacing: 0.0,
                                       ),
-                                  maxLines: 3,
+                                  maxLines: null,
                                   validator: _model
                                       .hotelNameTextController2Validator
                                       .asValidator(context),
@@ -341,7 +341,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                               child: Align(
                                 alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: Text(
-                                  'Фотографии',
+                                  'Фотографии*',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -915,7 +915,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Text(
-                                  'Количество номеров:',
+                                  'Количество номеров*:',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -1080,7 +1080,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Text(
-                                  'Цена за ночь:',
+                                  'Цена за ночь*:',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -1278,61 +1278,70 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                     ),
                   ),
                   FFButtonWidget(
-                    onPressed: () async {
-                      _model.newRoom = await RoomTable().insert({
-                        'name': _model.hotelNameTextController1.text,
-                        'description': _model.hotelNameTextController2.text,
-                        'services': _model.selectedServices,
-                        'images': _model.uploadedImages,
-                        'created_at':
-                            supaSerialize<DateTime>(getCurrentTimestamp),
-                        'count': int.tryParse(_model.countTextController.text),
-                        'price':
-                            double.tryParse(_model.priceTextController.text),
-                        'single_price': 0.0,
-                        'show_single': false,
-                      });
-                      _model.hotel = await HotelTable().queryRows(
-                        queryFn: (q) => q.eq(
-                          'id',
-                          valueOrDefault<int>(
-                            widget.hotelId,
-                            00,
-                          ),
-                        ),
-                      );
-                      _model.editableHotel = _model.hotel?.first;
-                      setState(() {});
-                      _model.newRoomSet =
-                          _model.editableHotel!.rooms.toList().cast<int>();
-                      setState(() {});
-                      _model.addToNewRoomSet(_model.newRoom!.id);
-                      _model.uploadedImages = [];
-                      _model.selectedServices = [];
-                      setState(() {});
-                      await HotelTable().update(
-                        data: {
-                          'rooms': _model.newRoomSet,
-                        },
-                        matchingRows: (rows) => rows.eq(
-                          'id',
-                          widget.hotelId,
-                        ),
-                      );
-                      setState(() {
-                        _model.checkboxValue = _model.singlePerson;
-                      });
-                      setState(() {
-                        _model.hotelNameTextController1?.clear();
-                        _model.hotelNameTextController2?.clear();
-                        _model.countTextController?.clear();
-                        _model.priceTextController?.clear();
-                        _model.singlePriceTextController?.clear();
-                      });
-                      await widget.doneCallback?.call();
+                    onPressed: ((_model.hotelNameTextController1.text == '') ||
+                            (_model.hotelNameTextController2.text == '') ||
+                            (_model.uploadedImages.isEmpty) ||
+                            (_model.countTextController.text == '') ||
+                            (_model.priceTextController.text == ''))
+                        ? null
+                        : () async {
+                            _model.newRoom = await RoomTable().insert({
+                              'name': _model.hotelNameTextController1.text,
+                              'description':
+                                  _model.hotelNameTextController2.text,
+                              'services': _model.selectedServices,
+                              'images': _model.uploadedImages,
+                              'created_at':
+                                  supaSerialize<DateTime>(getCurrentTimestamp),
+                              'count':
+                                  int.tryParse(_model.countTextController.text),
+                              'price': double.tryParse(
+                                  _model.priceTextController.text),
+                              'single_price': 0.0,
+                              'show_single': false,
+                            });
+                            _model.hotel = await HotelTable().queryRows(
+                              queryFn: (q) => q.eq(
+                                'id',
+                                valueOrDefault<int>(
+                                  widget.hotelId,
+                                  00,
+                                ),
+                              ),
+                            );
+                            _model.editableHotel = _model.hotel?.first;
+                            setState(() {});
+                            _model.newRoomSet = _model.editableHotel!.rooms
+                                .toList()
+                                .cast<int>();
+                            setState(() {});
+                            _model.addToNewRoomSet(_model.newRoom!.id);
+                            _model.uploadedImages = [];
+                            _model.selectedServices = [];
+                            setState(() {});
+                            await HotelTable().update(
+                              data: {
+                                'rooms': _model.newRoomSet,
+                              },
+                              matchingRows: (rows) => rows.eq(
+                                'id',
+                                widget.hotelId,
+                              ),
+                            );
+                            setState(() {
+                              _model.checkboxValue = _model.singlePerson;
+                            });
+                            setState(() {
+                              _model.hotelNameTextController1?.clear();
+                              _model.hotelNameTextController2?.clear();
+                              _model.countTextController?.clear();
+                              _model.priceTextController?.clear();
+                              _model.singlePriceTextController?.clear();
+                            });
+                            await widget.doneCallback?.call();
 
-                      setState(() {});
-                    },
+                            setState(() {});
+                          },
                     text: 'Создать',
                     options: FFButtonOptions(
                       height: 50.0,
@@ -1353,6 +1362,10 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                         width: 1.0,
                       ),
                       borderRadius: BorderRadius.circular(24.0),
+                      disabledColor:
+                          FlutterFlowTheme.of(context).primaryBackground,
+                      disabledTextColor:
+                          FlutterFlowTheme.of(context).secondaryText,
                     ),
                   ),
                 ].divide(const SizedBox(height: 32.0)),

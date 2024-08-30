@@ -2600,7 +2600,8 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                 (_model.oshapeTextController.text == '0') &&
                                 (_model.kabareTextController.text == '0') &&
                                 (_model.banketTextController.text == '0') &&
-                                (_model.furshetTextController.text == '0')))
+                                (_model.furshetTextController.text == '0')) ||
+                            (_model.uploadedImages.isEmpty))
                         ? null
                         : () async {
                             _model.hotelOfHall = await HotelTable().queryRows(

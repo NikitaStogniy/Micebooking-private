@@ -934,7 +934,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 2.0, 0.0, 0.0),
                                             child: Text(
-                                              'Если вашего города нет в сииске, напишите нам в поддержку',
+                                              'Если вашего города нет в списке, напишите нам в поддержку',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -2038,87 +2038,133 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         FFButtonWidget(
-                          onPressed: () async {
-                            if (_model.haventCity == true) {
-                              _model.newHot2 = await HotelTable().insert({
-                                'name': _model.hotelNameTextController.text,
-                                'address': _model.adressTextController.text,
-                                'description': _model.descTextController.text,
-                                'stars': _model.ratingBarValue?.round(),
-                                'services': _model.selectedServices,
-                                'images': _model.uploadedImages,
-                                'owner_id': (String var1) {
-                                  return [var1];
-                                }(currentUserUid),
-                                'city': 0,
-                                'Capacity': int.tryParse(
-                                    _model.capacityTextController.text),
-                                'Hall_max_capacity': int.tryParse(
-                                    _model.maxCapacityTextController.text),
-                                'map_link': _model.linkTextController.text,
-                                'distance_center': double.tryParse(
-                                    _model.canterTextController.text),
-                                'isVisible': false,
-                                'city_name': 'Другой',
-                              });
-                              _model.uploadedImages = [];
-                              _model.selectedServices = [];
-                              _model.currentCity = null;
-                              setState(() {});
-                              await widget.doneCallback?.call(
-                                _model.newHot2?.id,
-                              );
-                            } else {
-                              _model.newHot = await HotelTable().insert({
-                                'name': _model.hotelNameTextController.text,
-                                'address': _model.adressTextController.text,
-                                'description': _model.descTextController.text,
-                                'stars': _model.ratingBarValue?.round(),
-                                'services': _model.selectedServices,
-                                'images': _model.uploadedImages,
-                                'owner_id': (String var1) {
-                                  return [var1];
-                                }(currentUserUid),
-                                'city': _model.cityId?.first.id,
-                                'Capacity': int.tryParse(
-                                    _model.capacityTextController.text),
-                                'Hall_max_capacity': int.tryParse(
-                                    _model.maxCapacityTextController.text),
-                                'map_link': _model.linkTextController.text,
-                                'distance_center': double.tryParse(
-                                    _model.canterTextController.text),
-                                'isVisible': false,
-                                'city_name': _model.dropDownValue,
-                              });
-                              _model.uploadedImages = [];
-                              _model.selectedServices = [];
-                              _model.currentCity = null;
-                              setState(() {});
-                              await widget.doneCallback?.call(
-                                valueOrDefault<int>(
-                                  _model.newHot?.id,
-                                  88,
-                                ),
-                              );
-                            }
+                          onPressed:
+                              ((_model.hotelNameTextController
+                                                  .text ==
+                                              '') ||
+                                      (_model
+                                                  .adressTextController.text ==
+                                              '') ||
+                                      (_model
+                                                  .canterTextController.text ==
+                                              '') ||
+                                      (_model
+                                                  .currentCity ==
+                                              null ||
+                                          _model.currentCity == '') ||
+                                      (_model.currentCityId == null) ||
+                                      (_model.capacityTextController
+                                                  .text ==
+                                              '') ||
+                                      (_model.maxCapacityTextController
+                                                  .text ==
+                                              '') ||
+                                      (_model.linkTextController.text ==
+                                              '') ||
+                                      (_model.descTextController.text ==
+                                              '') ||
+                                      (_model.ratingBarValue == null) ||
+                                      (_model.uploadedImages.isEmpty))
+                                  ? null
+                                  : () async {
+                                      if (_model.haventCity == true) {
+                                        _model.newHot2 =
+                                            await HotelTable().insert({
+                                          'name': _model
+                                              .hotelNameTextController.text,
+                                          'address':
+                                              _model.adressTextController.text,
+                                          'description':
+                                              _model.descTextController.text,
+                                          'stars':
+                                              _model.ratingBarValue?.round(),
+                                          'services': _model.selectedServices,
+                                          'images': _model.uploadedImages,
+                                          'owner_id': (String var1) {
+                                            return [var1];
+                                          }(currentUserUid),
+                                          'city': 0,
+                                          'Capacity': int.tryParse(_model
+                                              .capacityTextController.text),
+                                          'Hall_max_capacity': int.tryParse(
+                                              _model.maxCapacityTextController
+                                                  .text),
+                                          'map_link':
+                                              _model.linkTextController.text,
+                                          'distance_center': double.tryParse(
+                                              _model.canterTextController.text),
+                                          'isVisible': false,
+                                          'city_name': 'Другой',
+                                        });
+                                        _model.uploadedImages = [];
+                                        _model.selectedServices = [];
+                                        _model.currentCity = null;
+                                        setState(() {});
+                                        await widget.doneCallback?.call(
+                                          _model.newHot2?.id,
+                                        );
+                                      } else {
+                                        _model.newHot =
+                                            await HotelTable().insert({
+                                          'name': _model
+                                              .hotelNameTextController.text,
+                                          'address':
+                                              _model.adressTextController.text,
+                                          'description':
+                                              _model.descTextController.text,
+                                          'stars':
+                                              _model.ratingBarValue?.round(),
+                                          'services': _model.selectedServices,
+                                          'images': _model.uploadedImages,
+                                          'owner_id': (String var1) {
+                                            return [var1];
+                                          }(currentUserUid),
+                                          'city': _model.cityId?.first.id,
+                                          'Capacity': int.tryParse(_model
+                                              .capacityTextController.text),
+                                          'Hall_max_capacity': int.tryParse(
+                                              _model.maxCapacityTextController
+                                                  .text),
+                                          'map_link':
+                                              _model.linkTextController.text,
+                                          'distance_center': double.tryParse(
+                                              _model.canterTextController.text),
+                                          'isVisible': false,
+                                          'city_name': _model.dropDownValue,
+                                        });
+                                        _model.uploadedImages = [];
+                                        _model.selectedServices = [];
+                                        _model.currentCity = null;
+                                        setState(() {});
+                                        await widget.doneCallback?.call(
+                                          valueOrDefault<int>(
+                                            _model.newHot?.id,
+                                            88,
+                                          ),
+                                        );
+                                      }
 
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Ваш отель успешно отправлен на модерацию! После проверки он появится в общем списке',
-                                  style: TextStyle(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
-                                ),
-                                duration: const Duration(milliseconds: 8000),
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).secondary,
-                              ),
-                            );
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Ваш отель успешно отправлен на модерацию! После проверки он появится в общем списке',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                          ),
+                                          duration:
+                                              const Duration(milliseconds: 8000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondary,
+                                        ),
+                                      );
 
-                            setState(() {});
-                          },
+                                      setState(() {});
+                                    },
                           text: 'Далее к реквизитам',
                           options: FFButtonOptions(
                             height: 50.0,
@@ -2140,6 +2186,10 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(24.0),
+                            disabledColor:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            disabledTextColor:
+                                FlutterFlowTheme.of(context).secondaryText,
                           ),
                         ),
                       ],

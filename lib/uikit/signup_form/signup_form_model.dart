@@ -8,19 +8,43 @@ class SignupFormModel extends FlutterFlowModel<SignupFormWidget> {
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
-  // State field(s) for name widget.
-  FocusNode? nameFocusNode;
-  TextEditingController? nameTextController;
-  String? Function(BuildContext, String?)? nameTextControllerValidator;
-  // State field(s) for mail widget.
-  FocusNode? mailFocusNode;
-  TextEditingController? mailTextController;
-  String? Function(BuildContext, String?)? mailTextControllerValidator;
-  // State field(s) for phone widget.
-  FocusNode? phoneFocusNode;
-  TextEditingController? phoneTextController;
-  final phoneMask = MaskTextInputFormatter(mask: '+# (###) ###-##-##');
-  String? Function(BuildContext, String?)? phoneTextControllerValidator;
+  // State field(s) for name_desc widget.
+  FocusNode? nameDescFocusNode;
+  TextEditingController? nameDescTextController;
+  String? Function(BuildContext, String?)? nameDescTextControllerValidator;
+  // State field(s) for email_desc widget.
+  FocusNode? emailDescFocusNode;
+  TextEditingController? emailDescTextController;
+  String? Function(BuildContext, String?)? emailDescTextControllerValidator;
+  // State field(s) for phone_desc widget.
+  FocusNode? phoneDescFocusNode;
+  TextEditingController? phoneDescTextController;
+  final phoneDescMask = MaskTextInputFormatter(mask: '+# (###) ###-##-##');
+  String? Function(BuildContext, String?)? phoneDescTextControllerValidator;
+  // State field(s) for extra_phone_desc widget.
+  FocusNode? extraPhoneDescFocusNode;
+  TextEditingController? extraPhoneDescTextController;
+  final extraPhoneDescMask = MaskTextInputFormatter(mask: '+# (###) ###-##-##');
+  String? Function(BuildContext, String?)?
+      extraPhoneDescTextControllerValidator;
+  // State field(s) for fio_mob widget.
+  FocusNode? fioMobFocusNode;
+  TextEditingController? fioMobTextController;
+  String? Function(BuildContext, String?)? fioMobTextControllerValidator;
+  // State field(s) for email_mob widget.
+  FocusNode? emailMobFocusNode;
+  TextEditingController? emailMobTextController;
+  String? Function(BuildContext, String?)? emailMobTextControllerValidator;
+  // State field(s) for phone_mob widget.
+  FocusNode? phoneMobFocusNode;
+  TextEditingController? phoneMobTextController;
+  final phoneMobMask = MaskTextInputFormatter(mask: '+# (###) ###-##-##');
+  String? Function(BuildContext, String?)? phoneMobTextControllerValidator;
+  // State field(s) for extra_phone_mob widget.
+  FocusNode? extraPhoneMobFocusNode;
+  TextEditingController? extraPhoneMobTextController;
+  final extraPhoneMobMask = MaskTextInputFormatter(mask: '+# (###) ###-##-##');
+  String? Function(BuildContext, String?)? extraPhoneMobTextControllerValidator;
   // State field(s) for company_name widget.
   FocusNode? companyNameFocusNode;
   TextEditingController? companyNameTextController;
@@ -35,6 +59,10 @@ class SignupFormModel extends FlutterFlowModel<SignupFormWidget> {
   // Stores action output result for [Backend Call - Query Rows] action in Button widget.
   List<UsersRow>? userCheck;
   // Stores action output result for [Backend Call - Insert Row] action in Button widget.
+  UsersRow? newUserPlatformMob;
+  // Stores action output result for [Backend Call - Query Rows] action in Button widget.
+  List<UsersRow>? userCheckMob;
+  // Stores action output result for [Backend Call - Insert Row] action in Button widget.
   UsersRow? newUserPlatform;
 
   @override
@@ -44,14 +72,29 @@ class SignupFormModel extends FlutterFlowModel<SignupFormWidget> {
 
   @override
   void dispose() {
-    nameFocusNode?.dispose();
-    nameTextController?.dispose();
+    nameDescFocusNode?.dispose();
+    nameDescTextController?.dispose();
 
-    mailFocusNode?.dispose();
-    mailTextController?.dispose();
+    emailDescFocusNode?.dispose();
+    emailDescTextController?.dispose();
 
-    phoneFocusNode?.dispose();
-    phoneTextController?.dispose();
+    phoneDescFocusNode?.dispose();
+    phoneDescTextController?.dispose();
+
+    extraPhoneDescFocusNode?.dispose();
+    extraPhoneDescTextController?.dispose();
+
+    fioMobFocusNode?.dispose();
+    fioMobTextController?.dispose();
+
+    emailMobFocusNode?.dispose();
+    emailMobTextController?.dispose();
+
+    phoneMobFocusNode?.dispose();
+    phoneMobTextController?.dispose();
+
+    extraPhoneMobFocusNode?.dispose();
+    extraPhoneMobTextController?.dispose();
 
     companyNameFocusNode?.dispose();
     companyNameTextController?.dispose();

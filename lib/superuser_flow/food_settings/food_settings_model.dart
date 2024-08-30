@@ -13,6 +13,10 @@ class FoodSettingsModel extends FlutterFlowModel<FoodSettingsWidget> {
 
   String? addNew;
 
+  bool addNewCategory = false;
+
+  bool? addNewMenuCategory = false;
+
   ///  State fields for stateful widgets in this component.
 
   // Models for InfoComponent dynamic component.

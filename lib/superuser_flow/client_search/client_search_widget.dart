@@ -1,4 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -277,7 +278,6 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                             final clientsItem = clients[clientsIndex];
                             return Container(
                               width: MediaQuery.sizeOf(context).width * 1.0,
-                              height: 40.0,
                               decoration: BoxDecoration(
                                 color: valueOrDefault<Color>(
                                   clientsIndex.isOdd
@@ -295,147 +295,196 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                                   topRight: Radius.circular(0.0),
                                 ),
                               ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Expanded(
-                                    flex: 3,
-                                    child: Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          0.5,
-                                      decoration: const BoxDecoration(),
-                                      child: Text(
-                                        valueOrDefault<String>(
-                                          getJsonField(
-                                            clientsItem,
-                                            r'''$.network''',
-                                          )?.toString(),
-                                          'Без названия',
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Commissioner',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              fontSize: 19.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 2,
-                                    child: Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          0.5,
-                                      decoration: const BoxDecoration(),
-                                      child: Text(
-                                        valueOrDefault<String>(
-                                          getJsonField(
-                                            clientsItem,
-                                            r'''$.last_request''',
-                                          )?.toString(),
-                                          'Не существует',
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Commissioner',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              fontSize: 19.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 2,
-                                    child: Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          0.5,
-                                      decoration: const BoxDecoration(),
-                                      child: Text(
-                                        getJsonField(
-                                          clientsItem,
-                                          r'''$.email''',
-                                        ).toString(),
-                                        maxLines: 1,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Commissioner',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              fontSize: 19.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 2,
-                                    child: Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          0.5,
-                                      decoration: const BoxDecoration(),
-                                      child: Text(
-                                        valueOrDefault<String>(
-                                          getJsonField(
-                                            clientsItem,
-                                            r'''$.phone''',
-                                          )?.toString(),
-                                          'не существует',
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Commissioner',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              fontSize: 19.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    width: 30.0,
-                                    decoration: const BoxDecoration(),
-                                    child: InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        await widget.userId?.call(
-                                          getJsonField(
-                                            clientsItem,
-                                            r'''$.id''',
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 8.0, 0.0, 8.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Expanded(
+                                      flex: 3,
+                                      child: Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                0.5,
+                                        decoration: const BoxDecoration(),
+                                        child: Text(
+                                          valueOrDefault<String>(
+                                            getJsonField(
+                                              clientsItem,
+                                              r'''$.network''',
+                                            )?.toString(),
+                                            'Без названия',
                                           ),
-                                        );
-                                      },
-                                      child: Icon(
-                                        Icons.remove_red_eye,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        size: 24.0,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Commissioner',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                fontSize: 19.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ]
-                                    .divide(const SizedBox(width: 8.0))
-                                    .addToStart(const SizedBox(width: 16.0))
-                                    .addToEnd(const SizedBox(width: 16.0)),
+                                    Expanded(
+                                      flex: 2,
+                                      child: FutureBuilder<List<UsersRow>>(
+                                        future: UsersTable().querySingleRow(
+                                          queryFn: (q) => q.eq(
+                                            'id',
+                                            getJsonField(
+                                              clientsItem,
+                                              r'''$.id''',
+                                            ),
+                                          ),
+                                        ),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50.0,
+                                                height: 50.0,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                          Color>(
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          List<UsersRow> containerUsersRowList =
+                                              snapshot.data!;
+
+                                          final containerUsersRow =
+                                              containerUsersRowList.isNotEmpty
+                                                  ? containerUsersRowList.first
+                                                  : null;
+
+                                          return Container(
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.5,
+                                            decoration: const BoxDecoration(),
+                                            child: Text(
+                                              dateTimeFormat(
+                                                "d/M/y",
+                                                containerUsersRow!.lastRequest!,
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              ),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Commissioner',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    fontSize: 19.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                  ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 2,
+                                      child: Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                0.5,
+                                        decoration: const BoxDecoration(),
+                                        child: Text(
+                                          getJsonField(
+                                            clientsItem,
+                                            r'''$.email''',
+                                          ).toString(),
+                                          maxLines: 1,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Commissioner',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                fontSize: 19.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 2,
+                                      child: Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                0.5,
+                                        decoration: const BoxDecoration(),
+                                        child: Text(
+                                          valueOrDefault<String>(
+                                            getJsonField(
+                                              clientsItem,
+                                              r'''$.phone''',
+                                            )?.toString(),
+                                            'не существует',
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Commissioner',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                fontSize: 19.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 30.0,
+                                      decoration: const BoxDecoration(),
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          await widget.userId?.call(
+                                            getJsonField(
+                                              clientsItem,
+                                              r'''$.id''',
+                                            ),
+                                          );
+                                        },
+                                        child: Icon(
+                                          Icons.remove_red_eye,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          size: 24.0,
+                                        ),
+                                      ),
+                                    ),
+                                  ]
+                                      .divide(const SizedBox(width: 8.0))
+                                      .addToStart(const SizedBox(width: 16.0))
+                                      .addToEnd(const SizedBox(width: 16.0)),
+                                ),
                               ),
                             );
                           }),

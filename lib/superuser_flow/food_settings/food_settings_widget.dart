@@ -147,7 +147,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                                 },
                                 updateAVANDTEXT:
                                     (data, avalibility, category) async {
-                                  await ServiceTable().update(
+                                  await ServiceCategoryTable().update(
                                     data: {
                                       'name': data,
                                     },
@@ -160,7 +160,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                                   _model.updatePage(() {});
                                 },
                                 delete: () async {
-                                  await ServiceTable().delete(
+                                  await ServiceCategoryTable().delete(
                                     matchingRows: (rows) => rows.eq(
                                       'id',
                                       listViewServiceCategoryRow.id,
@@ -184,7 +184,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (_model.addNew == 'HOTEL')
+                    if (_model.addNewCategory)
                       Container(
                         decoration: const BoxDecoration(),
                         child: Row(
@@ -245,7 +245,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                                 setState(() {
                                   _model.newFoodTextController?.clear();
                                 });
-                                _model.addNew = null;
+                                _model.addNewCategory = false;
                                 setState(() {});
                                 setState(() => _model.requestCompleter1 = null);
                                 await _model.waitForRequestCompleted1();
@@ -276,7 +276,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                           ].divide(const SizedBox(width: 16.0)),
                         ),
                       ),
-                    if (_model.addNew != 'HOTEL')
+                    if (!_model.addNewCategory)
                       Padding(
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
@@ -296,8 +296,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                             child: AddNewWidget(
                               label: 'Добавить новое',
                               onClick: () async {
-                                _model.editService = null;
-                                _model.addNew = 'HOTEL';
+                                _model.addNewCategory = true;
                                 _model.updatePage(() {});
                               },
                             ),
@@ -399,7 +398,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                                 },
                                 updateAVANDTEXT:
                                     (data, avalibility, category) async {
-                                  await ServiceTable().update(
+                                  await ServiceCategoryTable().update(
                                     data: {
                                       'name': data,
                                     },
@@ -412,7 +411,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                                   _model.updatePage(() {});
                                 },
                                 delete: () async {
-                                  await ServiceTable().delete(
+                                  await ServiceCategoryTable().delete(
                                     matchingRows: (rows) => rows.eq(
                                       'id',
                                       listViewServiceCategoryRow.id,

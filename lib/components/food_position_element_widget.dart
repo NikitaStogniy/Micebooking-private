@@ -376,8 +376,12 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                           size: 16.0,
                         ),
                         onPressed: () async {
-                          _model.edit = true;
-                          setState(() {});
+                          await FoodPositionTable().delete(
+                            matchingRows: (rows) => rows.eq(
+                              'id',
+                              widget.position?.id,
+                            ),
+                          );
                         },
                       ),
                     ].divide(const SizedBox(width: 16.0)),

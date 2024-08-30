@@ -402,30 +402,6 @@ class _CompanyRequestsComponentWidgetState
                                               width: 80.0,
                                               decoration: const BoxDecoration(),
                                               child: Text(
-                                                'Организация',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                          fontSize: 19.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            flex: 3,
-                                            child: Container(
-                                              width: 80.0,
-                                              decoration: const BoxDecoration(),
-                                              child: Text(
                                                 'Название мероприятия',
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -519,12 +495,11 @@ class _CompanyRequestsComponentWidgetState
                                             'monthYear',
                                             _model.formatedDate,
                                           )
-                                          .in_(
-                                            'hotel',
-                                            containerHotelRowList
-                                                .map((e) => e.id)
-                                                .toList(),
-                                          ),
+                                          .eq(
+                                            'owner',
+                                            widget.user,
+                                          )
+                                          .order('created_at', ascending: true),
                                     ),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
@@ -563,7 +538,7 @@ class _CompanyRequestsComponentWidgetState
                                           return Visibility(
                                             visible: (_model.completeOnly ==
                                                     false) ||
-                                                (_model.completeOnly == false),
+                                                columnRequestsRow.complete!,
                                             child: Container(
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
@@ -684,31 +659,6 @@ class _CompanyRequestsComponentWidgetState
                                                                       context)
                                                                   .info,
                                                         ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    flex: 3,
-                                                    child: Container(
-                                                      width: 80.0,
-                                                      decoration:
-                                                          const BoxDecoration(),
-                                                      child: Text(
-                                                        valueOrDefault<String>(
-                                                          columnRequestsRow
-                                                              .clientNetwork,
-                                                          'Без названия',
-                                                        ),
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Commissioner',
-                                                              fontSize: 19.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                            ),
                                                       ),
                                                     ),
                                                   ),
@@ -1140,7 +1090,6 @@ class _CompanyRequestsComponentWidgetState
                             ),
                             Container(
                               width: MediaQuery.sizeOf(context).width * 1.0,
-                              height: 40.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context).primary,
                                 borderRadius: const BorderRadius.only(
@@ -1150,18 +1099,88 @@ class _CompanyRequestsComponentWidgetState
                                   topRight: Radius.circular(16.0),
                                 ),
                               ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Expanded(
-                                    flex: 4,
-                                    child: Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          0.1,
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 8.0, 0.0, 8.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Expanded(
+                                      flex: 4,
+                                      child: Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                0.1,
+                                        decoration: const BoxDecoration(),
+                                        child: Text(
+                                          'Название зала',
+                                          textAlign: TextAlign.start,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Commissioner',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                fontSize: 19.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 3,
+                                      child: Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                0.5,
+                                        decoration: const BoxDecoration(),
+                                        child: Text(
+                                          'Рассадка',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Commissioner',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                fontSize: 19.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 3,
+                                      child: Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                0.5,
+                                        decoration: const BoxDecoration(),
+                                        child: Text(
+                                          'Количество дней',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Commissioner',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                fontSize: 19.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 200.0,
                                       decoration: const BoxDecoration(),
                                       child: Text(
-                                        'Название зала',
-                                        textAlign: TextAlign.start,
+                                        'Стоимость',
+                                        textAlign: TextAlign.end,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -1175,73 +1194,11 @@ class _CompanyRequestsComponentWidgetState
                                             ),
                                       ),
                                     ),
-                                  ),
-                                  Expanded(
-                                    flex: 3,
-                                    child: Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          0.5,
-                                      decoration: const BoxDecoration(),
-                                      child: Text(
-                                        'Рассадка',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Commissioner',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              fontSize: 19.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 3,
-                                    child: Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          0.5,
-                                      decoration: const BoxDecoration(),
-                                      child: Text(
-                                        'Количество дней',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Commissioner',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              fontSize: 19.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    width: 200.0,
-                                    decoration: const BoxDecoration(),
-                                    child: Text(
-                                      'Стоимость',
-                                      textAlign: TextAlign.end,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Commissioner',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            fontSize: 19.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                    ),
-                                  ),
-                                ]
-                                    .divide(const SizedBox(width: 8.0))
-                                    .addToStart(const SizedBox(width: 16.0))
-                                    .addToEnd(const SizedBox(width: 16.0)),
+                                  ]
+                                      .divide(const SizedBox(width: 8.0))
+                                      .addToStart(const SizedBox(width: 16.0))
+                                      .addToEnd(const SizedBox(width: 16.0)),
+                                ),
                               ),
                             ),
                             FutureBuilder<List<RequestsHallVarRow>>(
@@ -1283,7 +1240,6 @@ class _CompanyRequestsComponentWidgetState
                                     return Container(
                                       width: MediaQuery.sizeOf(context).width *
                                           1.0,
-                                      height: 40.0,
                                       decoration: BoxDecoration(
                                         color: valueOrDefault<Color>(
                                           columnIndex.isOdd
@@ -1301,133 +1257,146 @@ class _CompanyRequestsComponentWidgetState
                                           topRight: Radius.circular(0.0),
                                         ),
                                       ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Expanded(
-                                            flex: 4,
-                                            child: Container(
-                                              width: MediaQuery.sizeOf(context)
-                                                      .width *
-                                                  0.1,
-                                              decoration: const BoxDecoration(),
-                                              child: Text(
-                                                valueOrDefault<String>(
-                                                  columnRequestsHallVarRow
-                                                      .hallName,
-                                                  'room',
-                                                ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 19.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            flex: 3,
-                                            child: Container(
-                                              width: MediaQuery.sizeOf(context)
-                                                      .width *
-                                                  0.5,
-                                              decoration: const BoxDecoration(),
-                                              child: Text(
-                                                valueOrDefault<String>(
-                                                  columnRequestsHallVarRow
-                                                      .seating,
-                                                  'Расскадка',
-                                                ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 19.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            flex: 3,
-                                            child: Container(
-                                              width: MediaQuery.sizeOf(context)
-                                                      .width *
-                                                  0.5,
-                                              decoration: const BoxDecoration(),
-                                              child: Text(
-                                                valueOrDefault<String>(
-                                                  columnRequestsHallVarRow.days
-                                                      ?.toString(),
-                                                  '1',
-                                                ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 19.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 200.0,
-                                            decoration: const BoxDecoration(),
-                                            child: Text(
-                                              valueOrDefault<String>(
-                                                formatNumber(
-                                                  columnRequestsHallVarRow
-                                                      .price,
-                                                  formatType:
-                                                      FormatType.decimal,
-                                                  decimalType:
-                                                      DecimalType.automatic,
-                                                ),
-                                                '0',
-                                              ),
-                                              textAlign: TextAlign.end,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Commissioner',
-                                                    fontSize: 19.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                    decoration: TextDecoration
-                                                        .underline,
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 8.0, 0.0, 8.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Expanded(
+                                              flex: 4,
+                                              child: Container(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.1,
+                                                decoration: const BoxDecoration(),
+                                                child: Text(
+                                                  valueOrDefault<String>(
+                                                    columnRequestsHallVarRow
+                                                        .hallName,
+                                                    'room',
                                                   ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontSize: 19.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                        ]
-                                            .divide(const SizedBox(width: 8.0))
-                                            .addToStart(const SizedBox(width: 16.0))
-                                            .addToEnd(const SizedBox(width: 16.0)),
+                                            Expanded(
+                                              flex: 3,
+                                              child: Container(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.5,
+                                                decoration: const BoxDecoration(),
+                                                child: Text(
+                                                  valueOrDefault<String>(
+                                                    columnRequestsHallVarRow
+                                                        .seating,
+                                                    'Расскадка',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontSize: 19.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              flex: 3,
+                                              child: Container(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.5,
+                                                decoration: const BoxDecoration(),
+                                                child: Text(
+                                                  valueOrDefault<String>(
+                                                    columnRequestsHallVarRow
+                                                        .days
+                                                        ?.toString(),
+                                                    '1',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontSize: 19.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                ),
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 200.0,
+                                              decoration: const BoxDecoration(),
+                                              child: Text(
+                                                valueOrDefault<String>(
+                                                  formatNumber(
+                                                    columnRequestsHallVarRow
+                                                        .price,
+                                                    formatType:
+                                                        FormatType.decimal,
+                                                    decimalType:
+                                                        DecimalType.automatic,
+                                                  ),
+                                                  '0',
+                                                ),
+                                                textAlign: TextAlign.end,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          fontSize: 19.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .underline,
+                                                        ),
+                                              ),
+                                            ),
+                                          ]
+                                              .divide(const SizedBox(width: 8.0))
+                                              .addToStart(const SizedBox(width: 16.0))
+                                              .addToEnd(const SizedBox(width: 16.0)),
+                                        ),
                                       ),
                                     );
                                   }),
@@ -1526,7 +1495,6 @@ class _CompanyRequestsComponentWidgetState
                             ),
                             Container(
                               width: MediaQuery.sizeOf(context).width * 1.0,
-                              height: 40.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context).primary,
                                 borderRadius: const BorderRadius.only(
@@ -1536,18 +1504,88 @@ class _CompanyRequestsComponentWidgetState
                                   topRight: Radius.circular(16.0),
                                 ),
                               ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Expanded(
-                                    flex: 4,
-                                    child: Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          0.1,
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 8.0, 0.0, 8.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Expanded(
+                                      flex: 4,
+                                      child: Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                0.1,
+                                        decoration: const BoxDecoration(),
+                                        child: Text(
+                                          'Категория питания',
+                                          textAlign: TextAlign.start,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Commissioner',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                fontSize: 19.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 3,
+                                      child: Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                0.5,
+                                        decoration: const BoxDecoration(),
+                                        child: Text(
+                                          'Количество порций',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Commissioner',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                fontSize: 19.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 3,
+                                      child: Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                0.5,
+                                        decoration: const BoxDecoration(),
+                                        child: Text(
+                                          'Количество персон',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Commissioner',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                fontSize: 19.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 200.0,
                                       decoration: const BoxDecoration(),
                                       child: Text(
-                                        'Категория питания',
-                                        textAlign: TextAlign.start,
+                                        'Стоимость',
+                                        textAlign: TextAlign.end,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -1561,73 +1599,11 @@ class _CompanyRequestsComponentWidgetState
                                             ),
                                       ),
                                     ),
-                                  ),
-                                  Expanded(
-                                    flex: 3,
-                                    child: Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          0.5,
-                                      decoration: const BoxDecoration(),
-                                      child: Text(
-                                        'Количество порций',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Commissioner',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              fontSize: 19.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 3,
-                                    child: Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          0.5,
-                                      decoration: const BoxDecoration(),
-                                      child: Text(
-                                        'Количество персон',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Commissioner',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              fontSize: 19.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    width: 200.0,
-                                    decoration: const BoxDecoration(),
-                                    child: Text(
-                                      'Стоимость',
-                                      textAlign: TextAlign.end,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Commissioner',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            fontSize: 19.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                    ),
-                                  ),
-                                ]
-                                    .divide(const SizedBox(width: 8.0))
-                                    .addToStart(const SizedBox(width: 16.0))
-                                    .addToEnd(const SizedBox(width: 16.0)),
+                                  ]
+                                      .divide(const SizedBox(width: 8.0))
+                                      .addToStart(const SizedBox(width: 16.0))
+                                      .addToEnd(const SizedBox(width: 16.0)),
+                                ),
                               ),
                             ),
                             FutureBuilder<List<RequestsFoodVarRow>>(
@@ -1669,7 +1645,6 @@ class _CompanyRequestsComponentWidgetState
                                     return Container(
                                       width: MediaQuery.sizeOf(context).width *
                                           1.0,
-                                      height: 40.0,
                                       decoration: BoxDecoration(
                                         color: valueOrDefault<Color>(
                                           columnIndex.isOdd
@@ -1687,131 +1662,145 @@ class _CompanyRequestsComponentWidgetState
                                           topRight: Radius.circular(0.0),
                                         ),
                                       ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Expanded(
-                                            flex: 4,
-                                            child: Container(
-                                              width: MediaQuery.sizeOf(context)
-                                                      .width *
-                                                  0.1,
-                                              decoration: const BoxDecoration(),
-                                              child: Text(
-                                                valueOrDefault<String>(
-                                                  columnRequestsFoodVarRow.name,
-                                                  'room',
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 8.0, 0.0, 8.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Expanded(
+                                              flex: 4,
+                                              child: Container(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.1,
+                                                decoration: const BoxDecoration(),
+                                                child: Text(
+                                                  valueOrDefault<String>(
+                                                    columnRequestsFoodVarRow
+                                                        .name,
+                                                    'room',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontSize: 19.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
                                                 ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 19.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
                                               ),
                                             ),
-                                          ),
-                                          Expanded(
-                                            flex: 3,
-                                            child: Container(
-                                              width: MediaQuery.sizeOf(context)
-                                                      .width *
-                                                  0.5,
+                                            Expanded(
+                                              flex: 3,
+                                              child: Container(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.5,
+                                                decoration: const BoxDecoration(),
+                                                child: Text(
+                                                  valueOrDefault<String>(
+                                                    columnRequestsFoodVarRow
+                                                        .count
+                                                        ?.toString(),
+                                                    '0',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontSize: 19.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              flex: 3,
+                                              child: Container(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.5,
+                                                decoration: const BoxDecoration(),
+                                                child: Text(
+                                                  valueOrDefault<String>(
+                                                    columnRequestsFoodVarRow
+                                                        .personsCount
+                                                        ?.toString(),
+                                                    '1',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontSize: 19.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                ),
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 200.0,
                                               decoration: const BoxDecoration(),
                                               child: Text(
                                                 valueOrDefault<String>(
-                                                  columnRequestsFoodVarRow.count
-                                                      ?.toString(),
+                                                  formatNumber(
+                                                    columnRequestsFoodVarRow
+                                                        .price,
+                                                    formatType:
+                                                        FormatType.decimal,
+                                                  ),
                                                   '0',
                                                 ),
+                                                textAlign: TextAlign.end,
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
                                                               'Commissioner',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
                                                           fontSize: 19.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .underline,
                                                         ),
                                               ),
                                             ),
-                                          ),
-                                          Expanded(
-                                            flex: 3,
-                                            child: Container(
-                                              width: MediaQuery.sizeOf(context)
-                                                      .width *
-                                                  0.5,
-                                              decoration: const BoxDecoration(),
-                                              child: Text(
-                                                valueOrDefault<String>(
-                                                  columnRequestsFoodVarRow
-                                                      .personsCount
-                                                      ?.toString(),
-                                                  '1',
-                                                ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 19.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 200.0,
-                                            decoration: const BoxDecoration(),
-                                            child: Text(
-                                              valueOrDefault<String>(
-                                                formatNumber(
-                                                  columnRequestsFoodVarRow
-                                                      .price,
-                                                  formatType:
-                                                      FormatType.decimal,
-                                                ),
-                                                '0',
-                                              ),
-                                              textAlign: TextAlign.end,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Commissioner',
-                                                    fontSize: 19.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                    decoration: TextDecoration
-                                                        .underline,
-                                                  ),
-                                            ),
-                                          ),
-                                        ]
-                                            .divide(const SizedBox(width: 8.0))
-                                            .addToStart(const SizedBox(width: 16.0))
-                                            .addToEnd(const SizedBox(width: 16.0)),
+                                          ]
+                                              .divide(const SizedBox(width: 8.0))
+                                              .addToStart(const SizedBox(width: 16.0))
+                                              .addToEnd(const SizedBox(width: 16.0)),
+                                        ),
                                       ),
                                     );
                                   }),
@@ -1910,7 +1899,6 @@ class _CompanyRequestsComponentWidgetState
                             ),
                             Container(
                               width: MediaQuery.sizeOf(context).width * 1.0,
-                              height: 40.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context).primary,
                                 borderRadius: const BorderRadius.only(
@@ -1920,18 +1908,88 @@ class _CompanyRequestsComponentWidgetState
                                   topRight: Radius.circular(16.0),
                                 ),
                               ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Expanded(
-                                    flex: 4,
-                                    child: Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          0.1,
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 8.0, 0.0, 8.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Expanded(
+                                      flex: 4,
+                                      child: Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                0.1,
+                                        decoration: const BoxDecoration(),
+                                        child: Text(
+                                          'Название зала',
+                                          textAlign: TextAlign.start,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Commissioner',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                fontSize: 19.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 3,
+                                      child: Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                0.5,
+                                        decoration: const BoxDecoration(),
+                                        child: Text(
+                                          'Количество',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Commissioner',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                fontSize: 19.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 3,
+                                      child: Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                0.5,
+                                        decoration: const BoxDecoration(),
+                                        child: Text(
+                                          'Количество дней',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Commissioner',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                fontSize: 19.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 200.0,
                                       decoration: const BoxDecoration(),
                                       child: Text(
-                                        'Название зала',
-                                        textAlign: TextAlign.start,
+                                        'Стоимость',
+                                        textAlign: TextAlign.end,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -1945,73 +2003,11 @@ class _CompanyRequestsComponentWidgetState
                                             ),
                                       ),
                                     ),
-                                  ),
-                                  Expanded(
-                                    flex: 3,
-                                    child: Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          0.5,
-                                      decoration: const BoxDecoration(),
-                                      child: Text(
-                                        'Количество',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Commissioner',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              fontSize: 19.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 3,
-                                    child: Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          0.5,
-                                      decoration: const BoxDecoration(),
-                                      child: Text(
-                                        'Количество дней',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Commissioner',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              fontSize: 19.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    width: 200.0,
-                                    decoration: const BoxDecoration(),
-                                    child: Text(
-                                      'Стоимость',
-                                      textAlign: TextAlign.end,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Commissioner',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            fontSize: 19.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                    ),
-                                  ),
-                                ]
-                                    .divide(const SizedBox(width: 8.0))
-                                    .addToStart(const SizedBox(width: 16.0))
-                                    .addToEnd(const SizedBox(width: 16.0)),
+                                  ]
+                                      .divide(const SizedBox(width: 8.0))
+                                      .addToStart(const SizedBox(width: 16.0))
+                                      .addToEnd(const SizedBox(width: 16.0)),
+                                ),
                               ),
                             ),
                             FutureBuilder<List<RequestsRoomVarRow>>(
@@ -2053,7 +2049,6 @@ class _CompanyRequestsComponentWidgetState
                                     return Container(
                                       width: MediaQuery.sizeOf(context).width *
                                           1.0,
-                                      height: 40.0,
                                       decoration: BoxDecoration(
                                         color: valueOrDefault<Color>(
                                           columnIndex.isOdd
@@ -2071,134 +2066,147 @@ class _CompanyRequestsComponentWidgetState
                                           topRight: Radius.circular(0.0),
                                         ),
                                       ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Expanded(
-                                            flex: 4,
-                                            child: Container(
-                                              width: MediaQuery.sizeOf(context)
-                                                      .width *
-                                                  0.1,
-                                              decoration: const BoxDecoration(),
-                                              child: Text(
-                                                valueOrDefault<String>(
-                                                  columnRequestsRoomVarRow
-                                                      .roomName,
-                                                  'room',
-                                                ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 19.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            flex: 3,
-                                            child: Container(
-                                              width: MediaQuery.sizeOf(context)
-                                                      .width *
-                                                  0.5,
-                                              decoration: const BoxDecoration(),
-                                              child: Text(
-                                                valueOrDefault<String>(
-                                                  columnRequestsRoomVarRow
-                                                      .roomCount
-                                                      ?.toString(),
-                                                  '1',
-                                                ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 19.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            flex: 3,
-                                            child: Container(
-                                              width: MediaQuery.sizeOf(context)
-                                                      .width *
-                                                  0.5,
-                                              decoration: const BoxDecoration(),
-                                              child: Text(
-                                                valueOrDefault<String>(
-                                                  columnRequestsRoomVarRow.days
-                                                      ?.toString(),
-                                                  '1',
-                                                ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 19.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 200.0,
-                                            decoration: const BoxDecoration(),
-                                            child: Text(
-                                              valueOrDefault<String>(
-                                                formatNumber(
-                                                  columnRequestsRoomVarRow
-                                                      .price,
-                                                  formatType:
-                                                      FormatType.decimal,
-                                                  decimalType:
-                                                      DecimalType.automatic,
-                                                ),
-                                                '0',
-                                              ),
-                                              textAlign: TextAlign.end,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Commissioner',
-                                                    fontSize: 19.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                    decoration: TextDecoration
-                                                        .underline,
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 8.0, 0.0, 8.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Expanded(
+                                              flex: 4,
+                                              child: Container(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.1,
+                                                decoration: const BoxDecoration(),
+                                                child: Text(
+                                                  valueOrDefault<String>(
+                                                    columnRequestsRoomVarRow
+                                                        .roomName,
+                                                    'room',
                                                   ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontSize: 19.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                        ]
-                                            .divide(const SizedBox(width: 8.0))
-                                            .addToStart(const SizedBox(width: 16.0))
-                                            .addToEnd(const SizedBox(width: 16.0)),
+                                            Expanded(
+                                              flex: 3,
+                                              child: Container(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.5,
+                                                decoration: const BoxDecoration(),
+                                                child: Text(
+                                                  valueOrDefault<String>(
+                                                    columnRequestsRoomVarRow
+                                                        .roomCount
+                                                        ?.toString(),
+                                                    '1',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontSize: 19.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              flex: 3,
+                                              child: Container(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.5,
+                                                decoration: const BoxDecoration(),
+                                                child: Text(
+                                                  valueOrDefault<String>(
+                                                    columnRequestsRoomVarRow
+                                                        .days
+                                                        ?.toString(),
+                                                    '1',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontSize: 19.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                ),
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 200.0,
+                                              decoration: const BoxDecoration(),
+                                              child: Text(
+                                                valueOrDefault<String>(
+                                                  formatNumber(
+                                                    columnRequestsRoomVarRow
+                                                        .price,
+                                                    formatType:
+                                                        FormatType.decimal,
+                                                    decimalType:
+                                                        DecimalType.automatic,
+                                                  ),
+                                                  '0',
+                                                ),
+                                                textAlign: TextAlign.end,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          fontSize: 19.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .underline,
+                                                        ),
+                                              ),
+                                            ),
+                                          ]
+                                              .divide(const SizedBox(width: 8.0))
+                                              .addToStart(const SizedBox(width: 16.0))
+                                              .addToEnd(const SizedBox(width: 16.0)),
+                                        ),
                                       ),
                                     );
                                   }),
