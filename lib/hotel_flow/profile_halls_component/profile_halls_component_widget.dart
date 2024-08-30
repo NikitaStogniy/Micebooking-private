@@ -356,6 +356,30 @@ class _ProfileHallsComponentWidgetState
                                                             .description,
                                                         'images':
                                                             hallsItem.images,
+                                                        'seating_theater':
+                                                            hallsItem
+                                                                .seatingTheater,
+                                                        'seating_class':
+                                                            hallsItem
+                                                                .seatingClass,
+                                                        'seating_communication':
+                                                            hallsItem
+                                                                .seatingCommunication,
+                                                        'seating_ushape':
+                                                            hallsItem
+                                                                .seatingUshape,
+                                                        'seating_oshape':
+                                                            hallsItem
+                                                                .seatingOshape,
+                                                        'seating_kabare':
+                                                            hallsItem
+                                                                .seatingKabare,
+                                                        'seating_banket':
+                                                            hallsItem
+                                                                .seatingBanket,
+                                                        'seating_furshet':
+                                                            hallsItem
+                                                                .seatingFurshet,
                                                       });
                                                       _model.addToNewHalls(
                                                           _model

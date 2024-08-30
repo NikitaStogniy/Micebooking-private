@@ -173,7 +173,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                         width: 200.0,
                         decoration: const BoxDecoration(),
                         child: Text(
-                          'Название отеля',
+                          'Название отеля*:',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Commissioner',
@@ -257,7 +257,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                         width: 200.0,
                         decoration: const BoxDecoration(),
                         child: Text(
-                          'Адрес отеля',
+                          'Адрес отеля*:',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Commissioner',
@@ -351,7 +351,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                               width: 200.0,
                               decoration: const BoxDecoration(),
                               child: Text(
-                                'Город / регион',
+                                'Город / регион*:',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -462,16 +462,18 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                           onChanged: (val) async {
                                             setState(() =>
                                                 _model.dropDownValue = val);
-                                            _model.currentCity =
-                                                _model.dropDownValue;
-                                            setState(() {});
                                             _model.cityId =
                                                 await CityTable().queryRows(
                                               queryFn: (q) => q.eq(
                                                 'name',
-                                                _model.currentCity,
+                                                _model.dropDownValue,
                                               ),
                                             );
+                                            _model.currentCity =
+                                                _model.dropDownValue;
+                                            _model.currentCityId =
+                                                _model.cityId?.first.id;
+                                            setState(() {});
 
                                             setState(() {});
                                           },
@@ -658,7 +660,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                 width: 200.0,
                                 decoration: const BoxDecoration(),
                                 child: Text(
-                                  'Расстояние от\nцентра (км)',
+                                  'Расстояние от\nцентра (км)*:',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -764,10 +766,10 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Container(
-                            width: 120.0,
+                            width: 130.0,
                             decoration: const BoxDecoration(),
                             child: Text(
-                              'Вместимость',
+                              'Вместимость*:',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -860,7 +862,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                             width: 200.0,
                             decoration: const BoxDecoration(),
                             child: Text(
-                              'Максимальная вместимость зала',
+                              'Максимальная вместимость зала*:',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -954,7 +956,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                               width: 120.0,
                               decoration: const BoxDecoration(),
                               child: Text(
-                                'Ссылка на карту',
+                                'Ссылка на карту*:',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -1152,7 +1154,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                         width: 200.0,
                         decoration: const BoxDecoration(),
                         child: Text(
-                          'Количество звезд',
+                          'Количество звезд*:',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Commissioner',
@@ -1190,7 +1192,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                         child: Align(
                           alignment: const AlignmentDirectional(-1.0, 0.0),
                           child: Text(
-                            'Фотографии',
+                            'Фотографии*:',
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -1457,7 +1459,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                   'type',
                                   EnumType.HOTEL.name,
                                 )
-                                .order('created_at'),
+                                .order('created_at', ascending: true),
                           ),
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.
@@ -1784,6 +1786,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                     );
                                     _model.uploadedImages = [];
                                     _model.selectedServices = [];
+                                    _model.changeCity = false;
                                     setState(() {});
                                     Navigator.pop(context);
                                     await widget.doneCallback?.call(

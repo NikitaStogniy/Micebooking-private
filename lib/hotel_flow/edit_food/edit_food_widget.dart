@@ -190,7 +190,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                   width: 200.0,
                                   decoration: const BoxDecoration(),
                                   child: Text(
-                                    'Название пакета',
+                                    'Название пакета*',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -293,7 +293,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                         width: 200.0,
                                         decoration: const BoxDecoration(),
                                         child: Text(
-                                          'Тип пакета',
+                                          'Тип пакета*',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -537,7 +537,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Text(
-                                      'Цена за персону:',
+                                      'Цена за персону*:',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
