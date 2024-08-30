@@ -350,90 +350,94 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                       ].divide(const SizedBox(height: 13.0)),
                     ),
                   ),
-                  Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Text(
-                          'Доп. телефон',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Commissioner',
-                                    fontSize: 18.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                        ),
-                        Container(
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                8.0, 0.0, 8.0, 0.0),
-                            child: TextFormField(
-                              controller: _model.extraPhoneDescTextController,
-                              focusNode: _model.extraPhoneDescFocusNode,
-                              autofocus: false,
-                              textInputAction: TextInputAction.next,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                hintText: '+7 987 654 32 10',
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    width: 2.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(24.0),
+                  if (widget.isHotel)
+                    Expanded(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Text(
+                            'Доп. телефон',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Commissioner',
+                                  fontSize: 18.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
                                 ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    width: 2.0,
+                          ),
+                          Container(
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  8.0, 0.0, 8.0, 0.0),
+                              child: TextFormField(
+                                controller: _model.extraPhoneDescTextController,
+                                focusNode: _model.extraPhoneDescFocusNode,
+                                autofocus: false,
+                                textInputAction: TextInputAction.next,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  hintText: '+7 987 654 32 10',
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(24.0),
                                   ),
-                                  borderRadius: BorderRadius.circular(24.0),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 2.0,
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(24.0),
                                   ),
-                                  borderRadius: BorderRadius.circular(24.0),
-                                ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 2.0,
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(24.0),
                                   ),
-                                  borderRadius: BorderRadius.circular(24.0),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(24.0),
+                                  ),
+                                  filled: true,
+                                  fillColor: const Color(0xFFF0F0FA),
+                                  contentPadding:
+                                      const EdgeInsetsDirectional.fromSTEB(
+                                          8.0, 0.0, 0.0, 0.0),
                                 ),
-                                filled: true,
-                                fillColor: const Color(0xFFF0F0FA),
-                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 0.0, 0.0, 0.0),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Commissioner',
+                                      letterSpacing: 0.0,
+                                    ),
+                                maxLength: 50,
+                                maxLengthEnforcement: MaxLengthEnforcement.none,
+                                buildCounter: (context,
+                                        {required currentLength,
+                                        required isFocused,
+                                        maxLength}) =>
+                                    null,
+                                keyboardType: TextInputType.phone,
+                                validator: _model
+                                    .extraPhoneDescTextControllerValidator
+                                    .asValidator(context),
+                                inputFormatters: [_model.extraPhoneDescMask],
                               ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Commissioner',
-                                    letterSpacing: 0.0,
-                                  ),
-                              maxLength: 50,
-                              maxLengthEnforcement: MaxLengthEnforcement.none,
-                              buildCounter: (context,
-                                      {required currentLength,
-                                      required isFocused,
-                                      maxLength}) =>
-                                  null,
-                              keyboardType: TextInputType.phone,
-                              validator: _model
-                                  .extraPhoneDescTextControllerValidator
-                                  .asValidator(context),
-                              inputFormatters: [_model.extraPhoneDescMask],
                             ),
                           ),
-                        ),
-                      ].divide(const SizedBox(height: 13.0)),
+                        ].divide(const SizedBox(height: 13.0)),
+                      ),
                     ),
-                  ),
                 ].divide(const SizedBox(width: 40.0)),
               ),
             if (responsiveVisibility(
@@ -710,11 +714,12 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                   ),
                 ].divide(const SizedBox(height: 13.0)),
               ),
-            if (responsiveVisibility(
-              context: context,
-              tabletLandscape: false,
-              desktop: false,
-            ))
+            if (widget.isHotel &&
+                responsiveVisibility(
+                  context: context,
+                  tabletLandscape: false,
+                  desktop: false,
+                ))
               Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -1272,7 +1277,8 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                         (_model.phoneDescTextController
                                                     .text ==
                                                 '') ||
-                                        (_model.fioMobTextController.text ==
+                                        (_model.companyNameTextController
+                                                    .text !=
                                                 '') ||
                                         (_model.passwordTextController
                                                     .text ==
