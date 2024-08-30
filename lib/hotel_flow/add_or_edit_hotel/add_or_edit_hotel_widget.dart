@@ -169,7 +169,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                 width: 200.0,
                                 decoration: const BoxDecoration(),
                                 child: Text(
-                                  'Название отеля',
+                                  'Название отеля*:',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -261,7 +261,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                 width: 200.0,
                                 decoration: const BoxDecoration(),
                                 child: Text(
-                                  'Адрес отеля',
+                                  'Адрес отеля*:',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -363,7 +363,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                       width: 200.0,
                                       decoration: const BoxDecoration(),
                                       child: Text(
-                                        'Город / регион',
+                                        'Город / регион*:',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -722,7 +722,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                       Container(
                                         decoration: const BoxDecoration(),
                                         child: Text(
-                                          'Расстояние от центра (км)',
+                                          'Расстояние от центра (км)*:',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -997,7 +997,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                     width: 200.0,
                                     decoration: const BoxDecoration(),
                                     child: Text(
-                                      'Максимальная вместимость отеля',
+                                      'Максимальная вместимость отеля*:',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -1103,7 +1103,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                     width: 200.0,
                                     decoration: const BoxDecoration(),
                                     child: Text(
-                                      'Максимальная вместимость зала',
+                                      'Максимальная вместимость зала*:',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -1212,7 +1212,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                       Container(
                                         decoration: const BoxDecoration(),
                                         child: Text(
-                                          'Ссылка на карту',
+                                          'Ссылка на карту*:',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -1340,7 +1340,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 16.0, 0.0, 0.0),
                                   child: Text(
-                                    'Описание отеля',
+                                    'Описание отеля*:',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -1435,7 +1435,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                 width: 200.0,
                                 decoration: const BoxDecoration(),
                                 child: Text(
-                                  'Количество звезд',
+                                  'Количество звезд*:',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -1475,7 +1475,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                 child: Align(
                                   alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
-                                    'Фотографии',
+                                    'Фотографии*:',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -1489,21 +1489,8 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                               ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 16.0, 0.0),
-                                child: FlutterFlowIconButton(
-                                  borderColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  borderRadius: 20.0,
-                                  borderWidth: 1.0,
-                                  buttonSize: 40.0,
-                                  fillColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  icon: Icon(
-                                    Icons.add,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    size: 24.0,
-                                  ),
+                                    0.0, 0.0, 24.0, 0.0),
+                                child: FFButtonWidget(
                                   onPressed: () async {
                                     final selectedMedia = await selectMedia(
                                       storageFolderPath: 'users/uploaded',
@@ -1572,6 +1559,33 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                       _model.uploadedFileUrls = [];
                                     });
                                   },
+                                  text: '',
+                                  icon: const Icon(
+                                    Icons.add,
+                                    size: 24.0,
+                                  ),
+                                  options: FFButtonOptions(
+                                    width: 40.0,
+                                    height: 40.0,
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                        8.0, 0.0, 0.0, 0.0),
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Commissioner',
+                                          color: Colors.white,
+                                          letterSpacing: 0.0,
+                                        ),
+                                    elevation: 0.0,
+                                    borderSide: const BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(24.0),
+                                  ),
                                 ),
                               ),
                               if (_model.uploadedImages.isNotEmpty)

@@ -361,20 +361,8 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                             ),
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 16.0, 0.0),
-                              child: FlutterFlowIconButton(
-                                borderColor:
-                                    FlutterFlowTheme.of(context).primary,
-                                borderRadius: 20.0,
-                                borderWidth: 1.0,
-                                buttonSize: 40.0,
-                                fillColor: FlutterFlowTheme.of(context).primary,
-                                icon: Icon(
-                                  Icons.add,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  size: 24.0,
-                                ),
+                                  0.0, 0.0, 24.0, 0.0),
+                              child: FFButtonWidget(
                                 onPressed: () async {
                                   final selectedMedia = await selectMedia(
                                     storageFolderPath: 'users/uploaded',
@@ -429,18 +417,12 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                                     }
                                   }
 
-                                  _model.newImages = _model.uploadedFileUrls
-                                      .toList()
-                                      .cast<String>();
-                                  setState(() {});
                                   _model.uploadedImages = functions
                                       .mergeLists(
                                           _model.uploadedImages.toList(),
-                                          _model.newImages.toList())!
+                                          _model.uploadedFileUrls.toList())!
                                       .toList()
                                       .cast<String>();
-                                  setState(() {});
-                                  _model.newImages = [];
                                   setState(() {});
                                   setState(() {
                                     _model.isDataUploading = false;
@@ -448,6 +430,33 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                                     _model.uploadedFileUrls = [];
                                   });
                                 },
+                                text: '',
+                                icon: const Icon(
+                                  Icons.add,
+                                  size: 24.0,
+                                ),
+                                options: FFButtonOptions(
+                                  width: 40.0,
+                                  height: 40.0,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                      8.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Commissioner',
+                                        color: Colors.white,
+                                        letterSpacing: 0.0,
+                                      ),
+                                  elevation: 0.0,
+                                  borderSide: const BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(24.0),
+                                ),
                               ),
                             ),
                             if (_model.uploadedImages.isNotEmpty)
