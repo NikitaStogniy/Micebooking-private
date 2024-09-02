@@ -4,6 +4,7 @@ import '/components/qa_element_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'edit_about_model.dart';
@@ -241,14 +242,16 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                   ),
                 ),
                 FutureBuilder<List<CmsRow>>(
-                  future: CmsTable().queryRows(
-                    queryFn: (q) => q
-                        .eq(
-                          'type',
-                          EnumCms.ABOUT_ELEMENT.name,
-                        )
-                        .order('created_at', ascending: true),
-                  ),
+                  future: (_model.requestCompleter ??= Completer<List<CmsRow>>()
+                        ..complete(CmsTable().queryRows(
+                          queryFn: (q) => q
+                              .eq(
+                                'type',
+                                EnumCms.ABOUT_ELEMENT.name,
+                              )
+                              .order('created_at', ascending: true),
+                        )))
+                      .future,
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
                     if (!snapshot.hasData) {
@@ -264,28 +267,39 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                         ),
                       );
                     }
-                    List<CmsRow> columnCmsRowList = snapshot.data!;
+                    List<CmsRow> elementsCmsRowList = snapshot.data!;
 
                     return Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children:
-                          List.generate(columnCmsRowList.length, (columnIndex) {
-                        final columnCmsRow = columnCmsRowList[columnIndex];
+                      children: List.generate(elementsCmsRowList.length,
+                          (elementsIndex) {
+                        final elementsCmsRow =
+                            elementsCmsRowList[elementsIndex];
                         return wrapWithModel(
                           model: _model.qaElementModels.getModel(
-                            columnCmsRow.id.toString(),
-                            columnIndex,
+                            elementsCmsRow.id.toString(),
+                            elementsIndex,
                           ),
                           updateCallback: () => setState(() {}),
                           child: QaElementWidget(
                             key: Key(
-                              'Keyfkn_${columnCmsRow.id.toString()}',
+                              'Keyfkn_${elementsCmsRow.id.toString()}',
                             ),
-                            index: columnIndex + 1,
-                            qa: columnCmsRow,
+                            index: elementsIndex + 1,
+                            qa: elementsCmsRow,
                             title: 'Заголовок пункта',
                             title2: 'Текст пункта',
+                            delete: () async {
+                              await CmsTable().delete(
+                                matchingRows: (rows) => rows.eq(
+                                  'id',
+                                  elementsCmsRow.id,
+                                ),
+                              );
+                              setState(() => _model.requestCompleter = null);
+                              await _model.waitForRequestCompleted();
+                            },
                           ),
                         );
                       }).divide(const SizedBox(height: 40.0)),

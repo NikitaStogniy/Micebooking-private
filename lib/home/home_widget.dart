@@ -293,19 +293,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                   FocusScope.of(
                                                                           dialogContext)
                                                                       .unfocus(),
-                                                              child: SizedBox(
-                                                                height: MediaQuery.sizeOf(
-                                                                            context)
-                                                                        .height *
-                                                                    0.9,
-                                                                width: MediaQuery.sizeOf(
-                                                                            context)
-                                                                        .width *
-                                                                    0.8,
-                                                                child:
-                                                                    const LoginHomePopUpWidget(
-                                                                  hotel: true,
-                                                                ),
+                                                              child:
+                                                                  const LoginHomePopUpWidget(
+                                                                hotel: true,
                                                               ),
                                                             ),
                                                           );

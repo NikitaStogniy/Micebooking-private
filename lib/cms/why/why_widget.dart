@@ -243,29 +243,36 @@ class _WhyWidgetState extends State<WhyWidget> {
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     children: [
-                                                      Expanded(
-                                                        child: Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            listViewCmsRow
-                                                                .title1,
-                                                            'Ошибка залоговка',
+                                                      if (listViewCmsRow
+                                                                  .title1 !=
+                                                              null &&
+                                                          listViewCmsRow
+                                                                  .title1 !=
+                                                              '')
+                                                        Expanded(
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              listViewCmsRow
+                                                                  .title1,
+                                                              'Ошибка залоговка',
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Commissioner',
+                                                                  fontSize:
+                                                                      20.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
                                                           ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Commissioner',
-                                                                fontSize: 20.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
                                                         ),
-                                                      ),
                                                     ],
                                                   ),
                                                   Row(
@@ -393,29 +400,36 @@ class _WhyWidgetState extends State<WhyWidget> {
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     children: [
-                                                      Expanded(
-                                                        child: Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            listViewCmsRow
-                                                                .title1,
-                                                            'Ошибка залоговка',
+                                                      if (listViewCmsRow
+                                                                  .title1 !=
+                                                              null &&
+                                                          listViewCmsRow
+                                                                  .title1 !=
+                                                              '')
+                                                        Expanded(
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              listViewCmsRow
+                                                                  .title1,
+                                                              'Ошибка залоговка',
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Commissioner',
+                                                                  fontSize:
+                                                                      20.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
                                                           ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Commissioner',
-                                                                fontSize: 20.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
                                                         ),
-                                                      ),
                                                     ],
                                                   ),
                                                   Row(
@@ -543,29 +557,36 @@ class _WhyWidgetState extends State<WhyWidget> {
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     children: [
-                                                      Expanded(
-                                                        child: Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            listViewCmsRow
-                                                                .title1,
-                                                            'Ошибка залоговка',
+                                                      if (listViewCmsRow
+                                                                  .title1 !=
+                                                              null &&
+                                                          listViewCmsRow
+                                                                  .title1 !=
+                                                              '')
+                                                        Expanded(
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              listViewCmsRow
+                                                                  .title1,
+                                                              'Ошибка залоговка',
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Commissioner',
+                                                                  fontSize:
+                                                                      20.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
                                                           ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Commissioner',
-                                                                fontSize: 20.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
                                                         ),
-                                                      ),
                                                     ],
                                                   ),
                                                   Row(
