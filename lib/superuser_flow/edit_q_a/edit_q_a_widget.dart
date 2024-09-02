@@ -4,6 +4,7 @@ import '/components/qa_element_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'edit_q_a_model.dart';
@@ -56,14 +57,16 @@ class _EditQAWidgetState extends State<EditQAWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             FutureBuilder<List<CmsRow>>(
-              future: CmsTable().queryRows(
-                queryFn: (q) => q
-                    .eq(
-                      'type',
-                      EnumCms.QA.name,
-                    )
-                    .order('created_at', ascending: true),
-              ),
+              future: (_model.requestCompleter ??= Completer<List<CmsRow>>()
+                    ..complete(CmsTable().queryRows(
+                      queryFn: (q) => q
+                          .eq(
+                            'type',
+                            EnumCms.QA.name,
+                          )
+                          .order('created_at', ascending: true),
+                    )))
+                  .future,
               builder: (context, snapshot) {
                 // Customize what your widget looks like when it's loading.
                 if (!snapshot.hasData) {
@@ -99,6 +102,16 @@ class _EditQAWidgetState extends State<EditQAWidget> {
                         ),
                         index: columnIndex + 1,
                         qa: columnCmsRow,
+                        delete: () async {
+                          await CmsTable().delete(
+                            matchingRows: (rows) => rows.eq(
+                              'id',
+                              columnCmsRow.id,
+                            ),
+                          );
+                          setState(() => _model.requestCompleter = null);
+                          await _model.waitForRequestCompleted();
+                        },
                       ),
                     );
                   }).divide(const SizedBox(height: 40.0)),

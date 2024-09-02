@@ -820,7 +820,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                   children: [
                     Text(
                       widget.isHotel
-                          ? 'Название сети / площадки*'
+                          ? 'Название отеля*'
                           : 'Название организации*',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Commissioner',
@@ -847,7 +847,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                   letterSpacing: 0.0,
                                 ),
                         hintText: widget.isHotel
-                            ? 'Название сети / площадки'
+                            ? 'Название отеля'
                             : 'ООО \"Название\"',
                         hintStyle:
                             FlutterFlowTheme.of(context).labelMedium.override(

@@ -380,68 +380,23 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                                                     .width *
                                                 0.25,
                                             decoration: const BoxDecoration(),
-                                            child: FutureBuilder<
-                                                List<ServiceCategoryRow>>(
-                                              future: ServiceCategoryTable()
-                                                  .querySingleRow(
-                                                queryFn: (q) => q.eq(
-                                                  'id',
-                                                  foodItem.category,
-                                                ),
+                                            child: Text(
+                                              valueOrDefault<String>(
+                                                foodItem.categoryName,
+                                                'Без категории',
                                               ),
-                                              builder: (context, snapshot) {
-                                                // Customize what your widget looks like when it's loading.
-                                                if (!snapshot.hasData) {
-                                                  return Center(
-                                                    child: SizedBox(
-                                                      width: 50.0,
-                                                      height: 50.0,
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                        valueColor:
-                                                            AlwaysStoppedAnimation<
-                                                                Color>(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                }
-                                                List<ServiceCategoryRow>
-                                                    textServiceCategoryRowList =
-                                                    snapshot.data!;
-
-                                                final textServiceCategoryRow =
-                                                    textServiceCategoryRowList
-                                                            .isNotEmpty
-                                                        ? textServiceCategoryRowList
-                                                            .first
-                                                        : null;
-
-                                                return Text(
-                                                  valueOrDefault<String>(
-                                                    foodItem.categoryName,
-                                                    'Без категории',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Commissioner',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    fontSize: 19.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w500,
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Commissioner',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                        fontSize: 19.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                );
-                                              },
                                             ),
                                           ),
                                           Container(

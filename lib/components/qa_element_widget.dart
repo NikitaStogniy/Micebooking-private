@@ -1,4 +1,5 @@
 import '/backend/supabase/supabase.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -13,6 +14,7 @@ class QaElementWidget extends StatefulWidget {
     required this.index,
     String? title,
     String? title2,
+    required this.delete,
   })  : title = title ?? 'Элемент',
         title2 = title2 ?? 'Текст';
 
@@ -20,6 +22,7 @@ class QaElementWidget extends StatefulWidget {
   final int? index;
   final String title;
   final String title2;
+  final Future Function()? delete;
 
   @override
   State<QaElementWidget> createState() => _QaElementWidgetState();
@@ -68,17 +71,37 @@ class _QaElementWidgetState extends State<QaElementWidget> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                '${widget.title} ${valueOrDefault<String>(
-                  widget.index?.toString(),
-                  '1',
-                )}',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Commissioner',
-                      fontSize: 20.0,
-                      letterSpacing: 0.0,
-                      fontWeight: FontWeight.w500,
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Text(
+                    '${widget.title} ${valueOrDefault<String>(
+                      widget.index?.toString(),
+                      '1',
+                    )}',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Commissioner',
+                          fontSize: 20.0,
+                          letterSpacing: 0.0,
+                          fontWeight: FontWeight.w500,
+                        ),
+                  ),
+                  FlutterFlowIconButton(
+                    borderColor: FlutterFlowTheme.of(context).error,
+                    borderRadius: 20.0,
+                    borderWidth: 1.0,
+                    buttonSize: 40.0,
+                    fillColor: const Color(0x19BE3030),
+                    icon: Icon(
+                      Icons.delete_rounded,
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      size: 24.0,
                     ),
+                    onPressed: () async {
+                      await widget.delete?.call();
+                    },
+                  ),
+                ].divide(const SizedBox(width: 24.0)),
               ),
               TextFormField(
                 controller: _model.aboutUsText1TextController1,

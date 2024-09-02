@@ -4,6 +4,7 @@ import '/components/qa_element_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'edit_whyus_model.dart';
@@ -221,14 +222,17 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                           ],
                         ),
                         FutureBuilder<List<CmsRow>>(
-                          future: CmsTable().queryRows(
-                            queryFn: (q) => q
-                                .eq(
-                                  'type',
-                                  EnumCms.WHY_ELEMENT_1.name,
-                                )
-                                .order('created_at', ascending: true),
-                          ),
+                          future: (_model.requestCompleter1 ??=
+                                  Completer<List<CmsRow>>()
+                                    ..complete(CmsTable().queryRows(
+                                      queryFn: (q) => q
+                                          .eq(
+                                            'type',
+                                            EnumCms.WHY_ELEMENT_1.name,
+                                          )
+                                          .order('created_at', ascending: true),
+                                    )))
+                              .future,
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.
                             if (!snapshot.hasData) {
@@ -244,29 +248,40 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                 ),
                               );
                             }
-                            List<CmsRow> columnCmsRowList = snapshot.data!;
+                            List<CmsRow> elements1CmsRowList = snapshot.data!;
 
                             return Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: List.generate(columnCmsRowList.length,
-                                  (columnIndex) {
-                                final columnCmsRow =
-                                    columnCmsRowList[columnIndex];
+                              children: List.generate(
+                                  elements1CmsRowList.length, (elements1Index) {
+                                final elements1CmsRow =
+                                    elements1CmsRowList[elements1Index];
                                 return wrapWithModel(
                                   model: _model.qaElementModels1.getModel(
-                                    columnCmsRow.id.toString(),
-                                    columnIndex,
+                                    elements1CmsRow.id.toString(),
+                                    elements1Index,
                                   ),
                                   updateCallback: () => setState(() {}),
                                   child: QaElementWidget(
                                     key: Key(
-                                      'Keys3c_${columnCmsRow.id.toString()}',
+                                      'Keys3c_${elements1CmsRow.id.toString()}',
                                     ),
-                                    index: columnIndex + 1,
-                                    qa: columnCmsRow,
+                                    index: elements1Index + 1,
+                                    qa: elements1CmsRow,
                                     title: 'Заголовок в первом блоке',
                                     title2: 'Текст в первом блоке',
+                                    delete: () async {
+                                      await CmsTable().delete(
+                                        matchingRows: (rows) => rows.eq(
+                                          'id',
+                                          elements1CmsRow.id,
+                                        ),
+                                      );
+                                      setState(() =>
+                                          _model.requestCompleter1 = null);
+                                      await _model.waitForRequestCompleted1();
+                                    },
                                   ),
                                 );
                               }).divide(const SizedBox(height: 40.0)),
@@ -558,6 +573,11 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                         .newText1TextController
                                                         ?.clear();
                                                   });
+                                                  setState(() =>
+                                                      _model.requestCompleter1 =
+                                                          null);
+                                                  await _model
+                                                      .waitForRequestCompleted1();
                                                 },
                                           text: 'Сохранить',
                                           options: FFButtonOptions(
@@ -749,14 +769,17 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                           ],
                         ),
                         FutureBuilder<List<CmsRow>>(
-                          future: CmsTable().queryRows(
-                            queryFn: (q) => q
-                                .eq(
-                                  'type',
-                                  EnumCms.WHY_ELEMENT_2.name,
-                                )
-                                .order('created_at', ascending: true),
-                          ),
+                          future: (_model.requestCompleter2 ??=
+                                  Completer<List<CmsRow>>()
+                                    ..complete(CmsTable().queryRows(
+                                      queryFn: (q) => q
+                                          .eq(
+                                            'type',
+                                            EnumCms.WHY_ELEMENT_2.name,
+                                          )
+                                          .order('created_at', ascending: true),
+                                    )))
+                              .future,
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.
                             if (!snapshot.hasData) {
@@ -772,29 +795,40 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                 ),
                               );
                             }
-                            List<CmsRow> columnCmsRowList = snapshot.data!;
+                            List<CmsRow> elements2CmsRowList = snapshot.data!;
 
                             return Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: List.generate(columnCmsRowList.length,
-                                  (columnIndex) {
-                                final columnCmsRow =
-                                    columnCmsRowList[columnIndex];
+                              children: List.generate(
+                                  elements2CmsRowList.length, (elements2Index) {
+                                final elements2CmsRow =
+                                    elements2CmsRowList[elements2Index];
                                 return wrapWithModel(
                                   model: _model.qaElementModels2.getModel(
-                                    columnCmsRow.id.toString(),
-                                    columnIndex,
+                                    elements2CmsRow.id.toString(),
+                                    elements2Index,
                                   ),
                                   updateCallback: () => setState(() {}),
                                   child: QaElementWidget(
                                     key: Key(
-                                      'Keyh5b_${columnCmsRow.id.toString()}',
+                                      'Keyh5b_${elements2CmsRow.id.toString()}',
                                     ),
-                                    index: columnIndex + 1,
-                                    qa: columnCmsRow,
+                                    index: elements2Index + 1,
+                                    qa: elements2CmsRow,
                                     title: 'Заголовок во втором блоке',
                                     title2: 'Текст во втором блоке',
+                                    delete: () async {
+                                      await CmsTable().delete(
+                                        matchingRows: (rows) => rows.eq(
+                                          'id',
+                                          elements2CmsRow.id,
+                                        ),
+                                      );
+                                      setState(() =>
+                                          _model.requestCompleter2 = null);
+                                      await _model.waitForRequestCompleted2();
+                                    },
                                   ),
                                 );
                               }).divide(const SizedBox(height: 40.0)),
@@ -1086,6 +1120,11 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                         .newText2TextController
                                                         ?.clear();
                                                   });
+                                                  setState(() =>
+                                                      _model.requestCompleter2 =
+                                                          null);
+                                                  await _model
+                                                      .waitForRequestCompleted2();
                                                 },
                                           text: 'Сохранить',
                                           options: FFButtonOptions(
@@ -1274,14 +1313,17 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                           ],
                         ),
                         FutureBuilder<List<CmsRow>>(
-                          future: CmsTable().queryRows(
-                            queryFn: (q) => q
-                                .eq(
-                                  'type',
-                                  EnumCms.WHY_ELEMENT_3.name,
-                                )
-                                .order('created_at', ascending: true),
-                          ),
+                          future: (_model.requestCompleter3 ??=
+                                  Completer<List<CmsRow>>()
+                                    ..complete(CmsTable().queryRows(
+                                      queryFn: (q) => q
+                                          .eq(
+                                            'type',
+                                            EnumCms.WHY_ELEMENT_3.name,
+                                          )
+                                          .order('created_at', ascending: true),
+                                    )))
+                              .future,
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.
                             if (!snapshot.hasData) {
@@ -1297,29 +1339,40 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                 ),
                               );
                             }
-                            List<CmsRow> columnCmsRowList = snapshot.data!;
+                            List<CmsRow> elements3CmsRowList = snapshot.data!;
 
                             return Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: List.generate(columnCmsRowList.length,
-                                  (columnIndex) {
-                                final columnCmsRow =
-                                    columnCmsRowList[columnIndex];
+                              children: List.generate(
+                                  elements3CmsRowList.length, (elements3Index) {
+                                final elements3CmsRow =
+                                    elements3CmsRowList[elements3Index];
                                 return wrapWithModel(
                                   model: _model.qaElementModels3.getModel(
-                                    columnCmsRow.id.toString(),
-                                    columnIndex,
+                                    elements3CmsRow.id.toString(),
+                                    elements3Index,
                                   ),
                                   updateCallback: () => setState(() {}),
                                   child: QaElementWidget(
                                     key: Key(
-                                      'Keyb9s_${columnCmsRow.id.toString()}',
+                                      'Keyb9s_${elements3CmsRow.id.toString()}',
                                     ),
-                                    index: columnIndex + 1,
-                                    qa: columnCmsRow,
+                                    index: elements3Index + 1,
+                                    qa: elements3CmsRow,
                                     title: 'Заголовок в третьем блоке',
                                     title2: 'Текст в третьем блоке',
+                                    delete: () async {
+                                      await CmsTable().delete(
+                                        matchingRows: (rows) => rows.eq(
+                                          'id',
+                                          elements3CmsRow.id,
+                                        ),
+                                      );
+                                      setState(() =>
+                                          _model.requestCompleter3 = null);
+                                      await _model.waitForRequestCompleted3();
+                                    },
                                   ),
                                 );
                               }).divide(const SizedBox(height: 40.0)),
@@ -1611,6 +1664,11 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                         .newText3TextController
                                                         ?.clear();
                                                   });
+                                                  setState(() =>
+                                                      _model.requestCompleter3 =
+                                                          null);
+                                                  await _model
+                                                      .waitForRequestCompleted3();
                                                 },
                                           text: 'Сохранить',
                                           options: FFButtonOptions(
@@ -1649,14 +1707,14 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            _model.newElement2 = false;
-                                            setState(() {});
                                             setState(() {
                                               _model.newTitle3TextController
                                                   ?.clear();
                                               _model.newText3TextController
                                                   ?.clear();
                                             });
+                                            _model.newElement3 = false;
+                                            setState(() {});
                                           },
                                           child: Text(
                                             'Отменить',

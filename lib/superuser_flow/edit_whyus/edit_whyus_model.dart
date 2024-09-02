@@ -1,5 +1,7 @@
+import '/backend/supabase/supabase.dart';
 import '/components/qa_element_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:async';
 import 'edit_whyus_widget.dart' show EditWhyusWidget;
 import 'package:flutter/material.dart';
 
@@ -24,6 +26,7 @@ class EditWhyusModel extends FlutterFlowModel<EditWhyusWidget> {
   String? Function(BuildContext, String?)? whyusTitle1TextControllerValidator;
   // Models for qa_element dynamic component.
   late FlutterFlowDynamicModels<QaElementModel> qaElementModels1;
+  Completer<List<CmsRow>>? requestCompleter1;
   // State field(s) for newTitle1 widget.
   FocusNode? newTitle1FocusNode;
   TextEditingController? newTitle1TextController;
@@ -38,6 +41,7 @@ class EditWhyusModel extends FlutterFlowModel<EditWhyusWidget> {
   String? Function(BuildContext, String?)? whyusTitle2TextControllerValidator;
   // Models for qa_element dynamic component.
   late FlutterFlowDynamicModels<QaElementModel> qaElementModels2;
+  Completer<List<CmsRow>>? requestCompleter2;
   // State field(s) for newTitle2 widget.
   FocusNode? newTitle2FocusNode;
   TextEditingController? newTitle2TextController;
@@ -52,6 +56,7 @@ class EditWhyusModel extends FlutterFlowModel<EditWhyusWidget> {
   String? Function(BuildContext, String?)? whyusTitle3TextControllerValidator;
   // Models for qa_element dynamic component.
   late FlutterFlowDynamicModels<QaElementModel> qaElementModels3;
+  Completer<List<CmsRow>>? requestCompleter3;
   // State field(s) for newTitle3 widget.
   FocusNode? newTitle3FocusNode;
   TextEditingController? newTitle3TextController;
@@ -99,5 +104,51 @@ class EditWhyusModel extends FlutterFlowModel<EditWhyusWidget> {
 
     newText3FocusNode?.dispose();
     newText3TextController?.dispose();
+  }
+
+  /// Additional helper methods.
+  Future waitForRequestCompleted1({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = requestCompleter1?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
+  Future waitForRequestCompleted2({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = requestCompleter2?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
+  Future waitForRequestCompleted3({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = requestCompleter3?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
   }
 }

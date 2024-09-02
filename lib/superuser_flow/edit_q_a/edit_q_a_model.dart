@@ -1,5 +1,7 @@
+import '/backend/supabase/supabase.dart';
 import '/components/qa_element_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:async';
 import 'edit_q_a_widget.dart' show EditQAWidget;
 import 'package:flutter/material.dart';
 
@@ -16,6 +18,7 @@ class EditQAModel extends FlutterFlowModel<EditQAWidget> {
 
   // Models for qa_element dynamic component.
   late FlutterFlowDynamicModels<QaElementModel> qaElementModels;
+  Completer<List<CmsRow>>? requestCompleter;
   // State field(s) for newTitle widget.
   FocusNode? newTitleFocusNode;
   TextEditingController? newTitleTextController;
@@ -38,5 +41,21 @@ class EditQAModel extends FlutterFlowModel<EditQAWidget> {
 
     newTextFocusNode?.dispose();
     newTextTextController?.dispose();
+  }
+
+  /// Additional helper methods.
+  Future waitForRequestCompleted({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = requestCompleter?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
   }
 }
