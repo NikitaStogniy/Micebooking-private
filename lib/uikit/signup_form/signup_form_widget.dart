@@ -1334,7 +1334,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                                     .text ==
                                                 '') ||
                                         (_model.companyNameTextController
-                                                    .text !=
+                                                    .text ==
                                                 '') ||
                                         (_model.passwordTextController
                                                     .text ==
