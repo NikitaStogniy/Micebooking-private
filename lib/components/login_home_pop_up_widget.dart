@@ -370,7 +370,11 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                             wrapWithModel(
                               model: _model.loginFormModel,
                               updateCallback: () => setState(() {}),
-                              child: const LoginFormWidget(),
+                              child: LoginFormWidget(
+                                action: () async {
+                                  Navigator.pop(context);
+                                },
+                              ),
                             ),
                           if (_model.isRegister)
                             wrapWithModel(

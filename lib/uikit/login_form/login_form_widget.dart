@@ -12,7 +12,12 @@ import 'login_form_model.dart';
 export 'login_form_model.dart';
 
 class LoginFormWidget extends StatefulWidget {
-  const LoginFormWidget({super.key});
+  const LoginFormWidget({
+    super.key,
+    this.action,
+  });
+
+  final Future Function()? action;
 
   @override
   State<LoginFormWidget> createState() => _LoginFormWidgetState();
@@ -265,19 +270,19 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                                 EnumRole.CLIENT.name) {
                               context.goNamed('Home');
 
-                              Navigator.pop(context);
+                              await widget.action?.call();
                             } else {
                               if (_model.user?.first.role ==
                                   EnumRole.HOTEL.name) {
-                                context.pushNamed('HOTEL_HOME');
+                                await widget.action?.call();
 
-                                Navigator.pop(context);
+                                context.pushNamed('HOTEL_HOME');
                               } else {
                                 if (_model.user?.first.role ==
                                     EnumRole.SUPERUSER.name) {
-                                  context.pushNamed('SUPER_Home');
+                                  await widget.action?.call();
 
-                                  Navigator.pop(context);
+                                  context.pushNamed('SUPER_Home');
                                 }
                               }
                             }
