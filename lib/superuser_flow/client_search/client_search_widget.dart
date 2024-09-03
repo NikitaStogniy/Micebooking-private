@@ -375,12 +375,16 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                                                 0.5,
                                             decoration: const BoxDecoration(),
                                             child: Text(
-                                              dateTimeFormat(
-                                                "d/M/y",
-                                                containerUsersRow!.lastRequest!,
-                                                locale:
-                                                    FFLocalizations.of(context)
-                                                        .languageCode,
+                                              valueOrDefault<String>(
+                                                dateTimeFormat(
+                                                  "d/M/y",
+                                                  containerUsersRow
+                                                      ?.lastRequest,
+                                                  locale: FFLocalizations.of(
+                                                          context)
+                                                      .languageCode,
+                                                ),
+                                                'Не заполнено',
                                               ),
                                               style: FlutterFlowTheme.of(
                                                       context)
