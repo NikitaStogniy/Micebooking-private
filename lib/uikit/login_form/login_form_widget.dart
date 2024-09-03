@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'login_form_model.dart';
@@ -72,6 +73,11 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                 child: TextFormField(
                   controller: _model.textController1,
                   focusNode: _model.textFieldFocusNode1,
+                  onChanged: (_) => EasyDebounce.debounce(
+                    '_model.textController1',
+                    const Duration(milliseconds: 200),
+                    () => setState(() {}),
+                  ),
                   autofocus: false,
                   obscureText: false,
                   decoration: InputDecoration(
@@ -151,6 +157,11 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                 child: TextFormField(
                   controller: _model.textController2,
                   focusNode: _model.textFieldFocusNode2,
+                  onChanged: (_) => EasyDebounce.debounce(
+                    '_model.textController2',
+                    const Duration(milliseconds: 200),
+                    () => setState(() {}),
+                  ),
                   autofocus: false,
                   obscureText: !_model.passwordVisibility,
                   decoration: InputDecoration(
@@ -271,9 +282,8 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                         text: 'Войти',
                         options: FFButtonOptions(
                           width: MediaQuery.sizeOf(context).width * 1.0,
-                          height: 60.0,
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              24.0, 24.0, 24.0, 24.0),
+                              24.0, 32.0, 24.0, 32.0),
                           iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
