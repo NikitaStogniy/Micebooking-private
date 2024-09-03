@@ -400,7 +400,9 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                       wrapWithModel(
                                         model: _model.loginFormModel,
                                         updateCallback: () => setState(() {}),
-                                        child: const LoginFormWidget(),
+                                        child: LoginFormWidget(
+                                          action: () async {},
+                                        ),
                                       ),
                                     if (_model.isRegister)
                                       wrapWithModel(
