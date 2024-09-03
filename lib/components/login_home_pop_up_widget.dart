@@ -1898,7 +1898,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                             ),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                16.0, 24.0, 16.0, 0.0),
+                                16.0, 24.0, 16.0, 8.0),
                             child: FFButtonWidget(
                               onPressed: () async {
                                 _model.isRegister = !_model.isRegister;
@@ -1913,7 +1913,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                               options: FFButtonOptions(
                                 width: 500.0,
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 32.0, 24.0, 24.0),
+                                    24.0, 32.0, 24.0, 32.0),
                                 iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context)
