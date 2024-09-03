@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pop_up/pop_up_p_p/pop_up_p_p_widget.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'signup_form_model.dart';
@@ -116,6 +117,11 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                             child: TextFormField(
                               controller: _model.nameDescTextController,
                               focusNode: _model.nameDescFocusNode,
+                              onChanged: (_) => EasyDebounce.debounce(
+                                '_model.nameDescTextController',
+                                const Duration(milliseconds: 200),
+                                () => setState(() {}),
+                              ),
                               autofocus: false,
                               textInputAction: TextInputAction.next,
                               obscureText: false,
@@ -197,6 +203,11 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                             child: TextFormField(
                               controller: _model.emailDescTextController,
                               focusNode: _model.emailDescFocusNode,
+                              onChanged: (_) => EasyDebounce.debounce(
+                                '_model.emailDescTextController',
+                                const Duration(milliseconds: 200),
+                                () => setState(() {}),
+                              ),
                               autofocus: false,
                               textInputAction: TextInputAction.next,
                               obscureText: false,
@@ -288,6 +299,11 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                             child: TextFormField(
                               controller: _model.phoneDescTextController,
                               focusNode: _model.phoneDescFocusNode,
+                              onChanged: (_) => EasyDebounce.debounce(
+                                '_model.phoneDescTextController',
+                                const Duration(milliseconds: 200),
+                                () => setState(() {}),
+                              ),
                               autofocus: false,
                               textInputAction: TextInputAction.next,
                               obscureText: false,
@@ -356,7 +372,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Доп. телефон',
+                            'Добавочный номер',
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -373,11 +389,16 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                               child: TextFormField(
                                 controller: _model.extraPhoneDescTextController,
                                 focusNode: _model.extraPhoneDescFocusNode,
+                                onChanged: (_) => EasyDebounce.debounce(
+                                  '_model.extraPhoneDescTextController',
+                                  const Duration(milliseconds: 200),
+                                  () => setState(() {}),
+                                ),
                                 autofocus: false,
                                 textInputAction: TextInputAction.next,
                                 obscureText: false,
                                 decoration: InputDecoration(
-                                  hintText: '+7 987 654 32 10',
+                                  hintText: 'Доб. номер',
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context)
@@ -420,7 +441,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                       fontFamily: 'Commissioner',
                                       letterSpacing: 0.0,
                                     ),
-                                maxLength: 50,
+                                maxLength: 5,
                                 maxLengthEnforcement: MaxLengthEnforcement.none,
                                 buildCounter: (context,
                                         {required currentLength,
@@ -431,7 +452,10 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                 validator: _model
                                     .extraPhoneDescTextControllerValidator
                                     .asValidator(context),
-                                inputFormatters: [_model.extraPhoneDescMask],
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(
+                                      RegExp('[0-9]'))
+                                ],
                               ),
                             ),
                           ),
@@ -470,6 +494,11 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                       child: TextFormField(
                         controller: _model.fioMobTextController,
                         focusNode: _model.fioMobFocusNode,
+                        onChanged: (_) => EasyDebounce.debounce(
+                          '_model.fioMobTextController',
+                          const Duration(milliseconds: 200),
+                          () => setState(() {}),
+                        ),
                         autofocus: false,
                         obscureText: false,
                         decoration: InputDecoration(
@@ -558,6 +587,11 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                       child: TextFormField(
                         controller: _model.emailMobTextController,
                         focusNode: _model.emailMobFocusNode,
+                        onChanged: (_) => EasyDebounce.debounce(
+                          '_model.emailMobTextController',
+                          const Duration(milliseconds: 200),
+                          () => setState(() {}),
+                        ),
                         autofocus: false,
                         obscureText: false,
                         decoration: InputDecoration(
@@ -647,6 +681,11 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                       child: TextFormField(
                         controller: _model.phoneMobTextController,
                         focusNode: _model.phoneMobFocusNode,
+                        onChanged: (_) => EasyDebounce.debounce(
+                          '_model.phoneMobTextController',
+                          const Duration(milliseconds: 200),
+                          () => setState(() {}),
+                        ),
                         autofocus: false,
                         obscureText: false,
                         decoration: InputDecoration(
@@ -727,7 +766,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Text(
-                        'Доп. телефон',
+                        'Добавочный номер',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Commissioner',
                               fontSize: 18.0,
@@ -745,6 +784,11 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                       child: TextFormField(
                         controller: _model.extraPhoneMobTextController,
                         focusNode: _model.extraPhoneMobFocusNode,
+                        onChanged: (_) => EasyDebounce.debounce(
+                          '_model.extraPhoneMobTextController',
+                          const Duration(milliseconds: 200),
+                          () => setState(() {}),
+                        ),
                         autofocus: false,
                         obscureText: false,
                         decoration: InputDecoration(
@@ -753,7 +797,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                     fontFamily: 'Commissioner',
                                     letterSpacing: 0.0,
                                   ),
-                          hintText: '+7 987 654 32 10',
+                          hintText: 'Доб. номер',
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     fontFamily: 'Commissioner',
@@ -796,7 +840,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                               fontFamily: 'Commissioner',
                               letterSpacing: 0.0,
                             ),
-                        maxLength: 50,
+                        maxLength: 5,
                         maxLengthEnforcement: MaxLengthEnforcement.none,
                         buildCounter: (context,
                                 {required currentLength,
@@ -806,7 +850,9 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                         keyboardType: TextInputType.phone,
                         validator: _model.extraPhoneMobTextControllerValidator
                             .asValidator(context),
-                        inputFormatters: [_model.extraPhoneMobMask],
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(RegExp('[0-9]'))
+                        ],
                       ),
                     ),
                   ),
@@ -838,6 +884,11 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                     child: TextFormField(
                       controller: _model.companyNameTextController,
                       focusNode: _model.companyNameFocusNode,
+                      onChanged: (_) => EasyDebounce.debounce(
+                        '_model.companyNameTextController',
+                        const Duration(milliseconds: 200),
+                        () => setState(() {}),
+                      ),
                       autofocus: false,
                       obscureText: false,
                       decoration: InputDecoration(
@@ -924,6 +975,11 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                     child: TextFormField(
                       controller: _model.passwordTextController,
                       focusNode: _model.passwordFocusNode,
+                      onChanged: (_) => EasyDebounce.debounce(
+                        '_model.passwordTextController',
+                        const Duration(milliseconds: 200),
+                        () => setState(() {}),
+                      ),
                       autofocus: false,
                       obscureText: !_model.passwordVisibility,
                       decoration: InputDecoration(
@@ -1117,16 +1173,17 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 0.0, 16.0, 0.0),
                               child: FFButtonWidget(
-                                onPressed: ((_model.nameDescTextController
+                                onPressed: ((_model.fioMobTextController
                                                     .text ==
                                                 '') ||
-                                        (_model.emailDescTextController
+                                        (_model.emailMobTextController
                                                     .text ==
                                                 '') ||
-                                        (_model.phoneDescTextController
+                                        (_model.phoneMobTextController
                                                     .text ==
                                                 '') ||
-                                        (_model.fioMobTextController.text ==
+                                        (_model.companyNameTextController
+                                                    .text ==
                                                 '') ||
                                         (_model.passwordTextController
                                                     .text ==
@@ -1224,9 +1281,8 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                 text: 'Зарегистрироваться',
                                 options: FFButtonOptions(
                                   width: 350.0,
-                                  height: 60.0,
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 24.0, 24.0, 24.0),
+                                      24.0, 32.0, 24.0, 32.0),
                                   iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).primary,
@@ -1278,7 +1334,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                                     .text ==
                                                 '') ||
                                         (_model.companyNameTextController
-                                                    .text !=
+                                                    .text ==
                                                 '') ||
                                         (_model.passwordTextController
                                                     .text ==
@@ -1375,9 +1431,8 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                 text: 'Зарегистрироваться',
                                 options: FFButtonOptions(
                                   width: 350.0,
-                                  height: 60.0,
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 24.0, 24.0, 24.0),
+                                      24.0, 32.0, 24.0, 32.0),
                                   iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).primary,

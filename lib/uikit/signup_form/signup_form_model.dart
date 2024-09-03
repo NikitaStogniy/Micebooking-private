@@ -24,7 +24,6 @@ class SignupFormModel extends FlutterFlowModel<SignupFormWidget> {
   // State field(s) for extra_phone_desc widget.
   FocusNode? extraPhoneDescFocusNode;
   TextEditingController? extraPhoneDescTextController;
-  final extraPhoneDescMask = MaskTextInputFormatter(mask: '+# (###) ###-##-##');
   String? Function(BuildContext, String?)?
       extraPhoneDescTextControllerValidator;
   // State field(s) for fio_mob widget.
@@ -43,7 +42,6 @@ class SignupFormModel extends FlutterFlowModel<SignupFormWidget> {
   // State field(s) for extra_phone_mob widget.
   FocusNode? extraPhoneMobFocusNode;
   TextEditingController? extraPhoneMobTextController;
-  final extraPhoneMobMask = MaskTextInputFormatter(mask: '+# (###) ###-##-##');
   String? Function(BuildContext, String?)? extraPhoneMobTextControllerValidator;
   // State field(s) for company_name widget.
   FocusNode? companyNameFocusNode;

@@ -1912,9 +1912,8 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                               ),
                               options: FFButtonOptions(
                                 width: 500.0,
-                                height: 60.0,
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 24.0, 24.0, 24.0),
+                                    24.0, 32.0, 24.0, 24.0),
                                 iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context)
