@@ -441,7 +441,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                       fontFamily: 'Commissioner',
                                       letterSpacing: 0.0,
                                     ),
-                                maxLength: 50,
+                                maxLength: 5,
                                 maxLengthEnforcement: MaxLengthEnforcement.none,
                                 buildCounter: (context,
                                         {required currentLength,
@@ -452,7 +452,10 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                 validator: _model
                                     .extraPhoneDescTextControllerValidator
                                     .asValidator(context),
-                                inputFormatters: [_model.extraPhoneDescMask],
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(
+                                      RegExp('[0-9]'))
+                                ],
                               ),
                             ),
                           ),
@@ -837,7 +840,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                               fontFamily: 'Commissioner',
                               letterSpacing: 0.0,
                             ),
-                        maxLength: 50,
+                        maxLength: 5,
                         maxLengthEnforcement: MaxLengthEnforcement.none,
                         buildCounter: (context,
                                 {required currentLength,
@@ -847,7 +850,9 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                         keyboardType: TextInputType.phone,
                         validator: _model.extraPhoneMobTextControllerValidator
                             .asValidator(context),
-                        inputFormatters: [_model.extraPhoneMobMask],
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(RegExp('[0-9]'))
+                        ],
                       ),
                     ),
                   ),
