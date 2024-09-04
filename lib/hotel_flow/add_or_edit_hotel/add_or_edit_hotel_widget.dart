@@ -427,17 +427,20 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                                   onChanged: (val) async {
                                                     setState(() => _model
                                                         .dropDownValue = val);
-                                                    _model.currentCity =
-                                                        _model.dropDownValue;
-                                                    setState(() {});
                                                     _model.cityId =
                                                         await CityTable()
                                                             .queryRows(
                                                       queryFn: (q) => q.eq(
                                                         'name',
-                                                        _model.currentCity,
+                                                        _model.dropDownValue,
                                                       ),
                                                     );
+                                                    _model.currentCity =
+                                                        _model.dropDownValue;
+                                                    _model.currentCityId =
+                                                        _model
+                                                            .cityId?.first.id;
+                                                    setState(() {});
 
                                                     setState(() {});
                                                   },
