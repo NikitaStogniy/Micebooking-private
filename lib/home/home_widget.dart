@@ -378,11 +378,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         ),
                                         FFButtonWidget(
                                           onPressed: () async {
-                                            if (currentUserUid != '') {
+                                            if (loggedIn) {
                                               if (descUsersRow?.role ==
                                                   EnumRole.HOTEL.name) {
-                                                context.pushNamed(
+                                                context.pushNamedAuth(
                                                   'HOTEL_HOME',
+                                                  context.mounted,
                                                   extra: <String, dynamic>{
                                                     kTransitionInfoKey:
                                                         const TransitionInfo(
@@ -398,8 +399,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                               } else {
                                                 if (descUsersRow?.role ==
                                                     EnumRole.CLIENT.name) {
-                                                  context.pushNamed(
+                                                  context.pushNamedAuth(
                                                     'Client_home',
+                                                    context.mounted,
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
                                                           const TransitionInfo(
@@ -415,8 +417,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 } else {
                                                   if (descUsersRow?.role ==
                                                       EnumRole.SUPERUSER.name) {
-                                                    context.pushNamed(
+                                                    context.pushNamedAuth(
                                                       'SUPER_Home',
+                                                      context.mounted,
                                                       extra: <String, dynamic>{
                                                         kTransitionInfoKey:
                                                             const TransitionInfo(
@@ -429,12 +432,19 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         ),
                                                       },
                                                     );
+                                                  } else {
+                                                    GoRouter.of(context)
+                                                        .prepareAuthEvent();
+                                                    await authManager.signOut();
+                                                    GoRouter.of(context)
+                                                        .clearRedirectLocation();
                                                   }
                                                 }
                                               }
                                             } else {
-                                              context.goNamed(
+                                              context.goNamedAuth(
                                                 'PC_LoginCopy',
+                                                context.mounted,
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
                                                       const TransitionInfo(
