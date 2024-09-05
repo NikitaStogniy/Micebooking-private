@@ -47,7 +47,7 @@ class _HomeWidgetState extends State<HomeWidget> {
       }
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -128,7 +128,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     0.0, 24.0, 0.0, 0.0),
                                 child: wrapWithModel(
                                   model: _model.menuModel1,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: MenuWidget(
                                     isBlue: false,
                                     page: 'home',
@@ -555,7 +555,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       Builder(
                                         builder: (context) => wrapWithModel(
                                           model: _model.hotelSearchCompModel1,
-                                          updateCallback: () => setState(() {}),
+                                          updateCallback: () =>
+                                              safeSetState(() {}),
                                           updateOnChange: true,
                                           child: HotelSearchCompWidget(
                                             duration: 0.0,
@@ -725,7 +726,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     0.0, 24.0, 0.0, 0.0),
                                 child: wrapWithModel(
                                   model: _model.menuModel2,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: MenuWidget(
                                     isBlue: false,
                                     page: 'home',
@@ -790,7 +791,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           0.0, 0.0, 0.0, 40.0),
                                       child: wrapWithModel(
                                         model: _model.hotelSearchCompModel2,
-                                        updateCallback: () => setState(() {}),
+                                        updateCallback: () =>
+                                            safeSetState(() {}),
                                         updateOnChange: true,
                                         child: HotelSearchCompWidget(
                                           duration: 0.0,
@@ -898,7 +900,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 ),
               wrapWithModel(
                 model: _model.footerModel,
-                updateCallback: () => setState(() {}),
+                updateCallback: () => safeSetState(() {}),
                 child: const FooterWidget(),
               ),
             ],

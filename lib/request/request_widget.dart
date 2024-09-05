@@ -60,20 +60,20 @@ class _RequestWidgetState extends State<RequestWidget> {
         _model.requestName = widget.lastRequest!.name!;
         _model.requestId =
             widget.requestWrapper!.requestsId.toList().cast<int>();
-        setState(() {});
+        safeSetState(() {});
       } else {
         _model.step = 0;
         _model.requestId =
             widget.requestWrapper!.requestsId.toList().cast<int>();
         _model.wrapperId = widget.requestWrapper?.id;
-        setState(() {});
+        safeSetState(() {});
       }
     });
 
     _model.eventNamTextController ??= TextEditingController();
     _model.eventNamFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -155,7 +155,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                             64.0),
                         child: wrapWithModel(
                           model: _model.menuModel,
-                          updateCallback: () => setState(() {}),
+                          updateCallback: () => safeSetState(() {}),
                           child: MenuWidget(
                             isBlue: true,
                             page: 'home',
@@ -239,7 +239,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                               EasyDebounce.debounce(
                                             '_model.eventNamTextController',
                                             const Duration(milliseconds: 100),
-                                            () => setState(() {}),
+                                            () => safeSetState(() {}),
                                           ),
                                           autofocus: false,
                                           obscureText: false,
@@ -377,11 +377,11 @@ class _RequestWidgetState extends State<RequestWidget> {
                                           );
                                           _model.requestName = _model
                                               .eventNamTextController.text;
-                                          setState(() {});
+                                          safeSetState(() {});
                                           _model.step = _model.step + 1;
-                                          setState(() {});
+                                          safeSetState(() {});
 
-                                          setState(() {});
+                                          safeSetState(() {});
                                         },
                                         text: 'Далее',
                                         options: FFButtonOptions(
@@ -460,11 +460,11 @@ class _RequestWidgetState extends State<RequestWidget> {
                                           );
                                           _model.requestName = _model
                                               .eventNamTextController.text;
-                                          setState(() {});
+                                          safeSetState(() {});
                                           _model.step = _model.step + 1;
-                                          setState(() {});
+                                          safeSetState(() {});
 
-                                          setState(() {});
+                                          safeSetState(() {});
                                         },
                                         text: 'Далее',
                                         options: FFButtonOptions(
@@ -1214,7 +1214,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                   );
                                                 }
 
-                                                setState(() {});
+                                                safeSetState(() {});
                                               },
                                               text:
                                                   'Все верно, отправить КП на почту!',
@@ -2118,7 +2118,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                           () async {
                                                                         _model.removeFromRequestId(
                                                                             columnRequestsRow.id);
-                                                                        setState(
+                                                                        safeSetState(
                                                                             () {});
                                                                         if (_model.requestId.isEmpty) {
                                                                           await RequestsTable()
@@ -2346,7 +2346,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                 );
                                               }
 
-                                              setState(() {});
+                                              safeSetState(() {});
                                             },
                                             text:
                                                 'Все верно, отправить КП на почту!',

@@ -40,10 +40,10 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.currentDate = getCurrentTimestamp;
       _model.formatedDate = functions.formatMonthYear(getCurrentTimestamp);
-      setState(() {});
+      safeSetState(() {});
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -420,7 +420,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                                   _model.requestOpen = true;
                                                   _model.request =
                                                       requestsItem.id;
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                 },
                                                 child: Text(
                                                   'Открыть',
@@ -502,7 +502,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                         highlightColor: Colors.transparent,
                         onTap: () async {
                           _model.requestOpen = false;
-                          setState(() {});
+                          safeSetState(() {});
                         },
                         child: Container(
                           width: 40,

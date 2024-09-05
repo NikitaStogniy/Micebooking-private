@@ -77,10 +77,10 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
       _model.chosenFood = widget.chosenFood!.toList().cast<int>();
       _model.listRoomRequest = widget.roomRequests!.toList().cast<int>();
       _model.choosenRooms = widget.chosenRoom!.toList().cast<int>();
-      setState(() {});
+      safeSetState(() {});
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -150,7 +150,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                               32.0, 16.0, 32.0, 64.0),
                           child: wrapWithModel(
                             model: _model.menuModel,
-                            updateCallback: () => setState(() {}),
+                            updateCallback: () => safeSetState(() {}),
                             child: MenuWidget(
                               isBlue: true,
                               clientProfile: () async {},
@@ -275,7 +275,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                               children: [
                                 wrapWithModel(
                                   model: _model.editRequestHotelComponentModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: EditRequestHotelComponentWidget(
                                     hotel: columnHotelRow!,
                                   ),
@@ -431,7 +431,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                 columnIndex,
                                               ),
                                               updateCallback: () =>
-                                                  setState(() {}),
+                                                  safeSetState(() {}),
                                               child:
                                                   ClientHallEditComponentWidget(
                                                 key: Key(
@@ -479,11 +479,11 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                             columnHallRow.id);
                                                     _model.removeFromPriceHall(
                                                         price!);
-                                                    setState(() {});
+                                                    safeSetState(() {});
                                                   } else {
                                                     _model.addToChoosenHall(
                                                         columnHallRow.id);
-                                                    setState(() {});
+                                                    safeSetState(() {});
                                                     _model.newHallRequstVAr =
                                                         await RequestsHallVarTable()
                                                             .insert({
@@ -504,14 +504,14 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                     _model.addToPriceHall(_model
                                                         .newHallRequstVAr!
                                                         .price!);
-                                                    setState(() {});
+                                                    safeSetState(() {});
                                                   }
 
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                 },
                                                 onLoad: (price) async {
                                                   _model.addToPriceHall(price!);
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                 },
                                               ),
                                             );
@@ -742,7 +742,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                   columnIndex,
                                                 ),
                                                 updateCallback: () =>
-                                                    setState(() {}),
+                                                    safeSetState(() {}),
                                                 child: EditFoodComponentWidget(
                                                   key: Key(
                                                     'Keys1r_${columnFoodRow.id.toString()}',
@@ -771,7 +771,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                       _model
                                                           .removeFromFoodPrice(
                                                               price!);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                       await RequestsFoodVarTable()
                                                           .delete(
                                                         matchingRows: (rows) =>
@@ -791,7 +791,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                     } else {
                                                       _model.addToChosenFood(
                                                           columnFoodRow.id);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                       _model.newFoodRequstVar =
                                                           await RequestsFoodVarTable()
                                                               .insert({
@@ -815,15 +815,15 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                           _model
                                                               .newFoodRequstVar!
                                                               .price!);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     }
 
-                                                    setState(() {});
+                                                    safeSetState(() {});
                                                   },
                                                   onLoad: (price) async {
                                                     _model
                                                         .addToFoodPrice(price!);
-                                                    setState(() {});
+                                                    safeSetState(() {});
                                                   },
                                                 ),
                                               );
@@ -1054,7 +1054,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                   columnIndex,
                                                 ),
                                                 updateCallback: () =>
-                                                    setState(() {}),
+                                                    safeSetState(() {}),
                                                 child: EditRoomComponentWidget(
                                                   key: Key(
                                                     'Keys7b_${columnRoomRow.id.toString()}',
@@ -1083,7 +1083,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                       _model
                                                           .removeFromRoomPrice(
                                                               price!);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                       await RequestsRoomVarTable()
                                                           .delete(
                                                         matchingRows: (rows) =>
@@ -1103,7 +1103,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                     } else {
                                                       _model.addToChoosenRooms(
                                                           columnRoomRow.id);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                       _model.newRoomRequestVar =
                                                           await RequestsRoomVarTable()
                                                               .insert({
@@ -1124,15 +1124,15 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                               .id);
                                                       _model.addToRoomPrice(
                                                           price!);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     }
 
-                                                    setState(() {});
+                                                    safeSetState(() {});
                                                   },
                                                   onLoad: (price) async {
                                                     _model
                                                         .addToRoomPrice(price!);
-                                                    setState(() {});
+                                                    safeSetState(() {});
                                                   },
                                                 ),
                                               );
@@ -1352,7 +1352,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                       );
                                     }
 
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                   text: 'Сохранить',
                                   options: FFButtonOptions(

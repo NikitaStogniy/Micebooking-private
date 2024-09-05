@@ -39,7 +39,7 @@ class _EditRequestHotelComponentWidgetState
     super.initState();
     _model = createModel(context, () => EditRequestHotelComponentModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -91,7 +91,7 @@ class _EditRequestHotelComponentWidgetState
                                                 0,
                                                 min(0,
                                                     hotelImages.length - 1))),
-                                    onPageChanged: (_) => setState(() {}),
+                                    onPageChanged: (_) => safeSetState(() {}),
                                     scrollDirection: Axis.horizontal,
                                     itemCount: hotelImages.length,
                                     itemBuilder: (context, hotelImagesIndex) {
@@ -132,7 +132,7 @@ class _EditRequestHotelComponentWidgetState
                                           duration: const Duration(milliseconds: 500),
                                           curve: Curves.ease,
                                         );
-                                        setState(() {});
+                                        safeSetState(() {});
                                       },
                                       effect: smooth_page_indicator
                                           .ExpandingDotsEffect(
@@ -606,7 +606,7 @@ class _EditRequestHotelComponentWidgetState
                                                 0,
                                                 min(0,
                                                     hotelImages.length - 1))),
-                                    onPageChanged: (_) => setState(() {}),
+                                    onPageChanged: (_) => safeSetState(() {}),
                                     scrollDirection: Axis.horizontal,
                                     itemCount: hotelImages.length,
                                     itemBuilder: (context, hotelImagesIndex) {
@@ -689,7 +689,7 @@ class _EditRequestHotelComponentWidgetState
                                           duration: const Duration(milliseconds: 500),
                                           curve: Curves.ease,
                                         );
-                                        setState(() {});
+                                        safeSetState(() {});
                                       },
                                       effect: smooth_page_indicator
                                           .ExpandingDotsEffect(

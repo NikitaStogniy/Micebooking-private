@@ -41,7 +41,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
     super.initState();
     _model = createModel(context, () => HallFullInfoModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -542,7 +542,8 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                                           ssIndex.toString(),
                                           ssIndex,
                                         ),
-                                        updateCallback: () => setState(() {}),
+                                        updateCallback: () =>
+                                            safeSetState(() {}),
                                         child: SuperHallSeatingCompWidget(
                                           key: Key(
                                             'Key54o_${ssIndex.toString()}',
@@ -713,8 +714,8 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                                                                     .toString(),
                                                                 listViewIndex,
                                                               ),
-                                                              updateCallback:
-                                                                  () => setState(
+                                                              updateCallback: () =>
+                                                                  safeSetState(
                                                                       () {}),
                                                               updateOnChange:
                                                                   true,

@@ -34,7 +34,7 @@ class _HallFoodRoomEmptyWidgetState extends State<HallFoodRoomEmptyWidget> {
     super.initState();
     _model = createModel(context, () => HallFoodRoomEmptyModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

@@ -50,7 +50,7 @@ class _QaElementWidgetState extends State<QaElementWidget> {
         TextEditingController(text: widget.qa?.text1);
     _model.aboutUsText1FocusNode2 ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -201,7 +201,7 @@ class _QaElementWidgetState extends State<QaElementWidget> {
                 onChanged: (_) => EasyDebounce.debounce(
                   '_model.aboutUsText1TextController2',
                   const Duration(milliseconds: 1000),
-                  () => setState(() {}),
+                  () => safeSetState(() {}),
                 ),
                 onFieldSubmitted: (_) async {
                   await CmsTable().update(

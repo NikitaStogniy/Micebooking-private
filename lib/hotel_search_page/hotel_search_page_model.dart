@@ -232,7 +232,6 @@ class HotelSearchPageModel extends FlutterFlowModel<HotelSearchPageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - Query Rows] action in HotelSearchPage widget.
   List<HallRow>? filteredHalls;
   Completer<List<HotelRow>>? requestCompleter;

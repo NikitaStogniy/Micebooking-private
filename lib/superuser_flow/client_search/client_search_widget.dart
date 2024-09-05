@@ -36,7 +36,7 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -77,7 +77,7 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                       onChanged: (_) => EasyDebounce.debounce(
                         '_model.textController',
                         const Duration(milliseconds: 200),
-                        () => setState(() {}),
+                        () => safeSetState(() {}),
                       ),
                       autofocus: false,
                       obscureText: false,

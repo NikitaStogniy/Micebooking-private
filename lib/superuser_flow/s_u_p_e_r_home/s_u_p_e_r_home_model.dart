@@ -44,7 +44,6 @@ class SUPERHomeModel extends FlutterFlowModel<SUPERHomeWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for Column widget.
   ScrollController? columnController1;
   // State field(s) for Column widget.

@@ -48,7 +48,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
+      safeSetState(() {
         _model.nameEditTextController?.text = widget.initialHall!.name!;
         _model.sizeEditTextController?.text =
             widget.initialHall!.size!.toString();
@@ -81,7 +81,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
           widget.initialHall!.images.toList().cast<String>();
       _model.selectedServices =
           widget.initialHall!.services.toList().cast<int>();
-      setState(() {});
+      safeSetState(() {});
     });
 
     _model.nameEditTextController ??=
@@ -106,7 +106,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
     _model.theatreFocusNode!.addListener(
       () async {
         if (_model.theatreTextController.text == '') {
-          setState(() {
+          safeSetState(() {
             _model.theatreTextController?.text = '0';
             _model.theatreTextController?.selection = TextSelection.collapsed(
                 offset: _model.theatreTextController!.text.length);
@@ -120,7 +120,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
     _model.clasFocusNode!.addListener(
       () async {
         if (_model.clasTextController.text == '') {
-          setState(() {
+          safeSetState(() {
             _model.clasTextController?.text = '0';
             _model.clasTextController?.selection = TextSelection.collapsed(
                 offset: _model.clasTextController!.text.length);
@@ -134,7 +134,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
     _model.commFocusNode!.addListener(
       () async {
         if (_model.commTextController.text == '') {
-          setState(() {
+          safeSetState(() {
             _model.commTextController?.text = '0';
             _model.commTextController?.selection = TextSelection.collapsed(
                 offset: _model.commTextController!.text.length);
@@ -148,7 +148,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
     _model.ushapeFocusNode!.addListener(
       () async {
         if (_model.ushapeTextController.text == '') {
-          setState(() {
+          safeSetState(() {
             _model.ushapeTextController?.text = '0';
             _model.ushapeTextController?.selection = TextSelection.collapsed(
                 offset: _model.ushapeTextController!.text.length);
@@ -162,7 +162,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
     _model.oshapeFocusNode!.addListener(
       () async {
         if (_model.oshapeTextController.text == '') {
-          setState(() {
+          safeSetState(() {
             _model.oshapeTextController?.text = '0';
             _model.oshapeTextController?.selection = TextSelection.collapsed(
                 offset: _model.oshapeTextController!.text.length);
@@ -190,7 +190,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
         TextEditingController(text: widget.initialHall?.halfprice?.toString());
     _model.halfPriceEditFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -230,7 +230,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                         size: 24.0,
                       ),
                       onPressed: () async {
-                        setState(() {
+                        safeSetState(() {
                           _model.nameEditTextController?.text =
                               widget.initialHall!.name!;
                           _model.descriptionEditTextController?.text =
@@ -264,7 +264,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                         _model.uploadedImages = [];
                         _model.selectedServices = [];
                         _model.seating = [];
-                        setState(() {});
+                        safeSetState(() {});
                         await widget.doneCallback?.call();
                       },
                     ),
@@ -511,7 +511,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                     selectedMedia.every((m) =>
                                         validateFileFormat(
                                             m.storagePath, context))) {
-                                  setState(
+                                  safeSetState(
                                       () => _model.isDataUploading = true);
                                   var selectedUploadedFiles =
                                       <FFUploadedFile>[];
@@ -542,13 +542,13 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                           selectedMedia.length &&
                                       downloadUrls.length ==
                                           selectedMedia.length) {
-                                    setState(() {
+                                    safeSetState(() {
                                       _model.uploadedLocalFiles =
                                           selectedUploadedFiles;
                                       _model.uploadedFileUrls = downloadUrls;
                                     });
                                   } else {
-                                    setState(() {});
+                                    safeSetState(() {});
                                     return;
                                   }
                                 }
@@ -559,8 +559,8 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                         _model.uploadedFileUrls.toList())!
                                     .toList()
                                     .cast<String>();
-                                setState(() {});
-                                setState(() {
+                                safeSetState(() {});
+                                safeSetState(() {
                                   _model.isDataUploading = false;
                                   _model.uploadedLocalFiles = [];
                                   _model.uploadedFileUrls = [];
@@ -684,7 +684,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                           _model
                                                               .removeFromUploadedImages(
                                                                   imagesItem);
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                         },
                                                       ),
                                                     ),
@@ -705,12 +705,12 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                           _model
                                                               .removeAtIndexFromUploadedImages(
                                                                   imagesIndex);
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                           _model
                                                               .insertAtIndexInUploadedImages(
                                                                   0,
                                                                   imagesItem);
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                         },
                                                         child: Icon(
                                                           Icons.star,
@@ -1075,7 +1075,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                 if (_model.theatreTextController
                                                             .text ==
                                                         '') {
-                                                  setState(() {
+                                                  safeSetState(() {
                                                     _model
                                                         .theatreTextController
                                                         ?.text = '0';
@@ -1094,7 +1094,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                               if (_model.theatreTextController
                                                           .text ==
                                                       '') {
-                                                setState(() {
+                                                safeSetState(() {
                                                   _model.theatreTextController
                                                       ?.text = '0';
                                                   _model.theatreTextController
@@ -1238,7 +1238,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                 if (_model.clasTextController
                                                             .text ==
                                                         '') {
-                                                  setState(() {
+                                                  safeSetState(() {
                                                     _model.clasTextController
                                                         ?.text = '0';
                                                     _model.clasTextController
@@ -1256,7 +1256,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                               if (_model.clasTextController
                                                           .text ==
                                                       '') {
-                                                setState(() {
+                                                safeSetState(() {
                                                   _model.clasTextController
                                                       ?.text = '0';
                                                   _model.clasTextController
@@ -1400,7 +1400,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                 if (_model.commTextController
                                                             .text ==
                                                         '') {
-                                                  setState(() {
+                                                  safeSetState(() {
                                                     _model.commTextController
                                                         ?.text = '0';
                                                     _model.commTextController
@@ -1418,7 +1418,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                               if (_model.commTextController
                                                           .text ==
                                                       '') {
-                                                setState(() {
+                                                safeSetState(() {
                                                   _model.commTextController
                                                       ?.text = '0';
                                                   _model.commTextController
@@ -1562,7 +1562,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                 if (_model.ushapeTextController
                                                             .text ==
                                                         '') {
-                                                  setState(() {
+                                                  safeSetState(() {
                                                     _model
                                                         .ushapeTextController
                                                         ?.text = '0';
@@ -1581,7 +1581,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                               if (_model.ushapeTextController
                                                           .text ==
                                                       '') {
-                                                setState(() {
+                                                safeSetState(() {
                                                   _model.ushapeTextController
                                                       ?.text = '0';
                                                   _model.ushapeTextController
@@ -1725,7 +1725,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                 if (_model.oshapeTextController
                                                             .text ==
                                                         '') {
-                                                  setState(() {
+                                                  safeSetState(() {
                                                     _model
                                                         .oshapeTextController
                                                         ?.text = '0';
@@ -1744,7 +1744,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                               if (_model.oshapeTextController
                                                           .text ==
                                                       '') {
-                                                setState(() {
+                                                safeSetState(() {
                                                   _model.oshapeTextController
                                                       ?.text = '0';
                                                   _model.oshapeTextController
@@ -2400,12 +2400,14 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                               _model.removeFromSelectedServices(
                                                                   listViewServiceRow
                                                                       .id);
-                                                              setState(() {});
+                                                              safeSetState(
+                                                                  () {});
                                                             } else {
                                                               _model.addToSelectedServices(
                                                                   listViewServiceRow
                                                                       .id);
-                                                              setState(() {});
+                                                              safeSetState(
+                                                                  () {});
                                                             }
                                                           },
                                                           child: Container(
@@ -2859,7 +2861,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                   widget.id,
                                                 ),
                                               );
-                                              setState(() {
+                                              safeSetState(() {
                                                 _model.nameEditTextController
                                                         ?.text =
                                                     widget
@@ -2931,7 +2933,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                               _model.uploadedImages = [];
                                               _model.selectedServices = [];
                                               _model.seating = [];
-                                              setState(() {});
+                                              safeSetState(() {});
                                               await widget.doneCallback
                                                   ?.call();
                                               Navigator.pop(context);
@@ -2992,8 +2994,8 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                         _model.uploadedImages = [];
                                         _model.selectedServices = [];
                                         _model.seating = [];
-                                        setState(() {});
-                                        setState(() {
+                                        safeSetState(() {});
+                                        safeSetState(() {
                                           _model.nameEditTextController
                                                   ?.text =
                                               widget.initialHall!.name!;

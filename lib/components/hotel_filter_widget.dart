@@ -53,7 +53,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
         ExpandableController(initialExpanded: false);
     _model.expandableExpandableController3 =
         ExpandableController(initialExpanded: false);
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -190,8 +190,8 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                             widget.starsList?.contains(5) ==
                                                 true,
                                         onChanged: (newValue) async {
-                                          setState(() => _model.checkboxValue1 =
-                                              newValue!);
+                                          safeSetState(() => _model
+                                              .checkboxValue1 = newValue!);
                                           if (newValue!) {
                                             await widget.addStar?.call(
                                               5,
@@ -286,8 +286,8 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                             widget.starsList?.contains(4) ==
                                                 true,
                                         onChanged: (newValue) async {
-                                          setState(() => _model.checkboxValue2 =
-                                              newValue!);
+                                          safeSetState(() => _model
+                                              .checkboxValue2 = newValue!);
                                           if (newValue!) {
                                             await widget.addStar?.call(
                                               4,
@@ -372,8 +372,8 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                             widget.starsList?.contains(3) ==
                                                 true,
                                         onChanged: (newValue) async {
-                                          setState(() => _model.checkboxValue3 =
-                                              newValue!);
+                                          safeSetState(() => _model
+                                              .checkboxValue3 = newValue!);
                                           if (newValue!) {
                                             await widget.addStar?.call(
                                               3,
@@ -448,8 +448,8 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                             widget.starsList?.contains(2) ==
                                                 true,
                                         onChanged: (newValue) async {
-                                          setState(() => _model.checkboxValue4 =
-                                              newValue!);
+                                          safeSetState(() => _model
+                                              .checkboxValue4 = newValue!);
                                           if (newValue!) {
                                             await widget.addStar?.call(
                                               2,
@@ -572,20 +572,20 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                       child: Checkbox(
                                         value: _model.dis1Value ??= false,
                                         onChanged: (newValue) async {
-                                          setState(() =>
+                                          safeSetState(() =>
                                               _model.dis1Value = newValue!);
                                           if (newValue!) {
                                             await widget.addDistance?.call(
                                               0,
                                               1,
                                             );
-                                            setState(() {
+                                            safeSetState(() {
                                               _model.dis13Value = false;
                                             });
-                                            setState(() {
+                                            safeSetState(() {
                                               _model.dis35Value = false;
                                             });
-                                            setState(() {
+                                            safeSetState(() {
                                               _model.dis5Value = false;
                                             });
                                           } else {
@@ -648,20 +648,20 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                       child: Checkbox(
                                         value: _model.dis13Value ??= false,
                                         onChanged: (newValue) async {
-                                          setState(() =>
+                                          safeSetState(() =>
                                               _model.dis13Value = newValue!);
                                           if (newValue!) {
                                             await widget.addDistance?.call(
                                               1,
                                               3,
                                             );
-                                            setState(() {
+                                            safeSetState(() {
                                               _model.dis1Value = false;
                                             });
-                                            setState(() {
+                                            safeSetState(() {
                                               _model.dis35Value = false;
                                             });
-                                            setState(() {
+                                            safeSetState(() {
                                               _model.dis5Value = false;
                                             });
                                           } else {
@@ -724,20 +724,20 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                       child: Checkbox(
                                         value: _model.dis35Value ??= false,
                                         onChanged: (newValue) async {
-                                          setState(() =>
+                                          safeSetState(() =>
                                               _model.dis35Value = newValue!);
                                           if (newValue!) {
                                             await widget.addDistance?.call(
                                               3,
                                               5,
                                             );
-                                            setState(() {
+                                            safeSetState(() {
                                               _model.dis1Value = false;
                                             });
-                                            setState(() {
+                                            safeSetState(() {
                                               _model.dis13Value = false;
                                             });
-                                            setState(() {
+                                            safeSetState(() {
                                               _model.dis5Value = false;
                                             });
                                           } else {
@@ -800,20 +800,20 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                       child: Checkbox(
                                         value: _model.dis5Value ??= false,
                                         onChanged: (newValue) async {
-                                          setState(() =>
+                                          safeSetState(() =>
                                               _model.dis5Value = newValue!);
                                           if (newValue!) {
                                             await widget.addDistance?.call(
                                               5,
                                               999,
                                             );
-                                            setState(() {
+                                            safeSetState(() {
                                               _model.dis1Value = false;
                                             });
-                                            setState(() {
+                                            safeSetState(() {
                                               _model.dis13Value = false;
                                             });
-                                            setState(() {
+                                            safeSetState(() {
                                               _model.dis35Value = false;
                                             });
                                           } else {
@@ -893,7 +893,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                               24.0, 0.0, 0.0, 0.0),
                           child: wrapWithModel(
                             model: _model.checkBoxModel,
-                            updateCallback: () => setState(() {}),
+                            updateCallback: () => safeSetState(() {}),
                             child: CheckBoxWidget(
                               isChecked: false,
                               onClick: () async {},
@@ -1059,10 +1059,10 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                       onChanged: (newValue) async {
                                         newValue = double.parse(
                                             newValue.toStringAsFixed(0));
-                                        setState(() =>
+                                        safeSetState(() =>
                                             _model.minPriceValue = newValue);
                                         _model.minPrice = _model.minPriceValue;
-                                        setState(() {});
+                                        safeSetState(() {});
                                         await widget.updatePrice?.call(
                                           _model.minPrice,
                                           _model.maxPriceValue,
@@ -1093,10 +1093,10 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                       onChanged: (newValue) async {
                                         newValue = double.parse(
                                             newValue.toStringAsFixed(0));
-                                        setState(() =>
+                                        safeSetState(() =>
                                             _model.maxPriceValue = newValue);
                                         _model.maxPrice = _model.maxPriceValue;
-                                        setState(() {});
+                                        safeSetState(() {});
                                         await widget.updatePrice?.call(
                                           _model.minPrice,
                                           _model.maxPriceValue,

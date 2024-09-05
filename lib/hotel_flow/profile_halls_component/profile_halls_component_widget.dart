@@ -41,7 +41,7 @@ class _ProfileHallsComponentWidgetState
     super.initState();
     _model = createModel(context, () => ProfileHallsComponentModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -333,7 +333,7 @@ class _ProfileHallsComponentWidgetState
                                                           .hotel!.hall
                                                           .toList()
                                                           .cast<int>();
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                       _model.newHallCopy =
                                                           await HallTable()
                                                               .insert({
@@ -384,7 +384,7 @@ class _ProfileHallsComponentWidgetState
                                                       _model.addToNewHalls(
                                                           _model
                                                               .newHallCopy!.id);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                       await HotelTable().update(
                                                         data: {
                                                           'hall':
@@ -409,9 +409,9 @@ class _ProfileHallsComponentWidgetState
                                                                       0, 10))
                                                           .toList()
                                                           .cast<int>();
-                                                      setState(() {});
+                                                      safeSetState(() {});
 
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     },
                                                     child: Icon(
                                                       Icons.file_copy,

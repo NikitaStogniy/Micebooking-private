@@ -35,7 +35,7 @@ class _HotelCompWidgetState extends State<HotelCompWidget> {
     super.initState();
     _model = createModel(context, () => HotelCompModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

@@ -50,14 +50,14 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
       _model.categoryId = widget.position?.category;
       _model.name = widget.position?.name;
       _model.categotyName = widget.position?.type;
-      setState(() {});
+      safeSetState(() {});
     });
 
     _model.textController ??=
         TextEditingController(text: widget.position?.name);
     _model.textFieldFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -166,7 +166,7 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                                     onChanged: (_) => EasyDebounce.debounce(
                                       '_model.textController',
                                       const Duration(milliseconds: 200),
-                                      () => setState(() {}),
+                                      () => safeSetState(() {}),
                                     ),
                                     autofocus: true,
                                     obscureText: false,
@@ -276,7 +276,7 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                             .withoutNulls
                             .toList(),
                         onChanged: (val) async {
-                          setState(() => _model.dropDownValue = val);
+                          safeSetState(() => _model.dropDownValue = val);
                           _model.category =
                               await ServiceCategoryTable().queryRows(
                             queryFn: (q) => q.eq(
@@ -286,11 +286,11 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                           );
                           _model.categoryId = _model.category?.first.id;
                           _model.categotyName = _model.category?.first.name;
-                          setState(() {});
-                          setState(() => _model.requestCompleter = null);
+                          safeSetState(() {});
+                          safeSetState(() => _model.requestCompleter = null);
                           await _model.waitForRequestCompleted();
 
-                          setState(() {});
+                          safeSetState(() {});
                         },
                         width: 285.0,
                         height: 48.0,
@@ -361,7 +361,7 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                         ),
                         onPressed: () async {
                           _model.edit = true;
-                          setState(() {});
+                          safeSetState(() {});
                         },
                       ),
                       FlutterFlowIconButton(
@@ -428,7 +428,7 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                           );
                           _model.edit = false;
                           _model.name = _model.textController.text;
-                          setState(() {});
+                          safeSetState(() {});
                         },
                       ),
                       FlutterFlowIconButton(
@@ -444,7 +444,7 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                         ),
                         onPressed: () async {
                           _model.edit = false;
-                          setState(() {});
+                          safeSetState(() {});
                         },
                       ),
                     ].divide(const SizedBox(width: 16.0)),

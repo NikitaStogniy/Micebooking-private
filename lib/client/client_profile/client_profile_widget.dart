@@ -100,7 +100,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
 
     _model.bankKPPMobFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -1019,7 +1019,8 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                           const Duration(
                                                               milliseconds:
                                                                   200),
-                                                          () => setState(() {}),
+                                                          () => safeSetState(
+                                                              () {}),
                                                         ),
                                                         autofocus: false,
                                                         textInputAction:
@@ -1186,7 +1187,8 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                           const Duration(
                                                               milliseconds:
                                                                   200),
-                                                          () => setState(() {}),
+                                                          () => safeSetState(
+                                                              () {}),
                                                         ),
                                                         autofocus: false,
                                                         textInputAction:
@@ -1365,7 +1367,8 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                           const Duration(
                                                               milliseconds:
                                                                   200),
-                                                          () => setState(() {}),
+                                                          () => safeSetState(
+                                                              () {}),
                                                         ),
                                                         autofocus: false,
                                                         textInputAction:
@@ -1566,7 +1569,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                     const Duration(
                                                                         milliseconds:
                                                                             200),
-                                                                    () => setState(
+                                                                    () => safeSetState(
                                                                         () {}),
                                                                   ),
                                                                   autofocus:
@@ -1746,7 +1749,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                     const Duration(
                                                                         milliseconds:
                                                                             200),
-                                                                    () => setState(
+                                                                    () => safeSetState(
                                                                         () {}),
                                                                   ),
                                                                   autofocus:
@@ -1937,7 +1940,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                     const Duration(
                                                                         milliseconds:
                                                                             200),
-                                                                    () => setState(
+                                                                    () => safeSetState(
                                                                         () {}),
                                                                   ),
                                                                   autofocus:
@@ -2117,7 +2120,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                     const Duration(
                                                                         milliseconds:
                                                                             200),
-                                                                    () => setState(
+                                                                    () => safeSetState(
                                                                         () {}),
                                                                   ),
                                                                   autofocus:
@@ -2307,7 +2310,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                     EasyDebounce.debounce(
                                                   '_model.bankNameTextController',
                                                   const Duration(milliseconds: 200),
-                                                  () => setState(() {}),
+                                                  () => safeSetState(() {}),
                                                 ),
                                                 autofocus: false,
                                                 textInputAction:
@@ -2455,7 +2458,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                     EasyDebounce.debounce(
                                                   '_model.bankKorrTextController',
                                                   const Duration(milliseconds: 200),
-                                                  () => setState(() {}),
+                                                  () => safeSetState(() {}),
                                                 ),
                                                 autofocus: false,
                                                 textInputAction:
@@ -2613,7 +2616,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       '_model.bankInnTextController',
                                                       const Duration(
                                                           milliseconds: 200),
-                                                      () => setState(() {}),
+                                                      () => safeSetState(() {}),
                                                     ),
                                                     autofocus: false,
                                                     textInputAction:
@@ -2764,7 +2767,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       '_model.bankRcTextController',
                                                       const Duration(
                                                           milliseconds: 200),
-                                                      () => setState(() {}),
+                                                      () => safeSetState(() {}),
                                                     ),
                                                     autofocus: false,
                                                     textInputAction:
@@ -2920,7 +2923,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       '_model.bankKppTextController',
                                                       const Duration(
                                                           milliseconds: 200),
-                                                      () => setState(() {}),
+                                                      () => safeSetState(() {}),
                                                     ),
                                                     autofocus: false,
                                                     textInputAction:
@@ -3071,7 +3074,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       '_model.bankBicTextController',
                                                       const Duration(
                                                           milliseconds: 200),
-                                                      () => setState(() {}),
+                                                      () => safeSetState(() {}),
                                                     ),
                                                     autofocus: false,
                                                     textInputAction:
@@ -3186,7 +3189,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                     FFButtonWidget(
                                       onPressed: () async {
                                         _model.isEdit = true;
-                                        setState(() {});
+                                        safeSetState(() {});
                                       },
                                       text: 'Редактировать',
                                       options: FFButtonOptions(
@@ -3425,7 +3428,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       'Продолжить редактирование',
                                                   successAction: () async {
                                                     _model.isEdit = false;
-                                                    setState(() {});
+                                                    safeSetState(() {});
 
                                                     context
                                                         .goNamed('Client_home');

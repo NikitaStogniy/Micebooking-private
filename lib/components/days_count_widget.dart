@@ -39,10 +39,10 @@ class _DaysCountWidgetState extends State<DaysCountWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.countDublicate = widget.count;
-      setState(() {});
+      safeSetState(() {});
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -103,7 +103,7 @@ class _DaysCountWidgetState extends State<DaysCountWidget> {
                         await widget.onRemove?.call();
                         if (_model.countDublicate! >= 1.0) {
                           _model.countDublicate = _model.countDublicate! + -0.5;
-                          setState(() {});
+                          safeSetState(() {});
                         }
                       },
                       child: Container(
@@ -134,7 +134,7 @@ class _DaysCountWidgetState extends State<DaysCountWidget> {
                       onTap: () async {
                         await widget.onAdd?.call();
                         _model.countDublicate = _model.countDublicate! + 0.5;
-                        setState(() {});
+                        safeSetState(() {});
                       },
                       child: Container(
                         width: 24.0,

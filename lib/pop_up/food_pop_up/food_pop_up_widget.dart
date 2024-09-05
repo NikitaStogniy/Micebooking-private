@@ -39,7 +39,7 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
     super.initState();
     _model = createModel(context, () => FoodPopUpModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -200,194 +200,141 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
                     decoration: const BoxDecoration(),
                   ),
                 ),
-                FutureBuilder<List<ServiceRow>>(
-                  future: ServiceTable().queryRows(
-                    queryFn: (q) => q.in_(
-                      'id',
-                      widget.food!.positions,
+                Container(
+                  width: MediaQuery.sizeOf(context).width * 0.6,
+                  decoration: const BoxDecoration(),
+                  child: FutureBuilder<List<ServiceCategoryRow>>(
+                    future: ServiceCategoryTable().queryRows(
+                      queryFn: (q) => q
+                          .eq(
+                            'type',
+                            EnumType.FOOD_POSITION.name,
+                          )
+                          .overlaps(
+                            'services_id',
+                            widget.food?.positions,
+                          ),
                     ),
-                  ),
-                  builder: (context, snapshot) {
-                    // Customize what your widget looks like when it's loading.
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: SizedBox(
-                          width: 50.0,
-                          height: 50.0,
-                          child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              FlutterFlowTheme.of(context).primary,
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
                             ),
                           ),
-                        ),
-                      );
-                    }
-                    List<ServiceRow> containerServiceRowList = snapshot.data!;
+                        );
+                      }
+                      List<ServiceCategoryRow>
+                          staggeredViewServiceCategoryRowList = snapshot.data!;
 
-                    return Container(
-                      width: MediaQuery.sizeOf(context).width * 0.6,
-                      decoration: const BoxDecoration(),
-                      child: FutureBuilder<List<ServiceCategoryRow>>(
-                        future: ServiceCategoryTable().queryRows(
-                          queryFn: (q) => q
-                              .eq(
-                                'type',
-                                EnumType.FOOD_POSITION.name,
-                              )
-                              .overlaps(
-                                'services_id',
-                                widget.food?.positions,
-                              ),
+                      return MasonryGridView.builder(
+                        gridDelegate:
+                            SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount:
+                              MediaQuery.sizeOf(context).width < 1000.0 ? 1 : 2,
                         ),
-                        builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
-                          if (!snapshot.hasData) {
-                            return Center(
-                              child: SizedBox(
-                                width: 50.0,
-                                height: 50.0,
-                                child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                    FlutterFlowTheme.of(context).primary,
+                        crossAxisSpacing: 40.0,
+                        mainAxisSpacing: 24.0,
+                        itemCount: staggeredViewServiceCategoryRowList.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, staggeredViewIndex) {
+                          final staggeredViewServiceCategoryRow =
+                              staggeredViewServiceCategoryRowList[
+                                  staggeredViewIndex];
+                          return Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                valueOrDefault<String>(
+                                  staggeredViewServiceCategoryRow.name,
+                                  '0',
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Commissioner',
+                                      fontSize: 22.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                              ),
+                              FutureBuilder<List<FoodPositionRow>>(
+                                future: FoodPositionTable().queryRows(
+                                  queryFn: (q) => q.eq(
+                                    'category',
+                                    staggeredViewServiceCategoryRow.id,
                                   ),
                                 ),
-                              ),
-                            );
-                          }
-                          List<ServiceCategoryRow>
-                              staggeredViewServiceCategoryRowList =
-                              snapshot.data!;
-
-                          return MasonryGridView.builder(
-                            gridDelegate:
-                                SliverSimpleGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount:
-                                  MediaQuery.sizeOf(context).width < 1000.0
-                                      ? 1
-                                      : 2,
-                            ),
-                            crossAxisSpacing: 40.0,
-                            mainAxisSpacing: 24.0,
-                            itemCount:
-                                staggeredViewServiceCategoryRowList.length,
-                            shrinkWrap: true,
-                            itemBuilder: (context, staggeredViewIndex) {
-                              final staggeredViewServiceCategoryRow =
-                                  staggeredViewServiceCategoryRowList[
-                                      staggeredViewIndex];
-                              return Visibility(
-                                visible: staggeredViewServiceCategoryRow
-                                        .servicesId
-                                        .contains(containerServiceRowList
-                                            .where((e) =>
-                                                e.category ==
-                                                staggeredViewServiceCategoryRow
-                                                    .id)
-                                            .toList()
-                                            .first
-                                            .id) ==
-                                    true,
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      valueOrDefault<String>(
-                                        staggeredViewServiceCategoryRow.name,
-                                        '0',
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Commissioner',
-                                            fontSize: 22.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: SizedBox(
+                                        width: 50.0,
+                                        height: 50.0,
+                                        child: CircularProgressIndicator(
+                                          valueColor:
+                                              AlwaysStoppedAnimation<Color>(
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
                                           ),
-                                    ),
-                                    FutureBuilder<List<FoodPositionRow>>(
-                                      future: FoodPositionTable().queryRows(
-                                        queryFn: (q) => q
-                                            .in_(
-                                              'id',
-                                              widget.food!.positions,
-                                            )
-                                            .eq(
-                                              'category',
-                                              staggeredViewServiceCategoryRow
-                                                  .id,
-                                            ),
+                                        ),
                                       ),
-                                      builder: (context, snapshot) {
-                                        // Customize what your widget looks like when it's loading.
-                                        if (!snapshot.hasData) {
-                                          return Center(
-                                            child: SizedBox(
-                                              width: 50.0,
-                                              height: 50.0,
-                                              child: CircularProgressIndicator(
-                                                valueColor:
-                                                    AlwaysStoppedAnimation<
-                                                        Color>(
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                                ),
-                                              ),
-                                            ),
-                                          );
-                                        }
-                                        List<FoodPositionRow>
-                                            columnFoodPositionRowList =
-                                            snapshot.data!;
+                                    );
+                                  }
+                                  List<FoodPositionRow>
+                                      columnFoodPositionRowList =
+                                      snapshot.data!;
 
-                                        return Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: List.generate(
-                                              columnFoodPositionRowList.length,
-                                              (columnIndex) {
-                                            final columnFoodPositionRow =
-                                                columnFoodPositionRowList[
-                                                    columnIndex];
-                                            return Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Expanded(
-                                                  child: Text(
-                                                    valueOrDefault<String>(
-                                                      columnFoodPositionRow
-                                                          .name,
-                                                      '0',
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          fontSize: 18.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
+                                  return Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: List.generate(
+                                        columnFoodPositionRowList.length,
+                                        (columnIndex) {
+                                      final columnFoodPositionRow =
+                                          columnFoodPositionRowList[
+                                              columnIndex];
+                                      return Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Expanded(
+                                            child: Text(
+                                              valueOrDefault<String>(
+                                                columnFoodPositionRow.name,
+                                                '0',
+                                              ),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Commissioner',
+                                                    fontSize: 18.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w500,
                                                   ),
-                                                ),
-                                              ],
-                                            );
-                                          }).divide(const SizedBox(height: 4.0)),
-                                        );
-                                      },
-                                    ),
-                                  ].divide(const SizedBox(height: 16.0)),
-                                ),
-                              );
-                            },
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    }).divide(const SizedBox(height: 4.0)),
+                                  );
+                                },
+                              ),
+                            ].divide(const SizedBox(height: 16.0)),
                           );
                         },
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
               ],
             ),

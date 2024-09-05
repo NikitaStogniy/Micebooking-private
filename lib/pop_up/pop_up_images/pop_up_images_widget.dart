@@ -30,7 +30,7 @@ class _PopUpImagesWidgetState extends State<PopUpImagesWidget> {
     super.initState();
     _model = createModel(context, () => PopUpImagesModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -64,7 +64,7 @@ class _PopUpImagesWidgetState extends State<PopUpImagesWidget> {
                 child: PageView.builder(
                   controller: _model.pageViewController ??= PageController(
                       initialPage: max(0, min(0, images.length - 1))),
-                  onPageChanged: (_) => setState(() {}),
+                  onPageChanged: (_) => safeSetState(() {}),
                   scrollDirection: Axis.horizontal,
                   itemCount: images.length,
                   itemBuilder: (context, imagesIndex) {

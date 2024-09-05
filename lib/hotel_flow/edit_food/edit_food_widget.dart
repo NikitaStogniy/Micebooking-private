@@ -48,22 +48,22 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.categoryId = widget.initialFood?.category;
-      setState(() {});
-      setState(() {
+      safeSetState(() {});
+      safeSetState(() {
         _model.editNameTextController?.text = widget.initialFood!.name!;
         _model.editPriceTextController?.text =
             widget.initialFood!.price!.toString();
       });
-      setState(() {
+      safeSetState(() {
         _model.editCategoryValueController?.reset();
       });
       _model.menuTest = widget.initialFood!.positions.toList().cast<int>();
       _model.addToCurrentFoodId(widget.id!);
-      setState(() {});
+      safeSetState(() {});
       _model.editableFood = widget.initialFood;
       _model.categooryName = widget.initialFood?.categoryName;
-      setState(() {});
-      setState(() => _model.requestCompleter1 = null);
+      safeSetState(() {});
+      safeSetState(() => _model.requestCompleter1 = null);
       await _model.waitForRequestCompleted1();
     });
 
@@ -78,7 +78,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
     _model.createAddmenuTextController ??= TextEditingController();
     _model.createAddmenuFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -156,7 +156,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                               _model.menu = [];
                               _model.categooryName = null;
                               _model.currentFoodId = [];
-                              setState(() {});
+                              safeSetState(() {});
                               await widget.isSubmit?.call();
                             },
                           ),
@@ -345,7 +345,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                       Colors.transparent,
                                                   onTap: () async {
                                                     _model.typeChange = true;
-                                                    setState(() {});
+                                                    safeSetState(() {});
                                                   },
                                                   child: Text(
                                                     'Изменить',
@@ -422,7 +422,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                             .withoutNulls
                                                             .toList(),
                                                     onChanged: (val) async {
-                                                      setState(() => _model
+                                                      safeSetState(() => _model
                                                               .editCategoryValue =
                                                           val);
                                                       _model.category =
@@ -439,14 +439,14 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                       _model.categooryName =
                                                           _model.category?.first
                                                               .name;
-                                                      setState(() {});
-                                                      setState(() => _model
+                                                      safeSetState(() {});
+                                                      safeSetState(() => _model
                                                               .requestCompleter1 =
                                                           null);
                                                       await _model
                                                           .waitForRequestCompleted1();
 
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     },
                                                     width: 285.0,
                                                     height: 40.0,
@@ -507,7 +507,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                     _model.categooryName =
                                                         _model
                                                             .editCategoryValue;
-                                                    setState(() {});
+                                                    safeSetState(() {});
                                                   },
                                                   child: Text(
                                                     'Сохранить',
@@ -710,7 +710,8 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                 .toString(),
                                             listViewIndex,
                                           ),
-                                          updateCallback: () => setState(() {}),
+                                          updateCallback: () =>
+                                              safeSetState(() {}),
                                           child: FoodPositionElementWidget(
                                             key: Key(
                                               'Keyi0t_${listViewFoodPositionRow.id.toString()}',
@@ -923,7 +924,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                             .withoutNulls
                                                             .toList(),
                                                     onChanged: (val) async {
-                                                      setState(() => _model
+                                                      safeSetState(() => _model
                                                               .menuCategoryValue =
                                                           val);
                                                       _model.categoryDrop =
@@ -938,14 +939,14 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                       _model.menuCategoryId =
                                                           _model.categoryDrop
                                                               ?.first.id;
-                                                      setState(() {});
-                                                      setState(() => _model
+                                                      safeSetState(() {});
+                                                      safeSetState(() => _model
                                                               .requestCompleter3 =
                                                           null);
                                                       await _model
                                                           .waitForRequestCompleted3();
 
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     },
                                                     width: 285.0,
                                                     height: 48.0,
@@ -1008,7 +1009,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                       _model.newPosition!.id);
                                                   _model.addToMenuTest(
                                                       _model.newPosition!.id);
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                   await ServiceCategoryTable()
                                                       .update(
                                                     data: {
@@ -1027,21 +1028,21 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                       rowServiceCategoryRow.id,
                                                     ),
                                                   );
-                                                  setState(() {
+                                                  safeSetState(() {
                                                     _model
                                                         .createAddmenuTextController
                                                         ?.clear();
                                                   });
                                                   _model.addMenuOpen = false;
                                                   _model.mergePosition = [];
-                                                  setState(() {});
-                                                  setState(() =>
+                                                  safeSetState(() {});
+                                                  safeSetState(() =>
                                                       _model.requestCompleter2 =
                                                           null);
                                                   await _model
                                                       .waitForRequestCompleted2();
 
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                 },
                                                 text: 'Добавить',
                                                 options: FFButtonOptions(
@@ -1078,13 +1079,13 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                               ),
                                               FFButtonWidget(
                                                 onPressed: () async {
-                                                  setState(() {
+                                                  safeSetState(() {
                                                     _model
                                                         .createAddmenuTextController
                                                         ?.clear();
                                                   });
                                                   _model.addMenuOpen = false;
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                 },
                                                 text: 'Отменить',
                                                 options: FFButtonOptions(
@@ -1130,7 +1131,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                         child: FFButtonWidget(
                                           onPressed: () async {
                                             _model.addMenuOpen = true;
-                                            setState(() {});
+                                            safeSetState(() {});
                                           },
                                           text: 'Добавить позицию',
                                           options: FFButtonOptions(
@@ -1213,11 +1214,11 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                   _model.categooryName = null;
                                   _model.menuTest = [];
                                   _model.currentFoodId = [];
-                                  setState(() {});
-                                  setState(() {
+                                  safeSetState(() {});
+                                  safeSetState(() {
                                     _model.editCategoryValueController?.reset();
                                   });
-                                  setState(() {
+                                  safeSetState(() {
                                     _model.editNameTextController?.text =
                                         widget.initialFood!.name!;
                                     _model.editPriceTextController?.text =
@@ -1225,7 +1226,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                   });
                                   await widget.isSubmit?.call();
 
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                                 text: 'Обновить',
                                 options: FFButtonOptions(
@@ -1258,7 +1259,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                   _model.menuTest = [];
                                   _model.categoryId = null;
                                   _model.currentFoodId = [];
-                                  setState(() {});
+                                  safeSetState(() {});
                                   await widget.isSubmit?.call();
                                 },
                                 text: 'Отменить изменения',

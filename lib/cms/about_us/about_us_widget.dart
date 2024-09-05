@@ -25,7 +25,7 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
     super.initState();
     _model = createModel(context, () => AboutUsModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -109,7 +109,7 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
                             children: [
                               wrapWithModel(
                                 model: _model.menuModel,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 child: MenuWidget(
                                   isBlue: true,
                                   page: 'home',
@@ -213,7 +213,7 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
                       ),
                       wrapWithModel(
                         model: _model.footerModel,
-                        updateCallback: () => setState(() {}),
+                        updateCallback: () => safeSetState(() {}),
                         child: const FooterWidget(),
                       ),
                     ].divide(const SizedBox(height: 40.0)),

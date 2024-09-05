@@ -33,7 +33,7 @@ class _ClientFavoriteComponentWidgetState
     super.initState();
     _model = createModel(context, () => ClientFavoriteComponentModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -357,10 +357,10 @@ class _ClientFavoriteComponentWidgetState
                                                   .list!.hotelId
                                                   .toList()
                                                   .cast<int>();
-                                              setState(() {});
+                                              safeSetState(() {});
                                               _model.removeFromNewRooms(
                                                   hotelsItem.id);
-                                              setState(() {});
+                                              safeSetState(() {});
                                               await FavoriteHotelsTable()
                                                   .update(
                                                 data: {

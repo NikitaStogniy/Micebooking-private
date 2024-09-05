@@ -56,7 +56,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
     _model.countmobTextController2 ??= TextEditingController();
     _model.countmobFocusNode2 ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -255,12 +255,12 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                               _model.countTextController.text),
                                           1,
                                         );
-                                        setState(() {});
+                                        safeSetState(() {});
                                       },
                                     ),
                                     onFieldSubmitted: (_) async {
                                       _model.countFieldOpen = false;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                     autofocus: false,
                                     obscureText: false,
@@ -317,8 +317,8 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                 onTap: () async {
                                   if (widget.isChosen != true) {
                                     _model.countFieldOpen = true;
-                                    setState(() {});
-                                    setState(() {
+                                    safeSetState(() {});
+                                    safeSetState(() {
                                       _model.countTextController?.clear();
                                     });
                                   }
@@ -359,9 +359,9 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                             onTap: () async {
                               if (widget.isChosen != true) {
                                 _model.count = _model.count! + 1;
-                                setState(() {});
+                                safeSetState(() {});
                                 _model.countFieldOpen = false;
-                                setState(() {});
+                                safeSetState(() {});
                               }
                             },
                             child: Container(
@@ -396,9 +396,9 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                               if (widget.isChosen != true) {
                                 if (_model.count! > 1) {
                                   _model.countFieldOpen = false;
-                                  setState(() {});
+                                  safeSetState(() {});
                                   _model.count = _model.count! + -1;
-                                  setState(() {});
+                                  safeSetState(() {});
                                 }
                               }
                             },
@@ -463,12 +463,12 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                               .personsTextController.text),
                                           1,
                                         );
-                                        setState(() {});
+                                        safeSetState(() {});
                                       },
                                     ),
                                     onFieldSubmitted: (_) async {
                                       _model.personsFirldOpen = false;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                     autofocus: false,
                                     obscureText: false,
@@ -525,8 +525,8 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                 onTap: () async {
                                   if (widget.isChosen != true) {
                                     _model.personsFirldOpen = true;
-                                    setState(() {});
-                                    setState(() {
+                                    safeSetState(() {});
+                                    safeSetState(() {
                                       _model.personsTextController?.clear();
                                     });
                                   }
@@ -568,9 +568,9 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                             onTap: () async {
                               if (widget.isChosen != true) {
                                 _model.persons = _model.persons! + 1;
-                                setState(() {});
+                                safeSetState(() {});
                                 _model.personsFirldOpen = false;
-                                setState(() {});
+                                safeSetState(() {});
                               }
                             },
                             child: Container(
@@ -602,9 +602,9 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                               if (widget.isChosen != true) {
                                 if (_model.persons! > 1) {
                                   _model.personsFirldOpen = false;
-                                  setState(() {});
+                                  safeSetState(() {});
                                   _model.persons = _model.persons! + -1;
-                                  setState(() {});
+                                  safeSetState(() {});
                                 }
                               }
                             },
@@ -647,7 +647,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                 : () async {
                                     _model.personsFirldOpen = false;
                                     _model.countFieldOpen = false;
-                                    setState(() {});
+                                    safeSetState(() {});
                                     await widget.chooseAction?.call(
                                       widget.food?.id,
                                       widget.food?.name,
@@ -826,8 +826,8 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                               onTap: () async {
                                 if (!widget.isChosen!) {
                                   _model.countFieldOpen = true;
-                                  setState(() {});
-                                  setState(() {
+                                  safeSetState(() {});
+                                  safeSetState(() {
                                     _model.countmobTextController1?.clear();
                                   });
                                 }
@@ -890,7 +890,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                                       _model
                                                           .countmobTextController1
                                                           .text);
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                 },
                                               ),
                                               onFieldSubmitted: (_) async {
@@ -899,7 +899,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                                         .countmobTextController1
                                                         .text);
                                                 _model.countFieldOpen = false;
-                                                setState(() {});
+                                                safeSetState(() {});
                                               },
                                               autofocus: true,
                                               obscureText: false,
@@ -995,7 +995,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                   if (!widget.isChosen!) {
                                     _model.countFieldOpen = false;
                                     _model.count = _model.count! + 1;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   }
                                 },
                                 child: Container(
@@ -1024,7 +1024,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                   if (!widget.isChosen!) {
                                     _model.countFieldOpen = false;
                                     _model.count = _model.count! + -1;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   }
                                 },
                                 child: Container(
@@ -1061,8 +1061,8 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                               onTap: () async {
                                 if (!widget.isChosen!) {
                                   _model.personsFirldOpen = true;
-                                  setState(() {});
-                                  setState(() {
+                                  safeSetState(() {});
+                                  safeSetState(() {
                                     _model.countmobTextController2?.clear();
                                   });
                                 }
@@ -1126,7 +1126,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                                       _model
                                                           .countmobTextController2
                                                           .text);
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                 },
                                               ),
                                               onFieldSubmitted: (_) async {
@@ -1135,7 +1135,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                                     _model
                                                         .countmobTextController2
                                                         .text);
-                                                setState(() {});
+                                                safeSetState(() {});
                                               },
                                               autofocus: true,
                                               obscureText: false,
@@ -1231,7 +1231,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                   if (!widget.isChosen!) {
                                     _model.personsFirldOpen = false;
                                     _model.persons = _model.persons! + 1;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   }
                                 },
                                 child: Container(
@@ -1260,7 +1260,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                   if (!widget.isChosen!) {
                                     _model.personsFirldOpen = false;
                                     _model.persons = _model.persons! + -1;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   }
                                 },
                                 child: Container(
@@ -1297,7 +1297,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                           onPressed: () async {
                             _model.personsFirldOpen = false;
                             _model.countFieldOpen = false;
-                            setState(() {});
+                            safeSetState(() {});
                             await widget.chooseAction?.call(
                               widget.food?.id,
                               widget.food?.name,

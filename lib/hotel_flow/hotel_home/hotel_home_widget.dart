@@ -38,7 +38,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
     super.initState();
     _model = createModel(context, () => HotelHomeModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -118,7 +118,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                 onTap: () async {
                                   _model.page = EnumHotelPage.PROFILE;
                                   _model.id = 0;
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                                 child: Text(
                                   'Профиль',
@@ -147,7 +147,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                 onTap: () async {
                                   _model.page = EnumHotelPage.REQUESTS;
                                   _model.id = 0;
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                                 child: Text(
                                   'Запросы',
@@ -176,7 +176,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                 onTap: () async {
                                   _model.page = EnumHotelPage.HOTELS;
                                   _model.id = 0;
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                                 child: Text(
                                   'Отель',
@@ -205,7 +205,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                 onTap: () async {
                                   _model.page = EnumHotelPage.HALLS;
                                   _model.id = 0;
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                                 child: Text(
                                   'Залы',
@@ -234,7 +234,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                 onTap: () async {
                                   _model.page = EnumHotelPage.FOOD;
                                   _model.id = 0;
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                                 child: Text(
                                   'Питание',
@@ -263,7 +263,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                 onTap: () async {
                                   _model.page = EnumHotelPage.ROOMS;
                                   _model.id = 0;
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                                 child: Text(
                                   'Номера',
@@ -297,7 +297,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                   onTap: () async {
                                     _model.page = EnumHotelPage.FOOD;
                                     _model.id = 0;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                   child: Text(
                                     valueOrDefault<String>(
@@ -336,7 +336,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                   onTap: () async {
                                     _model.page = EnumHotelPage.FOOD;
                                     _model.id = 0;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                   child: Text(
                                     valueOrDefault<String>(
@@ -422,7 +422,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                               alignment: const AlignmentDirectional(-1.0, -1.0),
                               child: wrapWithModel(
                                 model: _model.managerInfoModel,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 child: const ManagerInfoWidget(),
                               ),
                             ),
@@ -434,7 +434,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                               child: Builder(
                                 builder: (context) => wrapWithModel(
                                   model: _model.profileHotelsModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
                                   child: ProfileHotelsWidget(
                                     editCallback: (id) async {
@@ -443,12 +443,12 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                         id,
                                         88,
                                       );
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                     newCallback: () async {
                                       _model.page = EnumHotelPage.EDIT_HOTELS;
                                       _model.id = 0;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                     seeCallback: (hotel) async {
                                       await showDialog(
@@ -496,7 +496,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                               alignment: const AlignmentDirectional(-1.0, -1.0),
                               child: wrapWithModel(
                                 model: _model.addOrEditHotelModel,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 updateOnChange: true,
                                 child: AddOrEditHotelWidget(
                                   id: valueOrDefault<int>(
@@ -506,11 +506,11 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                   doneCallback: (id) async {
                                     _model.page = EnumHotelPage.HOTEL_JURIDICAL;
                                     _model.hotelId = id;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                   goBack: () async {
                                     _model.page = EnumHotelPage.HOTELS;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                 ),
                               ),
@@ -522,7 +522,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                               alignment: const AlignmentDirectional(-1.0, -1.0),
                               child: wrapWithModel(
                                 model: _model.profileRoomsModel,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 updateOnChange: true,
                                 child: ProfileRoomsWidget(
                                   newCallback: (homeId) async {
@@ -532,12 +532,12 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                       88,
                                     );
                                     _model.id = 0;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                   editCallback: (id) async {
                                     _model.page = EnumHotelPage.EDIT_ROOMS;
                                     _model.id = id;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                 ),
                               ),
@@ -549,7 +549,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                               alignment: const AlignmentDirectional(-1.0, -1.0),
                               child: wrapWithModel(
                                 model: _model.addOrEditRoomModel,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 updateOnChange: true,
                                 child: AddOrEditRoomWidget(
                                   id: valueOrDefault<int>(
@@ -560,7 +560,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                   doneCallback: () async {
                                     _model.page = EnumHotelPage.ROOMS;
                                     _model.id = 0;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                 ),
                               ),
@@ -572,7 +572,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                               alignment: const AlignmentDirectional(-1.0, -1.0),
                               child: wrapWithModel(
                                 model: _model.profileHallsModel,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 updateOnChange: true,
                                 child: ProfileHallsWidget(
                                   newCallback: (hotelId) async {
@@ -582,7 +582,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                       88,
                                     );
                                     _model.id = 0;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                   editCallback: (id) async {
                                     _model.page = EnumHotelPage.EDIT_HALLS;
@@ -590,7 +590,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                       id,
                                       88,
                                     );
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                 ),
                               ),
@@ -602,7 +602,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                               alignment: const AlignmentDirectional(-1.0, -1.0),
                               child: wrapWithModel(
                                 model: _model.profileFoodModel,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 updateOnChange: true,
                                 child: ProfileFoodWidget(
                                   newCallback: (hotelId) async {
@@ -612,12 +612,12 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                       88,
                                     );
                                     _model.id = 0;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                   editCallback: (id) async {
                                     _model.page = EnumHotelPage.EDIT_FOOD;
                                     _model.id = id;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                 ),
                               ),
@@ -629,7 +629,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                               alignment: const AlignmentDirectional(-1.0, -1.0),
                               child: wrapWithModel(
                                 model: _model.addOrEditHallModel,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 updateOnChange: true,
                                 child: AddOrEditHallWidget(
                                   id: valueOrDefault<int>(
@@ -640,7 +640,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                   doneCallback: () async {
                                     _model.page = EnumHotelPage.HALLS;
                                     _model.id = 0;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                 ),
                               ),
@@ -652,7 +652,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                               alignment: const AlignmentDirectional(-1.0, -1.0),
                               child: wrapWithModel(
                                 model: _model.addOrEditFoodModel,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 updateOnChange: true,
                                 child: AddOrEditFoodWidget(
                                   id: valueOrDefault<int>(
@@ -663,7 +663,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                   isSubmit: () async {
                                     _model.page = EnumHotelPage.FOOD;
                                     _model.id = 0;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                 ),
                               ),
@@ -675,13 +675,13 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                               alignment: const AlignmentDirectional(-1.0, -1.0),
                               child: wrapWithModel(
                                 model: _model.hotelJuridicalModel,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 updateOnChange: true,
                                 child: HotelJuridicalWidget(
                                   ownerId: _model.id!,
                                   onDone: () async {
                                     _model.page = EnumHotelPage.HOTELS;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                 ),
                               ),
@@ -690,24 +690,24 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                         if (_model.page == EnumHotelPage.REQUESTS)
                           wrapWithModel(
                             model: _model.hotelsRequestsModel,
-                            updateCallback: () => setState(() {}),
+                            updateCallback: () => safeSetState(() {}),
                             child: HotelsRequestsWidget(
                               openAllRequests: (hotelId) async {
                                 _model.page = EnumHotelPage.ALL_REQUESTS;
                                 _model.hotelId = hotelId;
-                                setState(() {});
+                                safeSetState(() {});
                               },
                             ),
                           ),
                         if (_model.page == EnumHotelPage.ALL_REQUESTS)
                           wrapWithModel(
                             model: _model.superRequestsModel,
-                            updateCallback: () => setState(() {}),
+                            updateCallback: () => safeSetState(() {}),
                             child: SuperRequestsWidget(
                               hotel: _model.hotelId!,
                               back: () async {
                                 _model.page = EnumHotelPage.REQUESTS;
-                                setState(() {});
+                                safeSetState(() {});
                               },
                             ),
                           ),

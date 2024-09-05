@@ -30,7 +30,7 @@ class _EditPPWidgetState extends State<EditPPWidget> {
 
     _model.aboutUsText1FocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -177,7 +177,7 @@ class _EditPPWidgetState extends State<EditPPWidget> {
                       FFButtonWidget(
                         onPressed: () async {
                           _model.isEdit = true;
-                          setState(() {});
+                          safeSetState(() {});
                         },
                         text: 'Редактировать',
                         options: FFButtonOptions(
@@ -214,7 +214,7 @@ class _EditPPWidgetState extends State<EditPPWidget> {
                             ),
                           );
                           _model.isEdit = false;
-                          setState(() {});
+                          safeSetState(() {});
                         },
                         text: 'Сохранить',
                         options: FFButtonOptions(
@@ -240,13 +240,13 @@ class _EditPPWidgetState extends State<EditPPWidget> {
                       ),
                     FFButtonWidget(
                       onPressed: () async {
-                        setState(() {
+                        safeSetState(() {
                           _model.aboutUsText1TextController?.text =
                               containerCmsRow!.text1!;
                         });
                         _model.image = null;
                         _model.isEdit = false;
-                        setState(() {});
+                        safeSetState(() {});
                       },
                       text: 'Отменить изменения',
                       options: FFButtonOptions(

@@ -28,7 +28,7 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
     super.initState();
     _model = createModel(context, () => WhyusBottomsheetModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

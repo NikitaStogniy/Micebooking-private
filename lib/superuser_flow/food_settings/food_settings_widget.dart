@@ -37,7 +37,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
     _model.newPosTextController ??= TextEditingController();
     _model.newPosFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -127,7 +127,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                                 listViewServiceCategoryRow.id.toString(),
                                 listViewIndex,
                               ),
-                              updateCallback: () => setState(() {}),
+                              updateCallback: () => safeSetState(() {}),
                               updateOnChange: true,
                               child: InfoComponentWidget(
                                 key: Key(
@@ -143,7 +143,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                                 editCallback: (data) async {
                                   _model.editService =
                                       listViewServiceCategoryRow.id;
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                                 updateAVANDTEXT:
                                     (data, avalibility, category) async {
@@ -166,7 +166,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                                       listViewServiceCategoryRow.id,
                                     ),
                                   );
-                                  setState(
+                                  safeSetState(
                                       () => _model.requestCompleter1 = null);
                                   await _model.waitForRequestCompleted1();
                                 },
@@ -242,12 +242,13 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                                     'type': EnumType.FOOD.name,
                                   });
                                 }
-                                setState(() {
+                                safeSetState(() {
                                   _model.newFoodTextController?.clear();
                                 });
                                 _model.addNewCategory = false;
-                                setState(() {});
-                                setState(() => _model.requestCompleter1 = null);
+                                safeSetState(() {});
+                                safeSetState(
+                                    () => _model.requestCompleter1 = null);
                                 await _model.waitForRequestCompleted1();
                               },
                               text: 'Добавить',
@@ -287,11 +288,11 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                           highlightColor: Colors.transparent,
                           onTap: () async {
                             _model.addNew = 'HOTEL';
-                            setState(() {});
+                            safeSetState(() {});
                           },
                           child: wrapWithModel(
                             model: _model.addNewModel1,
-                            updateCallback: () => setState(() {}),
+                            updateCallback: () => safeSetState(() {}),
                             updateOnChange: true,
                             child: AddNewWidget(
                               label: 'Добавить новое',
@@ -378,7 +379,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                                 listViewServiceCategoryRow.id.toString(),
                                 listViewIndex,
                               ),
-                              updateCallback: () => setState(() {}),
+                              updateCallback: () => safeSetState(() {}),
                               updateOnChange: true,
                               child: InfoComponentWidget(
                                 key: Key(
@@ -394,7 +395,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                                 editCallback: (data) async {
                                   _model.editService =
                                       listViewServiceCategoryRow.id;
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                                 updateAVANDTEXT:
                                     (data, avalibility, category) async {
@@ -417,7 +418,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                                       listViewServiceCategoryRow.id,
                                     ),
                                   );
-                                  setState(
+                                  safeSetState(
                                       () => _model.requestCompleter2 = null);
                                   await _model.waitForRequestCompleted2();
                                 },
@@ -493,12 +494,13 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                                     'type': EnumType.FOOD_POSITION.name,
                                   });
                                 }
-                                setState(() {
+                                safeSetState(() {
                                   _model.newPosTextController?.clear();
                                 });
                                 _model.addNew = null;
-                                setState(() {});
-                                setState(() => _model.requestCompleter2 = null);
+                                safeSetState(() {});
+                                safeSetState(
+                                    () => _model.requestCompleter2 = null);
                                 await _model.waitForRequestCompleted2();
                               },
                               text: 'Добавить',
@@ -538,11 +540,11 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                           highlightColor: Colors.transparent,
                           onTap: () async {
                             _model.addNew = 'HOTEL';
-                            setState(() {});
+                            safeSetState(() {});
                           },
                           child: wrapWithModel(
                             model: _model.addNewModel2,
-                            updateCallback: () => setState(() {}),
+                            updateCallback: () => safeSetState(() {}),
                             updateOnChange: true,
                             child: AddNewWidget(
                               label: 'Добавить новое',

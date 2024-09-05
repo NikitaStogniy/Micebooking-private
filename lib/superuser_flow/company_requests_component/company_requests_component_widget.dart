@@ -49,10 +49,10 @@ class _CompanyRequestsComponentWidgetState
       _model.currentDate = getCurrentTimestamp;
       _model.formatedDate = functions.formatMonthYear(getCurrentTimestamp);
       _model.user = widget!.user;
-      setState(() {});
+      safeSetState(() {});
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -145,7 +145,7 @@ class _CompanyRequestsComponentWidgetState
                                     .override(
                                       fontFamily: 'Commissioner',
                                       fontSize: 38,
-                                      letterSpacing: 0,
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
@@ -172,7 +172,7 @@ class _CompanyRequestsComponentWidgetState
                                         .override(
                                           fontFamily: 'Commissioner',
                                           fontSize: 20,
-                                          letterSpacing: 0,
+                                          letterSpacing: 0.0,
                                           fontWeight: FontWeight.w500,
                                         ),
                                   ),
@@ -205,14 +205,14 @@ class _CompanyRequestsComponentWidgetState
                                       value: _model.checkboxValue1 ??=
                                           _model.completeOnly == true,
                                       onChanged: (newValue) async {
-                                        setState(() =>
+                                        safeSetState(() =>
                                             _model.checkboxValue1 = newValue!);
                                         if (newValue!) {
                                           _model.completeOnly = true;
-                                          setState(() {});
+                                          safeSetState(() {});
                                         } else {
                                           _model.completeOnly = false;
-                                          setState(() {});
+                                          safeSetState(() {});
                                         }
                                       },
                                       side: BorderSide(
@@ -233,7 +233,7 @@ class _CompanyRequestsComponentWidgetState
                                         .override(
                                           fontFamily: 'Commissioner',
                                           fontSize: 18,
-                                          letterSpacing: 0,
+                                          letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
                                         ),
                                   ),
@@ -262,7 +262,7 @@ class _CompanyRequestsComponentWidgetState
                                               _model.currentDate!, -1);
                                       _model.formatedDate = functions
                                           .formatMonthYear(_model.currentDate!);
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                   Container(
@@ -280,7 +280,7 @@ class _CompanyRequestsComponentWidgetState
                                               .override(
                                                 fontFamily: 'Commissioner',
                                                 fontSize: 18,
-                                                letterSpacing: 0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
@@ -307,7 +307,7 @@ class _CompanyRequestsComponentWidgetState
                                               _model.currentDate!, 1);
                                       _model.formatedDate = functions
                                           .formatMonthYear(_model.currentDate!);
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                 ].divide(SizedBox(width: 16)),
@@ -367,7 +367,7 @@ class _CompanyRequestsComponentWidgetState
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
                                                 fontSize: 19,
-                                                letterSpacing: 0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
@@ -387,7 +387,7 @@ class _CompanyRequestsComponentWidgetState
                                                           context)
                                                       .secondaryBackground,
                                                   fontSize: 19,
-                                                  letterSpacing: 0,
+                                                  letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                           ),
@@ -406,7 +406,7 @@ class _CompanyRequestsComponentWidgetState
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
                                                 fontSize: 19,
-                                                letterSpacing: 0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
@@ -424,7 +424,7 @@ class _CompanyRequestsComponentWidgetState
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
                                                 fontSize: 19,
-                                                letterSpacing: 0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
@@ -442,7 +442,7 @@ class _CompanyRequestsComponentWidgetState
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
                                                 fontSize: 19,
-                                                letterSpacing: 0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
@@ -570,7 +570,7 @@ class _CompanyRequestsComponentWidgetState
                                                               true,
                                                       onChanged:
                                                           (newValue) async {
-                                                        setState(() => _model
+                                                        safeSetState(() => _model
                                                                     .checkboxValueMap2[
                                                                 columnRequestsRow] =
                                                             newValue!);
@@ -640,7 +640,7 @@ class _CompanyRequestsComponentWidgetState
                                                           fontFamily:
                                                               'Commissioner',
                                                           fontSize: 19,
-                                                          letterSpacing: 0,
+                                                          letterSpacing: 0.0,
                                                         ),
                                                   ),
                                                 ),
@@ -672,7 +672,7 @@ class _CompanyRequestsComponentWidgetState
                                                                     context)
                                                                 .primaryText,
                                                         fontSize: 19,
-                                                        letterSpacing: 0,
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -695,7 +695,7 @@ class _CompanyRequestsComponentWidgetState
                                                                     context)
                                                                 .primaryText,
                                                         fontSize: 19,
-                                                        letterSpacing: 0,
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -723,7 +723,7 @@ class _CompanyRequestsComponentWidgetState
                                                                     context)
                                                                 .primaryText,
                                                         fontSize: 19,
-                                                        letterSpacing: 0,
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -745,7 +745,7 @@ class _CompanyRequestsComponentWidgetState
                                                     _model.requestOpen = true;
                                                     _model.request =
                                                         columnRequestsRow;
-                                                    setState(() {});
+                                                    safeSetState(() {});
                                                   },
                                                   child: Text(
                                                     'Открыть',
@@ -759,7 +759,7 @@ class _CompanyRequestsComponentWidgetState
                                                                   .of(context)
                                                               .primaryText,
                                                           fontSize: 19,
-                                                          letterSpacing: 0,
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w500,
                                                           decoration:
@@ -798,7 +798,7 @@ class _CompanyRequestsComponentWidgetState
                         highlightColor: Colors.transparent,
                         onTap: () async {
                           _model.requestOpen = false;
-                          setState(() {});
+                          safeSetState(() {});
                         },
                         child: Container(
                           width: 40,
@@ -828,7 +828,7 @@ class _CompanyRequestsComponentWidgetState
                                   .override(
                                     fontFamily: 'Commissioner',
                                     fontSize: 38,
-                                    letterSpacing: 0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.bold,
                                   ),
                             ),
@@ -848,7 +848,7 @@ class _CompanyRequestsComponentWidgetState
                                     .override(
                                       fontFamily: 'Commissioner',
                                       fontSize: 18,
-                                      letterSpacing: 0,
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.w500,
                                     ),
                               ),
@@ -867,7 +867,7 @@ class _CompanyRequestsComponentWidgetState
                                     .override(
                                       fontFamily: 'Commissioner',
                                       fontSize: 18,
-                                      letterSpacing: 0,
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
@@ -890,7 +890,7 @@ class _CompanyRequestsComponentWidgetState
                                     .override(
                                       fontFamily: 'Commissioner',
                                       fontSize: 18,
-                                      letterSpacing: 0,
+                                      letterSpacing: 0.0,
                                     ),
                               ),
                             ].divide(SizedBox(width: 16)),
@@ -938,7 +938,7 @@ class _CompanyRequestsComponentWidgetState
                                         .override(
                                           fontFamily: 'Commissioner',
                                           fontSize: 18,
-                                          letterSpacing: 0,
+                                          letterSpacing: 0.0,
                                           fontWeight: FontWeight.w500,
                                         ),
                                   ),
@@ -957,7 +957,7 @@ class _CompanyRequestsComponentWidgetState
                                         .override(
                                           fontFamily: 'Commissioner',
                                           fontSize: 18,
-                                          letterSpacing: 0,
+                                          letterSpacing: 0.0,
                                           fontWeight: FontWeight.w500,
                                         ),
                                   ),
@@ -968,7 +968,7 @@ class _CompanyRequestsComponentWidgetState
                                         .override(
                                           fontFamily: 'Commissioner',
                                           fontSize: 18,
-                                          letterSpacing: 0,
+                                          letterSpacing: 0.0,
                                           fontWeight: FontWeight.w500,
                                         ),
                                   ),
@@ -982,7 +982,7 @@ class _CompanyRequestsComponentWidgetState
                                         .override(
                                           fontFamily: 'Commissioner',
                                           fontSize: 18,
-                                          letterSpacing: 0,
+                                          letterSpacing: 0.0,
                                           fontWeight: FontWeight.w500,
                                         ),
                                   ),
@@ -998,7 +998,7 @@ class _CompanyRequestsComponentWidgetState
                                           .override(
                                             fontFamily: 'Commissioner',
                                             fontSize: 18,
-                                            letterSpacing: 0,
+                                            letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
                                           ),
                                     ),
@@ -1023,7 +1023,7 @@ class _CompanyRequestsComponentWidgetState
                                     .override(
                                       fontFamily: 'Commissioner',
                                       fontSize: 18,
-                                      letterSpacing: 0,
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.w500,
                                     ),
                               ),
@@ -1063,7 +1063,7 @@ class _CompanyRequestsComponentWidgetState
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
                                                 fontSize: 19,
-                                                letterSpacing: 0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
@@ -1086,7 +1086,7 @@ class _CompanyRequestsComponentWidgetState
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
                                                 fontSize: 19,
-                                                letterSpacing: 0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
@@ -1109,7 +1109,7 @@ class _CompanyRequestsComponentWidgetState
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
                                                 fontSize: 19,
-                                                letterSpacing: 0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
@@ -1129,7 +1129,7 @@ class _CompanyRequestsComponentWidgetState
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
                                               fontSize: 19,
-                                              letterSpacing: 0,
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
                                             ),
                                       ),
@@ -1227,7 +1227,7 @@ class _CompanyRequestsComponentWidgetState
                                                                     context)
                                                                 .primaryText,
                                                         fontSize: 19,
-                                                        letterSpacing: 0,
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -1259,7 +1259,7 @@ class _CompanyRequestsComponentWidgetState
                                                                     context)
                                                                 .primaryText,
                                                         fontSize: 19,
-                                                        letterSpacing: 0,
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -1292,7 +1292,7 @@ class _CompanyRequestsComponentWidgetState
                                                                     context)
                                                                 .primaryText,
                                                         fontSize: 19,
-                                                        letterSpacing: 0,
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -1322,7 +1322,7 @@ class _CompanyRequestsComponentWidgetState
                                                           fontFamily:
                                                               'Commissioner',
                                                           fontSize: 19,
-                                                          letterSpacing: 0,
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
                                                           decoration:
@@ -1370,7 +1370,7 @@ class _CompanyRequestsComponentWidgetState
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
                                             fontSize: 19,
-                                            letterSpacing: 0,
+                                            letterSpacing: 0.0,
                                           ),
                                     ),
                                   ),
@@ -1401,7 +1401,7 @@ class _CompanyRequestsComponentWidgetState
                                                   FlutterFlowTheme.of(context)
                                                       .primaryText,
                                               fontSize: 19,
-                                              letterSpacing: 0,
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.w600,
                                             ),
                                       ),
@@ -1427,7 +1427,7 @@ class _CompanyRequestsComponentWidgetState
                                     .override(
                                       fontFamily: 'Commissioner',
                                       fontSize: 18,
-                                      letterSpacing: 0,
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.w500,
                                     ),
                               ),
@@ -1467,7 +1467,7 @@ class _CompanyRequestsComponentWidgetState
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
                                                 fontSize: 19,
-                                                letterSpacing: 0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
@@ -1490,7 +1490,7 @@ class _CompanyRequestsComponentWidgetState
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
                                                 fontSize: 19,
-                                                letterSpacing: 0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
@@ -1513,7 +1513,7 @@ class _CompanyRequestsComponentWidgetState
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
                                                 fontSize: 19,
-                                                letterSpacing: 0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
@@ -1533,7 +1533,7 @@ class _CompanyRequestsComponentWidgetState
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
                                               fontSize: 19,
-                                              letterSpacing: 0,
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
                                             ),
                                       ),
@@ -1631,7 +1631,7 @@ class _CompanyRequestsComponentWidgetState
                                                                     context)
                                                                 .primaryText,
                                                         fontSize: 19,
-                                                        letterSpacing: 0,
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -1664,7 +1664,7 @@ class _CompanyRequestsComponentWidgetState
                                                                     context)
                                                                 .primaryText,
                                                         fontSize: 19,
-                                                        letterSpacing: 0,
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -1697,7 +1697,7 @@ class _CompanyRequestsComponentWidgetState
                                                                     context)
                                                                 .primaryText,
                                                         fontSize: 19,
-                                                        letterSpacing: 0,
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -1725,7 +1725,7 @@ class _CompanyRequestsComponentWidgetState
                                                           fontFamily:
                                                               'Commissioner',
                                                           fontSize: 19,
-                                                          letterSpacing: 0,
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
                                                           decoration:
@@ -1773,7 +1773,7 @@ class _CompanyRequestsComponentWidgetState
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
                                             fontSize: 19,
-                                            letterSpacing: 0,
+                                            letterSpacing: 0.0,
                                           ),
                                     ),
                                   ),
@@ -1804,7 +1804,7 @@ class _CompanyRequestsComponentWidgetState
                                                   FlutterFlowTheme.of(context)
                                                       .primaryText,
                                               fontSize: 19,
-                                              letterSpacing: 0,
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.w600,
                                             ),
                                       ),
@@ -1830,7 +1830,7 @@ class _CompanyRequestsComponentWidgetState
                                     .override(
                                       fontFamily: 'Commissioner',
                                       fontSize: 18,
-                                      letterSpacing: 0,
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.w500,
                                     ),
                               ),
@@ -1870,7 +1870,7 @@ class _CompanyRequestsComponentWidgetState
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
                                                 fontSize: 19,
-                                                letterSpacing: 0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
@@ -1893,7 +1893,7 @@ class _CompanyRequestsComponentWidgetState
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
                                                 fontSize: 19,
-                                                letterSpacing: 0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
@@ -1916,7 +1916,7 @@ class _CompanyRequestsComponentWidgetState
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
                                                 fontSize: 19,
-                                                letterSpacing: 0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
@@ -1936,7 +1936,7 @@ class _CompanyRequestsComponentWidgetState
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
                                               fontSize: 19,
-                                              letterSpacing: 0,
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
                                             ),
                                       ),
@@ -2034,7 +2034,7 @@ class _CompanyRequestsComponentWidgetState
                                                                     context)
                                                                 .primaryText,
                                                         fontSize: 19,
-                                                        letterSpacing: 0,
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -2067,7 +2067,7 @@ class _CompanyRequestsComponentWidgetState
                                                                     context)
                                                                 .primaryText,
                                                         fontSize: 19,
-                                                        letterSpacing: 0,
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -2100,7 +2100,7 @@ class _CompanyRequestsComponentWidgetState
                                                                     context)
                                                                 .primaryText,
                                                         fontSize: 19,
-                                                        letterSpacing: 0,
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -2130,7 +2130,7 @@ class _CompanyRequestsComponentWidgetState
                                                           fontFamily:
                                                               'Commissioner',
                                                           fontSize: 19,
-                                                          letterSpacing: 0,
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
                                                           decoration:
@@ -2178,7 +2178,7 @@ class _CompanyRequestsComponentWidgetState
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
                                             fontSize: 19,
-                                            letterSpacing: 0,
+                                            letterSpacing: 0.0,
                                           ),
                                     ),
                                   ),
@@ -2209,7 +2209,7 @@ class _CompanyRequestsComponentWidgetState
                                                   FlutterFlowTheme.of(context)
                                                       .primaryText,
                                               fontSize: 19,
-                                              letterSpacing: 0,
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.w600,
                                             ),
                                       ),
@@ -2237,7 +2237,7 @@ class _CompanyRequestsComponentWidgetState
                                     .override(
                                       fontFamily: 'Commissioner',
                                       fontSize: 18,
-                                      letterSpacing: 0,
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.w500,
                                     ),
                               ),
@@ -2258,7 +2258,7 @@ class _CompanyRequestsComponentWidgetState
                                     fontFamily: 'Commissioner',
                                     color: Color(0xFF2431A5),
                                     fontSize: 20,
-                                    letterSpacing: 0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                             ),

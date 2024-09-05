@@ -68,7 +68,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.favoriteHotelsList =
           widget.user!.favoriteHotels.toList().cast<int>();
-      setState(() {});
+      safeSetState(() {});
       if ((widget.hallFilter1?.type == EnumSeating.theatre) ||
           (widget.hallFilter2?.type == EnumSeating.theatre) ||
           (widget.hallFilter3?.type == EnumSeating.theatre)) {
@@ -86,7 +86,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
           }(),
           0,
         );
-        setState(() {});
+        safeSetState(() {});
       }
       if ((widget.hallFilter1?.type == EnumSeating.klass) ||
           (widget.hallFilter2?.type == EnumSeating.klass) ||
@@ -105,7 +105,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
           }(),
           0,
         );
-        setState(() {});
+        safeSetState(() {});
       }
       if ((widget.hallFilter1?.type == EnumSeating.communication) ||
           (widget.hallFilter2?.type == EnumSeating.communication) ||
@@ -124,7 +124,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
           }(),
           0,
         );
-        setState(() {});
+        safeSetState(() {});
       }
       if ((widget.hallFilter1?.type == EnumSeating.ushape) ||
           (widget.hallFilter2?.type == EnumSeating.ushape) ||
@@ -143,7 +143,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
           }(),
           0,
         );
-        setState(() {});
+        safeSetState(() {});
       }
       if ((widget.hallFilter1?.type == EnumSeating.oshape) ||
           (widget.hallFilter2?.type == EnumSeating.oshape) ||
@@ -162,7 +162,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
           }(),
           0,
         );
-        setState(() {});
+        safeSetState(() {});
       }
       if ((widget.hallFilter1?.type == EnumSeating.cabare) ||
           (widget.hallFilter2?.type == EnumSeating.cabare) ||
@@ -181,7 +181,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
           }(),
           0,
         );
-        setState(() {});
+        safeSetState(() {});
       }
       if ((widget.hallFilter1?.type == EnumSeating.banket) ||
           (widget.hallFilter2?.type == EnumSeating.banket) ||
@@ -200,7 +200,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
           }(),
           0,
         );
-        setState(() {});
+        safeSetState(() {});
       }
       if ((widget.hallFilter1?.type == EnumSeating.furshet) ||
           (widget.hallFilter2?.type == EnumSeating.furshet) ||
@@ -219,7 +219,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
           }(),
           0,
         );
-        setState(() {});
+        safeSetState(() {});
       }
       _model.filteredHalls = await HallTable().queryRows(
         queryFn: (q) => q
@@ -256,11 +256,11 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
               _model.furshetMin,
             ),
       );
-      setState(() => _model.requestCompleter = null);
+      safeSetState(() => _model.requestCompleter = null);
       await _model.waitForRequestCompleted(minWait: 1000, maxWait: 3000);
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -361,7 +361,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                   )),
                               child: wrapWithModel(
                                 model: _model.menuModel,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 child: MenuWidget(
                                   isBlue: true,
                                   page: 'home',
@@ -413,7 +413,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                     hallFilter2,
                                                     hallFilter3) async {
                                                   _model.step = 0;
-                                                  setState(() {});
+                                                  safeSetState(() {});
 
                                                   context.goNamed(
                                                     'HotelSearchPage',
@@ -459,7 +459,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                     }.withoutNulls,
                                                   );
 
-                                                  setState(() => _model
+                                                  safeSetState(() => _model
                                                       .requestCompleter = null);
                                                   await _model
                                                       .waitForRequestCompleted();
@@ -483,7 +483,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                         ))
                           wrapWithModel(
                             model: _model.hotelSearchCompModel,
-                            updateCallback: () => setState(() {}),
+                            updateCallback: () => safeSetState(() {}),
                             updateOnChange: true,
                             child: HotelSearchCompWidget(
                               duration: widget.duration!,
@@ -503,7 +503,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                   hallFilter2,
                                   hallFilter3) async {
                                 _model.step = 0;
-                                setState(() {});
+                                safeSetState(() {});
 
                                 context.goNamed(
                                   'HotelSearchPage',
@@ -543,7 +543,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                   }.withoutNulls,
                                 );
 
-                                setState(() => _model.requestCompleter = null);
+                                safeSetState(
+                                    () => _model.requestCompleter = null);
                                 await _model.waitForRequestCompleted();
                               },
                             ),
@@ -652,12 +653,12 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                         _model
                                                             .removeFromHotelFilterStars(
                                                                 star!);
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                       } else {
                                                         _model
                                                             .addToHotelFilterStars(
                                                                 star!);
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                       }
                                                     },
                                                     addDistance:
@@ -670,13 +671,13 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                             100000;
                                                         _model.hotelFilterMinDistance =
                                                             0;
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                       } else {
                                                         _model.hotelFilterMaxDistance =
                                                             max;
                                                         _model.hotelFilterMinDistance =
                                                             min;
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                       }
                                                     },
                                                     choseService: (id) async {
@@ -687,12 +688,12 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                         _model
                                                             .removeFromHotelFilterServices(
                                                                 id!);
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                       } else {
                                                         _model
                                                             .addToHotelFilterServices(
                                                                 id!);
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                       }
                                                     },
                                                     updatePrice: (minPrice,
@@ -719,8 +720,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           minPrice;
                                                       _model.filterMaxPrice =
                                                           maxPrice;
-                                                      setState(() {});
-                                                      setState(() => _model
+                                                      safeSetState(() {});
+                                                      safeSetState(() => _model
                                                               .requestCompleter =
                                                           null);
                                                       await _model
@@ -733,7 +734,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                           },
                                         );
 
-                                        setState(() {});
+                                        safeSetState(() {});
                                       },
                                       child: Container(
                                         width: 300.0,
@@ -867,7 +868,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           maxCapacity;
                                                       _model.hallFilterMinCapacity =
                                                           minCapacity;
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     },
                                                     addSeating:
                                                         (seating) async {
@@ -879,12 +880,12 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                         _model
                                                             .removeFromHallFilterChosenSeatings(
                                                                 seating!);
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                       } else {
                                                         _model
                                                             .addToHallFilterChosenSeatings(
                                                                 seating!);
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                       }
                                                     },
                                                   ),
@@ -995,7 +996,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                       _model.hotelFilterMaxDistance = 100000;
                                       _model.filterMaxPrice = 100000.0;
                                       _model.filterMinPrice = 1.0;
-                                      setState(() {});
+                                      safeSetState(() {});
                                       _model.deleteFiltersRooms =
                                           await RoomTable().queryRows(
                                         queryFn: (q) => q.gte(
@@ -1008,13 +1009,13 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                           .map((e) => e.id)
                                           .toList()
                                           .cast<int>();
-                                      setState(() {});
-                                      setState(
+                                      safeSetState(() {});
+                                      safeSetState(
                                           () => _model.requestCompleter = null);
                                       await _model.waitForRequestCompleted(
                                           minWait: 1000, maxWait: 3000);
 
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                     text: 'Сбросить фильтры',
                                     options: FFButtonOptions(
@@ -1334,9 +1335,9 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                 _model.priceHall = [];
                                                 _model.foodPrice = [];
                                                 _model.roomPrice = [];
-                                                setState(() {});
+                                                safeSetState(() {});
                                                 _model.choosedHotel = null;
-                                                setState(() {});
+                                                safeSetState(() {});
                                               } else {
                                                 _model.step = 0;
                                                 _model.removeFromChosenHotels(
@@ -1355,9 +1356,9 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                 _model.priceHall = [];
                                                 _model.foodPrice = [];
                                                 _model.roomPrice = [];
-                                                setState(() {});
+                                                safeSetState(() {});
                                                 _model.choosedHotel = null;
-                                                setState(() {});
+                                                safeSetState(() {});
                                               }
                                             },
                                             text: 'Назад',
@@ -1475,7 +1476,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       }.withoutNulls,
                                                     );
 
-                                                    setState(() {});
+                                                    safeSetState(() {});
                                                   },
                                                   text: 'Получить кп',
                                                   options: FFButtonOptions(
@@ -1646,7 +1647,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                     hotelsIndex,
                                                   ),
                                                   updateCallback: () =>
-                                                      setState(() {}),
+                                                      safeSetState(() {}),
                                                   updateOnChange: true,
                                                   child:
                                                       ClientHotelComponentWidget(
@@ -1680,10 +1681,10 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                     .id);
                                                         _model.chosenHotelName =
                                                             hotelsHotelRow.name;
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                         _model.step =
                                                             _model.step + 1;
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                       } else {
                                                         await showDialog(
                                                           barrierColor:
@@ -1744,7 +1745,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           .removeFromChosenHotels(
                                                               hotelsHotelRow
                                                                   .id);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                       await RequestsTable()
                                                           .delete(
                                                         matchingRows: (rows) =>
@@ -1777,7 +1778,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                               .removeFromFavoriteHotelsList(
                                                                   hotelsHotelRow
                                                                       .id);
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                           await Future.delayed(
                                                               const Duration(
                                                                   milliseconds:
@@ -1801,7 +1802,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                               .addToFavoriteHotelsList(
                                                                   hotelsHotelRow
                                                                       .id);
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                           await Future.delayed(
                                                               const Duration(
                                                                   milliseconds:
@@ -1830,7 +1831,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           .removeFromChosenHotels(
                                                               hotelsHotelRow
                                                                   .id);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                       await RequestsTable()
                                                           .delete(
                                                         matchingRows: (rows) =>
@@ -1975,7 +1976,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                     hotelsIndex,
                                                   ),
                                                   updateCallback: () =>
-                                                      setState(() {}),
+                                                      safeSetState(() {}),
                                                   updateOnChange: true,
                                                   child:
                                                       ClientHotelComponentWidget(
@@ -2009,10 +2010,10 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                     .id);
                                                         _model.chosenHotelName =
                                                             hotelsHotelRow.name;
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                         _model.step =
                                                             _model.step + 1;
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                       } else {
                                                         await showDialog(
                                                           barrierColor:
@@ -2073,7 +2074,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           .removeFromChosenHotels(
                                                               hotelsHotelRow
                                                                   .id);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                       await RequestsTable()
                                                           .delete(
                                                         matchingRows: (rows) =>
@@ -2106,7 +2107,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                               .removeFromFavoriteHotelsList(
                                                                   hotelsHotelRow
                                                                       .id);
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                           await Future.delayed(
                                                               const Duration(
                                                                   milliseconds:
@@ -2130,7 +2131,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                               .addToFavoriteHotelsList(
                                                                   hotelsHotelRow
                                                                       .id);
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                           await Future.delayed(
                                                               const Duration(
                                                                   milliseconds:
@@ -2159,7 +2160,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           .removeFromChosenHotels(
                                                               hotelsHotelRow
                                                                   .id);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                       await RequestsTable()
                                                           .delete(
                                                         matchingRows: (rows) =>
@@ -2276,7 +2277,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                   child: wrapWithModel(
                                     model:
                                         _model.editRequestHotelComponentModel,
-                                    updateCallback: () => setState(() {}),
+                                    updateCallback: () => safeSetState(() {}),
                                     child: EditRequestHotelComponentWidget(
                                       hotel: containerHotelRow!,
                                     ),
@@ -2445,7 +2446,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                             columnIndex,
                                                           ),
                                                           updateCallback: () =>
-                                                              setState(() {}),
+                                                              safeSetState(
+                                                                  () {}),
                                                           child:
                                                               ClientHallComponentWidget(
                                                             key: Key(
@@ -2492,18 +2494,21 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                 _model
                                                                     .removeFromPriceHall(
                                                                         price!);
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                                 _model.removeFromListHallRequest(
                                                                     _model
                                                                         .deletedHall!
                                                                         .first
                                                                         .id);
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               } else {
                                                                 _model.addToChoosenHall(
                                                                     columnHallRow
                                                                         .id);
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                                 _model.hallRequest =
                                                                     await RequestsHallVarTable()
                                                                         .insert({
@@ -2528,10 +2533,12 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                     _model
                                                                         .hallRequest!
                                                                         .price!);
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               }
 
-                                                              setState(() {});
+                                                              safeSetState(
+                                                                  () {});
                                                             },
                                                           ),
                                                         ),
@@ -2628,7 +2635,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                               onTap: () async {
                                                                 _model.showMoreHalls =
                                                                     true;
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               },
                                                               child: Text(
                                                                 'Показать ешё ${(_model.filteredHalls!.where((e) => hallChooseHotelRow!.hall.contains(e.id)).toList().length - 2).toString()} зал(ов)',
@@ -2670,7 +2678,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                               onTap: () async {
                                                                 _model.showMoreHalls =
                                                                     false;
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               },
                                                               child: Text(
                                                                 'Показать меньше',
@@ -2891,12 +2900,12 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                       true) {
                                                                     _model.showMoreHalls =
                                                                         false;
-                                                                    setState(
+                                                                    safeSetState(
                                                                         () {});
                                                                   } else {
                                                                     _model.showMoreHalls =
                                                                         true;
-                                                                    setState(
+                                                                    safeSetState(
                                                                         () {});
                                                                   }
                                                                 },
@@ -3211,8 +3220,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                         .toString(),
                                                                     foodsIndex,
                                                                   ),
-                                                                  updateCallback:
-                                                                      () => setState(
+                                                                  updateCallback: () =>
+                                                                      safeSetState(
                                                                           () {}),
                                                                   child:
                                                                       ClientFoodComponentWidget(
@@ -3254,12 +3263,12 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                             foodsFoodRow.id);
                                                                         _model.removeFromFoodPrice(
                                                                             price!);
-                                                                        setState(
+                                                                        safeSetState(
                                                                             () {});
                                                                       } else {
                                                                         _model.addToChosenFood(
                                                                             foodsFoodRow.id);
-                                                                        setState(
+                                                                        safeSetState(
                                                                             () {});
                                                                         _model.foodRequest =
                                                                             await RequestsFoodVarTable().insert({
@@ -3281,11 +3290,11 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                             .id);
                                                                         _model.addToFoodPrice(
                                                                             price!);
-                                                                        setState(
+                                                                        safeSetState(
                                                                             () {});
                                                                       }
 
-                                                                      setState(
+                                                                      safeSetState(
                                                                           () {});
                                                                     },
                                                                   ),
@@ -3670,7 +3679,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       columnIndex,
                                                     ),
                                                     updateCallback: () =>
-                                                        setState(() {}),
+                                                        safeSetState(() {}),
                                                     child:
                                                         ClientRoomComponentWidget(
                                                       key: Key(
@@ -3700,7 +3709,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           _model
                                                               .removeFromRoomPrice(
                                                                   price!);
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                           await RequestsRoomVarTable()
                                                               .delete(
                                                             matchingRows:
@@ -3728,7 +3737,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                       .id);
                                                           _model.addToRoomPrice(
                                                               price!);
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                           _model.roomRequest =
                                                               await RequestsRoomVarTable()
                                                                   .insert({
@@ -3746,10 +3755,10 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                               _model
                                                                   .roomRequest!
                                                                   .id);
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                         }
 
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                       },
                                                     ),
                                                   );
@@ -4021,7 +4030,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       model: _model
                                                           .clientOptionalModel1,
                                                       updateCallback: () =>
-                                                          setState(() {}),
+                                                          safeSetState(() {}),
                                                       updateOnChange: true,
                                                       child:
                                                           ClientOptionalWidget(
@@ -4031,18 +4040,18 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                         show: (isRoom) async {
                                                           _model.foodIsOpen =
                                                               true;
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                         },
                                                         skip: (isRoom) async {
                                                           if (_model
                                                               .foodIsSkip) {
                                                             _model.foodIsSkip =
                                                                 false;
-                                                            setState(() {});
+                                                            safeSetState(() {});
                                                           } else {
                                                             _model.foodIsSkip =
                                                                 true;
-                                                            setState(() {});
+                                                            safeSetState(() {});
                                                           }
                                                         },
                                                       ),
@@ -4056,7 +4065,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       model: _model
                                                           .clientOptionalModel2,
                                                       updateCallback: () =>
-                                                          setState(() {}),
+                                                          safeSetState(() {}),
                                                       updateOnChange: true,
                                                       child:
                                                           ClientOptionalWidget(
@@ -4066,18 +4075,18 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                         show: (isRoom) async {
                                                           _model.roomsIsOpen =
                                                               true;
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                         },
                                                         skip: (isRoom) async {
                                                           if (_model
                                                               .roomisSkip) {
                                                             _model.roomisSkip =
                                                                 false;
-                                                            setState(() {});
+                                                            safeSetState(() {});
                                                           } else {
                                                             _model.roomisSkip =
                                                                 true;
-                                                            setState(() {});
+                                                            safeSetState(() {});
                                                           }
                                                         },
                                                       ),
@@ -4250,7 +4259,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                         _model.lastRequestId =
                                                             _model
                                                                 .requestWr?.id;
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                         _model.requestWrapper =
                                                             await RequestWrapperTable()
                                                                 .insert({
@@ -4346,7 +4355,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                         );
                                                       }
 
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     },
                                                     text: 'Получить КП',
                                                     options: FFButtonOptions(
@@ -4570,7 +4579,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                         );
                                                         _model.addToRequestList(
                                                             _model.request!);
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                         _model.step = 0;
                                                         _model.chosenHotelName =
                                                             null;
@@ -4594,10 +4603,10 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                             false;
                                                         _model.choosedHotel =
                                                             null;
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                       }
 
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     },
                                                     text:
                                                         'Продолжить выбор отелей',
@@ -4722,7 +4731,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                   () async {
                                                                 _model.foodIsOpen =
                                                                     true;
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               },
                                                               text: 'Выбрать',
                                                               options:
@@ -4783,11 +4793,13 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                   .foodIsSkip) {
                                                                 _model.foodIsSkip =
                                                                     false;
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               } else {
                                                                 _model.foodIsSkip =
                                                                     true;
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               }
                                                             },
                                                             text: _model
@@ -4922,7 +4934,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                     () async {
                                                                   _model.roomsIsOpen =
                                                                       true;
-                                                                  setState(
+                                                                  safeSetState(
                                                                       () {});
                                                                 },
                                                                 text: 'Выбрать',
@@ -4983,12 +4995,12 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                     .roomisSkip) {
                                                                   _model.roomisSkip =
                                                                       false;
-                                                                  setState(
+                                                                  safeSetState(
                                                                       () {});
                                                                 } else {
                                                                   _model.roomisSkip =
                                                                       true;
-                                                                  setState(
+                                                                  safeSetState(
                                                                       () {});
                                                                 }
                                                               },
@@ -5238,7 +5250,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                     _model
                                                                         .requestWrMob
                                                                         ?.id;
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                                 _model.requestWrapperMob =
                                                                     await RequestWrapperTable()
                                                                         .insert({
@@ -5345,7 +5358,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                 );
                                                               }
 
-                                                              setState(() {});
+                                                              safeSetState(
+                                                                  () {});
                                                             },
                                                             text: 'Получить КП',
                                                             options:
@@ -5580,7 +5594,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                 _model.addToRequestList(
                                                                     _model
                                                                         .requestMob!);
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                                 _model.step = 0;
                                                                 _model.chosenHotelName =
                                                                     null;
@@ -5606,10 +5621,12 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                     false;
                                                                 _model.choosedHotel =
                                                                     null;
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               }
 
-                                                              setState(() {});
+                                                              safeSetState(
+                                                                  () {});
                                                             },
                                                             text:
                                                                 'Продолжить выбор отелей',
@@ -5683,7 +5700,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                               0.0, 56.0, 0.0, 0.0),
                           child: wrapWithModel(
                             model: _model.footerModel,
-                            updateCallback: () => setState(() {}),
+                            updateCallback: () => safeSetState(() {}),
                             child: const FooterWidget(),
                           ),
                         ),

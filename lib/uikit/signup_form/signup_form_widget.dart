@@ -69,7 +69,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
     _model.passwordTextController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -120,7 +120,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.nameDescTextController',
                                 const Duration(milliseconds: 200),
-                                () => setState(() {}),
+                                () => safeSetState(() {}),
                               ),
                               autofocus: false,
                               textInputAction: TextInputAction.next,
@@ -206,7 +206,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.emailDescTextController',
                                 const Duration(milliseconds: 200),
-                                () => setState(() {}),
+                                () => safeSetState(() {}),
                               ),
                               autofocus: false,
                               textInputAction: TextInputAction.next,
@@ -302,7 +302,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.phoneDescTextController',
                                 const Duration(milliseconds: 200),
-                                () => setState(() {}),
+                                () => safeSetState(() {}),
                               ),
                               autofocus: false,
                               textInputAction: TextInputAction.next,
@@ -392,7 +392,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                 onChanged: (_) => EasyDebounce.debounce(
                                   '_model.extraPhoneDescTextController',
                                   const Duration(milliseconds: 200),
-                                  () => setState(() {}),
+                                  () => safeSetState(() {}),
                                 ),
                                 autofocus: false,
                                 textInputAction: TextInputAction.next,
@@ -497,7 +497,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                         onChanged: (_) => EasyDebounce.debounce(
                           '_model.fioMobTextController',
                           const Duration(milliseconds: 200),
-                          () => setState(() {}),
+                          () => safeSetState(() {}),
                         ),
                         autofocus: false,
                         obscureText: false,
@@ -590,7 +590,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                         onChanged: (_) => EasyDebounce.debounce(
                           '_model.emailMobTextController',
                           const Duration(milliseconds: 200),
-                          () => setState(() {}),
+                          () => safeSetState(() {}),
                         ),
                         autofocus: false,
                         obscureText: false,
@@ -684,7 +684,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                         onChanged: (_) => EasyDebounce.debounce(
                           '_model.phoneMobTextController',
                           const Duration(milliseconds: 200),
-                          () => setState(() {}),
+                          () => safeSetState(() {}),
                         ),
                         autofocus: false,
                         obscureText: false,
@@ -787,7 +787,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                         onChanged: (_) => EasyDebounce.debounce(
                           '_model.extraPhoneMobTextController',
                           const Duration(milliseconds: 200),
-                          () => setState(() {}),
+                          () => safeSetState(() {}),
                         ),
                         autofocus: false,
                         obscureText: false,
@@ -887,7 +887,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                       onChanged: (_) => EasyDebounce.debounce(
                         '_model.companyNameTextController',
                         const Duration(milliseconds: 200),
-                        () => setState(() {}),
+                        () => safeSetState(() {}),
                       ),
                       autofocus: false,
                       obscureText: false,
@@ -978,7 +978,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                       onChanged: (_) => EasyDebounce.debounce(
                         '_model.passwordTextController',
                         const Duration(milliseconds: 200),
-                        () => setState(() {}),
+                        () => safeSetState(() {}),
                       ),
                       autofocus: false,
                       obscureText: !_model.passwordVisibility,
@@ -1027,7 +1027,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                         contentPadding:
                             const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
                         suffixIcon: InkWell(
-                          onTap: () => setState(
+                          onTap: () => safeSetState(
                             () => _model.passwordVisibility =
                                 !_model.passwordVisibility,
                           ),
@@ -1083,7 +1083,8 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                         child: Checkbox(
                           value: _model.checkboxValue ??= false,
                           onChanged: (newValue) async {
-                            setState(() => _model.checkboxValue = newValue!);
+                            safeSetState(
+                                () => _model.checkboxValue = newValue!);
                           },
                           side: BorderSide(
                             width: 2,
@@ -1276,7 +1277,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                           }
                                         }
 
-                                        setState(() {});
+                                        safeSetState(() {});
                                       },
                                 text: 'Зарегистрироваться',
                                 options: FFButtonOptions(
@@ -1426,7 +1427,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                           }
                                         }
 
-                                        setState(() {});
+                                        safeSetState(() {});
                                       },
                                 text: 'Зарегистрироваться',
                                 options: FFButtonOptions(

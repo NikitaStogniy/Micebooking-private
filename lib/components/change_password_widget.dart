@@ -41,7 +41,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode3 ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -409,7 +409,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                 EasyDebounce.debounce(
                                               '_model.textController1',
                                               const Duration(milliseconds: 100),
-                                              () => setState(() {}),
+                                              () => safeSetState(() {}),
                                             ),
                                             autofocus: false,
                                             obscureText:
@@ -475,7 +475,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                       .fromSTEB(
                                                           19.0, 0.0, 0.0, 0.0),
                                               suffixIcon: InkWell(
-                                                onTap: () => setState(
+                                                onTap: () => safeSetState(
                                                   () => _model
                                                           .passwordVisibility1 =
                                                       !_model
@@ -525,7 +525,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                     EasyDebounce.debounce(
                                                   '_model.textController2',
                                                   const Duration(milliseconds: 100),
-                                                  () => setState(() {}),
+                                                  () => safeSetState(() {}),
                                                 ),
                                                 autofocus: false,
                                                 obscureText:
@@ -599,7 +599,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                           .fromSTEB(19.0, 0.0,
                                                               0.0, 0.0),
                                                   suffixIcon: InkWell(
-                                                    onTap: () => setState(
+                                                    onTap: () => safeSetState(
                                                       () => _model
                                                               .passwordVisibility2 =
                                                           !_model
@@ -695,7 +695,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                             context: context,
                                           );
                                           _model.step = _model.step! + 1;
-                                          setState(() {});
+                                          safeSetState(() {});
                                         } else {
                                           if (_model.step == 2) {
                                             _model.passwordChange =
@@ -734,7 +734,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                           }
                                         }
 
-                                        setState(() {});
+                                        safeSetState(() {});
                                       },
                                 text: () {
                                   if (_model.step == 1) {

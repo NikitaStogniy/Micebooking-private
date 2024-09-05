@@ -66,7 +66,7 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
       ),
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

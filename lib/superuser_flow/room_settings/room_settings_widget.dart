@@ -34,7 +34,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
     _model.newCategoryTextController ??= TextEditingController();
     _model.newCategoryFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -93,7 +93,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 _model.newCategory = true;
-                                setState(() {});
+                                safeSetState(() {});
                               },
                               child: Icon(
                                 Icons.add,
@@ -205,10 +205,10 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                                             categoryListServiceCategoryRow.id,
                                           ),
                                         );
-                                        setState(() =>
+                                        safeSetState(() =>
                                             _model.requestCompleter2 = null);
                                         await _model.waitForRequestCompleted2();
-                                        setState(() =>
+                                        safeSetState(() =>
                                             _model.requestCompleter1 = null);
                                         await _model.waitForRequestCompleted1();
                                       },
@@ -362,16 +362,16 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                                               'type': EnumType.ROOM.name,
                                             });
                                             _model.newCategory = false;
-                                            setState(() {});
-                                            setState(() {
+                                            safeSetState(() {});
+                                            safeSetState(() {
                                               _model.newCategoryTextController
                                                   ?.clear();
                                             });
-                                            setState(() => _model
+                                            safeSetState(() => _model
                                                 .requestCompleter2 = null);
                                             await _model
                                                 .waitForRequestCompleted2();
-                                            setState(() => _model
+                                            safeSetState(() => _model
                                                 .requestCompleter1 = null);
                                             await _model
                                                 .waitForRequestCompleted1();
@@ -408,7 +408,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                                         FFButtonWidget(
                                           onPressed: () async {
                                             _model.newCategory = false;
-                                            setState(() {});
+                                            safeSetState(() {});
                                           },
                                           text: 'Отменить',
                                           options: FFButtonOptions(
@@ -540,7 +540,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                                       });
                                       _model.addToServicesList(
                                           _model.newServiceRoom!.id);
-                                      setState(() {});
+                                      safeSetState(() {});
                                       await ServiceCategoryTable().update(
                                         data: {
                                           'services_id': functions.mergeListsInt(
@@ -555,12 +555,12 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                                         ),
                                       );
                                       _model.servicesList = [];
-                                      setState(() {});
-                                      setState(() =>
+                                      safeSetState(() {});
+                                      safeSetState(() =>
                                           _model.requestCompleter1 = null);
                                       await _model.waitForRequestCompleted1();
 
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   );
                                 }).divide(const SizedBox(height: 40.0)),

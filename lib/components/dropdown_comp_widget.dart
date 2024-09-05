@@ -36,7 +36,7 @@ class _DropdownCompWidgetState extends State<DropdownCompWidget> {
     super.initState();
     _model = createModel(context, () => DropdownCompModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -90,7 +90,7 @@ class _DropdownCompWidgetState extends State<DropdownCompWidget> {
                 .withoutNulls
                 .toList(),
             onChanged: (val) async {
-              setState(() => _model.dropDownValue = val);
+              safeSetState(() => _model.dropDownValue = val);
               _model.category = await ServiceCategoryTable().queryRows(
                 queryFn: (q) => q.eq(
                   'name',
@@ -102,7 +102,7 @@ class _DropdownCompWidgetState extends State<DropdownCompWidget> {
                 _model.category!.first.id,
               );
 
-              setState(() {});
+              safeSetState(() {});
             },
             width: 285.0,
             height: 48.0,

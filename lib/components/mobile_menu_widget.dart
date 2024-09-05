@@ -32,7 +32,7 @@ class _MobileMenuWidgetState extends State<MobileMenuWidget> {
     super.initState();
     _model = createModel(context, () => MobileMenuModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

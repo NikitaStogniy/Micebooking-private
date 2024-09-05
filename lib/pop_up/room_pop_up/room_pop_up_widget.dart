@@ -39,7 +39,7 @@ class _RoomPopUpWidgetState extends State<RoomPopUpWidget> {
     super.initState();
     _model = createModel(context, () => RoomPopUpModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -156,7 +156,8 @@ class _RoomPopUpWidgetState extends State<RoomPopUpWidget> {
                                                           0,
                                                           roomImages.length -
                                                               1))),
-                                          onPageChanged: (_) => setState(() {}),
+                                          onPageChanged: (_) =>
+                                              safeSetState(() {}),
                                           scrollDirection: Axis.horizontal,
                                           itemCount: roomImages.length,
                                           itemBuilder:
@@ -207,7 +208,7 @@ class _RoomPopUpWidgetState extends State<RoomPopUpWidget> {
                                                     const Duration(milliseconds: 500),
                                                 curve: Curves.ease,
                                               );
-                                              setState(() {});
+                                              safeSetState(() {});
                                             },
                                             effect: smooth_page_indicator
                                                 .ExpandingDotsEffect(
@@ -540,7 +541,7 @@ class _RoomPopUpWidgetState extends State<RoomPopUpWidget> {
                                                             roomImages.length -
                                                                 1))),
                                             onPageChanged: (_) =>
-                                                setState(() {}),
+                                                safeSetState(() {}),
                                             scrollDirection: Axis.horizontal,
                                             itemCount: roomImages.length,
                                             itemBuilder:
@@ -593,7 +594,7 @@ class _RoomPopUpWidgetState extends State<RoomPopUpWidget> {
                                                       milliseconds: 500),
                                                   curve: Curves.ease,
                                                 );
-                                                setState(() {});
+                                                safeSetState(() {});
                                               },
                                               effect: smooth_page_indicator
                                                   .ExpandingDotsEffect(

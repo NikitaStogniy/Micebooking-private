@@ -32,7 +32,7 @@ class _AddNewWidgetState extends State<AddNewWidget> {
     super.initState();
     _model = createModel(context, () => AddNewModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

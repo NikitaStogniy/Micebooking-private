@@ -25,7 +25,7 @@ class _WhyWidgetState extends State<WhyWidget> {
     super.initState();
     _model = createModel(context, () => WhyModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -110,7 +110,7 @@ class _WhyWidgetState extends State<WhyWidget> {
                               decoration: const BoxDecoration(),
                               child: wrapWithModel(
                                 model: _model.menuModel,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 child: MenuWidget(
                                   isBlue: true,
                                   page: 'home',
@@ -637,7 +637,7 @@ class _WhyWidgetState extends State<WhyWidget> {
                       ),
                       wrapWithModel(
                         model: _model.footerModel,
-                        updateCallback: () => setState(() {}),
+                        updateCallback: () => safeSetState(() {}),
                         child: const FooterWidget(),
                       ),
                     ].divide(const SizedBox(height: 40.0)),

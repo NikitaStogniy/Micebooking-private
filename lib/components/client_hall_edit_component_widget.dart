@@ -58,7 +58,7 @@ class _ClientHallEditComponentWidgetState
         _model.days = widget.request!.days!;
         _model.price = widget.request!.price!;
         _model.seating = widget.request?.seating;
-        setState(() {});
+        safeSetState(() {});
         await widget.onLoad?.call(
           valueOrDefault<double>(
             (widget.hall!.price!) * _model.days,
@@ -68,7 +68,7 @@ class _ClientHallEditComponentWidgetState
       }
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -136,7 +136,8 @@ class _ClientHallEditComponentWidgetState
                                                           0,
                                                           hallImages.length -
                                                               1))),
-                                          onPageChanged: (_) => setState(() {}),
+                                          onPageChanged: (_) =>
+                                              safeSetState(() {}),
                                           scrollDirection: Axis.horizontal,
                                           itemCount: hallImages.length,
                                           itemBuilder:
@@ -187,7 +188,7 @@ class _ClientHallEditComponentWidgetState
                                                     const Duration(milliseconds: 500),
                                                 curve: Curves.ease,
                                               );
-                                              setState(() {});
+                                              safeSetState(() {});
                                             },
                                             effect: smooth_page_indicator
                                                 .ExpandingDotsEffect(
@@ -420,7 +421,7 @@ class _ClientHallEditComponentWidgetState
                                     onTap: () async {
                                       if (widget.isChosen != true) {
                                         _model.days = _model.days + 0.5;
-                                        setState(() {});
+                                        safeSetState(() {});
                                       }
                                     },
                                     child: Icon(
@@ -440,7 +441,7 @@ class _ClientHallEditComponentWidgetState
                                     if (_model.days != 0.5) {
                                       if (widget.isChosen != true) {
                                         _model.days = _model.days + -0.5;
-                                        setState(() {});
+                                        safeSetState(() {});
                                       }
                                     }
                                   },
@@ -1063,7 +1064,8 @@ class _ClientHallEditComponentWidgetState
                                                           model: _model
                                                               .checkBoxModel1,
                                                           updateCallback: () =>
-                                                              setState(() {}),
+                                                              safeSetState(
+                                                                  () {}),
                                                           updateOnChange: true,
                                                           child: CheckBoxWidget(
                                                             isChecked: _model
@@ -1074,7 +1076,8 @@ class _ClientHallEditComponentWidgetState
                                                                   .isChosen) {
                                                                 _model.seating =
                                                                     'Театр';
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               }
                                                             },
                                                           ),
@@ -1142,7 +1145,8 @@ class _ClientHallEditComponentWidgetState
                                                           model: _model
                                                               .checkBoxModel2,
                                                           updateCallback: () =>
-                                                              setState(() {}),
+                                                              safeSetState(
+                                                                  () {}),
                                                           updateOnChange: true,
                                                           child: CheckBoxWidget(
                                                             isChecked: _model
@@ -1153,7 +1157,8 @@ class _ClientHallEditComponentWidgetState
                                                                   .isChosen) {
                                                                 _model.seating =
                                                                     'Класс';
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               }
                                                             },
                                                           ),
@@ -1223,7 +1228,8 @@ class _ClientHallEditComponentWidgetState
                                                           model: _model
                                                               .checkBoxModel3,
                                                           updateCallback: () =>
-                                                              setState(() {}),
+                                                              safeSetState(
+                                                                  () {}),
                                                           updateOnChange: true,
                                                           child: CheckBoxWidget(
                                                             isChecked: _model
@@ -1234,7 +1240,8 @@ class _ClientHallEditComponentWidgetState
                                                                   .isChosen) {
                                                                 _model.seating =
                                                                     'Переговорная';
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               }
                                                             },
                                                           ),
@@ -1302,7 +1309,8 @@ class _ClientHallEditComponentWidgetState
                                                           model: _model
                                                               .checkBoxModel4,
                                                           updateCallback: () =>
-                                                              setState(() {}),
+                                                              safeSetState(
+                                                                  () {}),
                                                           updateOnChange: true,
                                                           child: CheckBoxWidget(
                                                             isChecked: _model
@@ -1313,7 +1321,8 @@ class _ClientHallEditComponentWidgetState
                                                                   .isChosen) {
                                                                 _model.seating =
                                                                     'U-shape';
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               }
                                                             },
                                                           ),
@@ -1381,7 +1390,8 @@ class _ClientHallEditComponentWidgetState
                                                           model: _model
                                                               .checkBoxModel5,
                                                           updateCallback: () =>
-                                                              setState(() {}),
+                                                              safeSetState(
+                                                                  () {}),
                                                           updateOnChange: true,
                                                           child: CheckBoxWidget(
                                                             isChecked: _model
@@ -1392,7 +1402,8 @@ class _ClientHallEditComponentWidgetState
                                                                   .isChosen) {
                                                                 _model.seating =
                                                                     'U-shape';
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               }
                                                             },
                                                           ),
@@ -1460,7 +1471,8 @@ class _ClientHallEditComponentWidgetState
                                                           model: _model
                                                               .checkBoxModel6,
                                                           updateCallback: () =>
-                                                              setState(() {}),
+                                                              safeSetState(
+                                                                  () {}),
                                                           updateOnChange: true,
                                                           child: CheckBoxWidget(
                                                             isChecked: _model
@@ -1471,7 +1483,8 @@ class _ClientHallEditComponentWidgetState
                                                                   .isChosen) {
                                                                 _model.seating =
                                                                     'Кабаре';
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               }
                                                             },
                                                           ),
@@ -1539,7 +1552,8 @@ class _ClientHallEditComponentWidgetState
                                                           model: _model
                                                               .checkBoxModel7,
                                                           updateCallback: () =>
-                                                              setState(() {}),
+                                                              safeSetState(
+                                                                  () {}),
                                                           updateOnChange: true,
                                                           child: CheckBoxWidget(
                                                             isChecked: _model
@@ -1550,7 +1564,8 @@ class _ClientHallEditComponentWidgetState
                                                                   .isChosen) {
                                                                 _model.seating =
                                                                     'Банкет';
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               }
                                                             },
                                                           ),
@@ -1618,7 +1633,8 @@ class _ClientHallEditComponentWidgetState
                                                           model: _model
                                                               .checkBoxModel8,
                                                           updateCallback: () =>
-                                                              setState(() {}),
+                                                              safeSetState(
+                                                                  () {}),
                                                           updateOnChange: true,
                                                           child: CheckBoxWidget(
                                                             isChecked: _model
@@ -1629,7 +1645,8 @@ class _ClientHallEditComponentWidgetState
                                                                   .isChosen) {
                                                                 _model.seating =
                                                                     'Фуршет';
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               }
                                                             },
                                                           ),
@@ -1783,7 +1800,7 @@ class _ClientHallEditComponentWidgetState
                                                   0,
                                                   min(0,
                                                       hallImages.length - 1))),
-                                      onPageChanged: (_) => setState(() {}),
+                                      onPageChanged: (_) => safeSetState(() {}),
                                       scrollDirection: Axis.horizontal,
                                       itemCount: hallImages.length,
                                       itemBuilder: (context, hallImagesIndex) {
@@ -1874,7 +1891,7 @@ class _ClientHallEditComponentWidgetState
                                                 const Duration(milliseconds: 500),
                                             curve: Curves.ease,
                                           );
-                                          setState(() {});
+                                          safeSetState(() {});
                                         },
                                         effect: smooth_page_indicator
                                             .ExpandingDotsEffect(
@@ -2207,14 +2224,14 @@ class _ClientHallEditComponentWidgetState
                                       0.0, 12.0, 0.0, 0.0),
                                   child: wrapWithModel(
                                     model: _model.checkBoxModel9,
-                                    updateCallback: () => setState(() {}),
+                                    updateCallback: () => safeSetState(() {}),
                                     updateOnChange: true,
                                     child: CheckBoxWidget(
                                       isChecked: _model.seating == 'Театр',
                                       onClick: () async {
                                         if (!widget.isChosen) {
                                           _model.seating = 'Театр';
-                                          setState(() {});
+                                          safeSetState(() {});
                                         }
                                       },
                                     ),
@@ -2271,14 +2288,14 @@ class _ClientHallEditComponentWidgetState
                                       0.0, 12.0, 0.0, 0.0),
                                   child: wrapWithModel(
                                     model: _model.checkBoxModel10,
-                                    updateCallback: () => setState(() {}),
+                                    updateCallback: () => safeSetState(() {}),
                                     updateOnChange: true,
                                     child: CheckBoxWidget(
                                       isChecked: _model.seating == 'Класс',
                                       onClick: () async {
                                         if (!widget.isChosen) {
                                           _model.seating = 'Класс';
-                                          setState(() {});
+                                          safeSetState(() {});
                                         }
                                       },
                                     ),
@@ -2336,7 +2353,7 @@ class _ClientHallEditComponentWidgetState
                                       0.0, 12.0, 0.0, 0.0),
                                   child: wrapWithModel(
                                     model: _model.checkBoxModel11,
-                                    updateCallback: () => setState(() {}),
+                                    updateCallback: () => safeSetState(() {}),
                                     updateOnChange: true,
                                     child: CheckBoxWidget(
                                       isChecked:
@@ -2344,7 +2361,7 @@ class _ClientHallEditComponentWidgetState
                                       onClick: () async {
                                         if (!widget.isChosen) {
                                           _model.seating = 'Переговорная';
-                                          setState(() {});
+                                          safeSetState(() {});
                                         }
                                       },
                                     ),
@@ -2401,14 +2418,14 @@ class _ClientHallEditComponentWidgetState
                                       0.0, 12.0, 0.0, 0.0),
                                   child: wrapWithModel(
                                     model: _model.checkBoxModel12,
-                                    updateCallback: () => setState(() {}),
+                                    updateCallback: () => safeSetState(() {}),
                                     updateOnChange: true,
                                     child: CheckBoxWidget(
                                       isChecked: _model.seating == 'U-shape',
                                       onClick: () async {
                                         if (!widget.isChosen) {
                                           _model.seating = 'U-shape';
-                                          setState(() {});
+                                          safeSetState(() {});
                                         }
                                       },
                                     ),
@@ -2465,14 +2482,14 @@ class _ClientHallEditComponentWidgetState
                                       0.0, 12.0, 0.0, 0.0),
                                   child: wrapWithModel(
                                     model: _model.checkBoxModel13,
-                                    updateCallback: () => setState(() {}),
+                                    updateCallback: () => safeSetState(() {}),
                                     updateOnChange: true,
                                     child: CheckBoxWidget(
                                       isChecked: _model.seating == 'O-shape',
                                       onClick: () async {
                                         if (!widget.isChosen) {
                                           _model.seating = 'O-shape';
-                                          setState(() {});
+                                          safeSetState(() {});
                                         }
                                       },
                                     ),
@@ -2529,14 +2546,14 @@ class _ClientHallEditComponentWidgetState
                                       0.0, 12.0, 0.0, 0.0),
                                   child: wrapWithModel(
                                     model: _model.checkBoxModel14,
-                                    updateCallback: () => setState(() {}),
+                                    updateCallback: () => safeSetState(() {}),
                                     updateOnChange: true,
                                     child: CheckBoxWidget(
                                       isChecked: _model.seating == 'Кабаре',
                                       onClick: () async {
                                         if (!widget.isChosen) {
                                           _model.seating = 'Кабаре';
-                                          setState(() {});
+                                          safeSetState(() {});
                                         }
                                       },
                                     ),
@@ -2593,14 +2610,14 @@ class _ClientHallEditComponentWidgetState
                                       0.0, 12.0, 0.0, 0.0),
                                   child: wrapWithModel(
                                     model: _model.checkBoxModel15,
-                                    updateCallback: () => setState(() {}),
+                                    updateCallback: () => safeSetState(() {}),
                                     updateOnChange: true,
                                     child: CheckBoxWidget(
                                       isChecked: _model.seating == 'Банкет',
                                       onClick: () async {
                                         if (!widget.isChosen) {
                                           _model.seating = 'Банкет';
-                                          setState(() {});
+                                          safeSetState(() {});
                                         }
                                       },
                                     ),
@@ -2658,14 +2675,14 @@ class _ClientHallEditComponentWidgetState
                                       0.0, 12.0, 0.0, 0.0),
                                   child: wrapWithModel(
                                     model: _model.checkBoxModel16,
-                                    updateCallback: () => setState(() {}),
+                                    updateCallback: () => safeSetState(() {}),
                                     updateOnChange: true,
                                     child: CheckBoxWidget(
                                       isChecked: _model.seating == 'Фуршет',
                                       onClick: () async {
                                         if (!widget.isChosen) {
                                           _model.seating = 'Фуршет';
-                                          setState(() {});
+                                          safeSetState(() {});
                                         }
                                       },
                                     ),
@@ -2731,7 +2748,7 @@ class _ClientHallEditComponentWidgetState
                               onTap: () async {
                                 if (widget.isChosen != true) {
                                   _model.days = _model.days + 0.5;
-                                  setState(() {});
+                                  safeSetState(() {});
                                 }
                               },
                               child: Icon(
@@ -2751,7 +2768,7 @@ class _ClientHallEditComponentWidgetState
                               if (_model.days != 0.5) {
                                 if (widget.isChosen != true) {
                                   _model.days = _model.days + -0.5;
-                                  setState(() {});
+                                  safeSetState(() {});
                                 }
                               }
                             },

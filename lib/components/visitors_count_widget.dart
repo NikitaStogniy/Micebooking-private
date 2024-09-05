@@ -63,17 +63,17 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
       _model.seating2 = widget.filter2?.type;
       _model.seating3 = widget.filter3?.type;
       _model.addToSeatings(widget.filter1!);
-      setState(() {});
+      safeSetState(() {});
       _model.addToSeatings(widget.filter2!);
-      setState(() {});
+      safeSetState(() {});
       _model.addToSeatings(widget.filter3!);
-      setState(() {});
+      safeSetState(() {});
     });
 
     _model.countmobTextController ??= TextEditingController();
     _model.countmobFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -288,8 +288,8 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 _model.fieldActive = true;
-                                setState(() {});
-                                setState(() {
+                                safeSetState(() {});
+                                safeSetState(() {
                                   _model.countmobTextController?.clear();
                                 });
                               },
@@ -337,9 +337,9 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                               if (_model.countDublicate! >= 1) {
                                 _model.countDublicate =
                                     _model.countDublicate! + -1;
-                                setState(() {});
+                                safeSetState(() {});
                                 _model.fieldActive = false;
-                                setState(() {});
+                                safeSetState(() {});
                               }
                             },
                             child: Container(
@@ -371,9 +371,9 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                               await widget.onAdd?.call();
                               _model.countDublicate =
                                   _model.countDublicate! + 1;
-                              setState(() {});
+                              safeSetState(() {});
                               _model.fieldActive = false;
-                              setState(() {});
+                              safeSetState(() {});
                             },
                             child: Container(
                               width: 24.0,
@@ -470,7 +470,7 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                     seatingsColIndex.toString(),
                                     seatingsColIndex,
                                   ),
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
                                   child: ClientSeatingCompWidget(
                                     key: Key(
@@ -488,7 +488,7 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                       );
                                       _model.seatingTest = count;
                                       _model.hall1Filter = seatingsColItem;
-                                      setState(() {});
+                                      safeSetState(() {});
                                       await widget.onChange?.call(
                                         count,
                                         onChange,
@@ -503,12 +503,12 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                         type: EnumSeating.theatre,
                                         count: 1,
                                       ));
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                     onDelete: () async {
                                       _model
                                           .removeFromSeatings(seatingsColItem);
-                                      setState(() {});
+                                      safeSetState(() {});
                                       await widget.deleteFilter?.call(
                                         seatingsColIndex,
                                       );
@@ -530,7 +530,7 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                 type: EnumSeating.theatre,
                                 count: 1,
                               ));
-                              setState(() {});
+                              safeSetState(() {});
                             },
                             child: Row(
                               mainAxisSize: MainAxisSize.min,

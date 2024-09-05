@@ -25,7 +25,7 @@ class _ImagesEmptyWidgetState extends State<ImagesEmptyWidget> {
     super.initState();
     _model = createModel(context, () => ImagesEmptyModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

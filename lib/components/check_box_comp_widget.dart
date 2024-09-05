@@ -34,7 +34,7 @@ class _CheckBoxCompWidgetState extends State<CheckBoxCompWidget> {
     super.initState();
     _model = createModel(context, () => CheckBoxCompModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -65,7 +65,7 @@ class _CheckBoxCompWidgetState extends State<CheckBoxCompWidget> {
             child: Checkbox(
               value: _model.checkboxValue ??= widget.isChecked,
               onChanged: (newValue) async {
-                setState(() => _model.checkboxValue = newValue!);
+                safeSetState(() => _model.checkboxValue = newValue!);
                 if (newValue!) {
                   await widget.onClick?.call(
                     true,

@@ -38,7 +38,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -173,7 +173,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                           columnHotelRow.id.toString(),
                           columnIndex,
                         ),
-                        updateCallback: () => setState(() {}),
+                        updateCallback: () => safeSetState(() {}),
                         updateOnChange: true,
                         child: ProfileRequestsComponentWidget(
                           key: Key(
@@ -238,7 +238,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               _model.requestOpen = false;
-                              setState(() {});
+                              safeSetState(() {});
                             },
                             child: Container(
                               width: 40.0,

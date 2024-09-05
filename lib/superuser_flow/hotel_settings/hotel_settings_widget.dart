@@ -49,7 +49,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
     _model.textController4 ??= TextEditingController();
     _model.textFieldFocusNode3 ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -117,7 +117,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
                                           _model.newCategory = true;
-                                          setState(() {});
+                                          safeSetState(() {});
                                         },
                                         child: Icon(
                                           Icons.add,
@@ -283,12 +283,12 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                           .id,
                                                     ),
                                                   );
-                                                  setState(() =>
+                                                  safeSetState(() =>
                                                       _model.requestCompleter1 =
                                                           null);
                                                   await _model
                                                       .waitForRequestCompleted1();
-                                                  setState(() =>
+                                                  safeSetState(() =>
                                                       _model.requestCompleter2 =
                                                           null);
                                                   await _model
@@ -480,18 +480,18 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                             EnumType.HOTEL.name,
                                                       });
                                                       _model.newCategory = true;
-                                                      setState(() {});
-                                                      setState(() {
+                                                      safeSetState(() {});
+                                                      safeSetState(() {
                                                         _model
                                                             .newCategoryTextController
                                                             ?.clear();
                                                       });
-                                                      setState(() => _model
+                                                      safeSetState(() => _model
                                                               .requestCompleter1 =
                                                           null);
                                                       await _model
                                                           .waitForRequestCompleted1();
-                                                      setState(() => _model
+                                                      safeSetState(() => _model
                                                               .requestCompleter2 =
                                                           null);
                                                       await _model
@@ -545,7 +545,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                     onPressed: () async {
                                                       _model.newCategory =
                                                           false;
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     },
                                                     text: 'Отменить',
                                                     options: FFButtonOptions(
@@ -705,7 +705,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                 });
                                                 _model.addToNewServices(
                                                     _model.newService!.id);
-                                                setState(() {});
+                                                safeSetState(() {});
                                                 await ServiceCategoryTable()
                                                     .update(
                                                   data: {
@@ -725,13 +725,13 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                   ),
                                                 );
                                                 _model.newServices = [];
-                                                setState(() {});
-                                                setState(() => _model
+                                                safeSetState(() {});
+                                                safeSetState(() => _model
                                                     .requestCompleter2 = null);
                                                 await _model
                                                     .waitForRequestCompleted2();
 
-                                                setState(() {});
+                                                safeSetState(() {});
                                               },
                                             );
                                           }).divide(const SizedBox(height: 40.0)),
@@ -869,7 +869,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                           citysCityRow.id,
                                                         ),
                                                       );
-                                                      setState(() => _model
+                                                      safeSetState(() => _model
                                                               .requestCompleter4 =
                                                           null);
                                                       await _model
@@ -906,7 +906,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                           citysCityRow.id,
                                                         ),
                                                       );
-                                                      setState(() => _model
+                                                      safeSetState(() => _model
                                                               .requestCompleter4 =
                                                           null);
                                                       await _model
@@ -943,7 +943,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                           citysCityRow.id,
                                                         ),
                                                       );
-                                                      setState(() => _model
+                                                      safeSetState(() => _model
                                                               .requestCompleter4 =
                                                           null);
                                                       await _model
@@ -959,7 +959,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                           citysCityRow.id,
                                                         ),
                                                       );
-                                                      setState(() => _model
+                                                      safeSetState(() => _model
                                                               .requestCompleter4 =
                                                           null);
                                                       await _model
@@ -1036,7 +1036,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                                       .id,
                                                                 ),
                                                               );
-                                                              setState(() =>
+                                                              safeSetState(() =>
                                                                   _model.requestCompleter4 =
                                                                       null);
                                                               await _model
@@ -1137,14 +1137,14 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                               'visible': false,
                                             });
                                           }
-                                          setState(() {
+                                          safeSetState(() {
                                             _model.textController2?.clear();
                                             _model.textController3?.clear();
                                             _model.textController4?.clear();
                                           });
                                           _model.addNew = null;
-                                          setState(() {});
-                                          setState(() =>
+                                          safeSetState(() {});
+                                          safeSetState(() =>
                                               _model.requestCompleter4 = null);
                                           await _model
                                               .waitForRequestCompleted4();
@@ -1186,7 +1186,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                       0.0, 16.0, 0.0, 0.0),
                                   child: wrapWithModel(
                                     model: _model.addNewModel1,
-                                    updateCallback: () => setState(() {}),
+                                    updateCallback: () => safeSetState(() {}),
                                     updateOnChange: true,
                                     child: AddNewWidget(
                                       label: 'Добавить город',
@@ -1196,7 +1196,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                         _model.editDestination = null;
                                         _model.addNew = 'CITY';
                                         _model.updatePage(() {});
-                                        setState(() =>
+                                        safeSetState(() =>
                                             _model.requestCompleter4 = null);
                                         await _model.waitForRequestCompleted4();
                                       },
@@ -1280,7 +1280,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                         listViewCenterDistanceRow.id.toString(),
                                         listViewIndex,
                                       ),
-                                      updateCallback: () => setState(() {}),
+                                      updateCallback: () => safeSetState(() {}),
                                       updateOnChange: true,
                                       child: InfoComponentWidget(
                                         key: Key(
@@ -1302,7 +1302,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                           _model.editCity = null;
                                           _model.editDestination =
                                               listViewCenterDistanceRow.id;
-                                          setState(() {});
+                                          safeSetState(() {});
                                         },
                                         updateAVANDTEXT: (data, avalibility,
                                             category) async {},
@@ -1330,7 +1330,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                           _model.editService = null;
                                           _model.editCity = null;
                                           _model.editDestination = null;
-                                          setState(() {});
+                                          safeSetState(() {});
                                         },
                                       ),
                                     ),
@@ -1477,13 +1477,13 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                 _model.textController4.text),
                                           });
                                         }
-                                        setState(() {
+                                        safeSetState(() {
                                           _model.textController2?.clear();
                                           _model.textController3?.clear();
                                           _model.textController4?.clear();
                                         });
                                         _model.addNew = null;
-                                        setState(() {});
+                                        safeSetState(() {});
                                       },
                                       text: 'Добавить',
                                       options: FFButtonOptions(
@@ -1520,7 +1520,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                     0.0, 16.0, 0.0, 0.0),
                                 child: wrapWithModel(
                                   model: _model.addNewModel2,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
                                   child: AddNewWidget(
                                     label: 'Добавить расстояние от центра',
@@ -1530,7 +1530,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                       _model.editDestination = null;
                                       _model.addNew = 'DESTINATION';
                                       _model.updatePage(() {});
-                                      setState(() =>
+                                      safeSetState(() =>
                                           _model.requestCompleter3 = null);
                                       await _model.waitForRequestCompleted3();
                                     },

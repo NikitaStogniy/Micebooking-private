@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 class WhyModel extends FlutterFlowModel<WhyWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for Menu component.
   late MenuModel menuModel;
   // Model for footer component.

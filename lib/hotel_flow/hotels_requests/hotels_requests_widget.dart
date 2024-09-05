@@ -43,7 +43,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -87,8 +87,10 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                           focusNode: _model.textFieldFocusNode,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController',
-                            Duration(milliseconds: 200),
-                            () => setState(() {}),
+
+                            const Duration(milliseconds: 200),
+                            () => safeSetState(() {}),
+
                           ),
                           autofocus: false,
                           obscureText: false,
@@ -713,7 +715,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                                 Checkbox(
                                                                               value: _model.checkboxValueMap1[requestsItem] ??= requestsItem.inProgress == true,
                                                                               onChanged: (newValue) async {
-                                                                                setState(() => _model.checkboxValueMap1[requestsItem] = newValue!);
+                                                                                safeSetState(() => _model.checkboxValueMap1[requestsItem] = newValue!);
                                                                                 if (newValue!) {
                                                                                   await RequestsTable().update(
                                                                                     data: {
@@ -725,7 +727,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                                     ),
                                                                                   );
                                                                                   _model.rebuilder = _model.rebuilder! + 1;
-                                                                                  setState(() {});
+                                                                                  safeSetState(() {});
                                                                                 } else {
                                                                                   await RequestsTable().update(
                                                                                     data: {
@@ -737,7 +739,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                                     ),
                                                                                   );
                                                                                   _model.rebuilder = _model.rebuilder! + 1;
-                                                                                  setState(() {});
+                                                                                  safeSetState(() {});
                                                                                 }
                                                                               },
                                                                               side: BorderSide(
@@ -924,7 +926,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                                 true;
                                                                             _model.request =
                                                                                 requestsItem;
-                                                                            setState(() {});
+                                                                            safeSetState(() {});
                                                                           },
                                                                           child:
                                                                               Text(
@@ -969,7 +971,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                                 Checkbox(
                                                                               value: _model.checkboxValueMap2[requestsItem] ??= requestsItem.complete == true,
                                                                               onChanged: (newValue) async {
-                                                                                setState(() => _model.checkboxValueMap2[requestsItem] = newValue!);
+                                                                                safeSetState(() => _model.checkboxValueMap2[requestsItem] = newValue!);
                                                                                 if (newValue!) {
                                                                                   await RequestsTable().update(
                                                                                     data: {
@@ -1123,7 +1125,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                           highlightColor: Colors.transparent,
                           onTap: () async {
                             _model.requestOpen = false;
-                            setState(() {});
+                            safeSetState(() {});
                           },
                           child: Container(
                             width: 40,

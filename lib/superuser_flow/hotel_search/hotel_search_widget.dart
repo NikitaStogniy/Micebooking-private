@@ -38,7 +38,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -79,7 +79,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                       onChanged: (_) => EasyDebounce.debounce(
                         '_model.textController',
                         const Duration(milliseconds: 200),
-                        () => setState(() {}),
+                        () => safeSetState(() {}),
                       ),
                       autofocus: false,
                       obscureText: false,
@@ -162,13 +162,14 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                           value: _model.checkboxValue ??=
                               _model.filterActive == true,
                           onChanged: (newValue) async {
-                            setState(() => _model.checkboxValue = newValue!);
+                            safeSetState(
+                                () => _model.checkboxValue = newValue!);
                             if (newValue!) {
                               _model.filterActive = true;
-                              setState(() {});
+                              safeSetState(() {});
                             } else {
                               _model.filterActive = false;
-                              setState(() {});
+                              safeSetState(() {});
                             }
                           },
                           side: BorderSide(
@@ -467,7 +468,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                                     hotelsIndex,
                                                   ),
                                                   updateCallback: () =>
-                                                      setState(() {}),
+                                                      safeSetState(() {}),
                                                   updateOnChange: true,
                                                   child: CheckBoxWidget(
                                                     key: Key(
@@ -522,7 +523,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                                                 0, 10),
                                                         8,
                                                       );
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     },
                                                   ),
                                                 ),

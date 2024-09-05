@@ -82,7 +82,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
       ),
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -340,7 +340,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                   .withoutNulls
                                                   .toList(),
                                           onChanged: (val) async {
-                                            setState(() => _model
+                                            safeSetState(() => _model
                                                 .createCategoryValue = val);
                                             _model.currentcategotyId =
                                                 await ServiceCategoryTable()
@@ -352,13 +352,13 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                             );
                                             _model.categoryId = _model
                                                 .currentcategotyId?.first.id;
-                                            setState(() {});
-                                            setState(() => _model
+                                            safeSetState(() {});
+                                            safeSetState(() => _model
                                                 .requestCompleter1 = null);
                                             await _model
                                                 .waitForRequestCompleted1();
 
-                                            setState(() {});
+                                            safeSetState(() {});
                                           },
                                           width: 285.0,
                                           height: 40.0,
@@ -543,7 +543,8 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                             menuList1Item.id.toString(),
                                             menuList1Index,
                                           ),
-                                          updateCallback: () => setState(() {}),
+                                          updateCallback: () =>
+                                              safeSetState(() {}),
                                           child: FoodPositionElementWidget(
                                             key: Key(
                                               'Key4wj_${menuList1Item.id.toString()}',
@@ -756,7 +757,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                             .withoutNulls
                                                             .toList(),
                                                     onChanged: (val) async {
-                                                      setState(() => _model
+                                                      safeSetState(() => _model
                                                               .menuCategoryValue =
                                                           val);
                                                       _model.category =
@@ -771,14 +772,14 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                       _model.menuCategoryId =
                                                           _model.category?.first
                                                               .id;
-                                                      setState(() {});
-                                                      setState(() => _model
+                                                      safeSetState(() {});
+                                                      safeSetState(() => _model
                                                               .requestCompleter2 =
                                                           null);
                                                       await _model
                                                           .waitForRequestCompleted2();
 
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     },
                                                     width: 285.0,
                                                     height: 48.0,
@@ -839,7 +840,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                       _model.newPosition!);
                                                   _model.addToNewPositionMerge(
                                                       _model.newPosition!.id);
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                   await ServiceCategoryTable()
                                                       .update(
                                                     data: {
@@ -858,16 +859,16 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                       rowServiceCategoryRow.id,
                                                     ),
                                                   );
-                                                  setState(() {
+                                                  safeSetState(() {
                                                     _model
                                                         .createAddmenuTextController
                                                         ?.clear();
                                                   });
                                                   _model.addMenuOpen = false;
                                                   _model.newPositionMerge = [];
-                                                  setState(() {});
+                                                  safeSetState(() {});
 
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                 },
                                                 text: 'Добавить',
                                                 options: FFButtonOptions(
@@ -904,13 +905,13 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                               ),
                                               FFButtonWidget(
                                                 onPressed: () async {
-                                                  setState(() {
+                                                  safeSetState(() {
                                                     _model
                                                         .createAddmenuTextController
                                                         ?.clear();
                                                   });
                                                   _model.addMenuOpen = false;
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                 },
                                                 text: 'Отменить',
                                                 options: FFButtonOptions(
@@ -956,7 +957,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                         child: FFButtonWidget(
                                           onPressed: () async {
                                             _model.addMenuOpen = true;
-                                            setState(() {});
+                                            safeSetState(() {});
                                           },
                                           text: 'Добавить позицию',
                                           options: FFButtonOptions(
@@ -1030,13 +1031,13 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                 );
                                 _model.hotel = _model.submitHotel?.first;
                                 _model.addToNewFoods(_model.newFood!.id);
-                                setState(() {});
+                                safeSetState(() {});
                                 _model.newFoodSet =
                                     _model.hotel!.food.toList().cast<int>();
-                                setState(() {});
+                                safeSetState(() {});
                                 _model.addToNewFoodSet(_model.newFood!.id);
                                 _model.menu = [];
-                                setState(() {});
+                                safeSetState(() {});
                                 await HotelTable().update(
                                   data: {
                                     'food': _model.newFoodSet,
@@ -1062,18 +1063,18 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                   ),
                                 );
                                 _model.newFoods = [];
-                                setState(() {});
-                                setState(() {
+                                safeSetState(() {});
+                                safeSetState(() {
                                   _model.createNameTextController?.clear();
                                   _model.createPriceTextController?.clear();
                                   _model.createAddmenuTextController?.clear();
                                 });
-                                setState(() {
+                                safeSetState(() {
                                   _model.createCategoryValueController?.reset();
                                 });
                                 await widget.isSubmit?.call();
 
-                                setState(() {});
+                                safeSetState(() {});
                               },
                         text: 'Создать',
                         options: FFButtonOptions(
@@ -1142,7 +1143,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                     decoration: const BoxDecoration(),
                     child: wrapWithModel(
                       model: _model.editFoodModel,
-                      updateCallback: () => setState(() {}),
+                      updateCallback: () => safeSetState(() {}),
                       updateOnChange: true,
                       child: EditFoodWidget(
                         id: containerFoodRow?.id,

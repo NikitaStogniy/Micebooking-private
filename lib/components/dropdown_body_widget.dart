@@ -33,7 +33,7 @@ class _DropdownBodyWidgetState extends State<DropdownBodyWidget> {
     super.initState();
     _model = createModel(context, () => DropdownBodyModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

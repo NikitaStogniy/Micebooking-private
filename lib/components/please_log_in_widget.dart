@@ -41,7 +41,7 @@ class _PleaseLogInWidgetState extends State<PleaseLogInWidget> {
     super.initState();
     _model = createModel(context, () => PleaseLogInModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

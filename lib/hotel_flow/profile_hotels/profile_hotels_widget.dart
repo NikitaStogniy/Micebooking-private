@@ -64,7 +64,7 @@ class _ProfileHotelsWidgetState extends State<ProfileHotelsWidget>
       ),
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

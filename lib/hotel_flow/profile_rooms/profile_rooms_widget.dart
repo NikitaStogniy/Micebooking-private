@@ -62,7 +62,7 @@ class _ProfileRoomsWidgetState extends State<ProfileRoomsWidget>
       ),
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -123,7 +123,7 @@ class _ProfileRoomsWidgetState extends State<ProfileRoomsWidget>
                       listViewHotelRow.id.toString(),
                       listViewIndex,
                     ),
-                    updateCallback: () => setState(() {}),
+                    updateCallback: () => safeSetState(() {}),
                     updateOnChange: true,
                     child: ProfileRoomsComponentWidget(
                       key: Key(

@@ -44,10 +44,10 @@ class _ClientRequestMobForTestWidgetState
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.currentDate = getCurrentTimestamp;
       _model.formatedDate = functions.formatMonthYear(getCurrentTimestamp);
-      setState(() {});
+      safeSetState(() {});
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -158,7 +158,7 @@ class _ClientRequestMobForTestWidgetState
                                           _model.currentDate!, -1);
                                   _model.formatedDate = functions
                                       .formatMonthYear(_model.currentDate!);
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                               ),
                               Container(
@@ -204,7 +204,7 @@ class _ClientRequestMobForTestWidgetState
                                           _model.currentDate!, 1);
                                   _model.formatedDate = functions
                                       .formatMonthYear(_model.currentDate!);
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                               ),
                             ].divide(SizedBox(width: 16)),
@@ -802,7 +802,7 @@ class _ClientRequestMobForTestWidgetState
                                               _model.requestOpen = true;
                                               _model.request =
                                                   requestsMobItem.id;
-                                              setState(() {});
+                                              safeSetState(() {});
                                             },
                                             text: 'Открыть',
                                             options: FFButtonOptions(
@@ -891,7 +891,7 @@ class _ClientRequestMobForTestWidgetState
                           highlightColor: Colors.transparent,
                           onTap: () async {
                             _model.requestOpen = false;
-                            setState(() {});
+                            safeSetState(() {});
                           },
                           child: Container(
                             width: 40,

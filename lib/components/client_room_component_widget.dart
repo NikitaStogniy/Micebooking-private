@@ -54,7 +54,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
     _model.countmobTextController ??= TextEditingController();
     _model.countmobFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -110,7 +110,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                         PageController(
                                             initialPage: max(0,
                                                 min(0, roomImages.length - 1))),
-                                    onPageChanged: (_) => setState(() {}),
+                                    onPageChanged: (_) => safeSetState(() {}),
                                     scrollDirection: Axis.horizontal,
                                     itemCount: roomImages.length,
                                     itemBuilder: (context, roomImagesIndex) {
@@ -154,7 +154,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                           duration: const Duration(milliseconds: 500),
                                           curve: Curves.ease,
                                         );
-                                        setState(() {});
+                                        safeSetState(() {});
                                       },
                                       effect: smooth_page_indicator
                                           .ExpandingDotsEffect(
@@ -551,7 +551,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                             onTap: () async {
                                               if (widget.isChosen != true) {
                                                 _model.days = _model.days! + 1;
-                                                setState(() {});
+                                                safeSetState(() {});
                                               }
                                             },
                                             child: Icon(
@@ -573,7 +573,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                           if (widget.isChosen != true) {
                                             if (_model.days! > 1) {
                                               _model.days = _model.days! + -1;
-                                              setState(() {});
+                                              safeSetState(() {});
                                             }
                                           }
                                         },
@@ -632,8 +632,8 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                         onTap: () async {
                                           if (!widget.isChosen) {
                                             _model.roomFieldOpen = true;
-                                            setState(() {});
-                                            setState(() {
+                                            safeSetState(() {});
+                                            safeSetState(() {
                                               _model.textController1?.clear();
                                             });
                                           }
@@ -676,7 +676,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                         onTap: () async {
                                           if (widget.isChosen != true) {
                                             _model.roomFieldOpen = true;
-                                            setState(() {});
+                                            safeSetState(() {});
                                           }
                                         },
                                         child: Container(
@@ -706,12 +706,12 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                                         .textController1.text),
                                                     1,
                                                   );
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                 },
                                               ),
                                               onFieldSubmitted: (_) async {
                                                 _model.roomFieldOpen = false;
-                                                setState(() {});
+                                                safeSetState(() {});
                                               },
                                               autofocus: true,
                                               obscureText: false,
@@ -831,7 +831,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                                 _model.rooms =
                                                     _model.rooms! + 1;
                                                 _model.roomFieldOpen = false;
-                                                setState(() {});
+                                                safeSetState(() {});
                                               }
                                             },
                                             child: Icon(
@@ -854,7 +854,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                             if (_model.rooms! > 1) {
                                               _model.rooms = _model.rooms! + -1;
                                               _model.roomFieldOpen = false;
-                                              setState(() {});
+                                              safeSetState(() {});
                                             }
                                           }
                                         },
@@ -909,7 +909,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                 _model.days,
                               );
                               _model.roomFieldOpen = false;
-                              setState(() {});
+                              safeSetState(() {});
                             },
                             text: valueOrDefault<String>(
                               widget.isChosen == true
@@ -1029,7 +1029,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                         PageController(
                                             initialPage: max(0,
                                                 min(0, hallImages.length - 1))),
-                                    onPageChanged: (_) => setState(() {}),
+                                    onPageChanged: (_) => safeSetState(() {}),
                                     scrollDirection: Axis.horizontal,
                                     itemCount: hallImages.length,
                                     itemBuilder: (context, hallImagesIndex) {
@@ -1115,7 +1115,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                           duration: const Duration(milliseconds: 500),
                                           curve: Curves.ease,
                                         );
-                                        setState(() {});
+                                        safeSetState(() {});
                                       },
                                       effect: smooth_page_indicator
                                           .ExpandingDotsEffect(
@@ -1314,7 +1314,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                               onTap: () async {
                                 if (!widget.isChosen) {
                                   _model.days = _model.days! + 1;
-                                  setState(() {});
+                                  safeSetState(() {});
                                 }
                               },
                               child: Container(
@@ -1342,7 +1342,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                               onTap: () async {
                                 if (!widget.isChosen) {
                                   _model.days = _model.days! + -1;
-                                  setState(() {});
+                                  safeSetState(() {});
                                 }
                               },
                               child: Container(
@@ -1379,8 +1379,8 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                             onTap: () async {
                               if (!widget.isChosen) {
                                 _model.roomFieldOpen = true;
-                                setState(() {});
-                                setState(() {
+                                safeSetState(() {});
+                                safeSetState(() {
                                   _model.countmobTextController?.clear();
                                 });
                               }
@@ -1442,14 +1442,14 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                                     _model
                                                         .countmobTextController
                                                         .text);
-                                                setState(() {});
+                                                safeSetState(() {});
                                               },
                                             ),
                                             onFieldSubmitted: (_) async {
                                               _model.rooms = int.tryParse(_model
                                                   .countmobTextController.text);
                                               _model.roomFieldOpen = false;
-                                              setState(() {});
+                                              safeSetState(() {});
                                             },
                                             autofocus: true,
                                             obscureText: false,
@@ -1551,7 +1551,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                 if (!widget.isChosen) {
                                   _model.roomFieldOpen = false;
                                   _model.rooms = _model.rooms! + 1;
-                                  setState(() {});
+                                  safeSetState(() {});
                                 }
                               },
                               child: Container(
@@ -1580,7 +1580,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                 if (!widget.isChosen) {
                                   _model.roomFieldOpen = false;
                                   _model.rooms = _model.rooms! + -1;
-                                  setState(() {});
+                                  safeSetState(() {});
                                 }
                               },
                               child: Container(
@@ -1616,7 +1616,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                       child: FFButtonWidget(
                         onPressed: () async {
                           _model.roomFieldOpen = false;
-                          setState(() {});
+                          safeSetState(() {});
                           await widget.choseAction?.call(
                             widget.room?.id,
                             widget.room?.name,

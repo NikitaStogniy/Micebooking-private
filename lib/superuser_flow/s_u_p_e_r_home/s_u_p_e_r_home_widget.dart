@@ -49,7 +49,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
     super.initState();
     _model = createModel(context, () => SUPERHomeModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -148,7 +148,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                             _model.activePage =
                                                 SuperUserPage.hotel_search;
                                             _model.foodId = null;
-                                            setState(() {});
+                                            safeSetState(() {});
                                             await _model.columnController2
                                                 ?.animateTo(
                                               0,
@@ -190,7 +190,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                           onTap: () async {
                                             _model.activePage =
                                                 SuperUserPage.client_search;
-                                            setState(() {});
+                                            safeSetState(() {});
                                             await _model.columnController2
                                                 ?.animateTo(
                                               0,
@@ -254,7 +254,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                 _model.activePage =
                                                     SuperUserPage
                                                         .hotel_settings;
-                                                setState(() {});
+                                                safeSetState(() {});
                                                 await _model.columnController2
                                                     ?.animateTo(
                                                   0,
@@ -302,7 +302,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                               onTap: () async {
                                                 _model.activePage =
                                                     SuperUserPage.room_settings;
-                                                setState(() {});
+                                                safeSetState(() {});
                                                 await _model.columnController2
                                                     ?.animateTo(
                                                   0,
@@ -350,7 +350,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                               onTap: () async {
                                                 _model.activePage =
                                                     SuperUserPage.hall_settings;
-                                                setState(() {});
+                                                safeSetState(() {});
                                                 await _model.columnController2
                                                     ?.animateTo(
                                                   0,
@@ -398,7 +398,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                               onTap: () async {
                                                 _model.activePage =
                                                     SuperUserPage.food_settings;
-                                                setState(() {});
+                                                safeSetState(() {});
                                                 await _model.columnController2
                                                     ?.animateTo(
                                                   0,
@@ -474,7 +474,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                 onTap: () async {
                                                   _model.activePage =
                                                       SuperUserPage.cms_whyus;
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                   await _model.columnController2
                                                       ?.animateTo(
                                                     0,
@@ -524,7 +524,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                 onTap: () async {
                                                   _model.activePage =
                                                       SuperUserPage.cms_about;
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                   await _model.columnController2
                                                       ?.animateTo(
                                                     0,
@@ -574,7 +574,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                 onTap: () async {
                                                   _model.activePage =
                                                       SuperUserPage.cms_aboutus;
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                   await _model.columnController2
                                                       ?.animateTo(
                                                     0,
@@ -624,7 +624,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                 onTap: () async {
                                                   _model.activePage =
                                                       SuperUserPage.cms_qa;
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                   await _model.columnController2
                                                       ?.animateTo(
                                                     0,
@@ -674,7 +674,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                 onTap: () async {
                                                   _model.activePage =
                                                       SuperUserPage.PP;
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                   await _model.columnController2
                                                       ?.animateTo(
                                                     0,
@@ -724,7 +724,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                 onTap: () async {
                                                   _model.activePage =
                                                       SuperUserPage.terms;
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                   await _model.columnController2
                                                       ?.animateTo(
                                                     0,
@@ -775,7 +775,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                   _model.activePage =
                                                       SuperUserPage
                                                           .personal_info;
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                   await _model.columnController2
                                                       ?.animateTo(
                                                     0,
@@ -978,7 +978,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                   SuperUserPage.hotel_settings)
                                 wrapWithModel(
                                   model: _model.hotelSettingsModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
                                   child: const HotelSettingsWidget(),
                                 ),
@@ -986,7 +986,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                   SuperUserPage.room_settings)
                                 wrapWithModel(
                                   model: _model.roomSettingsModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
                                   child: const RoomSettingsWidget(),
                                 ),
@@ -994,7 +994,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                   SuperUserPage.hall_settings)
                                 wrapWithModel(
                                   model: _model.hallSettingsModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
                                   child: const HallSettingsWidget(),
                                 ),
@@ -1002,7 +1002,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                   SuperUserPage.food_settings)
                                 wrapWithModel(
                                   model: _model.foodSettingsModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
                                   child: const FoodSettingsWidget(),
                                 ),
@@ -1010,21 +1010,21 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                   SuperUserPage.hotel_search)
                                 wrapWithModel(
                                   model: _model.hotelSearchModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
                                   child: HotelSearchWidget(
                                     hotelId: (id) async {
                                       _model.activePage =
                                           SuperUserPage.hotel_info;
                                       _model.hotelId = id;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                 ),
                               if (_model.activePage == SuperUserPage.hotel_info)
                                 wrapWithModel(
                                   model: _model.hotelDetailModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
                                   child: HotelDetailWidget(
                                     selectedID: _model.hotelId!,
@@ -1043,7 +1043,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                         null,
                                         88,
                                       );
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                     editHall: (id) async {
                                       _model.activePage =
@@ -1057,11 +1057,11 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                         null,
                                         88,
                                       );
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                     editFood: (id) async {
                                       _model.foodId = id;
-                                      setState(() {});
+                                      safeSetState(() {});
                                       _model.activePage =
                                           SuperUserPage.food_info;
                                       _model.roomId = valueOrDefault<int>(
@@ -1072,37 +1072,37 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                         null,
                                         88,
                                       );
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                     showHotel: (id) async {
                                       _model.activePage =
                                           SuperUserPage.hotel_full_info;
                                       _model.hotelId = id;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                     showCP: (id) async {
                                       _model.activePage =
                                           SuperUserPage.hotel_request;
                                       _model.hotelId = id;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                     showHall: (id) async {
                                       _model.activePage =
                                           SuperUserPage.hall_full_info;
                                       _model.hallId = id;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                     showFood: (id) async {
                                       _model.activePage =
                                           SuperUserPage.food_full_info;
                                       _model.foodId = id;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                     showRoom: (id) async {
                                       _model.activePage =
                                           SuperUserPage.room_full_info;
                                       _model.roomId = id;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                 ),
@@ -1110,20 +1110,20 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                   SuperUserPage.client_search)
                                 wrapWithModel(
                                   model: _model.clientSearchModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: ClientSearchWidget(
                                     userId: (id) async {
                                       _model.userId = id;
                                       _model.activePage =
                                           SuperUserPage.client_cp;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                 ),
                               if (_model.activePage == SuperUserPage.room_info)
                                 wrapWithModel(
                                   model: _model.addOrEditRoomModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
                                   child: AddOrEditRoomWidget(
                                     id: _model.roomId,
@@ -1131,14 +1131,14 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                     doneCallback: () async {
                                       _model.activePage =
                                           SuperUserPage.hotel_info;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                 ),
                               if (_model.activePage == SuperUserPage.hall_info)
                                 wrapWithModel(
                                   model: _model.addOrEditHallModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
                                   child: AddOrEditHallWidget(
                                     id: _model.hallId,
@@ -1146,14 +1146,14 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                     doneCallback: () async {
                                       _model.activePage =
                                           SuperUserPage.hotel_info;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                 ),
                               if (_model.activePage == SuperUserPage.food_info)
                                 wrapWithModel(
                                   model: _model.addOrEditFoodModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
                                   child: AddOrEditFoodWidget(
                                     id: _model.foodId,
@@ -1161,46 +1161,46 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                     isSubmit: () async {
                                       _model.activePage =
                                           SuperUserPage.hotel_info;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                 ),
                               if (_model.activePage == SuperUserPage.cms_about)
                                 wrapWithModel(
                                   model: _model.editAboutModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: const EditAboutWidget(),
                                 ),
                               if (_model.activePage == SuperUserPage.cms_whyus)
                                 wrapWithModel(
                                   model: _model.editWhyusModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: const EditWhyusWidget(),
                                 ),
                               if (_model.activePage ==
                                   SuperUserPage.cms_aboutus)
                                 wrapWithModel(
                                   model: _model.editAboutUsModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: const EditAboutUsWidget(),
                                 ),
                               if (_model.activePage == SuperUserPage.cms_qa)
                                 wrapWithModel(
                                   model: _model.editQAModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: const EditQAWidget(),
                                 ),
                               if (_model.activePage ==
                                   SuperUserPage.hotel_request)
                                 wrapWithModel(
                                   model: _model.superRequestsModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: SuperRequestsWidget(
                                     hotel: _model.hotelId!,
                                     back: () async {
                                       _model.activePage =
                                           SuperUserPage.hotel_info;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                 ),
@@ -1208,18 +1208,18 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                   SuperUserPage.hotel_full_info)
                                 wrapWithModel(
                                   model: _model.hotelFullInfoModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: HotelFullInfoWidget(
                                     id: _model.hotelId!,
                                     goNext: (id) async {
                                       _model.activePage =
                                           SuperUserPage.hotel_jur;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                     goBack: () async {
                                       _model.activePage =
                                           SuperUserPage.hotel_info;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                 ),
@@ -1227,14 +1227,14 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                   SuperUserPage.hall_full_info)
                                 wrapWithModel(
                                   model: _model.hallFullInfoModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: HallFullInfoWidget(
                                     id: _model.hallId!,
                                     goNext: (id) async {},
                                     goBack: () async {
                                       _model.activePage =
                                           SuperUserPage.hotel_info;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                 ),
@@ -1242,13 +1242,13 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                   SuperUserPage.food_full_info)
                                 wrapWithModel(
                                   model: _model.foodFullInfoModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: FoodFullInfoWidget(
                                     id: _model.foodId!,
                                     goBack: () async {
                                       _model.activePage =
                                           SuperUserPage.hotel_info;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                 ),
@@ -1256,60 +1256,60 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                   SuperUserPage.room_full_info)
                                 wrapWithModel(
                                   model: _model.roomFullInfoModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: RoomFullInfoWidget(
                                     id: _model.roomId!,
                                     goBack: () async {
                                       _model.activePage =
                                           SuperUserPage.hotel_info;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                 ),
                               if (_model.activePage == SuperUserPage.client_cp)
                                 wrapWithModel(
                                   model: _model.companyRequestsComponentModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: CompanyRequestsComponentWidget(
                                     user: _model.userId!,
                                     openRequest: (request) async {},
                                     back: () async {
                                       _model.activePage =
                                           SuperUserPage.client_search;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                 ),
                               if (_model.activePage == SuperUserPage.hotel_jur)
                                 wrapWithModel(
                                   model: _model.superHotelJuridicalModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: SuperHotelJuridicalWidget(
                                     id: _model.hotelId!,
                                     onDone: () async {
                                       _model.activePage =
                                           SuperUserPage.hotel_full_info;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                 ),
                               if (_model.activePage == SuperUserPage.PP)
                                 wrapWithModel(
                                   model: _model.editPPModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: const EditPPWidget(),
                                 ),
                               if (_model.activePage == SuperUserPage.terms)
                                 wrapWithModel(
                                   model: _model.editTermsModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: const EditTermsWidget(),
                                 ),
                               if (_model.activePage ==
                                   SuperUserPage.personal_info)
                                 wrapWithModel(
                                   model: _model.editPIModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: const EditPIWidget(),
                                 ),
                             ],

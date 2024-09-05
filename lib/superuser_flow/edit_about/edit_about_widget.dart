@@ -41,7 +41,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
     _model.newTextTextController ??= TextEditingController();
     _model.newTextFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -281,7 +281,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                             elementsCmsRow.id.toString(),
                             elementsIndex,
                           ),
-                          updateCallback: () => setState(() {}),
+                          updateCallback: () => safeSetState(() {}),
                           child: QaElementWidget(
                             key: Key(
                               'Keyfkn_${elementsCmsRow.id.toString()}',
@@ -297,7 +297,8 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                   elementsCmsRow.id,
                                 ),
                               );
-                              setState(() => _model.requestCompleter = null);
+                              safeSetState(
+                                  () => _model.requestCompleter = null);
                               await _model.waitForRequestCompleted();
                             },
                           ),
@@ -317,7 +318,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                         highlightColor: Colors.transparent,
                         onTap: () async {
                           _model.newElement = true;
-                          setState(() {});
+                          safeSetState(() {});
                         },
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
@@ -379,7 +380,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                     onChanged: (_) => EasyDebounce.debounce(
                                       '_model.newTitleTextController',
                                       const Duration(milliseconds: 200),
-                                      () => setState(() {}),
+                                      () => safeSetState(() {}),
                                     ),
                                     autofocus: false,
                                     obscureText: false,
@@ -463,7 +464,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                     onChanged: (_) => EasyDebounce.debounce(
                                       '_model.newTextTextController',
                                       const Duration(milliseconds: 200),
-                                      () => setState(() {}),
+                                      () => safeSetState(() {}),
                                     ),
                                     autofocus: false,
                                     obscureText: false,
@@ -554,8 +555,8 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                             'type': EnumCms.ABOUT_ELEMENT.name,
                                           });
                                           _model.newElement = false;
-                                          setState(() {});
-                                          setState(() {
+                                          safeSetState(() {});
+                                          safeSetState(() {
                                             _model.newTitleTextController
                                                 ?.clear();
                                             _model.newTextTextController
@@ -594,8 +595,8 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     _model.newElement = false;
-                                    setState(() {});
-                                    setState(() {
+                                    safeSetState(() {});
+                                    safeSetState(() {
                                       _model.newTitleTextController?.clear();
                                       _model.newTextTextController?.clear();
                                     });
@@ -629,7 +630,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                         FFButtonWidget(
                           onPressed: () async {
                             _model.isEdit = true;
-                            setState(() {});
+                            safeSetState(() {});
                           },
                           text: 'Редактировать',
                           options: FFButtonOptions(
@@ -668,7 +669,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                               ),
                             );
                             _model.isEdit = false;
-                            setState(() {});
+                            safeSetState(() {});
                           },
                           text: 'Сохранить',
                           options: FFButtonOptions(
@@ -696,7 +697,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                       if (_model.isEdit)
                         FFButtonWidget(
                           onPressed: () async {
-                            setState(() {
+                            safeSetState(() {
                               _model.title1TextController1?.text =
                                   containerCmsRow!.title1!;
                               _model.title1TextController2?.text =
@@ -704,7 +705,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                             });
                             _model.image = null;
                             _model.isEdit = false;
-                            setState(() {});
+                            safeSetState(() {});
                           },
                           text: 'Отменить изменения',
                           options: FFButtonOptions(

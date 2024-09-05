@@ -66,14 +66,14 @@ class _VisitorsCountFiltersWidgetState
       _model.seating2 = widget.filter2?.type;
       _model.seating3 = widget.filter3?.type;
       _model.addToSeatings(widget.filter1!);
-      setState(() {});
+      safeSetState(() {});
       _model.addToSeatings(widget.filter2!);
-      setState(() {});
+      safeSetState(() {});
       _model.addToSeatings(widget.filter3!);
-      setState(() {});
+      safeSetState(() {});
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -169,7 +169,7 @@ class _VisitorsCountFiltersWidgetState
                                       seatingsColIndex.toString(),
                                       seatingsColIndex,
                                     ),
-                                    updateCallback: () => setState(() {}),
+                                    updateCallback: () => safeSetState(() {}),
                                     updateOnChange: true,
                                     child: ClientSeatingCompWidget(
                                       key: Key(
@@ -186,7 +186,7 @@ class _VisitorsCountFiltersWidgetState
                                         );
                                         _model.seatingTest = count;
                                         _model.hall1Filter = seatingsColItem;
-                                        setState(() {});
+                                        safeSetState(() {});
                                         await widget.onChange?.call(
                                           count,
                                           onChange,
@@ -201,12 +201,12 @@ class _VisitorsCountFiltersWidgetState
                                           type: EnumSeating.theatre,
                                           count: 1,
                                         ));
-                                        setState(() {});
+                                        safeSetState(() {});
                                       },
                                       onDelete: () async {
                                         _model.removeFromSeatings(
                                             seatingsColItem);
-                                        setState(() {});
+                                        safeSetState(() {});
                                         await widget.deleteFilter?.call(
                                           seatingsColIndex,
                                         );
@@ -228,7 +228,7 @@ class _VisitorsCountFiltersWidgetState
                                   type: EnumSeating.theatre,
                                   count: 1,
                                 ));
-                                setState(() {});
+                                safeSetState(() {});
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
@@ -261,7 +261,7 @@ class _VisitorsCountFiltersWidgetState
                           if (widget.filter1 != null)
                             wrapWithModel(
                               model: _model.clientSeatingCompCopyModel1,
-                              updateCallback: () => setState(() {}),
+                              updateCallback: () => safeSetState(() {}),
                               child: ClientSeatingCompCopyWidget(
                                 index: 1,
                                 seating: HotelSeatingStruct(
@@ -274,7 +274,7 @@ class _VisitorsCountFiltersWidgetState
                                     onChange,
                                   );
                                   _model.seating1 = onChange;
-                                  setState(() {});
+                                  safeSetState(() {});
                                   await widget.createHallFilter?.call(
                                     HotelSeatingStruct(
                                       type: onChange,
@@ -286,7 +286,7 @@ class _VisitorsCountFiltersWidgetState
                                     type: onChange,
                                     count: count,
                                   );
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                                 onNew: () async {},
                                 onDelete: () async {},
@@ -295,7 +295,7 @@ class _VisitorsCountFiltersWidgetState
                           if (widget.filter2 != null)
                             wrapWithModel(
                               model: _model.clientSeatingCompCopyModel2,
-                              updateCallback: () => setState(() {}),
+                              updateCallback: () => safeSetState(() {}),
                               child: ClientSeatingCompCopyWidget(
                                 index: 2,
                                 seating: HotelSeatingStruct(
@@ -308,7 +308,7 @@ class _VisitorsCountFiltersWidgetState
                                     onChange,
                                   );
                                   _model.seating2 = onChange;
-                                  setState(() {});
+                                  safeSetState(() {});
                                   await widget.createHallFilter?.call(
                                     HotelSeatingStruct(
                                       type: onChange,
@@ -320,7 +320,7 @@ class _VisitorsCountFiltersWidgetState
                                     type: onChange,
                                     count: count,
                                   );
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                                 onNew: () async {},
                                 onDelete: () async {},
@@ -329,7 +329,7 @@ class _VisitorsCountFiltersWidgetState
                           if (widget.filter3 != null)
                             wrapWithModel(
                               model: _model.clientSeatingCompCopyModel3,
-                              updateCallback: () => setState(() {}),
+                              updateCallback: () => safeSetState(() {}),
                               child: ClientSeatingCompCopyWidget(
                                 index: 3,
                                 seating: HotelSeatingStruct(
@@ -342,7 +342,7 @@ class _VisitorsCountFiltersWidgetState
                                     onChange,
                                   );
                                   _model.seating3 = onChange;
-                                  setState(() {});
+                                  safeSetState(() {});
                                   await widget.createHallFilter?.call(
                                     HotelSeatingStruct(
                                       type: onChange,
@@ -354,7 +354,7 @@ class _VisitorsCountFiltersWidgetState
                                     type: onChange,
                                     count: count,
                                   );
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                                 onNew: () async {},
                                 onDelete: () async {},

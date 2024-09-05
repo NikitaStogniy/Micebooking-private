@@ -37,7 +37,7 @@ class _EditQAWidgetState extends State<EditQAWidget> {
     _model.newTextTextController ??= TextEditingController();
     _model.newTextFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -95,7 +95,7 @@ class _EditQAWidgetState extends State<EditQAWidget> {
                         columnCmsRow.id.toString(),
                         columnIndex,
                       ),
-                      updateCallback: () => setState(() {}),
+                      updateCallback: () => safeSetState(() {}),
                       child: QaElementWidget(
                         key: Key(
                           'Keys6w_${columnCmsRow.id.toString()}',
@@ -109,7 +109,7 @@ class _EditQAWidgetState extends State<EditQAWidget> {
                               columnCmsRow.id,
                             ),
                           );
-                          setState(() => _model.requestCompleter = null);
+                          safeSetState(() => _model.requestCompleter = null);
                           await _model.waitForRequestCompleted();
                         },
                       ),
@@ -129,7 +129,7 @@ class _EditQAWidgetState extends State<EditQAWidget> {
                     highlightColor: Colors.transparent,
                     onTap: () async {
                       _model.newQA = true;
-                      setState(() {});
+                      safeSetState(() {});
                     },
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
@@ -190,7 +190,7 @@ class _EditQAWidgetState extends State<EditQAWidget> {
                                 onChanged: (_) => EasyDebounce.debounce(
                                   '_model.newTitleTextController',
                                   const Duration(milliseconds: 200),
-                                  () => setState(() {}),
+                                  () => safeSetState(() {}),
                                 ),
                                 autofocus: false,
                                 obscureText: false,
@@ -270,7 +270,7 @@ class _EditQAWidgetState extends State<EditQAWidget> {
                                 onChanged: (_) => EasyDebounce.debounce(
                                   '_model.newTextTextController',
                                   const Duration(milliseconds: 200),
-                                  () => setState(() {}),
+                                  () => safeSetState(() {}),
                                 ),
                                 autofocus: false,
                                 obscureText: false,
@@ -354,8 +354,8 @@ class _EditQAWidgetState extends State<EditQAWidget> {
                                         'type': EnumCms.QA.name,
                                       });
                                       _model.newQA = false;
-                                      setState(() {});
-                                      setState(() {
+                                      safeSetState(() {});
+                                      safeSetState(() {
                                         _model.newTitleTextController?.clear();
                                         _model.newTextTextController?.clear();
                                       });
@@ -392,8 +392,8 @@ class _EditQAWidgetState extends State<EditQAWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 _model.newQA = false;
-                                setState(() {});
-                                setState(() {
+                                safeSetState(() {});
+                                safeSetState(() {
                                   _model.newTitleTextController?.clear();
                                   _model.newTextTextController?.clear();
                                 });
