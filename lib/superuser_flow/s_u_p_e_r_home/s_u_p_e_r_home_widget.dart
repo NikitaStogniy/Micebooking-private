@@ -900,7 +900,11 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                             (_model.activePage != SuperUserPage.PP) &&
                             (_model.activePage != SuperUserPage.hotel_jur) &&
                             (_model.activePage != SuperUserPage.terms) &&
-                            (_model.activePage != SuperUserPage.personal_info))
+                            (_model.activePage !=
+                                SuperUserPage.personal_info) &&
+                            (_model.activePage != SuperUserPage.room_info) &&
+                            (_model.activePage != SuperUserPage.hall_info) &&
+                            (_model.activePage != SuperUserPage.food_info))
                           Text(
                             () {
                               if (_model.activePage ==
