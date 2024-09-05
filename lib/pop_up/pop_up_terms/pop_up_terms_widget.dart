@@ -27,7 +27,7 @@ class _PopUpTermsWidgetState extends State<PopUpTermsWidget> {
     super.initState();
     _model = createModel(context, () => PopUpTermsModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

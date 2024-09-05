@@ -38,7 +38,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
     super.initState();
     _model = createModel(context, () => HotelPopUpModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -269,7 +269,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                                                       .length -
                                                                   1))),
                                               onPageChanged: (_) =>
-                                                  setState(() {}),
+                                                  safeSetState(() {}),
                                               scrollDirection: Axis.horizontal,
                                               itemCount: hotelImages.length,
                                               itemBuilder:
@@ -324,7 +324,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                                         milliseconds: 500),
                                                     curve: Curves.ease,
                                                   );
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                 },
                                                 effect: smooth_page_indicator
                                                     .ExpandingDotsEffect(
@@ -568,7 +568,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                                                             .length -
                                                                         1))),
                                                     onPageChanged: (_) =>
-                                                        setState(() {}),
+                                                        safeSetState(() {}),
                                                     scrollDirection:
                                                         Axis.horizontal,
                                                     itemCount:
@@ -634,7 +634,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                                                   500),
                                                           curve: Curves.ease,
                                                         );
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                       },
                                                       effect: smooth_page_indicator
                                                           .ExpandingDotsEffect(

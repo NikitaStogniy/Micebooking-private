@@ -46,10 +46,10 @@ class _CompanyRequestsComponentWidgetState
       _model.currentDate = getCurrentTimestamp;
       _model.formatedDate = functions.formatMonthYear(getCurrentTimestamp);
       _model.user = widget.user;
-      setState(() {});
+      safeSetState(() {});
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -202,14 +202,14 @@ class _CompanyRequestsComponentWidgetState
                                       value: _model.checkboxValue1 ??=
                                           _model.completeOnly == true,
                                       onChanged: (newValue) async {
-                                        setState(() =>
+                                        safeSetState(() =>
                                             _model.checkboxValue1 = newValue!);
                                         if (newValue!) {
                                           _model.completeOnly = true;
-                                          setState(() {});
+                                          safeSetState(() {});
                                         } else {
                                           _model.completeOnly = false;
-                                          setState(() {});
+                                          safeSetState(() {});
                                         }
                                       },
                                       side: BorderSide(
@@ -259,7 +259,7 @@ class _CompanyRequestsComponentWidgetState
                                               _model.currentDate!, -1);
                                       _model.formatedDate = functions
                                           .formatMonthYear(_model.currentDate!);
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                   Container(
@@ -304,7 +304,7 @@ class _CompanyRequestsComponentWidgetState
                                               _model.currentDate!, 1);
                                       _model.formatedDate = functions
                                           .formatMonthYear(_model.currentDate!);
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                 ].divide(const SizedBox(width: 16.0)),
@@ -569,7 +569,7 @@ class _CompanyRequestsComponentWidgetState
                                                               true,
                                                       onChanged:
                                                           (newValue) async {
-                                                        setState(() => _model
+                                                        safeSetState(() => _model
                                                                     .checkboxValueMap2[
                                                                 columnRequestsRow] =
                                                             newValue!);
@@ -744,7 +744,7 @@ class _CompanyRequestsComponentWidgetState
                                                     _model.requestOpen = true;
                                                     _model.request =
                                                         columnRequestsRow;
-                                                    setState(() {});
+                                                    safeSetState(() {});
                                                   },
                                                   child: Text(
                                                     'Открыть',
@@ -799,7 +799,7 @@ class _CompanyRequestsComponentWidgetState
                         highlightColor: Colors.transparent,
                         onTap: () async {
                           _model.requestOpen = false;
-                          setState(() {});
+                          safeSetState(() {});
                         },
                         child: Container(
                           width: 40.0,

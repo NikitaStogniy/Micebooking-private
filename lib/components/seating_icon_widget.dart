@@ -31,7 +31,7 @@ class _SeatingIconWidgetState extends State<SeatingIconWidget> {
     super.initState();
     _model = createModel(context, () => SeatingIconModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

@@ -57,7 +57,7 @@ class _ClientHotelComponentWidgetState
     super.initState();
     _model = createModel(context, () => ClientHotelComponentModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -121,7 +121,8 @@ class _ClientHotelComponentWidgetState
                                                             0,
                                                             hotelImages.length -
                                                                 1))),
-                                        onPageChanged: (_) => setState(() {}),
+                                        onPageChanged: (_) =>
+                                            safeSetState(() {}),
                                         scrollDirection: Axis.horizontal,
                                         itemCount: hotelImages.length,
                                         itemBuilder:
@@ -167,7 +168,7 @@ class _ClientHotelComponentWidgetState
                                                   const Duration(milliseconds: 500),
                                               curve: Curves.ease,
                                             );
-                                            setState(() {});
+                                            safeSetState(() {});
                                           },
                                           effect: smooth_page_indicator
                                               .ExpandingDotsEffect(
@@ -292,7 +293,7 @@ class _ClientHotelComponentWidgetState
                                   0.0, 4.0, 8.0, 0.0),
                               child: wrapWithModel(
                                 model: _model.favoriteModel1,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 child: FavoriteWidget(
                                   isChecked: widget.isFavorite == true,
                                   check: () async {
@@ -1044,7 +1045,7 @@ class _ClientHotelComponentWidgetState
                                                 0,
                                                 min(0,
                                                     hotelImages.length - 1))),
-                                    onPageChanged: (_) => setState(() {}),
+                                    onPageChanged: (_) => safeSetState(() {}),
                                     scrollDirection: Axis.horizontal,
                                     itemCount: hotelImages.length,
                                     itemBuilder: (context, hotelImagesIndex) {
@@ -1127,7 +1128,7 @@ class _ClientHotelComponentWidgetState
                                           duration: const Duration(milliseconds: 500),
                                           curve: Curves.ease,
                                         );
-                                        setState(() {});
+                                        safeSetState(() {});
                                       },
                                       effect: smooth_page_indicator
                                           .ExpandingDotsEffect(
@@ -1248,7 +1249,7 @@ class _ClientHotelComponentWidgetState
                               0.0, 4.0, 8.0, 0.0),
                           child: wrapWithModel(
                             model: _model.favoriteModel2,
-                            updateCallback: () => setState(() {}),
+                            updateCallback: () => safeSetState(() {}),
                             child: FavoriteWidget(
                               isChecked: widget.isFavorite == true,
                               check: () async {

@@ -39,11 +39,11 @@ class _CalendarRowMobileWidgetState extends State<CalendarRowMobileWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (_model.firstMonth == null) {
         _model.firstMonth = getCurrentTimestamp;
-        setState(() {});
+        safeSetState(() {});
       }
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -72,7 +72,7 @@ class _CalendarRowMobileWidgetState extends State<CalendarRowMobileWidget> {
           padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 24.0),
           child: wrapWithModel(
             model: _model.calendarMobileModel,
-            updateCallback: () => setState(() {}),
+            updateCallback: () => safeSetState(() {}),
             child: CalendarMobileWidget(
               month: _model.firstMonth!,
               chosenDay: widget.chosenDay!,
@@ -84,12 +84,12 @@ class _CalendarRowMobileWidgetState extends State<CalendarRowMobileWidget> {
               },
               plus: () async {
                 _model.firstMonth = functions.monthModify(_model.firstMonth, 1);
-                setState(() {});
+                safeSetState(() {});
               },
               minus: () async {
                 _model.firstMonth =
                     functions.monthModify(_model.firstMonth, -1);
-                setState(() {});
+                safeSetState(() {});
               },
             ),
           ),

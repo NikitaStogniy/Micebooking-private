@@ -48,7 +48,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
     super.initState();
     _model = createModel(context, () => HotelDetailModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -490,7 +490,8 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                                         .toList()
                                                                         .cast<
                                                                             int>();
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                                 _model.newHall =
                                                                     await HallTable()
                                                                         .insert({
@@ -530,7 +531,8 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                                     _model
                                                                         .newHall!
                                                                         .id);
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                                 await HotelTable()
                                                                     .update(
                                                                   data: {
@@ -555,9 +557,11 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                                             0,
                                                                             0)).toList().cast<
                                                                     int>();
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
 
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               },
                                                               child: Icon(
                                                                 Icons.file_copy,
@@ -1531,12 +1535,14 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                                         .toList()
                                                                         .cast<
                                                                             int>();
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                                 _model.addToIdList(
                                                                     _model
                                                                         .newItemCopy!
                                                                         .id);
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                                 await HotelTable()
                                                                     .update(
                                                                   data: {
@@ -1561,9 +1567,11 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                                             0,
                                                                             0)).toList().cast<
                                                                     int>();
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
 
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               },
                                                               child: Icon(
                                                                 Icons.file_copy,

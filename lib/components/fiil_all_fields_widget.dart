@@ -41,7 +41,7 @@ class _FiilAllFieldsWidgetState extends State<FiilAllFieldsWidget> {
       Navigator.pop(context);
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

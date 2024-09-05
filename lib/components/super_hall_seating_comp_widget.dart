@@ -38,7 +38,7 @@ class _SuperHallSeatingCompWidgetState
     super.initState();
     _model = createModel(context, () => SuperHallSeatingCompModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

@@ -41,7 +41,7 @@ class _ConfirmActionWidgetState extends State<ConfirmActionWidget> {
     super.initState();
     _model = createModel(context, () => ConfirmActionModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

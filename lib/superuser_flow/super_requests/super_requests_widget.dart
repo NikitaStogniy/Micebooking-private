@@ -35,7 +35,7 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
     super.initState();
     _model = createModel(context, () => SuperRequestsModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -91,7 +91,7 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
                     children: [
                       wrapWithModel(
                         model: _model.profileRequestsComponentModel,
-                        updateCallback: () => setState(() {}),
+                        updateCallback: () => safeSetState(() {}),
                         updateOnChange: true,
                         child: ProfileRequestsComponentWidget(
                           hotels: columnHotelRow!,
@@ -152,7 +152,7 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
                           highlightColor: Colors.transparent,
                           onTap: () async {
                             _model.requestOpen = false;
-                            setState(() {});
+                            safeSetState(() {});
                           },
                           child: Container(
                             width: 40.0,

@@ -44,10 +44,10 @@ class _DropDownComponentWidgetState extends State<DropDownComponentWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.value = widget.initial;
-      setState(() {});
+      safeSetState(() {});
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -85,7 +85,7 @@ class _DropDownComponentWidgetState extends State<DropDownComponentWidget> {
                         id?.value,
                       );
                       _model.value = id?.label;
-                      setState(() {});
+                      safeSetState(() {});
                     },
                   ),
                 );

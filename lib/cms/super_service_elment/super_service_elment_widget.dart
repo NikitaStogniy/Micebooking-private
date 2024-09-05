@@ -42,7 +42,7 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -89,7 +89,7 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
                   highlightColor: Colors.transparent,
                   onTap: () async {
                     _model.newService = true;
-                    setState(() {});
+                    safeSetState(() {});
                   },
                   child: Icon(
                     Icons.add,
@@ -190,7 +190,7 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
                             hotelServiceRow.id,
                           ),
                         );
-                        setState(() => _model.requestCompleter = null);
+                        safeSetState(() => _model.requestCompleter = null);
                         await _model.waitForRequestCompleted();
                       },
                       child: Icon(
@@ -317,11 +317,11 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
                               _model.textController.text,
                             );
                             _model.newService = false;
-                            setState(() {});
-                            setState(() {
+                            safeSetState(() {});
+                            safeSetState(() {
                               _model.textController?.clear();
                             });
-                            setState(() => _model.requestCompleter = null);
+                            safeSetState(() => _model.requestCompleter = null);
                             await _model.waitForRequestCompleted();
                           },
                           text: 'Сохранть',
@@ -350,7 +350,7 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
                         FFButtonWidget(
                           onPressed: () async {
                             _model.newService = false;
-                            setState(() {});
+                            safeSetState(() {});
                           },
                           text: 'Отменить',
                           options: FFButtonOptions(
@@ -400,11 +400,11 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
                               _model.textController.text,
                             );
                             _model.newService = false;
-                            setState(() {});
-                            setState(() {
+                            safeSetState(() {});
+                            safeSetState(() {
                               _model.textController?.clear();
                             });
-                            setState(() => _model.requestCompleter = null);
+                            safeSetState(() => _model.requestCompleter = null);
                             await _model.waitForRequestCompleted();
                           },
                           child: Icon(
@@ -431,7 +431,7 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
                           highlightColor: Colors.transparent,
                           onTap: () async {
                             _model.newService = false;
-                            setState(() {});
+                            safeSetState(() {});
                           },
                           child: Icon(
                             Icons.close_rounded,

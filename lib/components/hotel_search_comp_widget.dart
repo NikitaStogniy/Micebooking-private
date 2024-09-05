@@ -78,10 +78,10 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
       _model.hallFilter1 = widget.hallFilter1;
       _model.hallFilter2 = widget.hallFilter2;
       _model.hallFilter3 = widget.hallFilter3;
-      setState(() {});
+      safeSetState(() {});
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -139,7 +139,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                   chosenDay: _model.startDate!,
                                   onClick: (selectedDate) async {
                                     _model.startDate = selectedDate;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                 ),
                               ),
@@ -255,13 +255,13 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                     count: _model.duration!,
                                     onAdd: () async {
                                       _model.duration = _model.duration! + 0.5;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                     onRemove: () async {
                                       if (_model.duration! >= 1.0) {
                                         _model.duration =
                                             _model.duration! + -0.5;
-                                        setState(() {});
+                                        safeSetState(() {});
                                       }
                                     },
                                   ),
@@ -377,7 +377,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                   child: CityDropDownWidget(
                                     cityChoosen: (item) async {
                                       _model.city = item;
-                                      setState(() {});
+                                      safeSetState(() {});
                                       Navigator.pop(context);
                                     },
                                   ),
@@ -501,50 +501,50 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                     filter3: _model.hallFilter3,
                                     onAdd: () async {
                                       _model.visitors = _model.visitors! + 1;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                     onRemove: () async {
                                       if (_model.visitors != 0) {
                                         _model.visitors = _model.visitors! + -1;
-                                        setState(() {});
+                                        safeSetState(() {});
                                       }
                                     },
                                     onChange: (visitors, seatings) async {
                                       _model.addToSeating(seatings!);
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                     createHallFilter: (filter, index) async {
                                       if (index == 0) {
                                         _model.hallFilter1 = filter;
-                                        setState(() {});
+                                        safeSetState(() {});
                                       } else {
                                         if (index == 1) {
                                           _model.hallFilter2 = filter;
-                                          setState(() {});
+                                          safeSetState(() {});
                                         } else {
                                           if (index == 2) {
                                             _model.hallFilter3 = filter;
-                                            setState(() {});
+                                            safeSetState(() {});
                                           }
                                         }
                                       }
                                     },
                                     onType: (visitors) async {
                                       _model.visitors = visitors;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                     deleteFilter: (index) async {
                                       if (index == 0) {
                                         _model.hallFilter1 = null;
-                                        setState(() {});
+                                        safeSetState(() {});
                                       } else {
                                         if (index == 1) {
                                           _model.hallFilter2 = null;
-                                          setState(() {});
+                                          safeSetState(() {});
                                         } else {
                                           if (index == 2) {
                                             _model.hallFilter3 = null;
-                                            setState(() {});
+                                            safeSetState(() {});
                                           }
                                         }
                                       }
@@ -762,7 +762,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                   chosenDay: _model.startDate!,
                                   onClick: (selectedDate) async {
                                     _model.startDate = selectedDate;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                 ),
                               ),
@@ -877,12 +877,12 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                   count: _model.duration!,
                                   onAdd: () async {
                                     _model.duration = _model.duration! + 0.5;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                   onRemove: () async {
                                     if (_model.duration! >= 1.0) {
                                       _model.duration = _model.duration! + -0.5;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     }
                                   },
                                 ),
@@ -989,7 +989,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                 child: CityDropDownWidget(
                                   cityChoosen: (item) async {
                                     _model.city = item;
-                                    setState(() {});
+                                    safeSetState(() {});
                                     Navigator.pop(context);
                                   },
                                 ),
@@ -1104,50 +1104,50 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                   filter3: _model.hallFilter3,
                                   onAdd: () async {
                                     _model.visitors = _model.visitors! + 1;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                   onRemove: () async {
                                     if (_model.visitors != 0) {
                                       _model.visitors = _model.visitors! + -1;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     }
                                   },
                                   onChange: (visitors, seatings) async {
                                     _model.addToSeating(seatings!);
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                   createHallFilter: (filter, index) async {
                                     if (index == 0) {
                                       _model.hallFilter1 = filter;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     } else {
                                       if (index == 1) {
                                         _model.hallFilter2 = filter;
-                                        setState(() {});
+                                        safeSetState(() {});
                                       } else {
                                         if (index == 2) {
                                           _model.hallFilter3 = filter;
-                                          setState(() {});
+                                          safeSetState(() {});
                                         }
                                       }
                                     }
                                   },
                                   onType: (visitors) async {
                                     _model.visitors = visitors;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                   deleteFilter: (index) async {
                                     if (index == 0) {
                                       _model.hallFilter1 = null;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     } else {
                                       if (index == 1) {
                                         _model.hallFilter2 = null;
-                                        setState(() {});
+                                        safeSetState(() {});
                                       } else {
                                         if (index == 2) {
                                           _model.hallFilter3 = null;
-                                          setState(() {});
+                                          safeSetState(() {});
                                         }
                                       }
                                     }

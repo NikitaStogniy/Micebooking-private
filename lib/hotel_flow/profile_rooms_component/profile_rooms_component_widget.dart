@@ -41,7 +41,7 @@ class _ProfileRoomsComponentWidgetState
     super.initState();
     _model = createModel(context, () => ProfileRoomsComponentModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -398,11 +398,11 @@ class _ProfileRoomsComponentWidgetState
                                                           .hotel!.rooms
                                                           .toList()
                                                           .cast<int>();
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                       _model.addToNewRooms(
                                                           _model
                                                               .newItemCopy!.id);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                       await HotelTable().update(
                                                         data: {
                                                           'rooms':
@@ -427,9 +427,9 @@ class _ProfileRoomsComponentWidgetState
                                                                       0, 10))
                                                           .toList()
                                                           .cast<int>();
-                                                      setState(() {});
+                                                      safeSetState(() {});
 
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     },
                                                     child: Icon(
                                                       Icons.file_copy,

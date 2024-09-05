@@ -25,7 +25,7 @@ class _FavoriteEmptyWidgetState extends State<FavoriteEmptyWidget> {
     super.initState();
     _model = createModel(context, () => FavoriteEmptyModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

@@ -53,7 +53,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
+      safeSetState(() {
         _model.hotelNameEditTextController?.text = widget.initialHotel!.name!;
         _model.hotelAddressEditTextController?.text =
             widget.initialHotel!.address!;
@@ -108,7 +108,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
         TextEditingController(text: widget.initialHotel?.description);
     _model.hotelDescriptionEditFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -394,7 +394,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
                                           _model.changeCity = true;
-                                          setState(() {});
+                                          safeSetState(() {});
                                         },
                                         child: Text(
                                           'Изменить',
@@ -460,7 +460,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                               .withoutNulls
                                               .toList(),
                                           onChanged: (val) async {
-                                            setState(() =>
+                                            safeSetState(() =>
                                                 _model.dropDownValue = val);
                                             _model.cityId =
                                                 await CityTable().queryRows(
@@ -473,9 +473,9 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                                 _model.dropDownValue;
                                             _model.currentCityId =
                                                 _model.cityId?.first.id;
-                                            setState(() {});
+                                            safeSetState(() {});
 
-                                            setState(() {});
+                                            safeSetState(() {});
                                           },
                                           width: 200.0,
                                           height: 56.0,
@@ -584,11 +584,11 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                                       .textController3.text,
                                                 });
                                               }
-                                              setState(() {
+                                              safeSetState(() {
                                                 _model.textController3?.clear();
                                               });
                                               _model.newCity = false;
-                                              setState(() {});
+                                              safeSetState(() {});
                                             },
                                             text: 'Добавить',
                                             options: FFButtonOptions(
@@ -626,7 +626,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
                                               _model.newCity = false;
-                                              setState(() {});
+                                              safeSetState(() {});
                                             },
                                             child: Text(
                                               'Отменить',
@@ -1165,7 +1165,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                         ),
                       ),
                       RatingBar.builder(
-                        onRatingUpdate: (newValue) => setState(
+                        onRatingUpdate: (newValue) => safeSetState(
                             () => _model.ratingBarEditValue = newValue),
                         itemBuilder: (context, index) => Icon(
                           Icons.star_rounded,
@@ -1219,7 +1219,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                             if (selectedMedia != null &&
                                 selectedMedia.every((m) => validateFileFormat(
                                     m.storagePath, context))) {
-                              setState(() => _model.isDataUploading = true);
+                              safeSetState(() => _model.isDataUploading = true);
                               var selectedUploadedFiles = <FFUploadedFile>[];
 
                               var downloadUrls = <String>[];
@@ -1244,13 +1244,13 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                               if (selectedUploadedFiles.length ==
                                       selectedMedia.length &&
                                   downloadUrls.length == selectedMedia.length) {
-                                setState(() {
+                                safeSetState(() {
                                   _model.uploadedLocalFiles =
                                       selectedUploadedFiles;
                                   _model.uploadedFileUrls = downloadUrls;
                                 });
                               } else {
-                                setState(() {});
+                                safeSetState(() {});
                                 return;
                               }
                             }
@@ -1260,8 +1260,8 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                     _model.uploadedFileUrls.toList())!
                                 .toList()
                                 .cast<String>();
-                            setState(() {});
-                            setState(() {
+                            safeSetState(() {});
+                            safeSetState(() {
                               _model.isDataUploading = false;
                               _model.uploadedLocalFiles = [];
                               _model.uploadedFileUrls = [];
@@ -1370,7 +1370,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                                       _model
                                                           .removeFromUploadedImages(
                                                               imagesItem);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     },
                                                   ),
                                                 ),
@@ -1391,11 +1391,11 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                                       _model
                                                           .removeAtIndexFromUploadedImages(
                                                               imagesIndex);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                       _model
                                                           .insertAtIndexInUploadedImages(
                                                               0, imagesItem);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     },
                                                     child: Icon(
                                                       Icons.star,
@@ -1601,12 +1601,12 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                                           _model.removeFromSelectedServices(
                                                               listViewServiceRow
                                                                   .id);
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                         } else {
                                                           _model.addToSelectedServices(
                                                               listViewServiceRow
                                                                   .id);
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                         }
                                                       },
                                                       child: Container(
@@ -1814,7 +1814,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                           _model.uploadedImages = [];
                                           _model.selectedServices = [];
                                           _model.changeCity = false;
-                                          setState(() {});
+                                          safeSetState(() {});
                                           Navigator.pop(context);
                                           await widget.doneCallback?.call(
                                             widget.initialHotel?.id,
@@ -1828,7 +1828,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                   },
                                 );
 
-                                setState(() {});
+                                safeSetState(() {});
                               },
                         text: 'Далее к реквизитам',
                         options: FFButtonOptions(
@@ -1877,8 +1877,8 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                   successAction: () async {
                                     _model.uploadedImages = [];
                                     _model.selectedServices = [];
-                                    setState(() {});
-                                    setState(() {
+                                    safeSetState(() {});
+                                    safeSetState(() {
                                       _model.hotelNameEditTextController?.text =
                                           widget.initialHotel!.name!;
                                       _model.hotelAddressEditTextController

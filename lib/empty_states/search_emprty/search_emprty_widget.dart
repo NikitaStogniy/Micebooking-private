@@ -26,7 +26,7 @@ class _SearchEmprtyWidgetState extends State<SearchEmprtyWidget> {
     super.initState();
     _model = createModel(context, () => SearchEmprtyModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

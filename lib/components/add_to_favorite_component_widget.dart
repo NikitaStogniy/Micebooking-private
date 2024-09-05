@@ -37,7 +37,7 @@ class _AddToFavoriteComponentWidgetState
     super.initState();
     _model = createModel(context, () => AddToFavoriteComponentModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -125,7 +125,7 @@ class _AddToFavoriteComponentWidgetState
                             columnFavoriteHotelsRow.id.toString(),
                             columnIndex,
                           ),
-                          updateCallback: () => setState(() {}),
+                          updateCallback: () => safeSetState(() {}),
                           updateOnChange: true,
                           child: CheckBoxCompWidget(
                             key: Key(
@@ -138,13 +138,13 @@ class _AddToFavoriteComponentWidgetState
                               _model.varHotels = columnFavoriteHotelsRow.hotelId
                                   .toList()
                                   .cast<int>();
-                              setState(() {});
+                              safeSetState(() {});
                               if (isChecked!) {
                                 _model.addToVarHotels(widget.hotel!);
-                                setState(() {});
+                                safeSetState(() {});
                               } else {
                                 _model.removeFromVarHotels(widget.hotel!);
-                                setState(() {});
+                                safeSetState(() {});
                               }
 
                               await FavoriteHotelsTable().update(

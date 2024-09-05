@@ -25,7 +25,7 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
     super.initState();
     _model = createModel(context, () => PCLoginCopyModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -283,7 +283,7 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                         child: FFButtonWidget(
                                           onPressed: () async {
                                             _model.isHotel = false;
-                                            setState(() {});
+                                            safeSetState(() {});
                                           },
                                           text: 'Я –  Организатор',
                                           options: FFButtonOptions(
@@ -337,7 +337,7 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                         child: FFButtonWidget(
                                           onPressed: () async {
                                             _model.isHotel = true;
-                                            setState(() {});
+                                            safeSetState(() {});
                                           },
                                           text: 'Я – Отель',
                                           options: FFButtonOptions(
@@ -399,7 +399,8 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                     if (!_model.isRegister)
                                       wrapWithModel(
                                         model: _model.loginFormModel,
-                                        updateCallback: () => setState(() {}),
+                                        updateCallback: () =>
+                                            safeSetState(() {}),
                                         child: LoginFormWidget(
                                           action: () async {},
                                         ),
@@ -407,7 +408,8 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                     if (_model.isRegister)
                                       wrapWithModel(
                                         model: _model.signupFormModel,
-                                        updateCallback: () => setState(() {}),
+                                        updateCallback: () =>
+                                            safeSetState(() {}),
                                         updateOnChange: true,
                                         child: SignupFormWidget(
                                           isHotel: _model.isHotel,
@@ -417,43 +419,7 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                                 .signupFormModel
                                                 .emailDescTextController
                                                 .text;
-                                            setState(() {});
-                                            setState(() {
-                                              _model.loginFormModel
-                                                      .textController1?.text =
-                                                  _model
-                                                      .signupFormModel
-                                                      .emailDescTextController
-                                                      .text;
-                                              _model
-                                                      .loginFormModel
-                                                      .textController1
-                                                      ?.selection =
-                                                  TextSelection.collapsed(
-                                                      offset: _model
-                                                          .loginFormModel
-                                                          .textController1!
-                                                          .text
-                                                          .length);
-                                            });
-                                            setState(() {
-                                              _model.loginFormModel
-                                                      .textController2?.text =
-                                                  _model
-                                                      .signupFormModel
-                                                      .passwordTextController
-                                                      .text;
-                                              _model
-                                                      .loginFormModel
-                                                      .textController2
-                                                      ?.selection =
-                                                  TextSelection.collapsed(
-                                                      offset: _model
-                                                          .loginFormModel
-                                                          .textController2!
-                                                          .text
-                                                          .length);
-                                            });
+                                            safeSetState(() {});
                                           },
                                         ),
                                       ),
@@ -473,7 +439,7 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                                 onPressed: () async {
                                                   _model.isRegister =
                                                       !_model.isRegister;
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                 },
                                                 text: valueOrDefault<String>(
                                                   _model.isRegister

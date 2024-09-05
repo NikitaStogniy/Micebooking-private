@@ -31,7 +31,7 @@ class _CityDropDownWidgetState extends State<CityDropDownWidget> {
     super.initState();
     _model = createModel(context, () => CityDropDownModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

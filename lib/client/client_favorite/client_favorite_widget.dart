@@ -42,10 +42,10 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.favoriteHotels = widget.user!.favoriteHotels.toList().cast<int>();
-      setState(() {});
+      safeSetState(() {});
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -118,9 +118,9 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                           .withoutNulls
                           .toList(),
                       onChanged: (val) async {
-                        setState(() => _model.dropDownValue = val);
+                        safeSetState(() => _model.dropDownValue = val);
                         _model.searchCity = _model.dropDownValue;
-                        setState(() {});
+                        safeSetState(() {});
                       },
                       width: 200.0,
                       height: 56.0,
@@ -159,7 +159,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                     highlightColor: Colors.transparent,
                     onTap: () async {
                       _model.searchCity = null;
-                      setState(() {});
+                      safeSetState(() {});
                     },
                     child: Text(
                       'Показать все',
@@ -484,7 +484,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                             onTap: () async {
                                               _model.removeFromFavoriteHotels(
                                                   decsCityOnHotelRow.id);
-                                              setState(() {});
+                                              safeSetState(() {});
                                               await Future.delayed(
                                                   const Duration(
                                                       milliseconds: 1000));
@@ -726,7 +726,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                           onTap: () async {
                                             _model.removeFromFavoriteHotels(
                                                 decsCityOffHotelRow.id);
-                                            setState(() {});
+                                            safeSetState(() {});
                                             await Future.delayed(const Duration(
                                                 milliseconds: 1000));
                                             await UsersTable().update(

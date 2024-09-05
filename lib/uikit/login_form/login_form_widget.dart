@@ -43,7 +43,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -81,7 +81,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                   onChanged: (_) => EasyDebounce.debounce(
                     '_model.textController1',
                     const Duration(milliseconds: 200),
-                    () => setState(() {}),
+                    () => safeSetState(() {}),
                   ),
                   autofocus: false,
                   obscureText: false,
@@ -165,7 +165,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                   onChanged: (_) => EasyDebounce.debounce(
                     '_model.textController2',
                     const Duration(milliseconds: 200),
-                    () => setState(() {}),
+                    () => safeSetState(() {}),
                   ),
                   autofocus: false,
                   obscureText: !_model.passwordVisibility,
@@ -212,7 +212,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                     filled: true,
                     fillColor: const Color(0xFFF0F0FA),
                     suffixIcon: InkWell(
-                      onTap: () => setState(
+                      onTap: () => safeSetState(
                         () => _model.passwordVisibility =
                             !_model.passwordVisibility,
                       ),
@@ -288,7 +288,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                             }
                           }
 
-                          setState(() {});
+                          safeSetState(() {});
                         },
                         text: 'Войти',
                         options: FFButtonOptions(

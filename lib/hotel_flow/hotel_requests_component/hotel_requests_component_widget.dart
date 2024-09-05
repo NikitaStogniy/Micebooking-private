@@ -40,7 +40,7 @@ class _HotelRequestsComponentWidgetState
     super.initState();
     _model = createModel(context, () => HotelRequestsComponentModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -121,7 +121,7 @@ class _HotelRequestsComponentWidgetState
                             onTap: () async {
                               if (_model.showMore) {
                                 _model.showMore = false;
-                                setState(() {});
+                                safeSetState(() {});
                               }
                             },
                             child: Text(
@@ -399,7 +399,7 @@ class _HotelRequestsComponentWidgetState
                                                     requestsItem.inProgress ==
                                                         true,
                                                 onChanged: (newValue) async {
-                                                  setState(() =>
+                                                  safeSetState(() =>
                                                       _model.checkboxValueMap1[
                                                               requestsItem] =
                                                           newValue!);
@@ -416,7 +416,7 @@ class _HotelRequestsComponentWidgetState
                                                       ),
                                                     );
                                                     _model.rebuilder = 200703;
-                                                    setState(() {});
+                                                    safeSetState(() {});
                                                   } else {
                                                     await RequestsTable()
                                                         .update(
@@ -430,7 +430,7 @@ class _HotelRequestsComponentWidgetState
                                                       ),
                                                     );
                                                     _model.rebuilder = 200703;
-                                                    setState(() {});
+                                                    safeSetState(() {});
                                                   }
                                                 },
                                                 side: BorderSide(
@@ -668,7 +668,7 @@ class _HotelRequestsComponentWidgetState
                                                     requestsItem.complete ==
                                                         true,
                                                 onChanged: (newValue) async {
-                                                  setState(() =>
+                                                  safeSetState(() =>
                                                       _model.checkboxValueMap2[
                                                               requestsItem] =
                                                           newValue!);

@@ -39,7 +39,7 @@ class _ClientOptionalWidgetState extends State<ClientOptionalWidget> {
     super.initState();
     _model = createModel(context, () => ClientOptionalModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

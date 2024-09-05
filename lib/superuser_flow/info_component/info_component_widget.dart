@@ -70,7 +70,7 @@ class _InfoComponentWidgetState extends State<InfoComponentWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.initialCat = widget.initialCategory;
-      setState(() {});
+      safeSetState(() {});
     });
 
     _model.textTextController1 ??= TextEditingController(
@@ -83,12 +83,12 @@ class _InfoComponentWidgetState extends State<InfoComponentWidget> {
     _model.textTextController2 ??=
         TextEditingController(text: widget.initialDistanceFirst.toString());
     _model.textFocusNode2 ??= FocusNode();
-    _model.textFocusNode2!.addListener(() => setState(() {}));
+    _model.textFocusNode2!.addListener(() => safeSetState(() {}));
     _model.textTextController3 ??=
         TextEditingController(text: widget.initialDistanceLast?.toString());
     _model.textFocusNode3 ??= FocusNode();
-    _model.textFocusNode3!.addListener(() => setState(() {}));
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    _model.textFocusNode3!.addListener(() => safeSetState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -120,7 +120,7 @@ class _InfoComponentWidgetState extends State<InfoComponentWidget> {
               onChanged: !widget.isEdit
                   ? null
                   : (newValue) async {
-                      setState(() => _model.checkboxValue = newValue!);
+                      safeSetState(() => _model.checkboxValue = newValue!);
                     },
               side: BorderSide(
                 width: 2,
@@ -134,7 +134,7 @@ class _InfoComponentWidgetState extends State<InfoComponentWidget> {
         if (widget.withCategory)
           wrapWithModel(
             model: _model.dropDownComponentModel,
-            updateCallback: () => setState(() {}),
+            updateCallback: () => safeSetState(() {}),
             updateOnChange: true,
             child: DropDownComponentWidget(
               initial: widget.category
@@ -146,7 +146,7 @@ class _InfoComponentWidgetState extends State<InfoComponentWidget> {
               isEdit: widget.isEdit,
               onSelect: (id) async {
                 _model.initialCat = id;
-                setState(() {});
+                safeSetState(() {});
               },
             ),
           ),

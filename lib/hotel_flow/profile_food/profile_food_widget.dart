@@ -62,7 +62,7 @@ class _ProfileFoodWidgetState extends State<ProfileFoodWidget>
       ),
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -123,7 +123,7 @@ class _ProfileFoodWidgetState extends State<ProfileFoodWidget>
                       listViewHotelRow.id.toString(),
                       listViewIndex,
                     ),
-                    updateCallback: () => setState(() {}),
+                    updateCallback: () => safeSetState(() {}),
                     updateOnChange: true,
                     child: ProfileFoodComponentWidget(
                       key: Key(

@@ -44,7 +44,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
     super.initState();
     _model = createModel(context, () => HallPopUpModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -254,7 +254,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                                           .length -
                                                                       1))),
                                                   onPageChanged: (_) =>
-                                                      setState(() {}),
+                                                      safeSetState(() {}),
                                                   scrollDirection:
                                                       Axis.horizontal,
                                                   itemCount: hallImages.length,
@@ -311,7 +311,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                             milliseconds: 500),
                                                         curve: Curves.ease,
                                                       );
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     },
                                                     effect: smooth_page_indicator
                                                         .ExpandingDotsEffect(
@@ -578,7 +578,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                                           .length -
                                                                       1))),
                                                   onPageChanged: (_) =>
-                                                      setState(() {}),
+                                                      safeSetState(() {}),
                                                   scrollDirection:
                                                       Axis.horizontal,
                                                   itemCount: hallImages.length,
@@ -635,7 +635,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                             milliseconds: 500),
                                                         curve: Curves.ease,
                                                       );
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     },
                                                     effect: smooth_page_indicator
                                                         .ExpandingDotsEffect(

@@ -36,7 +36,7 @@ class _FavoriteComponentWidgetState extends State<FavoriteComponentWidget> {
     super.initState();
     _model = createModel(context, () => FavoriteComponentModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -136,7 +136,7 @@ class _FavoriteComponentWidgetState extends State<FavoriteComponentWidget> {
                         },
                         child: wrapWithModel(
                           model: _model.favoriteModel,
-                          updateCallback: () => setState(() {}),
+                          updateCallback: () => safeSetState(() {}),
                           updateOnChange: true,
                           child: FavoriteWidget(
                             isChecked: containerFavoriteHotelsRowList

@@ -34,7 +34,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
     super.initState();
     _model = createModel(context, () => SeatingPopupModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -108,7 +108,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               _model.selected = EnumSeating.theatre;
-                              setState(() {});
+                              safeSetState(() {});
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -116,7 +116,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                               children: [
                                 wrapWithModel(
                                   model: _model.checkBoxModel1,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
                                   child: CheckBoxWidget(
                                     variant: 2,
@@ -124,7 +124,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                                         _model.selected == EnumSeating.theatre,
                                     onClick: () async {
                                       _model.selected = EnumSeating.theatre;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                 ),
@@ -167,7 +167,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               _model.selected = EnumSeating.klass;
-                              setState(() {});
+                              safeSetState(() {});
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -175,7 +175,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                               children: [
                                 wrapWithModel(
                                   model: _model.checkBoxModel2,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
                                   child: CheckBoxWidget(
                                     variant: 2,
@@ -183,7 +183,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                                         _model.selected == EnumSeating.klass,
                                     onClick: () async {
                                       _model.selected = EnumSeating.klass;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                 ),
@@ -226,7 +226,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               _model.selected = EnumSeating.communication;
-                              setState(() {});
+                              safeSetState(() {});
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -234,7 +234,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                               children: [
                                 wrapWithModel(
                                   model: _model.checkBoxModel3,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
                                   child: CheckBoxWidget(
                                     variant: 2,
@@ -243,7 +243,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                                     onClick: () async {
                                       _model.selected =
                                           EnumSeating.communication;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                 ),
@@ -286,7 +286,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               _model.selected = EnumSeating.ushape;
-                              setState(() {});
+                              safeSetState(() {});
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -294,7 +294,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                               children: [
                                 wrapWithModel(
                                   model: _model.checkBoxModel4,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
                                   child: CheckBoxWidget(
                                     variant: 2,
@@ -302,7 +302,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                                         _model.selected == EnumSeating.ushape,
                                     onClick: () async {
                                       _model.selected = EnumSeating.ushape;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                 ),
@@ -353,7 +353,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               _model.selected = EnumSeating.oshape;
-                              setState(() {});
+                              safeSetState(() {});
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -361,7 +361,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                               children: [
                                 wrapWithModel(
                                   model: _model.checkBoxModel5,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
                                   child: CheckBoxWidget(
                                     variant: 2,
@@ -369,7 +369,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                                         _model.selected == EnumSeating.oshape,
                                     onClick: () async {
                                       _model.selected = EnumSeating.oshape;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                 ),
@@ -412,7 +412,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               _model.selected = EnumSeating.cabare;
-                              setState(() {});
+                              safeSetState(() {});
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -420,7 +420,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                               children: [
                                 wrapWithModel(
                                   model: _model.checkBoxModel6,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
                                   child: CheckBoxWidget(
                                     variant: 2,
@@ -428,7 +428,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                                         _model.selected == EnumSeating.cabare,
                                     onClick: () async {
                                       _model.selected = EnumSeating.cabare;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                 ),
@@ -471,7 +471,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               _model.selected = EnumSeating.banket;
-                              setState(() {});
+                              safeSetState(() {});
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -479,7 +479,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                               children: [
                                 wrapWithModel(
                                   model: _model.checkBoxModel7,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
                                   child: CheckBoxWidget(
                                     variant: 2,
@@ -487,7 +487,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                                         _model.selected == EnumSeating.banket,
                                     onClick: () async {
                                       _model.selected = EnumSeating.banket;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                 ),
@@ -530,7 +530,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               _model.selected = EnumSeating.furshet;
-                              setState(() {});
+                              safeSetState(() {});
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -538,7 +538,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                               children: [
                                 wrapWithModel(
                                   model: _model.checkBoxModel8,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
                                   child: CheckBoxWidget(
                                     variant: 2,
@@ -546,7 +546,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                                         _model.selected == EnumSeating.furshet,
                                     onClick: () async {
                                       _model.selected = EnumSeating.furshet;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                 ),

@@ -39,7 +39,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
 
     _model.phoneFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -138,7 +138,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                     const Duration(milliseconds: 200),
                                     () async {
                                       _model.isEdit = true;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                   autofocus: false,
@@ -315,11 +315,11 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.networkTextController',
                                     const Duration(milliseconds: 200),
-                                    () => setState(() {}),
+                                    () => safeSetState(() {}),
                                   ),
                                   onFieldSubmitted: (_) async {
                                     _model.isEdit = true;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                   autofocus: false,
                                   textInputAction: TextInputAction.next,
@@ -427,11 +427,11 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.phoneTextController',
                                     const Duration(milliseconds: 200),
-                                    () => setState(() {}),
+                                    () => safeSetState(() {}),
                                   ),
                                   onFieldSubmitted: (_) async {
                                     _model.isEdit = true;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                   autofocus: false,
                                   textInputAction: TextInputAction.done,
@@ -514,7 +514,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                       FFButtonWidget(
                         onPressed: () async {
                           _model.isEdit = true;
-                          setState(() {});
+                          safeSetState(() {});
                         },
                         text: 'Редактировать',
                         options: FFButtonOptions(
@@ -600,7 +600,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                           ),
                                         );
                                         _model.isEdit = false;
-                                        setState(() {});
+                                        safeSetState(() {});
                                         Navigator.pop(context);
                                       }
                                     },
@@ -656,7 +656,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                     successText: 'Да, отменить',
                                     cancelText: 'Продолжить редактирование',
                                     successAction: () async {
-                                      setState(() {
+                                      safeSetState(() {
                                         _model.emailTextController?.text =
                                             containerUsersRow!.email!;
                                         _model.networkTextController?.text =
@@ -668,7 +668,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                             containerUsersRow!.phone!;
                                       });
                                       _model.isEdit = false;
-                                      setState(() {});
+                                      safeSetState(() {});
                                       Navigator.pop(context);
                                     },
                                     cancelAction: () async {
@@ -732,7 +732,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                       ),
                       wrapWithModel(
                         model: _model.hotelModel,
-                        updateCallback: () => setState(() {}),
+                        updateCallback: () => safeSetState(() {}),
                         updateOnChange: true,
                         child: CheckBoxCompWidget(
                           isChecked: containerUsersRow!.notificationHotel!,
@@ -756,7 +756,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                       ),
                       wrapWithModel(
                         model: _model.roomModel,
-                        updateCallback: () => setState(() {}),
+                        updateCallback: () => safeSetState(() {}),
                         updateOnChange: true,
                         child: CheckBoxCompWidget(
                           isChecked: containerUsersRow.notificationRoom!,
@@ -780,7 +780,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                       ),
                       wrapWithModel(
                         model: _model.hallModel,
-                        updateCallback: () => setState(() {}),
+                        updateCallback: () => safeSetState(() {}),
                         updateOnChange: true,
                         child: CheckBoxCompWidget(
                           isChecked: containerUsersRow.notificationHall!,
@@ -804,7 +804,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                       ),
                       wrapWithModel(
                         model: _model.foodModel,
-                        updateCallback: () => setState(() {}),
+                        updateCallback: () => safeSetState(() {}),
                         updateOnChange: true,
                         child: CheckBoxCompWidget(
                           isChecked: containerUsersRow.notificationFood!,
@@ -828,7 +828,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                       ),
                       wrapWithModel(
                         model: _model.priceModel,
-                        updateCallback: () => setState(() {}),
+                        updateCallback: () => safeSetState(() {}),
                         updateOnChange: true,
                         child: CheckBoxCompWidget(
                           isChecked: containerUsersRow.notificationPrice!,

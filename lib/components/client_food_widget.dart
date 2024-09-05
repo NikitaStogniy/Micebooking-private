@@ -42,7 +42,7 @@ class _ClientFoodWidgetState extends State<ClientFoodWidget> {
     super.initState();
     _model = createModel(context, () => ClientFoodModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

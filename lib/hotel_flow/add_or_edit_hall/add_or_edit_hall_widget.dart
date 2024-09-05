@@ -116,7 +116,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
       ),
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {
           _model.theatreTextController?.text = '0';
           _model.clasTextController?.text = '0';
           _model.commTextController?.text = '0';
@@ -168,7 +168,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                         onPressed: () async {
                           _model.selectedServices = [0];
                           _model.uploadedImages = [];
-                          setState(() {});
+                          safeSetState(() {});
                           await widget.doneCallback?.call();
                         },
                       ),
@@ -218,7 +218,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.nameTextController',
                                     const Duration(milliseconds: 300),
-                                    () => setState(() {}),
+                                    () => safeSetState(() {}),
                                   ),
                                   autofocus: false,
                                   obscureText: false,
@@ -315,7 +315,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.descriptionTextController',
                                     const Duration(milliseconds: 300),
-                                    () => setState(() {}),
+                                    () => safeSetState(() {}),
                                   ),
                                   autofocus: false,
                                   obscureText: false,
@@ -420,7 +420,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                       selectedMedia.every((m) =>
                                           validateFileFormat(
                                               m.storagePath, context))) {
-                                    setState(
+                                    safeSetState(
                                         () => _model.isDataUploading = true);
                                     var selectedUploadedFiles =
                                         <FFUploadedFile>[];
@@ -451,13 +451,13 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                             selectedMedia.length &&
                                         downloadUrls.length ==
                                             selectedMedia.length) {
-                                      setState(() {
+                                      safeSetState(() {
                                         _model.uploadedLocalFiles =
                                             selectedUploadedFiles;
                                         _model.uploadedFileUrls = downloadUrls;
                                       });
                                     } else {
-                                      setState(() {});
+                                      safeSetState(() {});
                                       return;
                                     }
                                   }
@@ -468,8 +468,8 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                           _model.uploadedFileUrls.toList())!
                                       .toList()
                                       .cast<String>();
-                                  setState(() {});
-                                  setState(() {
+                                  safeSetState(() {});
+                                  safeSetState(() {
                                     _model.isDataUploading = false;
                                     _model.uploadedLocalFiles = [];
                                     _model.uploadedFileUrls = [];
@@ -630,7 +630,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                             _model
                                                                 .removeFromUploadedImages(
                                                                     imagesItem);
-                                                            setState(() {});
+                                                            safeSetState(() {});
                                                           },
                                                         ),
                                                       ),
@@ -651,12 +651,12 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                             _model
                                                                 .removeAtIndexFromUploadedImages(
                                                                     imagesIndex);
-                                                            setState(() {});
+                                                            safeSetState(() {});
                                                             _model
                                                                 .insertAtIndexInUploadedImages(
                                                                     0,
                                                                     imagesItem);
-                                                            setState(() {});
+                                                            safeSetState(() {});
                                                           },
                                                           child: Icon(
                                                             Icons.star,
@@ -747,7 +747,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.sizeTextController',
                                     const Duration(milliseconds: 300),
-                                    () => setState(() {}),
+                                    () => safeSetState(() {}),
                                   ),
                                   autofocus: false,
                                   obscureText: false,
@@ -852,7 +852,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                 onChanged: (_) => EasyDebounce.debounce(
                                   '_model.capacityTextController',
                                   const Duration(milliseconds: 300),
-                                  () => setState(() {}),
+                                  () => safeSetState(() {}),
                                 ),
                                 autofocus: false,
                                 obscureText: false,
@@ -2259,12 +2259,14 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                                 _model.removeFromSelectedServices(
                                                                     listViewServiceRow
                                                                         .id);
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               } else {
                                                                 _model.addToSelectedServices(
                                                                     listViewServiceRow
                                                                         .id);
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               }
                                                             },
                                                             child: Container(
@@ -2409,7 +2411,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                     onChanged: (_) => EasyDebounce.debounce(
                                       '_model.priceTextController',
                                       const Duration(milliseconds: 300),
-                                      () => setState(() {}),
+                                      () => safeSetState(() {}),
                                     ),
                                     autofocus: false,
                                     obscureText: false,
@@ -2613,10 +2615,10 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                   .order('created_at'),
                             );
                             _model.hotel = _model.hotelOfHall?.first;
-                            setState(() {});
+                            safeSetState(() {});
                             _model.hallList =
                                 _model.hotel!.hall.toList().cast<int>();
-                            setState(() {});
+                            safeSetState(() {});
                             _model.newHall = await HallTable().insert({
                               'name': _model.nameTextController.text,
                               'services': _model.selectedServices,
@@ -2654,8 +2656,8 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                               _model.newHall?.id,
                               88,
                             ));
-                            setState(() {});
-                            setState(() {
+                            safeSetState(() {});
+                            safeSetState(() {
                               _model.nameTextController?.clear();
                               _model.descriptionTextController?.clear();
                               _model.sizeTextController?.clear();
@@ -2676,10 +2678,10 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                             _model.selectedServices = [0];
                             _model.uploadedImages = [];
                             _model.hallList = [];
-                            setState(() {});
+                            safeSetState(() {});
                             await widget.doneCallback?.call();
 
-                            setState(() {});
+                            safeSetState(() {});
                           },
                     text: 'Создать',
                     options: FFButtonOptions(
@@ -2747,7 +2749,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
 
                   return wrapWithModel(
                     model: _model.editHallModel,
-                    updateCallback: () => setState(() {}),
+                    updateCallback: () => safeSetState(() {}),
                     updateOnChange: true,
                     child: EditHallWidget(
                       id: widget.id,

@@ -55,7 +55,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
     _model.newText3TextController ??= TextEditingController();
     _model.newText3FocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -262,7 +262,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                     elements1CmsRow.id.toString(),
                                     elements1Index,
                                   ),
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: QaElementWidget(
                                     key: Key(
                                       'Keys3c_${elements1CmsRow.id.toString()}',
@@ -278,7 +278,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                           elements1CmsRow.id,
                                         ),
                                       );
-                                      setState(() =>
+                                      safeSetState(() =>
                                           _model.requestCompleter1 = null);
                                       await _model.waitForRequestCompleted1();
                                     },
@@ -299,7 +299,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
                                   _model.newElement1 = true;
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
@@ -366,7 +366,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                 EasyDebounce.debounce(
                                               '_model.newTitle1TextController',
                                               const Duration(milliseconds: 200),
-                                              () => setState(() {}),
+                                              () => safeSetState(() {}),
                                             ),
                                             autofocus: false,
                                             obscureText: false,
@@ -462,7 +462,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                 EasyDebounce.debounce(
                                               '_model.newText1TextController',
                                               const Duration(milliseconds: 200),
-                                              () => setState(() {}),
+                                              () => safeSetState(() {}),
                                             ),
                                             autofocus: false,
                                             obscureText: false,
@@ -564,8 +564,8 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                         .WHY_ELEMENT_1.name,
                                                   });
                                                   _model.newElement1 = false;
-                                                  setState(() {});
-                                                  setState(() {
+                                                  safeSetState(() {});
+                                                  safeSetState(() {
                                                     _model
                                                         .newTitle1TextController
                                                         ?.clear();
@@ -573,7 +573,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                         .newText1TextController
                                                         ?.clear();
                                                   });
-                                                  setState(() =>
+                                                  safeSetState(() =>
                                                       _model.requestCompleter1 =
                                                           null);
                                                   await _model
@@ -617,8 +617,8 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             _model.newElement1 = false;
-                                            setState(() {});
-                                            setState(() {
+                                            safeSetState(() {});
+                                            safeSetState(() {
                                               _model.newTitle1TextController
                                                   ?.clear();
                                               _model.newText1TextController
@@ -809,7 +809,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                     elements2CmsRow.id.toString(),
                                     elements2Index,
                                   ),
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: QaElementWidget(
                                     key: Key(
                                       'Keyh5b_${elements2CmsRow.id.toString()}',
@@ -825,7 +825,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                           elements2CmsRow.id,
                                         ),
                                       );
-                                      setState(() =>
+                                      safeSetState(() =>
                                           _model.requestCompleter2 = null);
                                       await _model.waitForRequestCompleted2();
                                     },
@@ -846,7 +846,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
                                   _model.newElement2 = true;
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
@@ -913,7 +913,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                 EasyDebounce.debounce(
                                               '_model.newTitle2TextController',
                                               const Duration(milliseconds: 200),
-                                              () => setState(() {}),
+                                              () => safeSetState(() {}),
                                             ),
                                             autofocus: false,
                                             obscureText: false,
@@ -1009,7 +1009,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                 EasyDebounce.debounce(
                                               '_model.newText2TextController',
                                               const Duration(milliseconds: 200),
-                                              () => setState(() {}),
+                                              () => safeSetState(() {}),
                                             ),
                                             autofocus: false,
                                             obscureText: false,
@@ -1111,8 +1111,8 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                         .WHY_ELEMENT_2.name,
                                                   });
                                                   _model.newElement2 = false;
-                                                  setState(() {});
-                                                  setState(() {
+                                                  safeSetState(() {});
+                                                  safeSetState(() {
                                                     _model
                                                         .newTitle2TextController
                                                         ?.clear();
@@ -1120,7 +1120,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                         .newText2TextController
                                                         ?.clear();
                                                   });
-                                                  setState(() =>
+                                                  safeSetState(() =>
                                                       _model.requestCompleter2 =
                                                           null);
                                                   await _model
@@ -1164,8 +1164,8 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             _model.newElement2 = false;
-                                            setState(() {});
-                                            setState(() {
+                                            safeSetState(() {});
+                                            safeSetState(() {
                                               _model.newTitle2TextController
                                                   ?.clear();
                                               _model.newText2TextController
@@ -1353,7 +1353,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                     elements3CmsRow.id.toString(),
                                     elements3Index,
                                   ),
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: QaElementWidget(
                                     key: Key(
                                       'Keyb9s_${elements3CmsRow.id.toString()}',
@@ -1369,7 +1369,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                           elements3CmsRow.id,
                                         ),
                                       );
-                                      setState(() =>
+                                      safeSetState(() =>
                                           _model.requestCompleter3 = null);
                                       await _model.waitForRequestCompleted3();
                                     },
@@ -1390,7 +1390,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
                                   _model.newElement3 = true;
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
@@ -1457,7 +1457,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                 EasyDebounce.debounce(
                                               '_model.newTitle3TextController',
                                               const Duration(milliseconds: 200),
-                                              () => setState(() {}),
+                                              () => safeSetState(() {}),
                                             ),
                                             autofocus: false,
                                             obscureText: false,
@@ -1553,7 +1553,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                 EasyDebounce.debounce(
                                               '_model.newText3TextController',
                                               const Duration(milliseconds: 200),
-                                              () => setState(() {}),
+                                              () => safeSetState(() {}),
                                             ),
                                             autofocus: false,
                                             obscureText: false,
@@ -1655,8 +1655,8 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                         .WHY_ELEMENT_3.name,
                                                   });
                                                   _model.newElement3 = false;
-                                                  setState(() {});
-                                                  setState(() {
+                                                  safeSetState(() {});
+                                                  safeSetState(() {
                                                     _model
                                                         .newTitle3TextController
                                                         ?.clear();
@@ -1664,7 +1664,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                         .newText3TextController
                                                         ?.clear();
                                                   });
-                                                  setState(() =>
+                                                  safeSetState(() =>
                                                       _model.requestCompleter3 =
                                                           null);
                                                   await _model
@@ -1707,14 +1707,14 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            setState(() {
+                                            safeSetState(() {
                                               _model.newTitle3TextController
                                                   ?.clear();
                                               _model.newText3TextController
                                                   ?.clear();
                                             });
                                             _model.newElement3 = false;
-                                            setState(() {});
+                                            safeSetState(() {});
                                           },
                                           child: Text(
                                             'Отменить',
@@ -1782,7 +1782,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                     ),
                     FFButtonWidget(
                       onPressed: () async {
-                        setState(() {
+                        safeSetState(() {
                           _model.whyusTitle1TextController?.text =
                               containerCmsRow!.title1!;
                         });

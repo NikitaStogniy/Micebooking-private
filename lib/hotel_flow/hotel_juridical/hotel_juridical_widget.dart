@@ -71,7 +71,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
 
     _model.bankBicFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -824,7 +824,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                     EasyDebounce.debounce(
                                                   '_model.jurNameTextController',
                                                   const Duration(milliseconds: 200),
-                                                  () => setState(() {}),
+                                                  () => safeSetState(() {}),
                                                 ),
                                                 autofocus: false,
                                                 textInputAction:
@@ -968,7 +968,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                     EasyDebounce.debounce(
                                                   '_model.jurAddressTextController',
                                                   const Duration(milliseconds: 200),
-                                                  () => setState(() {}),
+                                                  () => safeSetState(() {}),
                                                 ),
                                                 autofocus: false,
                                                 textInputAction:
@@ -1114,7 +1114,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                     EasyDebounce.debounce(
                                                   '_model.jurLeadTextController',
                                                   const Duration(milliseconds: 200),
-                                                  () => setState(() {}),
+                                                  () => safeSetState(() {}),
                                                 ),
                                                 autofocus: false,
                                                 textInputAction:
@@ -1280,7 +1280,8 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                           const Duration(
                                                               milliseconds:
                                                                   200),
-                                                          () => setState(() {}),
+                                                          () => safeSetState(
+                                                              () {}),
                                                         ),
                                                         autofocus: false,
                                                         textInputAction:
@@ -1457,7 +1458,8 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                           const Duration(
                                                               milliseconds:
                                                                   200),
-                                                          () => setState(() {}),
+                                                          () => safeSetState(
+                                                              () {}),
                                                         ),
                                                         autofocus: false,
                                                         textInputAction:
@@ -1649,8 +1651,9 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                               const Duration(
                                                                   milliseconds:
                                                                       200),
-                                                              () => setState(
-                                                                  () {}),
+                                                              () =>
+                                                                  safeSetState(
+                                                                      () {}),
                                                             ),
                                                             autofocus: false,
                                                             textInputAction:
@@ -1832,8 +1835,9 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                               const Duration(
                                                                   milliseconds:
                                                                       200),
-                                                              () => setState(
-                                                                  () {}),
+                                                              () =>
+                                                                  safeSetState(
+                                                                      () {}),
                                                             ),
                                                             autofocus: false,
                                                             textInputAction:
@@ -2020,7 +2024,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                               EasyDebounce.debounce(
                                             '_model.bankNameTextController',
                                             const Duration(milliseconds: 200),
-                                            () => setState(() {}),
+                                            () => safeSetState(() {}),
                                           ),
                                           autofocus: false,
                                           textInputAction: TextInputAction.next,
@@ -2145,7 +2149,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                               EasyDebounce.debounce(
                                             '_model.bankKorrTextController',
                                             const Duration(milliseconds: 200),
-                                            () => setState(() {}),
+                                            () => safeSetState(() {}),
                                           ),
                                           autofocus: false,
                                           textInputAction: TextInputAction.next,
@@ -2278,7 +2282,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                     EasyDebounce.debounce(
                                                   '_model.bankInnTextController',
                                                   const Duration(milliseconds: 200),
-                                                  () => setState(() {}),
+                                                  () => safeSetState(() {}),
                                                 ),
                                                 autofocus: false,
                                                 textInputAction:
@@ -2426,7 +2430,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                     EasyDebounce.debounce(
                                                   '_model.bankKppTextController',
                                                   const Duration(milliseconds: 200),
-                                                  () => setState(() {}),
+                                                  () => safeSetState(() {}),
                                                 ),
                                                 autofocus: false,
                                                 textInputAction:
@@ -2579,7 +2583,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                     EasyDebounce.debounce(
                                                   '_model.bankRcTextController',
                                                   const Duration(milliseconds: 200),
-                                                  () => setState(() {}),
+                                                  () => safeSetState(() {}),
                                                 ),
                                                 autofocus: false,
                                                 textInputAction:
@@ -2727,7 +2731,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                     EasyDebounce.debounce(
                                                   '_model.bankBicTextController',
                                                   const Duration(milliseconds: 200),
-                                                  () => setState(() {}),
+                                                  () => safeSetState(() {}),
                                                 ),
                                                 autofocus: false,
                                                 textInputAction:
@@ -2841,7 +2845,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                     FFButtonWidget(
                                       onPressed: () async {
                                         _model.isEdit = true;
-                                        setState(() {});
+                                        safeSetState(() {});
                                       },
                                       text: 'Редактировать',
                                       options: FFButtonOptions(
@@ -2989,7 +2993,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                       ),
                                                     );
                                                     _model.isEdit = false;
-                                                    setState(() {});
+                                                    safeSetState(() {});
                                                     ScaffoldMessenger.of(
                                                             context)
                                                         .showSnackBar(
@@ -3073,7 +3077,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                   cancelText:
                                                       'Продолжить редактирование',
                                                   successAction: () async {
-                                                    setState(() {
+                                                    safeSetState(() {
                                                       _model.jurNameTextController
                                                               ?.text =
                                                           containerJuridicalInfoRow!
@@ -3136,7 +3140,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                               .email!;
                                                     });
                                                     _model.isEdit = false;
-                                                    setState(() {});
+                                                    safeSetState(() {});
                                                     Navigator.pop(context);
                                                     await widget.onDone?.call();
                                                   },

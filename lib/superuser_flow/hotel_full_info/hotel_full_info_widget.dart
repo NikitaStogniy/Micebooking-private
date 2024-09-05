@@ -41,7 +41,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
     super.initState();
     _model = createModel(context, () => HotelFullInfoModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -561,7 +561,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                             ),
                           ),
                           RatingBar.builder(
-                            onRatingUpdate: (newValue) => setState(
+                            onRatingUpdate: (newValue) => safeSetState(
                                 () => _model.ratingBarEditValue = newValue),
                             itemBuilder: (context, index) => Icon(
                               Icons.star_rounded,
@@ -845,8 +845,8 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                                                                     .toString(),
                                                                 listViewIndex,
                                                               ),
-                                                              updateCallback:
-                                                                  () => setState(
+                                                              updateCallback: () =>
+                                                                  safeSetState(
                                                                       () {}),
                                                               updateOnChange:
                                                                   true,

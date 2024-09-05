@@ -27,7 +27,7 @@ class _SupportBottomsheetWidgetState extends State<SupportBottomsheetWidget> {
     super.initState();
     _model = createModel(context, () => SupportBottomsheetModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

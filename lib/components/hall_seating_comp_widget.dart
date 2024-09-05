@@ -42,7 +42,7 @@ class _HallSeatingCompWidgetState extends State<HallSeatingCompWidget> {
         TextEditingController(text: widget.seating?.count.toString());
     _model.seatCapacityFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

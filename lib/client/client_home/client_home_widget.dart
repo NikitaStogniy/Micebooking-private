@@ -31,7 +31,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
     super.initState();
     _model = createModel(context, () => ClientHomeModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -231,7 +231,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                                         onTap: () async {
                                           _model.currentPage =
                                               EnumClientPage.PROFILE;
-                                          setState(() {});
+                                          safeSetState(() {});
                                         },
                                         child: Text(
                                           'Профиль',
@@ -265,7 +265,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                                         onTap: () async {
                                           _model.currentPage =
                                               EnumClientPage.REQUESTS;
-                                          setState(() {});
+                                          safeSetState(() {});
                                         },
                                         child: Text(
                                           'Мои запросы',
@@ -300,7 +300,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                                         onTap: () async {
                                           _model.currentPage =
                                               EnumClientPage.FAVORITE;
-                                          setState(() {});
+                                          safeSetState(() {});
                                         },
                                         child: Text(
                                           'Избранное',
@@ -454,26 +454,26 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                                     0.0, 24.0, 0.0, 0.0),
                                 child: wrapWithModel(
                                   model: _model.menuModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: MenuWidget(
                                     isBlue: false,
                                     page: 'client',
                                     clientProfile: () async {
                                       _model.currentPage =
                                           EnumClientPage.PROFILE;
-                                      setState(() {});
+                                      safeSetState(() {});
                                       Navigator.pop(context);
                                     },
                                     clientRequest: () async {
                                       _model.currentPage =
                                           EnumClientPage.REQUESTS;
-                                      setState(() {});
+                                      safeSetState(() {});
                                       Navigator.pop(context);
                                     },
                                     clientFavorite: () async {
                                       _model.currentPage =
                                           EnumClientPage.FAVORITE;
-                                      setState(() {});
+                                      safeSetState(() {});
                                       Navigator.pop(context);
                                     },
                                     searchAction: () async {},
@@ -501,7 +501,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                                       onTap: () async {
                                         _model.currentPage =
                                             EnumClientPage.PROFILE;
-                                        setState(() {});
+                                        safeSetState(() {});
                                       },
                                       child: Text(
                                         'Профиль',
@@ -529,7 +529,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                                       onTap: () async {
                                         _model.currentPage =
                                             EnumClientPage.DESIRES;
-                                        setState(() {});
+                                        safeSetState(() {});
                                       },
                                       child: Text(
                                         'Запросы КП',
@@ -557,7 +557,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                                       onTap: () async {
                                         _model.currentPage =
                                             EnumClientPage.FAVORITE;
-                                        setState(() {});
+                                        safeSetState(() {});
                                       },
                                       child: Text(
                                         'Избранное',
@@ -584,7 +584,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                               Expanded(
                                 child: wrapWithModel(
                                   model: _model.clientProfileModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
                                   child: const ClientProfileWidget(),
                                 ),
@@ -599,7 +599,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                               Expanded(
                                 child: wrapWithModel(
                                   model: _model.clientRequestModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
                                   child: ClientRequestWidget(
                                     userId: clientHomeUsersRow!,
@@ -610,7 +610,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                               Expanded(
                                 child: wrapWithModel(
                                   model: _model.clientFavoriteModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: ClientFavoriteWidget(
                                     userId: clientHomeUsersRow!.id,
                                     user: clientHomeUsersRow,
@@ -621,7 +621,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                               Expanded(
                                 child: wrapWithModel(
                                   model: _model.clientRequestMobForTestModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
                                   child: ClientRequestMobForTestWidget(
                                     userId: clientHomeUsersRow!,

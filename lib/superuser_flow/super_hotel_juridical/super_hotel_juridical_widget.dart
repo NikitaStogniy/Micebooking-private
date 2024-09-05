@@ -67,7 +67,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
 
     _model.bankBicFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -282,7 +282,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                                 () async {
                                                                   _model.isEdit =
                                                                       true;
-                                                                  setState(
+                                                                  safeSetState(
                                                                       () {});
                                                                 },
                                                               ),
@@ -473,7 +473,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                                 () async {
                                                                   _model.isEdit =
                                                                       true;
-                                                                  setState(
+                                                                  safeSetState(
                                                                       () {});
                                                                 },
                                                               ),
@@ -666,12 +666,13 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                         '_model.jurNameTextController',
                                                         const Duration(
                                                             milliseconds: 200),
-                                                        () => setState(() {}),
+                                                        () =>
+                                                            safeSetState(() {}),
                                                       ),
                                                       onFieldSubmitted:
                                                           (_) async {
                                                         _model.isEdit = true;
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                       },
                                                       autofocus: false,
                                                       textInputAction:
@@ -828,12 +829,13 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                         '_model.jurAddressTextController',
                                                         const Duration(
                                                             milliseconds: 200),
-                                                        () => setState(() {}),
+                                                        () =>
+                                                            safeSetState(() {}),
                                                       ),
                                                       onFieldSubmitted:
                                                           (_) async {
                                                         _model.isEdit = true;
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                       },
                                                       autofocus: false,
                                                       textInputAction:
@@ -993,12 +995,13 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                         '_model.jurLeadTextController',
                                                         const Duration(
                                                             milliseconds: 200),
-                                                        () => setState(() {}),
+                                                        () =>
+                                                            safeSetState(() {}),
                                                       ),
                                                       onFieldSubmitted:
                                                           (_) async {
                                                         _model.isEdit = true;
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                       },
                                                       autofocus: false,
                                                       textInputAction:
@@ -1185,14 +1188,16 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                                 const Duration(
                                                                     milliseconds:
                                                                         200),
-                                                                () => setState(
-                                                                    () {}),
+                                                                () =>
+                                                                    safeSetState(
+                                                                        () {}),
                                                               ),
                                                               onFieldSubmitted:
                                                                   (_) async {
                                                                 _model.isEdit =
                                                                     true;
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               },
                                                               autofocus: false,
                                                               textInputAction:
@@ -1377,14 +1382,16 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                                 const Duration(
                                                                     milliseconds:
                                                                         200),
-                                                                () => setState(
-                                                                    () {}),
+                                                                () =>
+                                                                    safeSetState(
+                                                                        () {}),
                                                               ),
                                                               onFieldSubmitted:
                                                                   (_) async {
                                                                 _model.isEdit =
                                                                     true;
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               },
                                                               autofocus: false,
                                                               textInputAction:
@@ -1580,14 +1587,14 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                                     const Duration(
                                                                         milliseconds:
                                                                             200),
-                                                                    () => setState(
+                                                                    () => safeSetState(
                                                                         () {}),
                                                                   ),
                                                                   onFieldSubmitted:
                                                                       (_) async {
                                                                     _model.isEdit =
                                                                         true;
-                                                                    setState(
+                                                                    safeSetState(
                                                                         () {});
                                                                   },
                                                                   autofocus:
@@ -1771,14 +1778,14 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                                     const Duration(
                                                                         milliseconds:
                                                                             200),
-                                                                    () => setState(
+                                                                    () => safeSetState(
                                                                         () {}),
                                                                   ),
                                                                   onFieldSubmitted:
                                                                       (_) async {
                                                                     _model.isEdit =
                                                                         true;
-                                                                    setState(
+                                                                    safeSetState(
                                                                         () {});
                                                                   },
                                                                   autofocus:
@@ -1969,11 +1976,11 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                     EasyDebounce.debounce(
                                                   '_model.bankNameTextController',
                                                   const Duration(milliseconds: 200),
-                                                  () => setState(() {}),
+                                                  () => safeSetState(() {}),
                                                 ),
                                                 onFieldSubmitted: (_) async {
                                                   _model.isEdit = true;
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                 },
                                                 autofocus: false,
                                                 textInputAction:
@@ -2117,11 +2124,11 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                     EasyDebounce.debounce(
                                                   '_model.bankKorrTextController',
                                                   const Duration(milliseconds: 200),
-                                                  () => setState(() {}),
+                                                  () => safeSetState(() {}),
                                                 ),
                                                 onFieldSubmitted: (_) async {
                                                   _model.isEdit = true;
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                 },
                                                 autofocus: false,
                                                 textInputAction:
@@ -2271,12 +2278,13 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                         '_model.bankInnTextController',
                                                         const Duration(
                                                             milliseconds: 200),
-                                                        () => setState(() {}),
+                                                        () =>
+                                                            safeSetState(() {}),
                                                       ),
                                                       onFieldSubmitted:
                                                           (_) async {
                                                         _model.isEdit = true;
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                       },
                                                       autofocus: false,
                                                       textInputAction:
@@ -2437,12 +2445,13 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                         '_model.bankKppTextController',
                                                         const Duration(
                                                             milliseconds: 200),
-                                                        () => setState(() {}),
+                                                        () =>
+                                                            safeSetState(() {}),
                                                       ),
                                                       onFieldSubmitted:
                                                           (_) async {
                                                         _model.isEdit = true;
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                       },
                                                       autofocus: false,
                                                       textInputAction:
@@ -2608,12 +2617,13 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                         '_model.bankRcTextController',
                                                         const Duration(
                                                             milliseconds: 200),
-                                                        () => setState(() {}),
+                                                        () =>
+                                                            safeSetState(() {}),
                                                       ),
                                                       onFieldSubmitted:
                                                           (_) async {
                                                         _model.isEdit = true;
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                       },
                                                       autofocus: false,
                                                       textInputAction:
@@ -2774,12 +2784,13 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                         '_model.bankBicTextController',
                                                         const Duration(
                                                             milliseconds: 200),
-                                                        () => setState(() {}),
+                                                        () =>
+                                                            safeSetState(() {}),
                                                       ),
                                                       onFieldSubmitted:
                                                           (_) async {
                                                         _model.isEdit = true;
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                       },
                                                       autofocus: false,
                                                       textInputAction:

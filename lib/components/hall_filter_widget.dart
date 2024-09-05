@@ -49,7 +49,7 @@ class _HallFilterWidgetState extends State<HallFilterWidget> {
         ExpandableController(initialExpanded: false);
     _model.expandableExpandableController2 =
         ExpandableController(initialExpanded: false);
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -151,20 +151,20 @@ class _HallFilterWidgetState extends State<HallFilterWidget> {
                                         value: _model.dis1Value ??=
                                             widget.maxCapacity == 10,
                                         onChanged: (newValue) async {
-                                          setState(() =>
+                                          safeSetState(() =>
                                               _model.dis1Value = newValue!);
                                           if (newValue!) {
                                             await widget.addCapacity?.call(
                                               10,
                                               0,
                                             );
-                                            setState(() {
+                                            safeSetState(() {
                                               _model.dis13Value = false;
                                             });
-                                            setState(() {
+                                            safeSetState(() {
                                               _model.dis35Value = false;
                                             });
-                                            setState(() {
+                                            safeSetState(() {
                                               _model.dis5Value = false;
                                             });
                                           }
@@ -223,20 +223,20 @@ class _HallFilterWidgetState extends State<HallFilterWidget> {
                                         value: _model.dis13Value ??=
                                             widget.maxCapacity == 30,
                                         onChanged: (newValue) async {
-                                          setState(() =>
+                                          safeSetState(() =>
                                               _model.dis13Value = newValue!);
                                           if (newValue!) {
                                             await widget.addCapacity?.call(
                                               30,
                                               10,
                                             );
-                                            setState(() {
+                                            safeSetState(() {
                                               _model.dis1Value = false;
                                             });
-                                            setState(() {
+                                            safeSetState(() {
                                               _model.dis35Value = false;
                                             });
-                                            setState(() {
+                                            safeSetState(() {
                                               _model.dis5Value = false;
                                             });
                                           }
@@ -295,20 +295,20 @@ class _HallFilterWidgetState extends State<HallFilterWidget> {
                                         value: _model.dis35Value ??=
                                             widget.maxCapacity == 100,
                                         onChanged: (newValue) async {
-                                          setState(() =>
+                                          safeSetState(() =>
                                               _model.dis35Value = newValue!);
                                           if (newValue!) {
                                             await widget.addCapacity?.call(
                                               100,
                                               30,
                                             );
-                                            setState(() {
+                                            safeSetState(() {
                                               _model.dis1Value = false;
                                             });
-                                            setState(() {
+                                            safeSetState(() {
                                               _model.dis13Value = false;
                                             });
-                                            setState(() {
+                                            safeSetState(() {
                                               _model.dis5Value = false;
                                             });
                                           }
@@ -367,20 +367,20 @@ class _HallFilterWidgetState extends State<HallFilterWidget> {
                                         value: _model.dis5Value ??=
                                             widget.maxCapacity == 9999999,
                                         onChanged: (newValue) async {
-                                          setState(() =>
+                                          safeSetState(() =>
                                               _model.dis5Value = newValue!);
                                           if (newValue!) {
                                             await widget.addCapacity?.call(
                                               9999999,
                                               100,
                                             );
-                                            setState(() {
+                                            safeSetState(() {
                                               _model.dis1Value = false;
                                             });
-                                            setState(() {
+                                            safeSetState(() {
                                               _model.dis13Value = false;
                                             });
-                                            setState(() {
+                                            safeSetState(() {
                                               _model.dis35Value = false;
                                             });
                                           }
@@ -459,7 +459,7 @@ class _HallFilterWidgetState extends State<HallFilterWidget> {
                                   decoration: const BoxDecoration(),
                                   child: wrapWithModel(
                                     model: _model.visitorsCountFiltersModel,
-                                    updateCallback: () => setState(() {}),
+                                    updateCallback: () => safeSetState(() {}),
                                     child: VisitorsCountFiltersWidget(
                                       home: true,
                                       filter1: widget.hallfilter1,

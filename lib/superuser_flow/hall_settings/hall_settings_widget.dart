@@ -34,7 +34,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
     _model.newCategoryTextController ??= TextEditingController();
     _model.newCategoryFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -125,7 +125,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     _model.newCaterory = true;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                   child: Icon(
                                     Icons.add,
@@ -209,11 +209,11 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                                                 categoriesItem.id,
                                               ),
                                             );
-                                            setState(() => _model
+                                            safeSetState(() => _model
                                                 .requestCompleter2 = null);
                                             await _model
                                                 .waitForRequestCompleted2();
-                                            setState(() => _model
+                                            safeSetState(() => _model
                                                 .requestCompleter1 = null);
                                             await _model
                                                 .waitForRequestCompleted1();
@@ -379,22 +379,22 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                                                   'type': EnumType.HALL.name,
                                                 });
                                                 _model.newCaterory = false;
-                                                setState(() {});
-                                                setState(() {
+                                                safeSetState(() {});
+                                                safeSetState(() {
                                                   _model
                                                       .newCategoryTextController
                                                       ?.clear();
                                                 });
-                                                setState(() => _model
+                                                safeSetState(() => _model
                                                     .requestCompleter2 = null);
                                                 await _model
                                                     .waitForRequestCompleted2();
-                                                setState(() => _model
+                                                safeSetState(() => _model
                                                     .requestCompleter1 = null);
                                                 await _model
                                                     .waitForRequestCompleted1();
 
-                                                setState(() {});
+                                                safeSetState(() {});
                                               },
                                               text: 'Сохранть',
                                               options: FFButtonOptions(
@@ -430,7 +430,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                                             FFButtonWidget(
                                               onPressed: () async {
                                                 _model.newCaterory = false;
-                                                setState(() {});
+                                                safeSetState(() {});
                                               },
                                               text: 'Отменить',
                                               options: FFButtonOptions(
@@ -566,7 +566,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                                     });
                                     _model.addToServicesList(
                                         _model.newServiceHall!.id);
-                                    setState(() {});
+                                    safeSetState(() {});
                                     await ServiceCategoryTable().update(
                                       data: {
                                         'services_id': functions.mergeListsInt(
@@ -581,12 +581,12 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                                       ),
                                     );
                                     _model.servicesList = [];
-                                    setState(() {});
-                                    setState(
+                                    safeSetState(() {});
+                                    safeSetState(
                                         () => _model.requestCompleter1 = null);
                                     await _model.waitForRequestCompleted1();
 
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                 );
                               }).divide(const SizedBox(height: 40.0)),

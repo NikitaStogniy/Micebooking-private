@@ -75,7 +75,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
     _model.passwordTextController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -218,7 +218,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   _model.isHotel = false;
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                                 text: 'Я –  Организатор',
                                 options: FFButtonOptions(
@@ -265,7 +265,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   _model.isHotel = true;
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                                 text: 'Я – Отель',
                                 options: FFButtonOptions(
@@ -369,7 +369,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                           if (!_model.isRegister)
                             wrapWithModel(
                               model: _model.loginFormModel,
-                              updateCallback: () => setState(() {}),
+                              updateCallback: () => safeSetState(() {}),
                               child: LoginFormWidget(
                                 action: () async {
                                   Navigator.pop(context);
@@ -379,7 +379,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                           if (_model.isRegister)
                             wrapWithModel(
                               model: _model.signupFormModel,
-                              updateCallback: () => setState(() {}),
+                              updateCallback: () => safeSetState(() {}),
                               child: SignupFormWidget(
                                 isHotel: _model.isHotel,
                                 action: () async {},
@@ -592,7 +592,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                             filled: true,
                                             fillColor: const Color(0xFFF0F0FA),
                                             suffixIcon: InkWell(
-                                              onTap: () => setState(
+                                              onTap: () => safeSetState(
                                                 () => _model
                                                         .passwordLogVisibility =
                                                     !_model
@@ -778,7 +778,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                     onPressed: () async {
                                                       _model.isRegister =
                                                           !_model.isRegister;
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     },
                                                     text:
                                                         valueOrDefault<String>(
@@ -1493,7 +1493,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                             filled: true,
                                             fillColor: const Color(0xFFF0F0FA),
                                             suffixIcon: InkWell(
-                                              onTap: () => setState(
+                                              onTap: () => safeSetState(
                                                 () => _model
                                                         .passwordVisibility =
                                                     !_model.passwordVisibility,
@@ -1564,7 +1564,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                 value: _model.checkboxValue ??=
                                                     false,
                                                 onChanged: (newValue) async {
-                                                  setState(() =>
+                                                  safeSetState(() =>
                                                       _model.checkboxValue =
                                                           newValue!);
                                                 },
@@ -1760,7 +1760,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                     _model.lastEmail = _model
                                                         .mailTextController
                                                         .text;
-                                                    setState(() {});
+                                                    safeSetState(() {});
                                                     ScaffoldMessenger.of(
                                                             context)
                                                         .showSnackBar(
@@ -1782,7 +1782,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                                 .secondary,
                                                       ),
                                                     );
-                                                    setState(() {
+                                                    safeSetState(() {
                                                       _model.emailLogTextController
                                                               ?.text =
                                                           _model
@@ -1796,7 +1796,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                                   .text
                                                                   .length);
                                                     });
-                                                    setState(() {
+                                                    safeSetState(() {
                                                       _model.passwordLogTextController
                                                               ?.text =
                                                           _model
@@ -1827,7 +1827,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                     }
                                                   }
 
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                 },
                                           text: 'Зарегистрироваться',
                                           options: FFButtonOptions(
@@ -1873,7 +1873,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
                                       _model.isRegister = false;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                     child: Container(
                                       height: 40.0,
@@ -1906,7 +1906,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                             child: FFButtonWidget(
                               onPressed: () async {
                                 _model.isRegister = !_model.isRegister;
-                                setState(() {});
+                                safeSetState(() {});
                               },
                               text: valueOrDefault<String>(
                                 _model.isRegister

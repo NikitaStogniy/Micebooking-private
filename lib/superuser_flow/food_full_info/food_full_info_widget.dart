@@ -34,7 +34,7 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
     super.initState();
     _model = createModel(context, () => FoodFullInfoModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

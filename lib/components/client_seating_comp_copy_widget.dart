@@ -49,14 +49,14 @@ class _ClientSeatingCompCopyWidgetState
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.count = widget.seating?.count;
-      setState(() {});
+      safeSetState(() {});
     });
 
     _model.countTextController ??=
         TextEditingController(text: widget.seating?.count.toString());
     _model.countFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -192,7 +192,7 @@ class _ClientSeatingCompCopyWidgetState
                                 alignment: const AlignmentDirectional(0.0, 0.0),
                                 child: wrapWithModel(
                                   model: _model.seatingIconModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
                                   child: SeatingIconWidget(
                                     type: widget.seating!.type,

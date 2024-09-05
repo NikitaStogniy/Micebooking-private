@@ -39,7 +39,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
     super.initState();
     _model = createModel(context, () => RoomFullInfoModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -703,8 +703,8 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                                                                     .toString(),
                                                                 listViewIndex,
                                                               ),
-                                                              updateCallback:
-                                                                  () => setState(
+                                                              updateCallback: () =>
+                                                                  safeSetState(
                                                                       () {}),
                                                               updateOnChange:
                                                                   true,

@@ -15,7 +15,6 @@ class PCLoginCopyModel extends FlutterFlowModel<PCLoginCopyWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for login_form component.
   late LoginFormModel loginFormModel;
   // Model for signup_form component.

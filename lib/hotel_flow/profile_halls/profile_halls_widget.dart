@@ -62,7 +62,7 @@ class _ProfileHallsWidgetState extends State<ProfileHallsWidget>
       ),
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -123,7 +123,7 @@ class _ProfileHallsWidgetState extends State<ProfileHallsWidget>
                       listViewHotelRow.id.toString(),
                       listViewIndex,
                     ),
-                    updateCallback: () => setState(() {}),
+                    updateCallback: () => safeSetState(() {}),
                     updateOnChange: true,
                     child: ProfileHallsComponentWidget(
                       key: Key(

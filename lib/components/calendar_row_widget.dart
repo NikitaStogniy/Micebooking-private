@@ -40,11 +40,11 @@ class _CalendarRowWidgetState extends State<CalendarRowWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (_model.firstMonth == null) {
         _model.firstMonth = getCurrentTimestamp;
-        setState(() {});
+        safeSetState(() {});
       }
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -81,7 +81,7 @@ class _CalendarRowWidgetState extends State<CalendarRowWidget> {
                 onTap: () async {
                   _model.firstMonth =
                       functions.monthModify(_model.firstMonth, -1);
-                  setState(() {});
+                  safeSetState(() {});
                 },
                 child: const Icon(
                   Icons.arrow_back_ios_rounded,
@@ -93,7 +93,7 @@ class _CalendarRowWidgetState extends State<CalendarRowWidget> {
             Expanded(
               child: wrapWithModel(
                 model: _model.calendarModel1,
-                updateCallback: () => setState(() {}),
+                updateCallback: () => safeSetState(() {}),
                 updateOnChange: true,
                 child: CalendarWidget(
                   month: _model.firstMonth!,
@@ -120,7 +120,7 @@ class _CalendarRowWidgetState extends State<CalendarRowWidget> {
             Expanded(
               child: wrapWithModel(
                 model: _model.calendarModel2,
-                updateCallback: () => setState(() {}),
+                updateCallback: () => safeSetState(() {}),
                 updateOnChange: true,
                 child: CalendarWidget(
                   month: functions.monthModify(_model.firstMonth, 1)!,
@@ -147,7 +147,7 @@ class _CalendarRowWidgetState extends State<CalendarRowWidget> {
             Expanded(
               child: wrapWithModel(
                 model: _model.calendarModel3,
-                updateCallback: () => setState(() {}),
+                updateCallback: () => safeSetState(() {}),
                 updateOnChange: true,
                 child: CalendarWidget(
                   month: functions.monthModify(_model.firstMonth, 2)!,
@@ -171,7 +171,7 @@ class _CalendarRowWidgetState extends State<CalendarRowWidget> {
                 onTap: () async {
                   _model.firstMonth =
                       functions.monthModify(_model.firstMonth, 1);
-                  setState(() {});
+                  safeSetState(() {});
                 },
                 child: const Icon(
                   Icons.arrow_forward_ios_rounded,

@@ -55,7 +55,7 @@ class _ClientSeatingCompWidgetState extends State<ClientSeatingCompWidget> {
     ));
     _model.countFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -126,7 +126,7 @@ class _ClientSeatingCompWidgetState extends State<ClientSeatingCompWidget> {
                                         _model.countTextController.text),
                                     0,
                                   );
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                               ),
                               autofocus: false,
@@ -220,7 +220,7 @@ class _ClientSeatingCompWidgetState extends State<ClientSeatingCompWidget> {
                                   alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: wrapWithModel(
                                     model: _model.seatingIconModel,
-                                    updateCallback: () => setState(() {}),
+                                    updateCallback: () => safeSetState(() {}),
                                     updateOnChange: true,
                                     child: SeatingIconWidget(
                                       type: widget.seating!.type,

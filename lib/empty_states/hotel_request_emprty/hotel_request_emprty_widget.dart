@@ -26,7 +26,7 @@ class _HotelRequestEmprtyWidgetState extends State<HotelRequestEmprtyWidget> {
     super.initState();
     _model = createModel(context, () => HotelRequestEmprtyModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

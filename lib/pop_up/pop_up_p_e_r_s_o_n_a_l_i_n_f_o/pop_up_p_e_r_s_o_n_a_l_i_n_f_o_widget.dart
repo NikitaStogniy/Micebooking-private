@@ -28,7 +28,7 @@ class _PopUpPERSONALINFOWidgetState extends State<PopUpPERSONALINFOWidget> {
     super.initState();
     _model = createModel(context, () => PopUpPERSONALINFOModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

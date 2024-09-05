@@ -25,7 +25,7 @@ class _QaWidgetState extends State<QaWidget> {
     super.initState();
     _model = createModel(context, () => QaModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -79,7 +79,7 @@ class _QaWidgetState extends State<QaWidget> {
                         children: [
                           wrapWithModel(
                             model: _model.menuModel,
-                            updateCallback: () => setState(() {}),
+                            updateCallback: () => safeSetState(() {}),
                             child: MenuWidget(
                               isBlue: true,
                               page: 'home',
@@ -213,7 +213,7 @@ class _QaWidgetState extends State<QaWidget> {
                   ),
                   wrapWithModel(
                     model: _model.footerModel,
-                    updateCallback: () => setState(() {}),
+                    updateCallback: () => safeSetState(() {}),
                     child: const FooterWidget(),
                   ),
                 ].divide(const SizedBox(height: 40.0)),

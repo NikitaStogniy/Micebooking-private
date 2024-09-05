@@ -98,7 +98,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
       ),
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -425,7 +425,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                                       .withoutNulls
                                                       .toList(),
                                                   onChanged: (val) async {
-                                                    setState(() => _model
+                                                    safeSetState(() => _model
                                                         .dropDownValue = val);
                                                     _model.cityId =
                                                         await CityTable()
@@ -440,9 +440,9 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                                     _model.currentCityId =
                                                         _model
                                                             .cityId?.first.id;
-                                                    setState(() {});
+                                                    safeSetState(() {});
 
-                                                    setState(() {});
+                                                    safeSetState(() {});
                                                   },
                                                   width: 200.0,
                                                   height: 56.0,
@@ -507,7 +507,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                                       Colors.transparent,
                                                   onTap: () async {
                                                     _model.newCity = true;
-                                                    setState(() {});
+                                                    safeSetState(() {});
                                                   },
                                                   child: Container(
                                                     width: 40.0,
@@ -630,12 +630,12 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                                               .text,
                                                         });
                                                       }
-                                                      setState(() {
+                                                      safeSetState(() {
                                                         _model.textController3
                                                             ?.clear();
                                                       });
                                                       _model.newCity = false;
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     },
                                                     text: 'Добавить',
                                                     options: FFButtonOptions(
@@ -692,7 +692,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                                         Colors.transparent,
                                                     onTap: () async {
                                                       _model.newCity = false;
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     },
                                                     child: Text(
                                                       'Отменить',
@@ -866,14 +866,14 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                     child: Checkbox(
                                       value: _model.checkboxValue1 ??= false,
                                       onChanged: (newValue) async {
-                                        setState(() =>
+                                        safeSetState(() =>
                                             _model.checkboxValue1 = newValue!);
                                         if (newValue!) {
                                           _model.haventCity = true;
-                                          setState(() {});
+                                          safeSetState(() {});
                                         } else {
                                           _model.haventCity = false;
-                                          setState(() {});
+                                          safeSetState(() {});
                                         }
                                       },
                                       side: BorderSide(
@@ -1450,7 +1450,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                 ),
                               ),
                               RatingBar.builder(
-                                onRatingUpdate: (newValue) => setState(
+                                onRatingUpdate: (newValue) => safeSetState(
                                     () => _model.ratingBarValue = newValue),
                                 itemBuilder: (context, index) => Icon(
                                   Icons.star_rounded,
@@ -1506,7 +1506,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                         selectedMedia.every((m) =>
                                             validateFileFormat(
                                                 m.storagePath, context))) {
-                                      setState(
+                                      safeSetState(
                                           () => _model.isDataUploading = true);
                                       var selectedUploadedFiles =
                                           <FFUploadedFile>[];
@@ -1537,14 +1537,14 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                               selectedMedia.length &&
                                           downloadUrls.length ==
                                               selectedMedia.length) {
-                                        setState(() {
+                                        safeSetState(() {
                                           _model.uploadedLocalFiles =
                                               selectedUploadedFiles;
                                           _model.uploadedFileUrls =
                                               downloadUrls;
                                         });
                                       } else {
-                                        setState(() {});
+                                        safeSetState(() {});
                                         return;
                                       }
                                     }
@@ -1555,8 +1555,8 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                             _model.uploadedFileUrls.toList())!
                                         .toList()
                                         .cast<String>();
-                                    setState(() {});
-                                    setState(() {
+                                    safeSetState(() {});
+                                    safeSetState(() {
                                       _model.isDataUploading = false;
                                       _model.uploadedLocalFiles = [];
                                       _model.uploadedFileUrls = [];
@@ -1683,7 +1683,8 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                                                 () async {
                                                               _model.removeFromUploadedImages(
                                                                   imagesItem);
-                                                              setState(() {});
+                                                              safeSetState(
+                                                                  () {});
                                                             },
                                                           ),
                                                         ),
@@ -1704,11 +1705,13 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                                             onTap: () async {
                                                               _model.removeAtIndexFromUploadedImages(
                                                                   imagesIndex);
-                                                              setState(() {});
+                                                              safeSetState(
+                                                                  () {});
                                                               _model.insertAtIndexInUploadedImages(
                                                                   0,
                                                                   imagesItem);
-                                                              setState(() {});
+                                                              safeSetState(
+                                                                  () {});
                                                             },
                                                             child: Icon(
                                                               Icons.star,
@@ -1940,20 +1943,20 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                                                               listViewServiceRow.id),
                                                                   onChanged:
                                                                       (newValue) async {
-                                                                    setState(() =>
+                                                                    safeSetState(() =>
                                                                         _model.checkboxValueMap2[listViewServiceRow] =
                                                                             newValue!);
                                                                     if (newValue!) {
                                                                       _model.addToSelectedServices(
                                                                           listViewServiceRow
                                                                               .id);
-                                                                      setState(
+                                                                      safeSetState(
                                                                           () {});
                                                                     } else {
                                                                       _model.removeFromSelectedServices(
                                                                           listViewServiceRow
                                                                               .id);
-                                                                      setState(
+                                                                      safeSetState(
                                                                           () {});
                                                                     }
                                                                   },
@@ -2102,7 +2105,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                         _model.uploadedImages = [];
                                         _model.selectedServices = [];
                                         _model.currentCity = null;
-                                        setState(() {});
+                                        safeSetState(() {});
                                         await widget.doneCallback?.call(
                                           _model.newHot2?.id,
                                         );
@@ -2138,7 +2141,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                         _model.uploadedImages = [];
                                         _model.selectedServices = [];
                                         _model.currentCity = null;
-                                        setState(() {});
+                                        safeSetState(() {});
                                         await widget.doneCallback?.call(
                                           valueOrDefault<int>(
                                             _model.newHot?.id,
@@ -2166,7 +2169,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                         ),
                                       );
 
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                           text: 'Далее к реквизитам',
                           options: FFButtonOptions(
@@ -2240,7 +2243,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
 
                   return wrapWithModel(
                     model: _model.editHotelModel,
-                    updateCallback: () => setState(() {}),
+                    updateCallback: () => safeSetState(() {}),
                     updateOnChange: true,
                     child: EditHotelWidget(
                       id: valueOrDefault<int>(

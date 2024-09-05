@@ -39,10 +39,10 @@ class _CalendarWidgetState extends State<CalendarWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.currentDate = widget.chosenday;
-      setState(() {});
+      safeSetState(() {});
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -228,7 +228,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                                       daysGenItem,
                                     );
                                     _model.currentDate = daysGenItem;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   }
                                 },
                                 child: Container(

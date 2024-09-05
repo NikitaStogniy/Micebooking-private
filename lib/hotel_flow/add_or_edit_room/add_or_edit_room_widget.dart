@@ -87,7 +87,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
       ),
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -369,7 +369,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                       selectedMedia.every((m) =>
                                           validateFileFormat(
                                               m.storagePath, context))) {
-                                    setState(
+                                    safeSetState(
                                         () => _model.isDataUploading = true);
                                     var selectedUploadedFiles =
                                         <FFUploadedFile>[];
@@ -400,13 +400,13 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                             selectedMedia.length &&
                                         downloadUrls.length ==
                                             selectedMedia.length) {
-                                      setState(() {
+                                      safeSetState(() {
                                         _model.uploadedLocalFiles =
                                             selectedUploadedFiles;
                                         _model.uploadedFileUrls = downloadUrls;
                                       });
                                     } else {
-                                      setState(() {});
+                                      safeSetState(() {});
                                       return;
                                     }
                                   }
@@ -417,8 +417,8 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                           _model.uploadedFileUrls.toList())!
                                       .toList()
                                       .cast<String>();
-                                  setState(() {});
-                                  setState(() {
+                                  safeSetState(() {});
+                                  safeSetState(() {
                                     _model.isDataUploading = false;
                                     _model.uploadedLocalFiles = [];
                                     _model.uploadedFileUrls = [];
@@ -541,7 +541,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                                             _model
                                                                 .removeFromUploadedImages(
                                                                     imagesItem);
-                                                            setState(() {});
+                                                            safeSetState(() {});
                                                           },
                                                         ),
                                                       ),
@@ -562,12 +562,12 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                                             _model
                                                                 .removeAtIndexFromUploadedImages(
                                                                     imagesIndex);
-                                                            setState(() {});
+                                                            safeSetState(() {});
                                                             _model
                                                                 .insertAtIndexInUploadedImages(
                                                                     0,
                                                                     imagesItem);
-                                                            setState(() {});
+                                                            safeSetState(() {});
                                                           },
                                                           child: Icon(
                                                             Icons.star,
@@ -780,12 +780,14 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                                                 _model.removeFromSelectedServices(
                                                                     listViewServiceRow
                                                                         .id);
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               } else {
                                                                 _model.addToSelectedServices(
                                                                     listViewServiceRow
                                                                         .id);
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               }
                                                             },
                                                             child: Container(
@@ -1020,7 +1022,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
                                   _model.singlePerson = !_model.singlePerson;
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -1044,7 +1046,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                         value: _model.checkboxValue ??=
                                             _model.singlePerson,
                                         onChanged: (newValue) async {
-                                          setState(() =>
+                                          safeSetState(() =>
                                               _model.checkboxValue = newValue!);
                                         },
                                         side: BorderSide(
@@ -1310,15 +1312,15 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                               ),
                             );
                             _model.editableHotel = _model.hotel?.first;
-                            setState(() {});
+                            safeSetState(() {});
                             _model.newRoomSet = _model.editableHotel!.rooms
                                 .toList()
                                 .cast<int>();
-                            setState(() {});
+                            safeSetState(() {});
                             _model.addToNewRoomSet(_model.newRoom!.id);
                             _model.uploadedImages = [];
                             _model.selectedServices = [];
-                            setState(() {});
+                            safeSetState(() {});
                             await HotelTable().update(
                               data: {
                                 'rooms': _model.newRoomSet,
@@ -1328,10 +1330,10 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                 widget.hotelId,
                               ),
                             );
-                            setState(() {
+                            safeSetState(() {
                               _model.checkboxValue = _model.singlePerson;
                             });
-                            setState(() {
+                            safeSetState(() {
                               _model.hotelNameTextController1?.clear();
                               _model.hotelNameTextController2?.clear();
                               _model.countTextController?.clear();
@@ -1340,7 +1342,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                             });
                             await widget.doneCallback?.call();
 
-                            setState(() {});
+                            safeSetState(() {});
                           },
                     text: 'Создать',
                     options: FFButtonOptions(
@@ -1405,7 +1407,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
 
                   return wrapWithModel(
                     model: _model.editRoomModel,
-                    updateCallback: () => setState(() {}),
+                    updateCallback: () => safeSetState(() {}),
                     updateOnChange: true,
                     child: EditRoomWidget(
                       id: valueOrDefault<int>(
