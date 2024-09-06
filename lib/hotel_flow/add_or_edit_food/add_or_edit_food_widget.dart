@@ -551,7 +551,15 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                             ),
                                             index: menuList1Index,
                                             position: menuList1Item,
-                                            updateRequest: () async {},
+                                            updateRequest: () async {
+                                              _model.removeFromMenu(
+                                                  menuList1Item);
+                                              safeSetState(() {});
+                                              safeSetState(() => _model
+                                                  .requestCompleter2 = null);
+                                              await _model
+                                                  .waitForRequestCompleted2();
+                                            },
                                           ),
                                         );
                                       },
@@ -564,7 +572,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                   children: [
                                     if (_model.addMenuOpen)
                                       FutureBuilder<List<ServiceCategoryRow>>(
-                                        future: (_model.requestCompleter2 ??=
+                                        future: (_model.requestCompleter3 ??=
                                                 Completer<
                                                     List<ServiceCategoryRow>>()
                                                   ..complete(
@@ -714,13 +722,23 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                               ),
                                               FutureBuilder<
                                                   List<ServiceCategoryRow>>(
-                                                future: ServiceCategoryTable()
-                                                    .queryRows(
-                                                  queryFn: (q) => q.eq(
-                                                    'type',
-                                                    EnumType.FOOD_POSITION.name,
-                                                  ),
-                                                ),
+                                                future: (_model
+                                                            .requestCompleter2 ??=
+                                                        Completer<
+                                                            List<
+                                                                ServiceCategoryRow>>()
+                                                          ..complete(
+                                                              ServiceCategoryTable()
+                                                                  .queryRows(
+                                                            queryFn: (q) =>
+                                                                q.eq(
+                                                              'type',
+                                                              EnumType
+                                                                  .FOOD_POSITION
+                                                                  .name,
+                                                            ),
+                                                          )))
+                                                    .future,
                                                 builder: (context, snapshot) {
                                                   // Customize what your widget looks like when it's loading.
                                                   if (!snapshot.hasData) {
@@ -774,10 +792,10 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                               .id;
                                                       safeSetState(() {});
                                                       safeSetState(() => _model
-                                                              .requestCompleter2 =
+                                                              .requestCompleter3 =
                                                           null);
                                                       await _model
-                                                          .waitForRequestCompleted2();
+                                                          .waitForRequestCompleted3();
 
                                                       safeSetState(() {});
                                                     },

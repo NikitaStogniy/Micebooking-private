@@ -48,6 +48,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.categoryId = widget.initialFood?.category;
+      _model.menuTest = widget.initialFood!.positions.toList().cast<int>();
       safeSetState(() {});
       safeSetState(() {
         _model.editNameTextController?.text = widget.initialFood!.name!;
@@ -65,6 +66,8 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
       safeSetState(() {});
       safeSetState(() => _model.requestCompleter1 = null);
       await _model.waitForRequestCompleted1();
+      safeSetState(() => _model.requestCompleter2 = null);
+      await _model.waitForRequestCompleted2();
     });
 
     _model.editNameTextController ??=
@@ -156,6 +159,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                               _model.menu = [];
                               _model.categooryName = null;
                               _model.currentFoodId = [];
+                              _model.menuTest = [];
                               safeSetState(() {});
                               await widget.isSubmit?.call();
                             },
@@ -689,36 +693,37 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                       );
                                     }
                                     List<FoodPositionRow>
-                                        listViewFoodPositionRowList =
-                                        snapshot.data!;
+                                        posFoodPositionRowList = snapshot.data!;
 
                                     return ListView.builder(
                                       padding: EdgeInsets.zero,
                                       shrinkWrap: true,
                                       scrollDirection: Axis.vertical,
-                                      itemCount:
-                                          listViewFoodPositionRowList.length,
-                                      itemBuilder: (context, listViewIndex) {
-                                        final listViewFoodPositionRow =
-                                            listViewFoodPositionRowList[
-                                                listViewIndex];
+                                      itemCount: posFoodPositionRowList.length,
+                                      itemBuilder: (context, posIndex) {
+                                        final posFoodPositionRow =
+                                            posFoodPositionRowList[posIndex];
                                         return wrapWithModel(
                                           model: _model
                                               .foodPositionElementModels
                                               .getModel(
-                                            listViewFoodPositionRow.id
-                                                .toString(),
-                                            listViewIndex,
+                                            posFoodPositionRow.id.toString(),
+                                            posIndex,
                                           ),
                                           updateCallback: () =>
                                               safeSetState(() {}),
                                           child: FoodPositionElementWidget(
                                             key: Key(
-                                              'Keyi0t_${listViewFoodPositionRow.id.toString()}',
+                                              'Keyi0t_${posFoodPositionRow.id.toString()}',
                                             ),
-                                            index: listViewIndex,
-                                            position: listViewFoodPositionRow,
-                                            updateRequest: () async {},
+                                            index: posIndex,
+                                            position: posFoodPositionRow,
+                                            updateRequest: () async {
+                                              safeSetState(() => _model
+                                                  .requestCompleter2 = null);
+                                              await _model
+                                                  .waitForRequestCompleted2();
+                                            },
                                           ),
                                         );
                                       },

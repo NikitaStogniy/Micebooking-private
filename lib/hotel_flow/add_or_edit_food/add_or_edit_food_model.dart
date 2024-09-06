@@ -76,6 +76,7 @@ class AddOrEditFoodModel extends FlutterFlowModel<AddOrEditFoodWidget> {
   // Models for food_position_element dynamic component.
   late FlutterFlowDynamicModels<FoodPositionElementModel>
       foodPositionElementModels;
+  Completer<List<ServiceCategoryRow>>? requestCompleter2;
   // State field(s) for create_addmenu widget.
   FocusNode? createAddmenuFocusNode;
   TextEditingController? createAddmenuTextController;
@@ -85,7 +86,7 @@ class AddOrEditFoodModel extends FlutterFlowModel<AddOrEditFoodWidget> {
   FormFieldController<String>? menuCategoryValueController;
   // Stores action output result for [Backend Call - Query Rows] action in menuCategory widget.
   List<ServiceCategoryRow>? category;
-  Completer<List<ServiceCategoryRow>>? requestCompleter2;
+  Completer<List<ServiceCategoryRow>>? requestCompleter3;
   // Stores action output result for [Backend Call - Insert Row] action in Button widget.
   FoodPositionRow? newPosition;
   // Stores action output result for [Backend Call - Insert Row] action in Button widget.
@@ -142,6 +143,21 @@ class AddOrEditFoodModel extends FlutterFlowModel<AddOrEditFoodWidget> {
       await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete = requestCompleter2?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
+  Future waitForRequestCompleted3({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = requestCompleter3?.isCompleted ?? false;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
         break;
       }
