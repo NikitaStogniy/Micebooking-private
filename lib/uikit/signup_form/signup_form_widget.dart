@@ -442,7 +442,8 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 maxLength: 5,
-                                maxLengthEnforcement: MaxLengthEnforcement.none,
+                                maxLengthEnforcement:
+                                    MaxLengthEnforcement.enforced,
                                 buildCounter: (context,
                                         {required currentLength,
                                         required isFocused,
@@ -841,7 +842,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                               letterSpacing: 0.0,
                             ),
                         maxLength: 5,
-                        maxLengthEnforcement: MaxLengthEnforcement.none,
+                        maxLengthEnforcement: MaxLengthEnforcement.enforced,
                         buildCounter: (context,
                                 {required currentLength,
                                 required isFocused,

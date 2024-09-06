@@ -382,6 +382,7 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                               widget.position?.id,
                             ),
                           );
+                          await widget.updateRequest?.call();
                         },
                       ),
                     ].divide(const SizedBox(width: 16.0)),

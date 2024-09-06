@@ -554,9 +554,6 @@ class _ProfileRoomsComponentWidgetState
                                                   DecimalType.automatic,
                                             ),
                                             'Price',
-                                          ).maybeHandleOverflow(
-                                            maxChars: 6,
-                                            replacement: '…',
                                           ),
                                           textAlign: TextAlign.end,
                                           style: FlutterFlowTheme.of(context)

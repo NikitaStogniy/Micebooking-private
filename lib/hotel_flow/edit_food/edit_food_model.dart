@@ -85,6 +85,7 @@ class EditFoodModel extends FlutterFlowModel<EditFoodWidget> {
   ///  State fields for stateful widgets in this component.
 
   Completer<List<ServiceCategoryRow>>? requestCompleter1;
+  Completer<List<FoodPositionRow>>? requestCompleter2;
   // State field(s) for edit_name widget.
   FocusNode? editNameFocusNode;
   TextEditingController? editNameTextController;
@@ -113,7 +114,6 @@ class EditFoodModel extends FlutterFlowModel<EditFoodWidget> {
   Completer<List<ServiceCategoryRow>>? requestCompleter3;
   // Stores action output result for [Backend Call - Insert Row] action in Button widget.
   FoodPositionRow? newPosition;
-  Completer<List<FoodPositionRow>>? requestCompleter2;
   // Stores action output result for [Backend Call - Update Row(s)] action in Button widget.
   List<FoodRow>? here;
 
@@ -152,21 +152,6 @@ class EditFoodModel extends FlutterFlowModel<EditFoodWidget> {
     }
   }
 
-  Future waitForRequestCompleted3({
-    double minWait = 0,
-    double maxWait = double.infinity,
-  }) async {
-    final stopwatch = Stopwatch()..start();
-    while (true) {
-      await Future.delayed(const Duration(milliseconds: 50));
-      final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = requestCompleter3?.isCompleted ?? false;
-      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
-        break;
-      }
-    }
-  }
-
   Future waitForRequestCompleted2({
     double minWait = 0,
     double maxWait = double.infinity,
@@ -176,6 +161,21 @@ class EditFoodModel extends FlutterFlowModel<EditFoodWidget> {
       await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete = requestCompleter2?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
+  Future waitForRequestCompleted3({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = requestCompleter3?.isCompleted ?? false;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
         break;
       }
