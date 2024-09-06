@@ -1,1164 +1,184 @@
-import '/backend/schema/enums/enums.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/food_position_element_widget.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/hotel_flow/edit_food/edit_food_widget.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
+import 'edit_food_widget.dart' show EditFoodWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'add_or_edit_food_model.dart';
-export 'add_or_edit_food_model.dart';
 
-class AddOrEditFoodWidget extends StatefulWidget {
-  const AddOrEditFoodWidget({
-    super.key,
-    int? id,
-    required this.isSubmit,
-    int? hotelId,
-  })  : id = id ?? 88,
-        hotelId = hotelId ?? 88;
+class EditFoodModel extends FlutterFlowModel<EditFoodWidget> {
+  ///  Local state fields for this component.
 
-  final int id;
-  final Future Function()? isSubmit;
-  final int hotelId;
+  List<String> uploadedImages = [];
+  void addToUploadedImages(String item) => uploadedImages.add(item);
+  void removeFromUploadedImages(String item) => uploadedImages.remove(item);
+  void removeAtIndexFromUploadedImages(int index) =>
+      uploadedImages.removeAt(index);
+  void insertAtIndexInUploadedImages(int index, String item) =>
+      uploadedImages.insert(index, item);
+  void updateUploadedImagesAtIndex(int index, Function(String) updateFn) =>
+      uploadedImages[index] = updateFn(uploadedImages[index]);
+
+  FoodRow? editableFood;
+
+  List<int> newFoodSet = [];
+  void addToNewFoodSet(int item) => newFoodSet.add(item);
+  void removeFromNewFoodSet(int item) => newFoodSet.remove(item);
+  void removeAtIndexFromNewFoodSet(int index) => newFoodSet.removeAt(index);
+  void insertAtIndexInNewFoodSet(int index, int item) =>
+      newFoodSet.insert(index, item);
+  void updateNewFoodSetAtIndex(int index, Function(int) updateFn) =>
+      newFoodSet[index] = updateFn(newFoodSet[index]);
+
+  HotelRow? editableHotel;
+
+  List<FoodPositionRow> menu = [];
+  void addToMenu(FoodPositionRow item) => menu.add(item);
+  void removeFromMenu(FoodPositionRow item) => menu.remove(item);
+  void removeAtIndexFromMenu(int index) => menu.removeAt(index);
+  void insertAtIndexInMenu(int index, FoodPositionRow item) =>
+      menu.insert(index, item);
+  void updateMenuAtIndex(int index, Function(FoodPositionRow) updateFn) =>
+      menu[index] = updateFn(menu[index]);
+
+  bool addMenuOpen = false;
+
+  String name = 'Без названия';
+
+  bool typeChange = false;
+
+  String? categooryName;
+
+  int? categoryId;
+
+  List<int> menuTest = [];
+  void addToMenuTest(int item) => menuTest.add(item);
+  void removeFromMenuTest(int item) => menuTest.remove(item);
+  void removeAtIndexFromMenuTest(int index) => menuTest.removeAt(index);
+  void insertAtIndexInMenuTest(int index, int item) =>
+      menuTest.insert(index, item);
+  void updateMenuTestAtIndex(int index, Function(int) updateFn) =>
+      menuTest[index] = updateFn(menuTest[index]);
+
+  List<int> currentFoodId = [];
+  void addToCurrentFoodId(int item) => currentFoodId.add(item);
+  void removeFromCurrentFoodId(int item) => currentFoodId.remove(item);
+  void removeAtIndexFromCurrentFoodId(int index) =>
+      currentFoodId.removeAt(index);
+  void insertAtIndexInCurrentFoodId(int index, int item) =>
+      currentFoodId.insert(index, item);
+  void updateCurrentFoodIdAtIndex(int index, Function(int) updateFn) =>
+      currentFoodId[index] = updateFn(currentFoodId[index]);
+
+  int? menuCategoryId;
+
+  List<int> mergePosition = [];
+  void addToMergePosition(int item) => mergePosition.add(item);
+  void removeFromMergePosition(int item) => mergePosition.remove(item);
+  void removeAtIndexFromMergePosition(int index) =>
+      mergePosition.removeAt(index);
+  void insertAtIndexInMergePosition(int index, int item) =>
+      mergePosition.insert(index, item);
+  void updateMergePositionAtIndex(int index, Function(int) updateFn) =>
+      mergePosition[index] = updateFn(mergePosition[index]);
+
+  ///  State fields for stateful widgets in this component.
+
+  Completer<List<ServiceCategoryRow>>? requestCompleter1;
+  Completer<List<FoodPositionRow>>? requestCompleter2;
+  // State field(s) for edit_name widget.
+  FocusNode? editNameFocusNode;
+  TextEditingController? editNameTextController;
+  String? Function(BuildContext, String?)? editNameTextControllerValidator;
+  // State field(s) for edit_category widget.
+  String? editCategoryValue;
+  FormFieldController<String>? editCategoryValueController;
+  // Stores action output result for [Backend Call - Query Rows] action in edit_category widget.
+  List<ServiceCategoryRow>? category;
+  // State field(s) for edit_price widget.
+  FocusNode? editPriceFocusNode;
+  TextEditingController? editPriceTextController;
+  String? Function(BuildContext, String?)? editPriceTextControllerValidator;
+  // Models for food_position_element dynamic component.
+  late FlutterFlowDynamicModels<FoodPositionElementModel>
+      foodPositionElementModels;
+  // State field(s) for create_addmenu widget.
+  FocusNode? createAddmenuFocusNode;
+  TextEditingController? createAddmenuTextController;
+  String? Function(BuildContext, String?)? createAddmenuTextControllerValidator;
+  // State field(s) for menuCategory widget.
+  String? menuCategoryValue;
+  FormFieldController<String>? menuCategoryValueController;
+  // Stores action output result for [Backend Call - Query Rows] action in menuCategory widget.
+  List<ServiceCategoryRow>? categoryDrop;
+  Completer<List<ServiceCategoryRow>>? requestCompleter3;
+  // Stores action output result for [Backend Call - Insert Row] action in Button widget.
+  FoodPositionRow? newPosition;
+  // Stores action output result for [Backend Call - Update Row(s)] action in Button widget.
+  List<FoodRow>? here;
 
   @override
-  State<AddOrEditFoodWidget> createState() => _AddOrEditFoodWidgetState();
-}
-
-class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
-    with TickerProviderStateMixin {
-  late AddOrEditFoodModel _model;
-
-  final animationsMap = <String, AnimationInfo>{};
-
-  @override
-  void setState(VoidCallback callback) {
-    super.setState(callback);
-    _model.onUpdate();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _model = createModel(context, () => AddOrEditFoodModel());
-
-    _model.createNameTextController ??= TextEditingController();
-    _model.createNameFocusNode ??= FocusNode();
-
-    _model.createPriceTextController ??= TextEditingController();
-    _model.createPriceFocusNode ??= FocusNode();
-
-    _model.createAddmenuTextController ??= TextEditingController();
-    _model.createAddmenuFocusNode ??= FocusNode();
-
-    animationsMap.addAll({
-      'containerOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 200.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 200.0.ms,
-            begin: const Offset(0.0, 100.0),
-            end: const Offset(0.0, 0.0),
-          ),
-        ],
-      ),
-    });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
+  void initState(BuildContext context) {
+    foodPositionElementModels =
+        FlutterFlowDynamicModels(() => FoodPositionElementModel());
   }
 
   @override
   void dispose() {
-    _model.maybeDispose();
+    editNameFocusNode?.dispose();
+    editNameTextController?.dispose();
 
-    super.dispose();
+    editPriceFocusNode?.dispose();
+    editPriceTextController?.dispose();
+
+    foodPositionElementModels.dispose();
+    createAddmenuFocusNode?.dispose();
+    createAddmenuTextController?.dispose();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.sizeOf(context).width * 1.0,
-      height: MediaQuery.sizeOf(context).height * 1.0,
-      decoration: BoxDecoration(
-        color: const Color(0x00FFFFFF),
-        borderRadius: BorderRadius.circular(32.0),
-      ),
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            if (widget.id == 0)
-              FutureBuilder<List<ServiceCategoryRow>>(
-                future: (_model.requestCompleter1 ??=
-                        Completer<List<ServiceCategoryRow>>()
-                          ..complete(ServiceCategoryTable().querySingleRow(
-                            queryFn: (q) => q.eq(
-                              'id',
-                              _model.categoryId,
-                            ),
-                          )))
-                    .future,
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: SizedBox(
-                        width: 50.0,
-                        height: 50.0,
-                        child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            FlutterFlowTheme.of(context).primary,
-                          ),
-                        ),
-                      ),
-                    );
-                  }
-                  List<ServiceCategoryRow> addServiceCategoryRowList =
-                      snapshot.data!;
+  /// Additional helper methods.
+  Future waitForRequestCompleted1({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = requestCompleter1?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
 
-                  final addServiceCategoryRow =
-                      addServiceCategoryRowList.isNotEmpty
-                          ? addServiceCategoryRowList.first
-                          : null;
+  Future waitForRequestCompleted2({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = requestCompleter2?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
 
-                  return Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          FlutterFlowIconButton(
-                            borderColor: FlutterFlowTheme.of(context).primary,
-                            borderRadius: 20.0,
-                            borderWidth: 2.0,
-                            buttonSize: 40.0,
-                            icon: Icon(
-                              Icons.west,
-                              color: FlutterFlowTheme.of(context).primary,
-                              size: 24.0,
-                            ),
-                            onPressed: () async {
-                              await widget.isSubmit?.call();
-                            },
-                          ),
-                          Text(
-                            'Новый пакет',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Commissioner',
-                                  fontSize: 30.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.bold,
-                                  lineHeight: 1.0,
-                                ),
-                          ),
-                        ].divide(const SizedBox(width: 16.0)),
-                      ),
-                      Align(
-                        alignment: const AlignmentDirectional(-1.0, 1.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Container(
-                                  width: 200.0,
-                                  decoration: const BoxDecoration(),
-                                  child: Text(
-                                    'Название пакета*',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Commissioner',
-                                          fontSize: 18.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        8.0, 0.0, 8.0, 0.0),
-                                    child: TextFormField(
-                                      controller:
-                                          _model.createNameTextController,
-                                      focusNode: _model.createNameFocusNode,
-                                      autofocus: false,
-                                      obscureText: false,
-                                      decoration: InputDecoration(
-                                        labelStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Commissioner',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        hintStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Commissioner',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                            color: Color(0xFFF0F0FA),
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(24.0),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(24.0),
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(24.0),
-                                        ),
-                                        focusedErrorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(24.0),
-                                        ),
-                                        filled: true,
-                                        fillColor: const Color(0xFFF0F0FA),
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Commissioner',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      maxLength: 50,
-                                      buildCounter: (context,
-                                              {required currentLength,
-                                              required isFocused,
-                                              maxLength}) =>
-                                          null,
-                                      validator: _model
-                                          .createNameTextControllerValidator
-                                          .asValidator(context),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      'Тип пакета*:',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Commissioner',
-                                            fontSize: 18.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                    ),
-                                    FutureBuilder<List<ServiceCategoryRow>>(
-                                      future: ServiceCategoryTable().queryRows(
-                                        queryFn: (q) => q.eq(
-                                          'type',
-                                          EnumType.FOOD.name,
-                                        ),
-                                      ),
-                                      builder: (context, snapshot) {
-                                        // Customize what your widget looks like when it's loading.
-                                        if (!snapshot.hasData) {
-                                          return Center(
-                                            child: SizedBox(
-                                              width: 50.0,
-                                              height: 50.0,
-                                              child: CircularProgressIndicator(
-                                                valueColor:
-                                                    AlwaysStoppedAnimation<
-                                                        Color>(
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                                ),
-                                              ),
-                                            ),
-                                          );
-                                        }
-                                        List<ServiceCategoryRow>
-                                            createCategoryServiceCategoryRowList =
-                                            snapshot.data!;
-
-                                        return FlutterFlowDropDown<String>(
-                                          controller: _model
-                                                  .createCategoryValueController ??=
-                                              FormFieldController<String>(
-                                            _model.createCategoryValue ??=
-                                                'Фуршет',
-                                          ),
-                                          options:
-                                              createCategoryServiceCategoryRowList
-                                                  .map((e) => e.name)
-                                                  .withoutNulls
-                                                  .toList(),
-                                          onChanged: (val) async {
-                                            safeSetState(() => _model
-                                                .createCategoryValue = val);
-                                            _model.currentcategotyId =
-                                                await ServiceCategoryTable()
-                                                    .queryRows(
-                                              queryFn: (q) => q.eq(
-                                                'name',
-                                                _model.createCategoryValue,
-                                              ),
-                                            );
-                                            _model.categoryId = _model
-                                                .currentcategotyId?.first.id;
-                                            safeSetState(() {});
-                                            safeSetState(() => _model
-                                                .requestCompleter1 = null);
-                                            await _model
-                                                .waitForRequestCompleted1();
-
-                                            safeSetState(() {});
-                                          },
-                                          width: 285.0,
-                                          height: 40.0,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Commissioner',
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                          hintText: 'Категория....',
-                                          icon: Icon(
-                                            Icons.keyboard_arrow_down_rounded,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            size: 24.0,
-                                          ),
-                                          fillColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
-                                          elevation: 2.0,
-                                          borderColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .alternate,
-                                          borderWidth: 2.0,
-                                          borderRadius: 100.0,
-                                          margin:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 4.0, 16.0, 4.0),
-                                          hidesUnderline: true,
-                                          isOverButton: false,
-                                          isSearchable: false,
-                                          isMultiSelect: false,
-                                        );
-                                      },
-                                    ),
-                                  ].divide(const SizedBox(width: 8.0)),
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      'Цена за персону*:',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Commissioner',
-                                            fontSize: 18.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                    ),
-                                    SizedBox(
-                                      width: 100.0,
-                                      child: TextFormField(
-                                        controller:
-                                            _model.createPriceTextController,
-                                        focusNode: _model.createPriceFocusNode,
-                                        autofocus: false,
-                                        obscureText: false,
-                                        decoration: InputDecoration(
-                                          isDense: true,
-                                          labelStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .override(
-                                                    fontFamily: 'Commissioner',
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                          hintText: 'Цена',
-                                          hintStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .override(
-                                                    fontFamily: 'Commissioner',
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              width: 2.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(24.0),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              width: 2.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(24.0),
-                                          ),
-                                          errorBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              width: 2.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(24.0),
-                                          ),
-                                          focusedErrorBorder:
-                                              OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              width: 2.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(24.0),
-                                          ),
-                                          filled: true,
-                                          fillColor: const Color(0xFFF0F0FA),
-                                          contentPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  8.0, 12.0, 8.0, 12.0),
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Commissioner',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        maxLength: 6,
-                                        buildCounter: (context,
-                                                {required currentLength,
-                                                required isFocused,
-                                                maxLength}) =>
-                                            null,
-                                        keyboardType: TextInputType.number,
-                                        validator: _model
-                                            .createPriceTextControllerValidator
-                                            .asValidator(context),
-                                        inputFormatters: [
-                                          FilteringTextInputFormatter.allow(
-                                              RegExp('[0-9]'))
-                                        ],
-                                      ),
-                                    ),
-                                  ].divide(const SizedBox(width: 8.0)),
-                                ),
-                              ].divide(const SizedBox(width: 24.0)),
-                            ),
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Меню:',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Commissioner',
-                                        fontSize: 20.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                ),
-                                Builder(
-                                  builder: (context) {
-                                    final menuList1 = _model.menu.toList();
-
-                                    return ListView.builder(
-                                      padding: EdgeInsets.zero,
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.vertical,
-                                      itemCount: menuList1.length,
-                                      itemBuilder: (context, menuList1Index) {
-                                        final menuList1Item =
-                                            menuList1[menuList1Index];
-                                        return wrapWithModel(
-                                          model: _model
-                                              .foodPositionElementModels
-                                              .getModel(
-                                            menuList1Item.id.toString(),
-                                            menuList1Index,
-                                          ),
-                                          updateCallback: () =>
-                                              safeSetState(() {}),
-                                          child: FoodPositionElementWidget(
-                                            key: Key(
-                                              'Key4wj_${menuList1Item.id.toString()}',
-                                            ),
-                                            index: menuList1Index,
-                                            position: menuList1Item,
-                                            updateRequest: () async {},
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  },
-                                ),
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    if (_model.addMenuOpen)
-                                      FutureBuilder<List<ServiceCategoryRow>>(
-                                        future: (_model.requestCompleter2 ??=
-                                                Completer<
-                                                    List<ServiceCategoryRow>>()
-                                                  ..complete(
-                                                      ServiceCategoryTable()
-                                                          .querySingleRow(
-                                                    queryFn: (q) => q.eq(
-                                                      'name',
-                                                      _model.menuCategoryValue,
-                                                    ),
-                                                  )))
-                                            .future,
-                                        builder: (context, snapshot) {
-                                          // Customize what your widget looks like when it's loading.
-                                          if (!snapshot.hasData) {
-                                            return Center(
-                                              child: SizedBox(
-                                                width: 50.0,
-                                                height: 50.0,
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  valueColor:
-                                                      AlwaysStoppedAnimation<
-                                                          Color>(
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          }
-                                          List<ServiceCategoryRow>
-                                              rowServiceCategoryRowList =
-                                              snapshot.data!;
-
-                                          final rowServiceCategoryRow =
-                                              rowServiceCategoryRowList
-                                                      .isNotEmpty
-                                                  ? rowServiceCategoryRowList
-                                                      .first
-                                                  : null;
-
-                                          return Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Expanded(
-                                                child: TextFormField(
-                                                  controller: _model
-                                                      .createAddmenuTextController,
-                                                  focusNode: _model
-                                                      .createAddmenuFocusNode,
-                                                  autofocus: true,
-                                                  obscureText: false,
-                                                  decoration: InputDecoration(
-                                                    labelStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                    hintText:
-                                                        'Название позиции меню',
-                                                    hintStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                    enabledBorder:
-                                                        OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .alternate,
-                                                        width: 2.0,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              24.0),
-                                                    ),
-                                                    focusedBorder:
-                                                        OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        width: 2.0,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              24.0),
-                                                    ),
-                                                    errorBorder:
-                                                        OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .error,
-                                                        width: 2.0,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              24.0),
-                                                    ),
-                                                    focusedErrorBorder:
-                                                        OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .error,
-                                                        width: 2.0,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              24.0),
-                                                    ),
-                                                    filled: true,
-                                                    fillColor:
-                                                        const Color(0xFFF0F0FA),
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Commissioner',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                                  maxLength: 50,
-                                                  buildCounter: (context,
-                                                          {required currentLength,
-                                                          required isFocused,
-                                                          maxLength}) =>
-                                                      null,
-                                                  validator: _model
-                                                      .createAddmenuTextControllerValidator
-                                                      .asValidator(context),
-                                                ),
-                                              ),
-                                              FutureBuilder<
-                                                  List<ServiceCategoryRow>>(
-                                                future: ServiceCategoryTable()
-                                                    .queryRows(
-                                                  queryFn: (q) => q.eq(
-                                                    'type',
-                                                    EnumType.FOOD_POSITION.name,
-                                                  ),
-                                                ),
-                                                builder: (context, snapshot) {
-                                                  // Customize what your widget looks like when it's loading.
-                                                  if (!snapshot.hasData) {
-                                                    return Center(
-                                                      child: SizedBox(
-                                                        width: 50.0,
-                                                        height: 50.0,
-                                                        child:
-                                                            CircularProgressIndicator(
-                                                          valueColor:
-                                                              AlwaysStoppedAnimation<
-                                                                  Color>(
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    );
-                                                  }
-                                                  List<ServiceCategoryRow>
-                                                      menuCategoryServiceCategoryRowList =
-                                                      snapshot.data!;
-
-                                                  return FlutterFlowDropDown<
-                                                      String>(
-                                                    controller: _model
-                                                            .menuCategoryValueController ??=
-                                                        FormFieldController<
-                                                            String>(null),
-                                                    options:
-                                                        menuCategoryServiceCategoryRowList
-                                                            .map((e) => e.name)
-                                                            .withoutNulls
-                                                            .toList(),
-                                                    onChanged: (val) async {
-                                                      safeSetState(() => _model
-                                                              .menuCategoryValue =
-                                                          val);
-                                                      _model.category =
-                                                          await ServiceCategoryTable()
-                                                              .queryRows(
-                                                        queryFn: (q) => q.eq(
-                                                          'name',
-                                                          _model
-                                                              .menuCategoryValue,
-                                                        ),
-                                                      );
-                                                      _model.menuCategoryId =
-                                                          _model.category?.first
-                                                              .id;
-                                                      safeSetState(() {});
-                                                      safeSetState(() => _model
-                                                              .requestCompleter2 =
-                                                          null);
-                                                      await _model
-                                                          .waitForRequestCompleted2();
-
-                                                      safeSetState(() {});
-                                                    },
-                                                    width: 285.0,
-                                                    height: 48.0,
-                                                    textStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                    hintText: 'Категория...',
-                                                    icon: Icon(
-                                                      Icons
-                                                          .keyboard_arrow_down_rounded,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                      size: 24.0,
-                                                    ),
-                                                    fillColor: FlutterFlowTheme
-                                                            .of(context)
-                                                        .secondaryBackground,
-                                                    elevation: 2.0,
-                                                    borderColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .alternate,
-                                                    borderWidth: 2.0,
-                                                    borderRadius: 100.0,
-                                                    margin:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(16.0, 0.0,
-                                                                16.0, 0.0),
-                                                    hidesUnderline: true,
-                                                    isOverButton: true,
-                                                    isSearchable: false,
-                                                    isMultiSelect: false,
-                                                  );
-                                                },
-                                              ),
-                                              FFButtonWidget(
-                                                onPressed: () async {
-                                                  _model.newPosition =
-                                                      await FoodPositionTable()
-                                                          .insert({
-                                                    'type': _model
-                                                        .menuCategoryValue,
-                                                    'name': _model
-                                                        .createAddmenuTextController
-                                                        .text,
-                                                    'category':
-                                                        _model.menuCategoryId,
-                                                  });
-                                                  _model.addToMenu(
-                                                      _model.newPosition!);
-                                                  _model.addToNewPositionMerge(
-                                                      _model.newPosition!.id);
-                                                  safeSetState(() {});
-                                                  await ServiceCategoryTable()
-                                                      .update(
-                                                    data: {
-                                                      'services_id': functions
-                                                          .mergeListsInt(
-                                                              rowServiceCategoryRow!
-                                                                  .servicesId
-                                                                  .toList(),
-                                                              _model
-                                                                  .newPositionMerge
-                                                                  .toList()),
-                                                    },
-                                                    matchingRows: (rows) =>
-                                                        rows.eq(
-                                                      'id',
-                                                      rowServiceCategoryRow.id,
-                                                    ),
-                                                  );
-                                                  safeSetState(() {
-                                                    _model
-                                                        .createAddmenuTextController
-                                                        ?.clear();
-                                                  });
-                                                  _model.addMenuOpen = false;
-                                                  _model.newPositionMerge = [];
-                                                  safeSetState(() {});
-
-                                                  safeSetState(() {});
-                                                },
-                                                text: 'Добавить',
-                                                options: FFButtonOptions(
-                                                  height: 50.0,
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          43.0, 0.0, 43.0, 0.0),
-                                                  iconPadding:
-                                                      const EdgeInsetsDirectional
-                                                          .fromSTEB(0.0, 0.0,
-                                                              0.0, 0.0),
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                  textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .override(
-                                                            fontFamily:
-                                                                'Commissioner',
-                                                            color: Colors.white,
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                  elevation: 0.0,
-                                                  borderSide: const BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          24.0),
-                                                ),
-                                              ),
-                                              FFButtonWidget(
-                                                onPressed: () async {
-                                                  safeSetState(() {
-                                                    _model
-                                                        .createAddmenuTextController
-                                                        ?.clear();
-                                                  });
-                                                  _model.addMenuOpen = false;
-                                                  safeSetState(() {});
-                                                },
-                                                text: 'Отменить',
-                                                options: FFButtonOptions(
-                                                  height: 50.0,
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          43.0, 0.0, 43.0, 0.0),
-                                                  iconPadding:
-                                                      const EdgeInsetsDirectional
-                                                          .fromSTEB(0.0, 0.0,
-                                                              0.0, 0.0),
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .error,
-                                                  textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .override(
-                                                            fontFamily:
-                                                                'Commissioner',
-                                                            color: Colors.white,
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                  elevation: 0.0,
-                                                  borderSide: const BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          24.0),
-                                                ),
-                                              ),
-                                            ].divide(const SizedBox(width: 16.0)),
-                                          );
-                                        },
-                                      ),
-                                    if (!_model.addMenuOpen)
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 24.0, 0.0, 0.0),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            _model.addMenuOpen = true;
-                                            safeSetState(() {});
-                                          },
-                                          text: 'Добавить позицию',
-                                          options: FFButtonOptions(
-                                            height: 50.0,
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    43.0, 0.0, 43.0, 0.0),
-                                            iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            textStyle: FlutterFlowTheme.of(
-                                                    context)
-                                                .titleSmall
-                                                .override(
-                                                  fontFamily: 'Commissioner',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                  letterSpacing: 0.0,
-                                                ),
-                                            elevation: 0.0,
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(24.0),
-                                          ),
-                                        ),
-                                      ),
-                                  ],
-                                ),
-                              ].divide(const SizedBox(height: 8.0)),
-                            ),
-                          ].divide(const SizedBox(height: 10.0)),
-                        ),
-                      ),
-                      FFButtonWidget(
-                        onPressed: ((_model.createNameTextController.text ==
-                                        '') ||
-                                (_model.createCategoryValue == null ||
-                                    _model.createCategoryValue == '') ||
-                                (_model.createPriceTextController.text ==
-                                        ''))
-                            ? null
-                            : () async {
-                                _model.newFood = await FoodTable().insert({
-                                  'name': _model.createNameTextController.text,
-                                  'price': double.tryParse(
-                                      _model.createPriceTextController.text),
-                                  'positions':
-                                      _model.menu.map((e) => e.id).toList(),
-                                  'category': _model.categoryId,
-                                  'category_name': addServiceCategoryRow?.name,
-                                });
-                                _model.submitHotel =
-                                    await HotelTable().queryRows(
-                                  queryFn: (q) => q
-                                      .eq(
-                                        'id',
-                                        valueOrDefault<int>(
-                                          widget.hotelId,
-                                          88,
-                                        ),
-                                      )
-                                      .order('created_at'),
-                                );
-                                _model.hotel = _model.submitHotel?.first;
-                                _model.addToNewFoods(_model.newFood!.id);
-                                safeSetState(() {});
-                                _model.newFoodSet =
-                                    _model.hotel!.food.toList().cast<int>();
-                                safeSetState(() {});
-                                _model.addToNewFoodSet(_model.newFood!.id);
-                                _model.menu = [];
-                                safeSetState(() {});
-                                await HotelTable().update(
-                                  data: {
-                                    'food': _model.newFoodSet,
-                                  },
-                                  matchingRows: (rows) => rows.eq(
-                                    'id',
-                                    valueOrDefault<int>(
-                                      widget.hotelId,
-                                      88,
-                                    ),
-                                  ),
-                                );
-                                await ServiceCategoryTable().update(
-                                  data: {
-                                    'services_id': functions.mergeListsInt(
-                                        addServiceCategoryRow!.servicesId
-                                            .toList(),
-                                        _model.newFoods.toList()),
-                                  },
-                                  matchingRows: (rows) => rows.eq(
-                                    'id',
-                                    addServiceCategoryRow.id,
-                                  ),
-                                );
-                                _model.newFoods = [];
-                                safeSetState(() {});
-                                safeSetState(() {
-                                  _model.createNameTextController?.clear();
-                                  _model.createPriceTextController?.clear();
-                                  _model.createAddmenuTextController?.clear();
-                                });
-                                safeSetState(() {
-                                  _model.createCategoryValueController?.reset();
-                                });
-                                await widget.isSubmit?.call();
-
-                                safeSetState(() {});
-                              },
-                        text: 'Создать',
-                        options: FFButtonOptions(
-                          height: 50.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              43.0, 0.0, 43.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Commissioner',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                          elevation: 0.0,
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(24.0),
-                          disabledColor:
-                              FlutterFlowTheme.of(context).primaryBackground,
-                          disabledTextColor:
-                              FlutterFlowTheme.of(context).secondaryText,
-                        ),
-                      ),
-                    ].divide(const SizedBox(height: 32.0)),
-                  );
-                },
-              ),
-            if (widget.id != 0)
-              FutureBuilder<List<FoodRow>>(
-                future: FoodTable().querySingleRow(
-                  queryFn: (q) => q.eq(
-                    'id',
-                    widget.id,
-                  ),
-                ),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: SizedBox(
-                        width: 50.0,
-                        height: 50.0,
-                        child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            FlutterFlowTheme.of(context).primary,
-                          ),
-                        ),
-                      ),
-                    );
-                  }
-                  List<FoodRow> containerFoodRowList = snapshot.data!;
-
-                  // Return an empty Container when the item does not exist.
-                  if (snapshot.data!.isEmpty) {
-                    return Container();
-                  }
-                  final containerFoodRow = containerFoodRowList.isNotEmpty
-                      ? containerFoodRowList.first
-                      : null;
-
-                  return Container(
-                    decoration: const BoxDecoration(),
-                    child: wrapWithModel(
-                      model: _model.editFoodModel,
-                      updateCallback: () => safeSetState(() {}),
-                      updateOnChange: true,
-                      child: EditFoodWidget(
-                        id: containerFoodRow?.id,
-                        initialFood: containerFoodRow!,
-                        isSubmit: () async {
-                          await widget.isSubmit?.call();
-                        },
-                      ),
-                    ),
-                  );
-                },
-              ),
-          ].addToEnd(const SizedBox(height: 72.0)),
-        ),
-      ),
-    ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!);
+  Future waitForRequestCompleted3({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = requestCompleter3?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
   }
 }
