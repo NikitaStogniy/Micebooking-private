@@ -430,7 +430,6 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                           _model.edit = false;
                           _model.name = _model.textController.text;
                           safeSetState(() {});
-                          await widget.updateRequest?.call();
                         },
                       ),
                       FlutterFlowIconButton(
