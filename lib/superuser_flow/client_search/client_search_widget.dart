@@ -416,7 +416,6 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                                             clientsItem,
                                             r'''$.email''',
                                           ).toString(),
-                                          maxLines: 1,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
