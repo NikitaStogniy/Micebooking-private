@@ -6,6 +6,9 @@ import '/uikit/check_box/check_box_widget.dart';
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
 import 'hotel_search_model.dart';
 export 'hotel_search_model.dart';
 
@@ -51,34 +54,35 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.sizeOf(context).height * 1.0,
-      decoration: const BoxDecoration(),
+      height: MediaQuery.sizeOf(context).height * 1,
+      decoration: BoxDecoration(),
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
             Row(
               mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                   'Поиск:',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Commissioner',
-                        fontSize: 38.0,
+                        fontSize: 38,
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.bold,
                       ),
                 ),
                 Expanded(
                   child: Container(
-                    height: 37.0,
-                    decoration: const BoxDecoration(),
+                    height: 37,
+                    decoration: BoxDecoration(),
                     child: TextFormField(
                       controller: _model.textController,
                       focusNode: _model.textFieldFocusNode,
                       onChanged: (_) => EasyDebounce.debounce(
                         '_model.textController',
-                        const Duration(milliseconds: 200),
+                        Duration(milliseconds: 200),
                         () => safeSetState(() {}),
                       ),
                       autofocus: false,
@@ -96,35 +100,35 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                   letterSpacing: 0.0,
                                 ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Color(0xFFF0F0FA),
-                            width: 2.0,
+                            width: 2,
                           ),
-                          borderRadius: BorderRadius.circular(8.0),
+                          borderRadius: BorderRadius.circular(8),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: FlutterFlowTheme.of(context).primary,
-                            width: 2.0,
+                            width: 2,
                           ),
-                          borderRadius: BorderRadius.circular(8.0),
+                          borderRadius: BorderRadius.circular(8),
                         ),
                         errorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
+                            width: 2,
                           ),
-                          borderRadius: BorderRadius.circular(8.0),
+                          borderRadius: BorderRadius.circular(8),
                         ),
                         focusedErrorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
+                            width: 2,
                           ),
-                          borderRadius: BorderRadius.circular(8.0),
+                          borderRadius: BorderRadius.circular(8),
                         ),
                         filled: true,
-                        fillColor: const Color(0xFFF0F0FA),
+                        fillColor: Color(0xFFF0F0FA),
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Commissioner',
@@ -152,7 +156,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                             materialTapTargetSize:
                                 MaterialTapTargetSize.shrinkWrap,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4.0),
+                              borderRadius: BorderRadius.circular(4),
                             ),
                           ),
                           unselectedWidgetColor:
@@ -184,28 +188,28 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                         'Показать только неактивные',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Commissioner',
-                              fontSize: 16.0,
+                              fontSize: 16,
                               letterSpacing: 0.0,
                             ),
                       ),
                     ],
                   ),
-              ].divide(const SizedBox(width: 24.0)),
+              ].divide(SizedBox(width: 24)),
             ),
             Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  width: MediaQuery.sizeOf(context).width * 1.0,
-                  height: 40.0,
+                  width: MediaQuery.sizeOf(context).width,
+                  height: 40,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).primary,
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(0.0),
-                      bottomRight: Radius.circular(0.0),
-                      topLeft: Radius.circular(16.0),
-                      topRight: Radius.circular(16.0),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(0),
+                      bottomRight: Radius.circular(0),
+                      topLeft: Radius.circular(16),
+                      topRight: Radius.circular(16),
                     ),
                   ),
                   child: Row(
@@ -215,7 +219,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                         flex: 1,
                         child: Container(
                           width: MediaQuery.sizeOf(context).width * 0.1,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Text(
                             'Выдача',
                             textAlign: TextAlign.center,
@@ -225,7 +229,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                   fontFamily: 'Commissioner',
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  fontSize: 19.0,
+                                  fontSize: 19,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -236,7 +240,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                         flex: 3,
                         child: Container(
                           width: MediaQuery.sizeOf(context).width * 0.5,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Text(
                             'Название отеля',
                             style: FlutterFlowTheme.of(context)
@@ -245,7 +249,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                   fontFamily: 'Commissioner',
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  fontSize: 19.0,
+                                  fontSize: 19,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -253,10 +257,10 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                         ),
                       ),
                       Expanded(
-                        flex: 2,
+                        flex: 1,
                         child: Container(
                           width: MediaQuery.sizeOf(context).width * 0.5,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Text(
                             'Город',
                             style: FlutterFlowTheme.of(context)
@@ -265,7 +269,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                   fontFamily: 'Commissioner',
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  fontSize: 19.0,
+                                  fontSize: 19,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -276,7 +280,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                         flex: 2,
                         child: Container(
                           width: MediaQuery.sizeOf(context).width * 0.5,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Text(
                             'Почта',
                             style: FlutterFlowTheme.of(context)
@@ -285,7 +289,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                   fontFamily: 'Commissioner',
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  fontSize: 19.0,
+                                  fontSize: 19,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -293,10 +297,10 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                         ),
                       ),
                       Expanded(
-                        flex: 2,
+                        flex: 1,
                         child: Container(
                           width: MediaQuery.sizeOf(context).width * 0.5,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Text(
                             'Телефон',
                             style: FlutterFlowTheme.of(context)
@@ -305,7 +309,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                   fontFamily: 'Commissioner',
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  fontSize: 19.0,
+                                  fontSize: 19,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -313,13 +317,13 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                         ),
                       ),
                       Container(
-                        width: 30.0,
-                        decoration: const BoxDecoration(),
+                        width: 30,
+                        decoration: BoxDecoration(),
                       ),
                     ]
-                        .divide(const SizedBox(width: 40.0))
-                        .addToStart(const SizedBox(width: 16.0))
-                        .addToEnd(const SizedBox(width: 16.0)),
+                        .divide(SizedBox(width: 24))
+                        .addToStart(SizedBox(width: 16))
+                        .addToEnd(SizedBox(width: 16)),
                   ),
                 ),
                 FutureBuilder<ApiCallResponse>(
@@ -331,8 +335,8 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                     if (!snapshot.hasData) {
                       return Center(
                         child: SizedBox(
-                          width: 50.0,
-                          height: 50.0,
+                          width: 50,
+                          height: 50,
                           child: CircularProgressIndicator(
                             valueColor: AlwaysStoppedAnimation<Color>(
                               FlutterFlowTheme.of(context).primary,
@@ -368,8 +372,8 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                 if (!snapshot.hasData) {
                                   return Center(
                                     child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
+                                      width: 50,
+                                      height: 50,
                                       child: CircularProgressIndicator(
                                         valueColor:
                                             AlwaysStoppedAnimation<Color>(
@@ -388,8 +392,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                         : null;
 
                                 return Container(
-                                  width: MediaQuery.sizeOf(context).width * 1.0,
-                                  height: 40.0,
+                                  width: MediaQuery.sizeOf(context).width,
                                   decoration: BoxDecoration(
                                     color: valueOrDefault<Color>(
                                       hotelsIndex.isOdd
@@ -400,288 +403,305 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                       FlutterFlowTheme.of(context)
                                           .primaryBackground,
                                     ),
-                                    borderRadius: const BorderRadius.only(
-                                      bottomLeft: Radius.circular(0.0),
-                                      bottomRight: Radius.circular(0.0),
-                                      topLeft: Radius.circular(0.0),
-                                      topRight: Radius.circular(0.0),
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(0),
+                                      bottomRight: Radius.circular(0),
+                                      topLeft: Radius.circular(0),
+                                      topRight: Radius.circular(0),
                                     ),
                                   ),
-                                  child: FutureBuilder<List<UsersRow>>(
-                                    future: UsersTable().querySingleRow(
-                                      queryFn: (q) => q.in_(
-                                        'uid',
-                                        (getJsonField(
-                                          hotelsItem,
-                                          r'''$.owner_id''',
-                                          true,
-                                        ) as List)
-                                            .map<String>((s) => s.toString())
-                                            .toList(),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 4, 0, 4),
+                                    child: FutureBuilder<List<UsersRow>>(
+                                      future: UsersTable().querySingleRow(
+                                        queryFn: (q) => q.in_(
+                                          'uid',
+                                          (getJsonField(
+                                            hotelsItem,
+                                            r'''$.owner_id''',
+                                            true,
+                                          ) as List)
+                                              .map<String>((s) => s.toString())
+                                              .toList()!,
+                                        ),
                                       ),
-                                    ),
-                                    builder: (context, snapshot) {
-                                      // Customize what your widget looks like when it's loading.
-                                      if (!snapshot.hasData) {
-                                        return Center(
-                                          child: SizedBox(
-                                            width: 50.0,
-                                            height: 50.0,
-                                            child: CircularProgressIndicator(
-                                              valueColor:
-                                                  AlwaysStoppedAnimation<Color>(
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50,
+                                              height: 50,
+                                              child: CircularProgressIndicator(
+                                                valueColor:
+                                                    AlwaysStoppedAnimation<
+                                                        Color>(
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        );
-                                      }
-                                      List<UsersRow> rowUsersRowList =
-                                          snapshot.data!;
+                                          );
+                                        }
+                                        List<UsersRow> rowUsersRowList =
+                                            snapshot.data!;
 
-                                      final rowUsersRow =
-                                          rowUsersRowList.isNotEmpty
-                                              ? rowUsersRowList.first
-                                              : null;
+                                        final rowUsersRow =
+                                            rowUsersRowList.isNotEmpty
+                                                ? rowUsersRowList.first
+                                                : null;
 
-                                      return Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Expanded(
-                                            flex: 1,
-                                            child: Container(
-                                              width: MediaQuery.sizeOf(context)
-                                                      .width *
-                                                  0.1,
-                                              decoration: const BoxDecoration(),
-                                              child: Align(
-                                                alignment: const AlignmentDirectional(
-                                                    0.0, 0.0),
-                                                child: wrapWithModel(
-                                                  model: _model.checkBoxModels
-                                                      .getModel(
+                                        return Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Expanded(
+                                              flex: 1,
+                                              child: Container(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.1,
+                                                decoration: BoxDecoration(),
+                                                child: Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0, 0),
+                                                  child: wrapWithModel(
+                                                    model: _model.checkBoxModels
+                                                        .getModel(
+                                                      getJsonField(
+                                                        hotelsItem,
+                                                        r'''$.id''',
+                                                      ).toString(),
+                                                      hotelsIndex,
+                                                    ),
+                                                    updateCallback: () =>
+                                                        safeSetState(() {}),
+                                                    updateOnChange: true,
+                                                    child: CheckBoxWidget(
+                                                      key: Key(
+                                                        'Keyloc_${getJsonField(
+                                                          hotelsItem,
+                                                          r'''$.id''',
+                                                        ).toString()}',
+                                                      ),
+                                                      variant: 2,
+                                                      isChecked:
+                                                          containerHotelRow
+                                                                  ?.isVisible ==
+                                                              true,
+                                                      onClick: () async {
+                                                        if (containerHotelRow
+                                                                ?.isVisible ==
+                                                            true) {
+                                                          await HotelTable()
+                                                              .update(
+                                                            data: {
+                                                              'isVisible':
+                                                                  false,
+                                                            },
+                                                            matchingRows:
+                                                                (rows) =>
+                                                                    rows.eq(
+                                                              'id',
+                                                              getJsonField(
+                                                                hotelsItem,
+                                                                r'''$.id''',
+                                                              ),
+                                                            ),
+                                                          );
+                                                        } else {
+                                                          await HotelTable()
+                                                              .update(
+                                                            data: {
+                                                              'isVisible': true,
+                                                            },
+                                                            matchingRows:
+                                                                (rows) =>
+                                                                    rows.eq(
+                                                              'id',
+                                                              getJsonField(
+                                                                hotelsItem,
+                                                                r'''$.id''',
+                                                              ),
+                                                            ),
+                                                          );
+                                                        }
+
+                                                        _model.updater =
+                                                            valueOrDefault<int>(
+                                                          random_data
+                                                              .randomInteger(
+                                                                  0, 10),
+                                                          8,
+                                                        );
+                                                        safeSetState(() {});
+                                                      },
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              flex: 3,
+                                              child: Container(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.5,
+                                                decoration: BoxDecoration(),
+                                                child: Text(
+                                                  getJsonField(
+                                                    hotelsItem,
+                                                    r'''$.name''',
+                                                  ).toString(),
+                                                  maxLines: 2,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontSize: 15,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              flex: 1,
+                                              child: Container(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.5,
+                                                decoration: BoxDecoration(),
+                                                child: Text(
+                                                  getJsonField(
+                                                    hotelsItem,
+                                                    r'''$.city_name''',
+                                                  ).toString(),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontSize: 14,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              flex: 2,
+                                              child: Container(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.5,
+                                                decoration: BoxDecoration(),
+                                                child: Text(
+                                                  valueOrDefault<String>(
+                                                    rowUsersRow?.email,
+                                                    'email',
+                                                  ),
+                                                  textAlign: TextAlign.start,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontSize: 14,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              flex: 1,
+                                              child: Container(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.5,
+                                                decoration: BoxDecoration(),
+                                                child: Text(
+                                                  valueOrDefault<String>(
+                                                    rowUsersRow?.phone,
+                                                    'Не указан',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontSize: 15,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                ),
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 30,
+                                              decoration: BoxDecoration(),
+                                              child: InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  await widget.hotelId?.call(
                                                     getJsonField(
                                                       hotelsItem,
                                                       r'''$.id''',
-                                                    ).toString(),
-                                                    hotelsIndex,
-                                                  ),
-                                                  updateCallback: () =>
-                                                      safeSetState(() {}),
-                                                  updateOnChange: true,
-                                                  child: CheckBoxWidget(
-                                                    key: Key(
-                                                      'Keyloc_${getJsonField(
-                                                        hotelsItem,
-                                                        r'''$.id''',
-                                                      ).toString()}',
                                                     ),
-                                                    variant: 2,
-                                                    isChecked: containerHotelRow
-                                                            ?.isVisible ==
-                                                        true,
-                                                    onClick: () async {
-                                                      if (containerHotelRow
-                                                              ?.isVisible ==
-                                                          true) {
-                                                        await HotelTable()
-                                                            .update(
-                                                          data: {
-                                                            'isVisible': false,
-                                                          },
-                                                          matchingRows:
-                                                              (rows) => rows.eq(
-                                                            'id',
-                                                            getJsonField(
-                                                              hotelsItem,
-                                                              r'''$.id''',
-                                                            ),
-                                                          ),
-                                                        );
-                                                      } else {
-                                                        await HotelTable()
-                                                            .update(
-                                                          data: {
-                                                            'isVisible': true,
-                                                          },
-                                                          matchingRows:
-                                                              (rows) => rows.eq(
-                                                            'id',
-                                                            getJsonField(
-                                                              hotelsItem,
-                                                              r'''$.id''',
-                                                            ),
-                                                          ),
-                                                        );
-                                                      }
-
-                                                      _model.updater =
-                                                          valueOrDefault<int>(
-                                                        random_data
-                                                            .randomInteger(
-                                                                0, 10),
-                                                        8,
-                                                      );
-                                                      safeSetState(() {});
-                                                    },
-                                                  ),
+                                                  );
+                                                },
+                                                child: Icon(
+                                                  Icons.remove_red_eye,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  size: 24,
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                          Expanded(
-                                            flex: 3,
-                                            child: Container(
-                                              width: MediaQuery.sizeOf(context)
-                                                      .width *
-                                                  0.5,
-                                              decoration: const BoxDecoration(),
-                                              child: Text(
-                                                getJsonField(
-                                                  hotelsItem,
-                                                  r'''$.name''',
-                                                ).toString(),
-                                                maxLines: 1,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 19.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            flex: 2,
-                                            child: Container(
-                                              width: MediaQuery.sizeOf(context)
-                                                      .width *
-                                                  0.5,
-                                              decoration: const BoxDecoration(),
-                                              child: Text(
-                                                getJsonField(
-                                                  hotelsItem,
-                                                  r'''$.city_name''',
-                                                ).toString(),
-                                                maxLines: 1,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 19.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            flex: 2,
-                                            child: Container(
-                                              width: MediaQuery.sizeOf(context)
-                                                      .width *
-                                                  0.5,
-                                              decoration: const BoxDecoration(),
-                                              child: Text(
-                                                valueOrDefault<String>(
-                                                  rowUsersRow?.email,
-                                                  'email',
-                                                ),
-                                                maxLines: 1,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 19.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            flex: 2,
-                                            child: Container(
-                                              width: MediaQuery.sizeOf(context)
-                                                      .width *
-                                                  0.5,
-                                              decoration: const BoxDecoration(),
-                                              child: Text(
-                                                valueOrDefault<String>(
-                                                  rowUsersRow?.phone,
-                                                  'Не указан',
-                                                ),
-                                                maxLines: 1,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 19.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 30.0,
-                                            decoration: const BoxDecoration(),
-                                            child: InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                await widget.hotelId?.call(
-                                                  getJsonField(
-                                                    hotelsItem,
-                                                    r'''$.id''',
-                                                  ),
-                                                );
-                                              },
-                                              child: Icon(
-                                                Icons.remove_red_eye,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                size: 24.0,
-                                              ),
-                                            ),
-                                          ),
-                                        ]
-                                            .divide(const SizedBox(width: 40.0))
-                                            .addToStart(const SizedBox(width: 16.0))
-                                            .addToEnd(const SizedBox(width: 16.0)),
-                                      );
-                                    },
+                                          ]
+                                              .divide(SizedBox(width: 24))
+                                              .addToStart(SizedBox(width: 16))
+                                              .addToEnd(SizedBox(width: 16)),
+                                        );
+                                      },
+                                    ),
                                   ),
                                 );
                               },
@@ -694,7 +714,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                 ),
               ],
             ),
-          ].divide(const SizedBox(height: 16.0)).addToEnd(const SizedBox(height: 72.0)),
+          ].divide(SizedBox(height: 16)).addToEnd(SizedBox(height: 72)),
         ),
       ),
     );
