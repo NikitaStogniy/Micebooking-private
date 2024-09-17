@@ -267,10 +267,15 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
                               ),
                               FutureBuilder<List<FoodPositionRow>>(
                                 future: FoodPositionTable().queryRows(
-                                  queryFn: (q) => q.eq(
-                                    'category',
-                                    staggeredViewServiceCategoryRow.id,
-                                  ),
+                                  queryFn: (q) => q
+                                      .eq(
+                                        'category',
+                                        staggeredViewServiceCategoryRow.id,
+                                      )
+                                      .in_(
+                                        'id',
+                                        widget.food!.positions,
+                                      ),
                                 ),
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.
