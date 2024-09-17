@@ -6,6 +6,9 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
 import 'client_request_mob_for_test_model.dart';
 export 'client_request_mob_for_test_model.dart';
 
@@ -57,7 +60,7 @@ class _ClientRequestMobForTestWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+      padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -69,7 +72,7 @@ class _ClientRequestMobForTestWidgetState
                       .eq(
                         'owner',
                         valueOrDefault<int>(
-                          widget.userId?.id,
+                          widget!.userId?.id,
                           88,
                         ),
                       )
@@ -84,8 +87,8 @@ class _ClientRequestMobForTestWidgetState
                   if (!snapshot.hasData) {
                     return Center(
                       child: SizedBox(
-                        width: 50.0,
-                        height: 50.0,
+                        width: 50,
+                        height: 50,
                         child: CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation<Color>(
                             FlutterFlowTheme.of(context).primary,
@@ -97,19 +100,19 @@ class _ClientRequestMobForTestWidgetState
                   List<RequestsRow> containerRequestsRowList = snapshot.data!;
 
                   return ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(16.0),
-                      bottomRight: Radius.circular(16.0),
-                      topLeft: Radius.circular(0.0),
-                      topRight: Radius.circular(0.0),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(16),
+                      bottomRight: Radius.circular(16),
+                      topLeft: Radius.circular(0),
+                      topRight: Radius.circular(0),
                     ),
                     child: Container(
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(16.0),
-                          bottomRight: Radius.circular(16.0),
-                          topLeft: Radius.circular(0.0),
-                          topRight: Radius.circular(0.0),
+                          bottomLeft: Radius.circular(16),
+                          bottomRight: Radius.circular(16),
+                          topLeft: Radius.circular(0),
+                          topRight: Radius.circular(0),
                         ),
                       ),
                       child: Column(
@@ -125,12 +128,12 @@ class _ClientRequestMobForTestWidgetState
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Commissioner',
-                                      fontSize: 28.0,
+                                      fontSize: 28,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
-                            ].divide(const SizedBox(width: 24.0)),
+                            ].divide(SizedBox(width: 24)),
                           ),
                           Row(
                             mainAxisSize: MainAxisSize.max,
@@ -139,15 +142,15 @@ class _ClientRequestMobForTestWidgetState
                               FlutterFlowIconButton(
                                 borderColor:
                                     FlutterFlowTheme.of(context).primary,
-                                borderRadius: 20.0,
-                                borderWidth: 1.0,
-                                buttonSize: 32.0,
+                                borderRadius: 20,
+                                borderWidth: 1,
+                                buttonSize: 32,
                                 fillColor: FlutterFlowTheme.of(context).primary,
                                 icon: Icon(
                                   Icons.arrow_back_ios_new_rounded,
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  size: 16.0,
+                                  size: 16,
                                 ),
                                 onPressed: () async {
                                   _model.currentDate =
@@ -159,8 +162,8 @@ class _ClientRequestMobForTestWidgetState
                                 },
                               ),
                               Container(
-                                width: 150.0,
-                                decoration: const BoxDecoration(),
+                                width: 150,
+                                decoration: BoxDecoration(),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -174,7 +177,7 @@ class _ClientRequestMobForTestWidgetState
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Commissioner',
-                                            fontSize: 18.0,
+                                            fontSize: 18,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
                                           ),
@@ -185,15 +188,15 @@ class _ClientRequestMobForTestWidgetState
                               FlutterFlowIconButton(
                                 borderColor:
                                     FlutterFlowTheme.of(context).primary,
-                                borderRadius: 20.0,
-                                borderWidth: 1.0,
-                                buttonSize: 32.0,
+                                borderRadius: 20,
+                                borderWidth: 1,
+                                buttonSize: 32,
                                 fillColor: FlutterFlowTheme.of(context).primary,
                                 icon: Icon(
                                   Icons.arrow_forward_ios_rounded,
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  size: 16.0,
+                                  size: 16,
                                 ),
                                 onPressed: () async {
                                   _model.currentDate =
@@ -204,7 +207,7 @@ class _ClientRequestMobForTestWidgetState
                                   safeSetState(() {});
                                 },
                               ),
-                            ].divide(const SizedBox(width: 16.0)),
+                            ].divide(SizedBox(width: 16)),
                           ),
                           Builder(
                             builder: (context) {
@@ -227,26 +230,24 @@ class _ClientRequestMobForTestWidgetState
                                         children: [
                                           Expanded(
                                             child: Container(
-                                              width: 100.0,
-                                              height: 40.0,
+                                              width: 100,
+                                              height: 40,
                                               decoration: BoxDecoration(
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primary,
-                                                borderRadius: const BorderRadius.only(
+                                                borderRadius: BorderRadius.only(
                                                   bottomLeft:
-                                                      Radius.circular(30.0),
+                                                      Radius.circular(30),
                                                   bottomRight:
-                                                      Radius.circular(0.0),
-                                                  topLeft:
-                                                      Radius.circular(30.0),
-                                                  topRight:
-                                                      Radius.circular(0.0),
+                                                      Radius.circular(0),
+                                                  topLeft: Radius.circular(30),
+                                                  topRight: Radius.circular(0),
                                                 ),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
-                                                    0.0, 0.0),
+                                                alignment:
+                                                    AlignmentDirectional(0, 0),
                                                 child: Text(
                                                   '№ запроса',
                                                   style: FlutterFlowTheme.of(
@@ -258,7 +259,7 @@ class _ClientRequestMobForTestWidgetState
                                                         color: FlutterFlowTheme
                                                                 .of(context)
                                                             .secondaryBackground,
-                                                        fontSize: 18.0,
+                                                        fontSize: 18,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w500,
@@ -269,23 +270,22 @@ class _ClientRequestMobForTestWidgetState
                                           ),
                                           Expanded(
                                             child: Container(
-                                              width: 100.0,
-                                              height: 40.0,
-                                              decoration: const BoxDecoration(
+                                              width: 100,
+                                              height: 40,
+                                              decoration: BoxDecoration(
                                                 color: Color(0xFFF0F0FA),
                                                 borderRadius: BorderRadius.only(
                                                   bottomLeft:
-                                                      Radius.circular(0.0),
+                                                      Radius.circular(0),
                                                   bottomRight:
-                                                      Radius.circular(30.0),
-                                                  topLeft: Radius.circular(0.0),
-                                                  topRight:
-                                                      Radius.circular(30.0),
+                                                      Radius.circular(30),
+                                                  topLeft: Radius.circular(0),
+                                                  topRight: Radius.circular(30),
                                                 ),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
-                                                    0.0, 0.0),
+                                                alignment:
+                                                    AlignmentDirectional(0, 0),
                                                 child: Text(
                                                   requestsMobItem.id.toString(),
                                                   style: FlutterFlowTheme.of(
@@ -298,7 +298,7 @@ class _ClientRequestMobForTestWidgetState
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 18.0,
+                                                        fontSize: 18,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w500,
@@ -320,30 +320,28 @@ class _ClientRequestMobForTestWidgetState
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Commissioner',
-                                                  fontSize: 18.0,
+                                                  fontSize: 18,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                           ),
                                           Container(
                                             width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            height: 40.0,
+                                                .width,
+                                            height: 40,
                                             decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
                                               borderRadius:
-                                                  BorderRadius.circular(30.0),
+                                                  BorderRadius.circular(30),
                                             ),
                                             child: Align(
-                                              alignment: const AlignmentDirectional(
-                                                  -1.0, 0.0),
+                                              alignment:
+                                                  AlignmentDirectional(-1, 0),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        15.0, 0.0, 15.0, 0.0),
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(15, 0, 15, 0),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -351,16 +349,13 @@ class _ClientRequestMobForTestWidgetState
                                                     Expanded(
                                                       child: Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
-                                                                -1.0, 0.0),
+                                                            AlignmentDirectional(
+                                                                -1, 0),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      15.0,
-                                                                      0.0),
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      0, 15, 0),
                                                           child: Text(
                                                             valueOrDefault<
                                                                 String>(
@@ -374,8 +369,7 @@ class _ClientRequestMobForTestWidgetState
                                                                 .override(
                                                                   fontFamily:
                                                                       'Commissioner',
-                                                                  fontSize:
-                                                                      18.0,
+                                                                  fontSize: 18,
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight:
@@ -391,7 +385,7 @@ class _ClientRequestMobForTestWidgetState
                                               ),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(height: 16.0)),
+                                        ].divide(SizedBox(height: 16)),
                                       ),
                                       Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -404,30 +398,28 @@ class _ClientRequestMobForTestWidgetState
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Commissioner',
-                                                  fontSize: 18.0,
+                                                  fontSize: 18,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                           ),
                                           Container(
                                             width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            height: 40.0,
+                                                .width,
+                                            height: 40,
                                             decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
                                               borderRadius:
-                                                  BorderRadius.circular(30.0),
+                                                  BorderRadius.circular(30),
                                             ),
                                             child: Align(
-                                              alignment: const AlignmentDirectional(
-                                                  -1.0, 0.0),
+                                              alignment:
+                                                  AlignmentDirectional(-1, 0),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        15.0, 0.0, 15.0, 0.0),
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(15, 0, 15, 0),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -435,16 +427,13 @@ class _ClientRequestMobForTestWidgetState
                                                     Expanded(
                                                       child: Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
-                                                                -1.0, 0.0),
+                                                            AlignmentDirectional(
+                                                                -1, 0),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      15.0,
-                                                                      0.0),
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      0, 15, 0),
                                                           child: Text(
                                                             valueOrDefault<
                                                                 String>(
@@ -464,8 +453,7 @@ class _ClientRequestMobForTestWidgetState
                                                                 .override(
                                                                   fontFamily:
                                                                       'Commissioner',
-                                                                  fontSize:
-                                                                      18.0,
+                                                                  fontSize: 18,
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight:
@@ -481,7 +469,7 @@ class _ClientRequestMobForTestWidgetState
                                               ),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(height: 16.0)),
+                                        ].divide(SizedBox(height: 16)),
                                       ),
                                       Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -494,30 +482,28 @@ class _ClientRequestMobForTestWidgetState
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Commissioner',
-                                                  fontSize: 18.0,
+                                                  fontSize: 18,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                           ),
                                           Container(
                                             width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            height: 40.0,
+                                                .width,
+                                            height: 40,
                                             decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
                                               borderRadius:
-                                                  BorderRadius.circular(30.0),
+                                                  BorderRadius.circular(30),
                                             ),
                                             child: Align(
-                                              alignment: const AlignmentDirectional(
-                                                  -1.0, 0.0),
+                                              alignment:
+                                                  AlignmentDirectional(-1, 0),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        15.0, 0.0, 15.0, 0.0),
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(15, 0, 15, 0),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -525,16 +511,13 @@ class _ClientRequestMobForTestWidgetState
                                                     Expanded(
                                                       child: Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
-                                                                -1.0, 0.0),
+                                                            AlignmentDirectional(
+                                                                -1, 0),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      15.0,
-                                                                      0.0),
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      0, 15, 0),
                                                           child: Text(
                                                             valueOrDefault<
                                                                 String>(
@@ -548,8 +531,7 @@ class _ClientRequestMobForTestWidgetState
                                                                 .override(
                                                                   fontFamily:
                                                                       'Commissioner',
-                                                                  fontSize:
-                                                                      18.0,
+                                                                  fontSize: 18,
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight:
@@ -565,7 +547,7 @@ class _ClientRequestMobForTestWidgetState
                                               ),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(height: 16.0)),
+                                        ].divide(SizedBox(height: 16)),
                                       ),
                                       Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -578,30 +560,28 @@ class _ClientRequestMobForTestWidgetState
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Commissioner',
-                                                  fontSize: 18.0,
+                                                  fontSize: 18,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                           ),
                                           Container(
                                             width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            height: 40.0,
+                                                .width,
+                                            height: 40,
                                             decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
                                               borderRadius:
-                                                  BorderRadius.circular(30.0),
+                                                  BorderRadius.circular(30),
                                             ),
                                             child: Align(
-                                              alignment: const AlignmentDirectional(
-                                                  -1.0, 0.0),
+                                              alignment:
+                                                  AlignmentDirectional(-1, 0),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        15.0, 0.0, 15.0, 0.0),
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(15, 0, 15, 0),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -609,16 +589,13 @@ class _ClientRequestMobForTestWidgetState
                                                     Expanded(
                                                       child: Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
-                                                                -1.0, 0.0),
+                                                            AlignmentDirectional(
+                                                                -1, 0),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      15.0,
-                                                                      0.0),
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      0, 15, 0),
                                                           child: Text(
                                                             valueOrDefault<
                                                                 String>(
@@ -638,8 +615,7 @@ class _ClientRequestMobForTestWidgetState
                                                                 .override(
                                                                   fontFamily:
                                                                       'Commissioner',
-                                                                  fontSize:
-                                                                      18.0,
+                                                                  fontSize: 18,
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight:
@@ -655,7 +631,7 @@ class _ClientRequestMobForTestWidgetState
                                               ),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(height: 16.0)),
+                                        ].divide(SizedBox(height: 16)),
                                       ),
                                       Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -668,30 +644,28 @@ class _ClientRequestMobForTestWidgetState
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Commissioner',
-                                                  fontSize: 18.0,
+                                                  fontSize: 18,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                           ),
                                           Container(
                                             width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            height: 40.0,
+                                                .width,
+                                            height: 40,
                                             decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
                                               borderRadius:
-                                                  BorderRadius.circular(30.0),
+                                                  BorderRadius.circular(30),
                                             ),
                                             child: Align(
-                                              alignment: const AlignmentDirectional(
-                                                  -1.0, 0.0),
+                                              alignment:
+                                                  AlignmentDirectional(-1, 0),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        15.0, 0.0, 15.0, 0.0),
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(15, 0, 15, 0),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -699,16 +673,13 @@ class _ClientRequestMobForTestWidgetState
                                                     Expanded(
                                                       child: Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
-                                                                -1.0, 0.0),
+                                                            AlignmentDirectional(
+                                                                -1, 0),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      15.0,
-                                                                      0.0),
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      0, 15, 0),
                                                           child: Text(
                                                             valueOrDefault<
                                                                 String>(
@@ -723,8 +694,7 @@ class _ClientRequestMobForTestWidgetState
                                                                 .override(
                                                                   fontFamily:
                                                                       'Commissioner',
-                                                                  fontSize:
-                                                                      18.0,
+                                                                  fontSize: 18,
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight:
@@ -740,7 +710,7 @@ class _ClientRequestMobForTestWidgetState
                                               ),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(height: 16.0)),
+                                        ].divide(SizedBox(height: 16)),
                                       ),
                                       Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -753,30 +723,28 @@ class _ClientRequestMobForTestWidgetState
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Commissioner',
-                                                  fontSize: 18.0,
+                                                  fontSize: 18,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                           ),
                                           Container(
                                             width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            height: 40.0,
+                                                .width,
+                                            height: 40,
                                             decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
                                               borderRadius:
-                                                  BorderRadius.circular(30.0),
+                                                  BorderRadius.circular(30),
                                             ),
                                             child: Align(
-                                              alignment: const AlignmentDirectional(
-                                                  -1.0, 0.0),
+                                              alignment:
+                                                  AlignmentDirectional(-1, 0),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        15.0, 0.0, 15.0, 0.0),
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(15, 0, 15, 0),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -784,16 +752,13 @@ class _ClientRequestMobForTestWidgetState
                                                     Expanded(
                                                       child: Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
-                                                                -1.0, 0.0),
+                                                            AlignmentDirectional(
+                                                                -1, 0),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      15.0,
-                                                                      0.0),
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      0, 15, 0),
                                                           child: Text(
                                                             '${formatNumber(
                                                               requestsMobItem
@@ -811,8 +776,7 @@ class _ClientRequestMobForTestWidgetState
                                                                 .override(
                                                                   fontFamily:
                                                                       'Commissioner',
-                                                                  fontSize:
-                                                                      18.0,
+                                                                  fontSize: 18,
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight:
@@ -828,7 +792,7 @@ class _ClientRequestMobForTestWidgetState
                                               ),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(height: 16.0)),
+                                        ].divide(SizedBox(height: 16)),
                                       ),
                                       Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -843,14 +807,12 @@ class _ClientRequestMobForTestWidgetState
                                             text: 'Открыть',
                                             options: FFButtonOptions(
                                               width: MediaQuery.sizeOf(context)
-                                                      .width *
-                                                  1.0,
-                                              height: 50.0,
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                                  .width,
+                                              height: 50,
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(24, 0, 24, 0),
+                                              iconPadding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 0, 0),
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
@@ -863,24 +825,24 @@ class _ClientRequestMobForTestWidgetState
                                                     letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w600,
                                                   ),
-                                              elevation: 0.0,
-                                              borderSide: const BorderSide(
+                                              elevation: 0,
+                                              borderSide: BorderSide(
                                                 color: Colors.transparent,
-                                                width: 1.0,
+                                                width: 1,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(80.0),
+                                                  BorderRadius.circular(80),
                                             ),
                                           ),
                                         ],
                                       ),
-                                    ].divide(const SizedBox(height: 24.0)),
+                                    ].divide(SizedBox(height: 24)),
                                   );
-                                }).divide(const SizedBox(height: 40.0)),
+                                }).divide(SizedBox(height: 40)),
                               );
                             },
                           ),
-                        ].divide(const SizedBox(height: 40.0)),
+                        ].divide(SizedBox(height: 40)),
                       ),
                     ),
                   );
@@ -899,8 +861,8 @@ class _ClientRequestMobForTestWidgetState
                   if (!snapshot.hasData) {
                     return Center(
                       child: SizedBox(
-                        width: 50.0,
-                        height: 50.0,
+                        width: 50,
+                        height: 50,
                         child: CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation<Color>(
                             FlutterFlowTheme.of(context).primary,
@@ -917,7 +879,7 @@ class _ClientRequestMobForTestWidgetState
                           : null;
 
                   return Container(
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -932,18 +894,18 @@ class _ClientRequestMobForTestWidgetState
                             safeSetState(() {});
                           },
                           child: Container(
-                            width: 40.0,
-                            height: 40.0,
+                            width: 40,
+                            height: 40,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context).primary,
                               shape: BoxShape.circle,
                             ),
-                            child: const Align(
-                              alignment: AlignmentDirectional(0.0, 0.0),
+                            child: Align(
+                              alignment: AlignmentDirectional(0, 0),
                               child: Icon(
                                 Icons.arrow_back_ios_new_rounded,
                                 color: Colors.white,
-                                size: 20.0,
+                                size: 20,
                               ),
                             ),
                           ),
@@ -953,12 +915,12 @@ class _ClientRequestMobForTestWidgetState
                           children: [
                             Expanded(
                               child: Text(
-                                'Запрос №${containerRequestsRow?.id.toString()} в отель ${containerRequestsRow?.hotelName}',
+                                'Запрос №${containerRequestsRow?.id?.toString()} в отель ${containerRequestsRow?.hotelName}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Commissioner',
-                                      fontSize: 28.0,
+                                      fontSize: 28,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -978,7 +940,7 @@ class _ClientRequestMobForTestWidgetState
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Commissioner',
-                                        fontSize: 18.0,
+                                        fontSize: 18,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -997,12 +959,12 @@ class _ClientRequestMobForTestWidgetState
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Commissioner',
-                                        fontSize: 18.0,
+                                        fontSize: 18,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.bold,
                                       ),
                                 ),
-                              ].divide(const SizedBox(width: 16.0)),
+                              ].divide(SizedBox(width: 16)),
                             ),
                             Row(
                               mainAxisSize: MainAxisSize.max,
@@ -1024,14 +986,14 @@ class _ClientRequestMobForTestWidgetState
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Commissioner',
-                                          fontSize: 18.0,
+                                          fontSize: 18,
                                           letterSpacing: 0.0,
                                         ),
                                   ),
                                 ),
-                              ].divide(const SizedBox(width: 16.0)),
+                              ].divide(SizedBox(width: 16)),
                             ),
-                          ].divide(const SizedBox(height: 16.0)),
+                          ].divide(SizedBox(height: 16)),
                         ),
                         FutureBuilder<List<HotelRow>>(
                           future: HotelTable().querySingleRow(
@@ -1045,8 +1007,8 @@ class _ClientRequestMobForTestWidgetState
                             if (!snapshot.hasData) {
                               return Center(
                                 child: SizedBox(
-                                  width: 50.0,
-                                  height: 50.0,
+                                  width: 50,
+                                  height: 50,
                                   child: CircularProgressIndicator(
                                     valueColor: AlwaysStoppedAnimation<Color>(
                                       FlutterFlowTheme.of(context).primary,
@@ -1076,8 +1038,8 @@ class _ClientRequestMobForTestWidgetState
                                     if (!snapshot.hasData) {
                                       return Center(
                                         child: SizedBox(
-                                          width: 50.0,
-                                          height: 50.0,
+                                          width: 50,
+                                          height: 50,
                                           child: CircularProgressIndicator(
                                             valueColor:
                                                 AlwaysStoppedAnimation<Color>(
@@ -1109,7 +1071,7 @@ class _ClientRequestMobForTestWidgetState
                                                   .bodyMedium
                                                   .override(
                                                     fontFamily: 'Commissioner',
-                                                    fontSize: 18.0,
+                                                    fontSize: 18,
                                                     letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w500,
                                                   ),
@@ -1129,12 +1091,12 @@ class _ClientRequestMobForTestWidgetState
                                                   .bodyMedium
                                                   .override(
                                                     fontFamily: 'Commissioner',
-                                                    fontSize: 18.0,
+                                                    fontSize: 18,
                                                     letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w500,
                                                   ),
                                             ),
-                                          ].divide(const SizedBox(width: 40.0)),
+                                          ].divide(SizedBox(width: 40)),
                                         ),
                                         Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -1152,15 +1114,15 @@ class _ClientRequestMobForTestWidgetState
                                                         .override(
                                                           fontFamily:
                                                               'Commissioner',
-                                                          fontSize: 18.0,
+                                                          fontSize: 18,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w500,
                                                         ),
                                               ),
-                                          ].divide(const SizedBox(width: 40.0)),
+                                          ].divide(SizedBox(width: 40)),
                                         ),
-                                      ].divide(const SizedBox(height: 16.0)),
+                                      ].divide(SizedBox(height: 16)),
                                     );
                                   },
                                 ),
@@ -1168,7 +1130,7 @@ class _ClientRequestMobForTestWidgetState
                             );
                           },
                         ),
-                        if (containerRequestsRow?.halls.isNotEmpty)
+                        if (containerRequestsRow?.halls?.length != 0)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1179,14 +1141,14 @@ class _ClientRequestMobForTestWidgetState
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Commissioner',
-                                      fontSize: 18.0,
+                                      fontSize: 18,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w500,
                                     ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 24.0, 0.0, 0.0),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
                                 child: FutureBuilder<List<RequestsHallVarRow>>(
                                   future: RequestsHallVarTable().queryRows(
                                     queryFn: (q) => q.in_(
@@ -1199,8 +1161,8 @@ class _ClientRequestMobForTestWidgetState
                                     if (!snapshot.hasData) {
                                       return Center(
                                         child: SizedBox(
-                                          width: 50.0,
-                                          height: 50.0,
+                                          width: 50,
+                                          height: 50,
                                           child: CircularProgressIndicator(
                                             valueColor:
                                                 AlwaysStoppedAnimation<Color>(
@@ -1230,27 +1192,24 @@ class _ClientRequestMobForTestWidgetState
                                           children: [
                                             Container(
                                               width: MediaQuery.sizeOf(context)
-                                                      .width *
-                                                  1.0,
-                                              height: 40.0,
+                                                  .width,
+                                              height: 40,
                                               decoration: BoxDecoration(
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primary,
-                                                borderRadius: const BorderRadius.only(
+                                                borderRadius: BorderRadius.only(
                                                   bottomLeft:
-                                                      Radius.circular(0.0),
+                                                      Radius.circular(0),
                                                   bottomRight:
-                                                      Radius.circular(0.0),
-                                                  topLeft:
-                                                      Radius.circular(30.0),
-                                                  topRight:
-                                                      Radius.circular(30.0),
+                                                      Radius.circular(0),
+                                                  topLeft: Radius.circular(30),
+                                                  topRight: Radius.circular(30),
                                                 ),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
-                                                    0.0, 0.0),
+                                                alignment:
+                                                    AlignmentDirectional(0, 0),
                                                 child: Text(
                                                   'Название зала:',
                                                   style: FlutterFlowTheme.of(
@@ -1262,7 +1221,7 @@ class _ClientRequestMobForTestWidgetState
                                                         color: FlutterFlowTheme
                                                                 .of(context)
                                                             .secondaryBackground,
-                                                        fontSize: 18.0,
+                                                        fontSize: 18,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w500,
@@ -1272,24 +1231,22 @@ class _ClientRequestMobForTestWidgetState
                                             ),
                                             Container(
                                               width: MediaQuery.sizeOf(context)
-                                                      .width *
-                                                  1.0,
-                                              height: 40.0,
-                                              decoration: const BoxDecoration(
+                                                  .width,
+                                              height: 40,
+                                              decoration: BoxDecoration(
                                                 color: Color(0xFFF0F0FA),
                                                 borderRadius: BorderRadius.only(
                                                   bottomLeft:
-                                                      Radius.circular(30.0),
+                                                      Radius.circular(30),
                                                   bottomRight:
-                                                      Radius.circular(30.0),
-                                                  topLeft: Radius.circular(0.0),
-                                                  topRight:
-                                                      Radius.circular(0.0),
+                                                      Radius.circular(30),
+                                                  topLeft: Radius.circular(0),
+                                                  topRight: Radius.circular(0),
                                                 ),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
-                                                    0.0, 0.0),
+                                                alignment:
+                                                    AlignmentDirectional(0, 0),
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     columnRequestsHallVarRow
@@ -1306,7 +1263,7 @@ class _ClientRequestMobForTestWidgetState
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 18.0,
+                                                        fontSize: 18,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w500,
@@ -1315,9 +1272,8 @@ class _ClientRequestMobForTestWidgetState
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 24.0, 0.0, 0.0),
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 24, 0, 0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 crossAxisAlignment:
@@ -1331,7 +1287,7 @@ class _ClientRequestMobForTestWidgetState
                                                         .override(
                                                           fontFamily:
                                                               'Commissioner',
-                                                          fontSize: 18.0,
+                                                          fontSize: 18,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w500,
@@ -1339,28 +1295,24 @@ class _ClientRequestMobForTestWidgetState
                                                   ),
                                                   Container(
                                                     width: MediaQuery.sizeOf(
-                                                                context)
-                                                            .width *
-                                                        1.0,
-                                                    height: 40.0,
+                                                            context)
+                                                        .width,
+                                                    height: 40,
                                                     decoration: BoxDecoration(
-                                                      color: const Color(0xFFF0F0FA),
+                                                      color: Color(0xFFF0F0FA),
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              30.0),
+                                                              30),
                                                     ),
                                                     child: Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
-                                                              -1.0, 0.0),
+                                                          AlignmentDirectional(
+                                                              -1, 0),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    15.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(15, 0,
+                                                                    0, 0),
                                                         child: Text(
                                                           valueOrDefault<
                                                               String>(
@@ -1374,7 +1326,7 @@ class _ClientRequestMobForTestWidgetState
                                                               .override(
                                                                 fontFamily:
                                                                     'Commissioner',
-                                                                fontSize: 18.0,
+                                                                fontSize: 18,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
@@ -1385,14 +1337,12 @@ class _ClientRequestMobForTestWidgetState
                                                       ),
                                                     ),
                                                   ),
-                                                ].divide(
-                                                    const SizedBox(height: 16.0)),
+                                                ].divide(SizedBox(height: 16)),
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 24.0, 0.0, 0.0),
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 24, 0, 0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 crossAxisAlignment:
@@ -1406,7 +1356,7 @@ class _ClientRequestMobForTestWidgetState
                                                         .override(
                                                           fontFamily:
                                                               'Commissioner',
-                                                          fontSize: 18.0,
+                                                          fontSize: 18,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w500,
@@ -1414,28 +1364,24 @@ class _ClientRequestMobForTestWidgetState
                                                   ),
                                                   Container(
                                                     width: MediaQuery.sizeOf(
-                                                                context)
-                                                            .width *
-                                                        1.0,
-                                                    height: 40.0,
+                                                            context)
+                                                        .width,
+                                                    height: 40,
                                                     decoration: BoxDecoration(
-                                                      color: const Color(0xFFF0F0FA),
+                                                      color: Color(0xFFF0F0FA),
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              30.0),
+                                                              30),
                                                     ),
                                                     child: Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
-                                                              -1.0, 0.0),
+                                                          AlignmentDirectional(
+                                                              -1, 0),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    15.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(15, 0,
+                                                                    0, 0),
                                                         child: Text(
                                                           valueOrDefault<
                                                               String>(
@@ -1450,7 +1396,7 @@ class _ClientRequestMobForTestWidgetState
                                                               .override(
                                                                 fontFamily:
                                                                     'Commissioner',
-                                                                fontSize: 18.0,
+                                                                fontSize: 18,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
@@ -1461,14 +1407,12 @@ class _ClientRequestMobForTestWidgetState
                                                       ),
                                                     ),
                                                   ),
-                                                ].divide(
-                                                    const SizedBox(height: 16.0)),
+                                                ].divide(SizedBox(height: 16)),
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 24.0, 0.0, 0.0),
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 24, 0, 0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 crossAxisAlignment:
@@ -1482,7 +1426,7 @@ class _ClientRequestMobForTestWidgetState
                                                         .override(
                                                           fontFamily:
                                                               'Commissioner',
-                                                          fontSize: 18.0,
+                                                          fontSize: 18,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w500,
@@ -1490,28 +1434,24 @@ class _ClientRequestMobForTestWidgetState
                                                   ),
                                                   Container(
                                                     width: MediaQuery.sizeOf(
-                                                                context)
-                                                            .width *
-                                                        1.0,
-                                                    height: 40.0,
+                                                            context)
+                                                        .width,
+                                                    height: 40,
                                                     decoration: BoxDecoration(
-                                                      color: const Color(0xFFF0F0FA),
+                                                      color: Color(0xFFF0F0FA),
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              30.0),
+                                                              30),
                                                     ),
                                                     child: Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
-                                                              -1.0, 0.0),
+                                                          AlignmentDirectional(
+                                                              -1, 0),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    15.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(15, 0,
+                                                                    0, 0),
                                                         child: Text(
                                                           '${formatNumber(
                                                             columnRequestsHallVarRow
@@ -1529,7 +1469,7 @@ class _ClientRequestMobForTestWidgetState
                                                               .override(
                                                                 fontFamily:
                                                                     'Commissioner',
-                                                                fontSize: 18.0,
+                                                                fontSize: 18,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
@@ -1540,50 +1480,48 @@ class _ClientRequestMobForTestWidgetState
                                                       ),
                                                     ),
                                                   ),
-                                                ].divide(
-                                                    const SizedBox(height: 16.0)),
+                                                ].divide(SizedBox(height: 16)),
                                               ),
                                             ),
                                           ],
                                         );
-                                      }).divide(const SizedBox(height: 24.0)),
+                                      }).divide(SizedBox(height: 24)),
                                     );
                                   },
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 32.0, 0.0, 0.0),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Container(
-                                      width: 100.0,
-                                      height: 40.0,
+                                      width: 100,
+                                      height: 40,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
-                                        borderRadius: const BorderRadius.only(
-                                          bottomLeft: Radius.circular(30.0),
-                                          bottomRight: Radius.circular(0.0),
-                                          topLeft: Radius.circular(30.0),
-                                          topRight: Radius.circular(0.0),
+                                        borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(30),
+                                          bottomRight: Radius.circular(0),
+                                          topLeft: Radius.circular(30),
+                                          topRight: Radius.circular(0),
                                         ),
                                       ),
                                       child: Align(
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                        alignment: AlignmentDirectional(0, 0),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  20.0, 0.0, 20.0, 0.0),
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  20, 0, 20, 0),
                                           child: Text(
                                             'Итого',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Commissioner',
-                                                  fontSize: 18.0,
+                                                  fontSize: 18,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
@@ -1593,24 +1531,23 @@ class _ClientRequestMobForTestWidgetState
                                     ),
                                     Expanded(
                                       child: Container(
-                                        height: 40.0,
+                                        height: 40,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
-                                          borderRadius: const BorderRadius.only(
-                                            bottomLeft: Radius.circular(0.0),
-                                            bottomRight: Radius.circular(30.0),
-                                            topLeft: Radius.circular(0.0),
-                                            topRight: Radius.circular(30.0),
+                                          borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(0),
+                                            bottomRight: Radius.circular(30),
+                                            topLeft: Radius.circular(0),
+                                            topRight: Radius.circular(30),
                                           ),
                                         ),
                                         child: Align(
-                                          alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                          alignment: AlignmentDirectional(0, 0),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    20.0, 0.0, 20.0, 0.0),
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    20, 0, 20, 0),
                                             child: Text(
                                               '${formatNumber(
                                                 containerRequestsRow?.hallPrice,
@@ -1626,7 +1563,7 @@ class _ClientRequestMobForTestWidgetState
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .secondaryBackground,
-                                                    fontSize: 18.0,
+                                                    fontSize: 18,
                                                     letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w500,
                                                   ),
@@ -1640,21 +1577,21 @@ class _ClientRequestMobForTestWidgetState
                               ),
                             ],
                           ),
-                        if (containerRequestsRow?.food.isNotEmpty)
+                        if (containerRequestsRow?.food?.length != 0)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 16.0),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                 child: Text(
                                   'Питание:',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Commissioner',
-                                        fontSize: 18.0,
+                                        fontSize: 18,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -1672,8 +1609,8 @@ class _ClientRequestMobForTestWidgetState
                                   if (!snapshot.hasData) {
                                     return Center(
                                       child: SizedBox(
-                                        width: 50.0,
-                                        height: 50.0,
+                                        width: 50,
+                                        height: 50,
                                         child: CircularProgressIndicator(
                                           valueColor:
                                               AlwaysStoppedAnimation<Color>(
@@ -1705,25 +1642,22 @@ class _ClientRequestMobForTestWidgetState
                                         children: [
                                           Container(
                                             width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            height: 40.0,
+                                                .width,
+                                            height: 40,
                                             decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
-                                              borderRadius: const BorderRadius.only(
-                                                bottomLeft:
-                                                    Radius.circular(0.0),
-                                                bottomRight:
-                                                    Radius.circular(0.0),
-                                                topLeft: Radius.circular(30.0),
-                                                topRight: Radius.circular(30.0),
+                                              borderRadius: BorderRadius.only(
+                                                bottomLeft: Radius.circular(0),
+                                                bottomRight: Radius.circular(0),
+                                                topLeft: Radius.circular(30),
+                                                topRight: Radius.circular(30),
                                               ),
                                             ),
                                             child: Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
+                                              alignment:
+                                                  AlignmentDirectional(0, 0),
                                               child: Text(
                                                 'Название пакета:',
                                                 style:
@@ -1735,7 +1669,7 @@ class _ClientRequestMobForTestWidgetState
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryBackground,
-                                                          fontSize: 18.0,
+                                                          fontSize: 18,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w500,
@@ -1745,23 +1679,21 @@ class _ClientRequestMobForTestWidgetState
                                           ),
                                           Container(
                                             width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            height: 40.0,
-                                            decoration: const BoxDecoration(
+                                                .width,
+                                            height: 40,
+                                            decoration: BoxDecoration(
                                               color: Color(0xFFF0F0FA),
                                               borderRadius: BorderRadius.only(
-                                                bottomLeft:
-                                                    Radius.circular(30.0),
+                                                bottomLeft: Radius.circular(30),
                                                 bottomRight:
-                                                    Radius.circular(30.0),
-                                                topLeft: Radius.circular(0.0),
-                                                topRight: Radius.circular(0.0),
+                                                    Radius.circular(30),
+                                                topLeft: Radius.circular(0),
+                                                topRight: Radius.circular(0),
                                               ),
                                             ),
                                             child: Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
+                                              alignment:
+                                                  AlignmentDirectional(0, 0),
                                               child: Text(
                                                 valueOrDefault<String>(
                                                   columnRequestsFoodVarRow.name,
@@ -1776,7 +1708,7 @@ class _ClientRequestMobForTestWidgetState
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryText,
-                                                          fontSize: 18.0,
+                                                          fontSize: 18,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w500,
@@ -1786,8 +1718,8 @@ class _ClientRequestMobForTestWidgetState
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 24.0, 0.0, 0.0),
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 24, 0, 0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               crossAxisAlignment:
@@ -1801,7 +1733,7 @@ class _ClientRequestMobForTestWidgetState
                                                       .override(
                                                         fontFamily:
                                                             'Commissioner',
-                                                        fontSize: 18.0,
+                                                        fontSize: 18,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w500,
@@ -1810,27 +1742,23 @@ class _ClientRequestMobForTestWidgetState
                                                 Container(
                                                   width:
                                                       MediaQuery.sizeOf(context)
-                                                              .width *
-                                                          1.0,
-                                                  height: 40.0,
+                                                          .width,
+                                                  height: 40,
                                                   decoration: BoxDecoration(
-                                                    color: const Color(0xFFF0F0FA),
+                                                    color: Color(0xFFF0F0FA),
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            30.0),
+                                                            30),
                                                   ),
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
-                                                            -1.0, 0.0),
+                                                        AlignmentDirectional(
+                                                            -1, 0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  15.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
+                                                                  15, 0, 0, 0),
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           functions.personsGen(
@@ -1839,30 +1767,31 @@ class _ClientRequestMobForTestWidgetState
                                                                   ?.toDouble()),
                                                           'Не назначено',
                                                         ),
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Commissioner',
-                                                              fontSize: 18.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                            ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Commissioner',
+                                                                  fontSize: 18,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                              ].divide(const SizedBox(height: 16.0)),
+                                              ].divide(SizedBox(height: 16)),
                                             ),
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 24.0, 0.0, 0.0),
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 24, 0, 0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               crossAxisAlignment:
@@ -1876,7 +1805,7 @@ class _ClientRequestMobForTestWidgetState
                                                       .override(
                                                         fontFamily:
                                                             'Commissioner',
-                                                        fontSize: 18.0,
+                                                        fontSize: 18,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w500,
@@ -1885,27 +1814,23 @@ class _ClientRequestMobForTestWidgetState
                                                 Container(
                                                   width:
                                                       MediaQuery.sizeOf(context)
-                                                              .width *
-                                                          1.0,
-                                                  height: 40.0,
+                                                          .width,
+                                                  height: 40,
                                                   decoration: BoxDecoration(
-                                                    color: const Color(0xFFF0F0FA),
+                                                    color: Color(0xFFF0F0FA),
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            30.0),
+                                                            30),
                                                   ),
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
-                                                            -1.0, 0.0),
+                                                        AlignmentDirectional(
+                                                            -1, 0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  15.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
+                                                                  15, 0, 0, 0),
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           columnRequestsFoodVarRow
@@ -1913,30 +1838,31 @@ class _ClientRequestMobForTestWidgetState
                                                               ?.toString(),
                                                           '0',
                                                         ),
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Commissioner',
-                                                              fontSize: 18.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                            ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Commissioner',
+                                                                  fontSize: 18,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                              ].divide(const SizedBox(height: 16.0)),
+                                              ].divide(SizedBox(height: 16)),
                                             ),
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 24.0, 0.0, 0.0),
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 24, 0, 0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               crossAxisAlignment:
@@ -1950,7 +1876,7 @@ class _ClientRequestMobForTestWidgetState
                                                       .override(
                                                         fontFamily:
                                                             'Commissioner',
-                                                        fontSize: 18.0,
+                                                        fontSize: 18,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w500,
@@ -1959,27 +1885,23 @@ class _ClientRequestMobForTestWidgetState
                                                 Container(
                                                   width:
                                                       MediaQuery.sizeOf(context)
-                                                              .width *
-                                                          1.0,
-                                                  height: 40.0,
+                                                          .width,
+                                                  height: 40,
                                                   decoration: BoxDecoration(
-                                                    color: const Color(0xFFF0F0FA),
+                                                    color: Color(0xFFF0F0FA),
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            30.0),
+                                                            30),
                                                   ),
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
-                                                            -1.0, 0.0),
+                                                        AlignmentDirectional(
+                                                            -1, 0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  15.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
+                                                                  15, 0, 0, 0),
                                                       child: Text(
                                                         '${formatNumber(
                                                           columnRequestsFoodVarRow
@@ -1990,65 +1912,65 @@ class _ClientRequestMobForTestWidgetState
                                                               DecimalType
                                                                   .automatic,
                                                         )}₽',
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Commissioner',
-                                                              fontSize: 18.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                            ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Commissioner',
+                                                                  fontSize: 18,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                              ].divide(const SizedBox(height: 16.0)),
+                                              ].divide(SizedBox(height: 16)),
                                             ),
                                           ),
                                         ],
                                       );
-                                    }).divide(const SizedBox(height: 32.0)),
+                                    }).divide(SizedBox(height: 32)),
                                   );
                                 },
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 32.0, 0.0, 0.0),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Container(
-                                      width: 100.0,
-                                      height: 40.0,
+                                      width: 100,
+                                      height: 40,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
-                                        borderRadius: const BorderRadius.only(
-                                          bottomLeft: Radius.circular(30.0),
-                                          bottomRight: Radius.circular(0.0),
-                                          topLeft: Radius.circular(30.0),
-                                          topRight: Radius.circular(0.0),
+                                        borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(30),
+                                          bottomRight: Radius.circular(0),
+                                          topLeft: Radius.circular(30),
+                                          topRight: Radius.circular(0),
                                         ),
                                       ),
                                       child: Align(
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                        alignment: AlignmentDirectional(0, 0),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  20.0, 0.0, 20.0, 0.0),
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  20, 0, 20, 0),
                                           child: Text(
                                             'Итого',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Commissioner',
-                                                  fontSize: 18.0,
+                                                  fontSize: 18,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
@@ -2058,24 +1980,23 @@ class _ClientRequestMobForTestWidgetState
                                     ),
                                     Expanded(
                                       child: Container(
-                                        height: 40.0,
+                                        height: 40,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
-                                          borderRadius: const BorderRadius.only(
-                                            bottomLeft: Radius.circular(0.0),
-                                            bottomRight: Radius.circular(30.0),
-                                            topLeft: Radius.circular(0.0),
-                                            topRight: Radius.circular(30.0),
+                                          borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(0),
+                                            bottomRight: Radius.circular(30),
+                                            topLeft: Radius.circular(0),
+                                            topRight: Radius.circular(30),
                                           ),
                                         ),
                                         child: Align(
-                                          alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                          alignment: AlignmentDirectional(0, 0),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    20.0, 0.0, 20.0, 0.0),
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    20, 0, 20, 0),
                                             child: Text(
                                               '${formatNumber(
                                                 containerRequestsRow?.foodPrice,
@@ -2091,7 +2012,7 @@ class _ClientRequestMobForTestWidgetState
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .secondaryBackground,
-                                                    fontSize: 18.0,
+                                                    fontSize: 18,
                                                     letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w500,
                                                   ),
@@ -2105,21 +2026,21 @@ class _ClientRequestMobForTestWidgetState
                               ),
                             ],
                           ),
-                        if (containerRequestsRow?.rooms.isNotEmpty)
+                        if (containerRequestsRow?.rooms?.length != 0)
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 16.0),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                 child: Text(
                                   'Номера:',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Commissioner',
-                                        fontSize: 18.0,
+                                        fontSize: 18,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -2137,8 +2058,8 @@ class _ClientRequestMobForTestWidgetState
                                   if (!snapshot.hasData) {
                                     return Center(
                                       child: SizedBox(
-                                        width: 50.0,
-                                        height: 50.0,
+                                        width: 50,
+                                        height: 50,
                                         child: CircularProgressIndicator(
                                           valueColor:
                                               AlwaysStoppedAnimation<Color>(
@@ -2170,25 +2091,22 @@ class _ClientRequestMobForTestWidgetState
                                         children: [
                                           Container(
                                             width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            height: 40.0,
+                                                .width,
+                                            height: 40,
                                             decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
-                                              borderRadius: const BorderRadius.only(
-                                                bottomLeft:
-                                                    Radius.circular(0.0),
-                                                bottomRight:
-                                                    Radius.circular(0.0),
-                                                topLeft: Radius.circular(30.0),
-                                                topRight: Radius.circular(30.0),
+                                              borderRadius: BorderRadius.only(
+                                                bottomLeft: Radius.circular(0),
+                                                bottomRight: Radius.circular(0),
+                                                topLeft: Radius.circular(30),
+                                                topRight: Radius.circular(30),
                                               ),
                                             ),
                                             child: Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
+                                              alignment:
+                                                  AlignmentDirectional(0, 0),
                                               child: Text(
                                                 'Название номера:',
                                                 style:
@@ -2200,7 +2118,7 @@ class _ClientRequestMobForTestWidgetState
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryBackground,
-                                                          fontSize: 18.0,
+                                                          fontSize: 18,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w500,
@@ -2210,23 +2128,21 @@ class _ClientRequestMobForTestWidgetState
                                           ),
                                           Container(
                                             width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            height: 40.0,
-                                            decoration: const BoxDecoration(
+                                                .width,
+                                            height: 40,
+                                            decoration: BoxDecoration(
                                               color: Color(0xFFF0F0FA),
                                               borderRadius: BorderRadius.only(
-                                                bottomLeft:
-                                                    Radius.circular(30.0),
+                                                bottomLeft: Radius.circular(30),
                                                 bottomRight:
-                                                    Radius.circular(30.0),
-                                                topLeft: Radius.circular(0.0),
-                                                topRight: Radius.circular(0.0),
+                                                    Radius.circular(30),
+                                                topLeft: Radius.circular(0),
+                                                topRight: Radius.circular(0),
                                               ),
                                             ),
                                             child: Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
+                                              alignment:
+                                                  AlignmentDirectional(0, 0),
                                               child: Text(
                                                 valueOrDefault<String>(
                                                   columnRequestsRoomVarRow
@@ -2242,7 +2158,7 @@ class _ClientRequestMobForTestWidgetState
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryText,
-                                                          fontSize: 18.0,
+                                                          fontSize: 18,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w500,
@@ -2252,8 +2168,8 @@ class _ClientRequestMobForTestWidgetState
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 24.0, 0.0, 0.0),
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 24, 0, 0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               crossAxisAlignment:
@@ -2267,7 +2183,7 @@ class _ClientRequestMobForTestWidgetState
                                                       .override(
                                                         fontFamily:
                                                             'Commissioner',
-                                                        fontSize: 18.0,
+                                                        fontSize: 18,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w500,
@@ -2276,27 +2192,23 @@ class _ClientRequestMobForTestWidgetState
                                                 Container(
                                                   width:
                                                       MediaQuery.sizeOf(context)
-                                                              .width *
-                                                          1.0,
-                                                  height: 40.0,
+                                                          .width,
+                                                  height: 40,
                                                   decoration: BoxDecoration(
-                                                    color: const Color(0xFFF0F0FA),
+                                                    color: Color(0xFFF0F0FA),
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            30.0),
+                                                            30),
                                                   ),
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
-                                                            -1.0, 0.0),
+                                                        AlignmentDirectional(
+                                                            -1, 0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  15.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
+                                                                  15, 0, 0, 0),
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           columnRequestsRoomVarRow
@@ -2304,30 +2216,31 @@ class _ClientRequestMobForTestWidgetState
                                                               ?.toString(),
                                                           '0',
                                                         ),
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Commissioner',
-                                                              fontSize: 18.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                            ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Commissioner',
+                                                                  fontSize: 18,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                              ].divide(const SizedBox(height: 16.0)),
+                                              ].divide(SizedBox(height: 16)),
                                             ),
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 24.0, 0.0, 0.0),
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 24, 0, 0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               crossAxisAlignment:
@@ -2341,7 +2254,7 @@ class _ClientRequestMobForTestWidgetState
                                                       .override(
                                                         fontFamily:
                                                             'Commissioner',
-                                                        fontSize: 18.0,
+                                                        fontSize: 18,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w500,
@@ -2350,27 +2263,23 @@ class _ClientRequestMobForTestWidgetState
                                                 Container(
                                                   width:
                                                       MediaQuery.sizeOf(context)
-                                                              .width *
-                                                          1.0,
-                                                  height: 40.0,
+                                                          .width,
+                                                  height: 40,
                                                   decoration: BoxDecoration(
-                                                    color: const Color(0xFFF0F0FA),
+                                                    color: Color(0xFFF0F0FA),
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            30.0),
+                                                            30),
                                                   ),
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
-                                                            -1.0, 0.0),
+                                                        AlignmentDirectional(
+                                                            -1, 0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  15.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
+                                                                  15, 0, 0, 0),
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           columnRequestsRoomVarRow
@@ -2378,30 +2287,31 @@ class _ClientRequestMobForTestWidgetState
                                                               ?.toString(),
                                                           '0',
                                                         ),
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Commissioner',
-                                                              fontSize: 18.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                            ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Commissioner',
+                                                                  fontSize: 18,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                              ].divide(const SizedBox(height: 16.0)),
+                                              ].divide(SizedBox(height: 16)),
                                             ),
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 24.0, 0.0, 0.0),
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 24, 0, 0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               crossAxisAlignment:
@@ -2415,7 +2325,7 @@ class _ClientRequestMobForTestWidgetState
                                                       .override(
                                                         fontFamily:
                                                             'Commissioner',
-                                                        fontSize: 18.0,
+                                                        fontSize: 18,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w500,
@@ -2424,27 +2334,23 @@ class _ClientRequestMobForTestWidgetState
                                                 Container(
                                                   width:
                                                       MediaQuery.sizeOf(context)
-                                                              .width *
-                                                          1.0,
-                                                  height: 40.0,
+                                                          .width,
+                                                  height: 40,
                                                   decoration: BoxDecoration(
-                                                    color: const Color(0xFFF0F0FA),
+                                                    color: Color(0xFFF0F0FA),
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            30.0),
+                                                            30),
                                                   ),
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
-                                                            -1.0, 0.0),
+                                                        AlignmentDirectional(
+                                                            -1, 0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  15.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
+                                                                  15, 0, 0, 0),
                                                       child: Text(
                                                         '${formatNumber(
                                                           columnRequestsRoomVarRow
@@ -2455,65 +2361,65 @@ class _ClientRequestMobForTestWidgetState
                                                               DecimalType
                                                                   .automatic,
                                                         )}₽',
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Commissioner',
-                                                              fontSize: 18.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                            ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Commissioner',
+                                                                  fontSize: 18,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                              ].divide(const SizedBox(height: 16.0)),
+                                              ].divide(SizedBox(height: 16)),
                                             ),
                                           ),
                                         ],
                                       );
-                                    }).divide(const SizedBox(height: 32.0)),
+                                    }).divide(SizedBox(height: 32)),
                                   );
                                 },
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 32.0, 0.0, 0.0),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Container(
-                                      width: 100.0,
-                                      height: 40.0,
+                                      width: 100,
+                                      height: 40,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
-                                        borderRadius: const BorderRadius.only(
-                                          bottomLeft: Radius.circular(30.0),
-                                          bottomRight: Radius.circular(0.0),
-                                          topLeft: Radius.circular(30.0),
-                                          topRight: Radius.circular(0.0),
+                                        borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(30),
+                                          bottomRight: Radius.circular(0),
+                                          topLeft: Radius.circular(30),
+                                          topRight: Radius.circular(0),
                                         ),
                                       ),
                                       child: Align(
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                        alignment: AlignmentDirectional(0, 0),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  20.0, 0.0, 20.0, 0.0),
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  20, 0, 20, 0),
                                           child: Text(
                                             'Итого',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Commissioner',
-                                                  fontSize: 18.0,
+                                                  fontSize: 18,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
@@ -2523,24 +2429,23 @@ class _ClientRequestMobForTestWidgetState
                                     ),
                                     Expanded(
                                       child: Container(
-                                        height: 40.0,
+                                        height: 40,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
-                                          borderRadius: const BorderRadius.only(
-                                            bottomLeft: Radius.circular(0.0),
-                                            bottomRight: Radius.circular(30.0),
-                                            topLeft: Radius.circular(0.0),
-                                            topRight: Radius.circular(30.0),
+                                          borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(0),
+                                            bottomRight: Radius.circular(30),
+                                            topLeft: Radius.circular(0),
+                                            topRight: Radius.circular(30),
                                           ),
                                         ),
                                         child: Align(
-                                          alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                          alignment: AlignmentDirectional(0, 0),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    20.0, 0.0, 20.0, 0.0),
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    20, 0, 20, 0),
                                             child: Text(
                                               '${formatNumber(
                                                 containerRequestsRow?.roomPrice,
@@ -2556,7 +2461,7 @@ class _ClientRequestMobForTestWidgetState
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .secondaryBackground,
-                                                    fontSize: 18.0,
+                                                    fontSize: 18,
                                                     letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w500,
                                                   ),
@@ -2584,7 +2489,7 @@ class _ClientRequestMobForTestWidgetState
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Commissioner',
-                                        fontSize: 20.0,
+                                        fontSize: 20,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -2599,28 +2504,28 @@ class _ClientRequestMobForTestWidgetState
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Commissioner',
-                                        color: const Color(0xFF2431A5),
-                                        fontSize: 22.0,
+                                        color: Color(0xFF2431A5),
+                                        fontSize: 22,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
                                       ),
                                 ),
-                              ].divide(const SizedBox(height: 16.0)),
+                              ].divide(SizedBox(height: 16)),
                             ),
                           ]
-                              .divide(const SizedBox(width: 8.0))
-                              .addToStart(const SizedBox(width: 16.0))
-                              .addToEnd(const SizedBox(width: 16.0)),
+                              .divide(SizedBox(width: 8))
+                              .addToStart(SizedBox(width: 16))
+                              .addToEnd(SizedBox(width: 16)),
                         ),
-                      ].divide(const SizedBox(height: 40.0)),
+                      ].divide(SizedBox(height: 40)),
                     ),
                   );
                 },
               ),
           ]
-              .divide(const SizedBox(height: 40.0))
-              .addToStart(const SizedBox(height: 40.0))
-              .addToEnd(const SizedBox(height: 40.0)),
+              .divide(SizedBox(height: 40))
+              .addToStart(SizedBox(height: 40))
+              .addToEnd(SizedBox(height: 40)),
         ),
       ),
     );

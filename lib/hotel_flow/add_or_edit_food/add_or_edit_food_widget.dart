@@ -9,11 +9,16 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/hotel_flow/edit_food/edit_food_widget.dart';
+import 'dart:math';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
 import 'add_or_edit_food_model.dart';
 export 'add_or_edit_food_model.dart';
 
@@ -23,8 +28,8 @@ class AddOrEditFoodWidget extends StatefulWidget {
     int? id,
     required this.isSubmit,
     int? hotelId,
-  })  : id = id ?? 88,
-        hotelId = hotelId ?? 88;
+  })  : this.id = id ?? 88,
+        this.hotelId = hotelId ?? 88;
 
   final int id;
   final Future Function()? isSubmit;
@@ -75,8 +80,8 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 200.0.ms,
-            begin: const Offset(0.0, 100.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 100.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -95,17 +100,17 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.sizeOf(context).width * 1.0,
-      height: MediaQuery.sizeOf(context).height * 1.0,
+      width: MediaQuery.sizeOf(context).width,
+      height: MediaQuery.sizeOf(context).height * 1,
       decoration: BoxDecoration(
-        color: const Color(0x00FFFFFF),
-        borderRadius: BorderRadius.circular(32.0),
+        color: Color(0x00FFFFFF),
+        borderRadius: BorderRadius.circular(32),
       ),
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            if (widget.id == 0)
+            if (widget!.id == 0)
               FutureBuilder<List<ServiceCategoryRow>>(
                 future: (_model.requestCompleter1 ??=
                         Completer<List<ServiceCategoryRow>>()
@@ -121,8 +126,8 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                   if (!snapshot.hasData) {
                     return Center(
                       child: SizedBox(
-                        width: 50.0,
-                        height: 50.0,
+                        width: 50,
+                        height: 50,
                         child: CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation<Color>(
                             FlutterFlowTheme.of(context).primary,
@@ -149,13 +154,13 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                         children: [
                           FlutterFlowIconButton(
                             borderColor: FlutterFlowTheme.of(context).primary,
-                            borderRadius: 20.0,
-                            borderWidth: 2.0,
-                            buttonSize: 40.0,
+                            borderRadius: 20,
+                            borderWidth: 2,
+                            buttonSize: 40,
                             icon: Icon(
                               Icons.west,
                               color: FlutterFlowTheme.of(context).primary,
-                              size: 24.0,
+                              size: 24,
                             ),
                             onPressed: () async {
                               await widget.isSubmit?.call();
@@ -167,16 +172,16 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Commissioner',
-                                  fontSize: 30.0,
+                                  fontSize: 30,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
-                                  lineHeight: 1.0,
+                                  lineHeight: 1,
                                 ),
                           ),
-                        ].divide(const SizedBox(width: 16.0)),
+                        ].divide(SizedBox(width: 16)),
                       ),
                       Align(
-                        alignment: const AlignmentDirectional(-1.0, 1.0),
+                        alignment: AlignmentDirectional(-1, 1),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -185,15 +190,15 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Container(
-                                  width: 200.0,
-                                  decoration: const BoxDecoration(),
+                                  width: 200,
+                                  decoration: BoxDecoration(),
                                   child: Text(
                                     'Название пакета*',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Commissioner',
-                                          fontSize: 18.0,
+                                          fontSize: 18,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -201,8 +206,8 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        8.0, 0.0, 8.0, 0.0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        8, 0, 8, 0),
                                     child: TextFormField(
                                       controller:
                                           _model.createNameTextController,
@@ -223,42 +228,42 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                               letterSpacing: 0.0,
                                             ),
                                         enabledBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Color(0xFFF0F0FA),
-                                            width: 2.0,
+                                            width: 2,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(24.0),
+                                              BorderRadius.circular(24),
                                         ),
                                         focusedBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
-                                            width: 2.0,
+                                            width: 2,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(24.0),
+                                              BorderRadius.circular(24),
                                         ),
                                         errorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: FlutterFlowTheme.of(context)
                                                 .error,
-                                            width: 2.0,
+                                            width: 2,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(24.0),
+                                              BorderRadius.circular(24),
                                         ),
                                         focusedErrorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: FlutterFlowTheme.of(context)
                                                 .error,
-                                            width: 2.0,
+                                            width: 2,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(24.0),
+                                              BorderRadius.circular(24),
                                         ),
                                         filled: true,
-                                        fillColor: const Color(0xFFF0F0FA),
+                                        fillColor: Color(0xFFF0F0FA),
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -293,7 +298,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Commissioner',
-                                            fontSize: 18.0,
+                                            fontSize: 18,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
                                           ),
@@ -310,8 +315,8 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                         if (!snapshot.hasData) {
                                           return Center(
                                             child: SizedBox(
-                                              width: 50.0,
-                                              height: 50.0,
+                                              width: 50,
+                                              height: 50,
                                               child: CircularProgressIndicator(
                                                 valueColor:
                                                     AlwaysStoppedAnimation<
@@ -351,7 +356,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                               ),
                                             );
                                             _model.categoryId = _model
-                                                .currentcategotyId?.first.id;
+                                                .currentcategotyId?.first?.id;
                                             safeSetState(() {});
                                             safeSetState(() => _model
                                                 .requestCompleter1 = null);
@@ -360,8 +365,8 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
 
                                             safeSetState(() {});
                                           },
-                                          width: 285.0,
-                                          height: 40.0,
+                                          width: 285,
+                                          height: 40,
                                           textStyle:
                                               FlutterFlowTheme.of(context)
                                                   .bodyMedium
@@ -374,20 +379,20 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                             Icons.keyboard_arrow_down_rounded,
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
-                                            size: 24.0,
+                                            size: 24,
                                           ),
                                           fillColor:
                                               FlutterFlowTheme.of(context)
                                                   .secondaryBackground,
-                                          elevation: 2.0,
+                                          elevation: 2,
                                           borderColor:
                                               FlutterFlowTheme.of(context)
                                                   .alternate,
-                                          borderWidth: 2.0,
-                                          borderRadius: 100.0,
+                                          borderWidth: 2,
+                                          borderRadius: 100,
                                           margin:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 4.0, 16.0, 4.0),
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  16, 4, 16, 4),
                                           hidesUnderline: true,
                                           isOverButton: false,
                                           isSearchable: false,
@@ -395,7 +400,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                         );
                                       },
                                     ),
-                                  ].divide(const SizedBox(width: 8.0)),
+                                  ].divide(SizedBox(width: 8)),
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -406,13 +411,13 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Commissioner',
-                                            fontSize: 18.0,
+                                            fontSize: 18,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
                                           ),
                                     ),
-                                    SizedBox(
-                                      width: 100.0,
+                                    Container(
+                                      width: 100,
                                       child: TextFormField(
                                         controller:
                                             _model.createPriceTextController,
@@ -441,30 +446,30 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .alternate,
-                                              width: 2.0,
+                                              width: 2,
                                             ),
                                             borderRadius:
-                                                BorderRadius.circular(24.0),
+                                                BorderRadius.circular(24),
                                           ),
                                           focusedBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
-                                              width: 2.0,
+                                              width: 2,
                                             ),
                                             borderRadius:
-                                                BorderRadius.circular(24.0),
+                                                BorderRadius.circular(24),
                                           ),
                                           errorBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .error,
-                                              width: 2.0,
+                                              width: 2,
                                             ),
                                             borderRadius:
-                                                BorderRadius.circular(24.0),
+                                                BorderRadius.circular(24),
                                           ),
                                           focusedErrorBorder:
                                               OutlineInputBorder(
@@ -472,16 +477,16 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .error,
-                                              width: 2.0,
+                                              width: 2,
                                             ),
                                             borderRadius:
-                                                BorderRadius.circular(24.0),
+                                                BorderRadius.circular(24),
                                           ),
                                           filled: true,
-                                          fillColor: const Color(0xFFF0F0FA),
+                                          fillColor: Color(0xFFF0F0FA),
                                           contentPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  8.0, 12.0, 8.0, 12.0),
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  8, 12, 8, 12),
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
@@ -505,9 +510,9 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                         ],
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 8.0)),
+                                  ].divide(SizedBox(width: 8)),
                                 ),
-                              ].divide(const SizedBox(width: 24.0)),
+                              ].divide(SizedBox(width: 24)),
                             ),
                             Column(
                               mainAxisSize: MainAxisSize.max,
@@ -519,7 +524,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Commissioner',
-                                        fontSize: 20.0,
+                                        fontSize: 20,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
                                       ),
@@ -589,8 +594,8 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                           if (!snapshot.hasData) {
                                             return Center(
                                               child: SizedBox(
-                                                width: 50.0,
-                                                height: 50.0,
+                                                width: 50,
+                                                height: 50,
                                                 child:
                                                     CircularProgressIndicator(
                                                   valueColor:
@@ -642,7 +647,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                         .override(
                                                           fontFamily:
                                                               'Commissioner',
-                                                          fontSize: 16.0,
+                                                          fontSize: 16,
                                                           letterSpacing: 0.0,
                                                         ),
                                                     enabledBorder:
@@ -652,11 +657,11 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .alternate,
-                                                        width: 2.0,
+                                                        width: 2,
                                                       ),
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              24.0),
+                                                              24),
                                                     ),
                                                     focusedBorder:
                                                         OutlineInputBorder(
@@ -665,11 +670,11 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primary,
-                                                        width: 2.0,
+                                                        width: 2,
                                                       ),
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              24.0),
+                                                              24),
                                                     ),
                                                     errorBorder:
                                                         OutlineInputBorder(
@@ -678,11 +683,11 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .error,
-                                                        width: 2.0,
+                                                        width: 2,
                                                       ),
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              24.0),
+                                                              24),
                                                     ),
                                                     focusedErrorBorder:
                                                         OutlineInputBorder(
@@ -691,15 +696,15 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .error,
-                                                        width: 2.0,
+                                                        width: 2,
                                                       ),
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              24.0),
+                                                              24),
                                                     ),
                                                     filled: true,
                                                     fillColor:
-                                                        const Color(0xFFF0F0FA),
+                                                        Color(0xFFF0F0FA),
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -744,8 +749,8 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                   if (!snapshot.hasData) {
                                                     return Center(
                                                       child: SizedBox(
-                                                        width: 50.0,
-                                                        height: 50.0,
+                                                        width: 50,
+                                                        height: 50,
                                                         child:
                                                             CircularProgressIndicator(
                                                           valueColor:
@@ -789,7 +794,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                       );
                                                       _model.menuCategoryId =
                                                           _model.category?.first
-                                                              .id;
+                                                              ?.id;
                                                       safeSetState(() {});
                                                       safeSetState(() => _model
                                                               .requestCompleter3 =
@@ -799,15 +804,15 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
 
                                                       safeSetState(() {});
                                                     },
-                                                    width: 285.0,
-                                                    height: 48.0,
+                                                    width: 285,
+                                                    height: 48,
                                                     textStyle: FlutterFlowTheme
                                                             .of(context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
                                                               'Commissioner',
-                                                          fontSize: 16.0,
+                                                          fontSize: 16,
                                                           letterSpacing: 0.0,
                                                         ),
                                                     hintText: 'Категория...',
@@ -818,22 +823,22 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .secondaryText,
-                                                      size: 24.0,
+                                                      size: 24,
                                                     ),
                                                     fillColor: FlutterFlowTheme
                                                             .of(context)
                                                         .secondaryBackground,
-                                                    elevation: 2.0,
+                                                    elevation: 2,
                                                     borderColor:
                                                         FlutterFlowTheme.of(
                                                                 context)
                                                             .alternate,
-                                                    borderWidth: 2.0,
-                                                    borderRadius: 100.0,
+                                                    borderWidth: 2,
+                                                    borderRadius: 100,
                                                     margin:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(16.0, 0.0,
-                                                                16.0, 0.0),
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                16, 0, 16, 0),
                                                     hidesUnderline: true,
                                                     isOverButton: true,
                                                     isSearchable: false,
@@ -874,7 +879,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                     matchingRows: (rows) =>
                                                         rows.eq(
                                                       'id',
-                                                      rowServiceCategoryRow.id,
+                                                      rowServiceCategoryRow?.id,
                                                     ),
                                                   );
                                                   safeSetState(() {
@@ -890,14 +895,12 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                 },
                                                 text: 'Добавить',
                                                 options: FFButtonOptions(
-                                                  height: 50.0,
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          43.0, 0.0, 43.0, 0.0),
+                                                  height: 50,
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(43, 0, 43, 0),
                                                   iconPadding:
-                                                      const EdgeInsetsDirectional
-                                                          .fromSTEB(0.0, 0.0,
-                                                              0.0, 0.0),
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(0, 0, 0, 0),
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primary,
@@ -911,14 +914,13 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                             color: Colors.white,
                                                             letterSpacing: 0.0,
                                                           ),
-                                                  elevation: 0.0,
-                                                  borderSide: const BorderSide(
+                                                  elevation: 0,
+                                                  borderSide: BorderSide(
                                                     color: Colors.transparent,
-                                                    width: 1.0,
+                                                    width: 1,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.circular(
-                                                          24.0),
+                                                      BorderRadius.circular(24),
                                                 ),
                                               ),
                                               FFButtonWidget(
@@ -933,14 +935,12 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                 },
                                                 text: 'Отменить',
                                                 options: FFButtonOptions(
-                                                  height: 50.0,
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          43.0, 0.0, 43.0, 0.0),
+                                                  height: 50,
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(43, 0, 43, 0),
                                                   iconPadding:
-                                                      const EdgeInsetsDirectional
-                                                          .fromSTEB(0.0, 0.0,
-                                                              0.0, 0.0),
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(0, 0, 0, 0),
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .error,
@@ -954,24 +954,23 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                             color: Colors.white,
                                                             letterSpacing: 0.0,
                                                           ),
-                                                  elevation: 0.0,
-                                                  borderSide: const BorderSide(
+                                                  elevation: 0,
+                                                  borderSide: BorderSide(
                                                     color: Colors.transparent,
-                                                    width: 1.0,
+                                                    width: 1,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.circular(
-                                                          24.0),
+                                                      BorderRadius.circular(24),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(width: 16.0)),
+                                            ].divide(SizedBox(width: 16)),
                                           );
                                         },
                                       ),
                                     if (!_model.addMenuOpen)
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 24.0, 0.0, 0.0),
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 24, 0, 0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
                                             _model.addMenuOpen = true;
@@ -979,13 +978,13 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                           },
                                           text: 'Добавить позицию',
                                           options: FFButtonOptions(
-                                            height: 50.0,
+                                            height: 50,
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    43.0, 0.0, 43.0, 0.0),
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    43, 0, 43, 0),
                                             iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 0, 0),
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
                                             textStyle: FlutterFlowTheme.of(
@@ -998,31 +997,35 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                       .primary,
                                                   letterSpacing: 0.0,
                                                 ),
-                                            elevation: 0.0,
+                                            elevation: 0,
                                             borderSide: BorderSide(
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
-                                              width: 1.0,
+                                              width: 1,
                                             ),
                                             borderRadius:
-                                                BorderRadius.circular(24.0),
+                                                BorderRadius.circular(24),
                                           ),
                                         ),
                                       ),
                                   ],
                                 ),
-                              ].divide(const SizedBox(height: 8.0)),
+                              ].divide(SizedBox(height: 8)),
                             ),
-                          ].divide(const SizedBox(height: 10.0)),
+                          ].divide(SizedBox(height: 10)),
                         ),
                       ),
                       FFButtonWidget(
                         onPressed: ((_model.createNameTextController.text ==
+                                        null ||
+                                    _model.createNameTextController.text ==
                                         '') ||
                                 (_model.createCategoryValue == null ||
                                     _model.createCategoryValue == '') ||
                                 (_model.createPriceTextController.text ==
+                                        null ||
+                                    _model.createPriceTextController.text ==
                                         ''))
                             ? null
                             : () async {
@@ -1041,7 +1044,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                       .eq(
                                         'id',
                                         valueOrDefault<int>(
-                                          widget.hotelId,
+                                          widget!.hotelId,
                                           88,
                                         ),
                                       )
@@ -1063,7 +1066,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                   matchingRows: (rows) => rows.eq(
                                     'id',
                                     valueOrDefault<int>(
-                                      widget.hotelId,
+                                      widget!.hotelId,
                                       88,
                                     ),
                                   ),
@@ -1077,7 +1080,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                   },
                                   matchingRows: (rows) => rows.eq(
                                     'id',
-                                    addServiceCategoryRow.id,
+                                    addServiceCategoryRow?.id,
                                   ),
                                 );
                                 _model.newFoods = [];
@@ -1096,11 +1099,10 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                               },
                         text: 'Создать',
                         options: FFButtonOptions(
-                          height: 50.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              43.0, 0.0, 43.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
+                          height: 50,
+                          padding: EdgeInsetsDirectional.fromSTEB(43, 0, 43, 0),
+                          iconPadding:
+                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
@@ -1108,28 +1110,28 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                     color: Colors.white,
                                     letterSpacing: 0.0,
                                   ),
-                          elevation: 0.0,
-                          borderSide: const BorderSide(
+                          elevation: 0,
+                          borderSide: BorderSide(
                             color: Colors.transparent,
-                            width: 1.0,
+                            width: 1,
                           ),
-                          borderRadius: BorderRadius.circular(24.0),
+                          borderRadius: BorderRadius.circular(24),
                           disabledColor:
                               FlutterFlowTheme.of(context).primaryBackground,
                           disabledTextColor:
                               FlutterFlowTheme.of(context).secondaryText,
                         ),
                       ),
-                    ].divide(const SizedBox(height: 32.0)),
+                    ].divide(SizedBox(height: 32)),
                   );
                 },
               ),
-            if (widget.id != 0)
+            if (widget!.id != 0)
               FutureBuilder<List<FoodRow>>(
                 future: FoodTable().querySingleRow(
                   queryFn: (q) => q.eq(
                     'id',
-                    widget.id,
+                    widget!.id,
                   ),
                 ),
                 builder: (context, snapshot) {
@@ -1137,8 +1139,8 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                   if (!snapshot.hasData) {
                     return Center(
                       child: SizedBox(
-                        width: 50.0,
-                        height: 50.0,
+                        width: 50,
+                        height: 50,
                         child: CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation<Color>(
                             FlutterFlowTheme.of(context).primary,
@@ -1158,7 +1160,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                       : null;
 
                   return Container(
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: wrapWithModel(
                       model: _model.editFoodModel,
                       updateCallback: () => safeSetState(() {}),
@@ -1174,7 +1176,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                   );
                 },
               ),
-          ].addToEnd(const SizedBox(height: 72.0)),
+          ].addToEnd(SizedBox(height: 72)),
         ),
       ),
     ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!);

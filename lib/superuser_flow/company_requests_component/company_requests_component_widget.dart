@@ -6,6 +6,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
 import 'company_requests_component_model.dart';
 export 'company_requests_component_model.dart';
 
@@ -45,7 +48,7 @@ class _CompanyRequestsComponentWidgetState
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.currentDate = getCurrentTimestamp;
       _model.formatedDate = functions.formatMonthYear(getCurrentTimestamp);
-      _model.user = widget.user;
+      _model.user = widget!.user;
       safeSetState(() {});
     });
 
@@ -65,7 +68,7 @@ class _CompanyRequestsComponentWidgetState
       future: UsersTable().querySingleRow(
         queryFn: (q) => q.eq(
           'id',
-          widget.user,
+          widget!.user,
         ),
       ),
       builder: (context, snapshot) {
@@ -73,8 +76,8 @@ class _CompanyRequestsComponentWidgetState
         if (!snapshot.hasData) {
           return Center(
             child: SizedBox(
-              width: 50.0,
-              height: 50.0,
+              width: 50,
+              height: 50,
               child: CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(
                   FlutterFlowTheme.of(context).primary,
@@ -90,8 +93,8 @@ class _CompanyRequestsComponentWidgetState
             : null;
 
         return Container(
-          height: MediaQuery.sizeOf(context).height * 1.0,
-          decoration: const BoxDecoration(),
+          height: MediaQuery.sizeOf(context).height * 1,
+          decoration: BoxDecoration(),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -113,18 +116,18 @@ class _CompanyRequestsComponentWidgetState
                               await widget.back?.call();
                             },
                             child: Container(
-                              width: 40.0,
-                              height: 40.0,
+                              width: 40,
+                              height: 40,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context).primary,
                                 shape: BoxShape.circle,
                               ),
-                              child: const Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
+                              child: Align(
+                                alignment: AlignmentDirectional(0, 0),
                                 child: Icon(
                                   Icons.arrow_back_ios_new_rounded,
                                   color: Colors.white,
-                                  size: 20.0,
+                                  size: 20,
                                 ),
                               ),
                             ),
@@ -141,14 +144,14 @@ class _CompanyRequestsComponentWidgetState
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Commissioner',
-                                      fontSize: 38.0,
+                                      fontSize: 38,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
                             ],
                           ),
-                        ].divide(const SizedBox(width: 24.0)),
+                        ].divide(SizedBox(width: 24)),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
@@ -168,7 +171,7 @@ class _CompanyRequestsComponentWidgetState
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Commissioner',
-                                          fontSize: 20.0,
+                                          fontSize: 20,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -191,7 +194,7 @@ class _CompanyRequestsComponentWidgetState
                                             MaterialTapTargetSize.shrinkWrap,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(4.0),
+                                              BorderRadius.circular(4),
                                         ),
                                       ),
                                       unselectedWidgetColor:
@@ -229,12 +232,12 @@ class _CompanyRequestsComponentWidgetState
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Commissioner',
-                                          fontSize: 18.0,
+                                          fontSize: 18,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
                                         ),
                                   ),
-                                ].divide(const SizedBox(width: 14.0)),
+                                ].divide(SizedBox(width: 14)),
                               ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -242,16 +245,16 @@ class _CompanyRequestsComponentWidgetState
                                   FlutterFlowIconButton(
                                     borderColor:
                                         FlutterFlowTheme.of(context).primary,
-                                    borderRadius: 20.0,
-                                    borderWidth: 1.0,
-                                    buttonSize: 32.0,
+                                    borderRadius: 20,
+                                    borderWidth: 1,
+                                    buttonSize: 32,
                                     fillColor:
                                         FlutterFlowTheme.of(context).primary,
                                     icon: Icon(
                                       Icons.arrow_back_ios_new_rounded,
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      size: 16.0,
+                                      size: 16,
                                     ),
                                     onPressed: () async {
                                       _model.currentDate =
@@ -263,8 +266,8 @@ class _CompanyRequestsComponentWidgetState
                                     },
                                   ),
                                   Container(
-                                    width: 150.0,
-                                    decoration: const BoxDecoration(),
+                                    width: 150,
+                                    decoration: BoxDecoration(),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -276,7 +279,7 @@ class _CompanyRequestsComponentWidgetState
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Commissioner',
-                                                fontSize: 18.0,
+                                                fontSize: 18,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
@@ -287,16 +290,16 @@ class _CompanyRequestsComponentWidgetState
                                   FlutterFlowIconButton(
                                     borderColor:
                                         FlutterFlowTheme.of(context).primary,
-                                    borderRadius: 20.0,
-                                    borderWidth: 1.0,
-                                    buttonSize: 32.0,
+                                    borderRadius: 20,
+                                    borderWidth: 1,
+                                    buttonSize: 32,
                                     fillColor:
                                         FlutterFlowTheme.of(context).primary,
                                     icon: Icon(
                                       Icons.arrow_forward_ios_rounded,
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      size: 16.0,
+                                      size: 16,
                                     ),
                                     onPressed: () async {
                                       _model.currentDate =
@@ -307,26 +310,26 @@ class _CompanyRequestsComponentWidgetState
                                       safeSetState(() {});
                                     },
                                   ),
-                                ].divide(const SizedBox(width: 16.0)),
+                                ].divide(SizedBox(width: 16)),
                               ),
-                            ].divide(const SizedBox(width: 40.0)),
+                            ].divide(SizedBox(width: 40)),
                           ),
-                        ].divide(const SizedBox(width: 40.0)),
+                        ].divide(SizedBox(width: 40)),
                       ),
                       ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(16.0),
-                          bottomRight: Radius.circular(16.0),
-                          topLeft: Radius.circular(0.0),
-                          topRight: Radius.circular(0.0),
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(16),
+                          bottomRight: Radius.circular(16),
+                          topLeft: Radius.circular(0),
+                          topRight: Radius.circular(0),
                         ),
                         child: Container(
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(16.0),
-                              bottomRight: Radius.circular(16.0),
-                              topLeft: Radius.circular(0.0),
-                              topRight: Radius.circular(0.0),
+                              bottomLeft: Radius.circular(16),
+                              bottomRight: Radius.circular(16),
+                              topLeft: Radius.circular(0),
+                              topRight: Radius.circular(0),
                             ),
                           ),
                           child: Column(
@@ -334,26 +337,26 @@ class _CompanyRequestsComponentWidgetState
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                width: MediaQuery.sizeOf(context).width * 1.0,
-                                height: 40.0,
+                                width: MediaQuery.sizeOf(context).width,
+                                height: 40,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context).primary,
-                                  borderRadius: const BorderRadius.only(
-                                    bottomLeft: Radius.circular(0.0),
-                                    bottomRight: Radius.circular(0.0),
-                                    topLeft: Radius.circular(16.0),
-                                    topRight: Radius.circular(16.0),
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(0),
+                                    bottomRight: Radius.circular(0),
+                                    topLeft: Radius.circular(16),
+                                    topRight: Radius.circular(16),
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 8.0, 0.0, 8.0),
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 8, 0, 8),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Container(
-                                        width: 80.0,
-                                        decoration: const BoxDecoration(),
+                                        width: 80,
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Прошло',
                                           style: FlutterFlowTheme.of(context)
@@ -363,7 +366,7 @@ class _CompanyRequestsComponentWidgetState
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                fontSize: 19.0,
+                                                fontSize: 19,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
@@ -372,8 +375,8 @@ class _CompanyRequestsComponentWidgetState
                                       Expanded(
                                         flex: 3,
                                         child: Container(
-                                          width: 80.0,
-                                          decoration: const BoxDecoration(),
+                                          width: 80,
+                                          decoration: BoxDecoration(),
                                           child: Text(
                                             'Название мероприятия',
                                             style: FlutterFlowTheme.of(context)
@@ -383,7 +386,7 @@ class _CompanyRequestsComponentWidgetState
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryBackground,
-                                                  fontSize: 19.0,
+                                                  fontSize: 19,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
@@ -391,8 +394,8 @@ class _CompanyRequestsComponentWidgetState
                                         ),
                                       ),
                                       Container(
-                                        width: 120.0,
-                                        decoration: const BoxDecoration(),
+                                        width: 120,
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Дата начала',
                                           style: FlutterFlowTheme.of(context)
@@ -402,15 +405,15 @@ class _CompanyRequestsComponentWidgetState
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                fontSize: 19.0,
+                                                fontSize: 19,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
                                       ),
                                       Container(
-                                        width: 100.0,
-                                        decoration: const BoxDecoration(),
+                                        width: 100,
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           '№ запроса',
                                           style: FlutterFlowTheme.of(context)
@@ -420,15 +423,15 @@ class _CompanyRequestsComponentWidgetState
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                fontSize: 19.0,
+                                                fontSize: 19,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
                                       ),
                                       Container(
-                                        width: 120.0,
-                                        decoration: const BoxDecoration(),
+                                        width: 120,
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Дата запроса',
                                           style: FlutterFlowTheme.of(context)
@@ -438,20 +441,20 @@ class _CompanyRequestsComponentWidgetState
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                fontSize: 19.0,
+                                                fontSize: 19,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
                                       ),
                                       Container(
-                                        width: 90.0,
-                                        decoration: const BoxDecoration(),
+                                        width: 90,
+                                        decoration: BoxDecoration(),
                                       ),
                                     ]
-                                        .divide(const SizedBox(width: 40.0))
-                                        .addToStart(const SizedBox(width: 16.0))
-                                        .addToEnd(const SizedBox(width: 16.0)),
+                                        .divide(SizedBox(width: 40))
+                                        .addToStart(SizedBox(width: 16))
+                                        .addToEnd(SizedBox(width: 16)),
                                   ),
                                 ),
                               ),
@@ -464,7 +467,7 @@ class _CompanyRequestsComponentWidgetState
                                       )
                                       .eq(
                                         'owner',
-                                        widget.user,
+                                        widget!.user,
                                       )
                                       .order('created_at', ascending: true),
                                 ),
@@ -473,8 +476,8 @@ class _CompanyRequestsComponentWidgetState
                                   if (!snapshot.hasData) {
                                     return Center(
                                       child: SizedBox(
-                                        width: 50.0,
-                                        height: 50.0,
+                                        width: 50,
+                                        height: 50,
                                         child: CircularProgressIndicator(
                                           valueColor:
                                               AlwaysStoppedAnimation<Color>(
@@ -489,7 +492,7 @@ class _CompanyRequestsComponentWidgetState
                                       snapshot.data!;
 
                                   if (columnRequestsRowList.isEmpty) {
-                                    return const HotelRequestEmprtyWidget();
+                                    return HotelRequestEmprtyWidget();
                                   }
 
                                   return Column(
@@ -507,9 +510,8 @@ class _CompanyRequestsComponentWidgetState
                                                 columnRequestsRow.complete!,
                                         child: Container(
                                           width:
-                                              MediaQuery.sizeOf(context).width *
-                                                  1.0,
-                                          height: 40.0,
+                                              MediaQuery.sizeOf(context).width,
+                                          height: 40,
                                           decoration: BoxDecoration(
                                             color: valueOrDefault<Color>(
                                               columnIndex.isOdd
@@ -520,23 +522,23 @@ class _CompanyRequestsComponentWidgetState
                                               FlutterFlowTheme.of(context)
                                                   .primaryBackground,
                                             ),
-                                            borderRadius: const BorderRadius.only(
-                                              bottomLeft: Radius.circular(0.0),
-                                              bottomRight: Radius.circular(0.0),
-                                              topLeft: Radius.circular(0.0),
-                                              topRight: Radius.circular(0.0),
+                                            borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(0),
+                                              bottomRight: Radius.circular(0),
+                                              topLeft: Radius.circular(0),
+                                              topRight: Radius.circular(0),
                                             ),
                                           ),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Container(
-                                                width: 80.0,
-                                                decoration: const BoxDecoration(),
+                                                width: 80,
+                                                decoration: BoxDecoration(),
                                                 child: Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
-                                                          0.0, 0.0),
+                                                      AlignmentDirectional(
+                                                          0, 0),
                                                   child: Theme(
                                                     data: ThemeData(
                                                       checkboxTheme:
@@ -551,8 +553,7 @@ class _CompanyRequestsComponentWidgetState
                                                             RoundedRectangleBorder(
                                                           borderRadius:
                                                               BorderRadius
-                                                                  .circular(
-                                                                      4.0),
+                                                                  .circular(4),
                                                         ),
                                                       ),
                                                       unselectedWidgetColor:
@@ -625,8 +626,8 @@ class _CompanyRequestsComponentWidgetState
                                               Expanded(
                                                 flex: 3,
                                                 child: Container(
-                                                  width: 80.0,
-                                                  decoration: const BoxDecoration(),
+                                                  width: 80,
+                                                  decoration: BoxDecoration(),
                                                   child: Text(
                                                     valueOrDefault<String>(
                                                       columnRequestsRow.name,
@@ -638,15 +639,15 @@ class _CompanyRequestsComponentWidgetState
                                                         .override(
                                                           fontFamily:
                                                               'Commissioner',
-                                                          fontSize: 19.0,
+                                                          fontSize: 19,
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
                                                 ),
                                               ),
                                               Container(
-                                                width: 120.0,
-                                                decoration: const BoxDecoration(),
+                                                width: 120,
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     dateTimeFormat(
@@ -670,7 +671,7 @@ class _CompanyRequestsComponentWidgetState
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 19.0,
+                                                        fontSize: 19,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
@@ -678,8 +679,8 @@ class _CompanyRequestsComponentWidgetState
                                                 ),
                                               ),
                                               Container(
-                                                width: 100.0,
-                                                decoration: const BoxDecoration(),
+                                                width: 100,
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   columnRequestsRow.id
                                                       .toString(),
@@ -693,7 +694,7 @@ class _CompanyRequestsComponentWidgetState
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 19.0,
+                                                        fontSize: 19,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
@@ -701,8 +702,8 @@ class _CompanyRequestsComponentWidgetState
                                                 ),
                                               ),
                                               Container(
-                                                width: 120.0,
-                                                decoration: const BoxDecoration(),
+                                                width: 120,
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   dateTimeFormat(
                                                     "d/M/y",
@@ -721,7 +722,7 @@ class _CompanyRequestsComponentWidgetState
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 19.0,
+                                                        fontSize: 19,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
@@ -729,8 +730,8 @@ class _CompanyRequestsComponentWidgetState
                                                 ),
                                               ),
                                               Container(
-                                                width: 90.0,
-                                                decoration: const BoxDecoration(),
+                                                width: 90,
+                                                decoration: BoxDecoration(),
                                                 child: InkWell(
                                                   splashColor:
                                                       Colors.transparent,
@@ -757,7 +758,7 @@ class _CompanyRequestsComponentWidgetState
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryText,
-                                                          fontSize: 19.0,
+                                                          fontSize: 19,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w500,
@@ -769,11 +770,9 @@ class _CompanyRequestsComponentWidgetState
                                                 ),
                                               ),
                                             ]
-                                                .divide(const SizedBox(width: 40.0))
-                                                .addToStart(
-                                                    const SizedBox(width: 16.0))
-                                                .addToEnd(
-                                                    const SizedBox(width: 16.0)),
+                                                .divide(SizedBox(width: 40))
+                                                .addToStart(SizedBox(width: 16))
+                                                .addToEnd(SizedBox(width: 16)),
                                           ),
                                         ),
                                       );
@@ -785,7 +784,7 @@ class _CompanyRequestsComponentWidgetState
                           ),
                         ),
                       ),
-                    ].divide(const SizedBox(height: 22.0)),
+                    ].divide(SizedBox(height: 22)),
                   ),
                 if (_model.requestOpen == true)
                   Column(
@@ -802,18 +801,18 @@ class _CompanyRequestsComponentWidgetState
                           safeSetState(() {});
                         },
                         child: Container(
-                          width: 40.0,
-                          height: 40.0,
+                          width: 40,
+                          height: 40,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context).primary,
                             shape: BoxShape.circle,
                           ),
-                          child: const Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
+                          child: Align(
+                            alignment: AlignmentDirectional(0, 0),
                             child: Icon(
                               Icons.arrow_back_ios_new_rounded,
                               color: Colors.white,
-                              size: 20.0,
+                              size: 20,
                             ),
                           ),
                         ),
@@ -823,12 +822,12 @@ class _CompanyRequestsComponentWidgetState
                         children: [
                           Expanded(
                             child: Text(
-                              'Запрос №${_model.request?.id.toString()} в отель ${_model.request?.hotelName}',
+                              'Запрос №${_model.request?.id?.toString()} в отель ${_model.request?.hotelName}',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Commissioner',
-                                    fontSize: 38.0,
+                                    fontSize: 38,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -848,7 +847,7 @@ class _CompanyRequestsComponentWidgetState
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Commissioner',
-                                      fontSize: 18.0,
+                                      fontSize: 18,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -867,7 +866,7 @@ class _CompanyRequestsComponentWidgetState
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Commissioner',
-                                      fontSize: 18.0,
+                                      fontSize: 18,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -890,13 +889,13 @@ class _CompanyRequestsComponentWidgetState
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Commissioner',
-                                      fontSize: 18.0,
+                                      fontSize: 18,
                                       letterSpacing: 0.0,
                                     ),
                               ),
-                            ].divide(const SizedBox(width: 16.0)),
+                            ].divide(SizedBox(width: 16)),
                           ),
-                        ].divide(const SizedBox(height: 16.0)),
+                        ].divide(SizedBox(height: 16)),
                       ),
                       FutureBuilder<List<UsersRow>>(
                         future: UsersTable().querySingleRow(
@@ -910,8 +909,8 @@ class _CompanyRequestsComponentWidgetState
                           if (!snapshot.hasData) {
                             return Center(
                               child: SizedBox(
-                                width: 50.0,
-                                height: 50.0,
+                                width: 50,
+                                height: 50,
                                 child: CircularProgressIndicator(
                                   valueColor: AlwaysStoppedAnimation<Color>(
                                     FlutterFlowTheme.of(context).primary,
@@ -938,7 +937,7 @@ class _CompanyRequestsComponentWidgetState
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Commissioner',
-                                          fontSize: 18.0,
+                                          fontSize: 18,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -957,7 +956,7 @@ class _CompanyRequestsComponentWidgetState
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Commissioner',
-                                          fontSize: 18.0,
+                                          fontSize: 18,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -968,7 +967,7 @@ class _CompanyRequestsComponentWidgetState
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Commissioner',
-                                          fontSize: 18.0,
+                                          fontSize: 18,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -982,7 +981,7 @@ class _CompanyRequestsComponentWidgetState
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Commissioner',
-                                          fontSize: 18.0,
+                                          fontSize: 18,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -998,51 +997,51 @@ class _CompanyRequestsComponentWidgetState
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Commissioner',
-                                            fontSize: 18.0,
+                                            fontSize: 18,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
                                           ),
                                     ),
-                                ].divide(const SizedBox(width: 40.0)),
+                                ].divide(SizedBox(width: 40)),
                               ),
-                            ].divide(const SizedBox(height: 16.0)),
+                            ].divide(SizedBox(height: 16)),
                           );
                         },
                       ),
-                      if (_model.request?.halls.isNotEmpty)
+                      if (_model.request?.halls?.length != 0)
                         Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 16.0),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                               child: Text(
                                 'Залы:',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Commissioner',
-                                      fontSize: 18.0,
+                                      fontSize: 18,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w500,
                                     ),
                               ),
                             ),
                             Container(
-                              width: MediaQuery.sizeOf(context).width * 1.0,
+                              width: MediaQuery.sizeOf(context).width,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context).primary,
-                                borderRadius: const BorderRadius.only(
-                                  bottomLeft: Radius.circular(0.0),
-                                  bottomRight: Radius.circular(0.0),
-                                  topLeft: Radius.circular(16.0),
-                                  topRight: Radius.circular(16.0),
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(0),
+                                  bottomRight: Radius.circular(0),
+                                  topLeft: Radius.circular(16),
+                                  topRight: Radius.circular(16),
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 8.0, 0.0, 8.0),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
@@ -1052,7 +1051,7 @@ class _CompanyRequestsComponentWidgetState
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.1,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Название зала',
                                           textAlign: TextAlign.start,
@@ -1063,7 +1062,7 @@ class _CompanyRequestsComponentWidgetState
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                fontSize: 19.0,
+                                                fontSize: 19,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
@@ -1076,7 +1075,7 @@ class _CompanyRequestsComponentWidgetState
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Рассадка',
                                           style: FlutterFlowTheme.of(context)
@@ -1086,7 +1085,7 @@ class _CompanyRequestsComponentWidgetState
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                fontSize: 19.0,
+                                                fontSize: 19,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
@@ -1099,7 +1098,7 @@ class _CompanyRequestsComponentWidgetState
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Количество дней',
                                           style: FlutterFlowTheme.of(context)
@@ -1109,7 +1108,7 @@ class _CompanyRequestsComponentWidgetState
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                fontSize: 19.0,
+                                                fontSize: 19,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
@@ -1117,8 +1116,8 @@ class _CompanyRequestsComponentWidgetState
                                       ),
                                     ),
                                     Container(
-                                      width: 200.0,
-                                      decoration: const BoxDecoration(),
+                                      width: 200,
+                                      decoration: BoxDecoration(),
                                       child: Text(
                                         'Стоимость',
                                         textAlign: TextAlign.end,
@@ -1129,16 +1128,16 @@ class _CompanyRequestsComponentWidgetState
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
-                                              fontSize: 19.0,
+                                              fontSize: 19,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
                                             ),
                                       ),
                                     ),
                                   ]
-                                      .divide(const SizedBox(width: 8.0))
-                                      .addToStart(const SizedBox(width: 16.0))
-                                      .addToEnd(const SizedBox(width: 16.0)),
+                                      .divide(SizedBox(width: 8))
+                                      .addToStart(SizedBox(width: 16))
+                                      .addToEnd(SizedBox(width: 16)),
                                 ),
                               ),
                             ),
@@ -1154,8 +1153,8 @@ class _CompanyRequestsComponentWidgetState
                                 if (!snapshot.hasData) {
                                   return Center(
                                     child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
+                                      width: 50,
+                                      height: 50,
                                       child: CircularProgressIndicator(
                                         valueColor:
                                             AlwaysStoppedAnimation<Color>(
@@ -1179,8 +1178,7 @@ class _CompanyRequestsComponentWidgetState
                                         columnRequestsHallVarRowList[
                                             columnIndex];
                                     return Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          1.0,
+                                      width: MediaQuery.sizeOf(context).width,
                                       decoration: BoxDecoration(
                                         color: valueOrDefault<Color>(
                                           columnIndex.isOdd
@@ -1191,16 +1189,16 @@ class _CompanyRequestsComponentWidgetState
                                           FlutterFlowTheme.of(context)
                                               .primaryBackground,
                                         ),
-                                        borderRadius: const BorderRadius.only(
-                                          bottomLeft: Radius.circular(0.0),
-                                          bottomRight: Radius.circular(0.0),
-                                          topLeft: Radius.circular(0.0),
-                                          topRight: Radius.circular(0.0),
+                                        borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(0),
+                                          bottomRight: Radius.circular(0),
+                                          topLeft: Radius.circular(0),
+                                          topRight: Radius.circular(0),
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 8.0, 0.0, 8.0),
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 8, 0, 8),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
@@ -1211,7 +1209,7 @@ class _CompanyRequestsComponentWidgetState
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         0.1,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     columnRequestsHallVarRow
@@ -1228,7 +1226,7 @@ class _CompanyRequestsComponentWidgetState
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 19.0,
+                                                        fontSize: 19,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
@@ -1243,7 +1241,7 @@ class _CompanyRequestsComponentWidgetState
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         0.5,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     columnRequestsHallVarRow
@@ -1260,7 +1258,7 @@ class _CompanyRequestsComponentWidgetState
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 19.0,
+                                                        fontSize: 19,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
@@ -1275,7 +1273,7 @@ class _CompanyRequestsComponentWidgetState
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         0.5,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     columnRequestsHallVarRow
@@ -1293,7 +1291,7 @@ class _CompanyRequestsComponentWidgetState
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 19.0,
+                                                        fontSize: 19,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
@@ -1302,8 +1300,8 @@ class _CompanyRequestsComponentWidgetState
                                               ),
                                             ),
                                             Container(
-                                              width: 200.0,
-                                              decoration: const BoxDecoration(),
+                                              width: 200,
+                                              decoration: BoxDecoration(),
                                               child: Text(
                                                 valueOrDefault<String>(
                                                   formatNumber(
@@ -1323,7 +1321,7 @@ class _CompanyRequestsComponentWidgetState
                                                         .override(
                                                           fontFamily:
                                                               'Commissioner',
-                                                          fontSize: 19.0,
+                                                          fontSize: 19,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
@@ -1334,9 +1332,9 @@ class _CompanyRequestsComponentWidgetState
                                               ),
                                             ),
                                           ]
-                                              .divide(const SizedBox(width: 8.0))
-                                              .addToStart(const SizedBox(width: 16.0))
-                                              .addToEnd(const SizedBox(width: 16.0)),
+                                              .divide(SizedBox(width: 8))
+                                              .addToStart(SizedBox(width: 16))
+                                              .addToEnd(SizedBox(width: 16)),
                                         ),
                                       ),
                                     );
@@ -1349,19 +1347,19 @@ class _CompanyRequestsComponentWidgetState
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Container(
-                                  width: 100.0,
-                                  height: 40.0,
+                                  width: 100,
+                                  height: 40,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context).primary,
-                                    borderRadius: const BorderRadius.only(
-                                      bottomLeft: Radius.circular(8.0),
-                                      bottomRight: Radius.circular(0.0),
-                                      topLeft: Radius.circular(0.0),
-                                      topRight: Radius.circular(0.0),
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(8),
+                                      bottomRight: Radius.circular(0),
+                                      topLeft: Radius.circular(0),
+                                      topRight: Radius.circular(0),
                                     ),
                                   ),
                                   child: Align(
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0, 0),
                                     child: Text(
                                       'Итого:',
                                       textAlign: TextAlign.end,
@@ -1371,24 +1369,24 @@ class _CompanyRequestsComponentWidgetState
                                             fontFamily: 'Commissioner',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
-                                            fontSize: 19.0,
+                                            fontSize: 19,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
                                   ),
                                 ),
                                 Container(
-                                  width: 250.0,
-                                  height: 40.0,
+                                  width: 250,
+                                  height: 40,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
                                   ),
                                   child: Align(
-                                    alignment: const AlignmentDirectional(1.0, 0.0),
+                                    alignment: AlignmentDirectional(1, 0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          34.0, 0.0, 16.0, 0.0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          34, 0, 16, 0),
                                       child: Text(
                                         '${formatNumber(
                                           _model.request?.hallPrice,
@@ -1402,7 +1400,7 @@ class _CompanyRequestsComponentWidgetState
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryText,
-                                              fontSize: 19.0,
+                                              fontSize: 19,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w600,
                                             ),
@@ -1414,40 +1412,40 @@ class _CompanyRequestsComponentWidgetState
                             ),
                           ],
                         ),
-                      if (_model.request?.food.isNotEmpty)
+                      if (_model.request?.food?.length != 0)
                         Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 16.0),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                               child: Text(
                                 'Питание:',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Commissioner',
-                                      fontSize: 18.0,
+                                      fontSize: 18,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w500,
                                     ),
                               ),
                             ),
                             Container(
-                              width: MediaQuery.sizeOf(context).width * 1.0,
+                              width: MediaQuery.sizeOf(context).width,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context).primary,
-                                borderRadius: const BorderRadius.only(
-                                  bottomLeft: Radius.circular(0.0),
-                                  bottomRight: Radius.circular(0.0),
-                                  topLeft: Radius.circular(16.0),
-                                  topRight: Radius.circular(16.0),
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(0),
+                                  bottomRight: Radius.circular(0),
+                                  topLeft: Radius.circular(16),
+                                  topRight: Radius.circular(16),
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 8.0, 0.0, 8.0),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
@@ -1457,7 +1455,7 @@ class _CompanyRequestsComponentWidgetState
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.1,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Категория питания',
                                           textAlign: TextAlign.start,
@@ -1468,7 +1466,7 @@ class _CompanyRequestsComponentWidgetState
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                fontSize: 19.0,
+                                                fontSize: 19,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
@@ -1481,7 +1479,7 @@ class _CompanyRequestsComponentWidgetState
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Количество порций',
                                           style: FlutterFlowTheme.of(context)
@@ -1491,7 +1489,7 @@ class _CompanyRequestsComponentWidgetState
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                fontSize: 19.0,
+                                                fontSize: 19,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
@@ -1504,7 +1502,7 @@ class _CompanyRequestsComponentWidgetState
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Количество персон',
                                           style: FlutterFlowTheme.of(context)
@@ -1514,7 +1512,7 @@ class _CompanyRequestsComponentWidgetState
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                fontSize: 19.0,
+                                                fontSize: 19,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
@@ -1522,8 +1520,8 @@ class _CompanyRequestsComponentWidgetState
                                       ),
                                     ),
                                     Container(
-                                      width: 200.0,
-                                      decoration: const BoxDecoration(),
+                                      width: 200,
+                                      decoration: BoxDecoration(),
                                       child: Text(
                                         'Стоимость',
                                         textAlign: TextAlign.end,
@@ -1534,16 +1532,16 @@ class _CompanyRequestsComponentWidgetState
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
-                                              fontSize: 19.0,
+                                              fontSize: 19,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
                                             ),
                                       ),
                                     ),
                                   ]
-                                      .divide(const SizedBox(width: 8.0))
-                                      .addToStart(const SizedBox(width: 16.0))
-                                      .addToEnd(const SizedBox(width: 16.0)),
+                                      .divide(SizedBox(width: 8))
+                                      .addToStart(SizedBox(width: 16))
+                                      .addToEnd(SizedBox(width: 16)),
                                 ),
                               ),
                             ),
@@ -1559,8 +1557,8 @@ class _CompanyRequestsComponentWidgetState
                                 if (!snapshot.hasData) {
                                   return Center(
                                     child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
+                                      width: 50,
+                                      height: 50,
                                       child: CircularProgressIndicator(
                                         valueColor:
                                             AlwaysStoppedAnimation<Color>(
@@ -1584,8 +1582,7 @@ class _CompanyRequestsComponentWidgetState
                                         columnRequestsFoodVarRowList[
                                             columnIndex];
                                     return Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          1.0,
+                                      width: MediaQuery.sizeOf(context).width,
                                       decoration: BoxDecoration(
                                         color: valueOrDefault<Color>(
                                           columnIndex.isOdd
@@ -1596,16 +1593,16 @@ class _CompanyRequestsComponentWidgetState
                                           FlutterFlowTheme.of(context)
                                               .primaryBackground,
                                         ),
-                                        borderRadius: const BorderRadius.only(
-                                          bottomLeft: Radius.circular(0.0),
-                                          bottomRight: Radius.circular(0.0),
-                                          topLeft: Radius.circular(0.0),
-                                          topRight: Radius.circular(0.0),
+                                        borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(0),
+                                          bottomRight: Radius.circular(0),
+                                          topLeft: Radius.circular(0),
+                                          topRight: Radius.circular(0),
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 8.0, 0.0, 8.0),
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 8, 0, 8),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
@@ -1616,7 +1613,7 @@ class _CompanyRequestsComponentWidgetState
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         0.1,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     columnRequestsFoodVarRow
@@ -1633,7 +1630,7 @@ class _CompanyRequestsComponentWidgetState
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 19.0,
+                                                        fontSize: 19,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
@@ -1648,7 +1645,7 @@ class _CompanyRequestsComponentWidgetState
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         0.5,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     columnRequestsFoodVarRow
@@ -1666,7 +1663,7 @@ class _CompanyRequestsComponentWidgetState
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 19.0,
+                                                        fontSize: 19,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
@@ -1681,7 +1678,7 @@ class _CompanyRequestsComponentWidgetState
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         0.5,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     columnRequestsFoodVarRow
@@ -1699,7 +1696,7 @@ class _CompanyRequestsComponentWidgetState
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 19.0,
+                                                        fontSize: 19,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
@@ -1708,8 +1705,8 @@ class _CompanyRequestsComponentWidgetState
                                               ),
                                             ),
                                             Container(
-                                              width: 200.0,
-                                              decoration: const BoxDecoration(),
+                                              width: 200,
+                                              decoration: BoxDecoration(),
                                               child: Text(
                                                 valueOrDefault<String>(
                                                   formatNumber(
@@ -1727,7 +1724,7 @@ class _CompanyRequestsComponentWidgetState
                                                         .override(
                                                           fontFamily:
                                                               'Commissioner',
-                                                          fontSize: 19.0,
+                                                          fontSize: 19,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
@@ -1738,9 +1735,9 @@ class _CompanyRequestsComponentWidgetState
                                               ),
                                             ),
                                           ]
-                                              .divide(const SizedBox(width: 8.0))
-                                              .addToStart(const SizedBox(width: 16.0))
-                                              .addToEnd(const SizedBox(width: 16.0)),
+                                              .divide(SizedBox(width: 8))
+                                              .addToStart(SizedBox(width: 16))
+                                              .addToEnd(SizedBox(width: 16)),
                                         ),
                                       ),
                                     );
@@ -1753,19 +1750,19 @@ class _CompanyRequestsComponentWidgetState
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Container(
-                                  width: 100.0,
-                                  height: 40.0,
+                                  width: 100,
+                                  height: 40,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context).primary,
-                                    borderRadius: const BorderRadius.only(
-                                      bottomLeft: Radius.circular(8.0),
-                                      bottomRight: Radius.circular(0.0),
-                                      topLeft: Radius.circular(0.0),
-                                      topRight: Radius.circular(0.0),
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(8),
+                                      bottomRight: Radius.circular(0),
+                                      topLeft: Radius.circular(0),
+                                      topRight: Radius.circular(0),
                                     ),
                                   ),
                                   child: Align(
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0, 0),
                                     child: Text(
                                       'Итого:',
                                       textAlign: TextAlign.end,
@@ -1775,24 +1772,24 @@ class _CompanyRequestsComponentWidgetState
                                             fontFamily: 'Commissioner',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
-                                            fontSize: 19.0,
+                                            fontSize: 19,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
                                   ),
                                 ),
                                 Container(
-                                  width: 250.0,
-                                  height: 40.0,
+                                  width: 250,
+                                  height: 40,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
                                   ),
                                   child: Align(
-                                    alignment: const AlignmentDirectional(1.0, 0.0),
+                                    alignment: AlignmentDirectional(1, 0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          34.0, 0.0, 16.0, 0.0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          34, 0, 16, 0),
                                       child: Text(
                                         '${formatNumber(
                                           _model.request?.foodPrice,
@@ -1806,7 +1803,7 @@ class _CompanyRequestsComponentWidgetState
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryText,
-                                              fontSize: 19.0,
+                                              fontSize: 19,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w600,
                                             ),
@@ -1818,40 +1815,40 @@ class _CompanyRequestsComponentWidgetState
                             ),
                           ],
                         ),
-                      if (_model.request?.rooms.isNotEmpty)
+                      if (_model.request?.rooms?.length != 0)
                         Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 16.0),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                               child: Text(
                                 'Номера:',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Commissioner',
-                                      fontSize: 18.0,
+                                      fontSize: 18,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w500,
                                     ),
                               ),
                             ),
                             Container(
-                              width: MediaQuery.sizeOf(context).width * 1.0,
+                              width: MediaQuery.sizeOf(context).width,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context).primary,
-                                borderRadius: const BorderRadius.only(
-                                  bottomLeft: Radius.circular(0.0),
-                                  bottomRight: Radius.circular(0.0),
-                                  topLeft: Radius.circular(16.0),
-                                  topRight: Radius.circular(16.0),
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(0),
+                                  bottomRight: Radius.circular(0),
+                                  topLeft: Radius.circular(16),
+                                  topRight: Radius.circular(16),
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 8.0, 0.0, 8.0),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
@@ -1861,7 +1858,7 @@ class _CompanyRequestsComponentWidgetState
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.1,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Название зала',
                                           textAlign: TextAlign.start,
@@ -1872,7 +1869,7 @@ class _CompanyRequestsComponentWidgetState
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                fontSize: 19.0,
+                                                fontSize: 19,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
@@ -1885,7 +1882,7 @@ class _CompanyRequestsComponentWidgetState
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Количество',
                                           style: FlutterFlowTheme.of(context)
@@ -1895,7 +1892,7 @@ class _CompanyRequestsComponentWidgetState
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                fontSize: 19.0,
+                                                fontSize: 19,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
@@ -1908,7 +1905,7 @@ class _CompanyRequestsComponentWidgetState
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Количество дней',
                                           style: FlutterFlowTheme.of(context)
@@ -1918,7 +1915,7 @@ class _CompanyRequestsComponentWidgetState
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                fontSize: 19.0,
+                                                fontSize: 19,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                               ),
@@ -1926,8 +1923,8 @@ class _CompanyRequestsComponentWidgetState
                                       ),
                                     ),
                                     Container(
-                                      width: 200.0,
-                                      decoration: const BoxDecoration(),
+                                      width: 200,
+                                      decoration: BoxDecoration(),
                                       child: Text(
                                         'Стоимость',
                                         textAlign: TextAlign.end,
@@ -1938,16 +1935,16 @@ class _CompanyRequestsComponentWidgetState
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
-                                              fontSize: 19.0,
+                                              fontSize: 19,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
                                             ),
                                       ),
                                     ),
                                   ]
-                                      .divide(const SizedBox(width: 8.0))
-                                      .addToStart(const SizedBox(width: 16.0))
-                                      .addToEnd(const SizedBox(width: 16.0)),
+                                      .divide(SizedBox(width: 8))
+                                      .addToStart(SizedBox(width: 16))
+                                      .addToEnd(SizedBox(width: 16)),
                                 ),
                               ),
                             ),
@@ -1963,8 +1960,8 @@ class _CompanyRequestsComponentWidgetState
                                 if (!snapshot.hasData) {
                                   return Center(
                                     child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
+                                      width: 50,
+                                      height: 50,
                                       child: CircularProgressIndicator(
                                         valueColor:
                                             AlwaysStoppedAnimation<Color>(
@@ -1988,8 +1985,7 @@ class _CompanyRequestsComponentWidgetState
                                         columnRequestsRoomVarRowList[
                                             columnIndex];
                                     return Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          1.0,
+                                      width: MediaQuery.sizeOf(context).width,
                                       decoration: BoxDecoration(
                                         color: valueOrDefault<Color>(
                                           columnIndex.isOdd
@@ -2000,16 +1996,16 @@ class _CompanyRequestsComponentWidgetState
                                           FlutterFlowTheme.of(context)
                                               .primaryBackground,
                                         ),
-                                        borderRadius: const BorderRadius.only(
-                                          bottomLeft: Radius.circular(0.0),
-                                          bottomRight: Radius.circular(0.0),
-                                          topLeft: Radius.circular(0.0),
-                                          topRight: Radius.circular(0.0),
+                                        borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(0),
+                                          bottomRight: Radius.circular(0),
+                                          topLeft: Radius.circular(0),
+                                          topRight: Radius.circular(0),
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 8.0, 0.0, 8.0),
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 8, 0, 8),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
@@ -2020,7 +2016,7 @@ class _CompanyRequestsComponentWidgetState
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         0.1,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     columnRequestsRoomVarRow
@@ -2037,7 +2033,7 @@ class _CompanyRequestsComponentWidgetState
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 19.0,
+                                                        fontSize: 19,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
@@ -2052,7 +2048,7 @@ class _CompanyRequestsComponentWidgetState
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         0.5,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     columnRequestsRoomVarRow
@@ -2070,7 +2066,7 @@ class _CompanyRequestsComponentWidgetState
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 19.0,
+                                                        fontSize: 19,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
@@ -2085,7 +2081,7 @@ class _CompanyRequestsComponentWidgetState
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         0.5,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     columnRequestsRoomVarRow
@@ -2103,7 +2099,7 @@ class _CompanyRequestsComponentWidgetState
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 19.0,
+                                                        fontSize: 19,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
@@ -2112,8 +2108,8 @@ class _CompanyRequestsComponentWidgetState
                                               ),
                                             ),
                                             Container(
-                                              width: 200.0,
-                                              decoration: const BoxDecoration(),
+                                              width: 200,
+                                              decoration: BoxDecoration(),
                                               child: Text(
                                                 valueOrDefault<String>(
                                                   formatNumber(
@@ -2133,7 +2129,7 @@ class _CompanyRequestsComponentWidgetState
                                                         .override(
                                                           fontFamily:
                                                               'Commissioner',
-                                                          fontSize: 19.0,
+                                                          fontSize: 19,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
@@ -2144,9 +2140,9 @@ class _CompanyRequestsComponentWidgetState
                                               ),
                                             ),
                                           ]
-                                              .divide(const SizedBox(width: 8.0))
-                                              .addToStart(const SizedBox(width: 16.0))
-                                              .addToEnd(const SizedBox(width: 16.0)),
+                                              .divide(SizedBox(width: 8))
+                                              .addToStart(SizedBox(width: 16))
+                                              .addToEnd(SizedBox(width: 16)),
                                         ),
                                       ),
                                     );
@@ -2159,19 +2155,19 @@ class _CompanyRequestsComponentWidgetState
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Container(
-                                  width: 100.0,
-                                  height: 40.0,
+                                  width: 100,
+                                  height: 40,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context).primary,
-                                    borderRadius: const BorderRadius.only(
-                                      bottomLeft: Radius.circular(8.0),
-                                      bottomRight: Radius.circular(0.0),
-                                      topLeft: Radius.circular(0.0),
-                                      topRight: Radius.circular(0.0),
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(8),
+                                      bottomRight: Radius.circular(0),
+                                      topLeft: Radius.circular(0),
+                                      topRight: Radius.circular(0),
                                     ),
                                   ),
                                   child: Align(
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0, 0),
                                     child: Text(
                                       'Итого:',
                                       textAlign: TextAlign.end,
@@ -2181,24 +2177,24 @@ class _CompanyRequestsComponentWidgetState
                                             fontFamily: 'Commissioner',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
-                                            fontSize: 19.0,
+                                            fontSize: 19,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
                                   ),
                                 ),
                                 Container(
-                                  width: 250.0,
-                                  height: 40.0,
+                                  width: 250,
+                                  height: 40,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
                                   ),
                                   child: Align(
-                                    alignment: const AlignmentDirectional(1.0, 0.0),
+                                    alignment: AlignmentDirectional(1, 0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          34.0, 0.0, 16.0, 0.0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          34, 0, 16, 0),
                                       child: Text(
                                         '${formatNumber(
                                           _model.request?.roomPrice,
@@ -2212,7 +2208,7 @@ class _CompanyRequestsComponentWidgetState
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryText,
-                                              fontSize: 19.0,
+                                              fontSize: 19,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w600,
                                             ),
@@ -2232,7 +2228,7 @@ class _CompanyRequestsComponentWidgetState
                             flex: 3,
                             child: Container(
                               width: MediaQuery.sizeOf(context).width * 0.5,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Text(
                                 'Общий итог: ',
                                 textAlign: TextAlign.end,
@@ -2240,7 +2236,7 @@ class _CompanyRequestsComponentWidgetState
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Commissioner',
-                                      fontSize: 18.0,
+                                      fontSize: 18,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -2248,7 +2244,7 @@ class _CompanyRequestsComponentWidgetState
                             ),
                           ),
                           Container(
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Text(
                               '${formatNumber(
                                 _model.request?.price,
@@ -2260,19 +2256,19 @@ class _CompanyRequestsComponentWidgetState
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Commissioner',
-                                    color: const Color(0xFF2431A5),
-                                    fontSize: 20.0,
+                                    color: Color(0xFF2431A5),
+                                    fontSize: 20,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                             ),
                           ),
                         ]
-                            .divide(const SizedBox(width: 8.0))
-                            .addToStart(const SizedBox(width: 16.0))
-                            .addToEnd(const SizedBox(width: 16.0)),
+                            .divide(SizedBox(width: 8))
+                            .addToStart(SizedBox(width: 16))
+                            .addToEnd(SizedBox(width: 16)),
                       ),
-                    ].divide(const SizedBox(height: 40.0)),
+                    ].divide(SizedBox(height: 40)),
                   ),
               ],
             ),
