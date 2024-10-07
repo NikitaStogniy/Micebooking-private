@@ -1,6 +1,15 @@
+import '/backend/schema/enums/enums.dart';
+import '/backend/supabase/supabase.dart';
+import '/empty_states/images_empty/images_empty_widget.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/pop_up/pop_up_images/pop_up_images_widget.dart';
 import 'hall_pop_up_widget.dart' show HallPopUpWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class HallPopUpModel extends FlutterFlowModel<HallPopUpWidget> {
   ///  Local state fields for this component.

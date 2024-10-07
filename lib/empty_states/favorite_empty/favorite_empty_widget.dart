@@ -1,6 +1,8 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'favorite_empty_model.dart';
 export 'favorite_empty_model.dart';
 
@@ -38,9 +40,9 @@ class _FavoriteEmptyWidgetState extends State<FavoriteEmptyWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
+        padding: EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -77,7 +79,7 @@ class _FavoriteEmptyWidgetState extends State<FavoriteEmptyWidget> {
                     fontWeight: FontWeight.normal,
                   ),
             ),
-          ].divide(const SizedBox(height: 16.0)),
+          ].divide(SizedBox(height: 16.0)),
         ),
       ),
     );

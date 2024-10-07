@@ -3,6 +3,8 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'client_detail_model.dart';
 export 'client_detail_model.dart';
 
@@ -11,7 +13,7 @@ class ClientDetailWidget extends StatefulWidget {
     super.key,
     required this.userId,
     int? id,
-  }) : id = id ?? 88;
+  }) : this.id = id ?? 88;
 
   final Future Function(int? id)? userId;
   final int id;
@@ -53,7 +55,7 @@ class _ClientDetailWidgetState extends State<ClientDetailWidget> {
       future: UsersTable().querySingleRow(
         queryFn: (q) => q.eq(
           'id',
-          widget.id,
+          widget!.id,
         ),
       ),
       builder: (context, snapshot) {
@@ -79,7 +81,7 @@ class _ClientDetailWidgetState extends State<ClientDetailWidget> {
 
         return Container(
           height: MediaQuery.sizeOf(context).height * 1.0,
-          decoration: const BoxDecoration(),
+          decoration: BoxDecoration(),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -124,7 +126,7 @@ class _ClientDetailWidgetState extends State<ClientDetailWidget> {
                     Expanded(
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController,
                           focusNode: _model.textFieldFocusNode,
@@ -145,7 +147,7 @@ class _ClientDetailWidgetState extends State<ClientDetailWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Color(0xFFF0F0FA),
                                 width: 2.0,
                               ),
@@ -173,7 +175,7 @@ class _ClientDetailWidgetState extends State<ClientDetailWidget> {
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             filled: true,
-                            fillColor: const Color(0xFFF0F0FA),
+                            fillColor: Color(0xFFF0F0FA),
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
@@ -185,7 +187,7 @@ class _ClientDetailWidgetState extends State<ClientDetailWidget> {
                         ),
                       ),
                     ),
-                  ].divide(const SizedBox(width: 24.0)),
+                  ].divide(SizedBox(width: 24.0)),
                 ),
                 Column(
                   mainAxisSize: MainAxisSize.min,
@@ -196,7 +198,7 @@ class _ClientDetailWidgetState extends State<ClientDetailWidget> {
                       height: 56.0,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).primary,
-                        borderRadius: const BorderRadius.only(
+                        borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(0.0),
                           bottomRight: Radius.circular(0.0),
                           topLeft: Radius.circular(16.0),
@@ -210,7 +212,7 @@ class _ClientDetailWidgetState extends State<ClientDetailWidget> {
                             flex: 3,
                             child: Container(
                               width: MediaQuery.sizeOf(context).width * 0.5,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Text(
                                 'Название мероприятия',
                                 style: FlutterFlowTheme.of(context)
@@ -229,7 +231,7 @@ class _ClientDetailWidgetState extends State<ClientDetailWidget> {
                             flex: 2,
                             child: Container(
                               width: MediaQuery.sizeOf(context).width * 0.5,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Text(
                                 'Начало мероприятия',
                                 style: FlutterFlowTheme.of(context)
@@ -248,7 +250,7 @@ class _ClientDetailWidgetState extends State<ClientDetailWidget> {
                             flex: 2,
                             child: Container(
                               width: MediaQuery.sizeOf(context).width * 0.5,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Text(
                                 'Запрос',
                                 style: FlutterFlowTheme.of(context)
@@ -267,7 +269,7 @@ class _ClientDetailWidgetState extends State<ClientDetailWidget> {
                             flex: 2,
                             child: Container(
                               width: MediaQuery.sizeOf(context).width * 0.5,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Text(
                                 'Дата запроса',
                                 style: FlutterFlowTheme.of(context)
@@ -284,12 +286,12 @@ class _ClientDetailWidgetState extends State<ClientDetailWidget> {
                           ),
                           Container(
                             width: 30.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                           ),
                         ]
-                            .divide(const SizedBox(width: 8.0))
-                            .addToStart(const SizedBox(width: 16.0))
-                            .addToEnd(const SizedBox(width: 16.0)),
+                            .divide(SizedBox(width: 8.0))
+                            .addToStart(SizedBox(width: 16.0))
+                            .addToEnd(SizedBox(width: 16.0)),
                       ),
                     ),
                     FutureBuilder<List<UsersRow>>(
@@ -338,7 +340,7 @@ class _ClientDetailWidgetState extends State<ClientDetailWidget> {
                                   FlutterFlowTheme.of(context)
                                       .primaryBackground,
                                 ),
-                                borderRadius: const BorderRadius.only(
+                                borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(0.0),
                                   bottomRight: Radius.circular(0.0),
                                   topLeft: Radius.circular(0.0),
@@ -353,7 +355,7 @@ class _ClientDetailWidgetState extends State<ClientDetailWidget> {
                                     child: Container(
                                       width: MediaQuery.sizeOf(context).width *
                                           0.5,
-                                      decoration: const BoxDecoration(),
+                                      decoration: BoxDecoration(),
                                       child: Text(
                                         valueOrDefault<String>(
                                           columnUsersRow.name,
@@ -377,7 +379,7 @@ class _ClientDetailWidgetState extends State<ClientDetailWidget> {
                                     child: Container(
                                       width: MediaQuery.sizeOf(context).width *
                                           0.5,
-                                      decoration: const BoxDecoration(),
+                                      decoration: BoxDecoration(),
                                       child: Text(
                                         valueOrDefault<String>(
                                           columnUsersRow.lastRequest
@@ -402,7 +404,7 @@ class _ClientDetailWidgetState extends State<ClientDetailWidget> {
                                     child: Container(
                                       width: MediaQuery.sizeOf(context).width *
                                           0.5,
-                                      decoration: const BoxDecoration(),
+                                      decoration: BoxDecoration(),
                                       child: Text(
                                         valueOrDefault<String>(
                                           columnUsersRow.email,
@@ -426,7 +428,7 @@ class _ClientDetailWidgetState extends State<ClientDetailWidget> {
                                     child: Container(
                                       width: MediaQuery.sizeOf(context).width *
                                           0.5,
-                                      decoration: const BoxDecoration(),
+                                      decoration: BoxDecoration(),
                                       child: Text(
                                         valueOrDefault<String>(
                                           columnUsersRow.phone,
@@ -447,7 +449,7 @@ class _ClientDetailWidgetState extends State<ClientDetailWidget> {
                                   ),
                                   Container(
                                     width: 30.0,
-                                    decoration: const BoxDecoration(),
+                                    decoration: BoxDecoration(),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
                                       focusColor: Colors.transparent,
@@ -467,9 +469,9 @@ class _ClientDetailWidgetState extends State<ClientDetailWidget> {
                                     ),
                                   ),
                                 ]
-                                    .divide(const SizedBox(width: 8.0))
-                                    .addToStart(const SizedBox(width: 16.0))
-                                    .addToEnd(const SizedBox(width: 16.0)),
+                                    .divide(SizedBox(width: 8.0))
+                                    .addToStart(SizedBox(width: 16.0))
+                                    .addToEnd(SizedBox(width: 16.0)),
                               ),
                             );
                           }),
@@ -478,7 +480,7 @@ class _ClientDetailWidgetState extends State<ClientDetailWidget> {
                     ),
                   ],
                 ),
-              ].divide(const SizedBox(height: 16.0)).addToEnd(const SizedBox(height: 72.0)),
+              ].divide(SizedBox(height: 16.0)).addToEnd(SizedBox(height: 72.0)),
             ),
           ),
         );

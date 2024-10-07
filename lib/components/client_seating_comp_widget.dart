@@ -7,6 +7,8 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'client_seating_comp_model.dart';
 export 'client_seating_comp_model.dart';
 
@@ -19,8 +21,8 @@ class ClientSeatingCompWidget extends StatefulWidget {
     required this.onDelete,
     int? index,
     int? mainCount,
-  })  : index = index ?? 1,
-        mainCount = mainCount ?? 1;
+  })  : this.index = index ?? 1,
+        this.mainCount = mainCount ?? 1;
 
   final HotelSeatingStruct? seating;
   final Future Function(EnumSeating? onChange, int? count)? onChangeSeating;
@@ -50,7 +52,7 @@ class _ClientSeatingCompWidgetState extends State<ClientSeatingCompWidget> {
 
     _model.countTextController ??= TextEditingController(
         text: valueOrDefault<String>(
-      widget.seating?.count.toString(),
+      widget!.seating?.count?.toString(),
       '0',
     ));
     _model.countFocusNode ??= FocusNode();
@@ -78,13 +80,13 @@ class _ClientSeatingCompWidgetState extends State<ClientSeatingCompWidget> {
             Flexible(
               child: Container(
                 width: 130.0,
-                decoration: const BoxDecoration(),
+                decoration: BoxDecoration(),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      'Зал ${widget.index.toString()}:',
+                      'Зал ${widget!.index.toString()}:',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Commissioner',
                             color: FlutterFlowTheme.of(context).primary,
@@ -100,21 +102,21 @@ class _ClientSeatingCompWidgetState extends State<ClientSeatingCompWidget> {
                           width: 60.0,
                           height: 30.0,
                           decoration: BoxDecoration(
-                            color: const Color(0xFFC0C4EC),
+                            color: Color(0xFFC0C4EC),
                             borderRadius: BorderRadius.circular(100.0),
                           ),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 8.0, 0.0, 8.0, 0.0),
                             child: TextFormField(
                               controller: _model.countTextController,
                               focusNode: _model.countFocusNode,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.countTextController',
-                                const Duration(milliseconds: 100),
+                                Duration(milliseconds: 100),
                                 () async {
                                   await widget.onChangeSeating?.call(
-                                    widget.seating?.type,
+                                    widget!.seating?.type,
                                     valueOrDefault<int>(
                                       int.tryParse(
                                           _model.countTextController.text),
@@ -144,7 +146,7 @@ class _ClientSeatingCompWidgetState extends State<ClientSeatingCompWidget> {
                                 focusedBorder: InputBorder.none,
                                 errorBorder: InputBorder.none,
                                 focusedErrorBorder: InputBorder.none,
-                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 16.0),
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -175,12 +177,12 @@ class _ClientSeatingCompWidgetState extends State<ClientSeatingCompWidget> {
                         ),
                       ),
                     ),
-                  ].divide(const SizedBox(width: 8.0)),
+                  ].divide(SizedBox(width: 8.0)),
                 ),
               ),
             ),
             Container(
-              decoration: const BoxDecoration(),
+              decoration: BoxDecoration(),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -199,7 +201,7 @@ class _ClientSeatingCompWidgetState extends State<ClientSeatingCompWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               await widget.onChangeSeating?.call(
-                                functions.enumChange(widget.seating!.type, -1),
+                                functions.enumChange(widget!.seating!.type, -1),
                                 int.tryParse(_model.countTextController.text),
                               );
                             },
@@ -215,15 +217,15 @@ class _ClientSeatingCompWidgetState extends State<ClientSeatingCompWidget> {
                               Container(
                                 width: 40.0,
                                 height: 40.0,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: wrapWithModel(
                                     model: _model.seatingIconModel,
                                     updateCallback: () => safeSetState(() {}),
                                     updateOnChange: true,
                                     child: SeatingIconWidget(
-                                      type: widget.seating!.type,
+                                      type: widget!.seating!.type,
                                     ),
                                   ),
                                 ),
@@ -237,7 +239,7 @@ class _ClientSeatingCompWidgetState extends State<ClientSeatingCompWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               await widget.onChangeSeating?.call(
-                                functions.enumChange(widget.seating!.type, 1),
+                                functions.enumChange(widget!.seating!.type, 1),
                                 int.tryParse(_model.countTextController.text),
                               );
                             },
@@ -255,28 +257,28 @@ class _ClientSeatingCompWidgetState extends State<ClientSeatingCompWidget> {
                         children: [
                           Text(
                             () {
-                              if (widget.seating?.type ==
+                              if (widget!.seating?.type ==
                                   EnumSeating.theatre) {
                                 return 'Театр';
-                              } else if (widget.seating?.type ==
+                              } else if (widget!.seating?.type ==
                                   EnumSeating.klass) {
                                 return 'Класс';
-                              } else if (widget.seating?.type ==
+                              } else if (widget!.seating?.type ==
                                   EnumSeating.communication) {
                                 return 'Переговорная';
-                              } else if (widget.seating?.type ==
+                              } else if (widget!.seating?.type ==
                                   EnumSeating.ushape) {
                                 return 'П-образная';
-                              } else if (widget.seating?.type ==
+                              } else if (widget!.seating?.type ==
                                   EnumSeating.oshape) {
                                 return 'О-образная';
-                              } else if (widget.seating?.type ==
+                              } else if (widget!.seating?.type ==
                                   EnumSeating.cabare) {
                                 return 'Кабаре';
-                              } else if (widget.seating?.type ==
+                              } else if (widget!.seating?.type ==
                                   EnumSeating.banket) {
                                 return 'Банкет';
-                              } else if (widget.seating?.type ==
+                              } else if (widget!.seating?.type ==
                                   EnumSeating.furshet) {
                                 return 'Фуршет';
                               } else {
@@ -331,9 +333,9 @@ class _ClientSeatingCompWidgetState extends State<ClientSeatingCompWidget> {
                 ],
               ),
             ),
-          ].divide(const SizedBox(width: 12.0)),
+          ].divide(SizedBox(width: 12.0)),
         ),
-        if (widget.mainCount < _model.currentHallCount)
+        if (widget!.mainCount < _model.currentHallCount)
           Text(
             'Кол-во мест в зале больше. чем общее кол -во участников',
             style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -343,7 +345,7 @@ class _ClientSeatingCompWidgetState extends State<ClientSeatingCompWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-      ].divide(const SizedBox(height: 4.0)),
+      ].divide(SizedBox(height: 4.0)),
     );
   }
 }

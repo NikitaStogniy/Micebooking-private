@@ -1,6 +1,10 @@
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'support_bottomsheet_widget.dart' show SupportBottomsheetWidget;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class SupportBottomsheetModel
     extends FlutterFlowModel<SupportBottomsheetWidget> {

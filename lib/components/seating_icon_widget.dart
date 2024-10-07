@@ -1,7 +1,10 @@
 import '/backend/schema/enums/enums.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'seating_icon_model.dart';
 export 'seating_icon_model.dart';
 
@@ -46,7 +49,7 @@ class _SeatingIconWidgetState extends State<SeatingIconWidget> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (widget.type == EnumSeating.theatre)
+        if (widget!.type == EnumSeating.theatre)
           ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
             child: SvgPicture.asset(
@@ -56,7 +59,7 @@ class _SeatingIconWidgetState extends State<SeatingIconWidget> {
               fit: BoxFit.cover,
             ),
           ),
-        if (widget.type == EnumSeating.ushape)
+        if (widget!.type == EnumSeating.ushape)
           ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
             child: SvgPicture.asset(
@@ -66,7 +69,7 @@ class _SeatingIconWidgetState extends State<SeatingIconWidget> {
               fit: BoxFit.cover,
             ),
           ),
-        if (widget.type == EnumSeating.communication)
+        if (widget!.type == EnumSeating.communication)
           ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
             child: SvgPicture.asset(
@@ -76,7 +79,7 @@ class _SeatingIconWidgetState extends State<SeatingIconWidget> {
               fit: BoxFit.cover,
             ),
           ),
-        if (widget.type == EnumSeating.oshape)
+        if (widget!.type == EnumSeating.oshape)
           ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
             child: SvgPicture.asset(
@@ -86,7 +89,7 @@ class _SeatingIconWidgetState extends State<SeatingIconWidget> {
               fit: BoxFit.cover,
             ),
           ),
-        if (widget.type == EnumSeating.cabare)
+        if (widget!.type == EnumSeating.cabare)
           ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
             child: SvgPicture.asset(
@@ -96,7 +99,7 @@ class _SeatingIconWidgetState extends State<SeatingIconWidget> {
               fit: BoxFit.cover,
             ),
           ),
-        if (widget.type == EnumSeating.klass)
+        if (widget!.type == EnumSeating.klass)
           ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
             child: SvgPicture.asset(
@@ -106,7 +109,7 @@ class _SeatingIconWidgetState extends State<SeatingIconWidget> {
               fit: BoxFit.cover,
             ),
           ),
-        if (widget.type == EnumSeating.banket)
+        if (widget!.type == EnumSeating.banket)
           ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
             child: SvgPicture.asset(
@@ -116,7 +119,7 @@ class _SeatingIconWidgetState extends State<SeatingIconWidget> {
               fit: BoxFit.cover,
             ),
           ),
-        if (widget.type == EnumSeating.furshet)
+        if (widget!.type == EnumSeating.furshet)
           ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
             child: SvgPicture.asset(

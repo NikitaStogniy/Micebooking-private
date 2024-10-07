@@ -1,4 +1,5 @@
 import '/backend/schema/enums/enums.dart';
+import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/super_hall_seating_comp_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -8,6 +9,8 @@ import '/uikit/check_box/check_box_widget.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'hall_full_info_model.dart';
 export 'hall_full_info_model.dart';
 
@@ -17,7 +20,7 @@ class HallFullInfoWidget extends StatefulWidget {
     int? id,
     required this.goNext,
     required this.goBack,
-  }) : id = id ?? 88;
+  }) : this.id = id ?? 88;
 
   final int id;
   final Future Function(int? id)? goNext;
@@ -57,7 +60,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
       future: HallTable().querySingleRow(
         queryFn: (q) => q.eq(
           'id',
-          widget.id,
+          widget!.id,
         ),
       ),
       builder: (context, snapshot) {
@@ -81,7 +84,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
             containerHallRowList.isNotEmpty ? containerHallRowList.first : null;
 
         return Container(
-          decoration: const BoxDecoration(),
+          decoration: BoxDecoration(),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -162,12 +165,12 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                             },
                           ),
                         ),
-                      ].divide(const SizedBox(width: 24.0)),
+                      ].divide(SizedBox(width: 24.0)),
                     );
                   },
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(-1.0, 1.0),
+                  alignment: AlignmentDirectional(-1.0, 1.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -177,7 +180,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                         children: [
                           Container(
                             width: 200.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Text(
                               'Название зала',
                               style: FlutterFlowTheme.of(context)
@@ -194,13 +197,13 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                             child: Container(
                               height: 40.0,
                               decoration: BoxDecoration(
-                                color: const Color(0xFFF0F0FA),
+                                color: Color(0xFFF0F0FA),
                                 borderRadius: BorderRadius.circular(40.0),
                               ),
                               child: Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       22.0, 0.0, 0.0, 0.0),
                                   child: Text(
                                     valueOrDefault<String>(
@@ -220,7 +223,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                               ),
                             ),
                           ),
-                        ].divide(const SizedBox(width: 16.0)),
+                        ].divide(SizedBox(width: 16.0)),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
@@ -228,7 +231,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                         children: [
                           Container(
                             width: 200.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Text(
                               'Описание отеля',
                               style: FlutterFlowTheme.of(context)
@@ -244,13 +247,13 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                           Expanded(
                             child: Container(
                               decoration: BoxDecoration(
-                                color: const Color(0xFFF0F0FA),
+                                color: Color(0xFFF0F0FA),
                                 borderRadius: BorderRadius.circular(40.0),
                               ),
                               child: Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       22.0, 12.0, 22.0, 12.0),
                                   child: Text(
                                     valueOrDefault<String>(
@@ -270,7 +273,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                               ),
                             ),
                           ),
-                        ].divide(const SizedBox(width: 16.0)),
+                        ].divide(SizedBox(width: 16.0)),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
@@ -279,9 +282,9 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                           Container(
                             width: 200.0,
                             height: 100.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Text(
                                 'Фотографии',
                                 style: FlutterFlowTheme.of(context)
@@ -295,7 +298,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                               ),
                             ),
                           ),
-                          if (containerHallRow!.images.isNotEmpty)
+                          if (containerHallRow!.images.length > 0)
                             Expanded(
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -305,11 +308,11 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                                     width:
                                         MediaQuery.sizeOf(context).width * 1.0,
                                     height: 100.0,
-                                    decoration: const BoxDecoration(),
+                                    decoration: BoxDecoration(),
                                     child: Builder(
                                       builder: (context) {
-                                        final images = containerHallRow.images
-                                                .toList() ??
+                                        final images = containerHallRow?.images
+                                                ?.toList() ??
                                             [];
 
                                         return ListView.builder(
@@ -320,18 +323,18 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                                             final imagesItem =
                                                 images[imagesIndex];
                                             return Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   0.0, 0.0),
-                                              child: SizedBox(
+                                              child: Container(
                                                 width: 160.0,
                                                 child: Stack(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   4.0,
                                                                   4.0,
@@ -351,7 +354,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                                                     ),
                                                     Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               -0.9, -0.8),
                                                       child: Icon(
                                                         Icons.star,
@@ -406,7 +409,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                             children: [
                               Container(
                                 width: 200.0,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Text(
                                   'Площадь зала:',
                                   style: FlutterFlowTheme.of(context)
@@ -423,24 +426,24 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                                 width: 130.0,
                                 height: 40.0,
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFFF0F0FA),
+                                  color: Color(0xFFF0F0FA),
                                   borderRadius: BorderRadius.circular(40.0),
                                 ),
                                 child: Align(
-                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         22.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
-                                        containerHallRow.size?.toString(),
+                                        containerHallRow?.size?.toString(),
                                         'Ошибка',
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Commissioner',
-                                            color: const Color(0xFF636363),
+                                            color: Color(0xFF636363),
                                             fontSize: 18.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
@@ -460,14 +463,14 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                                       fontWeight: FontWeight.w500,
                                     ),
                               ),
-                            ].divide(const SizedBox(width: 16.0)),
+                            ].divide(SizedBox(width: 16.0)),
                           ),
                           Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Container(
                                 width: 200.0,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Text(
                                   'Общая вместимость',
                                   style: FlutterFlowTheme.of(context)
@@ -484,24 +487,24 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                                 width: 130.0,
                                 height: 40.0,
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFFF0F0FA),
+                                  color: Color(0xFFF0F0FA),
                                   borderRadius: BorderRadius.circular(40.0),
                                 ),
                                 child: Align(
-                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         22.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
-                                        containerHallRow.capacity?.toString(),
+                                        containerHallRow?.capacity?.toString(),
                                         'Ошибка',
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Commissioner',
-                                            color: const Color(0xFF636363),
+                                            color: Color(0xFF636363),
                                             fontSize: 18.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
@@ -521,7 +524,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                                       fontWeight: FontWeight.w500,
                                     ),
                               ),
-                            ].divide(const SizedBox(width: 16.0)),
+                            ].divide(SizedBox(width: 16.0)),
                           ),
                           Column(
                             mainAxisSize: MainAxisSize.max,
@@ -552,13 +555,13 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                                           onChange: (count) async {},
                                         ),
                                       );
-                                    }).divide(const SizedBox(height: 8.0)),
+                                    }).divide(SizedBox(height: 8.0)),
                                   );
                                 },
                               ),
-                            ].divide(const SizedBox(height: 8.0)),
+                            ].divide(SizedBox(height: 8.0)),
                           ),
-                        ].divide(const SizedBox(height: 24.0)),
+                        ].divide(SizedBox(height: 24.0)),
                       ),
                       Column(
                         mainAxisSize: MainAxisSize.min,
@@ -566,7 +569,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                         children: [
                           Container(
                             width: MediaQuery.sizeOf(context).width * 1.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: FutureBuilder<List<ServiceCategoryRow>>(
                               future: ServiceCategoryTable().queryRows(
                                 queryFn: (q) => q.eq(
@@ -596,7 +599,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
 
                                 return MasonryGridView.builder(
                                   gridDelegate:
-                                      const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                      SliverSimpleGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
                                   ),
                                   crossAxisSpacing: 40.0,
@@ -609,15 +612,15 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                                         staggeredViewServiceCategoryRowList[
                                             staggeredViewIndex];
                                     return Container(
-                                      decoration: const BoxDecoration(),
+                                      decoration: BoxDecoration(),
                                       child: Container(
                                         width: double.infinity,
-                                        color: const Color(0x00000000),
+                                        color: Color(0x00000000),
                                         child: ExpandableNotifier(
                                           initialExpanded: true,
                                           child: ExpandablePanel(
                                             header: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 0.0, 0.0, 20.0),
                                               child: Row(
@@ -689,7 +692,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                                                       listViewServiceRowList
                                                           .length,
                                                   separatorBuilder: (_, __) =>
-                                                      const SizedBox(height: 12.0),
+                                                      SizedBox(height: 12.0),
                                                   itemBuilder:
                                                       (context, listViewIndex) {
                                                     final listViewServiceRow =
@@ -702,7 +705,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                                                         Expanded(
                                                           child: Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     -1.0, 0.0),
                                                             child:
                                                                 wrapWithModel(
@@ -725,7 +728,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                                                                   'Keys8c_${listViewServiceRow.id.toString()}',
                                                                 ),
                                                                 variant: 2,
-                                                                isChecked: containerHallRow
+                                                                isChecked: containerHallRow!
                                                                     .services
                                                                     .contains(
                                                                         listViewServiceRow
@@ -776,9 +779,9 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                         ],
                       ),
                     ]
-                        .divide(const SizedBox(height: 24.0))
-                        .addToStart(const SizedBox(height: 16.0))
-                        .addToEnd(const SizedBox(height: 16.0)),
+                        .divide(SizedBox(height: 24.0))
+                        .addToStart(SizedBox(height: 16.0))
+                        .addToEnd(SizedBox(height: 16.0)),
                   ),
                 ),
                 Row(
@@ -795,9 +798,9 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                           text: 'Назад',
                           options: FFButtonOptions(
                             height: 50.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 43.0, 0.0, 43.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -808,18 +811,18 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 0.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(24.0),
                           ),
                         ),
-                      ].divide(const SizedBox(width: 20.0)),
+                      ].divide(SizedBox(width: 20.0)),
                     ),
                   ],
                 ),
-              ].addToEnd(const SizedBox(height: 72.0)),
+              ].addToEnd(SizedBox(height: 72.0)),
             ),
           ),
         );

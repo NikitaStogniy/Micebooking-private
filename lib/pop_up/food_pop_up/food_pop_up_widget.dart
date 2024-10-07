@@ -4,6 +4,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'food_pop_up_model.dart';
 export 'food_pop_up_model.dart';
 
@@ -14,7 +16,7 @@ class FoodPopUpWidget extends StatefulWidget {
     bool? isChosen,
     this.chosed,
     this.foodRequest,
-  }) : isChosen = isChosen ?? false;
+  }) : this.isChosen = isChosen ?? false;
 
   final FoodRow? food;
   final bool isChosen;
@@ -52,14 +54,14 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+      padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
       child: Container(
         height: MediaQuery.sizeOf(context).height * 0.9,
-        constraints: const BoxConstraints(
+        constraints: BoxConstraints(
           maxWidth: 1250.0,
         ),
         decoration: BoxDecoration(
-          color: const Color(0xFFF9F9F9),
+          color: Color(0xFFF9F9F9),
           borderRadius: BorderRadius.circular(23.0),
         ),
         child: Padding(
@@ -94,7 +96,7 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
                       child: Container(
                         width: 40.0,
                         height: 40.0,
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Icon(
                           Icons.close_rounded,
                           color: FlutterFlowTheme.of(context).primary,
@@ -105,7 +107,7 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -136,7 +138,7 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -144,7 +146,7 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
                         future: ServiceCategoryTable().querySingleRow(
                           queryFn: (q) => q.eq(
                             'id',
-                            widget.food?.category,
+                            widget!.food?.category,
                           ),
                         ),
                         builder: (context, snapshot) {
@@ -175,7 +177,7 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
                               textServiceCategoryRow?.name,
                               'Без категории',
                             )} \"${valueOrDefault<String>(
-                              widget.food?.name,
+                              widget!.food?.name,
                               'Без названия',
                             )}\"',
                             style: FlutterFlowTheme.of(context)
@@ -194,15 +196,15 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                   child: Container(
                     width: MediaQuery.sizeOf(context).width * 1.0,
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                   ),
                 ),
                 Container(
                   width: MediaQuery.sizeOf(context).width * 0.6,
-                  decoration: const BoxDecoration(),
+                  decoration: BoxDecoration(),
                   child: FutureBuilder<List<ServiceCategoryRow>>(
                     future: ServiceCategoryTable().queryRows(
                       queryFn: (q) => q
@@ -212,7 +214,7 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
                           )
                           .overlaps(
                             'services_id',
-                            widget.food?.positions,
+                            widget!.food?.positions,
                           ),
                     ),
                     builder: (context, snapshot) {
@@ -274,7 +276,7 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
                                       )
                                       .in_(
                                         'id',
-                                        widget.food!.positions,
+                                        widget!.food!.positions,
                                       ),
                                 ),
                                 builder: (context, snapshot) {
@@ -330,11 +332,11 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
                                           ),
                                         ],
                                       );
-                                    }).divide(const SizedBox(height: 4.0)),
+                                    }).divide(SizedBox(height: 4.0)),
                                   );
                                 },
                               ),
-                            ].divide(const SizedBox(height: 16.0)),
+                            ].divide(SizedBox(height: 16.0)),
                           );
                         },
                       );

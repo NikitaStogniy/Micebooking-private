@@ -9,7 +9,7 @@ class LastChangedTable extends SupabaseTable<LastChangedRow> {
 }
 
 class LastChangedRow extends SupabaseDataRow {
-  LastChangedRow(super.data);
+  LastChangedRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => LastChangedTable();

@@ -12,6 +12,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'edit_food_model.dart';
 export 'edit_food_model.dart';
 
@@ -47,22 +49,22 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.categoryId = widget.initialFood?.category;
-      _model.menuTest = widget.initialFood!.positions.toList().cast<int>();
+      _model.categoryId = widget!.initialFood?.category;
+      _model.menuTest = widget!.initialFood!.positions.toList().cast<int>();
       safeSetState(() {});
       safeSetState(() {
-        _model.editNameTextController?.text = widget.initialFood!.name!;
+        _model.editNameTextController?.text = widget!.initialFood!.name!;
         _model.editPriceTextController?.text =
-            widget.initialFood!.price!.toString();
+            widget!.initialFood!.price!.toString();
       });
       safeSetState(() {
         _model.editCategoryValueController?.reset();
       });
-      _model.menuTest = widget.initialFood!.positions.toList().cast<int>();
-      _model.addToCurrentFoodId(widget.id!);
+      _model.menuTest = widget!.initialFood!.positions.toList().cast<int>();
+      _model.addToCurrentFoodId(widget!.id!);
       safeSetState(() {});
-      _model.editableFood = widget.initialFood;
-      _model.categooryName = widget.initialFood?.categoryName;
+      _model.editableFood = widget!.initialFood;
+      _model.categooryName = widget!.initialFood?.categoryName;
       safeSetState(() {});
       safeSetState(() => _model.requestCompleter1 = null);
       await _model.waitForRequestCompleted1();
@@ -71,11 +73,11 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
     });
 
     _model.editNameTextController ??=
-        TextEditingController(text: widget.initialFood?.name);
+        TextEditingController(text: widget!.initialFood?.name);
     _model.editNameFocusNode ??= FocusNode();
 
     _model.editPriceTextController ??=
-        TextEditingController(text: widget.initialFood?.price?.toString());
+        TextEditingController(text: widget!.initialFood?.price?.toString());
     _model.editPriceFocusNode ??= FocusNode();
 
     _model.createAddmenuTextController ??= TextEditingController();
@@ -128,14 +130,14 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
           width: MediaQuery.sizeOf(context).width * 1.0,
           height: MediaQuery.sizeOf(context).height * 1.0,
           decoration: BoxDecoration(
-            color: const Color(0x00FFFFFF),
+            color: Color(0x00FFFFFF),
             borderRadius: BorderRadius.circular(32.0),
           ),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                if (widget.id != null)
+                if (widget!.id != null)
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -166,7 +168,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                           ),
                           Text(
                             valueOrDefault<String>(
-                              widget.initialFood?.name,
+                              widget!.initialFood?.name,
                               'нет',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -179,10 +181,10 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                   lineHeight: 1.0,
                                 ),
                           ),
-                        ].divide(const SizedBox(width: 16.0)),
+                        ].divide(SizedBox(width: 16.0)),
                       ),
                       Align(
-                        alignment: const AlignmentDirectional(-1.0, 1.0),
+                        alignment: AlignmentDirectional(-1.0, 1.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -192,7 +194,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                               children: [
                                 Container(
                                   width: 200.0,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Text(
                                     'Название пакета*',
                                     style: FlutterFlowTheme.of(context)
@@ -207,7 +209,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 8.0, 0.0),
                                     child: TextFormField(
                                       controller: _model.editNameTextController,
@@ -229,7 +231,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                               letterSpacing: 0.0,
                                             ),
                                         enabledBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Color(0xFFF0F0FA),
                                             width: 2.0,
                                           ),
@@ -264,7 +266,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                               BorderRadius.circular(24.0),
                                         ),
                                         filled: true,
-                                        fillColor: const Color(0xFFF0F0FA),
+                                        fillColor: Color(0xFFF0F0FA),
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -295,7 +297,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                     children: [
                                       Container(
                                         width: 200.0,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Тип пакета*',
                                           style: FlutterFlowTheme.of(context)
@@ -335,7 +337,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                         ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         8.0, 0.0, 0.0, 0.0),
                                                 child: InkWell(
@@ -439,10 +441,10 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                         ),
                                                       );
                                                       _model.categoryId = _model
-                                                          .category?.first.id;
+                                                          .category?.first?.id;
                                                       _model.categooryName =
                                                           _model.category?.first
-                                                              .name;
+                                                              ?.name;
                                                       safeSetState(() {});
                                                       safeSetState(() => _model
                                                               .requestCompleter1 =
@@ -483,7 +485,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                     borderWidth: 2.0,
                                                     borderRadius: 100.0,
                                                     margin:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(16.0, 4.0,
                                                                 16.0, 4.0),
                                                     hidesUnderline: true,
@@ -494,7 +496,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                 },
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         8.0, 0.0, 0.0, 0.0),
                                                 child: InkWell(
@@ -551,7 +553,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                             fontWeight: FontWeight.w500,
                                           ),
                                     ),
-                                    SizedBox(
+                                    Container(
                                       width: 100.0,
                                       child: TextFormField(
                                         controller:
@@ -617,9 +619,9 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                 BorderRadius.circular(24.0),
                                           ),
                                           filled: true,
-                                          fillColor: const Color(0xFFF0F0FA),
+                                          fillColor: Color(0xFFF0F0FA),
                                           contentPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 12.0, 8.0, 12.0),
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -644,9 +646,9 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                         ],
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 8.0)),
+                                  ].divide(SizedBox(width: 8.0)),
                                 ),
-                              ].divide(const SizedBox(width: 24.0)),
+                              ].divide(SizedBox(width: 24.0)),
                             ),
                             Column(
                               mainAxisSize: MainAxisSize.max,
@@ -863,7 +865,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                     ),
                                                     filled: true,
                                                     fillColor:
-                                                        const Color(0xFFF0F0FA),
+                                                        Color(0xFFF0F0FA),
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -943,7 +945,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                       );
                                                       _model.menuCategoryId =
                                                           _model.categoryDrop
-                                                              ?.first.id;
+                                                              ?.first?.id;
                                                       safeSetState(() {});
                                                       safeSetState(() => _model
                                                               .requestCompleter3 =
@@ -985,7 +987,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                     borderWidth: 2.0,
                                                     borderRadius: 100.0,
                                                     margin:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(16.0, 0.0,
                                                                 16.0, 0.0),
                                                     hidesUnderline: true,
@@ -1030,7 +1032,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                     matchingRows: (rows) =>
                                                         rows.eq(
                                                       'id',
-                                                      rowServiceCategoryRow.id,
+                                                      rowServiceCategoryRow?.id,
                                                     ),
                                                   );
                                                   safeSetState(() {
@@ -1052,11 +1054,11 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                 text: 'Добавить',
                                                 options: FFButtonOptions(
                                                   height: 50.0,
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           43.0, 0.0, 43.0, 0.0),
                                                   iconPadding:
-                                                      const EdgeInsetsDirectional
+                                                      EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
                                                   color: FlutterFlowTheme.of(
@@ -1073,7 +1075,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                             letterSpacing: 0.0,
                                                           ),
                                                   elevation: 0.0,
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Colors.transparent,
                                                     width: 1.0,
                                                   ),
@@ -1095,11 +1097,11 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                 text: 'Отменить',
                                                 options: FFButtonOptions(
                                                   height: 50.0,
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           43.0, 0.0, 43.0, 0.0),
                                                   iconPadding:
-                                                      const EdgeInsetsDirectional
+                                                      EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
                                                   color: FlutterFlowTheme.of(
@@ -1116,7 +1118,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                             letterSpacing: 0.0,
                                                           ),
                                                   elevation: 0.0,
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Colors.transparent,
                                                     width: 1.0,
                                                   ),
@@ -1125,13 +1127,13 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                           24.0),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(width: 16.0)),
+                                            ].divide(SizedBox(width: 16.0)),
                                           );
                                         },
                                       ),
                                     if (!_model.addMenuOpen)
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 24.0, 0.0, 0.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
@@ -1142,10 +1144,10 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                           options: FFButtonOptions(
                                             height: 50.0,
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     43.0, 0.0, 43.0, 0.0),
                                             iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
@@ -1173,9 +1175,9 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                       ),
                                   ],
                                 ),
-                              ].divide(const SizedBox(height: 8.0)),
+                              ].divide(SizedBox(height: 8.0)),
                             ),
-                          ].divide(const SizedBox(height: 10.0)),
+                          ].divide(SizedBox(height: 10.0)),
                         ),
                       ),
                       Row(
@@ -1199,7 +1201,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                     },
                                     matchingRows: (rows) => rows.eq(
                                       'id',
-                                      widget.initialFood?.id,
+                                      widget!.initialFood?.id,
                                     ),
                                   );
                                   await ServiceCategoryTable().update(
@@ -1211,7 +1213,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                     },
                                     matchingRows: (rows) => rows.eq(
                                       'id',
-                                      bodyServiceCategoryRow.id,
+                                      bodyServiceCategoryRow?.id,
                                     ),
                                   );
                                   _model.typeChange = false;
@@ -1225,9 +1227,9 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                   });
                                   safeSetState(() {
                                     _model.editNameTextController?.text =
-                                        widget.initialFood!.name!;
+                                        widget!.initialFood!.name!;
                                     _model.editPriceTextController?.text =
-                                        widget.initialFood!.price!.toString();
+                                        widget!.initialFood!.price!.toString();
                                   });
                                   await widget.isSubmit?.call();
 
@@ -1236,9 +1238,9 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                 text: 'Обновить',
                                 options: FFButtonOptions(
                                   height: 50.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       43.0, 0.0, 43.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).primary,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -1249,7 +1251,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   elevation: 0.0,
-                                  borderSide: const BorderSide(
+                                  borderSide: BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
@@ -1270,9 +1272,9 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                 text: 'Отменить изменения',
                                 options: FFButtonOptions(
                                   height: 50.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       43.0, 0.0, 43.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).error,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -1283,21 +1285,21 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   elevation: 0.0,
-                                  borderSide: const BorderSide(
+                                  borderSide: BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
                                   borderRadius: BorderRadius.circular(24.0),
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 16.0)),
+                            ].divide(SizedBox(width: 16.0)),
                           ),
                           FFButtonWidget(
                             onPressed: () async {
                               await FoodTable().delete(
                                 matchingRows: (rows) => rows.eq(
                                   'id',
-                                  widget.initialFood?.id,
+                                  widget!.initialFood?.id,
                                 ),
                               );
                               await widget.isSubmit?.call();
@@ -1305,9 +1307,9 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                             text: 'Удалить пакет',
                             options: FFButtonOptions(
                               height: 50.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   43.0, 0.0, 43.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).error,
                               textStyle: FlutterFlowTheme.of(context)
@@ -1318,7 +1320,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 0.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -1327,9 +1329,9 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                           ),
                         ],
                       ),
-                    ].divide(const SizedBox(height: 32.0)),
+                    ].divide(SizedBox(height: 32.0)),
                   ),
-              ].addToEnd(const SizedBox(height: 72.0)),
+              ].addToEnd(SizedBox(height: 72.0)),
             ),
           ),
         );

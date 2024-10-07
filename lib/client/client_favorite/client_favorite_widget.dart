@@ -8,6 +8,8 @@ import '/flutter_flow/form_field_controller.dart';
 import '/pop_up/hotel_pop_up/hotel_pop_up_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'client_favorite_model.dart';
 export 'client_favorite_model.dart';
 
@@ -16,7 +18,7 @@ class ClientFavoriteWidget extends StatefulWidget {
     super.key,
     int? userId,
     required this.user,
-  }) : userId = userId ?? 88;
+  }) : this.userId = userId ?? 88;
 
   final int userId;
   final UsersRow? user;
@@ -41,7 +43,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.favoriteHotels = widget.user!.favoriteHotels.toList().cast<int>();
+      _model.favoriteHotels = widget!.user!.favoriteHotels.toList().cast<int>();
       safeSetState(() {});
     });
 
@@ -84,7 +86,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                 ),
           ),
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -142,7 +144,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                       borderWidth: 2.0,
                       borderRadius: 8.0,
                       margin:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                          EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                       hidesUnderline: true,
                       isOverButton: true,
                       isSearchable: false,
@@ -151,7 +153,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                   },
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -177,16 +179,16 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
             ),
           ),
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
             child: ClipRRect(
-              borderRadius: const BorderRadius.only(
+              borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(16.0),
                 bottomRight: Radius.circular(16.0),
                 topLeft: Radius.circular(0.0),
                 topRight: Radius.circular(0.0),
               ),
               child: Container(
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(16.0),
                     bottomRight: Radius.circular(16.0),
@@ -208,7 +210,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                         height: 56.0,
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primary,
-                          borderRadius: const BorderRadius.only(
+                          borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(0.0),
                             bottomRight: Radius.circular(0.0),
                             topLeft: Radius.circular(16.0),
@@ -222,7 +224,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                               flex: 2,
                               child: Container(
                                 width: MediaQuery.sizeOf(context).width * 0.3,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Text(
                                   'Отель',
                                   style: FlutterFlowTheme.of(context)
@@ -240,7 +242,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                             Expanded(
                               child: Container(
                                 width: MediaQuery.sizeOf(context).width * 0.233,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Text(
                                   'Город',
                                   style: FlutterFlowTheme.of(context)
@@ -258,19 +260,19 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                             Expanded(
                               child: Container(
                                 width: MediaQuery.sizeOf(context).width * 0.233,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                               ),
                             ),
                             Expanded(
                               child: Container(
                                 width: MediaQuery.sizeOf(context).width * 0.233,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                               ),
                             ),
                           ]
-                              .divide(const SizedBox(width: 8.0))
-                              .addToStart(const SizedBox(width: 16.0))
-                              .addToEnd(const SizedBox(width: 16.0)),
+                              .divide(SizedBox(width: 8.0))
+                              .addToStart(SizedBox(width: 16.0))
+                              .addToEnd(SizedBox(width: 16.0)),
                         ),
                       ),
                     if ((_model.searchCity != null &&
@@ -281,7 +283,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                           tablet: false,
                         ))
                       Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: FutureBuilder<List<HotelRow>>(
                           future: HotelTable().queryRows(
                             queryFn: (q) => q
@@ -313,7 +315,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                 snapshot.data!;
 
                             if (decsCityOnHotelRowList.isEmpty) {
-                              return const FavoriteEmptyWidget();
+                              return FavoriteEmptyWidget();
                             }
 
                             return Column(
@@ -337,7 +339,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                       FlutterFlowTheme.of(context)
                                           .primaryBackground,
                                     ),
-                                    borderRadius: const BorderRadius.only(
+                                    borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(0.0),
                                       bottomRight: Radius.circular(0.0),
                                       topLeft: Radius.circular(0.0),
@@ -353,7 +355,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.3,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Text(
                                             valueOrDefault<String>(
                                               decsCityOnHotelRow.name,
@@ -377,7 +379,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.233,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Text(
                                             valueOrDefault<String>(
                                               decsCityOnHotelRow.cityName,
@@ -401,7 +403,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.233,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Builder(
                                             builder: (context) => InkWell(
                                               splashColor: Colors.transparent,
@@ -412,7 +414,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                               onTap: () async {
                                                 await showDialog(
                                                   barrierColor:
-                                                      const Color(0x6C121212),
+                                                      Color(0x6C121212),
                                                   context: context,
                                                   builder: (dialogContext) {
                                                     return Dialog(
@@ -422,12 +424,12 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                                       backgroundColor:
                                                           Colors.transparent,
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
                                                                       context)),
-                                                      child: SizedBox(
+                                                      child: Container(
                                                         height:
                                                             MediaQuery.sizeOf(
                                                                         context)
@@ -475,7 +477,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.233,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
                                             focusColor: Colors.transparent,
@@ -495,7 +497,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                                 },
                                                 matchingRows: (rows) => rows.eq(
                                                   'id',
-                                                  widget.user?.id,
+                                                  widget!.user?.id,
                                                 ),
                                               );
                                             },
@@ -519,9 +521,9 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                         ),
                                       ),
                                     ]
-                                        .divide(const SizedBox(width: 8.0))
-                                        .addToStart(const SizedBox(width: 16.0))
-                                        .addToEnd(const SizedBox(width: 16.0)),
+                                        .divide(SizedBox(width: 8.0))
+                                        .addToStart(SizedBox(width: 16.0))
+                                        .addToEnd(SizedBox(width: 16.0)),
                                   ),
                                 );
                               }),
@@ -562,7 +564,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                               snapshot.data!;
 
                           if (decsCityOffHotelRowList.isEmpty) {
-                            return const FavoriteEmptyWidget();
+                            return FavoriteEmptyWidget();
                           }
 
                           return Column(
@@ -586,7 +588,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                     FlutterFlowTheme.of(context)
                                         .primaryBackground,
                                   ),
-                                  borderRadius: const BorderRadius.only(
+                                  borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(0.0),
                                     bottomRight: Radius.circular(0.0),
                                     topLeft: Radius.circular(0.0),
@@ -602,7 +604,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.3,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           valueOrDefault<String>(
                                             decsCityOffHotelRow.name,
@@ -626,7 +628,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.233,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           valueOrDefault<String>(
                                             decsCityOffHotelRow.cityName,
@@ -650,7 +652,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.233,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Builder(
                                           builder: (context) => InkWell(
                                             splashColor: Colors.transparent,
@@ -659,7 +661,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
                                               await showDialog(
-                                                barrierColor: const Color(0x6C121212),
+                                                barrierColor: Color(0x6C121212),
                                                 context: context,
                                                 builder: (dialogContext) {
                                                   return Dialog(
@@ -669,12 +671,12 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                                     backgroundColor:
                                                         Colors.transparent,
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                                 0.0, 0.0)
                                                             .resolve(
                                                                 Directionality.of(
                                                                     context)),
-                                                    child: SizedBox(
+                                                    child: Container(
                                                       height: MediaQuery.sizeOf(
                                                                   context)
                                                               .height *
@@ -717,7 +719,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.233,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: InkWell(
                                           splashColor: Colors.transparent,
                                           focusColor: Colors.transparent,
@@ -736,7 +738,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                               },
                                               matchingRows: (rows) => rows.eq(
                                                 'id',
-                                                widget.user?.id,
+                                                widget!.user?.id,
                                               ),
                                             );
                                           },
@@ -759,9 +761,9 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                       ),
                                     ),
                                   ]
-                                      .divide(const SizedBox(width: 8.0))
-                                      .addToStart(const SizedBox(width: 16.0))
-                                      .addToEnd(const SizedBox(width: 16.0)),
+                                      .divide(SizedBox(width: 8.0))
+                                      .addToStart(SizedBox(width: 16.0))
+                                      .addToEnd(SizedBox(width: 16.0)),
                                 ),
                               );
                             }),
@@ -805,7 +807,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                           List<HotelRow> mobCityOnHotelRowList = snapshot.data!;
 
                           if (mobCityOnHotelRowList.isEmpty) {
-                            return const FavoriteEmptyWidget();
+                            return FavoriteEmptyWidget();
                           }
 
                           return Column(
@@ -815,102 +817,139 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                 mobCityOnHotelRowList.length, (mobCityOnIndex) {
                               final mobCityOnHotelRow =
                                   mobCityOnHotelRowList[mobCityOnIndex];
-                              return Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  if (mobCityOnHotelRow.images.isNotEmpty)
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: Image.network(
-                                        mobCityOnHotelRow.images.first,
-                                        width: 60.0,
-                                        height: 60.0,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  if (mobCityOnHotelRow.images.isEmpty)
-                                    Container(
-                                      width: 60.0,
-                                      height: 60.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      child: Align(
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
-                                        child: Icon(
-                                          Icons.hide_image,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          size: 24.0,
+                              return Builder(
+                                builder: (context) => InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (dialogContext) {
+                                        return Dialog(
+                                          elevation: 0,
+                                          insetPadding: EdgeInsets.zero,
+                                          backgroundColor: Colors.transparent,
+                                          alignment: AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          child: HotelPopUpWidget(
+                                            hotel: mobCityOnHotelRow,
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      if (mobCityOnHotelRow.images.length > 0)
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            mobCityOnHotelRow.images.first,
+                                            width: 60.0,
+                                            height: 60.0,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      if (mobCityOnHotelRow.images.length == 0)
+                                        Container(
+                                          width: 60.0,
+                                          height: 60.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          child: Align(
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: Icon(
+                                              Icons.hide_image,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              size: 24.0,
+                                            ),
+                                          ),
+                                        ),
+                                      Expanded(
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 0.0, 24.0, 0.0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                valueOrDefault<String>(
+                                                  mobCityOnHotelRow.name,
+                                                  'Без названия',
+                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          fontSize: 18.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                              ),
+                                              Text(
+                                                valueOrDefault<String>(
+                                                  mobCityOnHotelRow.cityName,
+                                                  'Без названия',
+                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          fontSize: 16.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                        ),
+                                              ),
+                                            ].divide(SizedBox(height: 2.0)),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 0.0, 24.0, 0.0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            valueOrDefault<String>(
-                                              mobCityOnHotelRow.name,
-                                              'Без названия',
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Commissioner',
-                                                  fontSize: 18.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                          ),
-                                          Text(
-                                            valueOrDefault<String>(
-                                              mobCityOnHotelRow.cityName,
-                                              'Без названия',
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Commissioner',
-                                                  fontSize: 16.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.normal,
-                                                ),
-                                          ),
-                                        ].divide(const SizedBox(height: 2.0)),
+                                      FlutterFlowIconButton(
+                                        borderColor:
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                        borderRadius: 20.0,
+                                        borderWidth: 1.0,
+                                        buttonSize: 32.0,
+                                        fillColor: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        icon: Icon(
+                                          Icons.arrow_forward_ios_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          size: 16.0,
+                                        ),
+                                        onPressed: () {
+                                          print('IconButton pressed ...');
+                                        },
                                       ),
-                                    ),
+                                    ],
                                   ),
-                                  FlutterFlowIconButton(
-                                    borderColor:
-                                        FlutterFlowTheme.of(context).primary,
-                                    borderRadius: 20.0,
-                                    borderWidth: 1.0,
-                                    buttonSize: 32.0,
-                                    fillColor:
-                                        FlutterFlowTheme.of(context).primary,
-                                    icon: Icon(
-                                      Icons.arrow_forward_ios_rounded,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      size: 16.0,
-                                    ),
-                                    onPressed: () {
-                                      print('IconButton pressed ...');
-                                    },
-                                  ),
-                                ],
+                                ),
                               );
-                            }).divide(const SizedBox(height: 32.0)),
+                            }).divide(SizedBox(height: 32.0)),
                           );
                         },
                       ),
@@ -947,7 +986,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                               snapshot.data!;
 
                           if (mobCityOffHotelRowList.isEmpty) {
-                            return const FavoriteEmptyWidget();
+                            return FavoriteEmptyWidget();
                           }
 
                           return Column(
@@ -961,7 +1000,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                               return Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  if (mobCityOffHotelRow.images.isNotEmpty)
+                                  if (mobCityOffHotelRow.images.length > 0)
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(8.0),
                                       child: Image.network(
@@ -971,7 +1010,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                         fit: BoxFit.cover,
                                       ),
                                     ),
-                                  if (mobCityOffHotelRow.images.isEmpty)
+                                  if (mobCityOffHotelRow.images.length == 0)
                                     Container(
                                       width: 60.0,
                                       height: 60.0,
@@ -983,7 +1022,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                       ),
                                       child: Align(
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: Icon(
                                           Icons.hide_image,
                                           color: FlutterFlowTheme.of(context)
@@ -994,7 +1033,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                     ),
                                   Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           16.0, 0.0, 24.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -1029,7 +1068,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                           ),
-                                        ].divide(const SizedBox(height: 2.0)),
+                                        ].divide(SizedBox(height: 2.0)),
                                       ),
                                     ),
                                   ),
@@ -1053,7 +1092,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                   ),
                                 ],
                               );
-                            }).divide(const SizedBox(height: 32.0)),
+                            }).divide(SizedBox(height: 32.0)),
                           );
                         },
                       ),
@@ -1062,7 +1101,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
               ),
             ),
           ),
-        ].addToStart(const SizedBox(height: 20.0)).addToEnd(const SizedBox(height: 20.0)),
+        ].addToStart(SizedBox(height: 20.0)).addToEnd(SizedBox(height: 20.0)),
       ),
     );
   }

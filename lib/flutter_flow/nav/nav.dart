@@ -1,16 +1,23 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '/backend/schema/structs/index.dart';
+import '/backend/schema/enums/enums.dart';
 import '/backend/supabase/supabase.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
+import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/lat_lng.dart';
+import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'serialization_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -75,43 +82,43 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const HomeWidget() : const HomePageWidget(),
+          appStateNotifier.loggedIn ? HomeWidget() : HomePageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const HomeWidget() : const HomePageWidget(),
+              appStateNotifier.loggedIn ? HomeWidget() : HomePageWidget(),
         ),
         FFRoute(
           name: 'HomePage',
           path: '/homePage',
-          builder: (context, params) => const HomePageWidget(),
+          builder: (context, params) => HomePageWidget(),
         ),
         FFRoute(
           name: 'Home',
           path: '/home',
-          builder: (context, params) => const HomeWidget(),
+          builder: (context, params) => HomeWidget(),
         ),
         FFRoute(
           name: 'HOTEL_HOME',
           path: '/hotelHome',
-          builder: (context, params) => const HotelHomeWidget(),
+          builder: (context, params) => HotelHomeWidget(),
         ),
         FFRoute(
           name: 'SUPER_Home',
           path: '/sUPERHome',
-          builder: (context, params) => const SUPERHomeWidget(),
+          builder: (context, params) => SUPERHomeWidget(),
         ),
         FFRoute(
           name: 'Client_home',
           path: '/clientHome',
-          builder: (context, params) => const ClientHomeWidget(),
+          builder: (context, params) => ClientHomeWidget(),
         ),
         FFRoute(
           name: 'PC_LoginCopy',
           path: '/pCLoginCopy',
-          builder: (context, params) => const PCLoginCopyWidget(),
+          builder: (context, params) => PCLoginCopyWidget(),
         ),
         FFRoute(
           name: 'HotelSearchPage',
@@ -216,12 +223,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'aboutservice',
           path: '/aboutservice',
-          builder: (context, params) => const AboutserviceWidget(),
+          builder: (context, params) => AboutserviceWidget(),
         ),
         FFRoute(
           name: 'why',
           path: '/why',
-          builder: (context, params) => const WhyWidget(),
+          builder: (context, params) => WhyWidget(),
         ),
         FFRoute(
           name: 'EditRequestPage',
@@ -312,12 +319,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'AboutUs',
           path: '/aboutUs',
-          builder: (context, params) => const AboutUsWidget(),
+          builder: (context, params) => AboutUsWidget(),
         ),
         FFRoute(
           name: 'QA',
           path: '/qa',
-          builder: (context, params) => const QaWidget(),
+          builder: (context, params) => QaWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -555,7 +562,7 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => const TransitionInfo(
+  static TransitionInfo appDefault() => TransitionInfo(
         hasTransition: true,
         transitionType: PageTransitionType.fade,
         duration: Duration(milliseconds: 0),

@@ -9,7 +9,7 @@ class CmsTable extends SupabaseTable<CmsRow> {
 }
 
 class CmsRow extends SupabaseDataRow {
-  CmsRow(super.data);
+  CmsRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => CmsTable();

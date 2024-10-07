@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'visitors_count_model.dart';
 export 'visitors_count_model.dart';
 
@@ -24,7 +26,7 @@ class VisitorsCountWidget extends StatefulWidget {
     this.filter1,
     this.filter2,
     this.filter3,
-  }) : count = count ?? 0;
+  }) : this.count = count ?? 0;
 
   final int count;
   final Future Function()? onAdd;
@@ -58,15 +60,15 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.countDublicate = widget.count;
-      _model.seating1 = widget.filter1?.type;
-      _model.seating2 = widget.filter2?.type;
-      _model.seating3 = widget.filter3?.type;
-      _model.addToSeatings(widget.filter1!);
+      _model.countDublicate = widget!.count;
+      _model.seating1 = widget!.filter1?.type;
+      _model.seating2 = widget!.filter2?.type;
+      _model.seating3 = widget!.filter3?.type;
+      _model.addToSeatings(widget!.filter1!);
       safeSetState(() {});
-      _model.addToSeatings(widget.filter2!);
+      _model.addToSeatings(widget!.filter2!);
       safeSetState(() {});
-      _model.addToSeatings(widget.filter3!);
+      _model.addToSeatings(widget!.filter3!);
       safeSetState(() {});
     });
 
@@ -90,7 +92,7 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          constraints: const BoxConstraints(
+          constraints: BoxConstraints(
             maxWidth: 340.0,
           ),
           decoration: BoxDecoration(
@@ -98,7 +100,7 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
             borderRadius: BorderRadius.circular(24.0),
           ),
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
+            padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -119,7 +121,7 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -130,7 +132,7 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                 width: 70.0,
                                 height: 40.0,
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFFC0C4EC),
+                                  color: Color(0xFFC0C4EC),
                                   borderRadius: BorderRadius.circular(100.0),
                                 ),
                                 child: Visibility(
@@ -141,7 +143,7 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                       width: 70.0,
                                       height: 40.0,
                                       decoration: BoxDecoration(
-                                        color: const Color(0xFFC0C4EC),
+                                        color: Color(0xFFC0C4EC),
                                         borderRadius:
                                             BorderRadius.circular(100.0),
                                       ),
@@ -149,11 +151,11 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                         visible: _model.fieldActive == true,
                                         child: Align(
                                           alignment:
-                                              const AlignmentDirectional(-1.0, 0.0),
+                                              AlignmentDirectional(-1.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    8.0, 0.0, 8.0, 10.0),
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    8.0, 0.0, 8.0, 0.0),
                                             child: TextFormField(
                                               controller:
                                                   _model.countmobTextController,
@@ -162,7 +164,7 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                               onChanged: (_) =>
                                                   EasyDebounce.debounce(
                                                 '_model.countmobTextController',
-                                                const Duration(milliseconds: 200),
+                                                Duration(milliseconds: 200),
                                                 () async {
                                                   await widget.onType?.call(
                                                     int.tryParse(_model
@@ -205,7 +207,7 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                                         ),
                                                 enabledBorder:
                                                     UnderlineInputBorder(
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Color(0x00000000),
                                                     width: 0.0,
                                                   ),
@@ -215,7 +217,7 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                                 ),
                                                 focusedBorder:
                                                     UnderlineInputBorder(
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Color(0x00000000),
                                                     width: 0.0,
                                                   ),
@@ -225,7 +227,7 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                                 ),
                                                 errorBorder:
                                                     UnderlineInputBorder(
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Color(0x00000000),
                                                     width: 0.0,
                                                   ),
@@ -235,7 +237,7 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                                 ),
                                                 focusedErrorBorder:
                                                     UnderlineInputBorder(
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Color(0x00000000),
                                                     width: 0.0,
                                                   ),
@@ -243,6 +245,10 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                                       BorderRadius.circular(
                                                           0.0),
                                                 ),
+                                                contentPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 8.0),
                                               ),
                                               style: FlutterFlowTheme.of(
                                                       context)
@@ -299,13 +305,13 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                   width: 70.0,
                                   height: 40.0,
                                   decoration: BoxDecoration(
-                                    color: const Color(0xFFC0C4EC),
+                                    color: Color(0xFFC0C4EC),
                                     borderRadius: BorderRadius.circular(100.0),
                                   ),
                                   child: Align(
-                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 9.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
@@ -353,11 +359,11 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                 ),
                               ),
                               child: Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: FaIcon(
                                   FontAwesomeIcons.minus,
                                   color: FlutterFlowTheme.of(context).primary,
-                                  size: 18.0,
+                                  size: 12.0,
                                 ),
                               ),
                             ),
@@ -386,16 +392,16 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                 ),
                               ),
                               child: Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: FaIcon(
                                   FontAwesomeIcons.plus,
                                   color: FlutterFlowTheme.of(context).primary,
-                                  size: 18.0,
+                                  size: 12.0,
                                 ),
                               ),
                             ),
                           ),
-                        ].divide(const SizedBox(width: 8.0)),
+                        ].divide(SizedBox(width: 8.0)),
                       ),
                     ),
                   ],
@@ -407,7 +413,7 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        if (_model.seatings.isNotEmpty)
+                        if (_model.seatings.length > 0)
                           Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -415,7 +421,7 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                 flex: 1,
                                 child: Container(
                                   width: 150.0,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Text(
                                     'Участники:',
                                     style: FlutterFlowTheme.of(context)
@@ -435,7 +441,7 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                 flex: 1,
                                 child: Container(
                                   width: 150.0,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Text(
                                     'Рассадка:',
                                     style: FlutterFlowTheme.of(context)
@@ -451,7 +457,7 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 8.0)),
+                            ].divide(SizedBox(width: 8.0)),
                           ),
                         Builder(
                           builder: (context) {
@@ -515,11 +521,11 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                     },
                                   ),
                                 );
-                              }).divide(const SizedBox(height: 24.0)),
+                              }).divide(SizedBox(height: 24.0)),
                             );
                           },
                         ),
-                        if (_model.seatings.isEmpty)
+                        if (_model.seatings.length < 1)
                           InkWell(
                             splashColor: Colors.transparent,
                             focusColor: Colors.transparent,
@@ -550,14 +556,14 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                         fontWeight: FontWeight.w600,
                                       ),
                                 ),
-                              ].divide(const SizedBox(width: 8.0)),
+                              ].divide(SizedBox(width: 8.0)),
                             ),
                           ),
-                      ].divide(const SizedBox(height: 4.0)),
+                      ].divide(SizedBox(height: 4.0)),
                     ),
                   ],
                 ),
-              ].divide(const SizedBox(height: 16.0)),
+              ].divide(SizedBox(height: 16.0)),
             ),
           ),
         ),

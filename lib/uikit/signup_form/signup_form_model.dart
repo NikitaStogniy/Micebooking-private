@@ -1,8 +1,18 @@
+import '/auth/supabase_auth/auth_util.dart';
+import '/backend/schema/enums/enums.dart';
 import '/backend/supabase/supabase.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/pop_up/pop_up_p_p/pop_up_p_p_widget.dart';
 import 'signup_form_widget.dart' show SignupFormWidget;
+import 'package:easy_debounce/easy_debounce.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:provider/provider.dart';
 
 class SignupFormModel extends FlutterFlowModel<SignupFormWidget> {
   ///  State fields for stateful widgets in this component.

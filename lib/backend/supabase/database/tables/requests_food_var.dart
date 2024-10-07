@@ -10,7 +10,7 @@ class RequestsFoodVarTable extends SupabaseTable<RequestsFoodVarRow> {
 }
 
 class RequestsFoodVarRow extends SupabaseDataRow {
-  RequestsFoodVarRow(super.data);
+  RequestsFoodVarRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => RequestsFoodVarTable();

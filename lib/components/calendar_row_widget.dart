@@ -1,8 +1,11 @@
 import '/components/calendar_widget.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'calendar_row_model.dart';
 export 'calendar_row_model.dart';
 
@@ -12,7 +15,7 @@ class CalendarRowWidget extends StatefulWidget {
     required this.onClick,
     bool? chosen,
     required this.chosenDay,
-  }) : chosen = chosen ?? false;
+  }) : this.chosen = chosen ?? false;
 
   final Future Function(DateTime selectedDate)? onClick;
   final bool chosen;
@@ -57,7 +60,7 @@ class _CalendarRowWidgetState extends State<CalendarRowWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: Color(0xFFF0F0FA),
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
@@ -67,12 +70,12 @@ class _CalendarRowWidgetState extends State<CalendarRowWidget> {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 16.0),
+        padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 16.0),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
               child: InkWell(
                 splashColor: Colors.transparent,
                 focusColor: Colors.transparent,
@@ -83,7 +86,7 @@ class _CalendarRowWidgetState extends State<CalendarRowWidget> {
                       functions.monthModify(_model.firstMonth, -1);
                   safeSetState(() {});
                 },
-                child: const Icon(
+                child: Icon(
                   Icons.arrow_back_ios_rounded,
                   color: Color(0x4C2431A5),
                   size: 48.0,
@@ -97,7 +100,7 @@ class _CalendarRowWidgetState extends State<CalendarRowWidget> {
                 updateOnChange: true,
                 child: CalendarWidget(
                   month: _model.firstMonth!,
-                  chosenday: widget.chosenDay!,
+                  chosenday: widget!.chosenDay!,
                   onClick: (date) async {
                     await widget.onClick?.call(
                       date,
@@ -108,11 +111,11 @@ class _CalendarRowWidgetState extends State<CalendarRowWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
               child: Container(
                 width: 1.0,
                 height: MediaQuery.sizeOf(context).height * 1.0,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: Color(0xFF9B9B9B),
                 ),
               ),
@@ -124,7 +127,7 @@ class _CalendarRowWidgetState extends State<CalendarRowWidget> {
                 updateOnChange: true,
                 child: CalendarWidget(
                   month: functions.monthModify(_model.firstMonth, 1)!,
-                  chosenday: widget.chosenDay!,
+                  chosenday: widget!.chosenDay!,
                   onClick: (date) async {
                     await widget.onClick?.call(
                       date,
@@ -135,11 +138,11 @@ class _CalendarRowWidgetState extends State<CalendarRowWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
               child: Container(
                 width: 1.0,
                 height: MediaQuery.sizeOf(context).height * 1.0,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: Color(0xFF9B9B9B),
                 ),
               ),
@@ -151,7 +154,7 @@ class _CalendarRowWidgetState extends State<CalendarRowWidget> {
                 updateOnChange: true,
                 child: CalendarWidget(
                   month: functions.monthModify(_model.firstMonth, 2)!,
-                  chosenday: widget.chosenDay!,
+                  chosenday: widget!.chosenDay!,
                   onClick: (date) async {
                     await widget.onClick?.call(
                       date,
@@ -162,7 +165,7 @@ class _CalendarRowWidgetState extends State<CalendarRowWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
               child: InkWell(
                 splashColor: Colors.transparent,
                 focusColor: Colors.transparent,
@@ -173,7 +176,7 @@ class _CalendarRowWidgetState extends State<CalendarRowWidget> {
                       functions.monthModify(_model.firstMonth, 1);
                   safeSetState(() {});
                 },
-                child: const Icon(
+                child: Icon(
                   Icons.arrow_forward_ios_rounded,
                   color: Color(0x4C2431A5),
                   size: 48.0,

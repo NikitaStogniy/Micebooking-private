@@ -1,7 +1,16 @@
+import '/backend/supabase/supabase.dart';
+import '/empty_states/favorite_empty/favorite_empty_widget.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/pop_up/hotel_pop_up/hotel_pop_up_widget.dart';
 import 'client_favorite_widget.dart' show ClientFavoriteWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class ClientFavoriteModel extends FlutterFlowModel<ClientFavoriteWidget> {
   ///  Local state fields for this component.

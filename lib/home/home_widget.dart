@@ -1,3 +1,4 @@
+import '/auth/base_auth_user_provider.dart';
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/schema/enums/enums.dart';
 import '/backend/supabase/supabase.dart';
@@ -12,6 +13,8 @@ import '/uikit/menu/menu_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'home_model.dart';
 export 'home_model.dart';
 
@@ -72,6 +75,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 context: context,
                 phone: false,
                 tablet: false,
+                tabletLandscape: false,
               ))
                 FutureBuilder<List<UsersRow>>(
                   future: UsersTable().querySingleRow(
@@ -113,18 +117,17 @@ class _HomeWidgetState extends State<HomeWidget> {
                         ),
                       ),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             if (responsiveVisibility(
                               context: context,
-                              tabletLandscape: false,
                               desktop: false,
                             ))
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 24.0, 0.0, 0.0),
                                 child: wrapWithModel(
                                   model: _model.menuModel1,
@@ -143,16 +146,17 @@ class _HomeWidgetState extends State<HomeWidget> {
                               context: context,
                               phone: false,
                               tablet: false,
+                              tabletLandscape: false,
                             ))
                               Align(
-                                alignment: const AlignmentDirectional(0.0, -0.9),
+                                alignment: AlignmentDirectional(0.0, -0.9),
                                 child: Container(
-                                  constraints: const BoxConstraints(
+                                  constraints: BoxConstraints(
                                     maxWidth: 1250.0,
                                   ),
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 32.0, 0.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -166,7 +170,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             'assets/images/MICEBOOKING.svg',
                                             width: 200.0,
                                             fit: BoxFit.contain,
-                                            alignment: const Alignment(-1.0, 0.0),
+                                            alignment: Alignment(-1.0, 0.0),
                                           ),
                                         ),
                                         Expanded(
@@ -271,7 +275,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     onTap: () async {
                                                       await showDialog(
                                                         barrierColor:
-                                                            const Color(0x68121212),
+                                                            Color(0x68121212),
                                                         context: context,
                                                         builder:
                                                             (dialogContext) {
@@ -282,7 +286,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                             backgroundColor:
                                                                 Colors
                                                                     .transparent,
-                                                            alignment: const AlignmentDirectional(
+                                                            alignment: AlignmentDirectional(
                                                                     0.0, 0.0)
                                                                 .resolve(
                                                                     Directionality.of(
@@ -294,7 +298,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           dialogContext)
                                                                       .unfocus(),
                                                               child:
-                                                                  const LoginHomePopUpWidget(
+                                                                  LoginHomePopUpWidget(
                                                                 hotel: true,
                                                               ),
                                                             ),
@@ -344,7 +348,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           padding: MediaQuery
                                                               .viewInsetsOf(
                                                                   context),
-                                                          child: const SizedBox(
+                                                          child: Container(
                                                             height: 300.0,
                                                             child:
                                                                 SupportBottomsheetWidget(),
@@ -373,7 +377,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       ),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(width: 24.0)),
+                                            ].divide(SizedBox(width: 24.0)),
                                           ),
                                         ),
                                         FFButtonWidget(
@@ -386,7 +390,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   context.mounted,
                                                   extra: <String, dynamic>{
                                                     kTransitionInfoKey:
-                                                        const TransitionInfo(
+                                                        TransitionInfo(
                                                       hasTransition: true,
                                                       transitionType:
                                                           PageTransitionType
@@ -404,7 +408,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     context.mounted,
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          const TransitionInfo(
+                                                          TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -422,7 +426,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       context.mounted,
                                                       extra: <String, dynamic>{
                                                         kTransitionInfoKey:
-                                                            const TransitionInfo(
+                                                            TransitionInfo(
                                                           hasTransition: true,
                                                           transitionType:
                                                               PageTransitionType
@@ -447,7 +451,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 context.mounted,
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
-                                                      const TransitionInfo(
+                                                      TransitionInfo(
                                                     hasTransition: true,
                                                     transitionType:
                                                         PageTransitionType.fade,
@@ -463,10 +467,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             width: 200.0,
                                             height: 40.0,
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     24.0, 0.0, 24.0, 0.0),
                                             iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
@@ -479,7 +483,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       color: Colors.white,
                                                       letterSpacing: 0.0,
                                                     ),
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               color: Colors.transparent,
                                               width: 1.0,
                                             ),
@@ -487,14 +491,14 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 BorderRadius.circular(24.0),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 40.0)),
+                                      ].divide(SizedBox(width: 40.0)),
                                     ),
                                   ),
                                 ),
                               ),
                             Expanded(
                               child: Align(
-                                alignment: const AlignmentDirectional(0.0, -0.3),
+                                alignment: AlignmentDirectional(0.0, -0.3),
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0,
@@ -534,7 +538,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 16.0, 0.0, 24.0),
                                         child: Text(
                                           'ПОИСК И БРОНИРОВАНИЕ ОТЕЛЕЙ ДЛЯ ПРОВЕДЕНИЯ МЕРОПРИЯТИЙ',
@@ -616,7 +620,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                               } else {
                                                 await showDialog(
                                                   barrierColor:
-                                                      const Color(0x68121212),
+                                                      Color(0x68121212),
                                                   context: context,
                                                   builder: (dialogContext) {
                                                     return Dialog(
@@ -626,7 +630,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       backgroundColor:
                                                           Colors.transparent,
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
@@ -669,7 +673,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                 ),
               if (responsiveVisibility(
                 context: context,
-                tabletLandscape: false,
                 desktop: false,
               ))
                 FutureBuilder<List<UsersRow>>(
@@ -711,18 +714,17 @@ class _HomeWidgetState extends State<HomeWidget> {
                         ),
                       ),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             if (responsiveVisibility(
                               context: context,
-                              tabletLandscape: false,
                               desktop: false,
                             ))
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 24.0, 0.0, 0.0),
                                 child: wrapWithModel(
                                   model: _model.menuModel2,
@@ -738,7 +740,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 ),
                               ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 40.0, 0.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
@@ -764,7 +766,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 16.0, 0.0, 24.0),
                                     child: Text(
                                       'ПОИСК И БРОНИРОВАНИЕ ОТЕЛЕЙ ДЛЯ ПРОВЕДЕНИЯ МЕРОПРИЯТИЙ',
@@ -787,7 +789,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   ),
                                   Builder(
                                     builder: (context) => Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 40.0),
                                       child: wrapWithModel(
                                         model: _model.hotelSearchCompModel2,
@@ -848,7 +850,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                               );
                                             } else {
                                               await showDialog(
-                                                barrierColor: const Color(0x68121212),
+                                                barrierColor: Color(0x68121212),
                                                 context: context,
                                                 builder: (dialogContext) {
                                                   return Dialog(
@@ -858,7 +860,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     backgroundColor:
                                                         Colors.transparent,
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                                 0.0, 0.0)
                                                             .resolve(
                                                                 Directionality.of(
@@ -901,7 +903,7 @@ class _HomeWidgetState extends State<HomeWidget> {
               wrapWithModel(
                 model: _model.footerModel,
                 updateCallback: () => safeSetState(() {}),
-                child: const FooterWidget(),
+                child: FooterWidget(),
               ),
             ],
           ),

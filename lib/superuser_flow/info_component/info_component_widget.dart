@@ -5,6 +5,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'info_component_model.dart';
 export 'info_component_model.dart';
 
@@ -25,12 +27,12 @@ class InfoComponentWidget extends StatefulWidget {
     this.initialCategory,
     bool? withCategory,
     required this.checkboxVis,
-  })  : initialAvalibility = initialAvalibility ?? true,
-        initialText = initialText ?? 'Имя',
-        isEdit = isEdit ?? false,
-        isDistance = isDistance ?? false,
-        initialDistanceFirst = initialDistanceFirst ?? 1,
-        withCategory = withCategory ?? false;
+  })  : this.initialAvalibility = initialAvalibility ?? true,
+        this.initialText = initialText ?? 'Имя',
+        this.isEdit = isEdit ?? false,
+        this.isDistance = isDistance ?? false,
+        this.initialDistanceFirst = initialDistanceFirst ?? 1,
+        this.withCategory = withCategory ?? false;
 
   final bool initialAvalibility;
   final Future Function(bool? data)? editCallback;
@@ -69,23 +71,23 @@ class _InfoComponentWidgetState extends State<InfoComponentWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.initialCat = widget.initialCategory;
+      _model.initialCat = widget!.initialCategory;
       safeSetState(() {});
     });
 
     _model.textTextController1 ??= TextEditingController(
         text: valueOrDefault<String>(
-      widget.initialText,
+      widget!.initialText,
       '123123',
     ));
     _model.textFocusNode1 ??= FocusNode();
 
     _model.textTextController2 ??=
-        TextEditingController(text: widget.initialDistanceFirst.toString());
+        TextEditingController(text: widget!.initialDistanceFirst.toString());
     _model.textFocusNode2 ??= FocusNode();
     _model.textFocusNode2!.addListener(() => safeSetState(() {}));
     _model.textTextController3 ??=
-        TextEditingController(text: widget.initialDistanceLast?.toString());
+        TextEditingController(text: widget!.initialDistanceLast?.toString());
     _model.textFocusNode3 ??= FocusNode();
     _model.textFocusNode3!.addListener(() => safeSetState(() {}));
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -103,7 +105,7 @@ class _InfoComponentWidgetState extends State<InfoComponentWidget> {
     return Row(
       mainAxisSize: MainAxisSize.max,
       children: [
-        if (widget.checkboxVis == true)
+        if (widget!.checkboxVis == true)
           Theme(
             data: ThemeData(
               checkboxTheme: CheckboxThemeData(
@@ -116,8 +118,8 @@ class _InfoComponentWidgetState extends State<InfoComponentWidget> {
               unselectedWidgetColor: FlutterFlowTheme.of(context).secondaryText,
             ),
             child: Checkbox(
-              value: _model.checkboxValue ??= widget.initialAvalibility,
-              onChanged: !widget.isEdit
+              value: _model.checkboxValue ??= widget!.initialAvalibility,
+              onChanged: !widget!.isEdit
                   ? null
                   : (newValue) async {
                       safeSetState(() => _model.checkboxValue = newValue!);
@@ -128,49 +130,49 @@ class _InfoComponentWidgetState extends State<InfoComponentWidget> {
               ),
               activeColor: FlutterFlowTheme.of(context).primary,
               checkColor:
-                  !widget.isEdit ? null : FlutterFlowTheme.of(context).info,
+                  !widget!.isEdit ? null : FlutterFlowTheme.of(context).info,
             ),
           ),
-        if (widget.withCategory)
+        if (widget!.withCategory)
           wrapWithModel(
             model: _model.dropDownComponentModel,
             updateCallback: () => safeSetState(() {}),
             updateOnChange: true,
             child: DropDownComponentWidget(
-              initial: widget.category
+              initial: widget!.category
                   ?.where((e) => e.value == _model.initialCat)
                   .toList()
-                  .first
-                  .label,
-              values: widget.category!,
-              isEdit: widget.isEdit,
+                  ?.first
+                  ?.label,
+              values: widget!.category!,
+              isEdit: widget!.isEdit,
               onSelect: (id) async {
                 _model.initialCat = id;
                 safeSetState(() {});
               },
             ),
           ),
-        if (!widget.isDistance)
+        if (!widget!.isDistance)
           Container(
             width: 250.0,
             height: 40.0,
             decoration: BoxDecoration(
-              color: const Color(0xFFF0F0FA),
+              color: Color(0xFFF0F0FA),
               borderRadius: BorderRadius.circular(100.0),
               border: Border.all(
-                color: widget.isEdit
+                color: widget!.isEdit
                     ? FlutterFlowTheme.of(context).primary
-                    : const Color(0x00000000),
+                    : Color(0x00000000),
                 width: 1.0,
               ),
             ),
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(8.0, 4.0, 8.0, 4.0),
+              padding: EdgeInsetsDirectional.fromSTEB(8.0, 4.0, 8.0, 4.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  if (widget.isEdit)
-                    SizedBox(
+                  if (widget!.isEdit)
+                    Container(
                       width: 300.0,
                       child: TextFormField(
                         controller: _model.textTextController1,
@@ -208,10 +210,10 @@ class _InfoComponentWidgetState extends State<InfoComponentWidget> {
                             .asValidator(context),
                       ),
                     ),
-                  if (!widget.isEdit)
+                  if (!widget!.isEdit)
                     Text(
                       valueOrDefault<String>(
-                        widget.initialText,
+                        widget!.initialText,
                         '123',
                       ).maybeHandleOverflow(
                         maxChars: 20,
@@ -226,7 +228,7 @@ class _InfoComponentWidgetState extends State<InfoComponentWidget> {
               ),
             ),
           ),
-        if (widget.isDistance)
+        if (widget!.isDistance)
           Row(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -241,29 +243,29 @@ class _InfoComponentWidgetState extends State<InfoComponentWidget> {
                 width: 40.0,
                 height: 40.0,
                 decoration: BoxDecoration(
-                  color: const Color(0xFFF0F0FA),
+                  color: Color(0xFFF0F0FA),
                   borderRadius: BorderRadius.circular(100.0),
                   border: Border.all(
-                    color: widget.isEdit
+                    color: widget!.isEdit
                         ? FlutterFlowTheme.of(context).primary
-                        : const Color(0x00000000),
+                        : Color(0x00000000),
                     width: 1.0,
                   ),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    if (widget.isEdit)
+                    if (widget!.isEdit)
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(8.0, 4.0, 8.0, 4.0),
-                        child: SizedBox(
+                            EdgeInsetsDirectional.fromSTEB(8.0, 4.0, 8.0, 4.0),
+                        child: Container(
                           width: 20.0,
                           child: TextFormField(
                             controller: _model.textTextController2,
                             focusNode: _model.textFocusNode2,
-                            autofocus: widget.isEdit,
-                            readOnly: !widget.isEdit,
+                            autofocus: widget!.isEdit,
+                            readOnly: !widget!.isEdit,
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
@@ -300,10 +302,10 @@ class _InfoComponentWidgetState extends State<InfoComponentWidget> {
                           ),
                         ),
                       ),
-                    if (!widget.isEdit)
+                    if (!widget!.isEdit)
                       Text(
                         valueOrDefault<String>(
-                          widget.initialDistanceFirst.toString(),
+                          widget!.initialDistanceFirst.toString(),
                           '1',
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -325,29 +327,29 @@ class _InfoComponentWidgetState extends State<InfoComponentWidget> {
                 width: 40.0,
                 height: 40.0,
                 decoration: BoxDecoration(
-                  color: const Color(0xFFF0F0FA),
+                  color: Color(0xFFF0F0FA),
                   borderRadius: BorderRadius.circular(100.0),
                   border: Border.all(
-                    color: widget.isEdit
+                    color: widget!.isEdit
                         ? FlutterFlowTheme.of(context).primary
-                        : const Color(0x00000000),
+                        : Color(0x00000000),
                     width: 1.0,
                   ),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    if (widget.isEdit)
+                    if (widget!.isEdit)
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(8.0, 4.0, 8.0, 4.0),
-                        child: SizedBox(
+                            EdgeInsetsDirectional.fromSTEB(8.0, 4.0, 8.0, 4.0),
+                        child: Container(
                           width: 20.0,
                           child: TextFormField(
                             controller: _model.textTextController3,
                             focusNode: _model.textFocusNode3,
-                            autofocus: widget.isEdit,
-                            readOnly: !widget.isEdit,
+                            autofocus: widget!.isEdit,
+                            readOnly: !widget!.isEdit,
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
@@ -384,10 +386,10 @@ class _InfoComponentWidgetState extends State<InfoComponentWidget> {
                           ),
                         ),
                       ),
-                    if (!widget.isEdit)
+                    if (!widget!.isEdit)
                       Text(
                         valueOrDefault<String>(
-                          widget.initialDistanceLast?.toString(),
+                          widget!.initialDistanceLast?.toString(),
                           '1',
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -398,7 +400,7 @@ class _InfoComponentWidgetState extends State<InfoComponentWidget> {
                   ],
                 ),
               ),
-            ].divide(const SizedBox(width: 8.0)),
+            ].divide(SizedBox(width: 8.0)),
           ),
         Row(
           mainAxisSize: MainAxisSize.max,
@@ -406,14 +408,14 @@ class _InfoComponentWidgetState extends State<InfoComponentWidget> {
             Row(
               mainAxisSize: MainAxisSize.max,
               children: [
-                if (widget.isEdit)
+                if (widget!.isEdit)
                   InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
                     hoverColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () async {
-                      if (widget.isDistance) {
+                      if (widget!.isDistance) {
                         await widget.updateDistance?.call(
                           int.tryParse(_model.textTextController2.text),
                           int.tryParse(_model.textTextController3.text),
@@ -433,7 +435,7 @@ class _InfoComponentWidgetState extends State<InfoComponentWidget> {
                       size: 24.0,
                     ),
                   ),
-                if (!widget.isEdit)
+                if (!widget!.isEdit)
                   InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -450,13 +452,13 @@ class _InfoComponentWidgetState extends State<InfoComponentWidget> {
                       size: 24.0,
                     ),
                   ),
-              ].divide(const SizedBox(width: 8.0)),
+              ].divide(SizedBox(width: 8.0)),
             ),
             Text(
               '/',
               style: FlutterFlowTheme.of(context).bodyMedium.override(
                     fontFamily: 'Commissioner',
-                    color: const Color(0xFF2431A5),
+                    color: Color(0xFF2431A5),
                     letterSpacing: 0.0,
                     fontWeight: FontWeight.w300,
                   ),
@@ -475,9 +477,9 @@ class _InfoComponentWidgetState extends State<InfoComponentWidget> {
                 size: 24.0,
               ),
             ),
-          ].divide(const SizedBox(width: 8.0)),
+          ].divide(SizedBox(width: 8.0)),
         ),
-      ].divide(const SizedBox(width: 15.0)),
+      ].divide(SizedBox(width: 15.0)),
     );
   }
 }

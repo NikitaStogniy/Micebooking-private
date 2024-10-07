@@ -4,6 +4,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'edit_p_p_model.dart';
 export 'edit_p_p_model.dart';
 
@@ -72,7 +74,7 @@ class _EditPPWidgetState extends State<EditPPWidget> {
             containerCmsRowList.isNotEmpty ? containerCmsRowList.first : null;
 
         return Container(
-          decoration: const BoxDecoration(),
+          decoration: BoxDecoration(),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -83,7 +85,7 @@ class _EditPPWidgetState extends State<EditPPWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,7 +124,7 @@ class _EditPPWidgetState extends State<EditPPWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               enabledBorder: UnderlineInputBorder(
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Color(0xFFF0F0FA),
                                   width: 2.0,
                                 ),
@@ -150,7 +152,7 @@ class _EditPPWidgetState extends State<EditPPWidget> {
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               filled: true,
-                              fillColor: const Color(0xFFF0F0FA),
+                              fillColor: Color(0xFFF0F0FA),
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
@@ -165,10 +167,10 @@ class _EditPPWidgetState extends State<EditPPWidget> {
                                 .aboutUsText1TextControllerValidator
                                 .asValidator(context),
                           ),
-                        ].divide(const SizedBox(height: 24.0)),
+                        ].divide(SizedBox(height: 24.0)),
                       ),
                     ),
-                  ].divide(const SizedBox(height: 40.0)),
+                  ].divide(SizedBox(height: 40.0)),
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
@@ -182,9 +184,9 @@ class _EditPPWidgetState extends State<EditPPWidget> {
                         text: 'Редактировать',
                         options: FFButtonOptions(
                           height: 50.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               43.0, 0.0, 43.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
@@ -194,7 +196,7 @@ class _EditPPWidgetState extends State<EditPPWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 0.0,
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -219,9 +221,9 @@ class _EditPPWidgetState extends State<EditPPWidget> {
                         text: 'Сохранить',
                         options: FFButtonOptions(
                           height: 50.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               43.0, 0.0, 43.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
@@ -231,48 +233,49 @@ class _EditPPWidgetState extends State<EditPPWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 0.0,
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
                           borderRadius: BorderRadius.circular(24.0),
                         ),
                       ),
-                    FFButtonWidget(
-                      onPressed: () async {
-                        safeSetState(() {
-                          _model.aboutUsText1TextController?.text =
-                              containerCmsRow!.text1!;
-                        });
-                        _model.image = null;
-                        _model.isEdit = false;
-                        safeSetState(() {});
-                      },
-                      text: 'Отменить изменения',
-                      options: FFButtonOptions(
-                        height: 50.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            43.0, 0.0, 43.0, 0.0),
-                        iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).error,
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Commissioner',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                        elevation: 0.0,
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
+                    if (_model.isEdit)
+                      FFButtonWidget(
+                        onPressed: () async {
+                          safeSetState(() {
+                            _model.aboutUsText1TextController?.text =
+                                containerCmsRow!.text1!;
+                          });
+                          _model.image = null;
+                          _model.isEdit = false;
+                          safeSetState(() {});
+                        },
+                        text: 'Отменить изменения',
+                        options: FFButtonOptions(
+                          height: 50.0,
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              43.0, 0.0, 43.0, 0.0),
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).error,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Commissioner',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                          elevation: 0.0,
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(24.0),
                         ),
-                        borderRadius: BorderRadius.circular(24.0),
                       ),
-                    ),
-                  ].divide(const SizedBox(width: 16.0)),
+                  ].divide(SizedBox(width: 16.0)),
                 ),
-              ].divide(const SizedBox(height: 40.0)).addToEnd(const SizedBox(height: 70.0)),
+              ].divide(SizedBox(height: 40.0)).addToEnd(SizedBox(height: 70.0)),
             ),
           ),
         );

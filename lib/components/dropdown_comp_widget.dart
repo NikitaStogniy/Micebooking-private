@@ -5,6 +5,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'dropdown_comp_model.dart';
 export 'dropdown_comp_model.dart';
 
@@ -13,7 +15,7 @@ class DropdownCompWidget extends StatefulWidget {
     super.key,
     required this.onChange,
     String? initial,
-  }) : initial = initial ?? 'Закуски';
+  }) : this.initial = initial ?? 'Закуски';
 
   final Future Function(String? data, int id)? onChange;
   final String initial;
@@ -49,7 +51,7 @@ class _DropdownCompWidgetState extends State<DropdownCompWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 40.0, 0.0),
+      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 40.0, 0.0),
       child: FutureBuilder<List<ServiceCategoryRow>>(
         future: ServiceCategoryTable().queryRows(
           queryFn: (q) => q.eq(
@@ -79,8 +81,8 @@ class _DropdownCompWidgetState extends State<DropdownCompWidget> {
             controller: _model.dropDownValueController ??=
                 FormFieldController<String>(
               _model.dropDownValue ??= valueOrDefault<String>(
-                widget.initial != ''
-                    ? widget.initial
+                widget!.initial != null && widget!.initial != ''
+                    ? widget!.initial
                     : 'Холодные закуски',
                 'Холодные закуски',
               ),
@@ -122,7 +124,7 @@ class _DropdownCompWidgetState extends State<DropdownCompWidget> {
             borderColor: FlutterFlowTheme.of(context).alternate,
             borderWidth: 2.0,
             borderRadius: 100.0,
-            margin: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+            margin: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
             hidesUnderline: true,
             isOverButton: true,
             isSearchable: false,

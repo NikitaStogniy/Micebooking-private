@@ -8,6 +8,8 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'client_food_component_model.dart';
 export 'client_food_component_model.dart';
 
@@ -77,7 +79,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
         ))
           Container(
             height: 80.0,
-            decoration: const BoxDecoration(),
+            decoration: BoxDecoration(),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -98,7 +100,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                               children: [
                                 Text(
                                   valueOrDefault<String>(
-                                    widget.food?.name,
+                                    widget!.food?.name,
                                     'название еды',
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -110,17 +112,17 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                         fontWeight: FontWeight.bold,
                                       ),
                                 ),
-                              ].divide(const SizedBox(width: 16.0)),
+                              ].divide(SizedBox(width: 16.0)),
                             ),
                             Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Container(
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Text(
                                     '${valueOrDefault<String>(
-                                      widget.food?.price?.toString(),
+                                      widget!.food?.price?.toString(),
                                       '100',
                                     )} руб / персона',
                                     style: FlutterFlowTheme.of(context)
@@ -143,18 +145,18 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
                                       await showDialog(
-                                        barrierColor: const Color(0x6614181B),
+                                        barrierColor: Color(0x6614181B),
                                         context: context,
                                         builder: (dialogContext) {
                                           return Dialog(
                                             elevation: 0,
                                             insetPadding: EdgeInsets.zero,
                                             backgroundColor: Colors.transparent,
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                     0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                            child: SizedBox(
+                                            child: Container(
                                               height: MediaQuery.sizeOf(context)
                                                       .height *
                                                   0.8,
@@ -162,7 +164,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                                       .width *
                                                   0.8,
                                               child: FoodPopUpWidget(
-                                                food: widget.food!,
+                                                food: widget!.food!,
                                                 isChosen: false,
                                                 chosed: (id) async {
                                                   await Future.delayed(
@@ -189,7 +191,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Commissioner',
-                                                color: const Color(0xFF636363),
+                                                color: Color(0xFF636363),
                                                 fontSize: 16.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
@@ -199,7 +201,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 0.0, 0.0),
                                           child: Icon(
                                             Icons.info,
@@ -208,13 +210,13 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                             size: 26.0,
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 8.0)),
+                                      ].divide(SizedBox(width: 8.0)),
                                     ),
                                   ),
                                 ),
-                              ].divide(const SizedBox(width: 24.0)),
+                              ].divide(SizedBox(width: 24.0)),
                             ),
-                          ].divide(const SizedBox(height: 8.0)),
+                          ].divide(SizedBox(height: 8.0)),
                         ),
                       ),
                     ],
@@ -231,24 +233,24 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                         children: [
                           if (_model.countFieldOpen == true)
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 10.0, 0.0),
                               child: Container(
                                 width: 120.0,
                                 height: 30.0,
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFFF0F0FA),
+                                  color: Color(0xFFF0F0FA),
                                   borderRadius: BorderRadius.circular(100.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
                                   child: TextFormField(
                                     controller: _model.countTextController,
                                     focusNode: _model.countFocusNode,
                                     onChanged: (_) => EasyDebounce.debounce(
                                       '_model.countTextController',
-                                      const Duration(milliseconds: 100),
+                                      Duration(milliseconds: 100),
                                       () async {
                                         _model.count = valueOrDefault<int>(
                                           int.tryParse(
@@ -283,7 +285,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                       errorBorder: InputBorder.none,
                                       focusedErrorBorder: InputBorder.none,
                                       contentPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 16.0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -307,7 +309,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                             ),
                           if (_model.countFieldOpen == false)
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 10.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -315,7 +317,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  if (widget.isChosen != true) {
+                                  if (widget!.isChosen != true) {
                                     _model.countFieldOpen = true;
                                     safeSetState(() {});
                                     safeSetState(() {
@@ -327,11 +329,11 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                   width: 120.0,
                                   height: 30.0,
                                   decoration: BoxDecoration(
-                                    color: const Color(0xFFF0F0FA),
+                                    color: Color(0xFFF0F0FA),
                                     borderRadius: BorderRadius.circular(100.0),
                                   ),
                                   child: Align(
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
                                         functions.countGen(_model.count),
@@ -357,7 +359,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              if (widget.isChosen != true) {
+                              if (widget!.isChosen != true) {
                                 _model.count = _model.count! + 1;
                                 safeSetState(() {});
                                 _model.countFieldOpen = false;
@@ -369,15 +371,15 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                               height: 30.0,
                               decoration: BoxDecoration(
                                 color: valueOrDefault<Color>(
-                                  widget.isChosen == true
-                                      ? const Color(0x652431A5)
+                                  widget!.isChosen == true
+                                      ? Color(0x652431A5)
                                       : FlutterFlowTheme.of(context).primary,
-                                  const Color(0x00000000),
+                                  Color(0x00000000),
                                 ),
                                 shape: BoxShape.circle,
                               ),
                               child: Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Icon(
                                   Icons.add,
                                   color: FlutterFlowTheme.of(context)
@@ -393,7 +395,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              if (widget.isChosen != true) {
+                              if (widget!.isChosen != true) {
                                 if (_model.count! > 1) {
                                   _model.countFieldOpen = false;
                                   safeSetState(() {});
@@ -408,21 +410,21 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                               decoration: BoxDecoration(
                                 color: valueOrDefault<Color>(
                                   () {
-                                    if (widget.isChosen == true) {
-                                      return const Color(0x652431A5);
+                                    if (widget!.isChosen == true) {
+                                      return Color(0x652431A5);
                                     } else if (_model.count! <= 1) {
-                                      return const Color(0x652431A5);
+                                      return Color(0x652431A5);
                                     } else {
                                       return FlutterFlowTheme.of(context)
                                           .primary;
                                     }
                                   }(),
-                                  const Color(0x00000000),
+                                  Color(0x00000000),
                                 ),
                                 shape: BoxShape.circle,
                               ),
                               child: Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: FaIcon(
                                   FontAwesomeIcons.minus,
                                   color: FlutterFlowTheme.of(context)
@@ -432,31 +434,31 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                               ),
                             ),
                           ),
-                        ].divide(const SizedBox(width: 4.0)),
+                        ].divide(SizedBox(width: 4.0)),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           if (_model.personsFirldOpen == true)
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 10.0, 0.0),
                               child: Container(
                                 width: 120.0,
                                 height: 30.0,
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFFF0F0FA),
+                                  color: Color(0xFFF0F0FA),
                                   borderRadius: BorderRadius.circular(100.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
                                   child: TextFormField(
                                     controller: _model.personsTextController,
                                     focusNode: _model.personsFocusNode,
                                     onChanged: (_) => EasyDebounce.debounce(
                                       '_model.personsTextController',
-                                      const Duration(milliseconds: 100),
+                                      Duration(milliseconds: 100),
                                       () async {
                                         _model.persons = valueOrDefault<int>(
                                           int.tryParse(_model
@@ -491,7 +493,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                       errorBorder: InputBorder.none,
                                       focusedErrorBorder: InputBorder.none,
                                       contentPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 16.0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -515,7 +517,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                             ),
                           if (_model.personsFirldOpen == false)
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 10.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -523,7 +525,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  if (widget.isChosen != true) {
+                                  if (widget!.isChosen != true) {
                                     _model.personsFirldOpen = true;
                                     safeSetState(() {});
                                     safeSetState(() {
@@ -535,11 +537,11 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                   width: 120.0,
                                   height: 30.0,
                                   decoration: BoxDecoration(
-                                    color: const Color(0xFFF0F0FA),
+                                    color: Color(0xFFF0F0FA),
                                     borderRadius: BorderRadius.circular(100.0),
                                   ),
                                   child: Align(
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
                                         functions.personsGen(
@@ -566,7 +568,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              if (widget.isChosen != true) {
+                              if (widget!.isChosen != true) {
                                 _model.persons = _model.persons! + 1;
                                 safeSetState(() {});
                                 _model.personsFirldOpen = false;
@@ -578,10 +580,10 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                               height: 30.0,
                               decoration: BoxDecoration(
                                 color: valueOrDefault<Color>(
-                                  widget.isChosen == true
-                                      ? const Color(0x652431A5)
+                                  widget!.isChosen == true
+                                      ? Color(0x652431A5)
                                       : FlutterFlowTheme.of(context).primary,
-                                  const Color(0x00000000),
+                                  Color(0x00000000),
                                 ),
                                 shape: BoxShape.circle,
                               ),
@@ -599,7 +601,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              if (widget.isChosen != true) {
+                              if (widget!.isChosen != true) {
                                 if (_model.persons! > 1) {
                                   _model.personsFirldOpen = false;
                                   safeSetState(() {});
@@ -614,21 +616,21 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                               decoration: BoxDecoration(
                                 color: valueOrDefault<Color>(
                                   () {
-                                    if (widget.isChosen == true) {
-                                      return const Color(0x652431A5);
+                                    if (widget!.isChosen == true) {
+                                      return Color(0x652431A5);
                                     } else if (_model.persons! <= 1) {
-                                      return const Color(0x652431A5);
+                                      return Color(0x652431A5);
                                     } else {
                                       return FlutterFlowTheme.of(context)
                                           .primary;
                                     }
                                   }(),
-                                  const Color(0x00000000),
+                                  Color(0x00000000),
                                 ),
                                 shape: BoxShape.circle,
                               ),
                               child: Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: FaIcon(
                                   FontAwesomeIcons.minus,
                                   color: FlutterFlowTheme.of(context)
@@ -638,7 +640,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                               ),
                             ),
                           ),
-                        ].divide(const SizedBox(width: 4.0)),
+                        ].divide(SizedBox(width: 4.0)),
                       ),
                       FFButtonWidget(
                         onPressed:
@@ -649,17 +651,17 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                     _model.countFieldOpen = false;
                                     safeSetState(() {});
                                     await widget.chooseAction?.call(
-                                      widget.food?.id,
-                                      widget.food?.name,
+                                      widget!.food?.id,
+                                      widget!.food?.name,
                                       _model.count,
                                       _model.persons,
-                                      (widget.food!.price!) *
+                                      (widget!.food!.price!) *
                                           (_model.count!) *
                                           (_model.persons!),
                                     );
                                   },
                         text: valueOrDefault<String>(
-                          widget.isChosen == true
+                          widget!.isChosen == true
                               ? 'Пакет выбран'
                               : 'Подтвердить выбор',
                           'Выбрать пакет',
@@ -667,12 +669,12 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                         options: FFButtonOptions(
                           width: 265.0,
                           height: 56.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               43.0, 0.0, 43.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: widget.isChosen == true
-                              ? const Color(0xFF24A541)
+                          color: widget!.isChosen == true
+                              ? Color(0xFF24A541)
                               : FlutterFlowTheme.of(context).primary,
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
@@ -681,20 +683,20 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 0.0,
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
                           borderRadius: BorderRadius.circular(24.0),
-                          disabledColor: const Color(0x662431A5),
+                          disabledColor: Color(0x662431A5),
                           disabledTextColor:
                               FlutterFlowTheme.of(context).secondaryBackground,
                         ),
                       ),
-                    ].divide(const SizedBox(width: 24.0)),
+                    ].divide(SizedBox(width: 24.0)),
                   ),
                 ),
-              ].divide(const SizedBox(width: 40.0)),
+              ].divide(SizedBox(width: 40.0)),
             ),
           ),
         if (responsiveVisibility(
@@ -703,18 +705,18 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
           desktop: false,
         ))
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Text(
                         valueOrDefault<String>(
-                          widget.food?.name,
+                          widget!.food?.name,
                           'Без названия',
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -733,7 +735,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                   children: [
                     Text(
                       '${valueOrDefault<String>(
-                        widget.food?.price?.toString(),
+                        widget!.food?.price?.toString(),
                         '0',
                       )} руб / персона',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -752,17 +754,17 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                         highlightColor: Colors.transparent,
                         onTap: () async {
                           await showDialog(
-                            barrierColor: const Color(0x6614181B),
+                            barrierColor: Color(0x6614181B),
                             context: context,
                             builder: (dialogContext) {
                               return Dialog(
                                 elevation: 0,
                                 insetPadding: EdgeInsets.zero,
                                 backgroundColor: Colors.transparent,
-                                alignment: const AlignmentDirectional(0.0, 0.0)
+                                alignment: AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
                                 child: FoodPopUpWidget(
-                                  food: widget.food!,
+                                  food: widget!.food!,
                                   isChosen: false,
                                   chosed: (id) async {
                                     await Future.delayed(
@@ -786,7 +788,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Commissioner',
-                                    color: const Color(0xFF636363),
+                                    color: Color(0xFF636363),
                                     fontSize: 16.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
@@ -794,7 +796,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                   ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 0.0, 0.0),
                               child: Icon(
                                 Icons.info,
@@ -809,7 +811,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -824,7 +826,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                if (!widget.isChosen!) {
+                                if (!widget!.isChosen!) {
                                   _model.countFieldOpen = true;
                                   safeSetState(() {});
                                   safeSetState(() {
@@ -836,7 +838,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                 width: MediaQuery.sizeOf(context).width * 1.0,
                                 height: 40.0,
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFFF0F0FA),
+                                  color: Color(0xFFF0F0FA),
                                   borderRadius: BorderRadius.circular(30.0),
                                 ),
                                 child: Row(
@@ -846,7 +848,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                       Expanded(
                                         child: Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             '${valueOrDefault<String>(
                                               _model.count?.toString(),
@@ -871,10 +873,10 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                       Expanded(
                                         child: Align(
                                           alignment:
-                                              const AlignmentDirectional(-1.0, 0.0),
+                                              AlignmentDirectional(-1.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 0.0, 16.0, 10.0),
                                             child: TextFormField(
                                               controller: _model
@@ -884,7 +886,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                               onChanged: (_) =>
                                                   EasyDebounce.debounce(
                                                 '_model.countmobTextController1',
-                                                const Duration(milliseconds: 2000),
+                                                Duration(milliseconds: 2000),
                                                 () async {
                                                   _model.count = int.tryParse(
                                                       _model
@@ -923,7 +925,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                                         ),
                                                 enabledBorder:
                                                     UnderlineInputBorder(
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Color(0x00000000),
                                                     width: 0.0,
                                                   ),
@@ -933,7 +935,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                                 ),
                                                 focusedBorder:
                                                     UnderlineInputBorder(
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Color(0x00000000),
                                                     width: 0.0,
                                                   ),
@@ -943,7 +945,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                                 ),
                                                 errorBorder:
                                                     UnderlineInputBorder(
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Color(0x00000000),
                                                     width: 0.0,
                                                   ),
@@ -953,7 +955,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                                 ),
                                                 focusedErrorBorder:
                                                     UnderlineInputBorder(
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Color(0x00000000),
                                                     width: 0.0,
                                                   ),
@@ -992,7 +994,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  if (!widget.isChosen!) {
+                                  if (!widget!.isChosen!) {
                                     _model.countFieldOpen = false;
                                     _model.count = _model.count! + 1;
                                     safeSetState(() {});
@@ -1005,7 +1007,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                     color: FlutterFlowTheme.of(context).primary,
                                     shape: BoxShape.circle,
                                   ),
-                                  child: const Align(
+                                  child: Align(
                                     alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Icon(
                                       Icons.add,
@@ -1021,7 +1023,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  if (!widget.isChosen!) {
+                                  if (!widget!.isChosen!) {
                                     _model.countFieldOpen = false;
                                     _model.count = _model.count! + -1;
                                     safeSetState(() {});
@@ -1034,7 +1036,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                     color: FlutterFlowTheme.of(context).primary,
                                     shape: BoxShape.circle,
                                   ),
-                                  child: const Align(
+                                  child: Align(
                                     alignment: AlignmentDirectional(0.0, 0.0),
                                     child: FaIcon(
                                       FontAwesomeIcons.minus,
@@ -1044,9 +1046,9 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 8.0)),
+                            ].divide(SizedBox(width: 8.0)),
                           ),
-                        ].divide(const SizedBox(width: 16.0)),
+                        ].divide(SizedBox(width: 16.0)),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
@@ -1059,7 +1061,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                if (!widget.isChosen!) {
+                                if (!widget!.isChosen!) {
                                   _model.personsFirldOpen = true;
                                   safeSetState(() {});
                                   safeSetState(() {
@@ -1071,7 +1073,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                 width: MediaQuery.sizeOf(context).width * 1.0,
                                 height: 40.0,
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFFF0F0FA),
+                                  color: Color(0xFFF0F0FA),
                                   borderRadius: BorderRadius.circular(30.0),
                                 ),
                                 child: Row(
@@ -1081,7 +1083,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                       Expanded(
                                         child: Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             valueOrDefault<String>(
                                               functions.personsGen(
@@ -1107,10 +1109,10 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                       Expanded(
                                         child: Align(
                                           alignment:
-                                              const AlignmentDirectional(-1.0, 0.0),
+                                              AlignmentDirectional(-1.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 0.0, 16.0, 10.0),
                                             child: TextFormField(
                                               controller: _model
@@ -1120,7 +1122,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                               onChanged: (_) =>
                                                   EasyDebounce.debounce(
                                                 '_model.countmobTextController2',
-                                                const Duration(milliseconds: 2000),
+                                                Duration(milliseconds: 2000),
                                                 () async {
                                                   _model.persons = int.tryParse(
                                                       _model
@@ -1159,7 +1161,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                                         ),
                                                 enabledBorder:
                                                     UnderlineInputBorder(
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Color(0x00000000),
                                                     width: 0.0,
                                                   ),
@@ -1169,7 +1171,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                                 ),
                                                 focusedBorder:
                                                     UnderlineInputBorder(
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Color(0x00000000),
                                                     width: 0.0,
                                                   ),
@@ -1179,7 +1181,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                                 ),
                                                 errorBorder:
                                                     UnderlineInputBorder(
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Color(0x00000000),
                                                     width: 0.0,
                                                   ),
@@ -1189,7 +1191,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                                 ),
                                                 focusedErrorBorder:
                                                     UnderlineInputBorder(
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Color(0x00000000),
                                                     width: 0.0,
                                                   ),
@@ -1228,7 +1230,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  if (!widget.isChosen!) {
+                                  if (!widget!.isChosen!) {
                                     _model.personsFirldOpen = false;
                                     _model.persons = _model.persons! + 1;
                                     safeSetState(() {});
@@ -1241,7 +1243,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                     color: FlutterFlowTheme.of(context).primary,
                                     shape: BoxShape.circle,
                                   ),
-                                  child: const Align(
+                                  child: Align(
                                     alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Icon(
                                       Icons.add,
@@ -1257,7 +1259,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  if (!widget.isChosen!) {
+                                  if (!widget!.isChosen!) {
                                     _model.personsFirldOpen = false;
                                     _model.persons = _model.persons! + -1;
                                     safeSetState(() {});
@@ -1270,7 +1272,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                     color: FlutterFlowTheme.of(context).primary,
                                     shape: BoxShape.circle,
                                   ),
-                                  child: const Align(
+                                  child: Align(
                                     alignment: AlignmentDirectional(0.0, 0.0),
                                     child: FaIcon(
                                       FontAwesomeIcons.minus,
@@ -1280,15 +1282,15 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 8.0)),
+                            ].divide(SizedBox(width: 8.0)),
                           ),
-                        ].divide(const SizedBox(width: 16.0)),
+                        ].divide(SizedBox(width: 16.0)),
                       ),
-                    ].divide(const SizedBox(height: 12.0)),
+                    ].divide(SizedBox(height: 12.0)),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -1299,26 +1301,26 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                             _model.countFieldOpen = false;
                             safeSetState(() {});
                             await widget.chooseAction?.call(
-                              widget.food?.id,
-                              widget.food?.name,
+                              widget!.food?.id,
+                              widget!.food?.name,
                               _model.count,
                               _model.count,
-                              (widget.food!.price!) *
+                              (widget!.food!.price!) *
                                   (_model.count!) *
                                   (_model.persons!),
                             );
                           },
-                          text: widget.isChosen!
+                          text: widget!.isChosen!
                               ? 'Пакет выбран'
                               : 'Подтвердить выбор',
                           options: FFButtonOptions(
                             height: 56.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: widget.isChosen!
-                                ? const Color(0xFF24A541)
+                            color: widget!.isChosen!
+                                ? Color(0xFF24A541)
                                 : FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
@@ -1328,7 +1330,7 @@ class _ClientFoodComponentWidgetState extends State<ClientFoodComponentWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 0.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),

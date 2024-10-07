@@ -6,6 +6,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/uikit/favorite/favorite_widget.dart';
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'favorite_component_model.dart';
 export 'favorite_component_model.dart';
 
@@ -77,7 +79,7 @@ class _FavoriteComponentWidgetState extends State<FavoriteComponentWidget> {
             : null;
 
         return Container(
-          decoration: const BoxDecoration(),
+          decoration: BoxDecoration(),
           child: FutureBuilder<List<FavoriteHotelsRow>>(
             future: FavoriteHotelsTable().queryRows(
               queryFn: (q) => q.eq(
@@ -104,7 +106,7 @@ class _FavoriteComponentWidgetState extends State<FavoriteComponentWidget> {
                   snapshot.data!;
 
               return Container(
-                decoration: const BoxDecoration(),
+                decoration: BoxDecoration(),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -119,16 +121,16 @@ class _FavoriteComponentWidgetState extends State<FavoriteComponentWidget> {
                             context: context,
                             isGlobal: false,
                             avoidOverflow: true,
-                            targetAnchor: const AlignmentDirectional(0.0, 2.0)
+                            targetAnchor: AlignmentDirectional(0.0, 2.0)
                                 .resolve(Directionality.of(context)),
-                            followerAnchor: const AlignmentDirectional(0.0, 0.0)
+                            followerAnchor: AlignmentDirectional(0.0, 0.0)
                                 .resolve(Directionality.of(context)),
                             builder: (dialogContext) {
                               return Material(
                                 color: Colors.transparent,
                                 child: AddToFavoriteComponentWidget(
                                   user: containerUsersRow!.id,
-                                  hotel: widget.hotel!,
+                                  hotel: widget!.hotel!,
                                 ),
                               );
                             },
@@ -140,7 +142,7 @@ class _FavoriteComponentWidgetState extends State<FavoriteComponentWidget> {
                           updateOnChange: true,
                           child: FavoriteWidget(
                             isChecked: containerFavoriteHotelsRowList
-                                .where((e) => e.hotelId.contains(widget.hotel))
+                                .where((e) => e.hotelId.contains(widget!.hotel))
                                 .toList()
                                 .isNotEmpty,
                             check: () async {},

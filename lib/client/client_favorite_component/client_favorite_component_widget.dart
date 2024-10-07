@@ -2,6 +2,8 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'client_favorite_component_model.dart';
 export 'client_favorite_component_model.dart';
 
@@ -46,7 +48,7 @@ class _ClientFavoriteComponentWidgetState
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,7 +58,7 @@ class _ClientFavoriteComponentWidgetState
             children: [
               Text(
                 valueOrDefault<String>(
-                  widget.list?.name,
+                  widget!.list?.name,
                   'Оталь',
                 ),
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -66,15 +68,15 @@ class _ClientFavoriteComponentWidgetState
                       fontWeight: FontWeight.bold,
                     ),
               ),
-            ].divide(const SizedBox(width: 24.0)),
+            ].divide(SizedBox(width: 24.0)),
           ),
-          if (widget.list!.hotelId.isNotEmpty)
+          if (widget!.list!.hotelId.length > 0)
             FutureBuilder<List<HotelRow>>(
               future: HotelTable().queryRows(
                 queryFn: (q) => q
                     .in_(
                       'id',
-                      widget.list!.hotelId,
+                      widget!.list!.hotelId,
                     )
                     .order('created_at'),
               ),
@@ -96,14 +98,14 @@ class _ClientFavoriteComponentWidgetState
                 List<HotelRow> containerHotelRowList = snapshot.data!;
 
                 return ClipRRect(
-                  borderRadius: const BorderRadius.only(
+                  borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(16.0),
                     bottomRight: Radius.circular(16.0),
                     topLeft: Radius.circular(0.0),
                     topRight: Radius.circular(0.0),
                   ),
                   child: Container(
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(16.0),
                         bottomRight: Radius.circular(16.0),
@@ -120,7 +122,7 @@ class _ClientFavoriteComponentWidgetState
                           height: 40.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context).primary,
-                            borderRadius: const BorderRadius.only(
+                            borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(0.0),
                               bottomRight: Radius.circular(0.0),
                               topLeft: Radius.circular(16.0),
@@ -134,7 +136,7 @@ class _ClientFavoriteComponentWidgetState
                                 flex: 2,
                                 child: Container(
                                   width: MediaQuery.sizeOf(context).width * 0.3,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Text(
                                     'Отель',
                                     style: FlutterFlowTheme.of(context)
@@ -154,7 +156,7 @@ class _ClientFavoriteComponentWidgetState
                                 child: Container(
                                   width:
                                       MediaQuery.sizeOf(context).width * 0.233,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Text(
                                     'Город',
                                     style: FlutterFlowTheme.of(context)
@@ -174,20 +176,20 @@ class _ClientFavoriteComponentWidgetState
                                 child: Container(
                                   width:
                                       MediaQuery.sizeOf(context).width * 0.233,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                 ),
                               ),
                               Expanded(
                                 child: Container(
                                   width:
                                       MediaQuery.sizeOf(context).width * 0.233,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                 ),
                               ),
                             ]
-                                .divide(const SizedBox(width: 8.0))
-                                .addToStart(const SizedBox(width: 16.0))
-                                .addToEnd(const SizedBox(width: 16.0)),
+                                .divide(SizedBox(width: 8.0))
+                                .addToStart(SizedBox(width: 16.0))
+                                .addToEnd(SizedBox(width: 16.0)),
                           ),
                         ),
                         Builder(
@@ -216,7 +218,7 @@ class _ClientFavoriteComponentWidgetState
                                       FlutterFlowTheme.of(context)
                                           .primaryBackground,
                                     ),
-                                    borderRadius: const BorderRadius.only(
+                                    borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(0.0),
                                       bottomRight: Radius.circular(0.0),
                                       topLeft: Radius.circular(0.0),
@@ -232,7 +234,7 @@ class _ClientFavoriteComponentWidgetState
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.3,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Text(
                                             valueOrDefault<String>(
                                               hotelsItem.name,
@@ -257,7 +259,7 @@ class _ClientFavoriteComponentWidgetState
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.233,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: FutureBuilder<List<CityRow>>(
                                             future: CityTable().querySingleRow(
                                               queryFn: (q) => q.eq(
@@ -322,7 +324,7 @@ class _ClientFavoriteComponentWidgetState
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.233,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Text(
                                             'Открыть',
                                             style: FlutterFlowTheme.of(context)
@@ -346,14 +348,14 @@ class _ClientFavoriteComponentWidgetState
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.233,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
                                             focusColor: Colors.transparent,
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              _model.newRooms = widget
+                                              _model.newRooms = widget!
                                                   .list!.hotelId
                                                   .toList()
                                                   .cast<int>();
@@ -368,7 +370,7 @@ class _ClientFavoriteComponentWidgetState
                                                 },
                                                 matchingRows: (rows) => rows.eq(
                                                   'id',
-                                                  widget.list?.id,
+                                                  widget!.list?.id,
                                                 ),
                                               );
                                             },
@@ -393,9 +395,9 @@ class _ClientFavoriteComponentWidgetState
                                         ),
                                       ),
                                     ]
-                                        .divide(const SizedBox(width: 8.0))
-                                        .addToStart(const SizedBox(width: 16.0))
-                                        .addToEnd(const SizedBox(width: 16.0)),
+                                        .divide(SizedBox(width: 8.0))
+                                        .addToStart(SizedBox(width: 16.0))
+                                        .addToEnd(SizedBox(width: 16.0)),
                                   ),
                                 );
                               }),
@@ -408,7 +410,7 @@ class _ClientFavoriteComponentWidgetState
                 );
               },
             ),
-        ].divide(const SizedBox(height: 22.0)),
+        ].divide(SizedBox(height: 22.0)),
       ),
     );
   }

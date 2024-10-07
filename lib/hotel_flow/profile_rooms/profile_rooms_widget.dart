@@ -4,8 +4,12 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/hotel_flow/profile_rooms_component/profile_rooms_component_widget.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'profile_rooms_model.dart';
 export 'profile_rooms_model.dart';
 
@@ -55,8 +59,8 @@ class _ProfileRoomsWidgetState extends State<ProfileRoomsWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 200.0.ms,
-            begin: const Offset(0.0, 100.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 100.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -75,15 +79,15 @@ class _ProfileRoomsWidgetState extends State<ProfileRoomsWidget>
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
-        decoration: const BoxDecoration(),
+        decoration: BoxDecoration(),
         child: FutureBuilder<List<HotelRow>>(
           future: HotelTable().queryRows(
             queryFn: (q) => q
                 .contains(
                   'owner_id',
-                  '{$currentUserUid}',
+                  '{${currentUserUid}}',
                 )
                 .order('created_at'),
           ),
@@ -105,7 +109,7 @@ class _ProfileRoomsWidgetState extends State<ProfileRoomsWidget>
             List<HotelRow> listViewHotelRowList = snapshot.data!;
 
             return ListView.separated(
-              padding: const EdgeInsets.fromLTRB(
+              padding: EdgeInsets.fromLTRB(
                 0,
                 0,
                 0,
@@ -113,11 +117,11 @@ class _ProfileRoomsWidgetState extends State<ProfileRoomsWidget>
               ),
               scrollDirection: Axis.vertical,
               itemCount: listViewHotelRowList.length,
-              separatorBuilder: (_, __) => const SizedBox(height: 40.0),
+              separatorBuilder: (_, __) => SizedBox(height: 40.0),
               itemBuilder: (context, listViewIndex) {
                 final listViewHotelRow = listViewHotelRowList[listViewIndex];
                 return Container(
-                  decoration: const BoxDecoration(),
+                  decoration: BoxDecoration(),
                   child: wrapWithModel(
                     model: _model.profileRoomsComponentModels.getModel(
                       listViewHotelRow.id.toString(),

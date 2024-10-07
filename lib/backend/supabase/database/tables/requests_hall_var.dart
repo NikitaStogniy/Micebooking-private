@@ -10,7 +10,7 @@ class RequestsHallVarTable extends SupabaseTable<RequestsHallVarRow> {
 }
 
 class RequestsHallVarRow extends SupabaseDataRow {
-  RequestsHallVarRow(super.data);
+  RequestsHallVarRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => RequestsHallVarTable();

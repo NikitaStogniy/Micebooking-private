@@ -1,9 +1,13 @@
 import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'toggle2_model.dart';
 export 'toggle2_model.dart';
 
@@ -11,7 +15,7 @@ class Toggle2Widget extends StatefulWidget {
   const Toggle2Widget({
     super.key,
     bool? isChecked,
-  }) : isChecked = isChecked ?? false;
+  }) : this.isChecked = isChecked ?? false;
 
   final bool isChecked;
 
@@ -38,7 +42,7 @@ class _Toggle2WidgetState extends State<Toggle2Widget>
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (widget.isChecked) {
+      if (widget!.isChecked) {
         if (animationsMap['imageOnActionTriggerAnimation'] != null) {
           await animationsMap['imageOnActionTriggerAnimation']!
               .controller
@@ -88,7 +92,7 @@ class _Toggle2WidgetState extends State<Toggle2Widget>
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8.0),
         child: SvgPicture.asset(

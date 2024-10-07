@@ -13,6 +13,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'hotel_settings_model.dart';
 export 'hotel_settings_model.dart';
 
@@ -62,7 +64,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -88,7 +90,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 16.0, 0.0),
                                       child: Text(
                                         'Категории для отелей:',
@@ -130,7 +132,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                   ],
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 20.0, 0.0, 0.0),
                                   child:
                                       FutureBuilder<List<ServiceCategoryRow>>(
@@ -184,25 +186,25 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                             children: [
                                               Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 16.0, 0.0),
                                                   child: Container(
                                                     width: 500.0,
                                                     height: 37.0,
                                                     decoration: BoxDecoration(
-                                                      color: const Color(0xFFF0F0FA),
+                                                      color: Color(0xFFF0F0FA),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               40.0),
                                                     ),
                                                     child: Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               -1.0, 0.0),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     20.0,
                                                                     0.0,
@@ -235,7 +237,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 24.0, 0.0),
                                                 child: InkWell(
@@ -304,7 +306,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                               ),
                                             ],
                                           );
-                                        }).divide(const SizedBox(height: 10.0)),
+                                        }).divide(SizedBox(height: 10.0)),
                                       );
                                     },
                                   ),
@@ -314,7 +316,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                   children: [
                                     if (_model.newCategory == true)
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 20.0, 0.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -333,7 +335,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                             ),
                                             Expanded(
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         16.0, 0.0, 0.0, 0.0),
                                                 child: Container(
@@ -349,7 +351,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 8.0, 0.0),
                                                     child: TextFormField(
@@ -388,7 +390,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                         enabledBorder:
                                                             UnderlineInputBorder(
                                                           borderSide:
-                                                              const BorderSide(
+                                                              BorderSide(
                                                             color: Color(
                                                                 0x00000000),
                                                             width: 2.0,
@@ -401,7 +403,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                         focusedBorder:
                                                             UnderlineInputBorder(
                                                           borderSide:
-                                                              const BorderSide(
+                                                              BorderSide(
                                                             color: Color(
                                                                 0x00000000),
                                                             width: 2.0,
@@ -414,7 +416,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                         errorBorder:
                                                             UnderlineInputBorder(
                                                           borderSide:
-                                                              const BorderSide(
+                                                              BorderSide(
                                                             color: Color(
                                                                 0x00000000),
                                                             width: 2.0,
@@ -427,7 +429,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                         focusedErrorBorder:
                                                             UnderlineInputBorder(
                                                           borderSide:
-                                                              const BorderSide(
+                                                              BorderSide(
                                                             color: Color(
                                                                 0x00000000),
                                                             width: 2.0,
@@ -438,7 +440,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                                       8.0),
                                                         ),
                                                         contentPadding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -463,7 +465,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 0.0, 0.0, 0.0),
                                               child: Row(
@@ -501,14 +503,14 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                     options: FFButtonOptions(
                                                       height: 40.0,
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   24.0,
                                                                   0.0,
                                                                   24.0,
                                                                   0.0),
                                                       iconPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -531,7 +533,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                                     0.0,
                                                               ),
                                                       elevation: 0.0,
-                                                      borderSide: const BorderSide(
+                                                      borderSide: BorderSide(
                                                         color:
                                                             Colors.transparent,
                                                         width: 1.0,
@@ -551,20 +553,20 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                     options: FFButtonOptions(
                                                       height: 40.0,
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   24.0,
                                                                   0.0,
                                                                   24.0,
                                                                   0.0),
                                                       iconPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
                                                                   0.0,
                                                                   0.0),
-                                                      color: const Color(0x00BE3030),
+                                                      color: Color(0x00BE3030),
                                                       textStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -591,7 +593,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                               24.0),
                                                     ),
                                                   ),
-                                                ].divide(const SizedBox(width: 8.0)),
+                                                ].divide(SizedBox(width: 8.0)),
                                               ),
                                             ),
                                           ],
@@ -602,7 +604,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 40.0, 0.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -612,7 +614,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 16.0, 0.0),
                                         child: Text(
                                           'Удобства для отелей:',
@@ -629,7 +631,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                     ],
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 24.0, 0.0, 0.0),
                                     child:
                                         FutureBuilder<List<ServiceCategoryRow>>(
@@ -734,7 +736,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                 safeSetState(() {});
                                               },
                                             );
-                                          }).divide(const SizedBox(height: 40.0)),
+                                          }).divide(SizedBox(height: 40.0)),
                                         );
                                       },
                                     ),
@@ -742,10 +744,10 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                 ],
                               ),
                             ),
-                          ].addToEnd(const SizedBox(height: 72.0)),
+                          ].addToEnd(SizedBox(height: 72.0)),
                         ),
                       ),
-                    ].divide(const SizedBox(height: 16.0)),
+                    ].divide(SizedBox(height: 16.0)),
                   ),
                 ),
                 Column(
@@ -754,7 +756,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -772,7 +774,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                           ),
                           Container(
                             width: 500.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: FutureBuilder<List<CityRow>>(
                               future: (_model.requestCompleter4 ??=
                                       Completer<List<CityRow>>()
@@ -800,7 +802,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                 List<CityRow> citysCityRowList = snapshot.data!;
 
                                 return ListView.separated(
-                                  padding: const EdgeInsets.fromLTRB(
+                                  padding: EdgeInsets.fromLTRB(
                                     0,
                                     23.0,
                                     0,
@@ -810,7 +812,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                   scrollDirection: Axis.vertical,
                                   itemCount: citysCityRowList.length,
                                   separatorBuilder: (_, __) =>
-                                      const SizedBox(height: 24.0),
+                                      SizedBox(height: 24.0),
                                   itemBuilder: (context, citysIndex) {
                                     final citysCityRow =
                                         citysCityRowList[citysIndex];
@@ -980,11 +982,11 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                     size: 28.0,
                                                   ),
                                                 ),
-                                              ].divide(const SizedBox(width: 12.0)),
+                                              ].divide(SizedBox(width: 12.0)),
                                             ),
                                             Builder(
                                               builder: (context) => Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         32.0, 0.0, 0.0, 0.0),
                                                 child: FlutterFlowIconButton(
@@ -995,7 +997,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                       FlutterFlowTheme.of(
                                                               context)
                                                           .error,
-                                                  icon: const Icon(
+                                                  icon: Icon(
                                                     Icons.delete_forever,
                                                     color: Colors.white,
                                                     size: 16.0,
@@ -1011,7 +1013,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                           backgroundColor:
                                                               Colors
                                                                   .transparent,
-                                                          alignment: const AlignmentDirectional(
+                                                          alignment: AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
@@ -1057,7 +1059,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                 ),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 16.0)),
+                                          ].divide(SizedBox(width: 16.0)),
                                         ),
                                       ],
                                     );
@@ -1072,23 +1074,23 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                             children: [
                               if (_model.addNew == 'CITY')
                                 Container(
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Container(
                                         width: 200.0,
-                                        constraints: const BoxConstraints(
+                                        constraints: BoxConstraints(
                                           minHeight: 40.0,
                                         ),
                                         decoration: BoxDecoration(
-                                          color: const Color(0xFFF0F0FA),
+                                          color: Color(0xFFF0F0FA),
                                           borderRadius:
                                               BorderRadius.circular(100.0),
                                         ),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 4.0, 8.0, 4.0),
                                           child: TextFormField(
                                             controller: _model.textController2,
@@ -1129,6 +1131,8 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                       FFButtonWidget(
                                         onPressed: () async {
                                           if (_model.textController2.text !=
+                                                  null &&
+                                              _model.textController2.text !=
                                                   '') {
                                             await CityTable().insert({
                                               'name':
@@ -1153,10 +1157,10 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 0.0, 24.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -1169,7 +1173,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                     letterSpacing: 0.0,
                                                   ),
                                           elevation: 0.0,
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,
                                           ),
@@ -1177,12 +1181,12 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                               BorderRadius.circular(100.0),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(width: 16.0)),
+                                    ].divide(SizedBox(width: 16.0)),
                                   ),
                                 ),
                               if (_model.addNew != 'CITY')
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 16.0, 0.0, 0.0),
                                   child: wrapWithModel(
                                     model: _model.addNewModel1,
@@ -1224,10 +1228,10 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                         ),
                         Container(
                           width: 500.0,
-                          constraints: const BoxConstraints(
+                          constraints: BoxConstraints(
                             maxHeight: 250.0,
                           ),
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: FutureBuilder<List<CenterDistanceRow>>(
                             future: (_model.requestCompleter3 ??= Completer<
                                     List<CenterDistanceRow>>()
@@ -1256,7 +1260,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                   snapshot.data!;
 
                               return ListView.separated(
-                                padding: const EdgeInsets.fromLTRB(
+                                padding: EdgeInsets.fromLTRB(
                                   0,
                                   23.0,
                                   0,
@@ -1266,14 +1270,14 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                 scrollDirection: Axis.vertical,
                                 itemCount: listViewCenterDistanceRowList.length,
                                 separatorBuilder: (_, __) =>
-                                    const SizedBox(height: 10.0),
+                                    SizedBox(height: 10.0),
                                 itemBuilder: (context, listViewIndex) {
                                   final listViewCenterDistanceRow =
                                       listViewCenterDistanceRowList[
                                           listViewIndex];
                                   return Container(
                                     height: 40.0,
-                                    decoration: const BoxDecoration(),
+                                    decoration: BoxDecoration(),
                                     child: wrapWithModel(
                                       model:
                                           _model.infoComponentModels.getModel(
@@ -1346,22 +1350,22 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                           children: [
                             if (_model.addNew == 'DESTINATION')
                               Container(
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Container(
                                       width: 50.0,
-                                      constraints: const BoxConstraints(
+                                      constraints: BoxConstraints(
                                         minHeight: 40.0,
                                       ),
                                       decoration: BoxDecoration(
-                                        color: const Color(0xFFF0F0FA),
+                                        color: Color(0xFFF0F0FA),
                                         borderRadius:
                                             BorderRadius.circular(100.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             8.0, 4.0, 8.0, 4.0),
                                         child: TextFormField(
                                           controller: _model.textController3,
@@ -1409,16 +1413,16 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                     ),
                                     Container(
                                       width: 50.0,
-                                      constraints: const BoxConstraints(
+                                      constraints: BoxConstraints(
                                         minHeight: 40.0,
                                       ),
                                       decoration: BoxDecoration(
-                                        color: const Color(0xFFF0F0FA),
+                                        color: Color(0xFFF0F0FA),
                                         borderRadius:
                                             BorderRadius.circular(100.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             8.0, 4.0, 8.0, 4.0),
                                         child: TextFormField(
                                           controller: _model.textController4,
@@ -1467,8 +1471,12 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                     FFButtonWidget(
                                       onPressed: () async {
                                         if ((_model.textController3.text !=
+                                                    null &&
+                                                _model.textController3.text !=
                                                     '') &&
                                             (_model.textController4.text !=
+                                                    null &&
+                                                _model.textController4.text !=
                                                     '')) {
                                           await CenterDistanceTable().insert({
                                             'first': int.tryParse(
@@ -1488,10 +1496,10 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                       text: 'Добавить',
                                       options: FFButtonOptions(
                                         height: 40.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             24.0, 0.0, 24.0, 0.0),
                                         iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
+                                            EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
@@ -1503,7 +1511,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                               letterSpacing: 0.0,
                                             ),
                                         elevation: 0.0,
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Colors.transparent,
                                           width: 1.0,
                                         ),
@@ -1511,12 +1519,12 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                             BorderRadius.circular(100.0),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 16.0)),
+                                  ].divide(SizedBox(width: 16.0)),
                                 ),
                               ),
                             if (_model.addNew != 'DESTINATION')
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 16.0, 0.0, 0.0),
                                 child: wrapWithModel(
                                   model: _model.addNewModel2,
@@ -1543,9 +1551,9 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                     ),
                   ],
                 ),
-              ].divide(const SizedBox(width: 72.0)),
+              ].divide(SizedBox(width: 72.0)),
             ),
-          ].addToEnd(const SizedBox(height: 72.0)),
+          ].addToEnd(SizedBox(height: 72.0)),
         ),
       ),
     );

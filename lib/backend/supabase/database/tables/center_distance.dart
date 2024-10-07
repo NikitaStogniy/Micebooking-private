@@ -10,7 +10,7 @@ class CenterDistanceTable extends SupabaseTable<CenterDistanceRow> {
 }
 
 class CenterDistanceRow extends SupabaseDataRow {
-  CenterDistanceRow(super.data);
+  CenterDistanceRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => CenterDistanceTable();

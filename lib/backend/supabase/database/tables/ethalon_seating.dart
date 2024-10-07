@@ -10,7 +10,7 @@ class EthalonSeatingTable extends SupabaseTable<EthalonSeatingRow> {
 }
 
 class EthalonSeatingRow extends SupabaseDataRow {
-  EthalonSeatingRow(super.data);
+  EthalonSeatingRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => EthalonSeatingTable();

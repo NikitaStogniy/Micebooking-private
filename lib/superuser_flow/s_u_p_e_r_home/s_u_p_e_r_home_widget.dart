@@ -31,7 +31,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-
 import 's_u_p_e_r_home_model.dart';
 export 's_u_p_e_r_home_model.dart';
 
@@ -73,7 +72,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
           top: true,
           child: Container(
             width: double.infinity,
-            height: MediaQuery.sizeOf(context).height * 1,
+            height: MediaQuery.sizeOf(context).height * 1.0,
             decoration: BoxDecoration(
               color: Color(0xFFF9F9F9),
               image: DecorationImage(
@@ -95,19 +94,19 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Container(
-                        height: MediaQuery.sizeOf(context).height * 1,
+                        height: MediaQuery.sizeOf(context).height * 1.0,
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primary,
                           borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(0),
-                            bottomRight: Radius.circular(50),
-                            topLeft: Radius.circular(0),
-                            topRight: Radius.circular(50),
+                            bottomLeft: Radius.circular(0.0),
+                            bottomRight: Radius.circular(50.0),
+                            topLeft: Radius.circular(0.0),
+                            topRight: Radius.circular(50.0),
                           ),
                         ),
                         child: Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 32, 16, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              16.0, 32.0, 16.0, 0.0),
                           child: Stack(
                             children: [
                               InkWell(
@@ -119,20 +118,20 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                   context.pushNamed('Home');
                                 },
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(0),
+                                  borderRadius: BorderRadius.circular(0.0),
                                   child: SvgPicture.asset(
                                     'assets/images/MICEBOOKING.svg',
-                                    width: 140,
-                                    height: 16,
+                                    width: 140.0,
+                                    height: 16.0,
                                     fit: BoxFit.contain,
                                   ),
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(0, -0.3),
+                                alignment: AlignmentDirectional(0.0, -0.3),
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 32, 0, 0),
+                                      0.0, 32.0, 0.0, 0.0),
                                   child: SingleChildScrollView(
                                     controller: _model.columnController1,
                                     child: Column(
@@ -179,7 +178,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .alternate,
                                                   ),
-                                                  fontSize: 18,
+                                                  fontSize: 18.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
@@ -221,7 +220,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .alternate,
                                                   ),
-                                                  fontSize: 18,
+                                                  fontSize: 18.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
@@ -242,7 +241,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryBackground,
-                                                    fontSize: 18,
+                                                    fontSize: 18.0,
                                                     letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w300,
                                                   ),
@@ -289,7 +288,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                                     context)
                                                                 .alternate,
                                                           ),
-                                                          fontSize: 18,
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w500,
@@ -337,7 +336,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                                     context)
                                                                 .alternate,
                                                           ),
-                                                          fontSize: 18,
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w500,
@@ -385,7 +384,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                                     context)
                                                                 .alternate,
                                                           ),
-                                                          fontSize: 18,
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w500,
@@ -433,19 +432,19 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                                     context)
                                                                 .alternate,
                                                           ),
-                                                          fontSize: 18,
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w500,
                                                         ),
                                               ),
                                             ),
-                                          ].divide(SizedBox(height: 20)),
+                                          ].divide(SizedBox(height: 20.0)),
                                         ),
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0, 32, 0, 32),
+                                                  0.0, 32.0, 0.0, 32.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             crossAxisAlignment:
@@ -462,7 +461,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryBackground,
-                                                          fontSize: 18,
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w300,
@@ -511,7 +510,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                                       context)
                                                                   .alternate,
                                                             ),
-                                                            fontSize: 18,
+                                                            fontSize: 18.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.w500,
@@ -561,7 +560,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                                       context)
                                                                   .alternate,
                                                             ),
-                                                            fontSize: 18,
+                                                            fontSize: 18.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.w500,
@@ -611,7 +610,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                                       context)
                                                                   .alternate,
                                                             ),
-                                                            fontSize: 18,
+                                                            fontSize: 18.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.w500,
@@ -661,7 +660,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                                       context)
                                                                   .alternate,
                                                             ),
-                                                            fontSize: 18,
+                                                            fontSize: 18.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.w500,
@@ -711,7 +710,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                                       context)
                                                                   .alternate,
                                                             ),
-                                                            fontSize: 18,
+                                                            fontSize: 18.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.w500,
@@ -761,7 +760,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                                       context)
                                                                   .alternate,
                                                             ),
-                                                            fontSize: 18,
+                                                            fontSize: 18.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.w500,
@@ -812,18 +811,19 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                                       context)
                                                                   .alternate,
                                                             ),
-                                                            fontSize: 18,
+                                                            fontSize: 18.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.w500,
                                                           ),
                                                 ),
                                               ),
-                                            ].divide(SizedBox(height: 20)),
+                                            ].divide(SizedBox(height: 20.0)),
                                           ),
                                         ),
                                         Align(
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
                                               GoRouter.of(context)
@@ -837,11 +837,12 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                             },
                                             text: 'Выйти',
                                             options: FFButtonOptions(
-                                              height: 40,
+                                              height: 40.0,
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(24, 0, 24, 0),
+                                                  .fromSTEB(
+                                                      24.0, 0.0, 24.0, 0.0),
                                               iconPadding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 0, 0),
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryBackground,
@@ -855,17 +856,17 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                         .primary,
                                                     letterSpacing: 0.0,
                                                   ),
-                                              elevation: 0,
+                                              elevation: 0.0,
                                               borderSide: BorderSide(
                                                 color: Colors.transparent,
-                                                width: 0,
+                                                width: 0.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(24),
+                                                  BorderRadius.circular(24.0),
                                             ),
                                           ),
                                         ),
-                                      ].divide(SizedBox(height: 16)),
+                                      ].divide(SizedBox(height: 16.0)),
                                     ),
                                   ),
                                 ),
@@ -967,13 +968,14 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Commissioner',
-                                  fontSize: 38,
+                                  fontSize: 38.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
                                 ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 40, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 40.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1173,7 +1175,9 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                 wrapWithModel(
                                   model: _model.editAboutModel,
                                   updateCallback: () => safeSetState(() {}),
-                                  child: EditAboutWidget(),
+                                  child: EditAboutWidget(
+                                    goBack: () async {},
+                                  ),
                                 ),
                               if (_model.activePage == SuperUserPage.cms_whyus)
                                 wrapWithModel(
@@ -1320,13 +1324,13 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                           ),
                         ),
                       ]
-                          .divide(SizedBox(height: 44))
-                          .addToStart(SizedBox(height: 64))
-                          .addToEnd(SizedBox(height: 64)),
+                          .divide(SizedBox(height: 44.0))
+                          .addToStart(SizedBox(height: 64.0))
+                          .addToEnd(SizedBox(height: 64.0)),
                     ),
                   ),
                 ),
-              ].divide(SizedBox(width: 40)),
+              ].divide(SizedBox(width: 40.0)),
             ),
           ),
         ),

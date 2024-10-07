@@ -1,6 +1,8 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'check_box_comp_model.dart';
 export 'check_box_comp_model.dart';
 
@@ -10,7 +12,7 @@ class CheckBoxCompWidget extends StatefulWidget {
     required this.onClick,
     bool? isChecked,
     required this.label,
-  }) : isChecked = isChecked ?? false;
+  }) : this.isChecked = isChecked ?? false;
 
   final Future Function(bool? isChecked)? onClick;
   final bool isChecked;
@@ -47,7 +49,7 @@ class _CheckBoxCompWidgetState extends State<CheckBoxCompWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -63,7 +65,7 @@ class _CheckBoxCompWidgetState extends State<CheckBoxCompWidget> {
               unselectedWidgetColor: FlutterFlowTheme.of(context).secondaryText,
             ),
             child: Checkbox(
-              value: _model.checkboxValue ??= widget.isChecked,
+              value: _model.checkboxValue ??= widget!.isChecked,
               onChanged: (newValue) async {
                 safeSetState(() => _model.checkboxValue = newValue!);
                 if (newValue!) {
@@ -82,7 +84,7 @@ class _CheckBoxCompWidgetState extends State<CheckBoxCompWidget> {
           ),
           Text(
             valueOrDefault<String>(
-              widget.label,
+              widget!.label,
               'Label',
             ),
             style: FlutterFlowTheme.of(context).bodyMedium.override(

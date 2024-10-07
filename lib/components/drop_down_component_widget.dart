@@ -5,6 +5,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'drop_down_component_model.dart';
 export 'drop_down_component_model.dart';
 
@@ -15,7 +17,7 @@ class DropDownComponentWidget extends StatefulWidget {
     required this.onSelect,
     this.initial,
     bool? isEdit,
-  }) : isEdit = isEdit ?? false;
+  }) : this.isEdit = isEdit ?? false;
 
   final List<DropDownValueStruct>? values;
   final Future Function(int? id)? onSelect;
@@ -43,7 +45,7 @@ class _DropDownComponentWidgetState extends State<DropDownComponentWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.value = widget.initial;
+      _model.value = widget!.initial;
       safeSetState(() {});
     });
 
@@ -66,20 +68,20 @@ class _DropDownComponentWidgetState extends State<DropDownComponentWidget> {
         hoverColor: Colors.transparent,
         highlightColor: Colors.transparent,
         onTap: () async {
-          if (widget.isEdit) {
+          if (widget!.isEdit) {
             await showAlignedDialog(
               context: context,
               isGlobal: false,
               avoidOverflow: false,
-              targetAnchor: const AlignmentDirectional(0.0, -1.0)
+              targetAnchor: AlignmentDirectional(0.0, -1.0)
                   .resolve(Directionality.of(context)),
-              followerAnchor: const AlignmentDirectional(0.0, 0.0)
+              followerAnchor: AlignmentDirectional(0.0, 0.0)
                   .resolve(Directionality.of(context)),
               builder: (dialogContext) {
                 return Material(
                   color: Colors.transparent,
                   child: DropdownBodyWidget(
-                    values: widget.values!,
+                    values: widget!.values!,
                     onClick: (id) async {
                       await widget.onSelect?.call(
                         id?.value,
@@ -100,7 +102,7 @@ class _DropDownComponentWidgetState extends State<DropDownComponentWidget> {
             borderRadius: BorderRadius.circular(100.0),
           ),
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

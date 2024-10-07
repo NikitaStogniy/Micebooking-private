@@ -8,7 +8,6 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-
 import 'hotel_search_model.dart';
 export 'hotel_search_model.dart';
 
@@ -54,7 +53,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.sizeOf(context).height * 1,
+      height: MediaQuery.sizeOf(context).height * 1.0,
       decoration: BoxDecoration(),
       child: SingleChildScrollView(
         child: Column(
@@ -68,14 +67,14 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                   'Поиск:',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Commissioner',
-                        fontSize: 38,
+                        fontSize: 38.0,
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.bold,
                       ),
                 ),
                 Expanded(
                   child: Container(
-                    height: 37,
+                    height: 37.0,
                     decoration: BoxDecoration(),
                     child: TextFormField(
                       controller: _model.textController,
@@ -102,30 +101,30 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0xFFF0F0FA),
-                            width: 2,
+                            width: 2.0,
                           ),
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: FlutterFlowTheme.of(context).primary,
-                            width: 2,
+                            width: 2.0,
                           ),
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
                         errorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: FlutterFlowTheme.of(context).error,
-                            width: 2,
+                            width: 2.0,
                           ),
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
                         focusedErrorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: FlutterFlowTheme.of(context).error,
-                            width: 2,
+                            width: 2.0,
                           ),
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
                         filled: true,
                         fillColor: Color(0xFFF0F0FA),
@@ -156,7 +155,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                             materialTapTargetSize:
                                 MaterialTapTargetSize.shrinkWrap,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4),
+                              borderRadius: BorderRadius.circular(4.0),
                             ),
                           ),
                           unselectedWidgetColor:
@@ -188,28 +187,28 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                         'Показать только неактивные',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Commissioner',
-                              fontSize: 16,
+                              fontSize: 16.0,
                               letterSpacing: 0.0,
                             ),
                       ),
                     ],
                   ),
-              ].divide(SizedBox(width: 24)),
+              ].divide(SizedBox(width: 24.0)),
             ),
             Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  width: MediaQuery.sizeOf(context).width,
-                  height: 40,
+                  width: MediaQuery.sizeOf(context).width * 1.0,
+                  height: 40.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).primary,
                     borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(0),
-                      bottomRight: Radius.circular(0),
-                      topLeft: Radius.circular(16),
-                      topRight: Radius.circular(16),
+                      bottomLeft: Radius.circular(0.0),
+                      bottomRight: Radius.circular(0.0),
+                      topLeft: Radius.circular(16.0),
+                      topRight: Radius.circular(16.0),
                     ),
                   ),
                   child: Row(
@@ -229,7 +228,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                   fontFamily: 'Commissioner',
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  fontSize: 19,
+                                  fontSize: 19.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -249,7 +248,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                   fontFamily: 'Commissioner',
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  fontSize: 19,
+                                  fontSize: 19.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -269,7 +268,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                   fontFamily: 'Commissioner',
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  fontSize: 19,
+                                  fontSize: 19.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -289,7 +288,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                   fontFamily: 'Commissioner',
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  fontSize: 19,
+                                  fontSize: 19.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -309,7 +308,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                   fontFamily: 'Commissioner',
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  fontSize: 19,
+                                  fontSize: 19.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -317,13 +316,13 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                         ),
                       ),
                       Container(
-                        width: 30,
+                        width: 30.0,
                         decoration: BoxDecoration(),
                       ),
                     ]
-                        .divide(SizedBox(width: 24))
-                        .addToStart(SizedBox(width: 16))
-                        .addToEnd(SizedBox(width: 16)),
+                        .divide(SizedBox(width: 24.0))
+                        .addToStart(SizedBox(width: 16.0))
+                        .addToEnd(SizedBox(width: 16.0)),
                   ),
                 ),
                 FutureBuilder<ApiCallResponse>(
@@ -335,8 +334,8 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                     if (!snapshot.hasData) {
                       return Center(
                         child: SizedBox(
-                          width: 50,
-                          height: 50,
+                          width: 50.0,
+                          height: 50.0,
                           child: CircularProgressIndicator(
                             valueColor: AlwaysStoppedAnimation<Color>(
                               FlutterFlowTheme.of(context).primary,
@@ -372,8 +371,8 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                 if (!snapshot.hasData) {
                                   return Center(
                                     child: SizedBox(
-                                      width: 50,
-                                      height: 50,
+                                      width: 50.0,
+                                      height: 50.0,
                                       child: CircularProgressIndicator(
                                         valueColor:
                                             AlwaysStoppedAnimation<Color>(
@@ -392,7 +391,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                         : null;
 
                                 return Container(
-                                  width: MediaQuery.sizeOf(context).width,
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
                                   decoration: BoxDecoration(
                                     color: valueOrDefault<Color>(
                                       hotelsIndex.isOdd
@@ -404,15 +403,15 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                           .primaryBackground,
                                     ),
                                     borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(0),
-                                      bottomRight: Radius.circular(0),
-                                      topLeft: Radius.circular(0),
-                                      topRight: Radius.circular(0),
+                                      bottomLeft: Radius.circular(0.0),
+                                      bottomRight: Radius.circular(0.0),
+                                      topLeft: Radius.circular(0.0),
+                                      topRight: Radius.circular(0.0),
                                     ),
                                   ),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 4, 0, 4),
+                                        0.0, 4.0, 0.0, 4.0),
                                     child: FutureBuilder<List<UsersRow>>(
                                       future: UsersTable().querySingleRow(
                                         queryFn: (q) => q.in_(
@@ -431,8 +430,8 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                         if (!snapshot.hasData) {
                                           return Center(
                                             child: SizedBox(
-                                              width: 50,
-                                              height: 50,
+                                              width: 50.0,
+                                              height: 50.0,
                                               child: CircularProgressIndicator(
                                                 valueColor:
                                                     AlwaysStoppedAnimation<
@@ -466,7 +465,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                                 child: Align(
                                                   alignment:
                                                       AlignmentDirectional(
-                                                          0, 0),
+                                                          0.0, 0.0),
                                                   child: wrapWithModel(
                                                     model: _model.checkBoxModels
                                                         .getModel(
@@ -567,7 +566,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 15,
+                                                        fontSize: 15.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
@@ -598,7 +597,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 14,
+                                                        fontSize: 14.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
@@ -630,7 +629,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 14,
+                                                        fontSize: 14.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
@@ -661,7 +660,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 15,
+                                                        fontSize: 15.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
@@ -670,7 +669,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                               ),
                                             ),
                                             Container(
-                                              width: 30,
+                                              width: 30.0,
                                               decoration: BoxDecoration(),
                                               child: InkWell(
                                                 splashColor: Colors.transparent,
@@ -691,14 +690,14 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primary,
-                                                  size: 24,
+                                                  size: 24.0,
                                                 ),
                                               ),
                                             ),
                                           ]
-                                              .divide(SizedBox(width: 24))
-                                              .addToStart(SizedBox(width: 16))
-                                              .addToEnd(SizedBox(width: 16)),
+                                              .divide(SizedBox(width: 24.0))
+                                              .addToStart(SizedBox(width: 16.0))
+                                              .addToEnd(SizedBox(width: 16.0)),
                                         );
                                       },
                                     ),
@@ -714,7 +713,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                 ),
               ],
             ),
-          ].divide(SizedBox(height: 16)).addToEnd(SizedBox(height: 72)),
+          ].divide(SizedBox(height: 16.0)).addToEnd(SizedBox(height: 72.0)),
         ),
       ),
     );

@@ -2,6 +2,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'confirm_action_model.dart';
 export 'confirm_action_model.dart';
 
@@ -13,9 +15,9 @@ class ConfirmActionWidget extends StatefulWidget {
     String? cancelText,
     required this.successAction,
     required this.cancelAction,
-  })  : title = title ?? 'Ошибка в получении действия',
-        successText = successText ?? 'ошибка',
-        cancelText = cancelText ?? 'ошибка';
+  })  : this.title = title ?? 'Ошибка в получении действия',
+        this.successText = successText ?? 'ошибка',
+        this.cancelText = cancelText ?? 'ошибка';
 
   final String title;
   final String successText;
@@ -56,18 +58,18 @@ class _ConfirmActionWidgetState extends State<ConfirmActionWidget> {
     return Container(
       width: 900.0,
       height: 500.0,
-      constraints: const BoxConstraints(
+      constraints: BoxConstraints(
         maxWidth: 1000.0,
         maxHeight: 500.0,
       ),
       decoration: BoxDecoration(
-        color: const Color(0xFFF0F0FA),
+        color: Color(0xFFF0F0FA),
         borderRadius: BorderRadius.circular(70.0),
       ),
       child: Align(
-        alignment: const AlignmentDirectional(0.0, 0.0),
+        alignment: AlignmentDirectional(0.0, 0.0),
         child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(138.0, 0.0, 138.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(138.0, 0.0, 138.0, 0.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -78,7 +80,7 @@ class _ConfirmActionWidgetState extends State<ConfirmActionWidget> {
                   children: [
                     Expanded(
                       child: Text(
-                        widget.title,
+                        widget!.title,
                         textAlign: TextAlign.center,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Commissioner',
@@ -100,13 +102,13 @@ class _ConfirmActionWidgetState extends State<ConfirmActionWidget> {
                       onPressed: () async {
                         await widget.successAction?.call();
                       },
-                      text: widget.successText,
+                      text: widget!.successText,
                       options: FFButtonOptions(
                         height: 65.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -117,7 +119,7 @@ class _ConfirmActionWidgetState extends State<ConfirmActionWidget> {
                                   fontWeight: FontWeight.w600,
                                 ),
                         elevation: 0.0,
-                        borderSide: const BorderSide(
+                        borderSide: BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
@@ -130,14 +132,14 @@ class _ConfirmActionWidgetState extends State<ConfirmActionWidget> {
                       onPressed: () async {
                         await widget.cancelAction?.call();
                       },
-                      text: widget.cancelText,
+                      text: widget!.cancelText,
                       options: FFButtonOptions(
                         height: 65.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: const Color(0xFFBE3030),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: Color(0xFFBE3030),
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   fontFamily: 'Commissioner',
@@ -147,7 +149,7 @@ class _ConfirmActionWidgetState extends State<ConfirmActionWidget> {
                                   fontWeight: FontWeight.w600,
                                 ),
                         elevation: 0.0,
-                        borderSide: const BorderSide(
+                        borderSide: BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
@@ -155,9 +157,9 @@ class _ConfirmActionWidgetState extends State<ConfirmActionWidget> {
                       ),
                     ),
                   ),
-                ].divide(const SizedBox(width: 40.0)),
+                ].divide(SizedBox(width: 40.0)),
               ),
-            ].divide(const SizedBox(height: 80.0)),
+            ].divide(SizedBox(height: 80.0)),
           ),
         ),
       ),

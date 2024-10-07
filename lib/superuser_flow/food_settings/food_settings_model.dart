@@ -1,10 +1,15 @@
+import '/backend/schema/enums/enums.dart';
 import '/backend/supabase/supabase.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/superuser_flow/add_new/add_new_widget.dart';
 import '/superuser_flow/info_component/info_component_widget.dart';
 import 'dart:async';
 import 'food_settings_widget.dart' show FoodSettingsWidget;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class FoodSettingsModel extends FlutterFlowModel<FoodSettingsWidget> {
   ///  Local state fields for this component.
@@ -67,7 +72,7 @@ class FoodSettingsModel extends FlutterFlowModel<FoodSettingsWidget> {
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(const Duration(milliseconds: 50));
+      await Future.delayed(Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete = requestCompleter1?.isCompleted ?? false;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
@@ -82,7 +87,7 @@ class FoodSettingsModel extends FlutterFlowModel<FoodSettingsWidget> {
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(const Duration(milliseconds: 50));
+      await Future.delayed(Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete = requestCompleter2?.isCompleted ?? false;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {

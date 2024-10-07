@@ -3,8 +3,12 @@ import '/backend/supabase/supabase.dart';
 import '/components/footer_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/uikit/menu/menu_widget.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'qa_model.dart';
 export 'qa_model.dart';
 
@@ -55,7 +59,7 @@ class _QaWidgetState extends State<QaWidget> {
                   'assets/images/Vector.png',
                 ).image,
               ),
-              borderRadius: const BorderRadius.only(
+              borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(0.0),
                 bottomRight: Radius.circular(0.0),
                 topLeft: Radius.circular(32.0),
@@ -67,12 +71,12 @@ class _QaWidgetState extends State<QaWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(24.0),
+                    padding: EdgeInsets.all(24.0),
                     child: Container(
-                      constraints: const BoxConstraints(
+                      constraints: BoxConstraints(
                         maxWidth: 1250.0,
                       ),
-                      decoration: const BoxDecoration(),
+                      decoration: BoxDecoration(),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,7 +100,7 @@ class _QaWidgetState extends State<QaWidget> {
                               RichText(
                                 textScaler: MediaQuery.of(context).textScaler,
                                 text: TextSpan(
-                                  children: const [
+                                  children: [
                                     TextSpan(
                                       text: 'Вопросы и ответы',
                                       style: TextStyle(),
@@ -114,7 +118,7 @@ class _QaWidgetState extends State<QaWidget> {
                                       ),
                                 ),
                               ),
-                            ].divide(const SizedBox(height: 24.0)),
+                            ].divide(SizedBox(height: 24.0)),
                           ),
                           FutureBuilder<List<CmsRow>>(
                             future: CmsTable().queryRows(
@@ -148,7 +152,7 @@ class _QaWidgetState extends State<QaWidget> {
                                 scrollDirection: Axis.vertical,
                                 itemCount: listViewCmsRowList.length,
                                 separatorBuilder: (_, __) =>
-                                    const SizedBox(height: 40.0),
+                                    SizedBox(height: 40.0),
                                 itemBuilder: (context, listViewIndex) {
                                   final listViewCmsRow =
                                       listViewCmsRowList[listViewIndex];
@@ -201,22 +205,22 @@ class _QaWidgetState extends State<QaWidget> {
                                           ),
                                         ],
                                       ),
-                                    ].divide(const SizedBox(height: 16.0)),
+                                    ].divide(SizedBox(height: 16.0)),
                                   );
                                 },
                               );
                             },
                           ),
-                        ].divide(const SizedBox(height: 40.0)),
+                        ].divide(SizedBox(height: 40.0)),
                       ),
                     ),
                   ),
                   wrapWithModel(
                     model: _model.footerModel,
                     updateCallback: () => safeSetState(() {}),
-                    child: const FooterWidget(),
+                    child: FooterWidget(),
                   ),
-                ].divide(const SizedBox(height: 40.0)),
+                ].divide(SizedBox(height: 40.0)),
               ),
             ),
           ),

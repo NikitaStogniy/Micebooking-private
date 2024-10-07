@@ -3,6 +3,8 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'pop_up_p_p_model.dart';
 export 'pop_up_p_p_model.dart';
 
@@ -80,7 +82,7 @@ class _PopUpPPWidgetState extends State<PopUpPPWidget> {
 
           return Container(
             height: MediaQuery.sizeOf(context).height * 0.9,
-            constraints: const BoxConstraints(
+            constraints: BoxConstraints(
               maxWidth: 1250.0,
             ),
             decoration: BoxDecoration(
@@ -88,7 +90,7 @@ class _PopUpPPWidgetState extends State<PopUpPPWidget> {
               borderRadius: BorderRadius.circular(23.0),
             ),
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 0.0),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.max,

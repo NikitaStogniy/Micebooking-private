@@ -1,7 +1,13 @@
+import '/backend/schema/structs/index.dart';
 import '/components/drop_down_component_widget.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'info_component_widget.dart' show InfoComponentWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class InfoComponentModel extends FlutterFlowModel<InfoComponentWidget> {
   ///  Local state fields for this component.

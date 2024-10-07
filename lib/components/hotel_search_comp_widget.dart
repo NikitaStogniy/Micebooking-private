@@ -14,6 +14,8 @@ import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'hotel_search_comp_model.dart';
 export 'hotel_search_comp_model.dart';
 
@@ -29,9 +31,9 @@ class HotelSearchCompWidget extends StatefulWidget {
     this.hallFilter2,
     this.hallFilter3,
     bool? home,
-  })  : duration = duration ?? 0.0,
-        visitors = visitors ?? 0,
-        home = home ?? false;
+  })  : this.duration = duration ?? 0.0,
+        this.visitors = visitors ?? 0,
+        this.home = home ?? false;
 
   final Future Function(
       DateTime? date,
@@ -71,13 +73,13 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.startDate = widget.date;
-      _model.visitors = widget.visitors;
-      _model.city = widget.ciry;
-      _model.duration = widget.duration;
-      _model.hallFilter1 = widget.hallFilter1;
-      _model.hallFilter2 = widget.hallFilter2;
-      _model.hallFilter3 = widget.hallFilter3;
+      _model.startDate = widget!.date;
+      _model.visitors = widget!.visitors;
+      _model.city = widget!.ciry;
+      _model.duration = widget!.duration;
+      _model.hallFilter1 = widget!.hallFilter1;
+      _model.hallFilter2 = widget!.hallFilter2;
+      _model.hallFilter3 = widget!.hallFilter3;
       safeSetState(() {});
     });
 
@@ -101,12 +103,13 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
           context: context,
           phone: false,
           tablet: false,
+          tabletLandscape: false,
         ))
           ClipRRect(
             borderRadius: BorderRadius.circular(100.0),
             child: Container(
               height: 58.0,
-              constraints: const BoxConstraints(
+              constraints: BoxConstraints(
                 maxWidth: 1250.0,
               ),
               decoration: BoxDecoration(
@@ -132,10 +135,10 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                           builder: (context) {
                             return Padding(
                               padding: MediaQuery.viewInsetsOf(context),
-                              child: SizedBox(
+                              child: Container(
                                 height: 530.0,
                                 child: CalendarRowWidget(
-                                  chosen: _model.startDate == widget.date,
+                                  chosen: _model.startDate == widget!.date,
                                   chosenDay: _model.startDate!,
                                   onClick: (selectedDate) async {
                                     _model.startDate = selectedDate;
@@ -154,7 +157,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                               FlutterFlowTheme.of(context).secondaryBackground,
                         ),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -208,7 +211,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                       ),
                                     ],
                                   ),
-                                ].divide(const SizedBox(width: 8.0)),
+                                ].divide(SizedBox(width: 8.0)),
                               ),
                               Icon(
                                 Icons.keyboard_arrow_down_rounded,
@@ -216,7 +219,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                     FlutterFlowTheme.of(context).secondaryText,
                                 size: 24.0,
                               ),
-                            ].divide(const SizedBox(width: 16.0)),
+                            ].divide(SizedBox(width: 16.0)),
                           ),
                         ),
                       ),
@@ -242,14 +245,14 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                             context: context,
                             isGlobal: false,
                             avoidOverflow: true,
-                            targetAnchor: const AlignmentDirectional(0.0, 2.5)
+                            targetAnchor: AlignmentDirectional(0.0, 2.5)
                                 .resolve(Directionality.of(context)),
-                            followerAnchor: const AlignmentDirectional(0.0, 0.0)
+                            followerAnchor: AlignmentDirectional(0.0, 0.0)
                                 .resolve(Directionality.of(context)),
                             builder: (dialogContext) {
                               return Material(
                                 color: Colors.transparent,
-                                child: SizedBox(
+                                child: Container(
                                   width: 300.0,
                                   child: DaysCountWidget(
                                     count: _model.duration!,
@@ -277,7 +280,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                 .secondaryBackground,
                           ),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -330,7 +333,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                         ),
                                       ],
                                     ),
-                                  ].divide(const SizedBox(width: 8.0)),
+                                  ].divide(SizedBox(width: 8.0)),
                                 ),
                                 Icon(
                                   Icons.keyboard_arrow_down_rounded,
@@ -338,7 +341,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                       .secondaryText,
                                   size: 24.0,
                                 ),
-                              ].divide(const SizedBox(width: 16.0)),
+                              ].divide(SizedBox(width: 16.0)),
                             ),
                           ),
                         ),
@@ -365,14 +368,14 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                             context: context,
                             isGlobal: false,
                             avoidOverflow: true,
-                            targetAnchor: const AlignmentDirectional(0.0, 2.5)
+                            targetAnchor: AlignmentDirectional(0.0, 2.5)
                                 .resolve(Directionality.of(context)),
-                            followerAnchor: const AlignmentDirectional(0.0, 0.0)
+                            followerAnchor: AlignmentDirectional(0.0, 0.0)
                                 .resolve(Directionality.of(context)),
                             builder: (dialogContext) {
                               return Material(
                                 color: Colors.transparent,
-                                child: SizedBox(
+                                child: Container(
                                   width: 300.0,
                                   child: CityDropDownWidget(
                                     cityChoosen: (item) async {
@@ -394,7 +397,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                 .secondaryBackground,
                           ),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -449,7 +452,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                           ),
                                         ],
                                       ),
-                                    ].divide(const SizedBox(width: 8.0)),
+                                    ].divide(SizedBox(width: 8.0)),
                                   ),
                                 ),
                                 Icon(
@@ -458,7 +461,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                       .secondaryText,
                                   size: 24.0,
                                 ),
-                              ].divide(const SizedBox(width: 16.0)),
+                              ].divide(SizedBox(width: 16.0)),
                             ),
                           ),
                         ),
@@ -485,14 +488,14 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                             context: context,
                             isGlobal: false,
                             avoidOverflow: true,
-                            targetAnchor: const AlignmentDirectional(0.0, 3.0)
+                            targetAnchor: AlignmentDirectional(0.0, 3.0)
                                 .resolve(Directionality.of(context)),
-                            followerAnchor: const AlignmentDirectional(0.0, 0.0)
+                            followerAnchor: AlignmentDirectional(0.0, 0.0)
                                 .resolve(Directionality.of(context)),
                             builder: (dialogContext) {
                               return Material(
                                 color: Colors.transparent,
-                                child: SizedBox(
+                                child: Container(
                                   width: 340.0,
                                   child: VisitorsCountWidget(
                                     count: _model.visitors!,
@@ -562,7 +565,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                 .secondaryBackground,
                           ),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -621,7 +624,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                         ),
                                       ],
                                     ),
-                                  ].divide(const SizedBox(width: 8.0)),
+                                  ].divide(SizedBox(width: 8.0)),
                                 ),
                                 Icon(
                                   Icons.keyboard_arrow_down_rounded,
@@ -629,7 +632,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                       .secondaryText,
                                   size: 24.0,
                                 ),
-                              ].divide(const SizedBox(width: 16.0)),
+                              ].divide(SizedBox(width: 16.0)),
                             ),
                           ),
                         ),
@@ -675,13 +678,13 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                               context: context,
                               builder: (alertDialogContext) {
                                 return AlertDialog(
-                                  title: const Text('Поля не заполненны'),
-                                  content: const Text('Сначала заполните поля'),
+                                  title: Text('Поля не заполненны'),
+                                  content: Text('Сначала заполните поля'),
                                   actions: [
                                     TextButton(
                                       onPressed: () =>
                                           Navigator.pop(alertDialogContext),
-                                      child: const Text('Ok'),
+                                      child: Text('Ok'),
                                     ),
                                   ],
                                 );
@@ -699,7 +702,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                               size: 32.0,
                             ),
                             Text(
-                              widget.home == true ? 'НАЙТИ' : 'ОБНОВИТЬ',
+                              widget!.home == true ? 'НАЙТИ' : 'ОБНОВИТЬ',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -709,7 +712,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                     fontWeight: FontWeight.bold,
                                   ),
                             ),
-                          ].divide(const SizedBox(width: 8.0)),
+                          ].divide(SizedBox(width: 8.0)),
                         ),
                       ),
                     ),
@@ -720,13 +723,12 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
           ),
         if (responsiveVisibility(
           context: context,
-          tabletLandscape: false,
           desktop: false,
         ))
           Container(
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
-              borderRadius: const BorderRadius.only(
+              borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(30.0),
                 bottomRight: Radius.circular(0.0),
                 topLeft: Radius.circular(30.0),
@@ -734,7 +736,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
               ),
             ),
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 24.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 24.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -753,9 +755,9 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                               elevation: 0,
                               insetPadding: EdgeInsets.zero,
                               backgroundColor: Colors.transparent,
-                              alignment: const AlignmentDirectional(0.0, 0.0)
+                              alignment: AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
-                              child: SizedBox(
+                              child: Container(
                                 height: 470.0,
                                 width: MediaQuery.sizeOf(context).width * 0.95,
                                 child: CalendarRowMobileWidget(
@@ -775,7 +777,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
-                          borderRadius: const BorderRadius.only(
+                          borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(0.0),
                             bottomRight: Radius.circular(0.0),
                             topLeft: Radius.circular(30.0),
@@ -783,7 +785,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -837,7 +839,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                       ),
                                     ],
                                   ),
-                                ].divide(const SizedBox(width: 8.0)),
+                                ].divide(SizedBox(width: 8.0)),
                               ),
                               Icon(
                                 Icons.keyboard_arrow_down_rounded,
@@ -845,13 +847,13 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                     FlutterFlowTheme.of(context).secondaryText,
                                 size: 24.0,
                               ),
-                            ].divide(const SizedBox(width: 16.0)),
+                            ].divide(SizedBox(width: 16.0)),
                           ),
                         ),
                       ),
                     ),
                   ),
-                  const Divider(
+                  Divider(
                     thickness: 1.0,
                     color: Color(0xFFB8B8B8),
                   ),
@@ -869,9 +871,9 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                               elevation: 0,
                               insetPadding: EdgeInsets.zero,
                               backgroundColor: Colors.transparent,
-                              alignment: const AlignmentDirectional(0.0, 0.0)
+                              alignment: AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
-                              child: SizedBox(
+                              child: Container(
                                 width: MediaQuery.sizeOf(context).width * 0.95,
                                 child: DaysCountWidget(
                                   count: _model.duration!,
@@ -898,7 +900,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                               FlutterFlowTheme.of(context).secondaryBackground,
                         ),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -950,7 +952,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                       ),
                                     ],
                                   ),
-                                ].divide(const SizedBox(width: 8.0)),
+                                ].divide(SizedBox(width: 8.0)),
                               ),
                               Icon(
                                 Icons.keyboard_arrow_down_rounded,
@@ -958,13 +960,13 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                     FlutterFlowTheme.of(context).secondaryText,
                                 size: 24.0,
                               ),
-                            ].divide(const SizedBox(width: 16.0)),
+                            ].divide(SizedBox(width: 16.0)),
                           ),
                         ),
                       ),
                     ),
                   ),
-                  const Divider(
+                  Divider(
                     thickness: 1.0,
                     color: Color(0xFFB8B8B8),
                   ),
@@ -982,9 +984,9 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                               elevation: 0,
                               insetPadding: EdgeInsets.zero,
                               backgroundColor: Colors.transparent,
-                              alignment: const AlignmentDirectional(0.0, 0.0)
+                              alignment: AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
-                              child: SizedBox(
+                              child: Container(
                                 width: MediaQuery.sizeOf(context).width * 0.95,
                                 child: CityDropDownWidget(
                                   cityChoosen: (item) async {
@@ -1006,7 +1008,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                               FlutterFlowTheme.of(context).secondaryBackground,
                         ),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -1060,7 +1062,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                         ),
                                       ],
                                     ),
-                                  ].divide(const SizedBox(width: 8.0)),
+                                  ].divide(SizedBox(width: 8.0)),
                                 ),
                               ),
                               Icon(
@@ -1069,13 +1071,13 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                     FlutterFlowTheme.of(context).secondaryText,
                                 size: 24.0,
                               ),
-                            ].divide(const SizedBox(width: 16.0)),
+                            ].divide(SizedBox(width: 16.0)),
                           ),
                         ),
                       ),
                     ),
                   ),
-                  const Divider(
+                  Divider(
                     thickness: 1.0,
                     color: Color(0xFFB8B8B8),
                   ),
@@ -1093,9 +1095,9 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                               elevation: 0,
                               insetPadding: EdgeInsets.zero,
                               backgroundColor: Colors.transparent,
-                              alignment: const AlignmentDirectional(0.0, 0.0)
+                              alignment: AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
-                              child: SizedBox(
+                              child: Container(
                                 width: MediaQuery.sizeOf(context).width * 0.95,
                                 child: VisitorsCountWidget(
                                   count: _model.visitors!,
@@ -1165,7 +1167,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                               FlutterFlowTheme.of(context).secondaryBackground,
                         ),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -1222,7 +1224,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                       ),
                                     ],
                                   ),
-                                ].divide(const SizedBox(width: 8.0)),
+                                ].divide(SizedBox(width: 8.0)),
                               ),
                               Icon(
                                 Icons.keyboard_arrow_down_rounded,
@@ -1230,19 +1232,19 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                     FlutterFlowTheme.of(context).secondaryText,
                                 size: 24.0,
                               ),
-                            ].divide(const SizedBox(width: 16.0)),
+                            ].divide(SizedBox(width: 16.0)),
                           ),
                         ),
                       ),
                     ),
                   ),
-                  const Divider(
+                  Divider(
                     thickness: 1.0,
                     color: Color(0xFFB8B8B8),
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () async {
                         if ((_model.duration! > 0.0) &&
@@ -1264,13 +1266,13 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                             context: context,
                             builder: (alertDialogContext) {
                               return AlertDialog(
-                                title: const Text('Поля не заполненны'),
-                                content: const Text('Сначала заполните поля'),
+                                title: Text('Поля не заполненны'),
+                                content: Text('Сначала заполните поля'),
                                 actions: [
                                   TextButton(
                                     onPressed: () =>
                                         Navigator.pop(alertDialogContext),
-                                    child: const Text('Ok'),
+                                    child: Text('Ok'),
                                   ),
                                 ],
                               );
@@ -1279,17 +1281,17 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                         }
                       },
                       text: 'Найти',
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.search_rounded,
                         size: 24.0,
                       ),
                       options: FFButtonOptions(
                         width: MediaQuery.sizeOf(context).width * 1.0,
                         height: 48.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -1298,7 +1300,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
                                   letterSpacing: 0.0,
                                 ),
                         elevation: 0.0,
-                        borderSide: const BorderSide(
+                        borderSide: BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),

@@ -1,8 +1,11 @@
 import '/components/calendar_mobile_widget.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'calendar_row_mobile_model.dart';
 export 'calendar_row_mobile_model.dart';
 
@@ -56,9 +59,9 @@ class _CalendarRowMobileWidgetState extends State<CalendarRowMobileWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, -1.0),
+      alignment: AlignmentDirectional(0.0, -1.0),
       child: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           color: Color(0xFFF0F0FA),
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
@@ -67,15 +70,15 @@ class _CalendarRowMobileWidgetState extends State<CalendarRowMobileWidget> {
             topRight: Radius.circular(8.0),
           ),
         ),
-        alignment: const AlignmentDirectional(0.0, 0.0),
+        alignment: AlignmentDirectional(0.0, 0.0),
         child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 24.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 24.0),
           child: wrapWithModel(
             model: _model.calendarMobileModel,
             updateCallback: () => safeSetState(() {}),
             child: CalendarMobileWidget(
               month: _model.firstMonth!,
-              chosenDay: widget.chosenDay!,
+              chosenDay: widget!.chosenDay!,
               onClick: (date) async {
                 await widget.onClick?.call(
                   date,

@@ -4,6 +4,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'calendar_mobile_model.dart';
 export 'calendar_mobile_model.dart';
 
@@ -43,7 +45,7 @@ class _CalendarMobileWidgetState extends State<CalendarMobileWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.currentDate = widget.chosenDay;
+      _model.currentDate = widget!.chosenDay;
       safeSetState(() {});
     });
 
@@ -63,7 +65,7 @@ class _CalendarMobileWidgetState extends State<CalendarMobileWidget> {
       mainAxisSize: MainAxisSize.max,
       children: [
         Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -84,7 +86,7 @@ class _CalendarMobileWidgetState extends State<CalendarMobileWidget> {
                 },
               ),
               Text(
-                functions.formatMonthYear(widget.month!),
+                functions.formatMonthYear(widget!.month!),
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Commissioner',
                       color: FlutterFlowTheme.of(context).primary,
@@ -108,29 +110,29 @@ class _CalendarMobileWidgetState extends State<CalendarMobileWidget> {
                   await widget.plus?.call();
                 },
               ),
-            ].divide(const SizedBox(width: 16.0)),
+            ].divide(SizedBox(width: 16.0)),
           ),
         ),
         Container(
           height: 45.0,
-          decoration: const BoxDecoration(),
+          decoration: BoxDecoration(),
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: Container(
                     width: 36.0,
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Text(
                       'Пн',
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Commissioner',
-                            color: const Color(0xFF4F4F4F),
+                            color: Color(0xFF4F4F4F),
                             fontSize: 12.0,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.bold,
@@ -139,16 +141,16 @@ class _CalendarMobileWidgetState extends State<CalendarMobileWidget> {
                   ),
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: Container(
                     width: 36.0,
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Text(
                       'Вт',
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Commissioner',
-                            color: const Color(0xFF4F4F4F),
+                            color: Color(0xFF4F4F4F),
                             fontSize: 12.0,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.bold,
@@ -157,16 +159,16 @@ class _CalendarMobileWidgetState extends State<CalendarMobileWidget> {
                   ),
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: Container(
                     width: 36.0,
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Text(
                       'Ср',
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Commissioner',
-                            color: const Color(0xFF4F4F4F),
+                            color: Color(0xFF4F4F4F),
                             fontSize: 12.0,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.bold,
@@ -175,16 +177,16 @@ class _CalendarMobileWidgetState extends State<CalendarMobileWidget> {
                   ),
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: Container(
                     width: 36.0,
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Text(
                       'Чт',
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Commissioner',
-                            color: const Color(0xFF4F4F4F),
+                            color: Color(0xFF4F4F4F),
                             fontSize: 12.0,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.bold,
@@ -193,16 +195,16 @@ class _CalendarMobileWidgetState extends State<CalendarMobileWidget> {
                   ),
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: Container(
                     width: 36.0,
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Text(
                       'Пт',
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Commissioner',
-                            color: const Color(0xFF4F4F4F),
+                            color: Color(0xFF4F4F4F),
                             fontSize: 12.0,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.bold,
@@ -211,16 +213,16 @@ class _CalendarMobileWidgetState extends State<CalendarMobileWidget> {
                   ),
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: Container(
                     width: 36.0,
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Text(
                       'Сб',
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Commissioner',
-                            color: const Color(0xFF4F4F4F),
+                            color: Color(0xFF4F4F4F),
                             fontSize: 12.0,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.bold,
@@ -229,16 +231,16 @@ class _CalendarMobileWidgetState extends State<CalendarMobileWidget> {
                   ),
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: Container(
                     width: 36.0,
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Text(
                       'Вс',
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Commissioner',
-                            color: const Color(0xFF4F4F4F),
+                            color: Color(0xFF4F4F4F),
                             fontSize: 12.0,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.bold,
@@ -251,19 +253,19 @@ class _CalendarMobileWidgetState extends State<CalendarMobileWidget> {
           ),
         ),
         Container(
-          decoration: const BoxDecoration(),
+          decoration: BoxDecoration(),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
               Builder(
                 builder: (context) {
                   final daysGen =
-                      functions.calendarGenerator(widget.month)?.toList() ??
+                      functions.calendarGenerator(widget!.month)?.toList() ??
                           [];
 
                   return GridView.builder(
                     padding: EdgeInsets.zero,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 7,
                       crossAxisSpacing: 8.0,
                       mainAxisSpacing: 8.0,
@@ -282,9 +284,9 @@ class _CalendarMobileWidgetState extends State<CalendarMobileWidget> {
                                 ((functions.getDayOfMonth(daysGenItem) > 20) &&
                                     (daysGenIndex < 7))),
                         child: Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: Container(
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: InkWell(
                               splashColor: Colors.transparent,
                               focusColor: Colors.transparent,
@@ -307,7 +309,7 @@ class _CalendarMobileWidgetState extends State<CalendarMobileWidget> {
                                   borderRadius: BorderRadius.circular(32.0),
                                 ),
                                 child: Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Text(
                                     dateTimeFormat(
                                       "d",
@@ -322,12 +324,12 @@ class _CalendarMobileWidgetState extends State<CalendarMobileWidget> {
                                           color: () {
                                             if (_model.currentDate ==
                                                 daysGenItem) {
-                                              return const Color(0xFFFAFAFA);
+                                              return Color(0xFFFAFAFA);
                                             } else if (daysGenItem >
                                                 getCurrentTimestamp) {
-                                              return const Color(0xFF0A1811);
+                                              return Color(0xFF0A1811);
                                             } else {
-                                              return const Color(0x190A1811);
+                                              return Color(0x190A1811);
                                             }
                                           }(),
                                           fontSize: 12.0,

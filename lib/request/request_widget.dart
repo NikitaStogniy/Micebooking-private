@@ -10,6 +10,8 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'request_model.dart';
 export 'request_model.dart';
 
@@ -26,7 +28,7 @@ class RequestWidget extends StatefulWidget {
     this.hallFilter1,
     required this.hallFilter2,
     this.hallFilter3,
-  }) : wasEdited = wasEdited ?? false;
+  }) : this.wasEdited = wasEdited ?? false;
 
   final RequestWrapperRow? requestWrapper;
   final RequestsRow? lastRequest;
@@ -55,17 +57,18 @@ class _RequestWidgetState extends State<RequestWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (widget.wasEdited) {
+      if (widget!.wasEdited) {
         _model.step = 1;
-        _model.requestName = widget.lastRequest!.name!;
+        _model.requestName = widget!.lastRequest!.name!;
         _model.requestId =
-            widget.requestWrapper!.requestsId.toList().cast<int>();
+            widget!.requestWrapper!.requestsId.toList().cast<int>();
+        _model.wrapperId = widget!.requestWrapper?.id;
         safeSetState(() {});
       } else {
         _model.step = 0;
         _model.requestId =
-            widget.requestWrapper!.requestsId.toList().cast<int>();
-        _model.wrapperId = widget.requestWrapper?.id;
+            widget!.requestWrapper!.requestsId.toList().cast<int>();
+        _model.wrapperId = widget!.requestWrapper?.id;
         safeSetState(() {});
       }
     });
@@ -96,7 +99,7 @@ class _RequestWidgetState extends State<RequestWidget> {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
           return Scaffold(
-            backgroundColor: const Color(0xFFF9F9F9),
+            backgroundColor: Color(0xFFF9F9F9),
             body: Center(
               child: SizedBox(
                 width: 50.0,
@@ -119,11 +122,11 @@ class _RequestWidgetState extends State<RequestWidget> {
           onTap: () => FocusScope.of(context).unfocus(),
           child: Scaffold(
             key: scaffoldKey,
-            backgroundColor: const Color(0xFFF9F9F9),
+            backgroundColor: Color(0xFFF9F9F9),
             body: Container(
               height: MediaQuery.sizeOf(context).height * 1.0,
               decoration: BoxDecoration(
-                color: const Color(0xFFF9F9F9),
+                color: Color(0xFFF9F9F9),
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: Image.asset(
@@ -136,7 +139,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Align(
-                      alignment: const AlignmentDirectional(0.0, -1.0),
+                      alignment: AlignmentDirectional(0.0, -1.0),
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             valueOrDefault<double>(
@@ -185,10 +188,10 @@ class _RequestWidgetState extends State<RequestWidget> {
                             ),
                             0.0),
                         child: Container(
-                          constraints: const BoxConstraints(
+                          constraints: BoxConstraints(
                             maxWidth: 1250.0,
                           ),
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -217,7 +220,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                 ],
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 60.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -238,7 +241,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                           onChanged: (_) =>
                                               EasyDebounce.debounce(
                                             '_model.eventNamTextController',
-                                            const Duration(milliseconds: 100),
+                                            Duration(milliseconds: 100),
                                             () => safeSetState(() {}),
                                           ),
                                           autofocus: false,
@@ -267,7 +270,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                             focusedErrorBorder:
                                                 InputBorder.none,
                                             contentPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     30.0, 15.0, 30.0, 15.0),
                                           ),
                                           style: FlutterFlowTheme.of(context)
@@ -294,7 +297,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                 tablet: false,
                               ))
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 40.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -308,13 +311,13 @@ class _RequestWidgetState extends State<RequestWidget> {
                                           await RequestWrapperTable().delete(
                                             matchingRows: (rows) => rows.eq(
                                               'id',
-                                              widget.requestWrapper?.id,
+                                              widget!.requestWrapper?.id,
                                             ),
                                           );
                                           await RequestsTable().delete(
                                             matchingRows: (rows) => rows.eq(
                                               'id',
-                                              widget.lastRequest?.id,
+                                              widget!.lastRequest?.id,
                                             ),
                                           );
                                           context.safePop();
@@ -324,12 +327,12 @@ class _RequestWidgetState extends State<RequestWidget> {
                                           width: 300.0,
                                           height: 40.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 0.0, 24.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
-                                          color: const Color(0xFFF0F0FA),
+                                          color: Color(0xFFF0F0FA),
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
                                               .titleSmall
@@ -341,7 +344,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                           elevation: 0.0,
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,
                                           ),
@@ -360,7 +363,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                             },
                                             matchingRows: (rows) => rows.eq(
                                               'id',
-                                              widget.requestWrapper?.id,
+                                              widget!.requestWrapper?.id,
                                             ),
                                             returnRows: true,
                                           );
@@ -371,7 +374,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                             },
                                             matchingRows: (rows) => rows.in_(
                                               'id',
-                                              widget
+                                              widget!
                                                   .requestWrapper!.requestsId,
                                             ),
                                           );
@@ -388,15 +391,18 @@ class _RequestWidgetState extends State<RequestWidget> {
                                           width: 300.0,
                                           height: 40.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 0.0, 24.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: _model.eventNamTextController
                                                           .text ==
+                                                      null ||
+                                                  _model.eventNamTextController
+                                                          .text ==
                                                       ''
-                                              ? const Color(0xFFCCCCCC)
+                                              ? Color(0xFFCCCCCC)
                                               : FlutterFlowTheme.of(context)
                                                   .primary,
                                           textStyle: FlutterFlowTheme.of(
@@ -410,7 +416,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                           elevation: 0.0,
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,
                                           ),
@@ -427,7 +433,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                 desktop: false,
                               ))
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 40.0, 0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -443,7 +449,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                             },
                                             matchingRows: (rows) => rows.eq(
                                               'id',
-                                              widget.requestWrapper?.id,
+                                              widget!.requestWrapper?.id,
                                             ),
                                             returnRows: true,
                                           );
@@ -454,7 +460,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                             },
                                             matchingRows: (rows) => rows.in_(
                                               'id',
-                                              widget
+                                              widget!
                                                   .requestWrapper!.requestsId,
                                             ),
                                           );
@@ -473,15 +479,18 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                   1.0,
                                           height: 56.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 0.0, 24.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: _model.eventNamTextController
                                                           .text ==
+                                                      null ||
+                                                  _model.eventNamTextController
+                                                          .text ==
                                                       ''
-                                              ? const Color(0xFFCCCCCC)
+                                              ? Color(0xFFCCCCCC)
                                               : FlutterFlowTheme.of(context)
                                                   .primary,
                                           textStyle: FlutterFlowTheme.of(
@@ -495,7 +504,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                           elevation: 0.0,
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,
                                           ),
@@ -508,13 +517,13 @@ class _RequestWidgetState extends State<RequestWidget> {
                                           await RequestWrapperTable().delete(
                                             matchingRows: (rows) => rows.eq(
                                               'id',
-                                              widget.requestWrapper?.id,
+                                              widget!.requestWrapper?.id,
                                             ),
                                           );
                                           await RequestsTable().delete(
                                             matchingRows: (rows) => rows.eq(
                                               'id',
-                                              widget.lastRequest?.id,
+                                              widget!.lastRequest?.id,
                                             ),
                                           );
                                           context.safePop();
@@ -526,12 +535,12 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                   1.0,
                                           height: 56.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 0.0, 24.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
-                                          color: const Color(0xFFF0F0FA),
+                                          color: Color(0xFFF0F0FA),
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
                                               .titleSmall
@@ -543,7 +552,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                           elevation: 0.0,
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,
                                           ),
@@ -551,7 +560,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                               BorderRadius.circular(99.0),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(height: 32.0)),
+                                    ].divide(SizedBox(height: 32.0)),
                                   ),
                                 ),
                             ],
@@ -561,12 +570,12 @@ class _RequestWidgetState extends State<RequestWidget> {
                     if (_model.step == 1)
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                         child: Container(
-                          constraints: const BoxConstraints(
+                          constraints: BoxConstraints(
                             maxWidth: 1250.0,
                           ),
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -576,7 +585,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                 desktop: false,
                               ))
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 16.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -608,7 +617,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                         future: RequestsTable().queryRows(
                                           queryFn: (q) => q.in_(
                                             'id',
-                                            widget.requestWrapper!.requestsId,
+                                            widget!.requestWrapper!.requestsId,
                                           ),
                                         ),
                                         builder: (context, snapshot) {
@@ -651,7 +660,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 16.0,
                                                                 0.0, 0.0),
                                                     child: Column(
@@ -706,7 +715,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       2.0,
@@ -782,7 +791,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                               '${columnRequestsHallVarRow.hallName}: ${columnRequestsHallVarRow.days?.toString()} дн.',
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                     fontFamily: 'Commissioner',
-                                                                                    color: const Color(0xFF636363),
+                                                                                    color: Color(0xFF636363),
                                                                                     fontSize: 18.0,
                                                                                     letterSpacing: 0.0,
                                                                                     fontWeight: FontWeight.w500,
@@ -791,11 +800,11 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                           ),
                                                                         ],
                                                                       ),
-                                                                    ].divide(const SizedBox(
+                                                                    ].divide(SizedBox(
                                                                         height:
                                                                             24.0)),
                                                                   );
-                                                                }).divide(const SizedBox(
+                                                                }).divide(SizedBox(
                                                                     height:
                                                                         16.0)),
                                                               );
@@ -807,7 +816,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 16.0,
                                                                 0.0, 0.0),
                                                     child: Column(
@@ -862,7 +871,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       2.0,
@@ -938,7 +947,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                               '${columnRequestsFoodVarRow.name}: ${columnRequestsFoodVarRow.count?.toString()} шт. / ${functions.personsGen(columnRequestsFoodVarRow.personsCount?.toDouble())}',
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                     fontFamily: 'Commissioner',
-                                                                                    color: const Color(0xFF636363),
+                                                                                    color: Color(0xFF636363),
                                                                                     fontSize: 18.0,
                                                                                     letterSpacing: 0.0,
                                                                                     fontWeight: FontWeight.w500,
@@ -947,11 +956,11 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                           ),
                                                                         ],
                                                                       ),
-                                                                    ].divide(const SizedBox(
+                                                                    ].divide(SizedBox(
                                                                         height:
                                                                             24.0)),
                                                                   );
-                                                                }).divide(const SizedBox(
+                                                                }).divide(SizedBox(
                                                                     height:
                                                                         16.0)),
                                                               );
@@ -963,7 +972,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 16.0,
                                                                 0.0, 0.0),
                                                     child: Column(
@@ -1018,7 +1027,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       2.0,
@@ -1094,7 +1103,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                               '${columnRequestsRoomVarRow.roomName}: ${columnRequestsRoomVarRow.roomCount?.toString()} шт. / ${functions.daysGen(columnRequestsRoomVarRow.days?.toDouble())}',
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                     fontFamily: 'Commissioner',
-                                                                                    color: const Color(0xFF636363),
+                                                                                    color: Color(0xFF636363),
                                                                                     fontSize: 18.0,
                                                                                     letterSpacing: 0.0,
                                                                                     fontWeight: FontWeight.w500,
@@ -1103,11 +1112,11 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                           ),
                                                                         ],
                                                                       ),
-                                                                    ].divide(const SizedBox(
+                                                                    ].divide(SizedBox(
                                                                         height:
                                                                             24.0)),
                                                                   );
-                                                                }).divide(const SizedBox(
+                                                                }).divide(SizedBox(
                                                                     height:
                                                                         16.0)),
                                                               );
@@ -1117,20 +1126,20 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                       ],
                                                     ),
                                                   ),
-                                                  const Divider(
+                                                  Divider(
                                                     height: 0.5,
                                                     thickness: 0.5,
                                                     color: Color(0xFFB8B8B8),
                                                   ),
                                                 ].divide(
-                                                    const SizedBox(height: 32.0)),
+                                                    SizedBox(height: 32.0)),
                                               );
-                                            }).divide(const SizedBox(height: 48.0)),
+                                            }).divide(SizedBox(height: 48.0)),
                                           );
                                         },
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 32.0, 0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -1157,7 +1166,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                               .primaryText,
                                                         ),
                                                       ),
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 4000),
                                                       backgroundColor:
                                                           FlutterFlowTheme.of(
@@ -1177,7 +1186,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                               .primaryText,
                                                         ),
                                                       ),
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 4000),
                                                       backgroundColor:
                                                           FlutterFlowTheme.of(
@@ -1204,7 +1213,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                               .primaryText,
                                                         ),
                                                       ),
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 4000),
                                                       backgroundColor:
                                                           FlutterFlowTheme.of(
@@ -1224,11 +1233,11 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                             .width *
                                                         1.0,
                                                 height: 56.0,
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         24.0, 0.0, 24.0, 0.0),
                                                 iconPadding:
-                                                    const EdgeInsetsDirectional
+                                                    EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color:
@@ -1246,7 +1255,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                           letterSpacing: 0.0,
                                                         ),
                                                 elevation: 0.0,
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Colors.transparent,
                                                   width: 1.0,
                                                 ),
@@ -1261,14 +1270,14 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                   matchingRows: (rows) =>
                                                       rows.eq(
                                                     'id',
-                                                    widget.requestWrapper?.id,
+                                                    widget!.requestWrapper?.id,
                                                   ),
                                                 );
                                                 await RequestsTable().delete(
                                                   matchingRows: (rows) =>
                                                       rows.eq(
                                                     'id',
-                                                    widget.lastRequest?.id,
+                                                    widget!.lastRequest?.id,
                                                   ),
                                                 );
                                                 context.safePop();
@@ -1280,14 +1289,14 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                             .width *
                                                         1.0,
                                                 height: 56.0,
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         24.0, 0.0, 24.0, 0.0),
                                                 iconPadding:
-                                                    const EdgeInsetsDirectional
+                                                    EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
-                                                color: const Color(0xFFF0F0FA),
+                                                color: Color(0xFFF0F0FA),
                                                 textStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .titleSmall
@@ -1300,7 +1309,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                           letterSpacing: 0.0,
                                                         ),
                                                 elevation: 0.0,
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Colors.transparent,
                                                   width: 1.0,
                                                 ),
@@ -1308,7 +1317,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                     BorderRadius.circular(99.0),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(height: 24.0)),
+                                          ].divide(SizedBox(height: 24.0)),
                                         ),
                                       ),
                                     ],
@@ -1328,7 +1337,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Ваш запрос: ${_model.requestName != '' ? _model.requestName : widget.lastRequest?.name}',
+                                          'Ваш запрос: ${_model.requestName != null && _model.requestName != '' ? _model.requestName : widget!.lastRequest?.name}',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -1341,7 +1350,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                       ],
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 24.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -1452,19 +1461,19 @@ class _RequestWidgetState extends State<RequestWidget> {
                                               ],
                                             ),
                                           ),
-                                        ].divide(const SizedBox(width: 40.0)),
+                                        ].divide(SizedBox(width: 40.0)),
                                       ),
                                     ),
                                     Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 24.0, 0.0, 0.0),
                                         child: FutureBuilder<List<RequestsRow>>(
                                           future: RequestsTable().queryRows(
                                             queryFn: (q) => q.in_(
                                               'id',
-                                              widget
+                                              widget!
                                                   .requestWrapper!.requestsId,
                                             ),
                                           ),
@@ -1501,7 +1510,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                     columnRequestsRowList[
                                                         columnIndex];
                                                 return Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 40.0),
                                                   child: Column(
@@ -1653,7 +1662,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                         columnRequestsHallVarRowList[
                                                                             columnIndex];
                                                                     return Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
@@ -1751,7 +1760,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                         columnRequestsFoodVarRowList[
                                                                             columnIndex];
                                                                     return Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
@@ -1849,7 +1858,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                         final columnRequestsRoomVarRow =
                                                                             columnRequestsRoomVarRowList[columnIndex];
                                                                         return Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               0.0,
@@ -1885,12 +1894,12 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                               ],
                                                             ),
                                                           ),
-                                                        ].divide(const SizedBox(
+                                                        ].divide(SizedBox(
                                                             width: 40.0)),
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     20.0,
@@ -1934,7 +1943,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           80.0,
                                                                           0.0,
@@ -1983,7 +1992,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                           ),
                                                                           'wrapper':
                                                                               serializeParam(
-                                                                            widget.requestWrapper,
+                                                                            widget!.requestWrapper,
                                                                             ParamType.SupabaseRow,
                                                                           ),
                                                                           'chosenHalls':
@@ -2023,37 +2032,37 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                           ),
                                                                           'dayStart':
                                                                               serializeParam(
-                                                                            widget.startDate,
+                                                                            widget!.startDate,
                                                                             ParamType.DateTime,
                                                                           ),
                                                                           'duration':
                                                                               serializeParam(
-                                                                            widget.duration,
+                                                                            widget!.duration,
                                                                             ParamType.double,
                                                                           ),
                                                                           'visitors':
                                                                               serializeParam(
-                                                                            widget.visitors,
+                                                                            widget!.visitors,
                                                                             ParamType.int,
                                                                           ),
                                                                           'city':
                                                                               serializeParam(
-                                                                            widget.city,
+                                                                            widget!.city,
                                                                             ParamType.SupabaseRow,
                                                                           ),
                                                                           'hallFilter1':
                                                                               serializeParam(
-                                                                            widget.hallFilter1,
+                                                                            widget!.hallFilter1,
                                                                             ParamType.DataStruct,
                                                                           ),
                                                                           'hallFilter2':
                                                                               serializeParam(
-                                                                            widget.hallFilter2,
+                                                                            widget!.hallFilter2,
                                                                             ParamType.DataStruct,
                                                                           ),
                                                                           'hallFilter3':
                                                                               serializeParam(
-                                                                            widget.hallFilter3,
+                                                                            widget!.hallFilter3,
                                                                             ParamType.DataStruct,
                                                                           ),
                                                                         }.withoutNulls,
@@ -2067,12 +2076,12 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                           200.0,
                                                                       height:
                                                                           40.0,
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           24.0,
                                                                           0.0,
                                                                           24.0,
                                                                           0.0),
-                                                                      iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
@@ -2094,7 +2103,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                       elevation:
                                                                           0.0,
                                                                       borderSide:
-                                                                          const BorderSide(
+                                                                          BorderSide(
                                                                         color: Colors
                                                                             .transparent,
                                                                         width:
@@ -2106,7 +2115,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                     ),
                                                                   ),
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             0.0,
@@ -2120,7 +2129,8 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                             columnRequestsRow.id);
                                                                         safeSetState(
                                                                             () {});
-                                                                        if (_model.requestId.isEmpty) {
+                                                                        if (_model.requestId.length <
+                                                                            1) {
                                                                           await RequestsTable()
                                                                               .delete(
                                                                             matchingRows: (rows) =>
@@ -2136,31 +2146,31 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                             queryParameters:
                                                                                 {
                                                                               'startDate': serializeParam(
-                                                                                widget.startDate,
+                                                                                widget!.startDate,
                                                                                 ParamType.DateTime,
                                                                               ),
                                                                               'duration': serializeParam(
-                                                                                widget.duration,
+                                                                                widget!.duration,
                                                                                 ParamType.double,
                                                                               ),
                                                                               'city': serializeParam(
-                                                                                widget.city,
+                                                                                widget!.city,
                                                                                 ParamType.SupabaseRow,
                                                                               ),
                                                                               'visitors': serializeParam(
-                                                                                widget.visitors,
+                                                                                widget!.visitors,
                                                                                 ParamType.int,
                                                                               ),
                                                                               'hallFilter1': serializeParam(
-                                                                                widget.hallFilter1,
+                                                                                widget!.hallFilter1,
                                                                                 ParamType.DataStruct,
                                                                               ),
                                                                               'hallFilter2': serializeParam(
-                                                                                widget.hallFilter2,
+                                                                                widget!.hallFilter2,
                                                                                 ParamType.DataStruct,
                                                                               ),
                                                                               'hallFilter3': serializeParam(
-                                                                                widget.hallFilter3,
+                                                                                widget!.hallFilter3,
                                                                                 ParamType.DataStruct,
                                                                               ),
                                                                               'user': serializeParam(
@@ -2188,17 +2198,17 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                             200.0,
                                                                         height:
                                                                             40.0,
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             24.0,
                                                                             0.0,
                                                                             24.0,
                                                                             0.0),
-                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
                                                                             0.0),
-                                                                        color: const Color(
+                                                                        color: Color(
                                                                             0x1BBE3030),
                                                                         textStyle: FlutterFlowTheme.of(context)
                                                                             .titleSmall
@@ -2230,14 +2240,14 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                     ],
                                                   ),
                                                 );
-                                              }).divide(const SizedBox(height: 20.0)),
+                                              }).divide(SizedBox(height: 20.0)),
                                             );
                                           },
                                         ),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 40.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -2252,13 +2262,13 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                   .delete(
                                                 matchingRows: (rows) => rows.eq(
                                                   'id',
-                                                  widget.requestWrapper?.id,
+                                                  widget!.requestWrapper?.id,
                                                 ),
                                               );
                                               await RequestsTable().delete(
                                                 matchingRows: (rows) => rows.eq(
                                                   'id',
-                                                  widget.lastRequest?.id,
+                                                  widget!.lastRequest?.id,
                                                 ),
                                               );
                                               context.safePop();
@@ -2267,12 +2277,12 @@ class _RequestWidgetState extends State<RequestWidget> {
                                             options: FFButtonOptions(
                                               width: 300.0,
                                               height: 40.0,
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
+                                              iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color: const Color(0xFFF0F0FA),
+                                              color: Color(0xFFF0F0FA),
                                               textStyle: FlutterFlowTheme.of(
                                                       context)
                                                   .titleSmall
@@ -2284,7 +2294,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                     letterSpacing: 0.0,
                                                   ),
                                               elevation: 0.0,
-                                              borderSide: const BorderSide(
+                                              borderSide: BorderSide(
                                                 color: Colors.transparent,
                                                 width: 1.0,
                                               ),
@@ -2315,7 +2325,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                 .primaryText,
                                                       ),
                                                     ),
-                                                    duration: const Duration(
+                                                    duration: Duration(
                                                         milliseconds: 4000),
                                                     backgroundColor:
                                                         FlutterFlowTheme.of(
@@ -2336,7 +2346,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                 .primaryText,
                                                       ),
                                                     ),
-                                                    duration: const Duration(
+                                                    duration: Duration(
                                                         milliseconds: 4000),
                                                     backgroundColor:
                                                         FlutterFlowTheme.of(
@@ -2353,10 +2363,10 @@ class _RequestWidgetState extends State<RequestWidget> {
                                             options: FFButtonOptions(
                                               width: 300.0,
                                               height: 40.0,
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
+                                              iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -2372,7 +2382,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                     letterSpacing: 0.0,
                                                   ),
                                               elevation: 0.0,
-                                              borderSide: const BorderSide(
+                                              borderSide: BorderSide(
                                                 color: Colors.transparent,
                                                 width: 1.0,
                                               ),
@@ -2389,7 +2399,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                           ),
                         ),
                       ),
-                  ].addToEnd(const SizedBox(height: 72.0)),
+                  ].addToEnd(SizedBox(height: 72.0)),
                 ),
               ),
             ),

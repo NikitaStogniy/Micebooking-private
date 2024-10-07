@@ -9,6 +9,9 @@ import '/pop_up/confirm_action/confirm_action_widget.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:provider/provider.dart';
 import 'manager_info_model.dart';
 export 'manager_info_model.dart';
 
@@ -33,6 +36,8 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
     super.initState();
     _model = createModel(context, () => ManagerInfoModel());
 
+    _model.emailTextController ??=
+        TextEditingController(text: currentUserEmail);
     _model.emailFocusNode ??= FocusNode();
 
     _model.networkFocusNode ??= FocusNode();
@@ -80,7 +85,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
             : null;
 
         return Container(
-          decoration: const BoxDecoration(),
+          decoration: BoxDecoration(),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -106,7 +111,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                         children: [
                           Container(
                             width: 200.0,
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                               color: Color(0x00FFFFFF),
                             ),
                             child: Text(
@@ -123,19 +128,16 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                           ),
                           Expanded(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 8.0, 0.0),
-                              child: SizedBox(
+                              child: Container(
                                 width: MediaQuery.sizeOf(context).width * 0.6,
                                 child: TextFormField(
-                                  controller: _model.emailTextController ??=
-                                      TextEditingController(
-                                    text: containerUsersRow?.email,
-                                  ),
+                                  controller: _model.emailTextController,
                                   focusNode: _model.emailFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.emailTextController',
-                                    const Duration(milliseconds: 200),
+                                    Duration(milliseconds: 200),
                                     () async {
                                       _model.isEdit = true;
                                       safeSetState(() {});
@@ -186,7 +188,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                       borderRadius: BorderRadius.circular(24.0),
                                     ),
                                     filled: true,
-                                    fillColor: const Color(0xFFF0F0FA),
+                                    fillColor: Color(0xFFF0F0FA),
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
@@ -215,15 +217,74 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Container(
                               width: 200.0,
                               height: 40.0,
-                              decoration: const BoxDecoration(
+                              decoration: BoxDecoration(
                                 color: Color(0x00FFFFFF),
                               ),
                               child: Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    if (_model.editEmail) {
+                                      if (_model
+                                          .emailTextController.text.isEmpty) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'Email required!',
+                                            ),
+                                          ),
+                                        );
+                                        return;
+                                      }
+
+                                      await authManager.updateEmail(
+                                        email: _model.emailTextController.text,
+                                        context: context,
+                                      );
+                                      safeSetState(() {});
+                                    } else {
+                                      _model.editEmail = true;
+                                      safeSetState(() {});
+                                    }
+                                  },
+                                  child: Text(
+                                    _model.isEdit
+                                        ? 'Подтвердить'
+                                        : 'Изменить почту',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Commissioner',
+                                          color: Color(0xFF2431A5),
+                                          fontSize: 16.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w500,
+                                          decoration: TextDecoration.underline,
+                                        ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: AlignmentDirectional(0.0, 0.0),
+                            child: Container(
+                              width: 200.0,
+                              height: 40.0,
+                              decoration: BoxDecoration(
+                                color: Color(0x00FFFFFF),
+                              ),
+                              child: Align(
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Builder(
                                   builder: (context) => InkWell(
                                     splashColor: Colors.transparent,
@@ -232,25 +293,25 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
                                       await showDialog(
-                                        barrierColor: const Color(0xE2FFFFFF),
+                                        barrierColor: Color(0xE2FFFFFF),
                                         context: context,
                                         builder: (dialogContext) {
                                           return Dialog(
                                             elevation: 0,
                                             insetPadding: EdgeInsets.zero,
                                             backgroundColor: Colors.transparent,
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                     0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                            child: SizedBox(
+                                            child: Container(
                                               height: MediaQuery.sizeOf(context)
                                                       .height *
                                                   0.8,
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   0.8,
-                                              child: const ChangePasswordWidget(),
+                                              child: ChangePasswordWidget(),
                                             ),
                                           );
                                         },
@@ -262,8 +323,8 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Commissioner',
-                                            color: const Color(0xFF2431A5),
-                                            fontSize: 18.0,
+                                            color: Color(0xFF2431A5),
+                                            fontSize: 16.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
                                             decoration:
@@ -275,14 +336,14 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                               ),
                             ),
                           ),
-                        ],
+                        ].divide(SizedBox(width: 24.0)),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Container(
                             width: 200.0,
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                               color: Color(0x00FFFFFF),
                             ),
                             child: Text(
@@ -299,9 +360,9 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                           ),
                           Expanded(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 8.0, 0.0),
-                              child: SizedBox(
+                              child: Container(
                                 width: MediaQuery.sizeOf(context).width * 0.6,
                                 child: TextFormField(
                                   controller: _model.networkTextController ??=
@@ -314,7 +375,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                   focusNode: _model.networkFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.networkTextController',
-                                    const Duration(milliseconds: 200),
+                                    Duration(milliseconds: 200),
                                     () => safeSetState(() {}),
                                   ),
                                   onFieldSubmitted: (_) async {
@@ -367,7 +428,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                       borderRadius: BorderRadius.circular(24.0),
                                     ),
                                     filled: true,
-                                    fillColor: const Color(0xFFF0F0FA),
+                                    fillColor: Color(0xFFF0F0FA),
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
@@ -397,7 +458,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                         children: [
                           Container(
                             width: 200.0,
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                               color: Color(0x00FFFFFF),
                             ),
                             child: Text(
@@ -414,9 +475,9 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                           ),
                           Expanded(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 8.0, 0.0),
-                              child: SizedBox(
+                              child: Container(
                                 width: MediaQuery.sizeOf(context).width * 0.6,
                                 child: TextFormField(
                                   controller: _model.phoneTextController ??=
@@ -426,7 +487,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                   focusNode: _model.phoneFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.phoneTextController',
-                                    const Duration(milliseconds: 200),
+                                    Duration(milliseconds: 200),
                                     () => safeSetState(() {}),
                                   ),
                                   onFieldSubmitted: (_) async {
@@ -478,7 +539,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                       borderRadius: BorderRadius.circular(24.0),
                                     ),
                                     filled: true,
-                                    fillColor: const Color(0xFFF0F0FA),
+                                    fillColor: Color(0xFFF0F0FA),
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
@@ -504,7 +565,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                           ),
                         ],
                       ),
-                    ].divide(const SizedBox(height: 12.0)),
+                    ].divide(SizedBox(height: 12.0)),
                   ),
                 ),
                 Row(
@@ -519,9 +580,9 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                         text: 'Редактировать',
                         options: FFButtonOptions(
                           height: 50.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               64.0, 24.0, 64.0, 24.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
@@ -531,7 +592,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 0.0,
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -543,14 +604,14 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                         builder: (context) => FFButtonWidget(
                           onPressed: () async {
                             await showDialog(
-                              barrierColor: const Color(0xE5FFFFFF),
+                              barrierColor: Color(0xE5FFFFFF),
                               context: context,
                               builder: (dialogContext) {
                                 return Dialog(
                                   elevation: 0,
                                   insetPadding: EdgeInsets.zero,
                                   backgroundColor: Colors.transparent,
-                                  alignment: const AlignmentDirectional(0.0, 0.0)
+                                  alignment: AlignmentDirectional(0.0, 0.0)
                                       .resolve(Directionality.of(context)),
                                   child: ConfirmActionWidget(
                                     title:
@@ -559,11 +620,17 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                     cancelText: 'Отмена',
                                     successAction: () async {
                                       if ((_model.emailTextController.text ==
+                                                  null ||
+                                              _model.emailTextController.text ==
                                                   '') ||
-                                          (_model.networkTextController
+                                          (_model.networkTextController.text ==
+                                                  null ||
+                                              _model.networkTextController
                                                       .text ==
                                                   '') ||
                                           (_model.phoneTextController.text ==
+                                                  null ||
+                                              _model.phoneTextController.text ==
                                                   '')) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
@@ -578,7 +645,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                               ),
                                             ),
                                             duration:
-                                                const Duration(milliseconds: 4000),
+                                                Duration(milliseconds: 4000),
                                             backgroundColor:
                                                 FlutterFlowTheme.of(context)
                                                     .error,
@@ -615,9 +682,9 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                           text: 'Сохранить',
                           options: FFButtonOptions(
                             height: 50.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 64.0, 24.0, 64.0, 24.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -628,7 +695,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 0.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -641,14 +708,14 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                         builder: (context) => FFButtonWidget(
                           onPressed: () async {
                             await showDialog(
-                              barrierColor: const Color(0xE5FFFFFF),
+                              barrierColor: Color(0xE5FFFFFF),
                               context: context,
                               builder: (dialogContext) {
                                 return Dialog(
                                   elevation: 0,
                                   insetPadding: EdgeInsets.zero,
                                   backgroundColor: Colors.transparent,
-                                  alignment: const AlignmentDirectional(0.0, 0.0)
+                                  alignment: AlignmentDirectional(0.0, 0.0)
                                       .resolve(Directionality.of(context)),
                                   child: ConfirmActionWidget(
                                     title:
@@ -658,7 +725,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                     successAction: () async {
                                       safeSetState(() {
                                         _model.emailTextController?.text =
-                                            containerUsersRow!.email!;
+                                            currentUserEmail;
                                         _model.networkTextController?.text =
                                             valueOrDefault<String>(
                                           containerUsersRow?.network,
@@ -682,11 +749,11 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                           text: 'Отменить изменения',
                           options: FFButtonOptions(
                             height: 50.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 64.0, 24.0, 64.0, 24.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: const Color(0xFFBE3030),
+                            color: Color(0xFFBE3030),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -695,7 +762,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 0.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -703,7 +770,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                           ),
                         ),
                       ),
-                  ].divide(const SizedBox(width: 16.0)),
+                  ].divide(SizedBox(width: 16.0)),
                 ),
                 if (responsiveVisibility(
                   context: context,
@@ -718,7 +785,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                         child: Text(
                           'Настройка рассылок:',
                           style:
@@ -748,7 +815,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                               },
                               matchingRows: (rows) => rows.eq(
                                 'id',
-                                containerUsersRow.id,
+                                containerUsersRow?.id,
                               ),
                             );
                           },
@@ -759,7 +826,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                         updateCallback: () => safeSetState(() {}),
                         updateOnChange: true,
                         child: CheckBoxCompWidget(
-                          isChecked: containerUsersRow.notificationRoom!,
+                          isChecked: containerUsersRow!.notificationRoom!,
                           label:
                               'Оповещение при внесение изменений в блок о номерах',
                           onClick: (isChecked) async {
@@ -772,7 +839,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                               },
                               matchingRows: (rows) => rows.eq(
                                 'id',
-                                containerUsersRow.id,
+                                containerUsersRow?.id,
                               ),
                             );
                           },
@@ -783,7 +850,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                         updateCallback: () => safeSetState(() {}),
                         updateOnChange: true,
                         child: CheckBoxCompWidget(
-                          isChecked: containerUsersRow.notificationHall!,
+                          isChecked: containerUsersRow!.notificationHall!,
                           label:
                               'Оповещение при внесение изменений в блок о залах  ',
                           onClick: (isChecked) async {
@@ -796,7 +863,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                               },
                               matchingRows: (rows) => rows.eq(
                                 'id',
-                                containerUsersRow.id,
+                                containerUsersRow?.id,
                               ),
                             );
                           },
@@ -807,7 +874,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                         updateCallback: () => safeSetState(() {}),
                         updateOnChange: true,
                         child: CheckBoxCompWidget(
-                          isChecked: containerUsersRow.notificationFood!,
+                          isChecked: containerUsersRow!.notificationFood!,
                           label:
                               'Оповещение при внесение изменений в блок о пакетах питания  ',
                           onClick: (isChecked) async {
@@ -820,7 +887,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                               },
                               matchingRows: (rows) => rows.eq(
                                 'id',
-                                containerUsersRow.id,
+                                containerUsersRow?.id,
                               ),
                             );
                           },
@@ -831,7 +898,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                         updateCallback: () => safeSetState(() {}),
                         updateOnChange: true,
                         child: CheckBoxCompWidget(
-                          isChecked: containerUsersRow.notificationPrice!,
+                          isChecked: containerUsersRow!.notificationPrice!,
                           label: 'Оповещение при внесение изменений в цены',
                           onClick: (isChecked) async {
                             await UsersTable().update(
@@ -843,15 +910,15 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                               },
                               matchingRows: (rows) => rows.eq(
                                 'id',
-                                containerUsersRow.id,
+                                containerUsersRow?.id,
                               ),
                             );
                           },
                         ),
                       ),
-                    ].divide(const SizedBox(height: 16.0)),
+                    ].divide(SizedBox(height: 16.0)),
                   ),
-              ].divide(const SizedBox(height: 30.0)).addToEnd(const SizedBox(height: 72.0)),
+              ].divide(SizedBox(height: 30.0)).addToEnd(SizedBox(height: 72.0)),
             ),
           ),
         );

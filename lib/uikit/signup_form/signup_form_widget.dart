@@ -6,8 +6,12 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pop_up/pop_up_p_p/pop_up_p_p_widget.dart';
 import 'package:easy_debounce/easy_debounce.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:provider/provider.dart';
 import 'signup_form_model.dart';
 export 'signup_form_model.dart';
 
@@ -16,7 +20,7 @@ class SignupFormWidget extends StatefulWidget {
     super.key,
     bool? isHotel,
     this.action,
-  }) : isHotel = isHotel ?? false;
+  }) : this.isHotel = isHotel ?? false;
 
   final bool isHotel;
   final Future Function()? action;
@@ -112,14 +116,14 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                         ),
                         Container(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 8.0, 0.0, 8.0, 0.0),
                             child: TextFormField(
                               controller: _model.nameDescTextController,
                               focusNode: _model.nameDescFocusNode,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.nameDescTextController',
-                                const Duration(milliseconds: 200),
+                                Duration(milliseconds: 200),
                                 () => safeSetState(() {}),
                               ),
                               autofocus: false,
@@ -157,8 +161,8 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                   borderRadius: BorderRadius.circular(24.0),
                                 ),
                                 filled: true,
-                                fillColor: const Color(0xFFF0F0FA),
-                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                fillColor: Color(0xFFF0F0FA),
+                                contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 0.0, 0.0),
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -179,7 +183,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                             ),
                           ),
                         ),
-                      ].divide(const SizedBox(height: 13.0)),
+                      ].divide(SizedBox(height: 13.0)),
                     ),
                   ),
                   Expanded(
@@ -198,14 +202,14 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                         ),
                         Container(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 8.0, 0.0, 8.0, 0.0),
                             child: TextFormField(
                               controller: _model.emailDescTextController,
                               focusNode: _model.emailDescFocusNode,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.emailDescTextController',
-                                const Duration(milliseconds: 200),
+                                Duration(milliseconds: 200),
                                 () => safeSetState(() {}),
                               ),
                               autofocus: false,
@@ -243,8 +247,8 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                   borderRadius: BorderRadius.circular(24.0),
                                 ),
                                 filled: true,
-                                fillColor: const Color(0xFFF0F0FA),
-                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                fillColor: Color(0xFFF0F0FA),
+                                contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 0.0, 0.0),
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -265,10 +269,10 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                             ),
                           ),
                         ),
-                      ].divide(const SizedBox(height: 13.0)),
+                      ].divide(SizedBox(height: 13.0)),
                     ),
                   ),
-                ].divide(const SizedBox(width: 40.0)),
+                ].divide(SizedBox(width: 40.0)),
               ),
             if (responsiveVisibility(
               context: context,
@@ -294,14 +298,14 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                         ),
                         Container(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 8.0, 0.0, 8.0, 0.0),
                             child: TextFormField(
                               controller: _model.phoneDescTextController,
                               focusNode: _model.phoneDescFocusNode,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.phoneDescTextController',
-                                const Duration(milliseconds: 200),
+                                Duration(milliseconds: 200),
                                 () => safeSetState(() {}),
                               ),
                               autofocus: false,
@@ -339,8 +343,8 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                   borderRadius: BorderRadius.circular(24.0),
                                 ),
                                 filled: true,
-                                fillColor: const Color(0xFFF0F0FA),
-                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                fillColor: Color(0xFFF0F0FA),
+                                contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 0.0, 0.0),
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -363,10 +367,10 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                             ),
                           ),
                         ),
-                      ].divide(const SizedBox(height: 13.0)),
+                      ].divide(SizedBox(height: 13.0)),
                     ),
                   ),
-                  if (widget.isHotel)
+                  if (widget!.isHotel)
                     Expanded(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
@@ -384,14 +388,14 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                           ),
                           Container(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 8.0, 0.0),
                               child: TextFormField(
                                 controller: _model.extraPhoneDescTextController,
                                 focusNode: _model.extraPhoneDescFocusNode,
                                 onChanged: (_) => EasyDebounce.debounce(
                                   '_model.extraPhoneDescTextController',
-                                  const Duration(milliseconds: 200),
+                                  Duration(milliseconds: 200),
                                   () => safeSetState(() {}),
                                 ),
                                 autofocus: false,
@@ -430,9 +434,9 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                     borderRadius: BorderRadius.circular(24.0),
                                   ),
                                   filled: true,
-                                  fillColor: const Color(0xFFF0F0FA),
+                                  fillColor: Color(0xFFF0F0FA),
                                   contentPadding:
-                                      const EdgeInsetsDirectional.fromSTEB(
+                                      EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 0.0, 0.0),
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -460,10 +464,10 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                               ),
                             ),
                           ),
-                        ].divide(const SizedBox(height: 13.0)),
+                        ].divide(SizedBox(height: 13.0)),
                       ),
                     ),
-                ].divide(const SizedBox(width: 40.0)),
+                ].divide(SizedBox(width: 40.0)),
               ),
             if (responsiveVisibility(
               context: context,
@@ -485,19 +489,19 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                               fontWeight: FontWeight.w500,
                             ),
                       ),
-                    ].divide(const SizedBox(height: 13.0)),
+                    ].divide(SizedBox(height: 13.0)),
                   ),
                   Container(
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                       child: TextFormField(
                         controller: _model.fioMobTextController,
                         focusNode: _model.fioMobFocusNode,
                         onChanged: (_) => EasyDebounce.debounce(
                           '_model.fioMobTextController',
-                          const Duration(milliseconds: 200),
+                          Duration(milliseconds: 200),
                           () => safeSetState(() {}),
                         ),
                         autofocus: false,
@@ -543,8 +547,8 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                             borderRadius: BorderRadius.circular(24.0),
                           ),
                           filled: true,
-                          fillColor: const Color(0xFFF0F0FA),
-                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                          fillColor: Color(0xFFF0F0FA),
+                          contentPadding: EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 0.0, 0.0),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -556,7 +560,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                       ),
                     ),
                   ),
-                ].divide(const SizedBox(height: 13.0)),
+                ].divide(SizedBox(height: 13.0)),
               ),
             if (responsiveVisibility(
               context: context,
@@ -578,19 +582,19 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                               fontWeight: FontWeight.w500,
                             ),
                       ),
-                    ].divide(const SizedBox(height: 13.0)),
+                    ].divide(SizedBox(height: 13.0)),
                   ),
                   Container(
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                       child: TextFormField(
                         controller: _model.emailMobTextController,
                         focusNode: _model.emailMobFocusNode,
                         onChanged: (_) => EasyDebounce.debounce(
                           '_model.emailMobTextController',
-                          const Duration(milliseconds: 200),
+                          Duration(milliseconds: 200),
                           () => safeSetState(() {}),
                         ),
                         autofocus: false,
@@ -636,8 +640,8 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                             borderRadius: BorderRadius.circular(24.0),
                           ),
                           filled: true,
-                          fillColor: const Color(0xFFF0F0FA),
-                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                          fillColor: Color(0xFFF0F0FA),
+                          contentPadding: EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 0.0, 0.0),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -650,7 +654,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                       ),
                     ),
                   ),
-                ].divide(const SizedBox(height: 13.0)),
+                ].divide(SizedBox(height: 13.0)),
               ),
             if (responsiveVisibility(
               context: context,
@@ -672,19 +676,19 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                               fontWeight: FontWeight.w500,
                             ),
                       ),
-                    ].divide(const SizedBox(height: 13.0)),
+                    ].divide(SizedBox(height: 13.0)),
                   ),
                   Container(
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                       child: TextFormField(
                         controller: _model.phoneMobTextController,
                         focusNode: _model.phoneMobFocusNode,
                         onChanged: (_) => EasyDebounce.debounce(
                           '_model.phoneMobTextController',
-                          const Duration(milliseconds: 200),
+                          Duration(milliseconds: 200),
                           () => safeSetState(() {}),
                         ),
                         autofocus: false,
@@ -730,8 +734,8 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                             borderRadius: BorderRadius.circular(24.0),
                           ),
                           filled: true,
-                          fillColor: const Color(0xFFF0F0FA),
-                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                          fillColor: Color(0xFFF0F0FA),
+                          contentPadding: EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 0.0, 0.0),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -752,9 +756,9 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                       ),
                     ),
                   ),
-                ].divide(const SizedBox(height: 13.0)),
+                ].divide(SizedBox(height: 13.0)),
               ),
-            if (widget.isHotel &&
+            if (widget!.isHotel &&
                 responsiveVisibility(
                   context: context,
                   tabletLandscape: false,
@@ -775,19 +779,19 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                               fontWeight: FontWeight.w500,
                             ),
                       ),
-                    ].divide(const SizedBox(height: 13.0)),
+                    ].divide(SizedBox(height: 13.0)),
                   ),
                   Container(
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                       child: TextFormField(
                         controller: _model.extraPhoneMobTextController,
                         focusNode: _model.extraPhoneMobFocusNode,
                         onChanged: (_) => EasyDebounce.debounce(
                           '_model.extraPhoneMobTextController',
-                          const Duration(milliseconds: 200),
+                          Duration(milliseconds: 200),
                           () => safeSetState(() {}),
                         ),
                         autofocus: false,
@@ -833,8 +837,8 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                             borderRadius: BorderRadius.circular(24.0),
                           ),
                           filled: true,
-                          fillColor: const Color(0xFFF0F0FA),
-                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                          fillColor: Color(0xFFF0F0FA),
+                          contentPadding: EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 0.0, 0.0),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -857,7 +861,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                       ),
                     ),
                   ),
-                ].divide(const SizedBox(height: 13.0)),
+                ].divide(SizedBox(height: 13.0)),
               ),
             Column(
               mainAxisSize: MainAxisSize.max,
@@ -866,7 +870,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Text(
-                      widget.isHotel
+                      widget!.isHotel
                           ? 'Название отеля*'
                           : 'Название организации*',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -876,18 +880,18 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                             fontWeight: FontWeight.w500,
                           ),
                     ),
-                  ].divide(const SizedBox(height: 13.0)),
+                  ].divide(SizedBox(height: 13.0)),
                 ),
                 Container(
-                  decoration: const BoxDecoration(),
+                  decoration: BoxDecoration(),
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                     child: TextFormField(
                       controller: _model.companyNameTextController,
                       focusNode: _model.companyNameFocusNode,
                       onChanged: (_) => EasyDebounce.debounce(
                         '_model.companyNameTextController',
-                        const Duration(milliseconds: 200),
+                        Duration(milliseconds: 200),
                         () => safeSetState(() {}),
                       ),
                       autofocus: false,
@@ -898,7 +902,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                   fontFamily: 'Commissioner',
                                   letterSpacing: 0.0,
                                 ),
-                        hintText: widget.isHotel
+                        hintText: widget!.isHotel
                             ? 'Название отеля'
                             : 'ООО \"Название\"',
                         hintStyle:
@@ -935,9 +939,9 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                           borderRadius: BorderRadius.circular(24.0),
                         ),
                         filled: true,
-                        fillColor: const Color(0xFFF0F0FA),
+                        fillColor: Color(0xFFF0F0FA),
                         contentPadding:
-                            const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Commissioner',
@@ -955,7 +959,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                     ),
                   ),
                 ),
-              ].divide(const SizedBox(height: 13.0)),
+              ].divide(SizedBox(height: 13.0)),
             ),
             Column(
               mainAxisSize: MainAxisSize.max,
@@ -970,15 +974,15 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                       ),
                 ),
                 Container(
-                  decoration: const BoxDecoration(),
+                  decoration: BoxDecoration(),
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                     child: TextFormField(
                       controller: _model.passwordTextController,
                       focusNode: _model.passwordFocusNode,
                       onChanged: (_) => EasyDebounce.debounce(
                         '_model.passwordTextController',
-                        const Duration(milliseconds: 200),
+                        Duration(milliseconds: 200),
                         () => safeSetState(() {}),
                       ),
                       autofocus: false,
@@ -1024,9 +1028,9 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                           borderRadius: BorderRadius.circular(24.0),
                         ),
                         filled: true,
-                        fillColor: const Color(0xFFF0F0FA),
+                        fillColor: Color(0xFFF0F0FA),
                         contentPadding:
-                            const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
                         suffixIcon: InkWell(
                           onTap: () => safeSetState(
                             () => _model.passwordVisibility =
@@ -1057,10 +1061,10 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                     ),
                   ),
                 ),
-              ].divide(const SizedBox(height: 13.0)),
+              ].divide(SizedBox(height: 13.0)),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -1104,16 +1108,16 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               await showDialog(
-                                barrierColor: const Color(0x56000000),
+                                barrierColor: Color(0x56000000),
                                 context: context,
                                 builder: (dialogContext) {
                                   return Dialog(
                                     elevation: 0,
                                     insetPadding: EdgeInsets.zero,
                                     backgroundColor: Colors.transparent,
-                                    alignment: const AlignmentDirectional(0.0, 0.0)
+                                    alignment: AlignmentDirectional(0.0, 0.0)
                                         .resolve(Directionality.of(context)),
-                                    child: const PopUpPPWidget(),
+                                    child: PopUpPPWidget(),
                                   );
                                 },
                               );
@@ -1170,24 +1174,38 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                       children: [
                         Expanded(
                           child: Container(
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 0.0, 16.0, 0.0),
                               child: FFButtonWidget(
-                                onPressed: ((_model.fioMobTextController
+                                onPressed: ((_model
+                                                    .fioMobTextController.text ==
+                                                null ||
+                                            _model.fioMobTextController
                                                     .text ==
                                                 '') ||
                                         (_model.emailMobTextController
                                                     .text ==
+                                                null ||
+                                            _model.emailMobTextController
+                                                    .text ==
                                                 '') ||
                                         (_model.phoneMobTextController
+                                                    .text ==
+                                                null ||
+                                            _model.phoneMobTextController
                                                     .text ==
                                                 '') ||
                                         (_model.companyNameTextController
                                                     .text ==
+                                                null ||
+                                            _model.companyNameTextController
+                                                    .text ==
                                                 '') ||
-                                        (_model.passwordTextController
+                                        (_model.passwordTextController.text ==
+                                                null ||
+                                            _model.passwordTextController
                                                     .text ==
                                                 '') ||
                                         (_model.checkboxValue == false))
@@ -1216,7 +1234,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                                 ),
                                               ),
                                               duration:
-                                                  const Duration(milliseconds: 4000),
+                                                  Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .error,
@@ -1225,7 +1243,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                         } else {
                                           _model.newUserPlatformMob =
                                               await UsersTable().insert({
-                                            'role': widget.isHotel
+                                            'role': widget!.isHotel
                                                 ? EnumRole.HOTEL.name
                                                 : EnumRole.CLIENT.name,
                                             'email': _model
@@ -1253,7 +1271,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                                 ),
                                               ),
                                               duration:
-                                                  const Duration(milliseconds: 4000),
+                                                  Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .secondary,
@@ -1283,9 +1301,9 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                 text: 'Зарегистрироваться',
                                 options: FFButtonOptions(
                                   width: 350.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       24.0, 32.0, 24.0, 32.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).primary,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -1296,13 +1314,13 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   elevation: 0.0,
-                                  borderSide: const BorderSide(
+                                  borderSide: BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
                                   borderRadius: BorderRadius.circular(40.0),
-                                  disabledColor: const Color(0xFFECECEC),
-                                  disabledTextColor: const Color(0xFF383838),
+                                  disabledColor: Color(0xFFECECEC),
+                                  disabledTextColor: Color(0xFF383838),
                                 ),
                               ),
                             ),
@@ -1321,24 +1339,38 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                       children: [
                         Expanded(
                           child: Container(
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 0.0, 16.0, 0.0),
                               child: FFButtonWidget(
                                 onPressed: ((_model.nameDescTextController
                                                     .text ==
+                                                null ||
+                                            _model.nameDescTextController
+                                                    .text ==
                                                 '') ||
                                         (_model.emailDescTextController
+                                                    .text ==
+                                                null ||
+                                            _model.emailDescTextController
                                                     .text ==
                                                 '') ||
                                         (_model.phoneDescTextController
                                                     .text ==
+                                                null ||
+                                            _model.phoneDescTextController
+                                                    .text ==
                                                 '') ||
                                         (_model.companyNameTextController
                                                     .text ==
+                                                null ||
+                                            _model.companyNameTextController
+                                                    .text ==
                                                 '') ||
-                                        (_model.passwordTextController
+                                        (_model.passwordTextController.text ==
+                                                null ||
+                                            _model.passwordTextController
                                                     .text ==
                                                 '') ||
                                         (_model.checkboxValue == false))
@@ -1367,7 +1399,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                                 ),
                                               ),
                                               duration:
-                                                  const Duration(milliseconds: 4000),
+                                                  Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .error,
@@ -1376,7 +1408,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                         } else {
                                           _model.newUserPlatform =
                                               await UsersTable().insert({
-                                            'role': widget.isHotel
+                                            'role': widget!.isHotel
                                                 ? EnumRole.HOTEL.name
                                                 : EnumRole.CLIENT.name,
                                             'email': _model
@@ -1404,7 +1436,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                                 ),
                                               ),
                                               duration:
-                                                  const Duration(milliseconds: 4000),
+                                                  Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .secondary,
@@ -1433,9 +1465,9 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                 text: 'Зарегистрироваться',
                                 options: FFButtonOptions(
                                   width: 350.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       24.0, 32.0, 24.0, 32.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).primary,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -1446,13 +1478,13 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   elevation: 0.0,
-                                  borderSide: const BorderSide(
+                                  borderSide: BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
                                   borderRadius: BorderRadius.circular(40.0),
-                                  disabledColor: const Color(0xFFECECEC),
-                                  disabledTextColor: const Color(0xFF383838),
+                                  disabledColor: Color(0xFFECECEC),
+                                  disabledTextColor: Color(0xFF383838),
                                 ),
                               ),
                             ),
@@ -1460,10 +1492,10 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                         ),
                       ],
                     ),
-                ].divide(const SizedBox(height: 20.0)),
+                ].divide(SizedBox(height: 20.0)),
               ),
             ),
-          ].divide(const SizedBox(height: 32.0)),
+          ].divide(SizedBox(height: 32.0)),
         ),
       ),
     );

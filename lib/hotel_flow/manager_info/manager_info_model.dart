@@ -1,13 +1,25 @@
+import '/auth/supabase_auth/auth_util.dart';
+import '/backend/supabase/supabase.dart';
+import '/components/change_password_widget.dart';
 import '/components/check_box_comp_widget.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/pop_up/confirm_action/confirm_action_widget.dart';
 import 'manager_info_widget.dart' show ManagerInfoWidget;
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:provider/provider.dart';
 
 class ManagerInfoModel extends FlutterFlowModel<ManagerInfoWidget> {
   ///  Local state fields for this component.
 
   bool isEdit = false;
+
+  bool editEmail = false;
 
   ///  State fields for stateful widgets in this component.
 

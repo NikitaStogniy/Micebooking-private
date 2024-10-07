@@ -7,6 +7,8 @@ import '/pop_up/pop_up_images/pop_up_images_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'hall_pop_up_model.dart';
 export 'hall_pop_up_model.dart';
 
@@ -17,7 +19,7 @@ class HallPopUpWidget extends StatefulWidget {
     bool? isChosen,
     this.chosed,
     this.hallRequest,
-  }) : isChosen = isChosen ?? false;
+  }) : this.isChosen = isChosen ?? false;
 
   final HallRow? hall;
   final bool isChosen;
@@ -68,11 +70,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
           0.0),
       child: Container(
         height: MediaQuery.sizeOf(context).height * 0.9,
-        constraints: const BoxConstraints(
+        constraints: BoxConstraints(
           maxWidth: 1250.0,
         ),
         decoration: BoxDecoration(
-          color: const Color(0xFFF9F9F9),
+          color: Color(0xFFF9F9F9),
           borderRadius: BorderRadius.circular(23.0),
         ),
         child: SingleChildScrollView(
@@ -103,7 +105,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                       child: Container(
                         width: 40.0,
                         height: 40.0,
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Icon(
                           Icons.close_rounded,
                           color: FlutterFlowTheme.of(context).primary,
@@ -145,7 +147,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                             children: [
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 70.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -158,7 +160,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                           Expanded(
                                             child: Text(
                                               valueOrDefault<String>(
-                                                widget.hall?.name,
+                                                widget!.hall?.name,
                                                 'Название зала',
                                               ),
                                               style: FlutterFlowTheme.of(
@@ -175,10 +177,10 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                         ],
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 40.0, 0.0, 0.0),
                                         child: Text(
-                                          '${widget.hall?.size?.toString()} кв м2',
+                                          '${widget!.hall?.size?.toString()} кв м2',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -190,18 +192,18 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 20.0, 0.0, 0.0),
                                         child: Text(
                                           valueOrDefault<String>(
-                                            widget.hall?.description,
+                                            widget!.hall?.description,
                                             'Описание',
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Commissioner',
-                                                color: const Color(0xFF636363),
+                                                color: Color(0xFF636363),
                                                 fontSize: 17.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
@@ -215,32 +217,338 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                               Container(
                                 width: 400.0,
                                 height: 300.0,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Stack(
                                   children: [
                                     Builder(
                                       builder: (context) {
                                         final hallImages =
-                                            widget.hall?.images.toList() ??
+                                            widget!.hall?.images?.toList() ??
                                                 [];
                                         if (hallImages.isEmpty) {
-                                          return const SizedBox(
+                                          return Container(
                                             width: double.infinity,
                                             height: double.infinity,
                                             child: ImagesEmptyWidget(),
                                           );
                                         }
 
-                                        return SizedBox(
+                                        return Container(
                                           width: double.infinity,
                                           height: 500.0,
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 40.0),
+                                          child: PageView.builder(
+                                            controller: _model
+                                                    .pageViewController1 ??=
+                                                PageController(
+                                                    initialPage: max(
+                                                        0,
+                                                        min(
+                                                            0,
+                                                            hallImages.length -
+                                                                1))),
+                                            onPageChanged: (_) =>
+                                                safeSetState(() {}),
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount: hallImages.length,
+                                            itemBuilder:
+                                                (context, hallImagesIndex) {
+                                              final hallImagesItem =
+                                                  hallImages[hallImagesIndex];
+                                              return ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                child: Image.network(
+                                                  valueOrDefault<String>(
+                                                    hallImagesItem,
+                                                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiFYZkovo6Uq69lsMtG9ZPzszPBTa55NlR85uUqbmjNRy6Zvdh7WSBwLFpivd_70aNtmU&usqp=CAU',
+                                                  ),
+                                                  width: 300.0,
+                                                  height: 200.0,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                    Container(
+                                      height:
+                                          MediaQuery.sizeOf(context).height *
+                                              1.0,
+                                      decoration: BoxDecoration(),
+                                      child: Visibility(
+                                        visible:
+                                            widget!.hall!.images.length > 1,
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  8.0, 0.0, 8.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              if (_model
+                                                      .pageViewCurrentIndex1 !=
+                                                  0)
+                                                InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    await _model
+                                                        .pageViewController1
+                                                        ?.previousPage(
+                                                      duration: Duration(
+                                                          milliseconds: 300),
+                                                      curve: Curves.ease,
+                                                    );
+                                                  },
+                                                  child: Container(
+                                                    width: 32.0,
+                                                    height: 32.0,
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
+                                                      shape: BoxShape.circle,
+                                                    ),
+                                                    child: Icon(
+                                                      Icons
+                                                          .arrow_back_ios_rounded,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      size: 20.0,
+                                                    ),
+                                                  ),
+                                                ),
+                                              Container(
+                                                width: 32.0,
+                                                height: 32.0,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                ),
+                                              ),
+                                              Container(
+                                                width: 32.0,
+                                                height: 32.0,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                ),
+                                              ),
+                                              if (_model.pageViewCurrentIndex1 <
+                                                  widget!.hall!.images.length)
+                                                InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    await _model
+                                                        .pageViewController1
+                                                        ?.nextPage(
+                                                      duration: Duration(
+                                                          milliseconds: 300),
+                                                      curve: Curves.ease,
+                                                    );
+                                                  },
+                                                  child: Container(
+                                                    width: 32.0,
+                                                    height: 32.0,
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
+                                                      shape: BoxShape.circle,
+                                                    ),
+                                                    child: Icon(
+                                                      Icons
+                                                          .arrow_forward_ios_rounded,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      size: 20.0,
+                                                    ),
+                                                  ),
+                                                ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    if (widget!.hall!.images.length > 0)
+                                      Builder(
+                                        builder: (context) => Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  8.0, 8.0, 0.0, 0.0),
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              await showDialog(
+                                                barrierColor: Color(0x81FFFFFF),
+                                                context: context,
+                                                builder: (dialogContext) {
+                                                  return Dialog(
+                                                    elevation: 0,
+                                                    insetPadding:
+                                                        EdgeInsets.zero,
+                                                    backgroundColor:
+                                                        Colors.transparent,
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                                0.0, 0.0)
+                                                            .resolve(
+                                                                Directionality.of(
+                                                                    context)),
+                                                    child: Container(
+                                                      height: MediaQuery.sizeOf(
+                                                                  context)
+                                                              .height *
+                                                          0.9,
+                                                      width: MediaQuery.sizeOf(
+                                                                  context)
+                                                              .width *
+                                                          0.9,
+                                                      child: PopUpImagesWidget(
+                                                        images: widget!
+                                                            .hall!.images,
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                              );
+                                            },
+                                            child: Container(
+                                              width: 32.0,
+                                              height: 32.0,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Align(
+                                                alignment: AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: Icon(
+                                                  Icons.add_rounded,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  size: 20.0,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    if (widget!.hall!.images.length > 1)
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(0.0, 1.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 16.0),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              borderRadius:
+                                                  BorderRadius.circular(50.0),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      16.0, 8.0, 16.0, 8.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    '${(_model.pageViewCurrentIndex1 + 1).toString()}/${widget!.hall?.images?.length?.toString()}',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          fontSize: 16.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w300,
+                                                        ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        if (responsiveVisibility(
+                          context: context,
+                          tabletLandscape: false,
+                          desktop: false,
+                        ))
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 8.0, 0.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
+                                  height: 300.0,
+                                  decoration: BoxDecoration(),
+                                  child: Stack(
+                                    children: [
+                                      Builder(
+                                        builder: (context) {
+                                          final hallImages =
+                                              widget!.hall?.images?.toList() ??
+                                                  [];
+                                          if (hallImages.isEmpty) {
+                                            return Container(
+                                              width: double.infinity,
+                                              height: double.infinity,
+                                              child: ImagesEmptyWidget(),
+                                            );
+                                          }
+
+                                          return Container(
+                                            width: double.infinity,
+                                            height: 500.0,
                                             child: PageView.builder(
                                               controller: _model
-                                                      .pageViewController1 ??=
+                                                      .pageViewController2 ??=
                                                   PageController(
                                                       initialPage: max(
                                                           0,
@@ -273,328 +581,16 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                 );
                                               },
                                             ),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                    Container(
-                                      height: 260.0,
-                                      decoration: const BoxDecoration(),
-                                      child: Visibility(
-                                        visible:
-                                            widget.hall!.images.length > 1,
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  8.0, 0.0, 8.0, 0.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              if (_model
-                                                      .pageViewCurrentIndex1 !=
-                                                  0)
-                                                InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    await _model
-                                                        .pageViewController1
-                                                        ?.previousPage(
-                                                      duration: const Duration(
-                                                          milliseconds: 300),
-                                                      curve: Curves.ease,
-                                                    );
-                                                  },
-                                                  child: Container(
-                                                    width: 32.0,
-                                                    height: 32.0,
-                                                    decoration: BoxDecoration(
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .primaryBackground,
-                                                      shape: BoxShape.circle,
-                                                    ),
-                                                    child: Icon(
-                                                      Icons
-                                                          .arrow_back_ios_rounded,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      size: 20.0,
-                                                    ),
-                                                  ),
-                                                ),
-                                              Container(
-                                                width: 32.0,
-                                                height: 32.0,
-                                                decoration: const BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                ),
-                                              ),
-                                              Container(
-                                                width: 32.0,
-                                                height: 32.0,
-                                                decoration: const BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                ),
-                                              ),
-                                              if (_model.pageViewCurrentIndex1 <
-                                                  widget.hall!.images.length)
-                                                InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    await _model
-                                                        .pageViewController1
-                                                        ?.nextPage(
-                                                      duration: const Duration(
-                                                          milliseconds: 300),
-                                                      curve: Curves.ease,
-                                                    );
-                                                  },
-                                                  child: Container(
-                                                    width: 32.0,
-                                                    height: 32.0,
-                                                    decoration: BoxDecoration(
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .primaryBackground,
-                                                      shape: BoxShape.circle,
-                                                    ),
-                                                    child: Icon(
-                                                      Icons
-                                                          .arrow_forward_ios_rounded,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      size: 20.0,
-                                                    ),
-                                                  ),
-                                                ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    if (widget.hall!.images.isNotEmpty)
-                                      Builder(
-                                        builder: (context) => Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  8.0, 8.0, 0.0, 0.0),
-                                          child: InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              await showDialog(
-                                                barrierColor: const Color(0x81FFFFFF),
-                                                context: context,
-                                                builder: (dialogContext) {
-                                                  return Dialog(
-                                                    elevation: 0,
-                                                    insetPadding:
-                                                        EdgeInsets.zero,
-                                                    backgroundColor:
-                                                        Colors.transparent,
-                                                    alignment:
-                                                        const AlignmentDirectional(
-                                                                0.0, 0.0)
-                                                            .resolve(
-                                                                Directionality.of(
-                                                                    context)),
-                                                    child: SizedBox(
-                                                      height: MediaQuery.sizeOf(
-                                                                  context)
-                                                              .height *
-                                                          0.9,
-                                                      width: MediaQuery.sizeOf(
-                                                                  context)
-                                                              .width *
-                                                          0.9,
-                                                      child: PopUpImagesWidget(
-                                                        images: widget
-                                                            .hall!.images,
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                              );
-                                            },
-                                            child: Container(
-                                              width: 32.0,
-                                              height: 32.0,
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                shape: BoxShape.circle,
-                                              ),
-                                              child: Align(
-                                                alignment: const AlignmentDirectional(
-                                                    0.0, 0.0),
-                                                child: Icon(
-                                                  Icons.add_rounded,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                  size: 20.0,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    if (widget.hall!.images.length > 1)
-                                      Align(
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 1.0),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            borderRadius:
-                                                BorderRadius.circular(50.0),
-                                          ),
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    16.0, 8.0, 16.0, 8.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.min,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  '${(_model.pageViewCurrentIndex1 + 1).toString()}/${widget.hall?.images.length.toString()}',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Commissioner',
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
-                                                        fontSize: 16.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w300,
-                                                      ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        if (responsiveVisibility(
-                          context: context,
-                          tabletLandscape: false,
-                          desktop: false,
-                        ))
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                8.0, 0.0, 8.0, 0.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: MediaQuery.sizeOf(context).width * 1.0,
-                                  height: 300.0,
-                                  decoration: const BoxDecoration(),
-                                  child: Stack(
-                                    children: [
-                                      Builder(
-                                        builder: (context) {
-                                          final hallImages =
-                                              widget.hall?.images.toList() ??
-                                                  [];
-                                          if (hallImages.isEmpty) {
-                                            return const SizedBox(
-                                              width: double.infinity,
-                                              height: double.infinity,
-                                              child: ImagesEmptyWidget(),
-                                            );
-                                          }
-
-                                          return SizedBox(
-                                            width: double.infinity,
-                                            height: 500.0,
-                                            child: Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 0.0, 0.0, 40.0),
-                                              child: PageView.builder(
-                                                controller: _model
-                                                        .pageViewController2 ??=
-                                                    PageController(
-                                                        initialPage: max(
-                                                            0,
-                                                            min(
-                                                                0,
-                                                                hallImages
-                                                                        .length -
-                                                                    1))),
-                                                onPageChanged: (_) =>
-                                                    safeSetState(() {}),
-                                                scrollDirection:
-                                                    Axis.horizontal,
-                                                itemCount: hallImages.length,
-                                                itemBuilder:
-                                                    (context, hallImagesIndex) {
-                                                  final hallImagesItem =
-                                                      hallImages[
-                                                          hallImagesIndex];
-                                                  return ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                    child: Image.network(
-                                                      valueOrDefault<String>(
-                                                        hallImagesItem,
-                                                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiFYZkovo6Uq69lsMtG9ZPzszPBTa55NlR85uUqbmjNRy6Zvdh7WSBwLFpivd_70aNtmU&usqp=CAU',
-                                                      ),
-                                                      width: 300.0,
-                                                      height: 200.0,
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  );
-                                                },
-                                              ),
-                                            ),
                                           );
                                         },
                                       ),
-                                      if (widget.hall!.images.length > 1)
+                                      if (widget!.hall!.images.length > 1)
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 8.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -618,7 +614,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                       await _model
                                                           .pageViewController2
                                                           ?.previousPage(
-                                                        duration: const Duration(
+                                                        duration: Duration(
                                                             milliseconds: 300),
                                                         curve: Curves.ease,
                                                       );
@@ -646,20 +642,20 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                 Container(
                                                   width: 32.0,
                                                   height: 32.0,
-                                                  decoration: const BoxDecoration(
+                                                  decoration: BoxDecoration(
                                                     shape: BoxShape.circle,
                                                   ),
                                                 ),
                                                 Container(
                                                   width: 32.0,
                                                   height: 32.0,
-                                                  decoration: const BoxDecoration(
+                                                  decoration: BoxDecoration(
                                                     shape: BoxShape.circle,
                                                   ),
                                                 ),
                                                 if (_model
                                                         .pageViewCurrentIndex2 <
-                                                    widget.hall!.images.length)
+                                                    widget!.hall!.images.length)
                                                   InkWell(
                                                     splashColor:
                                                         Colors.transparent,
@@ -673,7 +669,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                       await _model
                                                           .pageViewController2
                                                           ?.nextPage(
-                                                        duration: const Duration(
+                                                        duration: Duration(
                                                             milliseconds: 300),
                                                         curve: Curves.ease,
                                                       );
@@ -702,11 +698,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                             ),
                                           ),
                                         ),
-                                      if (widget.hall!.images.isNotEmpty)
+                                      if (widget!.hall!.images.length > 0)
                                         Builder(
                                           builder: (context) => Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 16.0, 0.0, 0.0),
                                             child: InkWell(
                                               splashColor: Colors.transparent,
@@ -717,7 +713,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                               onTap: () async {
                                                 await showDialog(
                                                   barrierColor:
-                                                      const Color(0x81FFFFFF),
+                                                      Color(0x81FFFFFF),
                                                   context: context,
                                                   builder: (dialogContext) {
                                                     return Dialog(
@@ -727,12 +723,12 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                       backgroundColor:
                                                           Colors.transparent,
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
                                                                       context)),
-                                                      child: SizedBox(
+                                                      child: Container(
                                                         height:
                                                             MediaQuery.sizeOf(
                                                                         context)
@@ -745,7 +741,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                                 0.9,
                                                         child:
                                                             PopUpImagesWidget(
-                                                          images: widget
+                                                          images: widget!
                                                               .hall!.images,
                                                         ),
                                                       ),
@@ -773,45 +769,51 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                             ),
                                           ),
                                         ),
-                                      if (widget.hall!.images.length > 1)
+                                      if (widget!.hall!.images.length > 1)
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 1.0),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              borderRadius:
-                                                  BorderRadius.circular(50.0),
-                                            ),
-                                            child: Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      16.0, 8.0, 16.0, 8.0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    '${(_model.pageViewCurrentIndex2 + 1).toString()}/${widget.hall?.images.length.toString()}',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w300,
-                                                        ),
-                                                  ),
-                                                ],
+                                              AlignmentDirectional(0.0, 1.0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 16.0),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                borderRadius:
+                                                    BorderRadius.circular(50.0),
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        16.0, 8.0, 16.0, 8.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      '${(_model.pageViewCurrentIndex2 + 1).toString()}/${widget!.hall?.images?.length?.toString()}',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Commissioner',
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                            fontSize: 16.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                          ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -820,7 +822,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 32.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -828,7 +830,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                       Expanded(
                                         child: Text(
                                           valueOrDefault<String>(
-                                            widget.hall?.name,
+                                            widget!.hall?.name,
                                             'Без названия',
                                           ),
                                           style: FlutterFlowTheme.of(context)
@@ -845,14 +847,14 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 16.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Expanded(
                                         child: Text(
-                                          '${widget.hall?.size?.toString()} кв м2',
+                                          '${widget!.hall?.size?.toString()} кв м2',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -875,7 +877,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                           desktop: false,
                         ))
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 8.0, 24.0, 8.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -883,7 +885,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                 Expanded(
                                   child: Text(
                                     valueOrDefault<String>(
-                                      widget.hall?.description,
+                                      widget!.hall?.description,
                                       'Описание отсутствует',
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -901,7 +903,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 32.0, 8.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(8.0, 32.0, 8.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -922,7 +924,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
                       child: FutureBuilder<List<ServiceCategoryRow>>(
                         future: ServiceCategoryTable().queryRows(
                           queryFn: (q) => q
@@ -932,7 +934,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                               )
                               .overlaps(
                                 'services_id',
-                                widget.hall?.services,
+                                widget!.hall?.services,
                               ),
                         ),
                         builder: (context, snapshot) {
@@ -955,9 +957,9 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
 
                           return Container(
                             width: MediaQuery.sizeOf(context).width * 0.65,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Container(
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Builder(
                                 builder: (context) {
                                   final categories =
@@ -988,7 +990,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                               )
                                               .in_(
                                                 'id',
-                                                widget.hall!.services,
+                                                widget!.hall!.services,
                                               ),
                                         ),
                                         builder: (context, snapshot) {
@@ -1015,7 +1017,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                               snapshot.data!;
 
                                           return Container(
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               crossAxisAlignment:
@@ -1076,12 +1078,12 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                                         .normal,
                                                               ),
                                                         );
-                                                      }).divide(const SizedBox(
+                                                      }).divide(SizedBox(
                                                           height: 16.0)),
                                                     );
                                                   },
                                                 ),
-                                              ].divide(const SizedBox(height: 24.0)),
+                                              ].divide(SizedBox(height: 24.0)),
                                             ),
                                           );
                                         },
@@ -1102,7 +1104,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                     ))
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -1111,22 +1113,22 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                 width: 100.0,
                                 height: 180.0,
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFFF0F0FA),
+                                  color: Color(0xFFF0F0FA),
                                   borderRadius: BorderRadius.circular(25.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       24.0, 0.0, 24.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      if (widget.hall!.seatingTheater! > 0)
+                                      if (widget!.hall!.seatingTheater! > 0)
                                         Expanded(
                                           flex: 1,
                                           child: Container(
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 10.0, 0.0, 24.0),
                                               child: Column(
@@ -1134,11 +1136,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                 children: [
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1171,7 +1173,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 12.0,
                                                                 0.0, 12.0),
                                                     child: ClipRRect(
@@ -1188,11 +1190,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Text(
                                                       valueOrDefault<String>(
-                                                        widget.hall
+                                                        widget!.hall
                                                             ?.seatingTheater
                                                             ?.toString(),
                                                         '0',
@@ -1217,11 +1219,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   6.0,
@@ -1255,13 +1257,13 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                             ),
                                           ),
                                         ),
-                                      if (widget.hall!.seatingClass! > 0)
+                                      if (widget!.hall!.seatingClass! > 0)
                                         Expanded(
                                           flex: 1,
                                           child: Container(
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 10.0, 0.0, 24.0),
                                               child: Column(
@@ -1269,11 +1271,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                 children: [
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1306,7 +1308,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 12.0,
                                                                 0.0, 12.0),
                                                     child: ClipRRect(
@@ -1323,11 +1325,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Text(
                                                       valueOrDefault<String>(
-                                                        widget
+                                                        widget!
                                                             .hall?.seatingClass
                                                             ?.toString(),
                                                         '0',
@@ -1352,11 +1354,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   6.0,
@@ -1390,14 +1392,14 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                             ),
                                           ),
                                         ),
-                                      if (widget.hall!.seatingCommunication! >
+                                      if (widget!.hall!.seatingCommunication! >
                                           0)
                                         Expanded(
                                           flex: 1,
                                           child: Container(
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 10.0, 0.0, 24.0),
                                               child: Column(
@@ -1405,11 +1407,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                 children: [
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1442,7 +1444,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 12.0,
                                                                 0.0, 12.0),
                                                     child: ClipRRect(
@@ -1459,11 +1461,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Text(
                                                       valueOrDefault<String>(
-                                                        widget.hall
+                                                        widget!.hall
                                                             ?.seatingCommunication
                                                             ?.toString(),
                                                         '0',
@@ -1488,11 +1490,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   6.0,
@@ -1526,13 +1528,13 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                             ),
                                           ),
                                         ),
-                                      if (widget.hall!.seatingUshape! > 0)
+                                      if (widget!.hall!.seatingUshape! > 0)
                                         Expanded(
                                           flex: 1,
                                           child: Container(
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 10.0, 0.0, 24.0),
                                               child: Column(
@@ -1540,11 +1542,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                 children: [
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1577,7 +1579,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 12.0,
                                                                 0.0, 12.0),
                                                     child: ClipRRect(
@@ -1594,11 +1596,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Text(
                                                       valueOrDefault<String>(
-                                                        widget
+                                                        widget!
                                                             .hall?.seatingUshape
                                                             ?.toString(),
                                                         '0',
@@ -1623,11 +1625,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   6.0,
@@ -1661,13 +1663,13 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                             ),
                                           ),
                                         ),
-                                      if (widget.hall!.seatingOshape! > 0)
+                                      if (widget!.hall!.seatingOshape! > 0)
                                         Expanded(
                                           flex: 1,
                                           child: Container(
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 10.0, 0.0, 24.0),
                                               child: Column(
@@ -1675,11 +1677,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                 children: [
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1712,7 +1714,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 12.0,
                                                                 0.0, 12.0),
                                                     child: ClipRRect(
@@ -1729,11 +1731,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Text(
                                                       valueOrDefault<String>(
-                                                        widget
+                                                        widget!
                                                             .hall?.seatingOshape
                                                             ?.toString(),
                                                         '0',
@@ -1758,11 +1760,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   6.0,
@@ -1796,13 +1798,13 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                             ),
                                           ),
                                         ),
-                                      if (widget.hall!.seatingKabare! > 0)
+                                      if (widget!.hall!.seatingKabare! > 0)
                                         Expanded(
                                           flex: 1,
                                           child: Container(
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 10.0, 0.0, 24.0),
                                               child: Column(
@@ -1810,11 +1812,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                 children: [
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1847,7 +1849,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 12.0,
                                                                 0.0, 12.0),
                                                     child: ClipRRect(
@@ -1864,11 +1866,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Text(
                                                       valueOrDefault<String>(
-                                                        widget
+                                                        widget!
                                                             .hall?.seatingKabare
                                                             ?.toString(),
                                                         '0',
@@ -1893,11 +1895,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   6.0,
@@ -1931,13 +1933,13 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                             ),
                                           ),
                                         ),
-                                      if (widget.hall!.seatingBanket! > 0)
+                                      if (widget!.hall!.seatingBanket! > 0)
                                         Expanded(
                                           flex: 1,
                                           child: Container(
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 10.0, 0.0, 24.0),
                                               child: Column(
@@ -1945,11 +1947,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                 children: [
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1982,7 +1984,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 12.0,
                                                                 0.0, 12.0),
                                                     child: ClipRRect(
@@ -1999,11 +2001,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Text(
                                                       valueOrDefault<String>(
-                                                        widget
+                                                        widget!
                                                             .hall?.seatingBanket
                                                             ?.toString(),
                                                         '0',
@@ -2028,11 +2030,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   6.0,
@@ -2066,13 +2068,13 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                             ),
                                           ),
                                         ),
-                                      if (widget.hall!.seatingFurshet! > 0)
+                                      if (widget!.hall!.seatingFurshet! > 0)
                                         Expanded(
                                           flex: 1,
                                           child: Container(
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 10.0, 0.0, 24.0),
                                               child: Column(
@@ -2080,11 +2082,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                 children: [
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -2117,7 +2119,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 12.0,
                                                                 0.0, 12.0),
                                                     child: ClipRRect(
@@ -2134,11 +2136,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Text(
                                                       valueOrDefault<String>(
-                                                        widget.hall
+                                                        widget!.hall
                                                             ?.seatingFurshet
                                                             ?.toString(),
                                                         '0',
@@ -2163,11 +2165,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   6.0,
@@ -2201,7 +2203,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                             ),
                                           ),
                                         ),
-                                    ].divide(const SizedBox(width: 20.0)),
+                                    ].divide(SizedBox(width: 20.0)),
                                   ),
                                 ),
                               ),
@@ -2216,27 +2218,27 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                     ))
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Flexible(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 24.0, 0.0, 24.0),
                                 child: Container(
                                   width: MediaQuery.sizeOf(context).width * 1.0,
                                   decoration: BoxDecoration(
-                                    color: const Color(0xFFF0F0FA),
+                                    color: Color(0xFFF0F0FA),
                                     borderRadius: BorderRadius.circular(25.0),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 20.0, 16.0, 12.0),
                                     child: GridView(
                                       padding: EdgeInsets.zero,
                                       gridDelegate:
-                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                          SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 2,
                                         crossAxisSpacing: 12.0,
                                         mainAxisSpacing: 24.0,
@@ -2246,14 +2248,14 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                       shrinkWrap: true,
                                       scrollDirection: Axis.vertical,
                                       children: [
-                                        if (widget.hall!.seatingTheater! > 0)
+                                        if (widget!.hall!.seatingTheater! > 0)
                                           Column(
                                             mainAxisSize: MainAxisSize.min,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
                                             children: [
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'Театр',
@@ -2276,15 +2278,15 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                 ),
                                               ),
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 12.0, 0.0, 0.0),
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      widget
+                                                      widget!
                                                           .hall?.seatingTheater
                                                           ?.toString(),
                                                       '0',
@@ -2297,7 +2299,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                           fontFamily:
                                                               'Commissioner',
                                                           color:
-                                                              const Color(0xFF636363),
+                                                              Color(0xFF636363),
                                                           fontSize: 13.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
@@ -2308,12 +2310,12 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                               ),
                                             ],
                                           ),
-                                        if (widget.hall!.seatingClass! > 0)
+                                        if (widget!.hall!.seatingClass! > 0)
                                           Column(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'Класс',
@@ -2336,15 +2338,15 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                 ),
                                               ),
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 12.0, 0.0, 0.0),
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      widget.hall?.seatingClass
+                                                      widget!.hall?.seatingClass
                                                           ?.toString(),
                                                       '0',
                                                     ),
@@ -2356,7 +2358,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                           fontFamily:
                                                               'Commissioner',
                                                           color:
-                                                              const Color(0xFF636363),
+                                                              Color(0xFF636363),
                                                           fontSize: 13.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
@@ -2367,14 +2369,14 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                               ),
                                             ],
                                           ),
-                                        if (widget
+                                        if (widget!
                                                 .hall!.seatingCommunication! >
                                             0)
                                           Column(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'Переговорная',
@@ -2397,15 +2399,15 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                 ),
                                               ),
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 12.0, 0.0, 0.0),
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      widget.hall
+                                                      widget!.hall
                                                           ?.seatingCommunication
                                                           ?.toString(),
                                                       '0',
@@ -2418,7 +2420,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                           fontFamily:
                                                               'Commissioner',
                                                           color:
-                                                              const Color(0xFF636363),
+                                                              Color(0xFF636363),
                                                           fontSize: 13.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
@@ -2429,12 +2431,12 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                               ),
                                             ],
                                           ),
-                                        if (widget.hall!.seatingUshape! > 0)
+                                        if (widget!.hall!.seatingUshape! > 0)
                                           Column(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'U-shape',
@@ -2457,15 +2459,15 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                 ),
                                               ),
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 12.0, 0.0, 0.0),
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      widget
+                                                      widget!
                                                           .hall?.seatingUshape
                                                           ?.toString(),
                                                       '0',
@@ -2478,7 +2480,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                           fontFamily:
                                                               'Commissioner',
                                                           color:
-                                                              const Color(0xFF636363),
+                                                              Color(0xFF636363),
                                                           fontSize: 13.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
@@ -2489,12 +2491,12 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                               ),
                                             ],
                                           ),
-                                        if (widget.hall!.seatingOshape! > 0)
+                                        if (widget!.hall!.seatingOshape! > 0)
                                           Column(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'O-shape',
@@ -2517,15 +2519,15 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                 ),
                                               ),
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 12.0, 0.0, 0.0),
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      widget
+                                                      widget!
                                                           .hall?.seatingOshape
                                                           ?.toString(),
                                                       '0',
@@ -2538,7 +2540,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                           fontFamily:
                                                               'Commissioner',
                                                           color:
-                                                              const Color(0xFF636363),
+                                                              Color(0xFF636363),
                                                           fontSize: 13.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
@@ -2549,12 +2551,12 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                               ),
                                             ],
                                           ),
-                                        if (widget.hall!.seatingKabare! > 0)
+                                        if (widget!.hall!.seatingKabare! > 0)
                                           Column(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'Кабаре',
@@ -2577,15 +2579,15 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                 ),
                                               ),
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 12.0, 0.0, 0.0),
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      widget
+                                                      widget!
                                                           .hall?.seatingKabare
                                                           ?.toString(),
                                                       '0',
@@ -2598,7 +2600,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                           fontFamily:
                                                               'Commissioner',
                                                           color:
-                                                              const Color(0xFF636363),
+                                                              Color(0xFF636363),
                                                           fontSize: 13.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
@@ -2609,12 +2611,12 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                               ),
                                             ],
                                           ),
-                                        if (widget.hall!.seatingKabare! > 0)
+                                        if (widget!.hall!.seatingKabare! > 0)
                                           Column(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'Банкет',
@@ -2637,15 +2639,15 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                 ),
                                               ),
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 12.0, 0.0, 0.0),
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      widget
+                                                      widget!
                                                           .hall?.seatingBanket
                                                           ?.toString(),
                                                       '0',
@@ -2658,7 +2660,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                           fontFamily:
                                                               'Commissioner',
                                                           color:
-                                                              const Color(0xFF636363),
+                                                              Color(0xFF636363),
                                                           fontSize: 13.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
@@ -2669,12 +2671,12 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                               ),
                                             ],
                                           ),
-                                        if (widget.hall!.seatingFurshet! > 0)
+                                        if (widget!.hall!.seatingFurshet! > 0)
                                           Column(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'Фуршет',
@@ -2697,15 +2699,15 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                 ),
                                               ),
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 12.0, 0.0, 0.0),
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      widget
+                                                      widget!
                                                           .hall?.seatingFurshet
                                                           ?.toString(),
                                                       '0',
@@ -2718,7 +2720,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                                           fontFamily:
                                                               'Commissioner',
                                                           color:
-                                                              const Color(0xFF636363),
+                                                              Color(0xFF636363),
                                                           fontSize: 13.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
@@ -2739,7 +2741,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                         ),
                       ),
                     Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(
+                      padding: EdgeInsetsDirectional.fromSTEB(
                           16.0, 24.0, 16.0, 40.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
@@ -2761,11 +2763,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                     ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    widget.hall?.price?.toString(),
+                                    widget!.hall?.price?.toString(),
                                     '0',
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -2780,11 +2782,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                       ),
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 4.0)),
+                            ].divide(SizedBox(width: 4.0)),
                           ),
-                          if (widget.hall?.halfprice != null)
+                          if (widget!.hall?.halfprice != null)
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 0.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -2803,11 +2805,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                         ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
-                                        widget.hall?.halfprice?.toString(),
+                                        widget!.hall?.halfprice?.toString(),
                                         '0',
                                       ),
                                       style: FlutterFlowTheme.of(context)

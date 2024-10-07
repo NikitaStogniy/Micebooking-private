@@ -2,6 +2,8 @@ import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'hall_food_room_empty_model.dart';
 export 'hall_food_room_empty_model.dart';
 
@@ -49,17 +51,17 @@ class _HallFoodRoomEmptyWidgetState extends State<HallFoodRoomEmptyWidget> {
     return Container(
       width: MediaQuery.sizeOf(context).width * 1.0,
       height: 80.0,
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
           Text(
             'Добавьте первый ${() {
-              if (widget.type == EnumType.HALL) {
+              if (widget!.type == EnumType.HALL) {
                 return ' зал';
-              } else if (widget.type == EnumType.FOOD) {
+              } else if (widget!.type == EnumType.FOOD) {
                 return ' пакет еды';
-              } else if (widget.type == EnumType.ROOM) {
+              } else if (widget!.type == EnumType.ROOM) {
                 return ' номер';
               } else {
                 return ' класс';

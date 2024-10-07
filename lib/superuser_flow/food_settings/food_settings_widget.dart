@@ -7,6 +7,8 @@ import '/superuser_flow/add_new/add_new_widget.dart';
 import '/superuser_flow/info_component/info_component_widget.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'food_settings_model.dart';
 export 'food_settings_model.dart';
 
@@ -51,7 +53,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.sizeOf(context).height * 1.0,
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -71,10 +73,10 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                 ),
                 Container(
                   width: 500.0,
-                  constraints: const BoxConstraints(
+                  constraints: BoxConstraints(
                     maxHeight: 500.0,
                   ),
-                  decoration: const BoxDecoration(),
+                  decoration: BoxDecoration(),
                   child: FutureBuilder<List<ServiceCategoryRow>>(
                     future: (_model.requestCompleter1 ??=
                             Completer<List<ServiceCategoryRow>>()
@@ -106,7 +108,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                           snapshot.data!;
 
                       return ListView.separated(
-                        padding: const EdgeInsets.fromLTRB(
+                        padding: EdgeInsets.fromLTRB(
                           0,
                           23.0,
                           0,
@@ -115,13 +117,13 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         itemCount: listViewServiceCategoryRowList.length,
-                        separatorBuilder: (_, __) => const SizedBox(height: 10.0),
+                        separatorBuilder: (_, __) => SizedBox(height: 10.0),
                         itemBuilder: (context, listViewIndex) {
                           final listViewServiceCategoryRow =
                               listViewServiceCategoryRowList[listViewIndex];
                           return Container(
                             height: 40.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: wrapWithModel(
                               model: _model.infoComponentModels1.getModel(
                                 listViewServiceCategoryRow.id.toString(),
@@ -186,21 +188,21 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                   children: [
                     if (_model.addNewCategory)
                       Container(
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Container(
                               width: 200.0,
-                              constraints: const BoxConstraints(
+                              constraints: BoxConstraints(
                                 minHeight: 40.0,
                               ),
                               decoration: BoxDecoration(
-                                color: const Color(0xFFF0F0FA),
+                                color: Color(0xFFF0F0FA),
                                 borderRadius: BorderRadius.circular(100.0),
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 4.0, 8.0, 4.0),
                                 child: TextFormField(
                                   controller: _model.newFoodTextController,
@@ -236,7 +238,8 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                             ),
                             FFButtonWidget(
                               onPressed: () async {
-                                if (_model.newFoodTextController.text != '') {
+                                if (_model.newFoodTextController.text != null &&
+                                    _model.newFoodTextController.text != '') {
                                   await ServiceCategoryTable().insert({
                                     'name': _model.newFoodTextController.text,
                                     'type': EnumType.FOOD.name,
@@ -254,9 +257,9 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                               text: 'Добавить',
                               options: FFButtonOptions(
                                 height: 40.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -267,20 +270,20 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 0.0,
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
                                 borderRadius: BorderRadius.circular(100.0),
                               ),
                             ),
-                          ].divide(const SizedBox(width: 16.0)),
+                          ].divide(SizedBox(width: 16.0)),
                         ),
                       ),
                     if (!_model.addNewCategory)
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -306,7 +309,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                       ),
                   ],
                 ),
-              ].addToEnd(const SizedBox(height: 72.0)),
+              ].addToEnd(SizedBox(height: 72.0)),
             ),
             Column(
               mainAxisSize: MainAxisSize.min,
@@ -323,10 +326,10 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                 ),
                 Container(
                   width: 500.0,
-                  constraints: const BoxConstraints(
+                  constraints: BoxConstraints(
                     maxHeight: 500.0,
                   ),
-                  decoration: const BoxDecoration(),
+                  decoration: BoxDecoration(),
                   child: FutureBuilder<List<ServiceCategoryRow>>(
                     future: (_model.requestCompleter2 ??=
                             Completer<List<ServiceCategoryRow>>()
@@ -358,7 +361,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                           snapshot.data!;
 
                       return ListView.separated(
-                        padding: const EdgeInsets.fromLTRB(
+                        padding: EdgeInsets.fromLTRB(
                           0,
                           23.0,
                           0,
@@ -367,13 +370,13 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         itemCount: listViewServiceCategoryRowList.length,
-                        separatorBuilder: (_, __) => const SizedBox(height: 10.0),
+                        separatorBuilder: (_, __) => SizedBox(height: 10.0),
                         itemBuilder: (context, listViewIndex) {
                           final listViewServiceCategoryRow =
                               listViewServiceCategoryRowList[listViewIndex];
                           return Container(
                             height: 40.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: wrapWithModel(
                               model: _model.infoComponentModels2.getModel(
                                 listViewServiceCategoryRow.id.toString(),
@@ -438,21 +441,21 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                   children: [
                     if (_model.addNew == 'HOTEL')
                       Container(
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Container(
                               width: 200.0,
-                              constraints: const BoxConstraints(
+                              constraints: BoxConstraints(
                                 minHeight: 40.0,
                               ),
                               decoration: BoxDecoration(
-                                color: const Color(0xFFF0F0FA),
+                                color: Color(0xFFF0F0FA),
                                 borderRadius: BorderRadius.circular(100.0),
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 4.0, 8.0, 4.0),
                                 child: TextFormField(
                                   controller: _model.newPosTextController,
@@ -488,7 +491,8 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                             ),
                             FFButtonWidget(
                               onPressed: () async {
-                                if (_model.newPosTextController.text != '') {
+                                if (_model.newPosTextController.text != null &&
+                                    _model.newPosTextController.text != '') {
                                   await ServiceCategoryTable().insert({
                                     'name': _model.newPosTextController.text,
                                     'type': EnumType.FOOD_POSITION.name,
@@ -506,9 +510,9 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                               text: 'Добавить',
                               options: FFButtonOptions(
                                 height: 40.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -519,20 +523,20 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 0.0,
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
                                 borderRadius: BorderRadius.circular(100.0),
                               ),
                             ),
-                          ].divide(const SizedBox(width: 16.0)),
+                          ].divide(SizedBox(width: 16.0)),
                         ),
                       ),
                     if (_model.addNew != 'HOTEL')
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -559,7 +563,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                       ),
                   ],
                 ),
-              ].addToEnd(const SizedBox(height: 72.0)),
+              ].addToEnd(SizedBox(height: 72.0)),
             ),
           ],
         ),

@@ -5,6 +5,8 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'super_service_elment_model.dart';
 export 'super_service_elment_model.dart';
 
@@ -14,7 +16,7 @@ class SuperServiceElmentWidget extends StatefulWidget {
     String? categotyName,
     required this.categoryId,
     required this.createNewService,
-  }) : categotyName = categotyName ?? 'Без названия';
+  }) : this.categotyName = categotyName ?? 'Без названия';
 
   final String categotyName;
   final int? categoryId;
@@ -59,14 +61,14 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
                 child: Text(
-                  widget.categotyName,
+                  widget!.categotyName,
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Commissioner',
                         fontSize: 18.0,
@@ -107,7 +109,7 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
                   queryFn: (q) => q
                       .eq(
                         'category',
-                        widget.categoryId,
+                        widget!.categoryId,
                       )
                       .order('created_at', ascending: true),
                 )))
@@ -138,7 +140,7 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -151,13 +153,13 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
                         child: Container(
                           width: 400.0,
                           decoration: BoxDecoration(
-                            color: const Color(0xFFF0F0FA),
+                            color: Color(0xFFF0F0FA),
                             borderRadius: BorderRadius.circular(40.0),
                           ),
                           child: Align(
-                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            alignment: AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 4.0, 0.0, 4.0),
                               child: Text(
                                 valueOrDefault<String>(
@@ -201,13 +203,13 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
                     ),
                   ],
                 );
-              }).divide(const SizedBox(height: 10.0)),
+              }).divide(SizedBox(height: 10.0)),
             );
           },
         ),
         if (_model.newService == true)
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -223,7 +225,7 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
                 Expanded(
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                     child: Container(
                       width: 500.0,
                       height: 37.0,
@@ -233,7 +235,7 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
                       ),
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController,
                           focusNode: _model.textFieldFocusNode,
@@ -255,34 +257,34 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             enabledBorder: UnderlineInputBorder(
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Color(0x00000000),
                                 width: 2.0,
                               ),
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             focusedBorder: UnderlineInputBorder(
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Color(0x00000000),
                                 width: 2.0,
                               ),
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             errorBorder: UnderlineInputBorder(
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Color(0x00000000),
                                 width: 2.0,
                               ),
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             focusedErrorBorder: UnderlineInputBorder(
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Color(0x00000000),
                                 width: 2.0,
                               ),
                               borderRadius: BorderRadius.circular(8.0),
                             ),
-                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                            contentPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 8.0),
                           ),
                           style:
@@ -307,7 +309,7 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
                 ))
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -327,9 +329,9 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
                           text: 'Сохранть',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -340,7 +342,7 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 0.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -355,11 +357,11 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
                           text: 'Отменить',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: const Color(0x00BE3030),
+                            color: Color(0x00BE3030),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -375,11 +377,11 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
                             borderRadius: BorderRadius.circular(24.0),
                           ),
                         ),
-                      ].divide(const SizedBox(width: 24.0)),
+                      ].divide(SizedBox(width: 24.0)),
                     ),
                   ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -440,7 +442,7 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
                           ),
                         ),
                       ),
-                    ].divide(const SizedBox(width: 24.0)),
+                    ].divide(SizedBox(width: 24.0)),
                   ),
                 ),
               ],

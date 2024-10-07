@@ -4,6 +4,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'hall_filter_model.dart';
 export 'hall_filter_model.dart';
 
@@ -63,9 +65,8 @@ class _HallFilterWidgetState extends State<HallFilterWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: 400.0,
-      height: 500.0,
       decoration: BoxDecoration(
-        color: const Color(0xFFF0F0FA),
+        color: Color(0xFFF0F0FA),
         borderRadius: BorderRadius.circular(23.0),
       ),
       child: SingleChildScrollView(
@@ -74,17 +75,17 @@ class _HallFilterWidgetState extends State<HallFilterWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
+              padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     width: double.infinity,
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Container(
                       width: double.infinity,
-                      color: const Color(0x00000000),
+                      color: Color(0x00000000),
                       child: ExpandableNotifier(
                         controller: _model.expandableExpandableController1,
                         child: ExpandablePanel(
@@ -94,7 +95,7 @@ class _HallFilterWidgetState extends State<HallFilterWidget> {
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Commissioner',
-                                  color: const Color(0xB714181B),
+                                  color: Color(0xB714181B),
                                   fontSize: 18.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
@@ -102,7 +103,7 @@ class _HallFilterWidgetState extends State<HallFilterWidget> {
                           ),
                           collapsed: Container(),
                           expanded: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -149,7 +150,7 @@ class _HallFilterWidgetState extends State<HallFilterWidget> {
                                       ),
                                       child: Checkbox(
                                         value: _model.dis1Value ??=
-                                            widget.maxCapacity == 10,
+                                            widget!.maxCapacity == 10,
                                         onChanged: (newValue) async {
                                           safeSetState(() =>
                                               _model.dis1Value = newValue!);
@@ -221,7 +222,7 @@ class _HallFilterWidgetState extends State<HallFilterWidget> {
                                       ),
                                       child: Checkbox(
                                         value: _model.dis13Value ??=
-                                            widget.maxCapacity == 30,
+                                            widget!.maxCapacity == 30,
                                         onChanged: (newValue) async {
                                           safeSetState(() =>
                                               _model.dis13Value = newValue!);
@@ -293,7 +294,7 @@ class _HallFilterWidgetState extends State<HallFilterWidget> {
                                       ),
                                       child: Checkbox(
                                         value: _model.dis35Value ??=
-                                            widget.maxCapacity == 100,
+                                            widget!.maxCapacity == 100,
                                         onChanged: (newValue) async {
                                           safeSetState(() =>
                                               _model.dis35Value = newValue!);
@@ -365,7 +366,7 @@ class _HallFilterWidgetState extends State<HallFilterWidget> {
                                       ),
                                       child: Checkbox(
                                         value: _model.dis5Value ??=
-                                            widget.maxCapacity == 9999999,
+                                            widget!.maxCapacity == 9999999,
                                         onChanged: (newValue) async {
                                           safeSetState(() =>
                                               _model.dis5Value = newValue!);
@@ -421,17 +422,17 @@ class _HallFilterWidgetState extends State<HallFilterWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 20.0),
+              padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 20.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     width: double.infinity,
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Container(
                       width: double.infinity,
-                      color: const Color(0x00000000),
+                      color: Color(0x00000000),
                       child: ExpandableNotifier(
                         controller: _model.expandableExpandableController2,
                         child: ExpandablePanel(
@@ -441,7 +442,7 @@ class _HallFilterWidgetState extends State<HallFilterWidget> {
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Commissioner',
-                                  color: const Color(0xB714181B),
+                                  color: Color(0xB714181B),
                                   fontSize: 18.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
@@ -453,18 +454,18 @@ class _HallFilterWidgetState extends State<HallFilterWidget> {
                             children: [
                               Container(
                                 width: MediaQuery.sizeOf(context).width * 1.0,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Container(
                                   height: 200.0,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: wrapWithModel(
                                     model: _model.visitorsCountFiltersModel,
                                     updateCallback: () => safeSetState(() {}),
                                     child: VisitorsCountFiltersWidget(
                                       home: true,
-                                      filter1: widget.hallfilter1,
-                                      filter2: widget.hallfilter2,
-                                      filter3: widget.hallfilter3,
+                                      filter1: widget!.hallfilter1,
+                                      filter2: widget!.hallfilter2,
+                                      filter3: widget!.hallfilter3,
                                       onAdd: () async {},
                                       onRemove: () async {},
                                       onChange: (visitors, seatings) async {},
