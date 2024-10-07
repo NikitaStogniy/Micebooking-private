@@ -101,6 +101,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
           context: context,
           phone: false,
           tablet: false,
+          tabletLandscape: false,
         ))
           ClipRRect(
             borderRadius: BorderRadius.circular(100.0),
@@ -720,7 +721,6 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
           ),
         if (responsiveVisibility(
           context: context,
-          tabletLandscape: false,
           desktop: false,
         ))
           Container(

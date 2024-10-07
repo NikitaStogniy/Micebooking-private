@@ -98,40 +98,36 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
 
                           return SizedBox(
                             width: double.infinity,
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 40.0),
-                              child: PageView.builder(
-                                controller: _model.pageViewController1 ??=
-                                    PageController(
-                                        initialPage: max(
-                                            0, min(0, roomImages.length - 1))),
-                                onPageChanged: (_) => safeSetState(() {}),
-                                scrollDirection: Axis.horizontal,
-                                itemCount: roomImages.length,
-                                itemBuilder: (context, roomImagesIndex) {
-                                  final roomImagesItem =
-                                      roomImages[roomImagesIndex];
-                                  return ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: Image.network(
-                                      valueOrDefault<String>(
-                                        roomImagesItem,
-                                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiFYZkovo6Uq69lsMtG9ZPzszPBTa55NlR85uUqbmjNRy6Zvdh7WSBwLFpivd_70aNtmU&usqp=CAU',
-                                      ),
-                                      width: 300.0,
-                                      height: 200.0,
-                                      fit: BoxFit.cover,
+                            child: PageView.builder(
+                              controller: _model.pageViewController1 ??=
+                                  PageController(
+                                      initialPage: max(
+                                          0, min(0, roomImages.length - 1))),
+                              onPageChanged: (_) => safeSetState(() {}),
+                              scrollDirection: Axis.horizontal,
+                              itemCount: roomImages.length,
+                              itemBuilder: (context, roomImagesIndex) {
+                                final roomImagesItem =
+                                    roomImages[roomImagesIndex];
+                                return ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.network(
+                                    valueOrDefault<String>(
+                                      roomImagesItem,
+                                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiFYZkovo6Uq69lsMtG9ZPzszPBTa55NlR85uUqbmjNRy6Zvdh7WSBwLFpivd_70aNtmU&usqp=CAU',
                                     ),
-                                  );
-                                },
-                              ),
+                                    width: 300.0,
+                                    height: 200.0,
+                                    fit: BoxFit.cover,
+                                  ),
+                                );
+                              },
                             ),
                           );
                         },
                       ),
                       Container(
-                        height: 210.0,
+                        height: MediaQuery.sizeOf(context).height * 1.0,
                         decoration: const BoxDecoration(),
                         child: Visibility(
                           visible: widget.room!.images.length > 1,
@@ -277,32 +273,36 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                       if (widget.room!.images.length > 1)
                         Align(
                           alignment: const AlignmentDirectional(0.0, 1.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).primary,
-                              borderRadius: BorderRadius.circular(50.0),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 8.0, 16.0, 8.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '${(_model.pageViewCurrentIndex1 + 1).toString()}/${widget.room?.images.length.toString()}',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Commissioner',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          fontSize: 16.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w300,
-                                        ),
-                                  ),
-                                ],
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 16.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context).primary,
+                                borderRadius: BorderRadius.circular(50.0),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 8.0, 16.0, 8.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      '${(_model.pageViewCurrentIndex1 + 1).toString()}/${widget.room?.images.length.toString()}',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Commissioner',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            fontSize: 16.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -1015,81 +1015,72 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
 
                           return SizedBox(
                             width: double.infinity,
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 40.0),
-                              child: PageView.builder(
-                                controller: _model.pageViewController2 ??=
-                                    PageController(
-                                        initialPage: max(
-                                            0, min(0, hallImages.length - 1))),
-                                onPageChanged: (_) => safeSetState(() {}),
-                                scrollDirection: Axis.horizontal,
-                                itemCount: hallImages.length,
-                                itemBuilder: (context, hallImagesIndex) {
-                                  final hallImagesItem =
-                                      hallImages[hallImagesIndex];
-                                  return Builder(
-                                    builder: (context) => InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        await showDialog(
-                                          barrierColor: const Color(0x81FFFFFF),
-                                          context: context,
-                                          builder: (dialogContext) {
-                                            return Dialog(
-                                              elevation: 0,
-                                              insetPadding: EdgeInsets.zero,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              alignment:
-                                                  const AlignmentDirectional(0.0, 0.0)
-                                                      .resolve(
-                                                          Directionality.of(
-                                                              context)),
-                                              child: SizedBox(
-                                                height:
-                                                    MediaQuery.sizeOf(context)
-                                                            .height *
-                                                        0.9,
-                                                width:
-                                                    MediaQuery.sizeOf(context)
-                                                            .width *
-                                                        0.9,
-                                                child: PopUpImagesWidget(
-                                                  images: widget.room!.images,
-                                                ),
+                            child: PageView.builder(
+                              controller: _model.pageViewController2 ??=
+                                  PageController(
+                                      initialPage: max(
+                                          0, min(0, hallImages.length - 1))),
+                              onPageChanged: (_) => safeSetState(() {}),
+                              scrollDirection: Axis.horizontal,
+                              itemCount: hallImages.length,
+                              itemBuilder: (context, hallImagesIndex) {
+                                final hallImagesItem =
+                                    hallImages[hallImagesIndex];
+                                return Builder(
+                                  builder: (context) => InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await showDialog(
+                                        barrierColor: const Color(0x81FFFFFF),
+                                        context: context,
+                                        builder: (dialogContext) {
+                                          return Dialog(
+                                            elevation: 0,
+                                            insetPadding: EdgeInsets.zero,
+                                            backgroundColor: Colors.transparent,
+                                            alignment: const AlignmentDirectional(
+                                                    0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                            child: SizedBox(
+                                              height: MediaQuery.sizeOf(context)
+                                                      .height *
+                                                  0.9,
+                                              width: MediaQuery.sizeOf(context)
+                                                      .width *
+                                                  0.9,
+                                              child: PopUpImagesWidget(
+                                                images: widget.room!.images,
                                               ),
-                                            );
-                                          },
-                                        );
-                                      },
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        child: Image.network(
-                                          valueOrDefault<String>(
-                                            hallImagesItem,
-                                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiFYZkovo6Uq69lsMtG9ZPzszPBTa55NlR85uUqbmjNRy6Zvdh7WSBwLFpivd_70aNtmU&usqp=CAU',
-                                          ),
-                                          width: 300.0,
-                                          height: 280.0,
-                                          fit: BoxFit.cover,
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    },
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Image.network(
+                                        valueOrDefault<String>(
+                                          hallImagesItem,
+                                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiFYZkovo6Uq69lsMtG9ZPzszPBTa55NlR85uUqbmjNRy6Zvdh7WSBwLFpivd_70aNtmU&usqp=CAU',
                                         ),
+                                        width: 300.0,
+                                        height: 280.0,
+                                        fit: BoxFit.cover,
                                       ),
                                     ),
-                                  );
-                                },
-                              ),
+                                  ),
+                                );
+                              },
                             ),
                           );
                         },
                       ),
                       Container(
-                        height: 260.0,
+                        height: MediaQuery.sizeOf(context).height * 1.0,
                         decoration: const BoxDecoration(),
                         child: Visibility(
                           visible: widget.room!.images.length > 1,
@@ -1181,32 +1172,36 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                       if (widget.room!.images.length > 1)
                         Align(
                           alignment: const AlignmentDirectional(0.0, 1.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).primary,
-                              borderRadius: BorderRadius.circular(50.0),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 8.0, 16.0, 8.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '${(_model.pageViewCurrentIndex2 + 1).toString()}/${widget.room?.images.length.toString()}',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Commissioner',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          fontSize: 16.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w300,
-                                        ),
-                                  ),
-                                ],
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 16.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context).primary,
+                                borderRadius: BorderRadius.circular(50.0),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 8.0, 16.0, 8.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      '${(_model.pageViewCurrentIndex2 + 1).toString()}/${widget.room?.images.length.toString()}',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Commissioner',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            fontSize: 16.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

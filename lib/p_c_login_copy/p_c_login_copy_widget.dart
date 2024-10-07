@@ -65,14 +65,14 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(
                           valueOrDefault<double>(
-                            MediaQuery.sizeOf(context).width > 1000.0
+                            MediaQuery.sizeOf(context).width > 700.0
                                 ? 40.0
                                 : 8.0,
                             0.0,
                           ),
                           16.0,
                           valueOrDefault<double>(
-                            MediaQuery.sizeOf(context).width > 1000.0
+                            MediaQuery.sizeOf(context).width > 700.0
                                 ? 40.0
                                 : 8.0,
                             0.0,
@@ -122,22 +122,25 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                         context.safePop();
                                       },
                                     ),
-                                    Text(
-                                      _model.isRegister
-                                          ? 'Регистрация в личном кабинете'
-                                          : 'Вход в личный кабинет',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Commissioner',
-                                            fontSize: MediaQuery.sizeOf(context)
-                                                        .width <
-                                                    1000.0
-                                                ? 24.0
-                                                : 38.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                    Flexible(
+                                      child: Text(
+                                        _model.isRegister
+                                            ? 'Регистрация в личном кабинете'
+                                            : 'Вход в личный кабинет',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Commissioner',
+                                              fontSize:
+                                                  MediaQuery.sizeOf(context)
+                                                              .width <
+                                                          1000.0
+                                                      ? 24.0
+                                                      : 38.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
                                     ),
                                     Container(
                                       width: 40.0,

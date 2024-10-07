@@ -9,6 +9,8 @@ class ManagerInfoModel extends FlutterFlowModel<ManagerInfoWidget> {
 
   bool isEdit = false;
 
+  bool editEmail = false;
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();

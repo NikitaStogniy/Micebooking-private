@@ -123,35 +123,30 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    if (responsiveVisibility(
-                      context: context,
-                      tabletLandscape: false,
-                      desktop: false,
-                    ))
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 8.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                Navigator.pop(context);
-                              },
-                              child: Icon(
-                                Icons.close_rounded,
-                                color: FlutterFlowTheme.of(context).primary,
-                                size: 32.0,
-                              ),
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 16.0, 0.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              Navigator.pop(context);
+                            },
+                            child: Icon(
+                              Icons.close_rounded,
+                              color: FlutterFlowTheme.of(context).primary,
+                              size: 32.0,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
+                    ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -170,38 +165,22 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                               shape: BoxShape.circle,
                             ),
                           ),
-                        Text(
-                          _model.isRegister == false
-                              ? 'Вход в личный кабинет'
-                              : 'Регистрация в личном кабинете',
-                          textAlign: TextAlign.center,
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Commissioner',
-                                    fontSize: 38.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                        ),
-                        if (responsiveVisibility(
-                          context: context,
-                          phone: false,
-                          tablet: false,
-                        ))
-                          InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              Navigator.pop(context);
-                            },
-                            child: Icon(
-                              Icons.close_rounded,
-                              color: FlutterFlowTheme.of(context).primary,
-                              size: 32.0,
-                            ),
+                        Expanded(
+                          child: Text(
+                            _model.isRegister == false
+                                ? 'Вход в личный кабинет'
+                                : 'Регистрация в личном кабинете',
+                            textAlign: TextAlign.center,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Commissioner',
+                                  fontSize: 38.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
                           ),
+                        ),
                       ].divide(const SizedBox(width: 40.0)),
                     ),
                     if (_model.isRegister == true)

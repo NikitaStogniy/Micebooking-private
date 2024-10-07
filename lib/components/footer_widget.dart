@@ -76,6 +76,7 @@ class _FooterWidgetState extends State<FooterWidget>
             context: context,
             phone: false,
             tablet: false,
+            tabletLandscape: false,
           ))
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 24.0),
@@ -520,7 +521,6 @@ class _FooterWidgetState extends State<FooterWidget>
             ),
           if (responsiveVisibility(
             context: context,
-            tabletLandscape: false,
             desktop: false,
           ))
             Column(

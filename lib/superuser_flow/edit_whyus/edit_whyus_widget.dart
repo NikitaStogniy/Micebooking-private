@@ -141,6 +141,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                             ),
                             focusNode: _model.whyusTitle1FocusNode,
                             autofocus: false,
+                            readOnly: !_model.isEdit,
                             obscureText: false,
                             decoration: InputDecoration(
                               labelStyle: FlutterFlowTheme.of(context)
@@ -271,6 +272,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                     qa: elements1CmsRow,
                                     title: 'Заголовок в первом блоке',
                                     title2: 'Текст в первом блоке',
+                                    readOnly: _model.isEdit,
                                     delete: () async {
                                       await CmsTable().delete(
                                         matchingRows: (rows) => rows.eq(
@@ -291,7 +293,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                         Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            if (_model.newElement1 == false)
+                            if ((_model.newElement1 == false) && _model.isEdit)
                               InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -688,6 +690,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                             ),
                             focusNode: _model.whyusTitle2FocusNode,
                             autofocus: false,
+                            readOnly: !_model.isEdit,
                             obscureText: false,
                             decoration: InputDecoration(
                               labelStyle: FlutterFlowTheme.of(context)
@@ -818,6 +821,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                     qa: elements2CmsRow,
                                     title: 'Заголовок во втором блоке',
                                     title2: 'Текст во втором блоке',
+                                    readOnly: _model.isEdit,
                                     delete: () async {
                                       await CmsTable().delete(
                                         matchingRows: (rows) => rows.eq(
@@ -838,7 +842,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                         Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            if (_model.newElement2 == false)
+                            if ((_model.newElement2 == false) && _model.isEdit)
                               InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -1234,6 +1238,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                 ),
                                 focusNode: _model.whyusTitle3FocusNode,
                                 autofocus: false,
+                                readOnly: !_model.isEdit,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   labelStyle: FlutterFlowTheme.of(context)
@@ -1362,6 +1367,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                     qa: elements3CmsRow,
                                     title: 'Заголовок в третьем блоке',
                                     title2: 'Текст в третьем блоке',
+                                    readOnly: _model.isEdit,
                                     delete: () async {
                                       await CmsTable().delete(
                                         matchingRows: (rows) => rows.eq(
@@ -1382,7 +1388,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                         Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            if (_model.newElement3 == false)
+                            if ((_model.newElement3 == false) && _model.isEdit)
                               InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -1744,71 +1750,112 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    FFButtonWidget(
-                      onPressed: () async {
-                        await CmsTable().update(
-                          data: {
-                            'title1': _model.whyusTitle1TextController.text,
-                            'title3': _model.whyusTitle3TextController.text,
-                            'title2': _model.whyusTitle2TextController.text,
-                          },
-                          matchingRows: (rows) => rows.eq(
-                            'id',
-                            containerCmsRow?.id,
+                    if (!_model.isEdit)
+                      FFButtonWidget(
+                        onPressed: () async {
+                          _model.isEdit = true;
+                          safeSetState(() {});
+                        },
+                        text: 'Редактировать',
+                        options: FFButtonOptions(
+                          height: 50.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              43.0, 0.0, 43.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).primary,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Commissioner',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                          elevation: 0.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
                           ),
-                        );
-                      },
-                      text: 'Сохранить',
-                      options: FFButtonOptions(
-                        height: 50.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            43.0, 0.0, 43.0, 0.0),
-                        iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).primary,
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Commissioner',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                        elevation: 0.0,
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
+                          borderRadius: BorderRadius.circular(24.0),
                         ),
-                        borderRadius: BorderRadius.circular(24.0),
                       ),
-                    ),
-                    FFButtonWidget(
-                      onPressed: () async {
-                        safeSetState(() {
-                          _model.whyusTitle1TextController?.text =
-                              containerCmsRow!.title1!;
-                        });
-                      },
-                      text: 'Отменить изменения',
-                      options: FFButtonOptions(
-                        height: 50.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            43.0, 0.0, 43.0, 0.0),
-                        iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).error,
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Commissioner',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                        elevation: 0.0,
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
+                    if (_model.isEdit)
+                      FFButtonWidget(
+                        onPressed: () async {
+                          await CmsTable().update(
+                            data: {
+                              'title1': _model.whyusTitle1TextController.text,
+                              'title3': _model.whyusTitle3TextController.text,
+                              'title2': _model.whyusTitle2TextController.text,
+                            },
+                            matchingRows: (rows) => rows.eq(
+                              'id',
+                              containerCmsRow?.id,
+                            ),
+                          );
+                          _model.isEdit = false;
+                          _model.newElement1 = false;
+                          _model.newElement2 = false;
+                          _model.newElement3 = false;
+                          safeSetState(() {});
+                        },
+                        text: 'Сохранить',
+                        options: FFButtonOptions(
+                          height: 50.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              43.0, 0.0, 43.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).primary,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Commissioner',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                          elevation: 0.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(24.0),
                         ),
-                        borderRadius: BorderRadius.circular(24.0),
                       ),
-                    ),
+                    if (_model.isEdit)
+                      FFButtonWidget(
+                        onPressed: () async {
+                          safeSetState(() {
+                            _model.whyusTitle1TextController?.text =
+                                containerCmsRow!.title1!;
+                            _model.whyusTitle2TextController?.text =
+                                containerCmsRow!.title2!;
+                            _model.whyusTitle3TextController?.text =
+                                containerCmsRow!.title3!;
+                          });
+                          _model.isEdit = false;
+                          safeSetState(() {});
+                        },
+                        text: 'Отменить изменения',
+                        options: FFButtonOptions(
+                          height: 50.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              43.0, 0.0, 43.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).error,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Commissioner',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                          elevation: 0.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(24.0),
+                        ),
+                      ),
                   ].divide(const SizedBox(width: 16.0)),
                 ),
               ].divide(const SizedBox(height: 60.0)).addToEnd(const SizedBox(height: 70.0)),

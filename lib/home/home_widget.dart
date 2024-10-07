@@ -72,6 +72,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 context: context,
                 phone: false,
                 tablet: false,
+                tabletLandscape: false,
               ))
                 FutureBuilder<List<UsersRow>>(
                   future: UsersTable().querySingleRow(
@@ -120,7 +121,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                           children: [
                             if (responsiveVisibility(
                               context: context,
-                              tabletLandscape: false,
                               desktop: false,
                             ))
                               Padding(
@@ -143,6 +143,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               context: context,
                               phone: false,
                               tablet: false,
+                              tabletLandscape: false,
                             ))
                               Align(
                                 alignment: const AlignmentDirectional(0.0, -0.9),
@@ -669,7 +670,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                 ),
               if (responsiveVisibility(
                 context: context,
-                tabletLandscape: false,
                 desktop: false,
               ))
                 FutureBuilder<List<UsersRow>>(
@@ -718,7 +718,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                           children: [
                             if (responsiveVisibility(
                               context: context,
-                              tabletLandscape: false,
                               desktop: false,
                             ))
                               Padding(

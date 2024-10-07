@@ -63,7 +63,6 @@ class _HallFilterWidgetState extends State<HallFilterWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: 400.0,
-      height: 500.0,
       decoration: BoxDecoration(
         color: const Color(0xFFF0F0FA),
         borderRadius: BorderRadius.circular(23.0),

@@ -11,7 +11,12 @@ import 'edit_about_model.dart';
 export 'edit_about_model.dart';
 
 class EditAboutWidget extends StatefulWidget {
-  const EditAboutWidget({super.key});
+  const EditAboutWidget({
+    super.key,
+    required this.goBack,
+  });
+
+  final Future Function()? goBack;
 
   @override
   State<EditAboutWidget> createState() => _EditAboutWidgetState();
@@ -290,6 +295,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                             qa: elementsCmsRow,
                             title: 'Заголовок пункта',
                             title2: 'Текст пункта',
+                            readOnly: _model.isEdit,
                             delete: () async {
                               await CmsTable().delete(
                                 matchingRows: (rows) => rows.eq(
@@ -310,7 +316,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    if (_model.newElement == false)
+                    if ((_model.newElement == false) && _model.isEdit)
                       InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,

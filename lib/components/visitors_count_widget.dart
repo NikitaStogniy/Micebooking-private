@@ -153,7 +153,7 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                           child: Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
-                                                    8.0, 0.0, 8.0, 10.0),
+                                                    8.0, 0.0, 8.0, 0.0),
                                             child: TextFormField(
                                               controller:
                                                   _model.countmobTextController,
@@ -243,6 +243,10 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                                       BorderRadius.circular(
                                                           0.0),
                                                 ),
+                                                contentPadding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 8.0),
                                               ),
                                               style: FlutterFlowTheme.of(
                                                       context)
@@ -357,7 +361,7 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                 child: FaIcon(
                                   FontAwesomeIcons.minus,
                                   color: FlutterFlowTheme.of(context).primary,
-                                  size: 18.0,
+                                  size: 12.0,
                                 ),
                               ),
                             ),
@@ -390,7 +394,7 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                 child: FaIcon(
                                   FontAwesomeIcons.plus,
                                   color: FlutterFlowTheme.of(context).primary,
-                                  size: 18.0,
+                                  size: 12.0,
                                 ),
                               ),
                             ),

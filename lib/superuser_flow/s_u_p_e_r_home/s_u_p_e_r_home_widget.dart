@@ -29,9 +29,6 @@ import '/superuser_flow/super_hotel_juridical/super_hotel_juridical_widget.dart'
 import '/superuser_flow/super_requests/super_requests_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-
 import 's_u_p_e_r_home_model.dart';
 export 's_u_p_e_r_home_model.dart';
 
@@ -73,9 +70,9 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
           top: true,
           child: Container(
             width: double.infinity,
-            height: MediaQuery.sizeOf(context).height * 1,
+            height: MediaQuery.sizeOf(context).height * 1.0,
             decoration: BoxDecoration(
-              color: Color(0xFFF9F9F9),
+              color: const Color(0xFFF9F9F9),
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image: Image.asset(
@@ -95,19 +92,19 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Container(
-                        height: MediaQuery.sizeOf(context).height * 1,
+                        height: MediaQuery.sizeOf(context).height * 1.0,
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primary,
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(0),
-                            bottomRight: Radius.circular(50),
-                            topLeft: Radius.circular(0),
-                            topRight: Radius.circular(50),
+                          borderRadius: const BorderRadius.only(
+                            bottomLeft: Radius.circular(0.0),
+                            bottomRight: Radius.circular(50.0),
+                            topLeft: Radius.circular(0.0),
+                            topRight: Radius.circular(50.0),
                           ),
                         ),
                         child: Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 32, 16, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 32.0, 16.0, 0.0),
                           child: Stack(
                             children: [
                               InkWell(
@@ -119,20 +116,20 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                   context.pushNamed('Home');
                                 },
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(0),
+                                  borderRadius: BorderRadius.circular(0.0),
                                   child: SvgPicture.asset(
                                     'assets/images/MICEBOOKING.svg',
-                                    width: 140,
-                                    height: 16,
+                                    width: 140.0,
+                                    height: 16.0,
                                     fit: BoxFit.contain,
                                   ),
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(0, -0.3),
+                                alignment: const AlignmentDirectional(0.0, -0.3),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 32, 0, 0),
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 32.0, 0.0, 0.0),
                                   child: SingleChildScrollView(
                                     controller: _model.columnController1,
                                     child: Column(
@@ -156,7 +153,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                 ?.animateTo(
                                               0,
                                               duration:
-                                                  Duration(milliseconds: 100),
+                                                  const Duration(milliseconds: 100),
                                               curve: Curves.ease,
                                             );
                                           },
@@ -179,7 +176,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .alternate,
                                                   ),
-                                                  fontSize: 18,
+                                                  fontSize: 18.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
@@ -198,7 +195,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                 ?.animateTo(
                                               0,
                                               duration:
-                                                  Duration(milliseconds: 100),
+                                                  const Duration(milliseconds: 100),
                                               curve: Curves.ease,
                                             );
                                           },
@@ -221,7 +218,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .alternate,
                                                   ),
-                                                  fontSize: 18,
+                                                  fontSize: 18.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
@@ -242,7 +239,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryBackground,
-                                                    fontSize: 18,
+                                                    fontSize: 18.0,
                                                     letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w300,
                                                   ),
@@ -261,7 +258,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                 await _model.columnController2
                                                     ?.animateTo(
                                                   0,
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 100),
                                                   curve: Curves.ease,
                                                 );
@@ -289,7 +286,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                                     context)
                                                                 .alternate,
                                                           ),
-                                                          fontSize: 18,
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w500,
@@ -309,7 +306,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                 await _model.columnController2
                                                     ?.animateTo(
                                                   0,
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 100),
                                                   curve: Curves.ease,
                                                 );
@@ -337,7 +334,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                                     context)
                                                                 .alternate,
                                                           ),
-                                                          fontSize: 18,
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w500,
@@ -357,7 +354,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                 await _model.columnController2
                                                     ?.animateTo(
                                                   0,
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 100),
                                                   curve: Curves.ease,
                                                 );
@@ -385,7 +382,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                                     context)
                                                                 .alternate,
                                                           ),
-                                                          fontSize: 18,
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w500,
@@ -405,7 +402,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                 await _model.columnController2
                                                     ?.animateTo(
                                                   0,
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 100),
                                                   curve: Curves.ease,
                                                 );
@@ -433,19 +430,19 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                                     context)
                                                                 .alternate,
                                                           ),
-                                                          fontSize: 18,
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w500,
                                                         ),
                                               ),
                                             ),
-                                          ].divide(SizedBox(height: 20)),
+                                          ].divide(const SizedBox(height: 20.0)),
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 32, 0, 32),
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 32.0, 0.0, 32.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             crossAxisAlignment:
@@ -462,7 +459,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryBackground,
-                                                          fontSize: 18,
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w300,
@@ -481,7 +478,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                   await _model.columnController2
                                                       ?.animateTo(
                                                     0,
-                                                    duration: Duration(
+                                                    duration: const Duration(
                                                         milliseconds: 100),
                                                     curve: Curves.ease,
                                                   );
@@ -511,7 +508,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                                       context)
                                                                   .alternate,
                                                             ),
-                                                            fontSize: 18,
+                                                            fontSize: 18.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.w500,
@@ -531,7 +528,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                   await _model.columnController2
                                                       ?.animateTo(
                                                     0,
-                                                    duration: Duration(
+                                                    duration: const Duration(
                                                         milliseconds: 100),
                                                     curve: Curves.ease,
                                                   );
@@ -561,7 +558,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                                       context)
                                                                   .alternate,
                                                             ),
-                                                            fontSize: 18,
+                                                            fontSize: 18.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.w500,
@@ -581,7 +578,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                   await _model.columnController2
                                                       ?.animateTo(
                                                     0,
-                                                    duration: Duration(
+                                                    duration: const Duration(
                                                         milliseconds: 100),
                                                     curve: Curves.ease,
                                                   );
@@ -611,7 +608,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                                       context)
                                                                   .alternate,
                                                             ),
-                                                            fontSize: 18,
+                                                            fontSize: 18.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.w500,
@@ -631,7 +628,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                   await _model.columnController2
                                                       ?.animateTo(
                                                     0,
-                                                    duration: Duration(
+                                                    duration: const Duration(
                                                         milliseconds: 100),
                                                     curve: Curves.ease,
                                                   );
@@ -661,7 +658,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                                       context)
                                                                   .alternate,
                                                             ),
-                                                            fontSize: 18,
+                                                            fontSize: 18.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.w500,
@@ -681,7 +678,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                   await _model.columnController2
                                                       ?.animateTo(
                                                     0,
-                                                    duration: Duration(
+                                                    duration: const Duration(
                                                         milliseconds: 100),
                                                     curve: Curves.ease,
                                                   );
@@ -711,7 +708,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                                       context)
                                                                   .alternate,
                                                             ),
-                                                            fontSize: 18,
+                                                            fontSize: 18.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.w500,
@@ -731,7 +728,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                   await _model.columnController2
                                                       ?.animateTo(
                                                     0,
-                                                    duration: Duration(
+                                                    duration: const Duration(
                                                         milliseconds: 100),
                                                     curve: Curves.ease,
                                                   );
@@ -761,7 +758,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                                       context)
                                                                   .alternate,
                                                             ),
-                                                            fontSize: 18,
+                                                            fontSize: 18.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.w500,
@@ -782,7 +779,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                   await _model.columnController2
                                                       ?.animateTo(
                                                     0,
-                                                    duration: Duration(
+                                                    duration: const Duration(
                                                         milliseconds: 100),
                                                     curve: Curves.ease,
                                                   );
@@ -812,18 +809,19 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                                       context)
                                                                   .alternate,
                                                             ),
-                                                            fontSize: 18,
+                                                            fontSize: 18.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.w500,
                                                           ),
                                                 ),
                                               ),
-                                            ].divide(SizedBox(height: 20)),
+                                            ].divide(const SizedBox(height: 20.0)),
                                           ),
                                         ),
                                         Align(
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
                                               GoRouter.of(context)
@@ -837,11 +835,12 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                             },
                                             text: 'Выйти',
                                             options: FFButtonOptions(
-                                              height: 40,
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(24, 0, 24, 0),
-                                              iconPadding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 0, 0),
+                                              height: 40.0,
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      24.0, 0.0, 24.0, 0.0),
+                                              iconPadding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryBackground,
@@ -855,17 +854,17 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                         .primary,
                                                     letterSpacing: 0.0,
                                                   ),
-                                              elevation: 0,
-                                              borderSide: BorderSide(
+                                              elevation: 0.0,
+                                              borderSide: const BorderSide(
                                                 color: Colors.transparent,
-                                                width: 0,
+                                                width: 0.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(24),
+                                                  BorderRadius.circular(24.0),
                                             ),
                                           ),
                                         ),
-                                      ].divide(SizedBox(height: 16)),
+                                      ].divide(const SizedBox(height: 16.0)),
                                     ),
                                   ),
                                 ),
@@ -967,13 +966,14 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Commissioner',
-                                  fontSize: 38,
+                                  fontSize: 38.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
                                 ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 40, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 40.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -984,7 +984,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                   model: _model.hotelSettingsModel,
                                   updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
-                                  child: HotelSettingsWidget(),
+                                  child: const HotelSettingsWidget(),
                                 ),
                               if (_model.activePage ==
                                   SuperUserPage.room_settings)
@@ -992,7 +992,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                   model: _model.roomSettingsModel,
                                   updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
-                                  child: RoomSettingsWidget(),
+                                  child: const RoomSettingsWidget(),
                                 ),
                               if (_model.activePage ==
                                   SuperUserPage.hall_settings)
@@ -1000,7 +1000,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                   model: _model.hallSettingsModel,
                                   updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
-                                  child: HallSettingsWidget(),
+                                  child: const HallSettingsWidget(),
                                 ),
                               if (_model.activePage ==
                                   SuperUserPage.food_settings)
@@ -1008,7 +1008,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                   model: _model.foodSettingsModel,
                                   updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
-                                  child: FoodSettingsWidget(),
+                                  child: const FoodSettingsWidget(),
                                 ),
                               if (_model.activePage ==
                                   SuperUserPage.hotel_search)
@@ -1173,26 +1173,28 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                 wrapWithModel(
                                   model: _model.editAboutModel,
                                   updateCallback: () => safeSetState(() {}),
-                                  child: EditAboutWidget(),
+                                  child: EditAboutWidget(
+                                    goBack: () async {},
+                                  ),
                                 ),
                               if (_model.activePage == SuperUserPage.cms_whyus)
                                 wrapWithModel(
                                   model: _model.editWhyusModel,
                                   updateCallback: () => safeSetState(() {}),
-                                  child: EditWhyusWidget(),
+                                  child: const EditWhyusWidget(),
                                 ),
                               if (_model.activePage ==
                                   SuperUserPage.cms_aboutus)
                                 wrapWithModel(
                                   model: _model.editAboutUsModel,
                                   updateCallback: () => safeSetState(() {}),
-                                  child: EditAboutUsWidget(),
+                                  child: const EditAboutUsWidget(),
                                 ),
                               if (_model.activePage == SuperUserPage.cms_qa)
                                 wrapWithModel(
                                   model: _model.editQAModel,
                                   updateCallback: () => safeSetState(() {}),
-                                  child: EditQAWidget(),
+                                  child: const EditQAWidget(),
                                 ),
                               if (_model.activePage ==
                                   SuperUserPage.hotel_request)
@@ -1301,32 +1303,32 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                 wrapWithModel(
                                   model: _model.editPPModel,
                                   updateCallback: () => safeSetState(() {}),
-                                  child: EditPPWidget(),
+                                  child: const EditPPWidget(),
                                 ),
                               if (_model.activePage == SuperUserPage.terms)
                                 wrapWithModel(
                                   model: _model.editTermsModel,
                                   updateCallback: () => safeSetState(() {}),
-                                  child: EditTermsWidget(),
+                                  child: const EditTermsWidget(),
                                 ),
                               if (_model.activePage ==
                                   SuperUserPage.personal_info)
                                 wrapWithModel(
                                   model: _model.editPIModel,
                                   updateCallback: () => safeSetState(() {}),
-                                  child: EditPIWidget(),
+                                  child: const EditPIWidget(),
                                 ),
                             ],
                           ),
                         ),
                       ]
-                          .divide(SizedBox(height: 44))
-                          .addToStart(SizedBox(height: 64))
-                          .addToEnd(SizedBox(height: 64)),
+                          .divide(const SizedBox(height: 44.0))
+                          .addToStart(const SizedBox(height: 64.0))
+                          .addToEnd(const SizedBox(height: 64.0)),
                     ),
                   ),
                 ),
-              ].divide(SizedBox(width: 40)),
+              ].divide(const SizedBox(width: 40.0)),
             ),
           ),
         ),

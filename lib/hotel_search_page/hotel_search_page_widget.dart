@@ -342,14 +342,14 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   valueOrDefault<double>(
                                     MediaQuery.sizeOf(context).width > 1000.0
-                                        ? 32.0
+                                        ? 0.0
                                         : 16.0,
                                     0.0,
                                   ),
                                   16.0,
                                   valueOrDefault<double>(
                                     MediaQuery.sizeOf(context).width > 1000.0
-                                        ? 32.0
+                                        ? 0.0
                                         : 16.0,
                                     0.0,
                                   ),
@@ -480,6 +480,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                           context: context,
                           phone: false,
                           tablet: false,
+                          tabletLandscape: false,
                         ))
                           wrapWithModel(
                             model: _model.hotelSearchCompModel,
@@ -549,34 +550,11 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                               },
                             ),
                           ),
-                        Container(
-                          height: 30.0,
-                          decoration: const BoxDecoration(),
-                          child: Builder(
-                            builder: (context) {
-                              final test = _model.filteredRooms.toList();
-
-                              return Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children:
-                                    List.generate(test.length, (testIndex) {
-                                  final testItem = test[testIndex];
-                                  return Text(
-                                    testItem.toString(),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Commissioner',
-                                          color: const Color(0x0014181B),
-                                          letterSpacing: 0.0,
-                                        ),
-                                  );
-                                }).divide(const SizedBox(width: 40.0)),
-                              );
-                            },
-                          ),
-                        ),
-                        if (_model.step == 0)
+                        if ((_model.step == 0) &&
+                            responsiveVisibility(
+                              context: context,
+                              phone: false,
+                            ))
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 valueOrDefault<double>(
@@ -612,7 +590,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                         await showAlignedDialog(
                                           context: context,
                                           isGlobal: false,
-                                          avoidOverflow: false,
+                                          avoidOverflow: true,
                                           targetAnchor: const AlignmentDirectional(
                                                   0.0, 8.0)
                                               .resolve(
@@ -629,7 +607,10 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                     FocusScope.of(dialogContext)
                                                         .unfocus(),
                                                 child: SizedBox(
-                                                  height: 500.0,
+                                                  height:
+                                                      MediaQuery.sizeOf(context)
+                                                              .height *
+                                                          0.3,
                                                   child: HotelFilterWidget(
                                                     chosenServices: _model
                                                         .hotelFilterServices,
@@ -835,7 +816,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                           await showAlignedDialog(
                                             context: context,
                                             isGlobal: false,
-                                            avoidOverflow: false,
+                                            avoidOverflow: true,
                                             targetAnchor: const AlignmentDirectional(
                                                     0.0, 8.0)
                                                 .resolve(
@@ -851,43 +832,49 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                   onTap: () => FocusScope.of(
                                                           dialogContext)
                                                       .unfocus(),
-                                                  child: HallFilterWidget(
-                                                    maxCapacity: _model
-                                                        .hallFilterMaxCapacity,
-                                                    chosenSittings: _model
-                                                        .hallFilterChosenSeatings,
-                                                    hallfilter1:
-                                                        widget.hallFilter1,
-                                                    hallfilter2:
-                                                        widget.hallFilter2,
-                                                    hallfilter3:
-                                                        widget.hallFilter3,
-                                                    addCapacity: (maxCapacity,
-                                                        minCapacity) async {
-                                                      _model.hallFilterMaxCapacity =
-                                                          maxCapacity;
-                                                      _model.hallFilterMinCapacity =
-                                                          minCapacity;
-                                                      safeSetState(() {});
-                                                    },
-                                                    addSeating:
-                                                        (seating) async {
-                                                      if (_model
-                                                              .hallFilterChosenSeatings
-                                                              .contains(
-                                                                  seating) ==
-                                                          true) {
-                                                        _model
-                                                            .removeFromHallFilterChosenSeatings(
-                                                                seating!);
+                                                  child: SizedBox(
+                                                    height: MediaQuery.sizeOf(
+                                                                context)
+                                                            .height *
+                                                        0.3,
+                                                    child: HallFilterWidget(
+                                                      maxCapacity: _model
+                                                          .hallFilterMaxCapacity,
+                                                      chosenSittings: _model
+                                                          .hallFilterChosenSeatings,
+                                                      hallfilter1:
+                                                          widget.hallFilter1,
+                                                      hallfilter2:
+                                                          widget.hallFilter2,
+                                                      hallfilter3:
+                                                          widget.hallFilter3,
+                                                      addCapacity: (maxCapacity,
+                                                          minCapacity) async {
+                                                        _model.hallFilterMaxCapacity =
+                                                            maxCapacity;
+                                                        _model.hallFilterMinCapacity =
+                                                            minCapacity;
                                                         safeSetState(() {});
-                                                      } else {
-                                                        _model
-                                                            .addToHallFilterChosenSeatings(
-                                                                seating!);
-                                                        safeSetState(() {});
-                                                      }
-                                                    },
+                                                      },
+                                                      addSeating:
+                                                          (seating) async {
+                                                        if (_model
+                                                                .hallFilterChosenSeatings
+                                                                .contains(
+                                                                    seating) ==
+                                                            true) {
+                                                          _model
+                                                              .removeFromHallFilterChosenSeatings(
+                                                                  seating!);
+                                                          safeSetState(() {});
+                                                        } else {
+                                                          _model
+                                                              .addToHallFilterChosenSeatings(
+                                                                  seating!);
+                                                          safeSetState(() {});
+                                                        }
+                                                      },
+                                                    ),
                                                   ),
                                                 ),
                                               );
@@ -1228,6 +1215,502 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                       ),
                                     ),
                                 ].divide(const SizedBox(width: 10.0)),
+                              ),
+                            ),
+                          ),
+                        if ((_model.step == 0) &&
+                            responsiveVisibility(
+                              context: context,
+                              tablet: false,
+                              tabletLandscape: false,
+                              desktop: false,
+                            ))
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                valueOrDefault<double>(
+                                  MediaQuery.sizeOf(context).width > 1000.0
+                                      ? 0.0
+                                      : 16.0,
+                                  0.0,
+                                ),
+                                0.0,
+                                valueOrDefault<double>(
+                                  MediaQuery.sizeOf(context).width > 1000.0
+                                      ? 0.0
+                                      : 16.0,
+                                  0.0,
+                                ),
+                                0.0),
+                            child: Container(
+                              width: MediaQuery.sizeOf(context).width * 1.0,
+                              constraints: const BoxConstraints(
+                                maxWidth: 1250.0,
+                              ),
+                              decoration: const BoxDecoration(),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Builder(
+                                    builder: (context) => InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await showAlignedDialog(
+                                          context: context,
+                                          isGlobal: false,
+                                          avoidOverflow: true,
+                                          targetAnchor: const AlignmentDirectional(
+                                                  0.0, 8.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          followerAnchor: const AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          builder: (dialogContext) {
+                                            return Material(
+                                              color: Colors.transparent,
+                                              child: GestureDetector(
+                                                onTap: () =>
+                                                    FocusScope.of(dialogContext)
+                                                        .unfocus(),
+                                                child: SizedBox(
+                                                  height:
+                                                      MediaQuery.sizeOf(context)
+                                                              .height *
+                                                          0.3,
+                                                  child: HotelFilterWidget(
+                                                    chosenServices: _model
+                                                        .hotelFilterServices,
+                                                    starsList:
+                                                        _model.hotelFilterStars,
+                                                    initialMinPrice:
+                                                        valueOrDefault<double>(
+                                                      _model.filterMinPrice,
+                                                      1.0,
+                                                    ),
+                                                    initialMaxPrice:
+                                                        valueOrDefault<double>(
+                                                      _model.filterMaxPrice,
+                                                      100000.0,
+                                                    ),
+                                                    addStar: (star) async {
+                                                      if (_model
+                                                              .hotelFilterStars
+                                                              .contains(star) ==
+                                                          true) {
+                                                        _model
+                                                            .removeFromHotelFilterStars(
+                                                                star!);
+                                                        safeSetState(() {});
+                                                      } else {
+                                                        _model
+                                                            .addToHotelFilterStars(
+                                                                star!);
+                                                        safeSetState(() {});
+                                                      }
+                                                    },
+                                                    addDistance:
+                                                        (min, max) async {
+                                                      if ((_model.hotelFilterMinDistance ==
+                                                              min) &&
+                                                          (_model.hotelFilterMaxDistance ==
+                                                              max)) {
+                                                        _model.hotelFilterMaxDistance =
+                                                            100000;
+                                                        _model.hotelFilterMinDistance =
+                                                            0;
+                                                        safeSetState(() {});
+                                                      } else {
+                                                        _model.hotelFilterMaxDistance =
+                                                            max;
+                                                        _model.hotelFilterMinDistance =
+                                                            min;
+                                                        safeSetState(() {});
+                                                      }
+                                                    },
+                                                    choseService: (id) async {
+                                                      if (_model
+                                                              .hotelFilterServices
+                                                              .contains(id) ==
+                                                          true) {
+                                                        _model
+                                                            .removeFromHotelFilterServices(
+                                                                id!);
+                                                        safeSetState(() {});
+                                                      } else {
+                                                        _model
+                                                            .addToHotelFilterServices(
+                                                                id!);
+                                                        safeSetState(() {});
+                                                      }
+                                                    },
+                                                    updatePrice: (minPrice,
+                                                        maxPrice) async {
+                                                      _model.roomsMob =
+                                                          await RoomTable()
+                                                              .queryRows(
+                                                        queryFn: (q) => q
+                                                            .gte(
+                                                              'price',
+                                                              minPrice,
+                                                            )
+                                                            .lte(
+                                                              'price',
+                                                              maxPrice,
+                                                            ),
+                                                      );
+                                                      _model.filteredRooms =
+                                                          _model.roomsMob!
+                                                              .map((e) => e.id)
+                                                              .toList()
+                                                              .cast<int>();
+                                                      _model.filterMinPrice =
+                                                          minPrice;
+                                                      _model.filterMaxPrice =
+                                                          maxPrice;
+                                                      safeSetState(() {});
+                                                      safeSetState(() => _model
+                                                              .requestCompleter =
+                                                          null);
+                                                      await _model
+                                                          .waitForRequestCompleted();
+                                                    },
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        );
+
+                                        safeSetState(() {});
+                                      },
+                                      child: Container(
+                                        width: 300.0,
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xFFF0F0FA),
+                                          borderRadius:
+                                              BorderRadius.circular(23.0),
+                                        ),
+                                        child: Align(
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 12.0, 16.0, 12.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  12.0,
+                                                                  0.0),
+                                                      child: Icon(
+                                                        Icons
+                                                            .settings_input_component_outlined,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        size: 24.0,
+                                                      ),
+                                                    ),
+                                                    Expanded(
+                                                      child: Text(
+                                                        'Фильтр по отелям',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Commissioner',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                  fontSize:
+                                                                      18.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                    if (_model.hallFilterOpen ==
+                                                        false)
+                                                      Icon(
+                                                        Icons
+                                                            .keyboard_arrow_down_rounded,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        size: 24.0,
+                                                      ),
+                                                    if (_model.hallFilterOpen ==
+                                                        true)
+                                                      Icon(
+                                                        Icons
+                                                            .keyboard_arrow_up_rounded,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        size: 24.0,
+                                                      ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Builder(
+                                    builder: (context) => Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 20.0, 0.0),
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          await showAlignedDialog(
+                                            context: context,
+                                            isGlobal: false,
+                                            avoidOverflow: true,
+                                            targetAnchor: const AlignmentDirectional(
+                                                    0.0, 8.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                            followerAnchor:
+                                                const AlignmentDirectional(0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                            builder: (dialogContext) {
+                                              return Material(
+                                                color: Colors.transparent,
+                                                child: GestureDetector(
+                                                  onTap: () => FocusScope.of(
+                                                          dialogContext)
+                                                      .unfocus(),
+                                                  child: SizedBox(
+                                                    height: MediaQuery.sizeOf(
+                                                                context)
+                                                            .height *
+                                                        0.3,
+                                                    child: HallFilterWidget(
+                                                      maxCapacity: _model
+                                                          .hallFilterMaxCapacity,
+                                                      chosenSittings: _model
+                                                          .hallFilterChosenSeatings,
+                                                      hallfilter1:
+                                                          widget.hallFilter1,
+                                                      hallfilter2:
+                                                          widget.hallFilter2,
+                                                      hallfilter3:
+                                                          widget.hallFilter3,
+                                                      addCapacity: (maxCapacity,
+                                                          minCapacity) async {
+                                                        _model.hallFilterMaxCapacity =
+                                                            maxCapacity;
+                                                        _model.hallFilterMinCapacity =
+                                                            minCapacity;
+                                                        safeSetState(() {});
+                                                      },
+                                                      addSeating:
+                                                          (seating) async {
+                                                        if (_model
+                                                                .hallFilterChosenSeatings
+                                                                .contains(
+                                                                    seating) ==
+                                                            true) {
+                                                          _model
+                                                              .removeFromHallFilterChosenSeatings(
+                                                                  seating!);
+                                                          safeSetState(() {});
+                                                        } else {
+                                                          _model
+                                                              .addToHallFilterChosenSeatings(
+                                                                  seating!);
+                                                          safeSetState(() {});
+                                                        }
+                                                      },
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          );
+                                        },
+                                        child: Container(
+                                          width: 300.0,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xFFF0F0FA),
+                                            borderRadius:
+                                                BorderRadius.circular(23.0),
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 12.0, 16.0, 12.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  12.0,
+                                                                  0.0),
+                                                      child: Icon(
+                                                        Icons
+                                                            .settings_input_component_outlined,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        size: 24.0,
+                                                      ),
+                                                    ),
+                                                    Expanded(
+                                                      child: Text(
+                                                        'Фильтр по залам',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Commissioner',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                  fontSize:
+                                                                      18.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                    if (_model.hallFilterOpen ==
+                                                        false)
+                                                      Icon(
+                                                        Icons
+                                                            .keyboard_arrow_down_rounded,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        size: 24.0,
+                                                      ),
+                                                    if (_model.hallFilterOpen ==
+                                                        true)
+                                                      Icon(
+                                                        Icons
+                                                            .keyboard_arrow_up_rounded,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        size: 24.0,
+                                                      ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  FFButtonWidget(
+                                    onPressed: () async {
+                                      _model.hotelFilterStars = [];
+                                      _model.hotelFilterMinDistance = 0;
+                                      _model.hotelFilterMaxDistance = 100000;
+                                      _model.filterMaxPrice = 100000.0;
+                                      _model.filterMinPrice = 1.0;
+                                      safeSetState(() {});
+                                      _model.deleteFiltersRooms2 =
+                                          await RoomTable().queryRows(
+                                        queryFn: (q) => q.gte(
+                                          'price',
+                                          _model.filterMinPrice,
+                                        ),
+                                      );
+                                      _model.filteredRooms = _model
+                                          .deleteFiltersRooms2!
+                                          .map((e) => e.id)
+                                          .toList()
+                                          .cast<int>();
+                                      safeSetState(() {});
+                                      safeSetState(
+                                          () => _model.requestCompleter = null);
+                                      await _model.waitForRequestCompleted(
+                                          minWait: 1000, maxWait: 3000);
+
+                                      safeSetState(() {});
+                                    },
+                                    text: 'Сбросить фильтры',
+                                    options: FFButtonOptions(
+                                      width: 180.0,
+                                      height: 40.0,
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          24.0, 0.0, 24.0, 0.0),
+                                      iconPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color: const Color(0x16BE3030),
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Commissioner',
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            fontSize: 14.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                      elevation: 0.0,
+                                      borderRadius: BorderRadius.circular(24.0),
+                                    ),
+                                  ),
+                                ].divide(const SizedBox(height: 16.0)),
                               ),
                             ),
                           ),

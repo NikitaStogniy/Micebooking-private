@@ -15,14 +15,17 @@ class QaElementWidget extends StatefulWidget {
     String? title,
     String? title2,
     required this.delete,
+    bool? readOnly,
   })  : title = title ?? 'Элемент',
-        title2 = title2 ?? 'Текст';
+        title2 = title2 ?? 'Текст',
+        readOnly = readOnly ?? false;
 
   final CmsRow? qa;
   final int? index;
   final String title;
   final String title2;
   final Future Function()? delete;
+  final bool readOnly;
 
   @override
   State<QaElementWidget> createState() => _QaElementWidgetState();
@@ -86,21 +89,22 @@ class _QaElementWidgetState extends State<QaElementWidget> {
                           fontWeight: FontWeight.w500,
                         ),
                   ),
-                  FlutterFlowIconButton(
-                    borderColor: FlutterFlowTheme.of(context).error,
-                    borderRadius: 20.0,
-                    borderWidth: 1.0,
-                    buttonSize: 40.0,
-                    fillColor: const Color(0x19BE3030),
-                    icon: Icon(
-                      Icons.delete_rounded,
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      size: 24.0,
+                  if (widget.readOnly)
+                    FlutterFlowIconButton(
+                      borderColor: FlutterFlowTheme.of(context).error,
+                      borderRadius: 20.0,
+                      borderWidth: 1.0,
+                      buttonSize: 40.0,
+                      fillColor: const Color(0x19BE3030),
+                      icon: Icon(
+                        Icons.delete_rounded,
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        size: 24.0,
+                      ),
+                      onPressed: () async {
+                        await widget.delete?.call();
+                      },
                     ),
-                    onPressed: () async {
-                      await widget.delete?.call();
-                    },
-                  ),
                 ].divide(const SizedBox(width: 24.0)),
               ),
               TextFormField(
@@ -122,6 +126,7 @@ class _QaElementWidgetState extends State<QaElementWidget> {
                   },
                 ),
                 autofocus: false,
+                readOnly: !widget.readOnly,
                 obscureText: false,
                 decoration: InputDecoration(
                   labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
@@ -201,20 +206,20 @@ class _QaElementWidgetState extends State<QaElementWidget> {
                 onChanged: (_) => EasyDebounce.debounce(
                   '_model.aboutUsText1TextController2',
                   const Duration(milliseconds: 1000),
-                  () => safeSetState(() {}),
+                  () async {
+                    await CmsTable().update(
+                      data: {
+                        'text1': _model.aboutUsText1TextController2.text,
+                      },
+                      matchingRows: (rows) => rows.eq(
+                        'id',
+                        widget.qa?.id,
+                      ),
+                    );
+                  },
                 ),
-                onFieldSubmitted: (_) async {
-                  await CmsTable().update(
-                    data: {
-                      'text1': _model.aboutUsText1TextController2.text,
-                    },
-                    matchingRows: (rows) => rows.eq(
-                      'id',
-                      widget.qa?.id,
-                    ),
-                  );
-                },
                 autofocus: false,
+                readOnly: !widget.readOnly,
                 obscureText: false,
                 decoration: InputDecoration(
                   labelStyle: FlutterFlowTheme.of(context).labelMedium.override(

@@ -238,38 +238,39 @@ class _EditTermsWidgetState extends State<EditTermsWidget> {
                           borderRadius: BorderRadius.circular(24.0),
                         ),
                       ),
-                    FFButtonWidget(
-                      onPressed: () async {
-                        safeSetState(() {
-                          _model.aboutUsText1TextController?.text =
-                              containerCmsRow!.text1!;
-                        });
-                        _model.image = null;
-                        _model.isEdit = false;
-                        safeSetState(() {});
-                      },
-                      text: 'Отменить изменения',
-                      options: FFButtonOptions(
-                        height: 50.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            43.0, 0.0, 43.0, 0.0),
-                        iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).error,
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Commissioner',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                        elevation: 0.0,
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
+                    if (_model.isEdit)
+                      FFButtonWidget(
+                        onPressed: () async {
+                          safeSetState(() {
+                            _model.aboutUsText1TextController?.text =
+                                containerCmsRow!.text1!;
+                          });
+                          _model.image = null;
+                          _model.isEdit = false;
+                          safeSetState(() {});
+                        },
+                        text: 'Отменить изменения',
+                        options: FFButtonOptions(
+                          height: 50.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              43.0, 0.0, 43.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).error,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Commissioner',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                          elevation: 0.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(24.0),
                         ),
-                        borderRadius: BorderRadius.circular(24.0),
                       ),
-                    ),
                   ].divide(const SizedBox(width: 16.0)),
                 ),
               ].divide(const SizedBox(height: 40.0)).addToEnd(const SizedBox(height: 70.0)),

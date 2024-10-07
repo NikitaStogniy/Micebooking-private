@@ -45,9 +45,13 @@ class ClientProfileModel extends FlutterFlowModel<ClientProfileWidget> {
 
   String? bankKpp;
 
+  bool editEmail = false;
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
+  // Stores action output result for [Backend Call - Query Rows] action in Client_profile widget.
+  List<UsersRow>? currentUser;
   // State field(s) for fio widget.
   FocusNode? fioFocusNode;
   TextEditingController? fioTextController;

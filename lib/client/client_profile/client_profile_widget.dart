@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pop_up/confirm_action/confirm_action_widget.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'client_profile_model.dart';
 export 'client_profile_model.dart';
@@ -32,10 +33,33 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
     super.initState();
     _model = createModel(context, () => ClientProfileModel());
 
+    // On component load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.currentUser = await UsersTable().queryRows(
+        queryFn: (q) => q.eq(
+          'uid',
+          currentUserUid,
+        ),
+      );
+      while (_model.currentUser?.first.email != currentUserEmail) {
+        await UsersTable().update(
+          data: {
+            'email': currentUserEmail,
+          },
+          matchingRows: (rows) => rows.eq(
+            'uid',
+            currentUserUid,
+          ),
+        );
+      }
+    });
+
     _model.fioFocusNode ??= FocusNode();
 
     _model.roleFocusNode ??= FocusNode();
 
+    _model.emailTextController ??=
+        TextEditingController(text: currentUserEmail);
     _model.emailFocusNode ??= FocusNode();
 
     _model.phoneFocusNode ??= FocusNode();
@@ -569,20 +593,42 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                           0.6,
                                                       child: TextFormField(
                                                         controller: _model
-                                                                .emailTextController ??=
-                                                            TextEditingController(
-                                                          text:
-                                                              containerUsersRow
-                                                                  ?.email,
-                                                        ),
+                                                            .emailTextController,
                                                         focusNode: _model
                                                             .emailFocusNode,
+                                                        onFieldSubmitted:
+                                                            (_) async {
+                                                          if (_model
+                                                              .emailTextController
+                                                              .text
+                                                              .isEmpty) {
+                                                            ScaffoldMessenger
+                                                                    .of(context)
+                                                                .showSnackBar(
+                                                              const SnackBar(
+                                                                content: Text(
+                                                                  'Email required!',
+                                                                ),
+                                                              ),
+                                                            );
+                                                            return;
+                                                          }
+
+                                                          await authManager
+                                                              .updateEmail(
+                                                            email: _model
+                                                                .emailTextController
+                                                                .text,
+                                                            context: context,
+                                                          );
+                                                          safeSetState(() {});
+                                                        },
                                                         autofocus: false,
                                                         textInputAction:
                                                             TextInputAction
                                                                 .next,
                                                         readOnly:
-                                                            !_model.isEdit,
+                                                            !_model.editEmail,
                                                         obscureText: false,
                                                         decoration:
                                                             InputDecoration(
@@ -615,9 +661,13 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                               OutlineInputBorder(
                                                             borderSide:
                                                                 BorderSide(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primary,
+                                                              color: _model
+                                                                      .editEmail
+                                                                  ? FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary
+                                                                  : const Color(
+                                                                      0x00000000),
                                                               width: 2.0,
                                                             ),
                                                             borderRadius:
@@ -663,6 +713,13 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                             .override(
                                                               fontFamily:
                                                                   'Commissioner',
+                                                              color: _model
+                                                                      .editEmail
+                                                                  ? const Color(
+                                                                      0xFF141414)
+                                                                  : FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
                                                               fontSize: 18.0,
                                                               letterSpacing:
                                                                   0.0,
@@ -670,15 +727,6 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                   FontWeight
                                                                       .w500,
                                                             ),
-                                                        maxLength: 50,
-                                                        maxLengthEnforcement:
-                                                            MaxLengthEnforcement
-                                                                .none,
-                                                        buildCounter: (context,
-                                                                {required currentLength,
-                                                                required isFocused,
-                                                                maxLength}) =>
-                                                            null,
                                                         keyboardType:
                                                             TextInputType
                                                                 .emailAddress,
@@ -687,6 +735,73 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                             .asValidator(
                                                                 context),
                                                       ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Align(
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                          -1.0, 0.0),
+                                                  child: InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      if (_model.editEmail) {
+                                                        if (_model
+                                                            .emailTextController
+                                                            .text
+                                                            .isEmpty) {
+                                                          ScaffoldMessenger.of(
+                                                                  context)
+                                                              .showSnackBar(
+                                                            const SnackBar(
+                                                              content: Text(
+                                                                'Email required!',
+                                                              ),
+                                                            ),
+                                                          );
+                                                          return;
+                                                        }
+
+                                                        await authManager
+                                                            .updateEmail(
+                                                          email: _model
+                                                              .emailTextController
+                                                              .text,
+                                                          context: context,
+                                                        );
+                                                        safeSetState(() {});
+                                                      } else {
+                                                        _model.editEmail = true;
+                                                        safeSetState(() {});
+                                                      }
+                                                    },
+                                                    child: Text(
+                                                      _model.editEmail
+                                                          ? 'Подтвердить'
+                                                          : 'Изменить почту',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Commissioner',
+                                                            color: const Color(
+                                                                0xFF2431A5),
+                                                            fontSize: 16.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            decoration:
+                                                                TextDecoration
+                                                                    .underline,
+                                                          ),
                                                     ),
                                                   ),
                                                 ),

@@ -100,6 +100,9 @@ class _MenuWidgetState extends State<MenuWidget> {
               return Container(
                 width: double.infinity,
                 height: MediaQuery.sizeOf(context).width < 1000.0 ? 50.0 : 85.0,
+                constraints: const BoxConstraints(
+                  maxWidth: 1250.0,
+                ),
                 decoration: BoxDecoration(
                   color: valueOrDefault<Color>(
                     widget.isBlue
@@ -119,6 +122,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                             context: context,
                             phone: false,
                             tablet: false,
+                            tabletLandscape: false,
                           ))
                         Align(
                           alignment: const AlignmentDirectional(-1.0, 0.0),
@@ -159,6 +163,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                             context: context,
                             phone: false,
                             tablet: false,
+                            tabletLandscape: false,
                           ))
                         Align(
                           alignment: const AlignmentDirectional(-1.0, 0.0),
@@ -198,6 +203,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                         context: context,
                         phone: false,
                         tablet: false,
+                        tabletLandscape: false,
                       ))
                         Align(
                           alignment: const AlignmentDirectional(0.0, 0.0),
@@ -369,6 +375,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                         context: context,
                         phone: false,
                         tablet: false,
+                        tabletLandscape: false,
                       ))
                         Align(
                           alignment: const AlignmentDirectional(0.9, 0.0),
@@ -467,7 +474,6 @@ class _MenuWidgetState extends State<MenuWidget> {
                               if ((widget.search == true) &&
                                   responsiveVisibility(
                                     context: context,
-                                    tabletLandscape: false,
                                     desktop: false,
                                   ))
                                 FlutterFlowIconButton(
@@ -487,7 +493,6 @@ class _MenuWidgetState extends State<MenuWidget> {
                                 ),
                               if (responsiveVisibility(
                                 context: context,
-                                tabletLandscape: false,
                                 desktop: false,
                               ))
                                 Builder(
@@ -539,7 +544,6 @@ class _MenuWidgetState extends State<MenuWidget> {
                       if (!widget.isBlue &&
                           responsiveVisibility(
                             context: context,
-                            tabletLandscape: false,
                             desktop: false,
                           ))
                         Align(
@@ -580,7 +584,6 @@ class _MenuWidgetState extends State<MenuWidget> {
                       if (widget.isBlue &&
                           responsiveVisibility(
                             context: context,
-                            tabletLandscape: false,
                             desktop: false,
                           ))
                         Align(

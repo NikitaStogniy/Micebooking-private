@@ -243,6 +243,10 @@ class HotelSearchPageModel extends FlutterFlowModel<HotelSearchPageWidget> {
   List<RoomRow>? rooms;
   // Stores action output result for [Backend Call - Query Rows] action in Button widget.
   List<RoomRow>? deleteFiltersRooms;
+  // Stores action output result for [Backend Call - Query Rows] action in Container widget.
+  List<RoomRow>? roomsMob;
+  // Stores action output result for [Backend Call - Query Rows] action in Button widget.
+  List<RoomRow>? deleteFiltersRooms2;
   // Stores action output result for [Backend Call - Insert Row] action in Button widget.
   RequestWrapperRow? requestWrapperCopy;
   // Models for ClientHotelComponent dynamic component.

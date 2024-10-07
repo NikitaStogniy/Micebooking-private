@@ -14,10 +14,6 @@ class HotelsRequestsModel extends FlutterFlowModel<HotelsRequestsWidget> {
 
   ///  State fields for stateful widgets in this component.
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
   // State field(s) for Checkbox widget.
   Map<RequestsRow, bool> checkboxValueMap1 = {};
   List<RequestsRow> get checkboxCheckedItems1 => checkboxValueMap1.entries
@@ -36,8 +32,5 @@ class HotelsRequestsModel extends FlutterFlowModel<HotelsRequestsWidget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
-  }
+  void dispose() {}
 }

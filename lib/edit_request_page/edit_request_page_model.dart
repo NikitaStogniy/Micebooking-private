@@ -1,5 +1,6 @@
 import '/backend/supabase/supabase.dart';
 import '/components/client_hall_edit_component_widget.dart';
+import '/components/client_optional_widget.dart';
 import '/components/edit_food_component_widget.dart';
 import '/components/edit_request_hotel_component_widget.dart';
 import '/components/edit_room_component_widget.dart';
@@ -142,6 +143,8 @@ class EditRequestPageModel extends FlutterFlowModel<EditRequestPageWidget> {
   void updateRoomPriceAtIndex(int index, Function(double) updateFn) =>
       roomPrice[index] = updateFn(roomPrice[index]);
 
+  bool showMorehalls = false;
+
   ///  State fields for stateful widgets in this page.
 
   // Model for Menu component.
@@ -161,6 +164,10 @@ class EditRequestPageModel extends FlutterFlowModel<EditRequestPageWidget> {
   late FlutterFlowDynamicModels<EditRoomComponentModel> editRoomComponentModels;
   // Stores action output result for [Backend Call - Insert Row] action in EditRoomComponent widget.
   RequestsRoomVarRow? newRoomRequestVar;
+  // Model for ClientOptional component.
+  late ClientOptionalModel clientOptionalModel1;
+  // Model for ClientOptional component.
+  late ClientOptionalModel clientOptionalModel2;
   // Stores action output result for [Backend Call - Update Row(s)] action in Button widget.
   List<RequestsRow>? requestWr;
 
@@ -175,6 +182,8 @@ class EditRequestPageModel extends FlutterFlowModel<EditRequestPageWidget> {
         FlutterFlowDynamicModels(() => EditFoodComponentModel());
     editRoomComponentModels =
         FlutterFlowDynamicModels(() => EditRoomComponentModel());
+    clientOptionalModel1 = createModel(context, () => ClientOptionalModel());
+    clientOptionalModel2 = createModel(context, () => ClientOptionalModel());
   }
 
   @override
@@ -184,5 +193,7 @@ class EditRequestPageModel extends FlutterFlowModel<EditRequestPageWidget> {
     clientHallEditComponentModels.dispose();
     editFoodComponentModels.dispose();
     editRoomComponentModels.dispose();
+    clientOptionalModel1.dispose();
+    clientOptionalModel2.dispose();
   }
 }

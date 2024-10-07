@@ -33,6 +33,8 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
     super.initState();
     _model = createModel(context, () => ManagerInfoModel());
 
+    _model.emailTextController ??=
+        TextEditingController(text: currentUserEmail);
     _model.emailFocusNode ??= FocusNode();
 
     _model.networkFocusNode ??= FocusNode();
@@ -128,10 +130,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                               child: SizedBox(
                                 width: MediaQuery.sizeOf(context).width * 0.6,
                                 child: TextFormField(
-                                  controller: _model.emailTextController ??=
-                                      TextEditingController(
-                                    text: containerUsersRow?.email,
-                                  ),
+                                  controller: _model.emailTextController,
                                   focusNode: _model.emailFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.emailTextController',
@@ -224,6 +223,65 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                               ),
                               child: Align(
                                 alignment: const AlignmentDirectional(-1.0, 0.0),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    if (_model.editEmail) {
+                                      if (_model
+                                          .emailTextController.text.isEmpty) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          const SnackBar(
+                                            content: Text(
+                                              'Email required!',
+                                            ),
+                                          ),
+                                        );
+                                        return;
+                                      }
+
+                                      await authManager.updateEmail(
+                                        email: _model.emailTextController.text,
+                                        context: context,
+                                      );
+                                      safeSetState(() {});
+                                    } else {
+                                      _model.editEmail = true;
+                                      safeSetState(() {});
+                                    }
+                                  },
+                                  child: Text(
+                                    _model.isEdit
+                                        ? 'Подтвердить'
+                                        : 'Изменить почту',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Commissioner',
+                                          color: const Color(0xFF2431A5),
+                                          fontSize: 16.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w500,
+                                          decoration: TextDecoration.underline,
+                                        ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            child: Container(
+                              width: 200.0,
+                              height: 40.0,
+                              decoration: const BoxDecoration(
+                                color: Color(0x00FFFFFF),
+                              ),
+                              child: Align(
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: Builder(
                                   builder: (context) => InkWell(
                                     splashColor: Colors.transparent,
@@ -263,7 +321,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                           .override(
                                             fontFamily: 'Commissioner',
                                             color: const Color(0xFF2431A5),
-                                            fontSize: 18.0,
+                                            fontSize: 16.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
                                             decoration:
@@ -275,7 +333,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                               ),
                             ),
                           ),
-                        ],
+                        ].divide(const SizedBox(width: 24.0)),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
@@ -658,7 +716,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                     successAction: () async {
                                       safeSetState(() {
                                         _model.emailTextController?.text =
-                                            containerUsersRow!.email!;
+                                            currentUserEmail;
                                         _model.networkTextController?.text =
                                             valueOrDefault<String>(
                                           containerUsersRow?.network,

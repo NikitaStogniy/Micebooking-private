@@ -143,41 +143,32 @@ class _RoomPopUpWidgetState extends State<RoomPopUpWidget> {
                                   return SizedBox(
                                     width: double.infinity,
                                     height: 500.0,
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 40.0),
-                                      child: PageView.builder(
-                                        controller:
-                                            _model.pageViewController1 ??=
-                                                PageController(
-                                                    initialPage: max(
-                                                        0,
-                                                        min(
-                                                            0,
-                                                            roomImages.length -
-                                                                1))),
-                                        onPageChanged: (_) =>
-                                            safeSetState(() {}),
-                                        scrollDirection: Axis.horizontal,
-                                        itemCount: roomImages.length,
-                                        itemBuilder:
-                                            (context, roomImagesIndex) {
-                                          final roomImagesItem =
-                                              roomImages[roomImagesIndex];
-                                          return ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            child: Image.network(
-                                              valueOrDefault<String>(
-                                                roomImagesItem,
-                                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiFYZkovo6Uq69lsMtG9ZPzszPBTa55NlR85uUqbmjNRy6Zvdh7WSBwLFpivd_70aNtmU&usqp=CAU',
-                                              ),
-                                              width: 300.0,
-                                              fit: BoxFit.cover,
+                                    child: PageView.builder(
+                                      controller: _model.pageViewController1 ??=
+                                          PageController(
+                                              initialPage: max(
+                                                  0,
+                                                  min(0,
+                                                      roomImages.length - 1))),
+                                      onPageChanged: (_) => safeSetState(() {}),
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: roomImages.length,
+                                      itemBuilder: (context, roomImagesIndex) {
+                                        final roomImagesItem =
+                                            roomImages[roomImagesIndex];
+                                        return ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            valueOrDefault<String>(
+                                              roomImagesItem,
+                                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiFYZkovo6Uq69lsMtG9ZPzszPBTa55NlR85uUqbmjNRy6Zvdh7WSBwLFpivd_70aNtmU&usqp=CAU',
                                             ),
-                                          );
-                                        },
-                                      ),
+                                            width: 300.0,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        );
+                                      },
                                     ),
                                   );
                                 },
@@ -336,34 +327,39 @@ class _RoomPopUpWidgetState extends State<RoomPopUpWidget> {
                             if (widget.room!.images.length > 1)
                               Align(
                                 alignment: const AlignmentDirectional(0.0, 1.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    borderRadius: BorderRadius.circular(50.0),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 8.0, 16.0, 8.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          '${(_model.pageViewCurrentIndex1 + 1).toString()}/${widget.room?.images.length.toString()}',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Commissioner',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                fontSize: 16.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w300,
-                                              ),
-                                        ),
-                                      ],
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 16.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      borderRadius: BorderRadius.circular(50.0),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 8.0, 16.0, 8.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            '${(_model.pageViewCurrentIndex1 + 1).toString()}/${widget.room?.images.length.toString()}',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Commissioner',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                  fontSize: 16.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w300,
+                                                ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -509,48 +505,39 @@ class _RoomPopUpWidgetState extends State<RoomPopUpWidget> {
                                   return SizedBox(
                                     width: double.infinity,
                                     height: 500.0,
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 40.0),
-                                      child: PageView.builder(
-                                        controller:
-                                            _model.pageViewController2 ??=
-                                                PageController(
-                                                    initialPage: max(
-                                                        0,
-                                                        min(
-                                                            0,
-                                                            roomImages.length -
-                                                                1))),
-                                        onPageChanged: (_) =>
-                                            safeSetState(() {}),
-                                        scrollDirection: Axis.horizontal,
-                                        itemCount: roomImages.length,
-                                        itemBuilder:
-                                            (context, roomImagesIndex) {
-                                          final roomImagesItem =
-                                              roomImages[roomImagesIndex];
-                                          return ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            child: Image.network(
-                                              valueOrDefault<String>(
-                                                roomImagesItem,
-                                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiFYZkovo6Uq69lsMtG9ZPzszPBTa55NlR85uUqbmjNRy6Zvdh7WSBwLFpivd_70aNtmU&usqp=CAU',
-                                              ),
-                                              width: 300.0,
-                                              height: 200.0,
-                                              fit: BoxFit.cover,
+                                    child: PageView.builder(
+                                      controller: _model.pageViewController2 ??=
+                                          PageController(
+                                              initialPage: max(
+                                                  0,
+                                                  min(0,
+                                                      roomImages.length - 1))),
+                                      onPageChanged: (_) => safeSetState(() {}),
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: roomImages.length,
+                                      itemBuilder: (context, roomImagesIndex) {
+                                        final roomImagesItem =
+                                            roomImages[roomImagesIndex];
+                                        return ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            valueOrDefault<String>(
+                                              roomImagesItem,
+                                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiFYZkovo6Uq69lsMtG9ZPzszPBTa55NlR85uUqbmjNRy6Zvdh7WSBwLFpivd_70aNtmU&usqp=CAU',
                                             ),
-                                          );
-                                        },
-                                      ),
+                                            width: 300.0,
+                                            height: 200.0,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        );
+                                      },
                                     ),
                                   );
                                 },
                               ),
                               Container(
-                                height: 260.0,
+                                height: MediaQuery.sizeOf(context).height * 1.0,
                                 decoration: const BoxDecoration(),
                                 child: Visibility(
                                   visible: widget.room!.images.length > 1,
@@ -713,35 +700,41 @@ class _RoomPopUpWidgetState extends State<RoomPopUpWidget> {
                               if (widget.room!.images.length > 1)
                                 Align(
                                   alignment: const AlignmentDirectional(0.0, 1.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      borderRadius: BorderRadius.circular(50.0),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 8.0, 16.0, 8.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            '${(_model.pageViewCurrentIndex2 + 1).toString()}/${widget.room?.images.length.toString()}',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Commissioner',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                  fontSize: 16.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w300,
-                                                ),
-                                          ),
-                                        ],
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 16.0),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        borderRadius:
+                                            BorderRadius.circular(50.0),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 8.0, 16.0, 8.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              '${(_model.pageViewCurrentIndex2 + 1).toString()}/${widget.room?.images.length.toString()}',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Commissioner',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    fontSize: 16.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w300,
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),

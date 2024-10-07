@@ -60,6 +60,7 @@ class _RequestWidgetState extends State<RequestWidget> {
         _model.requestName = widget.lastRequest!.name!;
         _model.requestId =
             widget.requestWrapper!.requestsId.toList().cast<int>();
+        _model.wrapperId = widget.requestWrapper?.id;
         safeSetState(() {});
       } else {
         _model.step = 0;

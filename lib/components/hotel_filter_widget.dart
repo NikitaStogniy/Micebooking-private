@@ -67,6 +67,9 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: 300.0,
+      constraints: BoxConstraints(
+        maxHeight: MediaQuery.sizeOf(context).height * 0.5,
+      ),
       decoration: BoxDecoration(
         color: const Color(0xFFF0F0FA),
         borderRadius: BorderRadius.circular(23.0),
