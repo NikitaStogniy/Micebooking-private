@@ -9,7 +9,7 @@ class PageSectionTable extends SupabaseTable<PageSectionRow> {
 }
 
 class PageSectionRow extends SupabaseDataRow {
-  PageSectionRow(super.data);
+  PageSectionRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => PageSectionTable();

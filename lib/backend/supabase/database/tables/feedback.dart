@@ -9,7 +9,7 @@ class FeedbackTable extends SupabaseTable<FeedbackRow> {
 }
 
 class FeedbackRow extends SupabaseDataRow {
-  FeedbackRow(super.data);
+  FeedbackRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => FeedbackTable();
@@ -26,6 +26,6 @@ class FeedbackRow extends SupabaseDataRow {
   String get page => getField<String>('page')!;
   set page(String value) => setField<String>('page', value);
 
-  dynamic get metadata => getField<dynamic>('metadata');
-  set metadata(dynamic value) => setField<dynamic>('metadata', value);
+  dynamic? get metadata => getField<dynamic>('metadata');
+  set metadata(dynamic? value) => setField<dynamic>('metadata', value);
 }

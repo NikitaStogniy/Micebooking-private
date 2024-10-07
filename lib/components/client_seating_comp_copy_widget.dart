@@ -7,6 +7,8 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'client_seating_comp_copy_model.dart';
 export 'client_seating_comp_copy_model.dart';
 
@@ -18,7 +20,7 @@ class ClientSeatingCompCopyWidget extends StatefulWidget {
     required this.onNew,
     required this.onDelete,
     int? index,
-  }) : index = index ?? 1;
+  }) : this.index = index ?? 1;
 
   final HotelSeatingStruct? seating;
   final Future Function(EnumSeating? onChange, int? count)? onChangeSeating;
@@ -48,12 +50,12 @@ class _ClientSeatingCompCopyWidgetState
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.count = widget.seating?.count;
+      _model.count = widget!.seating?.count;
       safeSetState(() {});
     });
 
     _model.countTextController ??=
-        TextEditingController(text: widget.seating?.count.toString());
+        TextEditingController(text: widget!.seating?.count?.toString());
     _model.countFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -75,13 +77,13 @@ class _ClientSeatingCompCopyWidgetState
           flex: 1,
           child: Container(
             width: 150.0,
-            decoration: const BoxDecoration(),
+            decoration: BoxDecoration(),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Зал ${widget.index.toString()}:',
+                  'Зал ${widget!.index.toString()}:',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Commissioner',
                         color: FlutterFlowTheme.of(context).primary,
@@ -96,21 +98,21 @@ class _ClientSeatingCompCopyWidgetState
                       width: 100.0,
                       height: 30.0,
                       decoration: BoxDecoration(
-                        color: const Color(0xFFC0C4EC),
+                        color: Color(0xFFC0C4EC),
                         borderRadius: BorderRadius.circular(100.0),
                       ),
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                         child: TextFormField(
                           controller: _model.countTextController,
                           focusNode: _model.countFocusNode,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.countTextController',
-                            const Duration(milliseconds: 10),
+                            Duration(milliseconds: 10),
                             () async {
                               await widget.onChangeSeating?.call(
-                                widget.seating?.type,
+                                widget!.seating?.type,
                                 int.tryParse(_model.countTextController.text),
                               );
                             },
@@ -128,7 +130,7 @@ class _ClientSeatingCompCopyWidgetState
                             focusedBorder: InputBorder.none,
                             errorBorder: InputBorder.none,
                             focusedErrorBorder: InputBorder.none,
-                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                            contentPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 16.0),
                           ),
                           style:
@@ -144,7 +146,7 @@ class _ClientSeatingCompCopyWidgetState
                     ),
                   ),
                 ),
-              ].divide(const SizedBox(width: 10.0)),
+              ].divide(SizedBox(width: 10.0)),
             ),
           ),
         ),
@@ -152,7 +154,7 @@ class _ClientSeatingCompCopyWidgetState
           flex: 1,
           child: Container(
             width: 150.0,
-            decoration: const BoxDecoration(),
+            decoration: BoxDecoration(),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -171,7 +173,7 @@ class _ClientSeatingCompCopyWidgetState
                           highlightColor: Colors.transparent,
                           onTap: () async {
                             await widget.onChangeSeating?.call(
-                              functions.enumChange(widget.seating!.type, -1),
+                              functions.enumChange(widget!.seating!.type, -1),
                               int.tryParse(_model.countTextController.text),
                             );
                           },
@@ -187,15 +189,15 @@ class _ClientSeatingCompCopyWidgetState
                             Container(
                               width: 32.0,
                               height: 32.0,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: wrapWithModel(
                                   model: _model.seatingIconModel,
                                   updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
                                   child: SeatingIconWidget(
-                                    type: widget.seating!.type,
+                                    type: widget!.seating!.type,
                                   ),
                                 ),
                               ),
@@ -209,7 +211,7 @@ class _ClientSeatingCompCopyWidgetState
                           highlightColor: Colors.transparent,
                           onTap: () async {
                             await widget.onChangeSeating?.call(
-                              functions.enumChange(widget.seating!.type, 1),
+                              functions.enumChange(widget!.seating!.type, 1),
                               int.tryParse(_model.countTextController.text),
                             );
                           },
@@ -227,27 +229,27 @@ class _ClientSeatingCompCopyWidgetState
                       children: [
                         Text(
                           () {
-                            if (widget.seating?.type == EnumSeating.theatre) {
+                            if (widget!.seating?.type == EnumSeating.theatre) {
                               return 'Театр';
-                            } else if (widget.seating?.type ==
+                            } else if (widget!.seating?.type ==
                                 EnumSeating.klass) {
                               return 'Класс';
-                            } else if (widget.seating?.type ==
+                            } else if (widget!.seating?.type ==
                                 EnumSeating.communication) {
                               return 'Переговорная';
-                            } else if (widget.seating?.type ==
+                            } else if (widget!.seating?.type ==
                                 EnumSeating.ushape) {
                               return 'П-образная';
-                            } else if (widget.seating?.type ==
+                            } else if (widget!.seating?.type ==
                                 EnumSeating.oshape) {
                               return 'О-образная';
-                            } else if (widget.seating?.type ==
+                            } else if (widget!.seating?.type ==
                                 EnumSeating.cabare) {
                               return 'Кабаре';
-                            } else if (widget.seating?.type ==
+                            } else if (widget!.seating?.type ==
                                 EnumSeating.banket) {
                               return 'Банкет';
-                            } else if (widget.seating?.type ==
+                            } else if (widget!.seating?.type ==
                                 EnumSeating.furshet) {
                               return 'Фуршет';
                             } else {
@@ -301,7 +303,7 @@ class _ClientSeatingCompCopyWidgetState
             ),
           ),
         ),
-      ].divide(const SizedBox(width: 8.0)),
+      ].divide(SizedBox(width: 8.0)),
     );
   }
 }

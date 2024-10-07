@@ -3,6 +3,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'hotel_detail_model.dart';
 export 'hotel_detail_model.dart';
 
@@ -18,7 +20,7 @@ class HotelDetailWidget extends StatefulWidget {
     this.showHall,
     this.showFood,
     required this.showRoom,
-  }) : selectedID = selectedID ?? 88;
+  }) : this.selectedID = selectedID ?? 88;
 
   final int selectedID;
   final Future Function(int? id)? editRooms;
@@ -64,7 +66,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
       future: HotelTable().querySingleRow(
         queryFn: (q) => q.eq(
           'id',
-          widget.selectedID,
+          widget!.selectedID,
         ),
       ),
       builder: (context, snapshot) {
@@ -90,7 +92,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
 
         return Container(
           height: MediaQuery.sizeOf(context).height * 1.0,
-          decoration: const BoxDecoration(),
+          decoration: BoxDecoration(),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -152,7 +154,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 await widget.showCP?.call(
-                                  widget.selectedID,
+                                  widget!.selectedID,
                                 );
                               },
                               child: Text(
@@ -176,7 +178,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 await widget.showHotel?.call(
-                                  widget.selectedID,
+                                  widget!.selectedID,
                                 );
                               },
                               child: Row(
@@ -210,12 +212,12 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                       size: 24.0,
                                     ),
                                   ),
-                                ].divide(const SizedBox(width: 16.0)),
+                                ].divide(SizedBox(width: 16.0)),
                               ),
                             ),
-                          ].divide(const SizedBox(width: 48.0)),
+                          ].divide(SizedBox(width: 48.0)),
                         ),
-                      ].divide(const SizedBox(width: 24.0)),
+                      ].divide(SizedBox(width: 24.0)),
                     );
                   },
                 ),
@@ -223,12 +225,12 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (containerHotelRow!.hall.isNotEmpty)
+                    if (containerHotelRow!.hall.length > 0)
                       FutureBuilder<List<HallRow>>(
                         future: HallTable().queryRows(
                           queryFn: (q) => q.in_(
                             'id',
-                            containerHotelRow.hall,
+                            containerHotelRow!.hall,
                           ),
                         ),
                         builder: (context, snapshot) {
@@ -249,14 +251,14 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                           List<HallRow> containerHallRowList = snapshot.data!;
 
                           return ClipRRect(
-                            borderRadius: const BorderRadius.only(
+                            borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(16.0),
                               bottomRight: Radius.circular(16.0),
                               topLeft: Radius.circular(0.0),
                               topRight: Radius.circular(0.0),
                             ),
                             child: Container(
-                              decoration: const BoxDecoration(
+                              decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(16.0),
                                   bottomRight: Radius.circular(16.0),
@@ -275,7 +277,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                     decoration: BoxDecoration(
                                       color:
                                           FlutterFlowTheme.of(context).primary,
-                                      borderRadius: const BorderRadius.only(
+                                      borderRadius: BorderRadius.only(
                                         bottomLeft: Radius.circular(0.0),
                                         bottomRight: Radius.circular(0.0),
                                         topLeft: Radius.circular(16.0),
@@ -291,7 +293,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 0.3,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Text(
                                               'Название зала',
                                               style: FlutterFlowTheme.of(
@@ -313,7 +315,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.1,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Text(
                                             'Площадь м2',
                                             style: FlutterFlowTheme.of(context)
@@ -333,7 +335,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.1,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Text(
                                             'Вместимость ',
                                             style: FlutterFlowTheme.of(context)
@@ -353,7 +355,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.1,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Text(
                                             'Цена',
                                             textAlign: TextAlign.end,
@@ -372,12 +374,12 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                         ),
                                         Container(
                                           width: 30.0,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                         ),
                                       ]
-                                          .divide(const SizedBox(width: 40.0))
-                                          .addToStart(const SizedBox(width: 16.0))
-                                          .addToEnd(const SizedBox(width: 16.0)),
+                                          .divide(SizedBox(width: 40.0))
+                                          .addToStart(SizedBox(width: 16.0))
+                                          .addToEnd(SizedBox(width: 16.0)),
                                     ),
                                   ),
                                   Builder(
@@ -396,7 +398,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 1.0,
-                                            constraints: const BoxConstraints(
+                                            constraints: BoxConstraints(
                                               minHeight: 40.0,
                                               maxHeight: 80.0,
                                             ),
@@ -415,7 +417,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                 FlutterFlowTheme.of(context)
                                                     .primaryBackground,
                                               ),
-                                              borderRadius: const BorderRadius.only(
+                                              borderRadius: BorderRadius.only(
                                                 bottomLeft:
                                                     Radius.circular(0.0),
                                                 bottomRight:
@@ -434,7 +436,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                                 context)
                                                             .width *
                                                         0.3,
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -485,7 +487,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                                       .transparent,
                                                               onTap: () async {
                                                                 _model.idList =
-                                                                    containerHotelRow
+                                                                    containerHotelRow!
                                                                         .hall
                                                                         .toList()
                                                                         .cast<
@@ -543,7 +545,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                                       (rows) =>
                                                                           rows.eq(
                                                                     'id',
-                                                                    widget
+                                                                    widget!
                                                                         .selectedID,
                                                                   ),
                                                                 );
@@ -601,7 +603,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                                 size: 24.0,
                                                               ),
                                                             ),
-                                                          ].divide(const SizedBox(
+                                                          ].divide(SizedBox(
                                                               width: 8.0)),
                                                         ),
                                                       ],
@@ -613,7 +615,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                       MediaQuery.sizeOf(context)
                                                               .width *
                                                           0.1,
-                                                  decoration: const BoxDecoration(),
+                                                  decoration: BoxDecoration(),
                                                   child: Text(
                                                     valueOrDefault<String>(
                                                       hallsItem.size
@@ -641,7 +643,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                       MediaQuery.sizeOf(context)
                                                               .width *
                                                           0.1,
-                                                  decoration: const BoxDecoration(),
+                                                  decoration: BoxDecoration(),
                                                   child: Text(
                                                     valueOrDefault<String>(
                                                       hallsItem.capacity
@@ -669,7 +671,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                       MediaQuery.sizeOf(context)
                                                               .width *
                                                           0.1,
-                                                  decoration: const BoxDecoration(),
+                                                  decoration: BoxDecoration(),
                                                   child: Text(
                                                     valueOrDefault<String>(
                                                       hallsItem.price
@@ -698,7 +700,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                 ),
                                                 Container(
                                                   width: 30.0,
-                                                  decoration: const BoxDecoration(),
+                                                  decoration: BoxDecoration(),
                                                   child: InkWell(
                                                     splashColor:
                                                         Colors.transparent,
@@ -725,11 +727,11 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                   ),
                                                 ),
                                               ]
-                                                  .divide(const SizedBox(width: 40.0))
+                                                  .divide(SizedBox(width: 40.0))
                                                   .addToStart(
-                                                      const SizedBox(width: 16.0))
+                                                      SizedBox(width: 16.0))
                                                   .addToEnd(
-                                                      const SizedBox(width: 16.0)),
+                                                      SizedBox(width: 16.0)),
                                             ),
                                           );
                                         }),
@@ -742,12 +744,12 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                           );
                         },
                       ),
-                    if (containerHotelRow.food.isNotEmpty)
+                    if (containerHotelRow!.food.length > 0)
                       FutureBuilder<List<FoodRow>>(
                         future: FoodTable().queryRows(
                           queryFn: (q) => q.in_(
                             'id',
-                            containerHotelRow.food,
+                            containerHotelRow!.food,
                           ),
                         ),
                         builder: (context, snapshot) {
@@ -768,14 +770,14 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                           List<FoodRow> containerFoodRowList = snapshot.data!;
 
                           return ClipRRect(
-                            borderRadius: const BorderRadius.only(
+                            borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(16.0),
                               bottomRight: Radius.circular(16.0),
                               topLeft: Radius.circular(0.0),
                               topRight: Radius.circular(0.0),
                             ),
                             child: Container(
-                              decoration: const BoxDecoration(
+                              decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(16.0),
                                   bottomRight: Radius.circular(16.0),
@@ -799,7 +801,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
-                                          borderRadius: const BorderRadius.only(
+                                          borderRadius: BorderRadius.only(
                                             bottomLeft: Radius.circular(0.0),
                                             bottomRight: Radius.circular(0.0),
                                             topLeft: Radius.circular(16.0),
@@ -816,7 +818,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         0.5,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   'Название пакета',
                                                   style: FlutterFlowTheme.of(
@@ -839,13 +841,13 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                             Expanded(
                                               flex: 1,
                                               child: Container(
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                               ),
                                             ),
                                             Expanded(
                                               flex: 1,
                                               child: Container(
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   'Тип пакета',
                                                   style: FlutterFlowTheme.of(
@@ -872,7 +874,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         0.5,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   'Цена за персону',
                                                   style: FlutterFlowTheme.of(
@@ -894,7 +896,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                             ),
                                             Container(
                                               width: 30.0,
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Icon(
                                                 Icons.rowing,
                                                 color:
@@ -904,9 +906,9 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                               ),
                                             ),
                                           ]
-                                              .divide(const SizedBox(width: 40.0))
-                                              .addToStart(const SizedBox(width: 16.0))
-                                              .addToEnd(const SizedBox(width: 16.0)),
+                                              .divide(SizedBox(width: 40.0))
+                                              .addToStart(SizedBox(width: 16.0))
+                                              .addToEnd(SizedBox(width: 16.0)),
                                         ),
                                       ),
                                       Builder(
@@ -943,7 +945,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                         .primaryBackground,
                                                   ),
                                                   borderRadius:
-                                                      const BorderRadius.only(
+                                                      BorderRadius.only(
                                                     bottomLeft:
                                                         Radius.circular(0.0),
                                                     bottomRight:
@@ -967,7 +969,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                                     .width *
                                                                 0.3,
                                                         decoration:
-                                                            const BoxDecoration(),
+                                                            BoxDecoration(),
                                                         child: Row(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
@@ -1044,7 +1046,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                                     .width *
                                                                 0.233,
                                                         decoration:
-                                                            const BoxDecoration(),
+                                                            BoxDecoration(),
                                                       ),
                                                     ),
                                                     Expanded(
@@ -1056,7 +1058,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                                     .width *
                                                                 0.233,
                                                         decoration:
-                                                            const BoxDecoration(),
+                                                            BoxDecoration(),
                                                         child: FutureBuilder<
                                                             List<
                                                                 ServiceCategoryRow>>(
@@ -1139,7 +1141,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                                     .width *
                                                                 0.233,
                                                         decoration:
-                                                            const BoxDecoration(),
+                                                            BoxDecoration(),
                                                         child: Text(
                                                           valueOrDefault<
                                                               String>(
@@ -1169,7 +1171,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                     Container(
                                                       width: 30.0,
                                                       decoration:
-                                                          const BoxDecoration(),
+                                                          BoxDecoration(),
                                                       child: InkWell(
                                                         splashColor:
                                                             Colors.transparent,
@@ -1196,10 +1198,10 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                     ),
                                                   ]
                                                       .divide(
-                                                          const SizedBox(width: 40.0))
+                                                          SizedBox(width: 40.0))
                                                       .addToStart(
-                                                          const SizedBox(width: 16.0))
-                                                      .addToEnd(const SizedBox(
+                                                          SizedBox(width: 16.0))
+                                                      .addToEnd(SizedBox(
                                                           width: 16.0)),
                                                 ),
                                               );
@@ -1215,12 +1217,12 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                           );
                         },
                       ),
-                    if (containerHotelRow.rooms.isNotEmpty)
+                    if (containerHotelRow!.rooms.length > 0)
                       FutureBuilder<List<RoomRow>>(
                         future: RoomTable().queryRows(
                           queryFn: (q) => q.in_(
                             'id',
-                            containerHotelRow.rooms,
+                            containerHotelRow!.rooms,
                           ),
                         ),
                         builder: (context, snapshot) {
@@ -1241,14 +1243,14 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                           List<RoomRow> containerRoomRowList = snapshot.data!;
 
                           return ClipRRect(
-                            borderRadius: const BorderRadius.only(
+                            borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(16.0),
                               bottomRight: Radius.circular(16.0),
                               topLeft: Radius.circular(0.0),
                               topRight: Radius.circular(0.0),
                             ),
                             child: Container(
-                              decoration: const BoxDecoration(
+                              decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(16.0),
                                   bottomRight: Radius.circular(16.0),
@@ -1267,7 +1269,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                     decoration: BoxDecoration(
                                       color:
                                           FlutterFlowTheme.of(context).primary,
-                                      borderRadius: const BorderRadius.only(
+                                      borderRadius: BorderRadius.only(
                                         bottomLeft: Radius.circular(0.0),
                                         bottomRight: Radius.circular(0.0),
                                         topLeft: Radius.circular(16.0),
@@ -1283,7 +1285,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 0.3,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Text(
                                               'Название номера',
                                               style: FlutterFlowTheme.of(
@@ -1307,7 +1309,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 0.233,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Text(
                                               'Количество',
                                               style: FlutterFlowTheme.of(
@@ -1327,7 +1329,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                         ),
                                         Container(
                                           width: 160.0,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Text(
                                             'Одн. размещение',
                                             style: FlutterFlowTheme.of(context)
@@ -1348,7 +1350,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 0.233,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Text(
                                               'Цена (руб.)',
                                               style: FlutterFlowTheme.of(
@@ -1368,12 +1370,12 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                         ),
                                         Container(
                                           width: 30.0,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                         ),
                                       ]
-                                          .divide(const SizedBox(width: 40.0))
-                                          .addToStart(const SizedBox(width: 16.0))
-                                          .addToEnd(const SizedBox(width: 16.0)),
+                                          .divide(SizedBox(width: 40.0))
+                                          .addToStart(SizedBox(width: 16.0))
+                                          .addToEnd(SizedBox(width: 16.0)),
                                     ),
                                   ),
                                   Builder(
@@ -1408,7 +1410,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                 FlutterFlowTheme.of(context)
                                                     .primaryBackground,
                                               ),
-                                              borderRadius: const BorderRadius.only(
+                                              borderRadius: BorderRadius.only(
                                                 bottomLeft:
                                                     Radius.circular(0.0),
                                                 bottomRight:
@@ -1427,7 +1429,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                                 context)
                                                             .width *
                                                         0.3,
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -1530,7 +1532,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                                           .images,
                                                                 });
                                                                 _model.idList =
-                                                                    containerHotelRow
+                                                                    containerHotelRow!
                                                                         .rooms
                                                                         .toList()
                                                                         .cast<
@@ -1553,7 +1555,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                                       (rows) =>
                                                                           rows.eq(
                                                                     'id',
-                                                                    widget
+                                                                    widget!
                                                                         .selectedID,
                                                                   ),
                                                                 );
@@ -1611,7 +1613,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                                 size: 24.0,
                                                               ),
                                                             ),
-                                                          ].divide(const SizedBox(
+                                                          ].divide(SizedBox(
                                                               width: 8.0)),
                                                         ),
                                                       ],
@@ -1624,7 +1626,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                                 context)
                                                             .width *
                                                         0.233,
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(),
                                                     child: Text(
                                                       valueOrDefault<String>(
                                                         roomsItem.count
@@ -1653,7 +1655,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                 ),
                                                 Container(
                                                   width: 160.0,
-                                                  decoration: const BoxDecoration(),
+                                                  decoration: BoxDecoration(),
                                                   child: Text(
                                                     valueOrDefault<String>(
                                                       roomsItem.singlePrice
@@ -1682,7 +1684,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                                 context)
                                                             .width *
                                                         0.233,
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(),
                                                     child: Text(
                                                       valueOrDefault<String>(
                                                         roomsItem.price
@@ -1711,7 +1713,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                 ),
                                                 Container(
                                                   width: 30.0,
-                                                  decoration: const BoxDecoration(),
+                                                  decoration: BoxDecoration(),
                                                   child: InkWell(
                                                     splashColor:
                                                         Colors.transparent,
@@ -1738,11 +1740,11 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                   ),
                                                 ),
                                               ]
-                                                  .divide(const SizedBox(width: 40.0))
+                                                  .divide(SizedBox(width: 40.0))
                                                   .addToStart(
-                                                      const SizedBox(width: 16.0))
+                                                      SizedBox(width: 16.0))
                                                   .addToEnd(
-                                                      const SizedBox(width: 16.0)),
+                                                      SizedBox(width: 16.0)),
                                             ),
                                           );
                                         }),
@@ -1755,9 +1757,9 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                           );
                         },
                       ),
-                  ].divide(const SizedBox(height: 32.0)),
+                  ].divide(SizedBox(height: 32.0)),
                 ),
-              ].divide(const SizedBox(height: 16.0)).addToEnd(const SizedBox(height: 72.0)),
+              ].divide(SizedBox(height: 16.0)).addToEnd(SizedBox(height: 72.0)),
             ),
           ),
         );

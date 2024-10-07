@@ -5,8 +5,12 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'profile_food_component_model.dart';
 export 'profile_food_component_model.dart';
 
@@ -59,8 +63,8 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 200.0.ms,
-            begin: const Offset(0.0, 100.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 100.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -79,7 +83,7 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -88,7 +92,7 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
             children: [
               Text(
                 valueOrDefault<String>(
-                  widget.hotel?.name,
+                  widget!.hotel?.name,
                   'Оталь',
                 ),
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -113,14 +117,14 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                   await widget.newCallback?.call();
                 },
               ),
-            ].divide(const SizedBox(width: 24.0)),
+            ].divide(SizedBox(width: 24.0)),
           ),
           FutureBuilder<List<FoodRow>>(
             future: FoodTable().queryRows(
               queryFn: (q) => q
                   .in_(
                     'id',
-                    widget.hotel!.food,
+                    widget!.hotel!.food,
                   )
                   .order('created_at'),
             ),
@@ -142,14 +146,14 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
               List<FoodRow> containerFoodRowList = snapshot.data!;
 
               return ClipRRect(
-                borderRadius: const BorderRadius.only(
+                borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(16.0),
                   bottomRight: Radius.circular(16.0),
                   topLeft: Radius.circular(0.0),
                   topRight: Radius.circular(0.0),
                 ),
                 child: Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(16.0),
                       bottomRight: Radius.circular(16.0),
@@ -164,12 +168,12 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          if (widget.hotel!.food.isNotEmpty)
+                          if (widget!.hotel!.food.length > 0)
                             Container(
                               width: MediaQuery.sizeOf(context).width * 1.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context).primary,
-                                borderRadius: const BorderRadius.only(
+                                borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(0.0),
                                   bottomRight: Radius.circular(0.0),
                                   topLeft: Radius.circular(16.0),
@@ -177,7 +181,7 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 8.0, 0.0, 8.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
@@ -187,7 +191,7 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Название пакета',
                                           style: FlutterFlowTheme.of(context)
@@ -207,7 +211,7 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                                     Container(
                                       width: MediaQuery.sizeOf(context).width *
                                           0.25,
-                                      decoration: const BoxDecoration(),
+                                      decoration: BoxDecoration(),
                                       child: Text(
                                         'Тип пакета',
                                         style: FlutterFlowTheme.of(context)
@@ -226,7 +230,7 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                                     Container(
                                       width: MediaQuery.sizeOf(context).width *
                                           0.1,
-                                      decoration: const BoxDecoration(),
+                                      decoration: BoxDecoration(),
                                       child: Text(
                                         'Цена за чел.',
                                         textAlign: TextAlign.end,
@@ -244,9 +248,9 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                                       ),
                                     ),
                                   ]
-                                      .divide(const SizedBox(width: 40.0))
-                                      .addToStart(const SizedBox(width: 16.0))
-                                      .addToEnd(const SizedBox(width: 16.0)),
+                                      .divide(SizedBox(width: 40.0))
+                                      .addToStart(SizedBox(width: 16.0))
+                                      .addToEnd(SizedBox(width: 16.0)),
                                 ),
                               ),
                             ),
@@ -255,7 +259,7 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                               final food = containerFoodRowList.toList();
                               if (food.isEmpty) {
                                 return Center(
-                                  child: SizedBox(
+                                  child: Container(
                                     width: 700.0,
                                     height: 300.0,
                                     child: HallFoodRoomEmptyWidget(
@@ -290,7 +294,7 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                                         FlutterFlowTheme.of(context)
                                             .primaryBackground,
                                       ),
-                                      borderRadius: const BorderRadius.only(
+                                      borderRadius: BorderRadius.only(
                                         bottomLeft: Radius.circular(0.0),
                                         bottomRight: Radius.circular(0.0),
                                         topLeft: Radius.circular(0.0),
@@ -298,7 +302,7 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 8.0, 0.0, 8.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -308,7 +312,7 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   0.3,
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
@@ -369,7 +373,7 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                                                         ),
                                                       ),
                                                     ].divide(
-                                                        const SizedBox(width: 8.0)),
+                                                        SizedBox(width: 8.0)),
                                                   ),
                                                 ],
                                               ),
@@ -379,7 +383,7 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 0.25,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Text(
                                               valueOrDefault<String>(
                                                 foodItem.categoryName,
@@ -403,7 +407,7 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 0.1,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Text(
                                               valueOrDefault<String>(
                                                 formatNumber(
@@ -431,9 +435,9 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
                                             ),
                                           ),
                                         ]
-                                            .divide(const SizedBox(width: 40.0))
-                                            .addToStart(const SizedBox(width: 16.0))
-                                            .addToEnd(const SizedBox(width: 16.0)),
+                                            .divide(SizedBox(width: 40.0))
+                                            .addToStart(SizedBox(width: 16.0))
+                                            .addToEnd(SizedBox(width: 16.0)),
                                       ),
                                     ),
                                   );
@@ -449,7 +453,7 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
               );
             },
           ),
-        ].divide(const SizedBox(height: 22.0)),
+        ].divide(SizedBox(height: 22.0)),
       ),
     ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!);
   }

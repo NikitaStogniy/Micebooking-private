@@ -9,7 +9,7 @@ class SeatingTable extends SupabaseTable<SeatingRow> {
 }
 
 class SeatingRow extends SupabaseDataRow {
-  SeatingRow(super.data);
+  SeatingRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => SeatingTable();

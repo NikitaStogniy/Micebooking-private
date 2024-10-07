@@ -2,6 +2,8 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'city_drop_down_model.dart';
 export 'city_drop_down_model.dart';
 
@@ -49,7 +51,7 @@ class _CityDropDownWidgetState extends State<CityDropDownWidget> {
       children: [
         Container(
           width: MediaQuery.sizeOf(context).width * 1.0,
-          constraints: const BoxConstraints(
+          constraints: BoxConstraints(
             maxWidth: 300.0,
             maxHeight: 700.0,
           ),
@@ -63,7 +65,7 @@ class _CityDropDownWidgetState extends State<CityDropDownWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(16.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -142,8 +144,8 @@ class _CityDropDownWidgetState extends State<CityDropDownWidget> {
                                   ),
                                 );
                               })
-                                  .divide(const SizedBox(height: 8.0))
-                                  .around(const SizedBox(height: 8.0)),
+                                  .divide(SizedBox(height: 8.0))
+                                  .around(SizedBox(height: 8.0)),
                             );
                           },
                         ),
@@ -152,7 +154,7 @@ class _CityDropDownWidgetState extends State<CityDropDownWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -169,7 +171,7 @@ class _CityDropDownWidgetState extends State<CityDropDownWidget> {
                                   ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 16.0),
                           child: FutureBuilder<List<CityRow>>(
                             future: CityTable().queryRows(
@@ -235,8 +237,8 @@ class _CityDropDownWidgetState extends State<CityDropDownWidget> {
                                     ),
                                   );
                                 })
-                                        .divide(const SizedBox(height: 8.0))
-                                        .around(const SizedBox(height: 8.0)),
+                                        .divide(SizedBox(height: 8.0))
+                                        .around(SizedBox(height: 8.0)),
                               );
                             },
                           ),

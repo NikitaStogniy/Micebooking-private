@@ -2,7 +2,10 @@ import '/backend/schema/enums/enums.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'about_bottomsheet_model.dart';
 export 'about_bottomsheet_model.dart';
 
@@ -78,7 +81,7 @@ class _AboutBottomsheetWidgetState extends State<AboutBottomsheetWidget> {
                 'assets/images/Vector.png',
               ).image,
             ),
-            borderRadius: const BorderRadius.only(
+            borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(0.0),
               bottomRight: Radius.circular(0.0),
               topLeft: Radius.circular(32.0),
@@ -90,12 +93,12 @@ class _AboutBottomsheetWidgetState extends State<AboutBottomsheetWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(24.0),
+                  padding: EdgeInsets.all(24.0),
                   child: Container(
-                    constraints: const BoxConstraints(
+                    constraints: BoxConstraints(
                       maxWidth: 1250.0,
                     ),
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,7 +107,7 @@ class _AboutBottomsheetWidgetState extends State<AboutBottomsheetWidget> {
                           textScaler: MediaQuery.of(context).textScaler,
                           text: TextSpan(
                             children: [
-                              const TextSpan(
+                              TextSpan(
                                 text: 'О сервисе ',
                                 style: TextStyle(),
                               ),
@@ -127,7 +130,7 @@ class _AboutBottomsheetWidgetState extends State<AboutBottomsheetWidget> {
                         ),
                         Container(
                           width: double.infinity,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Wrap(
                             spacing: 0.0,
                             runSpacing: 0.0,
@@ -139,10 +142,10 @@ class _AboutBottomsheetWidgetState extends State<AboutBottomsheetWidget> {
                             clipBehavior: Clip.none,
                             children: [
                               Container(
-                                constraints: const BoxConstraints(
+                                constraints: BoxConstraints(
                                   maxWidth: 650.0,
                                 ),
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -150,7 +153,7 @@ class _AboutBottomsheetWidgetState extends State<AboutBottomsheetWidget> {
                                     if (containerCmsRow?.text1 != null &&
                                         containerCmsRow?.text1 != '')
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 16.0, 0.0, 0.0),
                                         child: Text(
                                           valueOrDefault<String>(
@@ -173,7 +176,7 @@ class _AboutBottomsheetWidgetState extends State<AboutBottomsheetWidget> {
                                     if (containerCmsRow?.text2 != null &&
                                         containerCmsRow?.text2 != '')
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 16.0, 0.0, 0.0),
                                         child: Text(
                                           valueOrDefault<String>(
@@ -193,7 +196,7 @@ class _AboutBottomsheetWidgetState extends State<AboutBottomsheetWidget> {
                                               ),
                                         ),
                                       ),
-                                  ].divide(const SizedBox(height: 32.0)),
+                                  ].divide(SizedBox(height: 32.0)),
                                 ),
                               ),
                               if (containerCmsRow?.image != null &&
@@ -219,8 +222,8 @@ class _AboutBottomsheetWidgetState extends State<AboutBottomsheetWidget> {
                           ),
                         ),
                       ]
-                          .divide(const SizedBox(height: 24.0))
-                          .addToEnd(const SizedBox(height: 70.0)),
+                          .divide(SizedBox(height: 24.0))
+                          .addToEnd(SizedBox(height: 70.0)),
                     ),
                   ),
                 ),

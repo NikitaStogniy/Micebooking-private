@@ -7,6 +7,8 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'edit_about_model.dart';
 export 'edit_about_model.dart';
 
@@ -88,14 +90,14 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
             containerCmsRowList.isNotEmpty ? containerCmsRowList.first : null;
 
         return Container(
-          decoration: const BoxDecoration(),
+          decoration: BoxDecoration(),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,7 +132,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: UnderlineInputBorder(
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Color(0xFFF0F0FA),
                               width: 2.0,
                             ),
@@ -158,7 +160,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           filled: true,
-                          fillColor: const Color(0xFFF0F0FA),
+                          fillColor: Color(0xFFF0F0FA),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Commissioner',
@@ -167,11 +169,11 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                         validator: _model.title1TextController1Validator
                             .asValidator(context),
                       ),
-                    ].divide(const SizedBox(height: 16.0)),
+                    ].divide(SizedBox(height: 16.0)),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -206,7 +208,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: UnderlineInputBorder(
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Color(0xFFF0F0FA),
                               width: 2.0,
                             ),
@@ -234,7 +236,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           filled: true,
-                          fillColor: const Color(0xFFF0F0FA),
+                          fillColor: Color(0xFFF0F0FA),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Commissioner',
@@ -243,7 +245,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                         validator: _model.title1TextController2Validator
                             .asValidator(context),
                       ),
-                    ].divide(const SizedBox(height: 16.0)),
+                    ].divide(SizedBox(height: 16.0)),
                   ),
                 ),
                 FutureBuilder<List<CmsRow>>(
@@ -309,7 +311,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                             },
                           ),
                         );
-                      }).divide(const SizedBox(height: 40.0)),
+                      }).divide(SizedBox(height: 40.0)),
                     );
                   },
                 ),
@@ -353,7 +355,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                 size: 24.0,
                               ),
                             ),
-                          ].divide(const SizedBox(width: 8.0)),
+                          ].divide(SizedBox(width: 8.0)),
                         ),
                       ),
                     if (_model.newElement == true)
@@ -363,7 +365,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 16.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -385,7 +387,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                     focusNode: _model.newTitleFocusNode,
                                     onChanged: (_) => EasyDebounce.debounce(
                                       '_model.newTitleTextController',
-                                      const Duration(milliseconds: 200),
+                                      Duration(milliseconds: 200),
                                       () => safeSetState(() {}),
                                     ),
                                     autofocus: false,
@@ -407,7 +409,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: UnderlineInputBorder(
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Color(0x00000000),
                                           width: 2.0,
                                         ),
@@ -415,7 +417,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                             BorderRadius.circular(80.0),
                                       ),
                                       focusedBorder: UnderlineInputBorder(
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Color(0x00000000),
                                           width: 2.0,
                                         ),
@@ -423,7 +425,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                             BorderRadius.circular(80.0),
                                       ),
                                       errorBorder: UnderlineInputBorder(
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Color(0x00000000),
                                           width: 2.0,
                                         ),
@@ -431,7 +433,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                             BorderRadius.circular(80.0),
                                       ),
                                       focusedErrorBorder: UnderlineInputBorder(
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Color(0x00000000),
                                           width: 2.0,
                                         ),
@@ -439,7 +441,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                             BorderRadius.circular(80.0),
                                       ),
                                       filled: true,
-                                      fillColor: const Color(0xFFF0F0FA),
+                                      fillColor: Color(0xFFF0F0FA),
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
@@ -454,11 +456,11 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                         .newTitleTextControllerValidator
                                         .asValidator(context),
                                   ),
-                                ].divide(const SizedBox(height: 24.0)),
+                                ].divide(SizedBox(height: 24.0)),
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 16.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -469,7 +471,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                     focusNode: _model.newTextFocusNode,
                                     onChanged: (_) => EasyDebounce.debounce(
                                       '_model.newTextTextController',
-                                      const Duration(milliseconds: 200),
+                                      Duration(milliseconds: 200),
                                       () => safeSetState(() {}),
                                     ),
                                     autofocus: false,
@@ -491,7 +493,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: UnderlineInputBorder(
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Color(0x00000000),
                                           width: 2.0,
                                         ),
@@ -499,7 +501,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                             BorderRadius.circular(80.0),
                                       ),
                                       focusedBorder: UnderlineInputBorder(
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Color(0x00000000),
                                           width: 2.0,
                                         ),
@@ -507,7 +509,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                             BorderRadius.circular(80.0),
                                       ),
                                       errorBorder: UnderlineInputBorder(
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Color(0x00000000),
                                           width: 2.0,
                                         ),
@@ -515,7 +517,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                             BorderRadius.circular(80.0),
                                       ),
                                       focusedErrorBorder: UnderlineInputBorder(
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Color(0x00000000),
                                           width: 2.0,
                                         ),
@@ -523,7 +525,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                             BorderRadius.circular(80.0),
                                       ),
                                       filled: true,
-                                      fillColor: const Color(0xFFF0F0FA),
+                                      fillColor: Color(0xFFF0F0FA),
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
@@ -538,7 +540,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                         .newTextTextControllerValidator
                                         .asValidator(context),
                                   ),
-                                ].divide(const SizedBox(height: 24.0)),
+                                ].divide(SizedBox(height: 24.0)),
                               ),
                             ),
                             Row(
@@ -547,8 +549,13 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                 FFButtonWidget(
                                   onPressed: ((_model.newTitleTextController
                                                       .text ==
+                                                  null ||
+                                              _model.newTitleTextController
+                                                      .text ==
                                                   '') &&
-                                          (_model.newTextTextController
+                                          (_model.newTextTextController.text ==
+                                                  null ||
+                                              _model.newTextTextController
                                                       .text ==
                                                   ''))
                                       ? null
@@ -573,9 +580,9 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                   options: FFButtonOptions(
                                     width: 300.0,
                                     height: 50.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         24.0, 0.0, 24.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -586,12 +593,12 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 0.0,
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
                                     borderRadius: BorderRadius.circular(80.0),
-                                    disabledColor: const Color(0x642431A5),
+                                    disabledColor: Color(0x642431A5),
                                   ),
                                 ),
                                 InkWell(
@@ -620,15 +627,15 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                         ),
                                   ),
                                 ),
-                              ].divide(const SizedBox(width: 40.0)),
+                              ].divide(SizedBox(width: 40.0)),
                             ),
-                          ].divide(const SizedBox(height: 20.0)),
+                          ].divide(SizedBox(height: 20.0)),
                         ),
                       ),
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -641,9 +648,9 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                           text: 'Редактировать',
                           options: FFButtonOptions(
                             height: 50.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 43.0, 0.0, 43.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -654,7 +661,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 0.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -680,9 +687,9 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                           text: 'Сохранить',
                           options: FFButtonOptions(
                             height: 50.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 43.0, 0.0, 43.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -693,7 +700,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 0.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -716,9 +723,9 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                           text: 'Отменить изменения',
                           options: FFButtonOptions(
                             height: 50.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 43.0, 0.0, 43.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).error,
                             textStyle: FlutterFlowTheme.of(context)
@@ -729,17 +736,17 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 0.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(24.0),
                           ),
                         ),
-                    ].divide(const SizedBox(width: 16.0)),
+                    ].divide(SizedBox(width: 16.0)),
                   ),
                 ),
-              ].divide(const SizedBox(height: 40.0)).addToEnd(const SizedBox(height: 70.0)),
+              ].divide(SizedBox(height: 40.0)).addToEnd(SizedBox(height: 70.0)),
             ),
           ),
         );

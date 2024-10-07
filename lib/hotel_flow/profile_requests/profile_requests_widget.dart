@@ -4,6 +4,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/hotel_flow/profile_requests_component/profile_requests_component_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'profile_requests_model.dart';
 export 'profile_requests_model.dart';
 
@@ -52,7 +54,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.sizeOf(context).height * 1.0,
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: SingleChildScrollView(
         primary: false,
         child: Column(
@@ -60,7 +62,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 50.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 50.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -76,7 +78,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                   Expanded(
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
                       child: TextFormField(
                         controller: _model.textController,
                         focusNode: _model.textFieldFocusNode,
@@ -95,7 +97,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: UnderlineInputBorder(
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Color(0x00000000),
                               width: 2.0,
                             ),
@@ -123,7 +125,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                             borderRadius: BorderRadius.circular(40.0),
                           ),
                           filled: true,
-                          fillColor: const Color(0xFFF0F0FA),
+                          fillColor: Color(0xFFF0F0FA),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Commissioner',
@@ -142,7 +144,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                 future: HotelTable().queryRows(
                   queryFn: (q) => q.contains(
                     'owner_id',
-                    '{$currentUserUid}',
+                    '{${currentUserUid}}',
                   ),
                 ),
                 builder: (context, snapshot) {
@@ -188,7 +190,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                           back: () async {},
                         ),
                       );
-                    }).divide(const SizedBox(height: 40.0)),
+                    }).divide(SizedBox(height: 40.0)),
                   );
                 },
               ),
@@ -223,13 +225,13 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                           : null;
 
                   return Container(
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 40.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -247,7 +249,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                 color: FlutterFlowTheme.of(context).primary,
                                 shape: BoxShape.circle,
                               ),
-                              child: const Align(
+                              child: Align(
                                 alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Icon(
                                   Icons.arrow_back_ios_new_rounded,
@@ -263,7 +265,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                           children: [
                             Expanded(
                               child: Text(
-                                'Запрос №${containerRequestsRow?.id.toString()} в отель ${containerRequestsRow?.hotelName}',
+                                'Запрос №${containerRequestsRow?.id?.toString()} в отель ${containerRequestsRow?.hotelName}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -277,7 +279,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                           ],
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 40.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -296,7 +298,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 15.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -324,16 +326,16 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                             ],
                           ),
                         ),
-                        if (containerRequestsRow?.rooms.isNotEmpty)
+                        if (containerRequestsRow?.rooms?.length != 0)
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 40.0, 0.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 16.0),
                                   child: Text(
                                     'Залы:',
@@ -351,7 +353,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                   width: MediaQuery.sizeOf(context).width * 1.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context).primary,
-                                    borderRadius: const BorderRadius.only(
+                                    borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(0.0),
                                       bottomRight: Radius.circular(0.0),
                                       topLeft: Radius.circular(16.0),
@@ -359,7 +361,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 8.0, 0.0, 8.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.min,
@@ -370,7 +372,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 0.1,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Text(
                                               'Название зала',
                                               textAlign: TextAlign.start,
@@ -394,7 +396,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 0.5,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Text(
                                               'Количество',
                                               style: FlutterFlowTheme.of(
@@ -417,7 +419,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 0.5,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Text(
                                               'Количество дней',
                                               style: FlutterFlowTheme.of(
@@ -440,7 +442,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 0.5,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Text(
                                               'Стоимость',
                                               textAlign: TextAlign.end,
@@ -459,9 +461,9 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                           ),
                                         ),
                                       ]
-                                          .divide(const SizedBox(width: 8.0))
-                                          .addToStart(const SizedBox(width: 16.0))
-                                          .addToEnd(const SizedBox(width: 16.0)),
+                                          .divide(SizedBox(width: 8.0))
+                                          .addToStart(SizedBox(width: 16.0))
+                                          .addToEnd(SizedBox(width: 16.0)),
                                     ),
                                   ),
                                 ),
@@ -517,7 +519,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                               FlutterFlowTheme.of(context)
                                                   .primaryBackground,
                                             ),
-                                            borderRadius: const BorderRadius.only(
+                                            borderRadius: BorderRadius.only(
                                               bottomLeft: Radius.circular(0.0),
                                               bottomRight: Radius.circular(0.0),
                                               topLeft: Radius.circular(0.0),
@@ -526,7 +528,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 8.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.min,
@@ -538,7 +540,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                                                 context)
                                                             .width *
                                                         0.1,
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(),
                                                     child: Text(
                                                       valueOrDefault<String>(
                                                         columnRequestsRoomVarRow
@@ -568,7 +570,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                                                 context)
                                                             .width *
                                                         0.5,
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(),
                                                     child: Text(
                                                       valueOrDefault<String>(
                                                         columnRequestsRoomVarRow
@@ -599,7 +601,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                                                 context)
                                                             .width *
                                                         0.5,
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(),
                                                     child: Text(
                                                       valueOrDefault<String>(
                                                         columnRequestsRoomVarRow
@@ -630,7 +632,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                                                 context)
                                                             .width *
                                                         0.5,
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(),
                                                     child: Text(
                                                       valueOrDefault<String>(
                                                         formatNumber(
@@ -662,11 +664,11 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                                   ),
                                                 ),
                                               ]
-                                                  .divide(const SizedBox(width: 8.0))
+                                                  .divide(SizedBox(width: 8.0))
                                                   .addToStart(
-                                                      const SizedBox(width: 16.0))
+                                                      SizedBox(width: 16.0))
                                                   .addToEnd(
-                                                      const SizedBox(width: 16.0)),
+                                                      SizedBox(width: 16.0)),
                                             ),
                                           ),
                                         );
@@ -675,7 +677,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                   },
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 16.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -686,7 +688,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.1,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                         ),
                                       ),
                                       Expanded(
@@ -695,7 +697,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.5,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                         ),
                                       ),
                                       Expanded(
@@ -704,7 +706,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.5,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Text(
                                             'Итого:',
                                             textAlign: TextAlign.end,
@@ -724,7 +726,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.5,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Text(
                                             '${formatNumber(
                                               containerRequestsRow?.roomPrice,
@@ -748,24 +750,24 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                         ),
                                       ),
                                     ]
-                                        .divide(const SizedBox(width: 8.0))
-                                        .addToStart(const SizedBox(width: 16.0))
-                                        .addToEnd(const SizedBox(width: 16.0)),
+                                        .divide(SizedBox(width: 8.0))
+                                        .addToStart(SizedBox(width: 16.0))
+                                        .addToEnd(SizedBox(width: 16.0)),
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                        if (containerRequestsRow?.halls.isNotEmpty)
+                        if (containerRequestsRow?.halls?.length != 0)
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 40.0, 0.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 16.0),
                                   child: Text(
                                     'Номера:',
@@ -783,7 +785,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                   width: MediaQuery.sizeOf(context).width * 1.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context).primary,
-                                    borderRadius: const BorderRadius.only(
+                                    borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(0.0),
                                       bottomRight: Radius.circular(0.0),
                                       topLeft: Radius.circular(16.0),
@@ -791,7 +793,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 8.0, 0.0, 8.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.min,
@@ -802,7 +804,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 0.1,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Text(
                                               'Тип номера',
                                               textAlign: TextAlign.start,
@@ -826,7 +828,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 0.5,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Text(
                                               'Рассадка',
                                               style: FlutterFlowTheme.of(
@@ -849,7 +851,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 0.5,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Text(
                                               'Количество ночей',
                                               style: FlutterFlowTheme.of(
@@ -872,7 +874,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 0.5,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Text(
                                               'Стоимость',
                                               textAlign: TextAlign.end,
@@ -891,9 +893,9 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                           ),
                                         ),
                                       ]
-                                          .divide(const SizedBox(width: 8.0))
-                                          .addToStart(const SizedBox(width: 16.0))
-                                          .addToEnd(const SizedBox(width: 16.0)),
+                                          .divide(SizedBox(width: 8.0))
+                                          .addToStart(SizedBox(width: 16.0))
+                                          .addToEnd(SizedBox(width: 16.0)),
                                     ),
                                   ),
                                 ),
@@ -949,7 +951,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                               FlutterFlowTheme.of(context)
                                                   .primaryBackground,
                                             ),
-                                            borderRadius: const BorderRadius.only(
+                                            borderRadius: BorderRadius.only(
                                               bottomLeft: Radius.circular(0.0),
                                               bottomRight: Radius.circular(0.0),
                                               topLeft: Radius.circular(0.0),
@@ -958,7 +960,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 8.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.min,
@@ -970,7 +972,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                                                 context)
                                                             .width *
                                                         0.1,
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(),
                                                     child: Text(
                                                       valueOrDefault<String>(
                                                         columnRequestsHallVarRow
@@ -1000,7 +1002,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                                                 context)
                                                             .width *
                                                         0.5,
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(),
                                                     child: Text(
                                                       'U-shape',
                                                       style: FlutterFlowTheme
@@ -1026,7 +1028,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                                                 context)
                                                             .width *
                                                         0.5,
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(),
                                                     child: Text(
                                                       valueOrDefault<String>(
                                                         columnRequestsHallVarRow
@@ -1057,7 +1059,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                                                 context)
                                                             .width *
                                                         0.5,
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(),
                                                     child: Text(
                                                       valueOrDefault<String>(
                                                         formatNumber(
@@ -1089,11 +1091,11 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                                   ),
                                                 ),
                                               ]
-                                                  .divide(const SizedBox(width: 8.0))
+                                                  .divide(SizedBox(width: 8.0))
                                                   .addToStart(
-                                                      const SizedBox(width: 16.0))
+                                                      SizedBox(width: 16.0))
                                                   .addToEnd(
-                                                      const SizedBox(width: 16.0)),
+                                                      SizedBox(width: 16.0)),
                                             ),
                                           ),
                                         );
@@ -1102,7 +1104,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                   },
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 16.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -1113,7 +1115,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.1,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                         ),
                                       ),
                                       Expanded(
@@ -1122,7 +1124,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.5,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                         ),
                                       ),
                                       Expanded(
@@ -1131,7 +1133,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.5,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Text(
                                             'Итого:',
                                             textAlign: TextAlign.end,
@@ -1151,7 +1153,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.5,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Text(
                                             '${formatNumber(
                                               containerRequestsRow?.hallPrice,
@@ -1175,24 +1177,24 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                         ),
                                       ),
                                     ]
-                                        .divide(const SizedBox(width: 8.0))
-                                        .addToStart(const SizedBox(width: 16.0))
-                                        .addToEnd(const SizedBox(width: 16.0)),
+                                        .divide(SizedBox(width: 8.0))
+                                        .addToStart(SizedBox(width: 16.0))
+                                        .addToEnd(SizedBox(width: 16.0)),
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                        if (containerRequestsRow?.food.isNotEmpty)
+                        if (containerRequestsRow?.food?.length != 0)
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 40.0, 0.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 16.0),
                                   child: Text(
                                     'Питание',
@@ -1208,7 +1210,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                   width: MediaQuery.sizeOf(context).width * 1.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context).primary,
-                                    borderRadius: const BorderRadius.only(
+                                    borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(0.0),
                                       bottomRight: Radius.circular(0.0),
                                       topLeft: Radius.circular(16.0),
@@ -1216,7 +1218,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 8.0, 0.0, 8.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.min,
@@ -1227,7 +1229,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 0.1,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Text(
                                               'Название пакета',
                                               textAlign: TextAlign.start,
@@ -1251,7 +1253,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 0.5,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Text(
                                               'Количество порций',
                                               style: FlutterFlowTheme.of(
@@ -1274,7 +1276,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 0.5,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Text(
                                               'Количество персон',
                                               style: FlutterFlowTheme.of(
@@ -1297,7 +1299,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 0.5,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Text(
                                               'Стоимость',
                                               textAlign: TextAlign.end,
@@ -1316,9 +1318,9 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                           ),
                                         ),
                                       ]
-                                          .divide(const SizedBox(width: 8.0))
-                                          .addToStart(const SizedBox(width: 16.0))
-                                          .addToEnd(const SizedBox(width: 16.0)),
+                                          .divide(SizedBox(width: 8.0))
+                                          .addToStart(SizedBox(width: 16.0))
+                                          .addToEnd(SizedBox(width: 16.0)),
                                     ),
                                   ),
                                 ),
@@ -1374,7 +1376,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                               FlutterFlowTheme.of(context)
                                                   .primaryBackground,
                                             ),
-                                            borderRadius: const BorderRadius.only(
+                                            borderRadius: BorderRadius.only(
                                               bottomLeft: Radius.circular(0.0),
                                               bottomRight: Radius.circular(0.0),
                                               topLeft: Radius.circular(0.0),
@@ -1383,7 +1385,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 8.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.min,
@@ -1395,7 +1397,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                                                 context)
                                                             .width *
                                                         0.1,
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(),
                                                     child: Text(
                                                       valueOrDefault<String>(
                                                         columnRequestsFoodVarRow
@@ -1425,7 +1427,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                                                 context)
                                                             .width *
                                                         0.5,
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(),
                                                     child: Text(
                                                       valueOrDefault<String>(
                                                         columnRequestsFoodVarRow
@@ -1456,7 +1458,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                                                 context)
                                                             .width *
                                                         0.5,
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(),
                                                     child: Text(
                                                       valueOrDefault<String>(
                                                         columnRequestsFoodVarRow
@@ -1487,7 +1489,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                                                 context)
                                                             .width *
                                                         0.5,
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(),
                                                     child: Text(
                                                       valueOrDefault<String>(
                                                         formatNumber(
@@ -1519,11 +1521,11 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                                   ),
                                                 ),
                                               ]
-                                                  .divide(const SizedBox(width: 8.0))
+                                                  .divide(SizedBox(width: 8.0))
                                                   .addToStart(
-                                                      const SizedBox(width: 16.0))
+                                                      SizedBox(width: 16.0))
                                                   .addToEnd(
-                                                      const SizedBox(width: 16.0)),
+                                                      SizedBox(width: 16.0)),
                                             ),
                                           ),
                                         );
@@ -1532,7 +1534,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                   },
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 16.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -1543,7 +1545,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.1,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                         ),
                                       ),
                                       Expanded(
@@ -1552,7 +1554,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.5,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                         ),
                                       ),
                                       Expanded(
@@ -1561,7 +1563,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.5,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Text(
                                             'Итого:',
                                             textAlign: TextAlign.end,
@@ -1581,7 +1583,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.5,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Text(
                                             '${formatNumber(
                                               containerRequestsRow?.foodPrice,
@@ -1605,16 +1607,16 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                         ),
                                       ),
                                     ]
-                                        .divide(const SizedBox(width: 8.0))
-                                        .addToStart(const SizedBox(width: 16.0))
-                                        .addToEnd(const SizedBox(width: 16.0)),
+                                        .divide(SizedBox(width: 8.0))
+                                        .addToStart(SizedBox(width: 16.0))
+                                        .addToEnd(SizedBox(width: 16.0)),
                                   ),
                                 ),
                               ],
                             ),
                           ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 32.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
@@ -1624,7 +1626,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                 flex: 3,
                                 child: Container(
                                   width: MediaQuery.sizeOf(context).width * 0.5,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Text(
                                     'Общий итог: ',
                                     textAlign: TextAlign.end,
@@ -1639,7 +1641,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                 ),
                               ),
                               Container(
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Text(
                                   '${formatNumber(
                                     containerRequestsRow?.price,
@@ -1651,7 +1653,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Commissioner',
-                                        color: const Color(0xFF2431A5),
+                                        color: Color(0xFF2431A5),
                                         fontSize: 24.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
@@ -1659,9 +1661,9 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                 ),
                               ),
                             ]
-                                .divide(const SizedBox(width: 8.0))
-                                .addToStart(const SizedBox(width: 16.0))
-                                .addToEnd(const SizedBox(width: 16.0)),
+                                .divide(SizedBox(width: 8.0))
+                                .addToStart(SizedBox(width: 16.0))
+                                .addToEnd(SizedBox(width: 16.0)),
                           ),
                         ),
                       ],

@@ -6,6 +6,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'visitors_count_filters_model.dart';
 export 'visitors_count_filters_model.dart';
 
@@ -23,8 +25,8 @@ class VisitorsCountFiltersWidget extends StatefulWidget {
     this.filter1,
     this.filter2,
     this.filter3,
-  })  : count = count ?? 0,
-        home = home ?? false;
+  })  : this.count = count ?? 0,
+        this.home = home ?? false;
 
   final int count;
   final Future Function()? onAdd;
@@ -61,15 +63,15 @@ class _VisitorsCountFiltersWidgetState
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.countDublicate = widget.count;
-      _model.seating1 = widget.filter1?.type;
-      _model.seating2 = widget.filter2?.type;
-      _model.seating3 = widget.filter3?.type;
-      _model.addToSeatings(widget.filter1!);
+      _model.countDublicate = widget!.count;
+      _model.seating1 = widget!.filter1?.type;
+      _model.seating2 = widget!.filter2?.type;
+      _model.seating3 = widget!.filter3?.type;
+      _model.addToSeatings(widget!.filter1!);
       safeSetState(() {});
-      _model.addToSeatings(widget.filter2!);
+      _model.addToSeatings(widget!.filter2!);
       safeSetState(() {});
-      _model.addToSeatings(widget.filter3!);
+      _model.addToSeatings(widget!.filter3!);
       safeSetState(() {});
     });
 
@@ -95,7 +97,7 @@ class _VisitorsCountFiltersWidgetState
             borderRadius: BorderRadius.circular(24.0),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,12 +105,12 @@ class _VisitorsCountFiltersWidgetState
                 Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    if (widget.home == true)
+                    if (widget!.home == true)
                       Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          if (_model.seatings.isNotEmpty)
+                          if (_model.seatings.length > 0)
                             Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -116,7 +118,7 @@ class _VisitorsCountFiltersWidgetState
                                   flex: 1,
                                   child: Container(
                                     width: 150.0,
-                                    decoration: const BoxDecoration(),
+                                    decoration: BoxDecoration(),
                                     child: Text(
                                       'Участники:',
                                       style: FlutterFlowTheme.of(context)
@@ -135,7 +137,7 @@ class _VisitorsCountFiltersWidgetState
                                   flex: 1,
                                   child: Container(
                                     width: 150.0,
-                                    decoration: const BoxDecoration(),
+                                    decoration: BoxDecoration(),
                                     child: Text(
                                       'Рассадка:',
                                       style: FlutterFlowTheme.of(context)
@@ -150,7 +152,7 @@ class _VisitorsCountFiltersWidgetState
                                     ),
                                   ),
                                 ),
-                              ].divide(const SizedBox(width: 8.0)),
+                              ].divide(SizedBox(width: 8.0)),
                             ),
                           Builder(
                             builder: (context) {
@@ -213,11 +215,11 @@ class _VisitorsCountFiltersWidgetState
                                       },
                                     ),
                                   );
-                                }).divide(const SizedBox(height: 24.0)),
+                                }).divide(SizedBox(height: 24.0)),
                               );
                             },
                           ),
-                          if (_model.seatings.isEmpty)
+                          if (_model.seatings.length < 1)
                             InkWell(
                               splashColor: Colors.transparent,
                               focusColor: Colors.transparent,
@@ -248,17 +250,17 @@ class _VisitorsCountFiltersWidgetState
                                           fontWeight: FontWeight.w600,
                                         ),
                                   ),
-                                ].divide(const SizedBox(width: 8.0)),
+                                ].divide(SizedBox(width: 8.0)),
                               ),
                             ),
-                        ].divide(const SizedBox(height: 4.0)),
+                        ].divide(SizedBox(height: 4.0)),
                       ),
-                    if (widget.home == false)
+                    if (widget!.home == false)
                       Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          if (widget.filter1 != null)
+                          if (widget!.filter1 != null)
                             wrapWithModel(
                               model: _model.clientSeatingCompCopyModel1,
                               updateCallback: () => safeSetState(() {}),
@@ -266,7 +268,7 @@ class _VisitorsCountFiltersWidgetState
                                 index: 1,
                                 seating: HotelSeatingStruct(
                                   type: _model.seating1,
-                                  count: widget.filter1?.count,
+                                  count: widget!.filter1?.count,
                                 ),
                                 onChangeSeating: (onChange, count) async {
                                   await widget.onChange?.call(
@@ -292,7 +294,7 @@ class _VisitorsCountFiltersWidgetState
                                 onDelete: () async {},
                               ),
                             ),
-                          if (widget.filter2 != null)
+                          if (widget!.filter2 != null)
                             wrapWithModel(
                               model: _model.clientSeatingCompCopyModel2,
                               updateCallback: () => safeSetState(() {}),
@@ -300,7 +302,7 @@ class _VisitorsCountFiltersWidgetState
                                 index: 2,
                                 seating: HotelSeatingStruct(
                                   type: _model.seating2,
-                                  count: widget.filter2?.count,
+                                  count: widget!.filter2?.count,
                                 ),
                                 onChangeSeating: (onChange, count) async {
                                   await widget.onChange?.call(
@@ -326,7 +328,7 @@ class _VisitorsCountFiltersWidgetState
                                 onDelete: () async {},
                               ),
                             ),
-                          if (widget.filter3 != null)
+                          if (widget!.filter3 != null)
                             wrapWithModel(
                               model: _model.clientSeatingCompCopyModel3,
                               updateCallback: () => safeSetState(() {}),
@@ -334,7 +336,7 @@ class _VisitorsCountFiltersWidgetState
                                 index: 3,
                                 seating: HotelSeatingStruct(
                                   type: _model.seating3,
-                                  count: widget.filter3?.count,
+                                  count: widget!.filter3?.count,
                                 ),
                                 onChangeSeating: (onChange, count) async {
                                   await widget.onChange?.call(
@@ -360,11 +362,11 @@ class _VisitorsCountFiltersWidgetState
                                 onDelete: () async {},
                               ),
                             ),
-                        ].divide(const SizedBox(height: 16.0)),
+                        ].divide(SizedBox(height: 16.0)),
                       ),
                   ],
                 ),
-              ].divide(const SizedBox(height: 8.0)),
+              ].divide(SizedBox(height: 8.0)),
             ),
           ),
         ),

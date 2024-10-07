@@ -11,6 +11,8 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/uikit/menu/menu_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'client_home_model.dart';
 export 'client_home_model.dart';
 
@@ -82,7 +84,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
             body: Container(
               height: MediaQuery.sizeOf(context).height * 1.0,
               decoration: BoxDecoration(
-                color: const Color(0xFFF9F9F9),
+                color: Color(0xFFF9F9F9),
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: Image.asset(
@@ -101,12 +103,12 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                   ))
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 48.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 48.0, 0.0),
                       child: Container(
                         height: MediaQuery.sizeOf(context).height * 1.0,
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primary,
-                          borderRadius: const BorderRadius.only(
+                          borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(0.0),
                             bottomRight: Radius.circular(50.0),
                             topLeft: Radius.circular(0.0),
@@ -114,7 +116,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 32.0, 16.0, 16.0),
                           child: Stack(
                             children: [
@@ -137,12 +139,12 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(0.0, -0.6),
+                                alignment: AlignmentDirectional(0.0, -0.6),
                                 child: Container(
-                                  constraints: const BoxConstraints(
+                                  constraints: BoxConstraints(
                                     maxWidth: 200.0,
                                   ),
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -218,7 +220,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                                                               FontWeight.w500,
                                                         ),
                                                   ),
-                                              ].divide(const SizedBox(height: 8.0)),
+                                              ].divide(SizedBox(height: 8.0)),
                                             ),
                                           ),
                                         ],
@@ -327,20 +329,20 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                                               ),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(height: 20.0)),
+                                    ].divide(SizedBox(height: 20.0)),
                                   ),
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                alignment: AlignmentDirectional(0.0, 1.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 40.0, 0.0, 0.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
@@ -351,10 +353,10 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                                             width: 150.0,
                                             height: 40.0,
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     24.0, 0.0, 24.0, 0.0),
                                             iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryBackground,
@@ -369,7 +371,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                                                   letterSpacing: 0.0,
                                                 ),
                                             elevation: 0.0,
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               color: Colors.transparent,
                                               width: 0.0,
                                             ),
@@ -380,7 +382,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                                       ),
                                     ),
                                     Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
                                           GoRouter.of(context)
@@ -397,12 +399,12 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                                           width: 150.0,
                                           height: 40.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 0.0, 24.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
-                                          color: const Color(0x00F1F4F8),
+                                          color: Color(0x00F1F4F8),
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
                                               .titleSmall
@@ -424,7 +426,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                                         ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(height: 16.0)),
+                                  ].divide(SizedBox(height: 16.0)),
                                 ),
                               ),
                             ],
@@ -435,10 +437,10 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                   Expanded(
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       child: Container(
                         width: MediaQuery.sizeOf(context).width * 1.0,
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -450,7 +452,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                               desktop: false,
                             ))
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 24.0, 0.0, 0.0),
                                 child: wrapWithModel(
                                   model: _model.menuModel,
@@ -486,7 +488,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                               desktop: false,
                             ))
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 16.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -577,7 +579,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                                             ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 24.0)),
+                                  ].divide(SizedBox(width: 24.0)),
                                 ),
                               ),
                             if (_model.currentPage == EnumClientPage.PROFILE)
@@ -586,7 +588,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                                   model: _model.clientProfileModel,
                                   updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
-                                  child: const ClientProfileWidget(),
+                                  child: ClientProfileWidget(),
                                 ),
                               ),
                             if ((_model.currentPage ==
@@ -613,7 +615,7 @@ class _ClientHomeWidgetState extends State<ClientHomeWidget> {
                                   updateCallback: () => safeSetState(() {}),
                                   child: ClientFavoriteWidget(
                                     userId: clientHomeUsersRow!.id,
-                                    user: clientHomeUsersRow,
+                                    user: clientHomeUsersRow!,
                                   ),
                                 ),
                               ),

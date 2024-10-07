@@ -3,8 +3,12 @@ import '/backend/supabase/supabase.dart';
 import '/components/footer_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/uikit/menu/menu_widget.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'aboutservice_model.dart';
 export 'aboutservice_model.dart';
 
@@ -85,7 +89,7 @@ class _AboutserviceWidgetState extends State<AboutserviceWidget> {
                       'assets/images/Vector.png',
                     ).image,
                   ),
-                  borderRadius: const BorderRadius.only(
+                  borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(0.0),
                     bottomRight: Radius.circular(0.0),
                     topLeft: Radius.circular(32.0),
@@ -97,12 +101,12 @@ class _AboutserviceWidgetState extends State<AboutserviceWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(24.0),
+                        padding: EdgeInsets.all(24.0),
                         child: Container(
-                          constraints: const BoxConstraints(
+                          constraints: BoxConstraints(
                             maxWidth: 1250.0,
                           ),
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -124,14 +128,14 @@ class _AboutserviceWidgetState extends State<AboutserviceWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 16.0, 0.0, 0.0),
                                     child: RichText(
                                       textScaler:
                                           MediaQuery.of(context).textScaler,
                                       text: TextSpan(
                                         children: [
-                                          const TextSpan(
+                                          TextSpan(
                                             text: 'О сервисе ',
                                             style: TextStyle(),
                                           ),
@@ -156,11 +160,11 @@ class _AboutserviceWidgetState extends State<AboutserviceWidget> {
                                     ),
                                   ),
                                 ]
-                                    .divide(const SizedBox(height: 24.0))
-                                    .addToEnd(const SizedBox(height: 0.0)),
+                                    .divide(SizedBox(height: 24.0))
+                                    .addToEnd(SizedBox(height: 0.0)),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 16.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -183,7 +187,7 @@ class _AboutserviceWidgetState extends State<AboutserviceWidget> {
                                             ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 90.0)),
+                                  ].divide(SizedBox(width: 90.0)),
                                 ),
                               ),
                               FutureBuilder<List<CmsRow>>(
@@ -222,7 +226,7 @@ class _AboutserviceWidgetState extends State<AboutserviceWidget> {
                                     scrollDirection: Axis.vertical,
                                     itemCount: listViewCmsRowList.length,
                                     separatorBuilder: (_, __) =>
-                                        const SizedBox(height: 32.0),
+                                        SizedBox(height: 32.0),
                                     itemBuilder: (context, listViewIndex) {
                                       final listViewCmsRow =
                                           listViewCmsRowList[listViewIndex];
@@ -279,14 +283,14 @@ class _AboutserviceWidgetState extends State<AboutserviceWidget> {
                                               ),
                                             ],
                                           ),
-                                        ].divide(const SizedBox(height: 16.0)),
+                                        ].divide(SizedBox(height: 16.0)),
                                       );
                                     },
                                   );
                                 },
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 16.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -309,19 +313,19 @@ class _AboutserviceWidgetState extends State<AboutserviceWidget> {
                                             ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 90.0)),
+                                  ].divide(SizedBox(width: 90.0)),
                                 ),
                               ),
-                            ].divide(const SizedBox(height: 24.0)),
+                            ].divide(SizedBox(height: 24.0)),
                           ),
                         ),
                       ),
                       wrapWithModel(
                         model: _model.footerModel,
                         updateCallback: () => safeSetState(() {}),
-                        child: const FooterWidget(),
+                        child: FooterWidget(),
                       ),
-                    ].divide(const SizedBox(height: 40.0)),
+                    ].divide(SizedBox(height: 40.0)),
                   ),
                 ),
               );

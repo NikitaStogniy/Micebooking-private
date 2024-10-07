@@ -7,9 +7,13 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/pop_up/pop_up_p_e_r_s_o_n_a_l_i_n_f_o/pop_up_p_e_r_s_o_n_a_l_i_n_f_o_widget.dart';
 import '/pop_up/pop_up_p_p/pop_up_p_p_widget.dart';
 import '/pop_up/pop_up_terms/pop_up_terms_widget.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'footer_model.dart';
 export 'footer_model.dart';
 
@@ -79,7 +83,7 @@ class _FooterWidgetState extends State<FooterWidget>
             tabletLandscape: false,
           ))
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 24.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 24.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -99,7 +103,7 @@ class _FooterWidgetState extends State<FooterWidget>
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -141,7 +145,7 @@ class _FooterWidgetState extends State<FooterWidget>
                                   context.pushNamed(
                                     'aboutservice',
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -177,7 +181,7 @@ class _FooterWidgetState extends State<FooterWidget>
                                   context.pushNamed(
                                     'AboutUs',
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -213,7 +217,7 @@ class _FooterWidgetState extends State<FooterWidget>
                                   context.pushNamed(
                                     'why',
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -254,11 +258,11 @@ class _FooterWidgetState extends State<FooterWidget>
                                           elevation: 0,
                                           insetPadding: EdgeInsets.zero,
                                           backgroundColor: Colors.transparent,
-                                          alignment: const AlignmentDirectional(
+                                          alignment: AlignmentDirectional(
                                                   0.0, 0.0)
                                               .resolve(
                                                   Directionality.of(context)),
-                                          child: const LoginHomePopUpWidget(
+                                          child: LoginHomePopUpWidget(
                                             hotel: true,
                                           ),
                                         );
@@ -301,7 +305,7 @@ class _FooterWidgetState extends State<FooterWidget>
                                       return Padding(
                                         padding:
                                             MediaQuery.viewInsetsOf(context),
-                                        child: const SizedBox(
+                                        child: Container(
                                           height: 300.0,
                                           child: SupportBottomsheetWidget(),
                                         ),
@@ -328,7 +332,7 @@ class _FooterWidgetState extends State<FooterWidget>
                                   ],
                                 ),
                               ),
-                            ].divide(const SizedBox(height: 20.0)),
+                            ].divide(SizedBox(height: 20.0)),
                           ),
                         ],
                       ),
@@ -391,11 +395,11 @@ class _FooterWidgetState extends State<FooterWidget>
                                               backgroundColor:
                                                   Colors.transparent,
                                               alignment:
-                                                  const AlignmentDirectional(0.0, 0.0)
+                                                  AlignmentDirectional(0.0, 0.0)
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
-                                              child: const PopUpPPWidget(),
+                                              child: PopUpPPWidget(),
                                             );
                                           },
                                         );
@@ -437,11 +441,11 @@ class _FooterWidgetState extends State<FooterWidget>
                                               backgroundColor:
                                                   Colors.transparent,
                                               alignment:
-                                                  const AlignmentDirectional(0.0, 0.0)
+                                                  AlignmentDirectional(0.0, 0.0)
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
-                                              child: const PopUpTermsWidget(),
+                                              child: PopUpTermsWidget(),
                                             );
                                           },
                                         );
@@ -483,11 +487,11 @@ class _FooterWidgetState extends State<FooterWidget>
                                               backgroundColor:
                                                   Colors.transparent,
                                               alignment:
-                                                  const AlignmentDirectional(0.0, 0.0)
+                                                  AlignmentDirectional(0.0, 0.0)
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
-                                              child: const PopUpPERSONALINFOWidget(),
+                                              child: PopUpPERSONALINFOWidget(),
                                             );
                                           },
                                         );
@@ -510,11 +514,11 @@ class _FooterWidgetState extends State<FooterWidget>
                                   ),
                                 ],
                               ),
-                            ].divide(const SizedBox(height: 20.0)),
+                            ].divide(SizedBox(height: 20.0)),
                           ),
                         ],
                       ),
-                    ].divide(const SizedBox(width: 100.0)),
+                    ].divide(SizedBox(width: 100.0)),
                   ),
                 ],
               ),
@@ -529,7 +533,7 @@ class _FooterWidgetState extends State<FooterWidget>
               children: [
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -565,7 +569,7 @@ class _FooterWidgetState extends State<FooterWidget>
                               ),
                             ],
                           ),
-                        ].divide(const SizedBox(height: 20.0)),
+                        ].divide(SizedBox(height: 20.0)),
                       ),
                       Column(
                         mainAxisSize: MainAxisSize.max,
@@ -580,7 +584,7 @@ class _FooterWidgetState extends State<FooterWidget>
                               context.pushNamed(
                                 'aboutservice',
                                 extra: <String, dynamic>{
-                                  kTransitionInfoKey: const TransitionInfo(
+                                  kTransitionInfoKey: TransitionInfo(
                                     hasTransition: true,
                                     transitionType: PageTransitionType.fade,
                                     duration: Duration(milliseconds: 0),
@@ -616,7 +620,7 @@ class _FooterWidgetState extends State<FooterWidget>
                               context.pushNamed(
                                 'AboutUs',
                                 extra: <String, dynamic>{
-                                  kTransitionInfoKey: const TransitionInfo(
+                                  kTransitionInfoKey: TransitionInfo(
                                     hasTransition: true,
                                     transitionType: PageTransitionType.fade,
                                     duration: Duration(milliseconds: 0),
@@ -652,7 +656,7 @@ class _FooterWidgetState extends State<FooterWidget>
                               context.pushNamed(
                                 'why',
                                 extra: <String, dynamic>{
-                                  kTransitionInfoKey: const TransitionInfo(
+                                  kTransitionInfoKey: TransitionInfo(
                                     hasTransition: true,
                                     transitionType: PageTransitionType.fade,
                                     duration: Duration(milliseconds: 0),
@@ -693,9 +697,9 @@ class _FooterWidgetState extends State<FooterWidget>
                                       elevation: 0,
                                       insetPadding: EdgeInsets.zero,
                                       backgroundColor: Colors.transparent,
-                                      alignment: const AlignmentDirectional(0.0, 0.0)
+                                      alignment: AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
-                                      child: const LoginHomePopUpWidget(
+                                      child: LoginHomePopUpWidget(
                                         hotel: true,
                                       ),
                                     );
@@ -736,7 +740,7 @@ class _FooterWidgetState extends State<FooterWidget>
                                 builder: (context) {
                                   return Padding(
                                     padding: MediaQuery.viewInsetsOf(context),
-                                    child: const SizedBox(
+                                    child: Container(
                                       height: 300.0,
                                       child: SupportBottomsheetWidget(),
                                     ),
@@ -763,7 +767,7 @@ class _FooterWidgetState extends State<FooterWidget>
                               ],
                             ),
                           ),
-                        ].divide(const SizedBox(height: 20.0)),
+                        ].divide(SizedBox(height: 20.0)),
                       ),
                       Column(
                         mainAxisSize: MainAxisSize.min,
@@ -820,11 +824,11 @@ class _FooterWidgetState extends State<FooterWidget>
                                             elevation: 0,
                                             insetPadding: EdgeInsets.zero,
                                             backgroundColor: Colors.transparent,
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                     0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                            child: const PopUpPPWidget(),
+                                            child: PopUpPPWidget(),
                                           );
                                         },
                                       );
@@ -865,11 +869,11 @@ class _FooterWidgetState extends State<FooterWidget>
                                             elevation: 0,
                                             insetPadding: EdgeInsets.zero,
                                             backgroundColor: Colors.transparent,
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                     0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                            child: const PopUpTermsWidget(),
+                                            child: PopUpTermsWidget(),
                                           );
                                         },
                                       );
@@ -910,11 +914,11 @@ class _FooterWidgetState extends State<FooterWidget>
                                             elevation: 0,
                                             insetPadding: EdgeInsets.zero,
                                             backgroundColor: Colors.transparent,
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                     0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                            child: const PopUpPERSONALINFOWidget(),
+                                            child: PopUpPERSONALINFOWidget(),
                                           );
                                         },
                                       );
@@ -937,9 +941,9 @@ class _FooterWidgetState extends State<FooterWidget>
                               ),
                             ],
                           ),
-                        ].divide(const SizedBox(height: 20.0)),
+                        ].divide(SizedBox(height: 20.0)),
                       ),
-                    ].divide(const SizedBox(height: 40.0)),
+                    ].divide(SizedBox(height: 40.0)),
                   ),
                 ),
               ],

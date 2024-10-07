@@ -2,6 +2,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'search_emprty_model.dart';
 export 'search_emprty_model.dart';
 
@@ -39,9 +41,9 @@ class _SearchEmprtyWidgetState extends State<SearchEmprtyWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           shape: BoxShape.rectangle,
         ),
         child: Column(
@@ -67,7 +69,7 @@ class _SearchEmprtyWidgetState extends State<SearchEmprtyWidget> {
                   ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
               child: Text(
                 'Не удалось подобрать отель по вашему запросу. Попробуйте изменить параметры',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(

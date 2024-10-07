@@ -2,6 +2,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'fiil_all_fields_model.dart';
 export 'fiil_all_fields_model.dart';
 
@@ -61,7 +63,7 @@ class _FiilAllFieldsWidgetState extends State<FiilAllFieldsWidget> {
         borderRadius: BorderRadius.circular(16.0),
       ),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 24.0),
+        padding: EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 24.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -79,7 +81,7 @@ class _FiilAllFieldsWidgetState extends State<FiilAllFieldsWidget> {
                   onTap: () async {
                     Navigator.pop(context);
                   },
-                  child: const Icon(
+                  child: Icon(
                     Icons.close_rounded,
                     color: Color(0xFF121212),
                     size: 24.0,
@@ -104,7 +106,7 @@ class _FiilAllFieldsWidgetState extends State<FiilAllFieldsWidget> {
               ],
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -116,10 +118,10 @@ class _FiilAllFieldsWidgetState extends State<FiilAllFieldsWidget> {
                           letterSpacing: 0.0,
                         ),
                   ),
-                  if (widget.hall == false)
+                  if (widget!.hall == false)
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'Площадку',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -130,10 +132,10 @@ class _FiilAllFieldsWidgetState extends State<FiilAllFieldsWidget> {
                             ),
                       ),
                     ),
-                  if (widget.room == false)
+                  if (widget!.room == false)
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'Проживание',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -144,10 +146,10 @@ class _FiilAllFieldsWidgetState extends State<FiilAllFieldsWidget> {
                             ),
                       ),
                     ),
-                  if (widget.food == false)
+                  if (widget!.food == false)
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'Питание',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(

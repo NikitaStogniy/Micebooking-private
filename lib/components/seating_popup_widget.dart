@@ -5,6 +5,8 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/uikit/check_box/check_box_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'seating_popup_model.dart';
 export 'seating_popup_model.dart';
 
@@ -50,20 +52,20 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
       width: MediaQuery.sizeOf(context).width * 0.5,
       height: 670.0,
       decoration: BoxDecoration(
-        color: const Color(0xFFF0F0FA),
+        color: Color(0xFFF0F0FA),
         borderRadius: BorderRadius.circular(16.0),
       ),
       child: Align(
-        alignment: const AlignmentDirectional(0.0, -1.0),
+        alignment: AlignmentDirectional(0.0, -1.0),
         child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 32.0),
+          padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 32.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Align(
-                alignment: const AlignmentDirectional(1.0, -1.0),
+                alignment: AlignmentDirectional(1.0, -1.0),
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(16.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -81,7 +83,7 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 32.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 32.0),
                 child: Text(
                   'Добавить рассадку',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -150,10 +152,10 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                                     fit: BoxFit.cover,
                                   ),
                                 ),
-                              ].divide(const SizedBox(height: 4.0)),
+                              ].divide(SizedBox(height: 4.0)),
                             ),
                           ),
-                        ].divide(const SizedBox(height: 4.0)),
+                        ].divide(SizedBox(height: 4.0)),
                       ),
                     ),
                     Flexible(
@@ -209,10 +211,10 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                                     fit: BoxFit.cover,
                                   ),
                                 ),
-                              ].divide(const SizedBox(height: 4.0)),
+                              ].divide(SizedBox(height: 4.0)),
                             ),
                           ),
-                        ].divide(const SizedBox(height: 4.0)),
+                        ].divide(SizedBox(height: 4.0)),
                       ),
                     ),
                     Expanded(
@@ -269,10 +271,10 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                                     fit: BoxFit.cover,
                                   ),
                                 ),
-                              ].divide(const SizedBox(height: 4.0)),
+                              ].divide(SizedBox(height: 4.0)),
                             ),
                           ),
-                        ].divide(const SizedBox(height: 4.0)),
+                        ].divide(SizedBox(height: 4.0)),
                       ),
                     ),
                     Expanded(
@@ -328,10 +330,10 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                                     fit: BoxFit.cover,
                                   ),
                                 ),
-                              ].divide(const SizedBox(height: 4.0)),
+                              ].divide(SizedBox(height: 4.0)),
                             ),
                           ),
-                        ].divide(const SizedBox(height: 4.0)),
+                        ].divide(SizedBox(height: 4.0)),
                       ),
                     ),
                   ],
@@ -395,10 +397,10 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                                     fit: BoxFit.cover,
                                   ),
                                 ),
-                              ].divide(const SizedBox(height: 4.0)),
+                              ].divide(SizedBox(height: 4.0)),
                             ),
                           ),
-                        ].divide(const SizedBox(height: 4.0)),
+                        ].divide(SizedBox(height: 4.0)),
                       ),
                     ),
                     Expanded(
@@ -454,10 +456,10 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                                     fit: BoxFit.cover,
                                   ),
                                 ),
-                              ].divide(const SizedBox(height: 4.0)),
+                              ].divide(SizedBox(height: 4.0)),
                             ),
                           ),
-                        ].divide(const SizedBox(height: 4.0)),
+                        ].divide(SizedBox(height: 4.0)),
                       ),
                     ),
                     Expanded(
@@ -513,10 +515,10 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                                     fit: BoxFit.cover,
                                   ),
                                 ),
-                              ].divide(const SizedBox(height: 4.0)),
+                              ].divide(SizedBox(height: 4.0)),
                             ),
                           ),
-                        ].divide(const SizedBox(height: 4.0)),
+                        ].divide(SizedBox(height: 4.0)),
                       ),
                     ),
                     Expanded(
@@ -572,10 +574,10 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                                     fit: BoxFit.cover,
                                   ),
                                 ),
-                              ].divide(const SizedBox(height: 4.0)),
+                              ].divide(SizedBox(height: 4.0)),
                             ),
                           ),
-                        ].divide(const SizedBox(height: 4.0)),
+                        ].divide(SizedBox(height: 4.0)),
                       ),
                     ),
                   ],
@@ -584,16 +586,18 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
               FFButtonWidget(
                 onPressed: () async {
                   await widget.onClick?.call(
-                    _model.selected ?? EnumSeating.theatre,
+                    _model.selected != null
+                        ? _model.selected
+                        : EnumSeating.theatre,
                   );
                 },
                 text: 'Добавить',
                 options: FFButtonOptions(
                   width: 200.0,
                   height: 40.0,
-                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                   iconPadding:
-                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Commissioner',
@@ -601,14 +605,14 @@ class _SeatingPopupWidgetState extends State<SeatingPopupWidget> {
                         letterSpacing: 0.0,
                       ),
                   elevation: 0.0,
-                  borderSide: const BorderSide(
+                  borderSide: BorderSide(
                     color: Colors.transparent,
                     width: 1.0,
                   ),
                   borderRadius: BorderRadius.circular(100.0),
                 ),
               ),
-            ].divide(const SizedBox(height: 8.0)),
+            ].divide(SizedBox(height: 8.0)),
           ),
         ),
       ),

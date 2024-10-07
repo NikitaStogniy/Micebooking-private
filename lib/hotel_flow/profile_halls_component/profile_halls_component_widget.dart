@@ -6,6 +6,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'profile_halls_component_model.dart';
 export 'profile_halls_component_model.dart';
 
@@ -54,7 +56,7 @@ class _ProfileHallsComponentWidgetState
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -63,7 +65,7 @@ class _ProfileHallsComponentWidgetState
             children: [
               Text(
                 valueOrDefault<String>(
-                  widget.hotel?.name,
+                  widget!.hotel?.name,
                   'Оталь',
                 ),
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -88,14 +90,14 @@ class _ProfileHallsComponentWidgetState
                   await widget.newCallback?.call();
                 },
               ),
-            ].divide(const SizedBox(width: 24.0)),
+            ].divide(SizedBox(width: 24.0)),
           ),
           FutureBuilder<List<HallRow>>(
             future: HallTable().queryRows(
               queryFn: (q) => q
                   .in_(
                     'id',
-                    widget.hotel!.hall,
+                    widget!.hotel!.hall,
                   )
                   .order('created_at'),
             ),
@@ -117,14 +119,14 @@ class _ProfileHallsComponentWidgetState
               List<HallRow> containerHallRowList = snapshot.data!;
 
               return ClipRRect(
-                borderRadius: const BorderRadius.only(
+                borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(16.0),
                   bottomRight: Radius.circular(16.0),
                   topLeft: Radius.circular(0.0),
                   topRight: Radius.circular(0.0),
                 ),
                 child: Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(16.0),
                       bottomRight: Radius.circular(16.0),
@@ -136,13 +138,13 @@ class _ProfileHallsComponentWidgetState
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      if (widget.hotel!.hall.isNotEmpty)
+                      if (widget!.hotel!.hall.length > 0)
                         Container(
                           width: MediaQuery.sizeOf(context).width * 1.0,
                           height: 40.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context).primary,
-                            borderRadius: const BorderRadius.only(
+                            borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(0.0),
                               bottomRight: Radius.circular(0.0),
                               topLeft: Radius.circular(16.0),
@@ -156,7 +158,7 @@ class _ProfileHallsComponentWidgetState
                                 flex: 2,
                                 child: Container(
                                   width: MediaQuery.sizeOf(context).width * 0.3,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Text(
                                     'Название зала',
                                     style: FlutterFlowTheme.of(context)
@@ -174,7 +176,7 @@ class _ProfileHallsComponentWidgetState
                               ),
                               Container(
                                 width: MediaQuery.sizeOf(context).width * 0.1,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Text(
                                   'Площадь м2',
                                   style: FlutterFlowTheme.of(context)
@@ -191,7 +193,7 @@ class _ProfileHallsComponentWidgetState
                               ),
                               Container(
                                 width: MediaQuery.sizeOf(context).width * 0.15,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Text(
                                   'Вместимость (чел.)',
                                   style: FlutterFlowTheme.of(context)
@@ -208,7 +210,7 @@ class _ProfileHallsComponentWidgetState
                               ),
                               Container(
                                 width: MediaQuery.sizeOf(context).width * 0.1,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Text(
                                   'Цена / день',
                                   textAlign: TextAlign.end,
@@ -225,9 +227,9 @@ class _ProfileHallsComponentWidgetState
                                 ),
                               ),
                             ]
-                                .divide(const SizedBox(width: 16.0))
-                                .addToStart(const SizedBox(width: 16.0))
-                                .addToEnd(const SizedBox(width: 16.0)),
+                                .divide(SizedBox(width: 16.0))
+                                .addToStart(SizedBox(width: 16.0))
+                                .addToEnd(SizedBox(width: 16.0)),
                           ),
                         ),
                       Builder(
@@ -235,7 +237,7 @@ class _ProfileHallsComponentWidgetState
                           final halls = containerHallRowList.toList();
                           if (halls.isEmpty) {
                             return Center(
-                              child: SizedBox(
+                              child: Container(
                                 width: 700.0,
                                 height: 300.0,
                                 child: HallFoodRoomEmptyWidget(
@@ -268,7 +270,7 @@ class _ProfileHallsComponentWidgetState
                                     FlutterFlowTheme.of(context)
                                         .primaryBackground,
                                   ),
-                                  borderRadius: const BorderRadius.only(
+                                  borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(0.0),
                                     bottomRight: Radius.circular(0.0),
                                     topLeft: Radius.circular(0.0),
@@ -276,7 +278,7 @@ class _ProfileHallsComponentWidgetState
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 8.0, 0.0, 8.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -287,7 +289,7 @@ class _ProfileHallsComponentWidgetState
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.3,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment:
@@ -329,7 +331,7 @@ class _ProfileHallsComponentWidgetState
                                                     highlightColor:
                                                         Colors.transparent,
                                                     onTap: () async {
-                                                      _model.newHalls = widget
+                                                      _model.newHalls = widget!
                                                           .hotel!.hall
                                                           .toList()
                                                           .cast<int>();
@@ -394,7 +396,7 @@ class _ProfileHallsComponentWidgetState
                                                             rows.eq(
                                                           'id',
                                                           valueOrDefault<int>(
-                                                            widget.hotel?.id,
+                                                            widget!.hotel?.id,
                                                             88,
                                                           ),
                                                         ),
@@ -449,7 +451,7 @@ class _ProfileHallsComponentWidgetState
                                                       size: 24.0,
                                                     ),
                                                   ),
-                                                ].divide(const SizedBox(width: 8.0)),
+                                                ].divide(SizedBox(width: 8.0)),
                                               ),
                                             ],
                                           ),
@@ -459,7 +461,7 @@ class _ProfileHallsComponentWidgetState
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.1,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           valueOrDefault<String>(
                                             hallsItem.size?.toString(),
@@ -482,7 +484,7 @@ class _ProfileHallsComponentWidgetState
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.15,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           valueOrDefault<String>(
                                             hallsItem.capacity?.toString(),
@@ -505,7 +507,7 @@ class _ProfileHallsComponentWidgetState
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.1,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           valueOrDefault<String>(
                                             formatNumber(
@@ -531,9 +533,9 @@ class _ProfileHallsComponentWidgetState
                                         ),
                                       ),
                                     ]
-                                        .divide(const SizedBox(width: 16.0))
-                                        .addToStart(const SizedBox(width: 16.0))
-                                        .addToEnd(const SizedBox(width: 16.0)),
+                                        .divide(SizedBox(width: 16.0))
+                                        .addToStart(SizedBox(width: 16.0))
+                                        .addToEnd(SizedBox(width: 16.0)),
                                   ),
                                 ),
                               );
@@ -547,7 +549,7 @@ class _ProfileHallsComponentWidgetState
               );
             },
           ),
-        ].divide(const SizedBox(height: 22.0)),
+        ].divide(SizedBox(height: 22.0)),
       ),
     );
   }

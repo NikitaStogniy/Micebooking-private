@@ -1,3 +1,7 @@
+import '/auth/base_auth_user_provider.dart';
+import '/auth/supabase_auth/auth_util.dart';
+import '/backend/schema/enums/enums.dart';
+import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/client_food_component_widget.dart';
 import '/components/client_hall_component_widget.dart';
@@ -6,12 +10,23 @@ import '/components/client_optional_widget.dart';
 import '/components/client_room_component_widget.dart';
 import '/components/edit_request_hotel_component_widget.dart';
 import '/components/footer_widget.dart';
+import '/components/hall_filter_widget.dart';
+import '/components/hotel_filter_widget.dart';
 import '/components/hotel_search_comp_widget.dart';
+import '/components/please_log_in_widget.dart';
+import '/empty_states/search_emprty/search_emprty_widget.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/uikit/menu/menu_widget.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'hotel_search_page_widget.dart' show HotelSearchPageWidget;
+import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class HotelSearchPageModel extends FlutterFlowModel<HotelSearchPageWidget> {
   ///  Local state fields for this page.
@@ -336,7 +351,7 @@ class HotelSearchPageModel extends FlutterFlowModel<HotelSearchPageWidget> {
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(const Duration(milliseconds: 50));
+      await Future.delayed(Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete = requestCompleter?.isCompleted ?? false;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {

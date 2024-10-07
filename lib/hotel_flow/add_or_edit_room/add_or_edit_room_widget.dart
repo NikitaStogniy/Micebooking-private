@@ -7,12 +7,16 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/hotel_flow/edit_room/edit_room_widget.dart';
+import 'dart:math';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'add_or_edit_room_model.dart';
 export 'add_or_edit_room_model.dart';
 
@@ -22,8 +26,8 @@ class AddOrEditRoomWidget extends StatefulWidget {
     int? id,
     required this.doneCallback,
     int? hotelId,
-  })  : id = id ?? 88,
-        hotelId = hotelId ?? 88;
+  })  : this.id = id ?? 88,
+        this.hotelId = hotelId ?? 88;
 
   final int id;
   final Future Function()? doneCallback;
@@ -80,8 +84,8 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 200.0.ms,
-            begin: const Offset(0.0, 100.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 100.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -101,14 +105,14 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0x00FFFFFF),
+        color: Color(0x00FFFFFF),
         borderRadius: BorderRadius.circular(32.0),
       ),
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            if (widget.id == 0)
+            if (widget!.id == 0)
               Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -141,10 +145,10 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                               lineHeight: 1.0,
                             ),
                       ),
-                    ].divide(const SizedBox(width: 16.0)),
+                    ].divide(SizedBox(width: 16.0)),
                   ),
                   Align(
-                    alignment: const AlignmentDirectional(-1.0, 1.0),
+                    alignment: AlignmentDirectional(-1.0, 1.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -153,7 +157,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                           children: [
                             Container(
                               width: 200.0,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Text(
                                 'Название номера*',
                                 style: FlutterFlowTheme.of(context)
@@ -168,7 +172,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                             ),
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 8.0, 0.0),
                                 child: TextFormField(
                                   controller: _model.hotelNameTextController1,
@@ -189,7 +193,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                           letterSpacing: 0.0,
                                         ),
                                     enabledBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
+                                      borderSide: BorderSide(
                                         color: Color(0xFFF0F0FA),
                                         width: 2.0,
                                       ),
@@ -220,7 +224,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                       borderRadius: BorderRadius.circular(24.0),
                                     ),
                                     filled: true,
-                                    fillColor: const Color(0xFFF0F0FA),
+                                    fillColor: Color(0xFFF0F0FA),
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
@@ -242,9 +246,9 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                           children: [
                             Container(
                               width: 200.0,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 8.0, 0.0, 0.0),
                                 child: Text(
                                   'Описание номера*',
@@ -261,7 +265,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                             ),
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 8.0, 0.0),
                                 child: TextFormField(
                                   controller: _model.hotelNameTextController2,
@@ -282,7 +286,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                           letterSpacing: 0.0,
                                         ),
                                     enabledBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
+                                      borderSide: BorderSide(
                                         color: Color(0xFFF0F0FA),
                                         width: 2.0,
                                       ),
@@ -313,7 +317,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                       borderRadius: BorderRadius.circular(24.0),
                                     ),
                                     filled: true,
-                                    fillColor: const Color(0xFFF0F0FA),
+                                    fillColor: Color(0xFFF0F0FA),
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
@@ -337,9 +341,9 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                             Container(
                               width: 200.0,
                               height: 100.0,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Text(
                                   'Фотографии*',
                                   style: FlutterFlowTheme.of(context)
@@ -354,7 +358,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 24.0, 0.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
@@ -425,16 +429,16 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                   });
                                 },
                                 text: '',
-                                icon: const Icon(
+                                icon: Icon(
                                   Icons.add,
                                   size: 24.0,
                                 ),
                                 options: FFButtonOptions(
                                   width: 40.0,
                                   height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).primary,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -445,7 +449,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                         letterSpacing: 0.0,
                                       ),
                                   elevation: 0.0,
-                                  borderSide: const BorderSide(
+                                  borderSide: BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
@@ -453,7 +457,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                 ),
                               ),
                             ),
-                            if (_model.uploadedImages.isNotEmpty)
+                            if (_model.uploadedImages.length > 0)
                               Expanded(
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -463,14 +467,14 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                       width: MediaQuery.sizeOf(context).width *
                                           1.0,
                                       height: 100.0,
-                                      decoration: const BoxDecoration(),
+                                      decoration: BoxDecoration(),
                                       child: Builder(
                                         builder: (context) {
                                           final images =
                                               _model.uploadedImages.toList();
 
                                           return ListView.builder(
-                                            padding: const EdgeInsets.fromLTRB(
+                                            padding: EdgeInsets.fromLTRB(
                                               0,
                                               0,
                                               32.0,
@@ -483,18 +487,18 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                               final imagesItem =
                                                   images[imagesIndex];
                                               return Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
-                                                child: SizedBox(
+                                                child: Container(
                                                   width: 155.0,
                                                   child: Stack(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     4.0,
                                                                     4.0,
@@ -515,7 +519,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                                       ),
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 1.0, -1.0),
                                                         child:
                                                             FlutterFlowIconButton(
@@ -547,7 +551,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                                       ),
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 -0.9, -0.8),
                                                         child: InkWell(
                                                           splashColor: Colors
@@ -600,7 +604,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                     ),
                                     if (_model.uploadedImages.length > 4)
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 4.0, 0.0, 0.0),
                                         child: Text(
                                           'Для прокрутки фотографий зажмите левую кнопку мыши или используйте свайп по тачпаду.',
@@ -624,7 +628,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                           children: [
                             Container(
                               width: MediaQuery.sizeOf(context).width * 1.0,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: FutureBuilder<List<ServiceCategoryRow>>(
                                 future: ServiceCategoryTable().queryRows(
                                   queryFn: (q) => q.eq(
@@ -655,7 +659,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
 
                                   return MasonryGridView.builder(
                                     gridDelegate:
-                                        const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                        SliverSimpleGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 2,
                                     ),
                                     crossAxisSpacing: 40.0,
@@ -669,15 +673,15 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                           staggeredViewServiceCategoryRowList[
                                               staggeredViewIndex];
                                       return Container(
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Container(
                                           width: double.infinity,
-                                          color: const Color(0x00000000),
+                                          color: Color(0x00000000),
                                           child: ExpandableNotifier(
                                             initialExpanded: true,
                                             child: ExpandablePanel(
                                               header: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 20.0),
                                                 child: Row(
@@ -751,7 +755,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                                         listViewServiceRowList
                                                             .length,
                                                     separatorBuilder: (_, __) =>
-                                                        const SizedBox(height: 12.0),
+                                                        SizedBox(height: 12.0),
                                                     itemBuilder: (context,
                                                         listViewIndex) {
                                                       final listViewServiceRow =
@@ -820,9 +824,9 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                                                           .selectedServices
                                                                           .contains(listViewServiceRow
                                                                               .id)
-                                                                      ? const Color(
+                                                                      ? Color(
                                                                           0x00EEEEEE)
-                                                                      : const Color(
+                                                                      : Color(
                                                                           0xFF57636C),
                                                                 ),
                                                               ),
@@ -832,7 +836,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                                                     .contains(
                                                                         listViewServiceRow
                                                                             .id),
-                                                                child: const Align(
+                                                                child: Align(
                                                                   alignment:
                                                                       AlignmentDirectional(
                                                                           0.0,
@@ -872,7 +876,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                                                   ),
                                                             ),
                                                           ),
-                                                        ].divide(const SizedBox(
+                                                        ].divide(SizedBox(
                                                             width: 4.0)),
                                                       );
                                                     },
@@ -906,9 +910,9 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                               ),
                             ),
                           ]
-                              .divide(const SizedBox(height: 8.0))
-                              .addToStart(const SizedBox(height: 16.0))
-                              .addToEnd(const SizedBox(height: 16.0)),
+                              .divide(SizedBox(height: 8.0))
+                              .addToStart(SizedBox(height: 16.0))
+                              .addToEnd(SizedBox(height: 16.0)),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -927,7 +931,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ),
-                                SizedBox(
+                                Container(
                                   width: 100.0,
                                   child: TextFormField(
                                     controller: _model.countTextController,
@@ -985,9 +989,9 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                             BorderRadius.circular(24.0),
                                       ),
                                       filled: true,
-                                      fillColor: const Color(0xFFF0F0FA),
+                                      fillColor: Color(0xFFF0F0FA),
                                       contentPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               8.0, 8.0, 8.0, 8.0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -1006,7 +1010,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                     ],
                                   ),
                                 ),
-                              ].divide(const SizedBox(width: 8.0)),
+                              ].divide(SizedBox(width: 8.0)),
                             ),
                             if (responsiveVisibility(
                               context: context,
@@ -1070,10 +1074,10 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                             letterSpacing: 0.0,
                                           ),
                                     ),
-                                  ].divide(const SizedBox(width: 8.0)),
+                                  ].divide(SizedBox(width: 8.0)),
                                 ),
                               ),
-                          ].divide(const SizedBox(width: 24.0)),
+                          ].divide(SizedBox(width: 24.0)),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -1092,7 +1096,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ),
-                                SizedBox(
+                                Container(
                                   width: 100.0,
                                   child: TextFormField(
                                     controller: _model.priceTextController,
@@ -1150,9 +1154,9 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                             BorderRadius.circular(24.0),
                                       ),
                                       filled: true,
-                                      fillColor: const Color(0xFFF0F0FA),
+                                      fillColor: Color(0xFFF0F0FA),
                                       contentPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               8.0, 8.0, 8.0, 8.0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -1171,7 +1175,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                     ],
                                   ),
                                 ),
-                              ].divide(const SizedBox(width: 8.0)),
+                              ].divide(SizedBox(width: 8.0)),
                             ),
                             if (responsiveVisibility(
                               context: context,
@@ -1192,7 +1196,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                           letterSpacing: 0.0,
                                         ),
                                   ),
-                                  SizedBox(
+                                  Container(
                                     width: 100.0,
                                     child: TextFormField(
                                       controller:
@@ -1251,9 +1255,9 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                               BorderRadius.circular(24.0),
                                         ),
                                         filled: true,
-                                        fillColor: const Color(0xFFF0F0FA),
+                                        fillColor: Color(0xFFF0F0FA),
                                         contentPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
+                                            EdgeInsetsDirectional.fromSTEB(
                                                 8.0, 8.0, 8.0, 8.0),
                                       ),
                                       style: FlutterFlowTheme.of(context)
@@ -1272,19 +1276,23 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                       ],
                                     ),
                                   ),
-                                ].divide(const SizedBox(width: 8.0)),
+                                ].divide(SizedBox(width: 8.0)),
                               ),
-                          ].divide(const SizedBox(width: 24.0)),
+                          ].divide(SizedBox(width: 24.0)),
                         ),
-                      ].divide(const SizedBox(height: 24.0)),
+                      ].divide(SizedBox(height: 24.0)),
                     ),
                   ),
                   FFButtonWidget(
-                    onPressed: ((_model.hotelNameTextController1.text == '') ||
-                            (_model.hotelNameTextController2.text == '') ||
-                            (_model.uploadedImages.isEmpty) ||
-                            (_model.countTextController.text == '') ||
-                            (_model.priceTextController.text == ''))
+                    onPressed: ((_model.hotelNameTextController1.text == null ||
+                                _model.hotelNameTextController1.text == '') ||
+                            (_model.hotelNameTextController2.text == null ||
+                                _model.hotelNameTextController2.text == '') ||
+                            (_model.uploadedImages.length == 0) ||
+                            (_model.countTextController.text == null ||
+                                _model.countTextController.text == '') ||
+                            (_model.priceTextController.text == null ||
+                                _model.priceTextController.text == ''))
                         ? null
                         : () async {
                             _model.newRoom = await RoomTable().insert({
@@ -1306,7 +1314,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                               queryFn: (q) => q.eq(
                                 'id',
                                 valueOrDefault<int>(
-                                  widget.hotelId,
+                                  widget!.hotelId,
                                   00,
                                 ),
                               ),
@@ -1327,7 +1335,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                               },
                               matchingRows: (rows) => rows.eq(
                                 'id',
-                                widget.hotelId,
+                                widget!.hotelId,
                               ),
                             );
                             safeSetState(() {
@@ -1348,9 +1356,9 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                     options: FFButtonOptions(
                       height: 50.0,
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(43.0, 0.0, 43.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(43.0, 0.0, 43.0, 0.0),
                       iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
@@ -1359,7 +1367,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                 letterSpacing: 0.0,
                               ),
                       elevation: 0.0,
-                      borderSide: const BorderSide(
+                      borderSide: BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),
@@ -1370,14 +1378,14 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                           FlutterFlowTheme.of(context).secondaryText,
                     ),
                   ),
-                ].divide(const SizedBox(height: 32.0)),
+                ].divide(SizedBox(height: 32.0)),
               ),
-            if (widget.id != 0)
+            if (widget!.id != 0)
               FutureBuilder<List<RoomRow>>(
                 future: RoomTable().querySingleRow(
                   queryFn: (q) => q.eq(
                     'id',
-                    widget.id,
+                    widget!.id,
                   ),
                 ),
                 builder: (context, snapshot) {
@@ -1411,7 +1419,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                     updateOnChange: true,
                     child: EditRoomWidget(
                       id: valueOrDefault<int>(
-                        widget.id,
+                        widget!.id,
                         88,
                       ),
                       initialRoom: editRoomRoomRow!,
@@ -1422,7 +1430,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                   );
                 },
               ),
-          ].addToEnd(const SizedBox(height: 72.0)),
+          ].addToEnd(SizedBox(height: 72.0)),
         ),
       ),
     ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!);

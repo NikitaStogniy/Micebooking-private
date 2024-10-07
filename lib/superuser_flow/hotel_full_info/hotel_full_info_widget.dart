@@ -8,6 +8,8 @@ import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'hotel_full_info_model.dart';
 export 'hotel_full_info_model.dart';
 
@@ -17,7 +19,7 @@ class HotelFullInfoWidget extends StatefulWidget {
     int? id,
     required this.goNext,
     required this.goBack,
-  }) : id = id ?? 88;
+  }) : this.id = id ?? 88;
 
   final int id;
   final Future Function(int? id)? goNext;
@@ -57,7 +59,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
       future: HotelTable().querySingleRow(
         queryFn: (q) => q.eq(
           'id',
-          widget.id,
+          widget!.id,
         ),
       ),
       builder: (context, snapshot) {
@@ -82,7 +84,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
             : null;
 
         return Container(
-          decoration: const BoxDecoration(),
+          decoration: BoxDecoration(),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -135,12 +137,12 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                                 ),
                           ),
                         ),
-                      ].divide(const SizedBox(width: 24.0)),
+                      ].divide(SizedBox(width: 24.0)),
                     );
                   },
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(-1.0, 1.0),
+                  alignment: AlignmentDirectional(-1.0, 1.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -150,7 +152,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                         children: [
                           Container(
                             width: 200.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Text(
                               'Название отеля',
                               style: FlutterFlowTheme.of(context)
@@ -167,13 +169,13 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                             child: Container(
                               height: 40.0,
                               decoration: BoxDecoration(
-                                color: const Color(0xFFF0F0FA),
+                                color: Color(0xFFF0F0FA),
                                 borderRadius: BorderRadius.circular(40.0),
                               ),
                               child: Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       22.0, 0.0, 0.0, 0.0),
                                   child: Text(
                                     valueOrDefault<String>(
@@ -200,7 +202,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                         children: [
                           Container(
                             width: 200.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Text(
                               'Адрес отеля',
                               style: FlutterFlowTheme.of(context)
@@ -217,13 +219,13 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                             child: Container(
                               height: 40.0,
                               decoration: BoxDecoration(
-                                color: const Color(0xFFF0F0FA),
+                                color: Color(0xFFF0F0FA),
                                 borderRadius: BorderRadius.circular(40.0),
                               ),
                               child: Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       22.0, 0.0, 0.0, 0.0),
                                   child: Text(
                                     valueOrDefault<String>(
@@ -254,7 +256,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                               children: [
                                 Container(
                                   width: 200.0,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Text(
                                     'Город',
                                     style: FlutterFlowTheme.of(context)
@@ -271,14 +273,14 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                                   child: Container(
                                     height: 40.0,
                                     decoration: BoxDecoration(
-                                      color: const Color(0xFFF0F0FA),
+                                      color: Color(0xFFF0F0FA),
                                       borderRadius: BorderRadius.circular(40.0),
                                     ),
                                     child: Align(
                                       alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
+                                          AlignmentDirectional(-1.0, 0.0),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             22.0, 0.0, 0.0, 0.0),
                                         child: Text(
                                           valueOrDefault<String>(
@@ -307,7 +309,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                               children: [
                                 Container(
                                   width: 200.0,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Text(
                                     'Расстояние от центра',
                                     style: FlutterFlowTheme.of(context)
@@ -324,14 +326,14 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                                   child: Container(
                                     height: 40.0,
                                     decoration: BoxDecoration(
-                                      color: const Color(0xFFF0F0FA),
+                                      color: Color(0xFFF0F0FA),
                                       borderRadius: BorderRadius.circular(40.0),
                                     ),
                                     child: Align(
                                       alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
+                                          AlignmentDirectional(-1.0, 0.0),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             22.0, 0.0, 0.0, 0.0),
                                         child: Text(
                                           '${valueOrDefault<String>(
@@ -355,7 +357,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                               ],
                             ),
                           ),
-                        ].divide(const SizedBox(width: 40.0)),
+                        ].divide(SizedBox(width: 40.0)),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
@@ -366,7 +368,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                               children: [
                                 Container(
                                   width: 200.0,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Text(
                                     'Вместимость',
                                     style: FlutterFlowTheme.of(context)
@@ -383,14 +385,14 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                                   child: Container(
                                     height: 40.0,
                                     decoration: BoxDecoration(
-                                      color: const Color(0xFFF0F0FA),
+                                      color: Color(0xFFF0F0FA),
                                       borderRadius: BorderRadius.circular(40.0),
                                     ),
                                     child: Align(
                                       alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
+                                          AlignmentDirectional(-1.0, 0.0),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             22.0, 0.0, 0.0, 0.0),
                                         child: Text(
                                           valueOrDefault<String>(
@@ -420,7 +422,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                               children: [
                                 Container(
                                   width: 200.0,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Text(
                                     'Ссылка на карту',
                                     style: FlutterFlowTheme.of(context)
@@ -437,7 +439,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                                   child: Container(
                                     height: 40.0,
                                     decoration: BoxDecoration(
-                                      color: const Color(0xFFF0F0FA),
+                                      color: Color(0xFFF0F0FA),
                                       borderRadius: BorderRadius.circular(40.0),
                                     ),
                                     child: Row(
@@ -445,10 +447,10 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                                       children: [
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(-1.0, 0.0),
+                                              AlignmentDirectional(-1.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     22.0, 0.0, 0.0, 0.0),
                                             child: InkWell(
                                               splashColor: Colors.transparent,
@@ -489,7 +491,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                               ],
                             ),
                           ),
-                        ].divide(const SizedBox(width: 40.0)),
+                        ].divide(SizedBox(width: 40.0)),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
@@ -497,7 +499,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                         children: [
                           Container(
                             width: 200.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Text(
                               'Описание отеля',
                               style: FlutterFlowTheme.of(context)
@@ -513,13 +515,13 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                           Expanded(
                             child: Container(
                               decoration: BoxDecoration(
-                                color: const Color(0xFFF0F0FA),
+                                color: Color(0xFFF0F0FA),
                                 borderRadius: BorderRadius.circular(40.0),
                               ),
                               child: Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       22.0, 12.0, 22.0, 12.0),
                                   child: Text(
                                     valueOrDefault<String>(
@@ -547,7 +549,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                         children: [
                           Container(
                             width: 200.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Text(
                               'Количество звезд',
                               style: FlutterFlowTheme.of(context)
@@ -584,9 +586,9 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                           Container(
                             width: 200.0,
                             height: 100.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Text(
                                 'Фотографии',
                                 style: FlutterFlowTheme.of(context)
@@ -600,7 +602,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                               ),
                             ),
                           ),
-                          if (containerHotelRow!.images.isNotEmpty)
+                          if (containerHotelRow!.images.length > 0)
                             Expanded(
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -610,11 +612,11 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                                     width:
                                         MediaQuery.sizeOf(context).width * 1.0,
                                     height: 100.0,
-                                    decoration: const BoxDecoration(),
+                                    decoration: BoxDecoration(),
                                     child: Builder(
                                       builder: (context) {
-                                        final images = containerHotelRow.images
-                                                .toList() ??
+                                        final images = containerHotelRow?.images
+                                                ?.toList() ??
                                             [];
 
                                         return ListView.builder(
@@ -625,18 +627,18 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                                             final imagesItem =
                                                 images[imagesIndex];
                                             return Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   0.0, 0.0),
-                                              child: SizedBox(
+                                              child: Container(
                                                 width: 160.0,
                                                 child: Stack(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   4.0,
                                                                   4.0,
@@ -656,7 +658,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                                                     ),
                                                     Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               -0.9, -0.8),
                                                       child: Icon(
                                                         Icons.star,
@@ -697,7 +699,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                         children: [
                           Container(
                             width: MediaQuery.sizeOf(context).width * 1.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: FutureBuilder<List<ServiceCategoryRow>>(
                               future: ServiceCategoryTable().queryRows(
                                 queryFn: (q) => q.eq(
@@ -727,7 +729,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
 
                                 return MasonryGridView.builder(
                                   gridDelegate:
-                                      const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                      SliverSimpleGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
                                   ),
                                   crossAxisSpacing: 40.0,
@@ -740,15 +742,15 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                                         staggeredViewServiceCategoryRowList[
                                             staggeredViewIndex];
                                     return Container(
-                                      decoration: const BoxDecoration(),
+                                      decoration: BoxDecoration(),
                                       child: Container(
                                         width: double.infinity,
-                                        color: const Color(0x00000000),
+                                        color: Color(0x00000000),
                                         child: ExpandableNotifier(
                                           initialExpanded: true,
                                           child: ExpandablePanel(
                                             header: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 0.0, 0.0, 20.0),
                                               child: Row(
@@ -820,7 +822,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                                                       listViewServiceRowList
                                                           .length,
                                                   separatorBuilder: (_, __) =>
-                                                      const SizedBox(height: 12.0),
+                                                      SizedBox(height: 12.0),
                                                   itemBuilder:
                                                       (context, listViewIndex) {
                                                     final listViewServiceRow =
@@ -833,7 +835,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                                                         Expanded(
                                                           child: Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     -1.0, 0.0),
                                                             child:
                                                                 wrapWithModel(
@@ -856,7 +858,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                                                                   'Keyeum_${listViewServiceRow.id.toString()}',
                                                                 ),
                                                                 variant: 2,
-                                                                isChecked: containerHotelRow
+                                                                isChecked: containerHotelRow!
                                                                     .services
                                                                     .contains(
                                                                         listViewServiceRow
@@ -907,9 +909,9 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                         ],
                       ),
                     ]
-                        .divide(const SizedBox(height: 24.0))
-                        .addToStart(const SizedBox(height: 16.0))
-                        .addToEnd(const SizedBox(height: 16.0)),
+                        .divide(SizedBox(height: 24.0))
+                        .addToStart(SizedBox(height: 16.0))
+                        .addToEnd(SizedBox(height: 16.0)),
                   ),
                 ),
                 Row(
@@ -922,15 +924,15 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                         FFButtonWidget(
                           onPressed: () async {
                             await widget.goNext?.call(
-                              containerHotelRow.id,
+                              containerHotelRow?.id,
                             );
                           },
                           text: 'Посмотреть общую информацию',
                           options: FFButtonOptions(
                             height: 50.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 43.0, 0.0, 43.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -941,7 +943,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 0.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -955,9 +957,9 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                           text: 'Назад',
                           options: FFButtonOptions(
                             height: 50.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 43.0, 0.0, 43.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -968,18 +970,18 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 0.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(24.0),
                           ),
                         ),
-                      ].divide(const SizedBox(width: 20.0)),
+                      ].divide(SizedBox(width: 20.0)),
                     ),
                   ],
                 ),
-              ].addToEnd(const SizedBox(height: 72.0)),
+              ].addToEnd(SizedBox(height: 72.0)),
             ),
           ),
         );

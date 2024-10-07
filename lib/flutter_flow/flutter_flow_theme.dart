@@ -123,8 +123,8 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color error = const Color(0xFFBE3030);
   late Color info = const Color(0xFFFFFFFF);
 
-  late Color disabledButtonTextColor = const Color(0xFF636363);
-  late Color disabledButtonColor = const Color(0xFFECECEC);
+  late Color disabledButtonTextColor = Color(0xFF636363);
+  late Color disabledButtonColor = Color(0xFFECECEC);
 }
 
 abstract class Typography {

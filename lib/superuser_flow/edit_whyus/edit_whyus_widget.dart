@@ -7,6 +7,8 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'edit_whyus_model.dart';
 export 'edit_whyus_model.dart';
 
@@ -97,7 +99,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
             containerCmsRowList.isNotEmpty ? containerCmsRowList.first : null;
 
         return Container(
-          decoration: const BoxDecoration(),
+          decoration: BoxDecoration(),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -118,7 +120,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -157,7 +159,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               enabledBorder: UnderlineInputBorder(
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Color(0xFFF0F0FA),
                                   width: 2.0,
                                 ),
@@ -185,7 +187,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               filled: true,
-                              fillColor: const Color(0xFFF0F0FA),
+                              fillColor: Color(0xFFF0F0FA),
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
@@ -197,7 +199,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                             validator: _model.whyusTitle1TextControllerValidator
                                 .asValidator(context),
                           ),
-                        ].divide(const SizedBox(height: 16.0)),
+                        ].divide(SizedBox(height: 16.0)),
                       ),
                     ),
                     Column(
@@ -286,7 +288,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                     },
                                   ),
                                 );
-                              }).divide(const SizedBox(height: 40.0)),
+                              }).divide(SizedBox(height: 40.0)),
                             );
                           },
                         ),
@@ -331,7 +333,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                         size: 24.0,
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 8.0)),
+                                  ].divide(SizedBox(width: 8.0)),
                                 ),
                               ),
                             if (_model.newElement1 == true)
@@ -341,7 +343,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 16.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -367,7 +369,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                             onChanged: (_) =>
                                                 EasyDebounce.debounce(
                                               '_model.newTitle1TextController',
-                                              const Duration(milliseconds: 200),
+                                              Duration(milliseconds: 200),
                                               () => safeSetState(() {}),
                                             ),
                                             autofocus: false,
@@ -395,7 +397,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                       ),
                                               enabledBorder:
                                                   UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -404,7 +406,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                               ),
                                               focusedBorder:
                                                   UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -412,7 +414,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                     BorderRadius.circular(8.0),
                                               ),
                                               errorBorder: UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -421,7 +423,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                               ),
                                               focusedErrorBorder:
                                                   UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -429,7 +431,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                     BorderRadius.circular(8.0),
                                               ),
                                               filled: true,
-                                              fillColor: const Color(0xFFF0F0FA),
+                                              fillColor: Color(0xFFF0F0FA),
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -445,11 +447,11 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                 .newTitle1TextControllerValidator
                                                 .asValidator(context),
                                           ),
-                                        ].divide(const SizedBox(height: 24.0)),
+                                        ].divide(SizedBox(height: 24.0)),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 16.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -463,7 +465,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                             onChanged: (_) =>
                                                 EasyDebounce.debounce(
                                               '_model.newText1TextController',
-                                              const Duration(milliseconds: 200),
+                                              Duration(milliseconds: 200),
                                               () => safeSetState(() {}),
                                             ),
                                             autofocus: false,
@@ -490,7 +492,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                       ),
                                               enabledBorder:
                                                   UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -499,7 +501,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                               ),
                                               focusedBorder:
                                                   UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -507,7 +509,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                     BorderRadius.circular(8.0),
                                               ),
                                               errorBorder: UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -516,7 +518,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                               ),
                                               focusedErrorBorder:
                                                   UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -524,7 +526,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                     BorderRadius.circular(8.0),
                                               ),
                                               filled: true,
-                                              fillColor: const Color(0xFFF0F0FA),
+                                              fillColor: Color(0xFFF0F0FA),
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -540,7 +542,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                 .newText1TextControllerValidator
                                                 .asValidator(context),
                                           ),
-                                        ].divide(const SizedBox(height: 24.0)),
+                                        ].divide(SizedBox(height: 24.0)),
                                       ),
                                     ),
                                     Row(
@@ -549,8 +551,14 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                         FFButtonWidget(
                                           onPressed: ((_model.newTitle1TextController
                                                               .text ==
+                                                          null ||
+                                                      _model.newTitle1TextController
+                                                              .text ==
                                                           '') &&
                                                   (_model.newText1TextController
+                                                              .text ==
+                                                          null ||
+                                                      _model.newText1TextController
                                                               .text ==
                                                           ''))
                                               ? null
@@ -586,10 +594,10 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                             width: 300.0,
                                             height: 50.0,
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     24.0, 0.0, 24.0, 0.0),
                                             iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
@@ -603,13 +611,13 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                       letterSpacing: 0.0,
                                                     ),
                                             elevation: 0.0,
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               color: Colors.transparent,
                                               width: 1.0,
                                             ),
                                             borderRadius:
                                                 BorderRadius.circular(80.0),
-                                            disabledColor: const Color(0x642431A5),
+                                            disabledColor: Color(0x642431A5),
                                           ),
                                         ),
                                         InkWell(
@@ -641,16 +649,16 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                 ),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 40.0)),
+                                      ].divide(SizedBox(width: 40.0)),
                                     ),
-                                  ].divide(const SizedBox(height: 20.0)),
+                                  ].divide(SizedBox(height: 20.0)),
                                 ),
                               ),
                           ],
                         ),
-                      ].divide(const SizedBox(height: 16.0)),
+                      ].divide(SizedBox(height: 16.0)),
                     ),
-                  ].divide(const SizedBox(height: 24.0)),
+                  ].divide(SizedBox(height: 24.0)),
                 ),
                 Column(
                   mainAxisSize: MainAxisSize.max,
@@ -667,7 +675,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -706,7 +714,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               enabledBorder: UnderlineInputBorder(
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Color(0xFFF0F0FA),
                                   width: 2.0,
                                 ),
@@ -734,7 +742,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               filled: true,
-                              fillColor: const Color(0xFFF0F0FA),
+                              fillColor: Color(0xFFF0F0FA),
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
@@ -746,7 +754,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                             validator: _model.whyusTitle2TextControllerValidator
                                 .asValidator(context),
                           ),
-                        ].divide(const SizedBox(height: 16.0)),
+                        ].divide(SizedBox(height: 16.0)),
                       ),
                     ),
                     Column(
@@ -835,7 +843,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                     },
                                   ),
                                 );
-                              }).divide(const SizedBox(height: 40.0)),
+                              }).divide(SizedBox(height: 40.0)),
                             );
                           },
                         ),
@@ -880,7 +888,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                         size: 24.0,
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 8.0)),
+                                  ].divide(SizedBox(width: 8.0)),
                                 ),
                               ),
                             if (_model.newElement2)
@@ -890,7 +898,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 16.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -916,7 +924,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                             onChanged: (_) =>
                                                 EasyDebounce.debounce(
                                               '_model.newTitle2TextController',
-                                              const Duration(milliseconds: 200),
+                                              Duration(milliseconds: 200),
                                               () => safeSetState(() {}),
                                             ),
                                             autofocus: false,
@@ -944,7 +952,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                       ),
                                               enabledBorder:
                                                   UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -953,7 +961,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                               ),
                                               focusedBorder:
                                                   UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -961,7 +969,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                     BorderRadius.circular(8.0),
                                               ),
                                               errorBorder: UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -970,7 +978,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                               ),
                                               focusedErrorBorder:
                                                   UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -978,7 +986,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                     BorderRadius.circular(8.0),
                                               ),
                                               filled: true,
-                                              fillColor: const Color(0xFFF0F0FA),
+                                              fillColor: Color(0xFFF0F0FA),
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -994,11 +1002,11 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                 .newTitle2TextControllerValidator
                                                 .asValidator(context),
                                           ),
-                                        ].divide(const SizedBox(height: 24.0)),
+                                        ].divide(SizedBox(height: 24.0)),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 16.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -1012,7 +1020,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                             onChanged: (_) =>
                                                 EasyDebounce.debounce(
                                               '_model.newText2TextController',
-                                              const Duration(milliseconds: 200),
+                                              Duration(milliseconds: 200),
                                               () => safeSetState(() {}),
                                             ),
                                             autofocus: false,
@@ -1039,7 +1047,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                       ),
                                               enabledBorder:
                                                   UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -1048,7 +1056,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                               ),
                                               focusedBorder:
                                                   UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -1056,7 +1064,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                     BorderRadius.circular(8.0),
                                               ),
                                               errorBorder: UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -1065,7 +1073,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                               ),
                                               focusedErrorBorder:
                                                   UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -1073,7 +1081,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                     BorderRadius.circular(8.0),
                                               ),
                                               filled: true,
-                                              fillColor: const Color(0xFFF0F0FA),
+                                              fillColor: Color(0xFFF0F0FA),
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -1089,7 +1097,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                 .newText2TextControllerValidator
                                                 .asValidator(context),
                                           ),
-                                        ].divide(const SizedBox(height: 24.0)),
+                                        ].divide(SizedBox(height: 24.0)),
                                       ),
                                     ),
                                     Row(
@@ -1098,8 +1106,14 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                         FFButtonWidget(
                                           onPressed: ((_model.newTitle2TextController
                                                               .text ==
+                                                          null ||
+                                                      _model.newTitle2TextController
+                                                              .text ==
                                                           '') &&
                                                   (_model.newText2TextController
+                                                              .text ==
+                                                          null ||
+                                                      _model.newText2TextController
                                                               .text ==
                                                           ''))
                                               ? null
@@ -1135,10 +1149,10 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                             width: 300.0,
                                             height: 50.0,
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     24.0, 0.0, 24.0, 0.0),
                                             iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
@@ -1152,13 +1166,13 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                       letterSpacing: 0.0,
                                                     ),
                                             elevation: 0.0,
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               color: Colors.transparent,
                                               width: 1.0,
                                             ),
                                             borderRadius:
                                                 BorderRadius.circular(80.0),
-                                            disabledColor: const Color(0x642431A5),
+                                            disabledColor: Color(0x642431A5),
                                           ),
                                         ),
                                         InkWell(
@@ -1190,14 +1204,14 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                 ),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 40.0)),
+                                      ].divide(SizedBox(width: 40.0)),
                                     ),
-                                  ].divide(const SizedBox(height: 20.0)),
+                                  ].divide(SizedBox(height: 20.0)),
                                 ),
                               ),
                           ],
                         ),
-                      ].divide(const SizedBox(height: 16.0)),
+                      ].divide(SizedBox(height: 16.0)),
                     ),
                     Column(
                       mainAxisSize: MainAxisSize.max,
@@ -1214,7 +1228,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                   ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 16.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -1254,7 +1268,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   enabledBorder: UnderlineInputBorder(
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Color(0xFFF0F0FA),
                                       width: 2.0,
                                     ),
@@ -1283,7 +1297,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   filled: true,
-                                  fillColor: const Color(0xFFF0F0FA),
+                                  fillColor: Color(0xFFF0F0FA),
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -1296,7 +1310,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                     .whyusTitle3TextControllerValidator
                                     .asValidator(context),
                               ),
-                            ].divide(const SizedBox(height: 16.0)),
+                            ].divide(SizedBox(height: 16.0)),
                           ),
                         ),
                         Row(
@@ -1381,7 +1395,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                     },
                                   ),
                                 );
-                              }).divide(const SizedBox(height: 40.0)),
+                              }).divide(SizedBox(height: 40.0)),
                             );
                           },
                         ),
@@ -1426,7 +1440,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                         size: 24.0,
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 8.0)),
+                                  ].divide(SizedBox(width: 8.0)),
                                 ),
                               ),
                             if (_model.newElement3)
@@ -1436,7 +1450,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 16.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -1462,7 +1476,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                             onChanged: (_) =>
                                                 EasyDebounce.debounce(
                                               '_model.newTitle3TextController',
-                                              const Duration(milliseconds: 200),
+                                              Duration(milliseconds: 200),
                                               () => safeSetState(() {}),
                                             ),
                                             autofocus: false,
@@ -1490,7 +1504,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                       ),
                                               enabledBorder:
                                                   UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -1499,7 +1513,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                               ),
                                               focusedBorder:
                                                   UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -1507,7 +1521,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                     BorderRadius.circular(8.0),
                                               ),
                                               errorBorder: UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -1516,7 +1530,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                               ),
                                               focusedErrorBorder:
                                                   UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -1524,7 +1538,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                     BorderRadius.circular(8.0),
                                               ),
                                               filled: true,
-                                              fillColor: const Color(0xFFF0F0FA),
+                                              fillColor: Color(0xFFF0F0FA),
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -1540,11 +1554,11 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                 .newTitle3TextControllerValidator
                                                 .asValidator(context),
                                           ),
-                                        ].divide(const SizedBox(height: 24.0)),
+                                        ].divide(SizedBox(height: 24.0)),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 16.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -1558,7 +1572,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                             onChanged: (_) =>
                                                 EasyDebounce.debounce(
                                               '_model.newText3TextController',
-                                              const Duration(milliseconds: 200),
+                                              Duration(milliseconds: 200),
                                               () => safeSetState(() {}),
                                             ),
                                             autofocus: false,
@@ -1585,7 +1599,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                       ),
                                               enabledBorder:
                                                   UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -1594,7 +1608,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                               ),
                                               focusedBorder:
                                                   UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -1602,7 +1616,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                     BorderRadius.circular(8.0),
                                               ),
                                               errorBorder: UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -1611,7 +1625,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                               ),
                                               focusedErrorBorder:
                                                   UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -1619,7 +1633,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                     BorderRadius.circular(8.0),
                                               ),
                                               filled: true,
-                                              fillColor: const Color(0xFFF0F0FA),
+                                              fillColor: Color(0xFFF0F0FA),
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -1635,7 +1649,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                 .newText3TextControllerValidator
                                                 .asValidator(context),
                                           ),
-                                        ].divide(const SizedBox(height: 24.0)),
+                                        ].divide(SizedBox(height: 24.0)),
                                       ),
                                     ),
                                     Row(
@@ -1644,8 +1658,14 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                         FFButtonWidget(
                                           onPressed: ((_model.newTitle3TextController
                                                               .text ==
+                                                          null ||
+                                                      _model.newTitle3TextController
+                                                              .text ==
                                                           '') &&
                                                   (_model.newText3TextController
+                                                              .text ==
+                                                          null ||
+                                                      _model.newText3TextController
                                                               .text ==
                                                           ''))
                                               ? null
@@ -1681,10 +1701,10 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                             width: 300.0,
                                             height: 50.0,
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     24.0, 0.0, 24.0, 0.0),
                                             iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
@@ -1698,13 +1718,13 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                       letterSpacing: 0.0,
                                                     ),
                                             elevation: 0.0,
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               color: Colors.transparent,
                                               width: 1.0,
                                             ),
                                             borderRadius:
                                                 BorderRadius.circular(80.0),
-                                            disabledColor: const Color(0x642431A5),
+                                            disabledColor: Color(0x642431A5),
                                           ),
                                         ),
                                         InkWell(
@@ -1736,16 +1756,16 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                                 ),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 40.0)),
+                                      ].divide(SizedBox(width: 40.0)),
                                     ),
-                                  ].divide(const SizedBox(height: 20.0)),
+                                  ].divide(SizedBox(height: 20.0)),
                                 ),
                               ),
                           ],
                         ),
-                      ].divide(const SizedBox(height: 16.0)),
+                      ].divide(SizedBox(height: 16.0)),
                     ),
-                  ].divide(const SizedBox(height: 24.0)),
+                  ].divide(SizedBox(height: 24.0)),
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
@@ -1759,9 +1779,9 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                         text: 'Редактировать',
                         options: FFButtonOptions(
                           height: 50.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               43.0, 0.0, 43.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
@@ -1771,7 +1791,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 0.0,
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -1801,9 +1821,9 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                         text: 'Сохранить',
                         options: FFButtonOptions(
                           height: 50.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               43.0, 0.0, 43.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
@@ -1813,7 +1833,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 0.0,
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -1837,9 +1857,9 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                         text: 'Отменить изменения',
                         options: FFButtonOptions(
                           height: 50.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               43.0, 0.0, 43.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).error,
                           textStyle:
@@ -1849,16 +1869,16 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 0.0,
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
                           borderRadius: BorderRadius.circular(24.0),
                         ),
                       ),
-                  ].divide(const SizedBox(width: 16.0)),
+                  ].divide(SizedBox(width: 16.0)),
                 ),
-              ].divide(const SizedBox(height: 60.0)).addToEnd(const SizedBox(height: 70.0)),
+              ].divide(SizedBox(height: 60.0)).addToEnd(SizedBox(height: 70.0)),
             ),
           ),
         );

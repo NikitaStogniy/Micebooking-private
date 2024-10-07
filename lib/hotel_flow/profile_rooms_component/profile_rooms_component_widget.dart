@@ -6,6 +6,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'profile_rooms_component_model.dart';
 export 'profile_rooms_component_model.dart';
 
@@ -54,7 +56,7 @@ class _ProfileRoomsComponentWidgetState
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +66,7 @@ class _ProfileRoomsComponentWidgetState
             children: [
               Text(
                 valueOrDefault<String>(
-                  widget.hotel?.name,
+                  widget!.hotel?.name,
                   'Оталь',
                 ),
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -88,20 +90,20 @@ class _ProfileRoomsComponentWidgetState
                 onPressed: () async {
                   await widget.newRoom?.call(
                     valueOrDefault<int>(
-                      widget.hotel?.id,
+                      widget!.hotel?.id,
                       88,
                     ),
                   );
                 },
               ),
-            ].divide(const SizedBox(width: 24.0)),
+            ].divide(SizedBox(width: 24.0)),
           ),
           FutureBuilder<List<RoomRow>>(
             future: RoomTable().queryRows(
               queryFn: (q) => q
                   .in_(
                     'id',
-                    widget.hotel!.rooms,
+                    widget!.hotel!.rooms,
                   )
                   .order('created_at'),
             ),
@@ -123,14 +125,14 @@ class _ProfileRoomsComponentWidgetState
               List<RoomRow> containerRoomRowList = snapshot.data!;
 
               return ClipRRect(
-                borderRadius: const BorderRadius.only(
+                borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(16.0),
                   bottomRight: Radius.circular(16.0),
                   topLeft: Radius.circular(0.0),
                   topRight: Radius.circular(0.0),
                 ),
                 child: Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(16.0),
                       bottomRight: Radius.circular(16.0),
@@ -142,12 +144,12 @@ class _ProfileRoomsComponentWidgetState
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      if (widget.hotel!.rooms.isNotEmpty)
+                      if (widget!.hotel!.rooms.length > 0)
                         Container(
                           width: MediaQuery.sizeOf(context).width * 1.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context).primary,
-                            borderRadius: const BorderRadius.only(
+                            borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(0.0),
                               bottomRight: Radius.circular(0.0),
                               topLeft: Radius.circular(16.0),
@@ -155,7 +157,7 @@ class _ProfileRoomsComponentWidgetState
                             ),
                           ),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
@@ -165,7 +167,7 @@ class _ProfileRoomsComponentWidgetState
                                   child: Container(
                                     width:
                                         MediaQuery.sizeOf(context).width * 0.3,
-                                    decoration: const BoxDecoration(),
+                                    decoration: BoxDecoration(),
                                     child: Text(
                                       'Название номера',
                                       style: FlutterFlowTheme.of(context)
@@ -183,7 +185,7 @@ class _ProfileRoomsComponentWidgetState
                                 ),
                                 Container(
                                   width: MediaQuery.sizeOf(context).width * 0.1,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Text(
                                     'Количество',
                                     textAlign: TextAlign.start,
@@ -210,7 +212,7 @@ class _ProfileRoomsComponentWidgetState
                                     child: Container(
                                       width: MediaQuery.sizeOf(context).width *
                                           0.233,
-                                      decoration: const BoxDecoration(),
+                                      decoration: BoxDecoration(),
                                       child: Text(
                                         'Одн. размещение ',
                                         style: FlutterFlowTheme.of(context)
@@ -229,7 +231,7 @@ class _ProfileRoomsComponentWidgetState
                                   ),
                                 Container(
                                   width: MediaQuery.sizeOf(context).width * 0.1,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Text(
                                     'Цена (руб.)',
                                     textAlign: TextAlign.end,
@@ -246,9 +248,9 @@ class _ProfileRoomsComponentWidgetState
                                   ),
                                 ),
                               ]
-                                  .divide(const SizedBox(width: 32.0))
-                                  .addToStart(const SizedBox(width: 16.0))
-                                  .addToEnd(const SizedBox(width: 16.0)),
+                                  .divide(SizedBox(width: 32.0))
+                                  .addToStart(SizedBox(width: 16.0))
+                                  .addToEnd(SizedBox(width: 16.0)),
                             ),
                           ),
                         ),
@@ -257,14 +259,14 @@ class _ProfileRoomsComponentWidgetState
                           final rooms = containerRoomRowList.toList();
                           if (rooms.isEmpty) {
                             return Center(
-                              child: SizedBox(
+                              child: Container(
                                 width: 700.0,
                                 height: 300.0,
                                 child: HallFoodRoomEmptyWidget(
                                   type: EnumType.ROOM,
                                   add: () async {
                                     await widget.newRoom?.call(
-                                      widget.hotel?.id,
+                                      widget!.hotel?.id,
                                     );
                                   },
                                 ),
@@ -292,7 +294,7 @@ class _ProfileRoomsComponentWidgetState
                                     FlutterFlowTheme.of(context)
                                         .primaryBackground,
                                   ),
-                                  borderRadius: const BorderRadius.only(
+                                  borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(0.0),
                                     bottomRight: Radius.circular(0.0),
                                     topLeft: Radius.circular(0.0),
@@ -300,7 +302,7 @@ class _ProfileRoomsComponentWidgetState
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 8.0, 0.0, 8.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -311,7 +313,7 @@ class _ProfileRoomsComponentWidgetState
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   0.3,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment:
@@ -394,7 +396,7 @@ class _ProfileRoomsComponentWidgetState
                                                         'images':
                                                             roomsItem.images,
                                                       });
-                                                      _model.newRooms = widget
+                                                      _model.newRooms = widget!
                                                           .hotel!.rooms
                                                           .toList()
                                                           .cast<int>();
@@ -412,7 +414,7 @@ class _ProfileRoomsComponentWidgetState
                                                             rows.eq(
                                                           'id',
                                                           valueOrDefault<int>(
-                                                            widget.hotel?.id,
+                                                            widget!.hotel?.id,
                                                             88,
                                                           ),
                                                         ),
@@ -467,7 +469,7 @@ class _ProfileRoomsComponentWidgetState
                                                       size: 24.0,
                                                     ),
                                                   ),
-                                                ].divide(const SizedBox(width: 8.0)),
+                                                ].divide(SizedBox(width: 8.0)),
                                               ),
                                             ],
                                           ),
@@ -477,7 +479,7 @@ class _ProfileRoomsComponentWidgetState
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.1,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           valueOrDefault<String>(
                                             roomsItem.count?.toString(),
@@ -511,7 +513,7 @@ class _ProfileRoomsComponentWidgetState
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 0.233,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Text(
                                               valueOrDefault<String>(
                                                 'Да, ${valueOrDefault<String>(
@@ -544,7 +546,7 @@ class _ProfileRoomsComponentWidgetState
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.1,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           valueOrDefault<String>(
                                             formatNumber(
@@ -570,9 +572,9 @@ class _ProfileRoomsComponentWidgetState
                                         ),
                                       ),
                                     ]
-                                        .divide(const SizedBox(width: 32.0))
-                                        .addToStart(const SizedBox(width: 16.0))
-                                        .addToEnd(const SizedBox(width: 16.0)),
+                                        .divide(SizedBox(width: 32.0))
+                                        .addToStart(SizedBox(width: 16.0))
+                                        .addToEnd(SizedBox(width: 16.0)),
                                   ),
                                 ),
                               );
@@ -586,7 +588,7 @@ class _ProfileRoomsComponentWidgetState
               );
             },
           ),
-        ].divide(const SizedBox(height: 22.0)),
+        ].divide(SizedBox(height: 22.0)),
       ),
     );
   }

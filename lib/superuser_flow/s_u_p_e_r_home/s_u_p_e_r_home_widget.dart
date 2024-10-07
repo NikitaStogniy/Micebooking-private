@@ -29,6 +29,8 @@ import '/superuser_flow/super_hotel_juridical/super_hotel_juridical_widget.dart'
 import '/superuser_flow/super_requests/super_requests_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 's_u_p_e_r_home_model.dart';
 export 's_u_p_e_r_home_model.dart';
 
@@ -72,7 +74,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
             width: double.infinity,
             height: MediaQuery.sizeOf(context).height * 1.0,
             decoration: BoxDecoration(
-              color: const Color(0xFFF9F9F9),
+              color: Color(0xFFF9F9F9),
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image: Image.asset(
@@ -95,7 +97,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                         height: MediaQuery.sizeOf(context).height * 1.0,
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primary,
-                          borderRadius: const BorderRadius.only(
+                          borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(0.0),
                             bottomRight: Radius.circular(50.0),
                             topLeft: Radius.circular(0.0),
@@ -103,7 +105,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 32.0, 16.0, 0.0),
                           child: Stack(
                             children: [
@@ -126,9 +128,9 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(0.0, -0.3),
+                                alignment: AlignmentDirectional(0.0, -0.3),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 32.0, 0.0, 0.0),
                                   child: SingleChildScrollView(
                                     controller: _model.columnController1,
@@ -153,7 +155,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                 ?.animateTo(
                                               0,
                                               duration:
-                                                  const Duration(milliseconds: 100),
+                                                  Duration(milliseconds: 100),
                                               curve: Curves.ease,
                                             );
                                           },
@@ -195,7 +197,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                 ?.animateTo(
                                               0,
                                               duration:
-                                                  const Duration(milliseconds: 100),
+                                                  Duration(milliseconds: 100),
                                               curve: Curves.ease,
                                             );
                                           },
@@ -258,7 +260,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                 await _model.columnController2
                                                     ?.animateTo(
                                                   0,
-                                                  duration: const Duration(
+                                                  duration: Duration(
                                                       milliseconds: 100),
                                                   curve: Curves.ease,
                                                 );
@@ -306,7 +308,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                 await _model.columnController2
                                                     ?.animateTo(
                                                   0,
-                                                  duration: const Duration(
+                                                  duration: Duration(
                                                       milliseconds: 100),
                                                   curve: Curves.ease,
                                                 );
@@ -354,7 +356,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                 await _model.columnController2
                                                     ?.animateTo(
                                                   0,
-                                                  duration: const Duration(
+                                                  duration: Duration(
                                                       milliseconds: 100),
                                                   curve: Curves.ease,
                                                 );
@@ -402,7 +404,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                 await _model.columnController2
                                                     ?.animateTo(
                                                   0,
-                                                  duration: const Duration(
+                                                  duration: Duration(
                                                       milliseconds: 100),
                                                   curve: Curves.ease,
                                                 );
@@ -437,11 +439,11 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                         ),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(height: 20.0)),
+                                          ].divide(SizedBox(height: 20.0)),
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 32.0, 0.0, 32.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -478,7 +480,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                   await _model.columnController2
                                                       ?.animateTo(
                                                     0,
-                                                    duration: const Duration(
+                                                    duration: Duration(
                                                         milliseconds: 100),
                                                     curve: Curves.ease,
                                                   );
@@ -528,7 +530,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                   await _model.columnController2
                                                       ?.animateTo(
                                                     0,
-                                                    duration: const Duration(
+                                                    duration: Duration(
                                                         milliseconds: 100),
                                                     curve: Curves.ease,
                                                   );
@@ -578,7 +580,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                   await _model.columnController2
                                                       ?.animateTo(
                                                     0,
-                                                    duration: const Duration(
+                                                    duration: Duration(
                                                         milliseconds: 100),
                                                     curve: Curves.ease,
                                                   );
@@ -628,7 +630,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                   await _model.columnController2
                                                       ?.animateTo(
                                                     0,
-                                                    duration: const Duration(
+                                                    duration: Duration(
                                                         milliseconds: 100),
                                                     curve: Curves.ease,
                                                   );
@@ -678,7 +680,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                   await _model.columnController2
                                                       ?.animateTo(
                                                     0,
-                                                    duration: const Duration(
+                                                    duration: Duration(
                                                         milliseconds: 100),
                                                     curve: Curves.ease,
                                                   );
@@ -728,7 +730,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                   await _model.columnController2
                                                       ?.animateTo(
                                                     0,
-                                                    duration: const Duration(
+                                                    duration: Duration(
                                                         milliseconds: 100),
                                                     curve: Curves.ease,
                                                   );
@@ -779,7 +781,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                   await _model.columnController2
                                                       ?.animateTo(
                                                     0,
-                                                    duration: const Duration(
+                                                    duration: Duration(
                                                         milliseconds: 100),
                                                     curve: Curves.ease,
                                                   );
@@ -816,12 +818,12 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                           ),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(height: 20.0)),
+                                            ].divide(SizedBox(height: 20.0)),
                                           ),
                                         ),
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
                                               GoRouter.of(context)
@@ -836,10 +838,10 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                             text: 'Выйти',
                                             options: FFButtonOptions(
                                               height: 40.0,
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
+                                              iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -855,7 +857,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                                     letterSpacing: 0.0,
                                                   ),
                                               elevation: 0.0,
-                                              borderSide: const BorderSide(
+                                              borderSide: BorderSide(
                                                 color: Colors.transparent,
                                                 width: 0.0,
                                               ),
@@ -864,7 +866,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                             ),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(height: 16.0)),
+                                      ].divide(SizedBox(height: 16.0)),
                                     ),
                                   ),
                                 ),
@@ -972,7 +974,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                 ),
                           ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 40.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -984,7 +986,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                   model: _model.hotelSettingsModel,
                                   updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
-                                  child: const HotelSettingsWidget(),
+                                  child: HotelSettingsWidget(),
                                 ),
                               if (_model.activePage ==
                                   SuperUserPage.room_settings)
@@ -992,7 +994,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                   model: _model.roomSettingsModel,
                                   updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
-                                  child: const RoomSettingsWidget(),
+                                  child: RoomSettingsWidget(),
                                 ),
                               if (_model.activePage ==
                                   SuperUserPage.hall_settings)
@@ -1000,7 +1002,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                   model: _model.hallSettingsModel,
                                   updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
-                                  child: const HallSettingsWidget(),
+                                  child: HallSettingsWidget(),
                                 ),
                               if (_model.activePage ==
                                   SuperUserPage.food_settings)
@@ -1008,7 +1010,7 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                   model: _model.foodSettingsModel,
                                   updateCallback: () => safeSetState(() {}),
                                   updateOnChange: true,
-                                  child: const FoodSettingsWidget(),
+                                  child: FoodSettingsWidget(),
                                 ),
                               if (_model.activePage ==
                                   SuperUserPage.hotel_search)
@@ -1181,20 +1183,20 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                 wrapWithModel(
                                   model: _model.editWhyusModel,
                                   updateCallback: () => safeSetState(() {}),
-                                  child: const EditWhyusWidget(),
+                                  child: EditWhyusWidget(),
                                 ),
                               if (_model.activePage ==
                                   SuperUserPage.cms_aboutus)
                                 wrapWithModel(
                                   model: _model.editAboutUsModel,
                                   updateCallback: () => safeSetState(() {}),
-                                  child: const EditAboutUsWidget(),
+                                  child: EditAboutUsWidget(),
                                 ),
                               if (_model.activePage == SuperUserPage.cms_qa)
                                 wrapWithModel(
                                   model: _model.editQAModel,
                                   updateCallback: () => safeSetState(() {}),
-                                  child: const EditQAWidget(),
+                                  child: EditQAWidget(),
                                 ),
                               if (_model.activePage ==
                                   SuperUserPage.hotel_request)
@@ -1303,32 +1305,32 @@ class _SUPERHomeWidgetState extends State<SUPERHomeWidget> {
                                 wrapWithModel(
                                   model: _model.editPPModel,
                                   updateCallback: () => safeSetState(() {}),
-                                  child: const EditPPWidget(),
+                                  child: EditPPWidget(),
                                 ),
                               if (_model.activePage == SuperUserPage.terms)
                                 wrapWithModel(
                                   model: _model.editTermsModel,
                                   updateCallback: () => safeSetState(() {}),
-                                  child: const EditTermsWidget(),
+                                  child: EditTermsWidget(),
                                 ),
                               if (_model.activePage ==
                                   SuperUserPage.personal_info)
                                 wrapWithModel(
                                   model: _model.editPIModel,
                                   updateCallback: () => safeSetState(() {}),
-                                  child: const EditPIWidget(),
+                                  child: EditPIWidget(),
                                 ),
                             ],
                           ),
                         ),
                       ]
-                          .divide(const SizedBox(height: 44.0))
-                          .addToStart(const SizedBox(height: 64.0))
-                          .addToEnd(const SizedBox(height: 64.0)),
+                          .divide(SizedBox(height: 44.0))
+                          .addToStart(SizedBox(height: 64.0))
+                          .addToEnd(SizedBox(height: 64.0)),
                     ),
                   ),
                 ),
-              ].divide(const SizedBox(width: 40.0)),
+              ].divide(SizedBox(width: 40.0)),
             ),
           ),
         ),

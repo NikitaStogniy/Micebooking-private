@@ -6,6 +6,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'profile_requests_component_model.dart';
 export 'profile_requests_component_model.dart';
 
@@ -61,7 +63,7 @@ class _ProfileRequestsComponentWidgetState
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
@@ -87,7 +89,7 @@ class _ProfileRequestsComponentWidgetState
                         color: FlutterFlowTheme.of(context).primary,
                         shape: BoxShape.circle,
                       ),
-                      child: const Align(
+                      child: Align(
                         alignment: AlignmentDirectional(0.0, 0.0),
                         child: Icon(
                           Icons.arrow_back_ios_new_rounded,
@@ -102,7 +104,7 @@ class _ProfileRequestsComponentWidgetState
                       future: CityTable().querySingleRow(
                         queryFn: (q) => q.eq(
                           'id',
-                          widget.hotels?.city,
+                          widget!.hotels?.city,
                         ),
                       ),
                       builder: (context, snapshot) {
@@ -132,7 +134,7 @@ class _ProfileRequestsComponentWidgetState
                             Expanded(
                               child: Text(
                                 '${valueOrDefault<String>(
-                                  widget.hotels?.name,
+                                  widget!.hotels?.name,
                                   'Без названия',
                                 )}, ${rowCityRow?.name}',
                                 style: FlutterFlowTheme.of(context)
@@ -150,7 +152,7 @@ class _ProfileRequestsComponentWidgetState
                       },
                     ),
                   ),
-                ].divide(const SizedBox(width: 24.0)),
+                ].divide(SizedBox(width: 24.0)),
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
@@ -162,7 +164,7 @@ class _ProfileRequestsComponentWidgetState
                       future: UsersTable().querySingleRow(
                         queryFn: (q) => q.in_(
                           'uid',
-                          widget.hotels!.ownerId,
+                          widget!.hotels!.ownerId,
                         ),
                       ),
                       builder: (context, snapshot) {
@@ -192,7 +194,7 @@ class _ProfileRequestsComponentWidgetState
                             Expanded(
                               child: Container(
                                 width: 250.0,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Text(
                                   '${valueOrDefault<String>(
                                     rowUsersRow?.email,
@@ -200,7 +202,7 @@ class _ProfileRequestsComponentWidgetState
                                   )}, ${valueOrDefault<String>(
                                     rowUsersRow?.phone,
                                     'Телефон не указан',
-                                  )}, ${widget.hotels?.address}',
+                                  )}, ${widget!.hotels?.address}',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -275,7 +277,7 @@ class _ProfileRequestsComponentWidgetState
                                     ),
                               ),
                             ),
-                          ].divide(const SizedBox(width: 14.0)),
+                          ].divide(SizedBox(width: 14.0)),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.min,
@@ -303,7 +305,7 @@ class _ProfileRequestsComponentWidgetState
                             ),
                             Container(
                               width: 150.0,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -343,23 +345,23 @@ class _ProfileRequestsComponentWidgetState
                                 safeSetState(() {});
                               },
                             ),
-                          ].divide(const SizedBox(width: 16.0)),
+                          ].divide(SizedBox(width: 16.0)),
                         ),
-                      ].divide(const SizedBox(height: 24.0)),
+                      ].divide(SizedBox(height: 24.0)),
                     ),
                   ),
-                ].divide(const SizedBox(width: 40.0)),
+                ].divide(SizedBox(width: 40.0)),
               ),
-              if (widget.hotels!.rooms.isNotEmpty)
+              if (widget!.hotels!.rooms.length > 0)
                 ClipRRect(
-                  borderRadius: const BorderRadius.only(
+                  borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(16.0),
                     bottomRight: Radius.circular(16.0),
                     topLeft: Radius.circular(0.0),
                     topRight: Radius.circular(0.0),
                   ),
                   child: Container(
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(16.0),
                         bottomRight: Radius.circular(16.0),
@@ -375,7 +377,7 @@ class _ProfileRequestsComponentWidgetState
                           width: MediaQuery.sizeOf(context).width * 1.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context).primary,
-                            borderRadius: const BorderRadius.only(
+                            borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(0.0),
                               bottomRight: Radius.circular(0.0),
                               topLeft: Radius.circular(16.0),
@@ -383,14 +385,14 @@ class _ProfileRequestsComponentWidgetState
                             ),
                           ),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Container(
                                   width: 80.0,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Text(
                                     'Прошло',
                                     style: FlutterFlowTheme.of(context)
@@ -409,7 +411,7 @@ class _ProfileRequestsComponentWidgetState
                                   flex: 3,
                                   child: Container(
                                     width: 80.0,
-                                    decoration: const BoxDecoration(),
+                                    decoration: BoxDecoration(),
                                     child: Text(
                                       'Организация',
                                       style: FlutterFlowTheme.of(context)
@@ -429,7 +431,7 @@ class _ProfileRequestsComponentWidgetState
                                   flex: 3,
                                   child: Container(
                                     width: 80.0,
-                                    decoration: const BoxDecoration(),
+                                    decoration: BoxDecoration(),
                                     child: Text(
                                       'Название мероприятия',
                                       style: FlutterFlowTheme.of(context)
@@ -447,7 +449,7 @@ class _ProfileRequestsComponentWidgetState
                                 ),
                                 Container(
                                   width: 120.0,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Text(
                                     'Дата начала',
                                     style: FlutterFlowTheme.of(context)
@@ -464,7 +466,7 @@ class _ProfileRequestsComponentWidgetState
                                 ),
                                 Container(
                                   width: 100.0,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Text(
                                     '№ запроса',
                                     style: FlutterFlowTheme.of(context)
@@ -481,7 +483,7 @@ class _ProfileRequestsComponentWidgetState
                                 ),
                                 Container(
                                   width: 120.0,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Text(
                                     'Дата запроса',
                                     style: FlutterFlowTheme.of(context)
@@ -498,12 +500,12 @@ class _ProfileRequestsComponentWidgetState
                                 ),
                                 Container(
                                   width: 80.0,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                 ),
                               ]
-                                  .divide(const SizedBox(width: 40.0))
-                                  .addToStart(const SizedBox(width: 16.0))
-                                  .addToEnd(const SizedBox(width: 16.0)),
+                                  .divide(SizedBox(width: 40.0))
+                                  .addToStart(SizedBox(width: 16.0))
+                                  .addToEnd(SizedBox(width: 16.0)),
                             ),
                           ),
                         ),
@@ -512,7 +514,7 @@ class _ProfileRequestsComponentWidgetState
                             queryFn: (q) => q
                                 .eq(
                                   'hotel',
-                                  widget.hotels?.id,
+                                  widget!.hotels?.id,
                                 )
                                 .eq(
                                   'monthYear',
@@ -538,7 +540,7 @@ class _ProfileRequestsComponentWidgetState
                                 snapshot.data!;
 
                             if (columnRequestsRowList.isEmpty) {
-                              return const HotelRequestEmprtyWidget();
+                              return HotelRequestEmprtyWidget();
                             }
 
                             return Column(
@@ -564,7 +566,7 @@ class _ProfileRequestsComponentWidgetState
                                         FlutterFlowTheme.of(context)
                                             .primaryBackground,
                                       ),
-                                      borderRadius: const BorderRadius.only(
+                                      borderRadius: BorderRadius.only(
                                         bottomLeft: Radius.circular(0.0),
                                         bottomRight: Radius.circular(0.0),
                                         topLeft: Radius.circular(0.0),
@@ -572,16 +574,16 @@ class _ProfileRequestsComponentWidgetState
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 4.0, 0.0, 4.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           Container(
                                             width: 80.0,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Theme(
                                                 data: ThemeData(
@@ -664,7 +666,7 @@ class _ProfileRequestsComponentWidgetState
                                             flex: 3,
                                             child: Container(
                                               width: 80.0,
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Text(
                                                 valueOrDefault<String>(
                                                   columnRequestsRow
@@ -687,7 +689,7 @@ class _ProfileRequestsComponentWidgetState
                                             flex: 3,
                                             child: Container(
                                               width: 80.0,
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Text(
                                                 valueOrDefault<String>(
                                                   columnRequestsRow.name,
@@ -707,7 +709,7 @@ class _ProfileRequestsComponentWidgetState
                                           ),
                                           Container(
                                             width: 120.0,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Text(
                                               valueOrDefault<String>(
                                                 dateTimeFormat(
@@ -736,7 +738,7 @@ class _ProfileRequestsComponentWidgetState
                                           ),
                                           Container(
                                             width: 100.0,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Text(
                                               columnRequestsRow.id.toString(),
                                               style: FlutterFlowTheme.of(
@@ -756,7 +758,7 @@ class _ProfileRequestsComponentWidgetState
                                           ),
                                           Container(
                                             width: 120.0,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Text(
                                               dateTimeFormat(
                                                 "d/M/y",
@@ -782,7 +784,7 @@ class _ProfileRequestsComponentWidgetState
                                           ),
                                           Container(
                                             width: 80.0,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: InkWell(
                                               splashColor: Colors.transparent,
                                               focusColor: Colors.transparent,
@@ -817,9 +819,9 @@ class _ProfileRequestsComponentWidgetState
                                             ),
                                           ),
                                         ]
-                                            .divide(const SizedBox(width: 40.0))
-                                            .addToStart(const SizedBox(width: 16.0))
-                                            .addToEnd(const SizedBox(width: 16.0)),
+                                            .divide(SizedBox(width: 40.0))
+                                            .addToStart(SizedBox(width: 16.0))
+                                            .addToEnd(SizedBox(width: 16.0)),
                                       ),
                                     ),
                                   ),
@@ -832,7 +834,7 @@ class _ProfileRequestsComponentWidgetState
                     ),
                   ),
                 ),
-            ].divide(const SizedBox(height: 22.0)),
+            ].divide(SizedBox(height: 22.0)),
           ),
         ],
       ),

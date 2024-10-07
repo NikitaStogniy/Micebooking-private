@@ -5,6 +5,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'hall_seating_comp_model.dart';
 export 'hall_seating_comp_model.dart';
 
@@ -14,7 +16,7 @@ class HallSeatingCompWidget extends StatefulWidget {
     required this.seating,
     required this.onChange,
     int? maxCapacity,
-  }) : maxCapacity = maxCapacity ?? 0;
+  }) : this.maxCapacity = maxCapacity ?? 0;
 
   final HotelSeatingStruct? seating;
   final Future Function(int? count)? onChange;
@@ -39,7 +41,7 @@ class _HallSeatingCompWidgetState extends State<HallSeatingCompWidget> {
     _model = createModel(context, () => HallSeatingCompModel());
 
     _model.seatCapacityTextController ??=
-        TextEditingController(text: widget.seating?.count.toString());
+        TextEditingController(text: widget!.seating?.count?.toString());
     _model.seatCapacityFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -59,21 +61,21 @@ class _HallSeatingCompWidgetState extends State<HallSeatingCompWidget> {
       children: [
         Text(
           () {
-            if (widget.seating?.type == EnumSeating.theatre) {
+            if (widget!.seating?.type == EnumSeating.theatre) {
               return 'Театр';
-            } else if (widget.seating?.type == EnumSeating.klass) {
+            } else if (widget!.seating?.type == EnumSeating.klass) {
               return 'Класс';
-            } else if (widget.seating?.type == EnumSeating.communication) {
+            } else if (widget!.seating?.type == EnumSeating.communication) {
               return 'Переговорная';
-            } else if (widget.seating?.type == EnumSeating.ushape) {
+            } else if (widget!.seating?.type == EnumSeating.ushape) {
               return 'U-shape';
-            } else if (widget.seating?.type == EnumSeating.oshape) {
+            } else if (widget!.seating?.type == EnumSeating.oshape) {
               return 'O-shape';
-            } else if (widget.seating?.type == EnumSeating.cabare) {
+            } else if (widget!.seating?.type == EnumSeating.cabare) {
               return 'Кабаре';
-            } else if (widget.seating?.type == EnumSeating.banket) {
+            } else if (widget!.seating?.type == EnumSeating.banket) {
               return 'Банкет';
-            } else if (widget.seating?.type == EnumSeating.furshet) {
+            } else if (widget!.seating?.type == EnumSeating.furshet) {
               return 'Фуршет';
             } else {
               return 'Ошибка';
@@ -84,14 +86,14 @@ class _HallSeatingCompWidgetState extends State<HallSeatingCompWidget> {
                 letterSpacing: 0.0,
               ),
         ),
-        SizedBox(
+        Container(
           width: 100.0,
           child: TextFormField(
             controller: _model.seatCapacityTextController,
             focusNode: _model.seatCapacityFocusNode,
             onChanged: (_) => EasyDebounce.debounce(
               '_model.seatCapacityTextController',
-              const Duration(milliseconds: 2000),
+              Duration(milliseconds: 2000),
               () async {
                 await widget.onChange?.call(
                   int.tryParse(_model.seatCapacityTextController.text),
@@ -139,9 +141,9 @@ class _HallSeatingCompWidgetState extends State<HallSeatingCompWidget> {
                 borderRadius: BorderRadius.circular(24.0),
               ),
               filled: true,
-              fillColor: const Color(0xFFF0F0FA),
+              fillColor: Color(0xFFF0F0FA),
               contentPadding:
-                  const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                  EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
             ),
             style: FlutterFlowTheme.of(context).bodyMedium.override(
                   fontFamily: 'Commissioner',
@@ -155,7 +157,7 @@ class _HallSeatingCompWidgetState extends State<HallSeatingCompWidget> {
             ],
           ),
         ),
-      ].divide(const SizedBox(width: 16.0)),
+      ].divide(SizedBox(width: 16.0)),
     );
   }
 }

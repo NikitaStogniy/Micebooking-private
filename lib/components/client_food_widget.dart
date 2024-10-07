@@ -3,6 +3,8 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'client_food_model.dart';
 export 'client_food_model.dart';
 
@@ -15,7 +17,7 @@ class ClientFoodWidget extends StatefulWidget {
     required this.updateCount,
     required this.updatePersons,
     required this.updateChosen,
-  }) : type = type ?? 'Кофе-брейк';
+  }) : this.type = type ?? 'Кофе-брейк';
 
   final String type;
   final List<FoodPositionStruct>? selectedPositions;
@@ -55,14 +57,14 @@ class _ClientFoodWidgetState extends State<ClientFoodWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             valueOrDefault<String>(
-              widget.type,
+              widget!.type,
               '123',
             ),
             style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -74,7 +76,7 @@ class _ClientFoodWidgetState extends State<ClientFoodWidget> {
           ),
           Builder(
             builder: (context) {
-              final positionsCol = widget.positions!.toList();
+              final positionsCol = widget!.positions!.toList();
 
               return Column(
                 mainAxisSize: MainAxisSize.max,
@@ -87,7 +89,7 @@ class _ClientFoodWidgetState extends State<ClientFoodWidget> {
               );
             },
           ),
-        ].divide(const SizedBox(height: 16.0)),
+        ].divide(SizedBox(height: 16.0)),
       ),
     );
   }

@@ -5,6 +5,9 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:provider/provider.dart';
 import 'super_hotel_juridical_model.dart';
 export 'super_hotel_juridical_model.dart';
 
@@ -80,7 +83,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -90,7 +93,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                 requestFn: () => HotelTable().querySingleRow(
                   queryFn: (q) => q.eq(
                     'id',
-                    widget.id,
+                    widget!.id,
                   ),
                 ),
               ),
@@ -116,7 +119,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                     : null;
 
                 return Container(
-                  decoration: const BoxDecoration(),
+                  decoration: BoxDecoration(),
                   child: FutureBuilder<List<UsersRow>>(
                     future: UsersTable().querySingleRow(
                       queryFn: (q) => q.in_(
@@ -146,7 +149,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                           : null;
 
                       return Container(
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: FutureBuilder<List<JuridicalInfoRow>>(
                           future: JuridicalInfoTable().querySingleRow(
                             queryFn: (q) => q.eq(
@@ -178,7 +181,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                     : null;
 
                             return Container(
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: SingleChildScrollView(
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
@@ -221,7 +224,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                   children: [
                                                     Container(
                                                       width: 200.0,
-                                                      decoration: const BoxDecoration(
+                                                      decoration: BoxDecoration(
                                                         color:
                                                             Color(0x00FFFFFF),
                                                       ),
@@ -246,16 +249,16 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                       child: Container(
                                                         width: 200.0,
                                                         decoration:
-                                                            const BoxDecoration(),
+                                                            BoxDecoration(),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       8.0,
                                                                       0.0,
                                                                       8.0,
                                                                       0.0),
-                                                          child: SizedBox(
+                                                          child: Container(
                                                             width: MediaQuery
                                                                         .sizeOf(
                                                                             context)
@@ -276,7 +279,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                                   EasyDebounce
                                                                       .debounce(
                                                                 '_model.emailTextController',
-                                                                const Duration(
+                                                                Duration(
                                                                     milliseconds:
                                                                         200),
                                                                 () async {
@@ -364,7 +367,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                                               24.0),
                                                                 ),
                                                                 filled: true,
-                                                                fillColor: const Color(
+                                                                fillColor: Color(
                                                                     0xFFF0F0FA),
                                                               ),
                                                               style: FlutterFlowTheme
@@ -412,7 +415,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                   children: [
                                                     Container(
                                                       width: 200.0,
-                                                      decoration: const BoxDecoration(
+                                                      decoration: BoxDecoration(
                                                         color:
                                                             Color(0x00FFFFFF),
                                                       ),
@@ -437,16 +440,16 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                       child: Container(
                                                         width: 200.0,
                                                         decoration:
-                                                            const BoxDecoration(),
+                                                            BoxDecoration(),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       8.0,
                                                                       0.0,
                                                                       8.0,
                                                                       0.0),
-                                                          child: SizedBox(
+                                                          child: Container(
                                                             width: MediaQuery
                                                                         .sizeOf(
                                                                             context)
@@ -467,7 +470,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                                   EasyDebounce
                                                                       .debounce(
                                                                 '_model.phoneTextController',
-                                                                const Duration(
+                                                                Duration(
                                                                     milliseconds:
                                                                         200),
                                                                 () async {
@@ -555,7 +558,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                                               24.0),
                                                                 ),
                                                                 filled: true,
-                                                                fillColor: const Color(
+                                                                fillColor: Color(
                                                                     0xFFF0F0FA),
                                                               ),
                                                               style: FlutterFlowTheme
@@ -599,11 +602,11 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                   ],
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(width: 40.0)),
+                                            ].divide(SizedBox(width: 40.0)),
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 12.0, 0.0, 0.0),
                                             child: Text(
                                               'Реквизиты организации:',
@@ -623,7 +626,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                             children: [
                                               Container(
                                                 width: 200.0,
-                                                decoration: const BoxDecoration(
+                                                decoration: BoxDecoration(
                                                   color: Color(0x00FFFFFF),
                                                 ),
                                                 child: Text(
@@ -643,10 +646,10 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                               ),
                                               Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           8.0, 0.0, 8.0, 0.0),
-                                                  child: SizedBox(
+                                                  child: Container(
                                                     width: MediaQuery.sizeOf(
                                                                 context)
                                                             .width *
@@ -664,7 +667,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                       onChanged: (_) =>
                                                           EasyDebounce.debounce(
                                                         '_model.jurNameTextController',
-                                                        const Duration(
+                                                        Duration(
                                                             milliseconds: 200),
                                                         () =>
                                                             safeSetState(() {}),
@@ -750,7 +753,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                         ),
                                                         filled: true,
                                                         fillColor:
-                                                            const Color(0xFFF0F0FA),
+                                                            Color(0xFFF0F0FA),
                                                       ),
                                                       style: FlutterFlowTheme
                                                               .of(context)
@@ -786,7 +789,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                             children: [
                                               Container(
                                                 width: 200.0,
-                                                decoration: const BoxDecoration(
+                                                decoration: BoxDecoration(
                                                   color: Color(0x00FFFFFF),
                                                 ),
                                                 child: Text(
@@ -806,10 +809,10 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                               ),
                                               Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           8.0, 0.0, 8.0, 0.0),
-                                                  child: SizedBox(
+                                                  child: Container(
                                                     width: MediaQuery.sizeOf(
                                                                 context)
                                                             .width *
@@ -827,7 +830,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                       onChanged: (_) =>
                                                           EasyDebounce.debounce(
                                                         '_model.jurAddressTextController',
-                                                        const Duration(
+                                                        Duration(
                                                             milliseconds: 200),
                                                         () =>
                                                             safeSetState(() {}),
@@ -913,7 +916,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                         ),
                                                         filled: true,
                                                         fillColor:
-                                                            const Color(0xFFF0F0FA),
+                                                            Color(0xFFF0F0FA),
                                                       ),
                                                       style: FlutterFlowTheme
                                                               .of(context)
@@ -952,7 +955,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                             children: [
                                               Container(
                                                 width: 200.0,
-                                                decoration: const BoxDecoration(
+                                                decoration: BoxDecoration(
                                                   color: Color(0x00FFFFFF),
                                                 ),
                                                 child: Text(
@@ -972,10 +975,10 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                               ),
                                               Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           8.0, 0.0, 8.0, 0.0),
-                                                  child: SizedBox(
+                                                  child: Container(
                                                     width: MediaQuery.sizeOf(
                                                                 context)
                                                             .width *
@@ -993,7 +996,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                       onChanged: (_) =>
                                                           EasyDebounce.debounce(
                                                         '_model.jurLeadTextController',
-                                                        const Duration(
+                                                        Duration(
                                                             milliseconds: 200),
                                                         () =>
                                                             safeSetState(() {}),
@@ -1085,7 +1088,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                         ),
                                                         filled: true,
                                                         fillColor:
-                                                            const Color(0xFFF0F0FA),
+                                                            Color(0xFFF0F0FA),
                                                       ),
                                                       style: FlutterFlowTheme
                                                               .of(context)
@@ -1120,7 +1123,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 4.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -1131,7 +1134,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                 Expanded(
                                                   child: Container(
                                                     width: 200.0,
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.min,
@@ -1139,7 +1142,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                         Container(
                                                           width: 200.0,
                                                           decoration:
-                                                              const BoxDecoration(
+                                                              BoxDecoration(
                                                             color: Color(
                                                                 0x00FFFFFF),
                                                           ),
@@ -1164,7 +1167,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                         Expanded(
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         8.0,
                                                                         0.0,
@@ -1185,7 +1188,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                                   EasyDebounce
                                                                       .debounce(
                                                                 '_model.jurInnTextController',
-                                                                const Duration(
+                                                                Duration(
                                                                     milliseconds:
                                                                         200),
                                                                 () =>
@@ -1282,7 +1285,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                                               24.0),
                                                                 ),
                                                                 filled: true,
-                                                                fillColor: const Color(
+                                                                fillColor: Color(
                                                                     0xFFF0F0FA),
                                                               ),
                                                               style: FlutterFlowTheme
@@ -1325,7 +1328,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                 Expanded(
                                                   child: Container(
                                                     width: 200.0,
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.min,
@@ -1333,7 +1336,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                         Container(
                                                           width: 60.0,
                                                           decoration:
-                                                              const BoxDecoration(
+                                                              BoxDecoration(
                                                             color: Color(
                                                                 0x00FFFFFF),
                                                           ),
@@ -1358,7 +1361,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                         Expanded(
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         8.0,
                                                                         0.0,
@@ -1379,7 +1382,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                                   EasyDebounce
                                                                       .debounce(
                                                                 '_model.jurKppTextController',
-                                                                const Duration(
+                                                                Duration(
                                                                     milliseconds:
                                                                         200),
                                                                 () =>
@@ -1476,7 +1479,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                                               24.0),
                                                                 ),
                                                                 filled: true,
-                                                                fillColor: const Color(
+                                                                fillColor: Color(
                                                                     0xFFF0F0FA),
                                                               ),
                                                               style: FlutterFlowTheme
@@ -1516,7 +1519,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                     ),
                                                   ),
                                                 ),
-                                              ].divide(const SizedBox(width: 40.0)),
+                                              ].divide(SizedBox(width: 40.0)),
                                             ),
                                           ),
                                           Row(
@@ -1531,7 +1534,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                       child: Container(
                                                         width: 200.0,
                                                         decoration:
-                                                            const BoxDecoration(),
+                                                            BoxDecoration(),
                                                         child: Row(
                                                           mainAxisSize:
                                                               MainAxisSize.min,
@@ -1539,7 +1542,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                             Container(
                                                               width: 200.0,
                                                               decoration:
-                                                                  const BoxDecoration(
+                                                                  BoxDecoration(
                                                                 color: Color(
                                                                     0x00FFFFFF),
                                                               ),
@@ -1564,7 +1567,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                             Expanded(
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             0.0,
@@ -1584,7 +1587,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                                       EasyDebounce
                                                                           .debounce(
                                                                     '_model.jurOgrnTextController',
-                                                                    const Duration(
+                                                                    Duration(
                                                                         milliseconds:
                                                                             200),
                                                                     () => safeSetState(
@@ -1679,7 +1682,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                                     filled:
                                                                         true,
                                                                     fillColor:
-                                                                        const Color(
+                                                                        Color(
                                                                             0xFFF0F0FA),
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
@@ -1722,7 +1725,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                       child: Container(
                                                         width: 200.0,
                                                         decoration:
-                                                            const BoxDecoration(),
+                                                            BoxDecoration(),
                                                         child: Row(
                                                           mainAxisSize:
                                                               MainAxisSize.min,
@@ -1730,7 +1733,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                             Container(
                                                               width: 60.0,
                                                               decoration:
-                                                                  const BoxDecoration(
+                                                                  BoxDecoration(
                                                                 color: Color(
                                                                     0x00FFFFFF),
                                                               ),
@@ -1755,7 +1758,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                             Expanded(
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             0.0,
@@ -1775,7 +1778,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                                       EasyDebounce
                                                                           .debounce(
                                                                     '_model.jurOkpoTextController',
-                                                                    const Duration(
+                                                                    Duration(
                                                                         milliseconds:
                                                                             200),
                                                                     () => safeSetState(
@@ -1870,7 +1873,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                                     filled:
                                                                         true,
                                                                     fillColor:
-                                                                        const Color(
+                                                                        Color(
                                                                             0xFFF0F0FA),
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
@@ -1910,16 +1913,16 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 40.0)),
+                                                      SizedBox(width: 40.0)),
                                                 ),
                                               ),
                                             ],
                                           ),
-                                        ].divide(const SizedBox(height: 12.0)),
+                                        ].divide(SizedBox(height: 12.0)),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 12.0, 0.0, 0.0),
                                       child: Text(
                                         'Банковские реквизиты:',
@@ -1938,7 +1941,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                       children: [
                                         Container(
                                           width: 200.0,
-                                          decoration: const BoxDecoration(
+                                          decoration: BoxDecoration(
                                             color: Color(0x00FFFFFF),
                                           ),
                                           child: Text(
@@ -1956,9 +1959,9 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 8.0, 0.0),
-                                            child: SizedBox(
+                                            child: Container(
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   0.6,
@@ -1975,7 +1978,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                 onChanged: (_) =>
                                                     EasyDebounce.debounce(
                                                   '_model.bankNameTextController',
-                                                  const Duration(milliseconds: 200),
+                                                  Duration(milliseconds: 200),
                                                   () => safeSetState(() {}),
                                                 ),
                                                 onFieldSubmitted: (_) async {
@@ -2051,7 +2054,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                             24.0),
                                                   ),
                                                   filled: true,
-                                                  fillColor: const Color(0xFFF0F0FA),
+                                                  fillColor: Color(0xFFF0F0FA),
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -2086,7 +2089,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                       children: [
                                         Container(
                                           width: 200.0,
-                                          decoration: const BoxDecoration(
+                                          decoration: BoxDecoration(
                                             color: Color(0x00FFFFFF),
                                           ),
                                           child: Text(
@@ -2104,9 +2107,9 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 8.0, 0.0),
-                                            child: SizedBox(
+                                            child: Container(
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   0.6,
@@ -2123,7 +2126,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                 onChanged: (_) =>
                                                     EasyDebounce.debounce(
                                                   '_model.bankKorrTextController',
-                                                  const Duration(milliseconds: 200),
+                                                  Duration(milliseconds: 200),
                                                   () => safeSetState(() {}),
                                                 ),
                                                 onFieldSubmitted: (_) async {
@@ -2200,7 +2203,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                             24.0),
                                                   ),
                                                   filled: true,
-                                                  fillColor: const Color(0xFFF0F0FA),
+                                                  fillColor: Color(0xFFF0F0FA),
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -2233,13 +2236,13 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                         Expanded(
                                           child: Container(
                                             width: 200.0,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 Container(
                                                   width: 200.0,
-                                                  decoration: const BoxDecoration(
+                                                  decoration: BoxDecoration(
                                                     color: Color(0x00FFFFFF),
                                                   ),
                                                   child: Text(
@@ -2260,7 +2263,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 8.0, 0.0),
                                                     child: TextFormField(
@@ -2276,7 +2279,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                       onChanged: (_) =>
                                                           EasyDebounce.debounce(
                                                         '_model.bankInnTextController',
-                                                        const Duration(
+                                                        Duration(
                                                             milliseconds: 200),
                                                         () =>
                                                             safeSetState(() {}),
@@ -2363,7 +2366,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                         ),
                                                         filled: true,
                                                         fillColor:
-                                                            const Color(0xFFF0F0FA),
+                                                            Color(0xFFF0F0FA),
                                                       ),
                                                       style: FlutterFlowTheme
                                                               .of(context)
@@ -2400,13 +2403,13 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                         Expanded(
                                           child: Container(
                                             width: 200.0,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 Container(
                                                   width: 60.0,
-                                                  decoration: const BoxDecoration(
+                                                  decoration: BoxDecoration(
                                                     color: Color(0x00FFFFFF),
                                                   ),
                                                   child: Text(
@@ -2427,7 +2430,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 8.0, 0.0),
                                                     child: TextFormField(
@@ -2443,7 +2446,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                       onChanged: (_) =>
                                                           EasyDebounce.debounce(
                                                         '_model.bankKppTextController',
-                                                        const Duration(
+                                                        Duration(
                                                             milliseconds: 200),
                                                         () =>
                                                             safeSetState(() {}),
@@ -2530,7 +2533,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                         ),
                                                         filled: true,
                                                         fillColor:
-                                                            const Color(0xFFF0F0FA),
+                                                            Color(0xFFF0F0FA),
                                                       ),
                                                       style: FlutterFlowTheme
                                                               .of(context)
@@ -2564,7 +2567,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                             ),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 40.0)),
+                                      ].divide(SizedBox(width: 40.0)),
                                     ),
                                     Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -2572,13 +2575,13 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                         Expanded(
                                           child: Container(
                                             width: 200.0,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 Container(
                                                   width: 200.0,
-                                                  decoration: const BoxDecoration(
+                                                  decoration: BoxDecoration(
                                                     color: Color(0x00FFFFFF),
                                                   ),
                                                   child: Text(
@@ -2599,7 +2602,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 8.0, 0.0),
                                                     child: TextFormField(
@@ -2615,7 +2618,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                       onChanged: (_) =>
                                                           EasyDebounce.debounce(
                                                         '_model.bankRcTextController',
-                                                        const Duration(
+                                                        Duration(
                                                             milliseconds: 200),
                                                         () =>
                                                             safeSetState(() {}),
@@ -2702,7 +2705,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                         ),
                                                         filled: true,
                                                         fillColor:
-                                                            const Color(0xFFF0F0FA),
+                                                            Color(0xFFF0F0FA),
                                                       ),
                                                       style: FlutterFlowTheme
                                                               .of(context)
@@ -2739,13 +2742,13 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                         Expanded(
                                           child: Container(
                                             width: 200.0,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 Container(
                                                   width: 60.0,
-                                                  decoration: const BoxDecoration(
+                                                  decoration: BoxDecoration(
                                                     color: Color(0x00FFFFFF),
                                                   ),
                                                   child: Text(
@@ -2766,7 +2769,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 8.0, 0.0),
                                                     child: TextFormField(
@@ -2782,7 +2785,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                       onChanged: (_) =>
                                                           EasyDebounce.debounce(
                                                         '_model.bankBicTextController',
-                                                        const Duration(
+                                                        Duration(
                                                             milliseconds: 200),
                                                         () =>
                                                             safeSetState(() {}),
@@ -2869,7 +2872,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                         ),
                                                         filled: true,
                                                         fillColor:
-                                                            const Color(0xFFF0F0FA),
+                                                            Color(0xFFF0F0FA),
                                                       ),
                                                       style: FlutterFlowTheme
                                                               .of(context)
@@ -2903,7 +2906,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                             ),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 40.0)),
+                                      ].divide(SizedBox(width: 40.0)),
                                     ),
                                     Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -2916,10 +2919,10 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                           options: FFButtonOptions(
                                             height: 50.0,
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     64.0, 24.0, 64.0, 24.0),
                                             iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
@@ -2933,7 +2936,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                       letterSpacing: 0.0,
                                                     ),
                                             elevation: 0.0,
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               color: Colors.transparent,
                                               width: 1.0,
                                             ),
@@ -2941,11 +2944,11 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                                                 BorderRadius.circular(24.0),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 16.0)),
+                                      ].divide(SizedBox(width: 16.0)),
                                     ),
                                   ]
-                                      .divide(const SizedBox(height: 30.0))
-                                      .addToEnd(const SizedBox(height: 72.0)),
+                                      .divide(SizedBox(height: 30.0))
+                                      .addToEnd(SizedBox(height: 72.0)),
                                 ),
                               ),
                             );

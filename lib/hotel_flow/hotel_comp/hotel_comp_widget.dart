@@ -2,6 +2,8 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'hotel_comp_model.dart';
 export 'hotel_comp_model.dart';
 
@@ -49,7 +51,7 @@ class _HotelCompWidgetState extends State<HotelCompWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.sizeOf(context).width * 1.0,
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,10 +63,10 @@ class _HotelCompWidgetState extends State<HotelCompWidget> {
                 constraints: BoxConstraints(
                   maxWidth: MediaQuery.sizeOf(context).width * 0.8,
                 ),
-                decoration: const BoxDecoration(),
+                decoration: BoxDecoration(),
                 child: Text(
                   valueOrDefault<String>(
-                    widget.hotel?.name,
+                    widget!.hotel?.name,
                     'Отель',
                   ),
                   maxLines: 1,
@@ -83,7 +85,7 @@ class _HotelCompWidgetState extends State<HotelCompWidget> {
                 highlightColor: Colors.transparent,
                 onTap: () async {
                   await widget.editCallback?.call(
-                    widget.hotel?.id,
+                    widget!.hotel?.id,
                   );
                 },
                 child: Icon(
@@ -106,11 +108,11 @@ class _HotelCompWidgetState extends State<HotelCompWidget> {
                   size: 24.0,
                 ),
               ),
-            ].divide(const SizedBox(width: 8.0)),
+            ].divide(SizedBox(width: 8.0)),
           ),
           Text(
             valueOrDefault<String>(
-              widget.hotel?.address,
+              widget!.hotel?.address,
               'Адрес',
             ),
             maxLines: 1,
@@ -121,7 +123,7 @@ class _HotelCompWidgetState extends State<HotelCompWidget> {
                   fontWeight: FontWeight.w500,
                 ),
           ),
-        ].divide(const SizedBox(height: 8.0)),
+        ].divide(SizedBox(height: 8.0)),
       ),
     );
   }

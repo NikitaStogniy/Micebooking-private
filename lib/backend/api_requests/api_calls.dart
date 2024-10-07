@@ -1,7 +1,10 @@
 import 'dart:convert';
+import 'dart:typed_data';
+import '../schema/structs/index.dart';
 
 import 'package:flutter/foundation.dart';
 
+import '/flutter_flow/flutter_flow_util.dart';
 import 'api_manager.dart';
 
 export 'api_manager.dart' show ApiCallResponse;
@@ -15,7 +18,7 @@ class SearchHotelCall {
     return ApiManager.instance.makeApiCall(
       callName: 'search hotel',
       apiUrl:
-          'https://supabase.micebooking.ru/rest/v1/hotel?name=ilike.*$searchString*&select=',
+          'https://supabase.micebooking.ru/rest/v1/hotel?name=ilike.*${searchString}*&select=',
       callType: ApiCallType.GET,
       headers: {
         'apikey':
@@ -42,7 +45,7 @@ class SearchHotelWithOwnerCall {
     return ApiManager.instance.makeApiCall(
       callName: 'search hotel with owner',
       apiUrl:
-          'https://supabase.micebooking.ru/rest/v1/hotel?name=ilike.*$searchString*&owner_id@>\$ownerId&select=*',
+          'https://supabase.micebooking.ru/rest/v1/hotel?name=ilike.*${searchString}*&owner_id@>\$ownerId&select=*',
       callType: ApiCallType.GET,
       headers: {
         'apikey':
@@ -68,7 +71,7 @@ class SearchClientsCall {
     return ApiManager.instance.makeApiCall(
       callName: 'search clients',
       apiUrl:
-          'https://supabase.micebooking.ru/rest/v1/users?network=ilike.*$searchString*&role=eq.CLIENT&select=*',
+          'https://supabase.micebooking.ru/rest/v1/users?network=ilike.*${searchString}*&role=eq.CLIENT&select=*',
       callType: ApiCallType.GET,
       headers: {
         'apikey':
@@ -93,7 +96,7 @@ class SendemailCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "id": "$requestWrapper"
+  "id": "${requestWrapper}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'sendemail',

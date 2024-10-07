@@ -10,7 +10,7 @@ class FavoriteHotelsTable extends SupabaseTable<FavoriteHotelsRow> {
 }
 
 class FavoriteHotelsRow extends SupabaseDataRow {
-  FavoriteHotelsRow(super.data);
+  FavoriteHotelsRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => FavoriteHotelsTable();

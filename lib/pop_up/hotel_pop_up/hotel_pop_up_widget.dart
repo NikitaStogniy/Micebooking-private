@@ -7,6 +7,8 @@ import '/pop_up/pop_up_images/pop_up_images_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'hotel_pop_up_model.dart';
 export 'hotel_pop_up_model.dart';
 
@@ -66,7 +68,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
           maxHeight: MediaQuery.sizeOf(context).height * 0.9,
         ),
         decoration: BoxDecoration(
-          color: const Color(0xFFF9F9F9),
+          color: Color(0xFFF9F9F9),
           borderRadius: BorderRadius.circular(23.0),
         ),
         child: SingleChildScrollView(
@@ -97,7 +99,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                       child: Container(
                         width: 40.0,
                         height: 40.0,
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Icon(
                           Icons.close_rounded,
                           color: FlutterFlowTheme.of(context).primary,
@@ -134,7 +136,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                         children: [
                           Expanded(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 70.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -142,7 +144,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                 children: [
                                   Text(
                                     valueOrDefault<String>(
-                                      widget.hotel?.name,
+                                      widget!.hotel?.name,
                                       '0',
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -155,7 +157,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                         ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 20.0, 0.0, 0.0),
                                     child: RatingBarIndicator(
                                       itemBuilder: (context, index) => Icon(
@@ -165,7 +167,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                       ),
                                       direction: Axis.horizontal,
                                       rating: valueOrDefault<double>(
-                                        widget.hotel?.stars?.toDouble(),
+                                        widget!.hotel?.stars?.toDouble(),
                                         3.0,
                                       ),
                                       unratedColor:
@@ -175,15 +177,15 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 24.0, 0.0, 0.0),
                                     child: Text(
-                                      'Адрес: ${widget.hotel?.address}',
+                                      'Адрес: ${widget!.hotel?.address}',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Commissioner',
-                                            color: const Color(0xFF636363),
+                                            color: Color(0xFF636363),
                                             fontSize: 16.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.normal,
@@ -191,15 +193,15 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 12.0, 0.0, 0.0),
                                     child: Text(
-                                      '${widget.hotel?.distanceCenter?.toString()} км от центра',
+                                      '${widget!.hotel?.distanceCenter?.toString()} км от центра',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Commissioner',
-                                            color: const Color(0xFF636363),
+                                            color: Color(0xFF636363),
                                             fontSize: 16.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.normal,
@@ -207,18 +209,18 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 20.0, 0.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
-                                        widget.hotel?.description,
+                                        widget!.hotel?.description,
                                         'Описание',
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Commissioner',
-                                            color: const Color(0xFF636363),
+                                            color: Color(0xFF636363),
                                             fontSize: 17.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
@@ -232,22 +234,22 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                           Container(
                             width: 400.0,
                             height: 300.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Stack(
                               children: [
                                 Builder(
                                   builder: (context) {
                                     final hotelImages =
-                                        widget.hotel?.images.toList() ?? [];
+                                        widget!.hotel?.images?.toList() ?? [];
                                     if (hotelImages.isEmpty) {
-                                      return const SizedBox(
+                                      return Container(
                                         width: double.infinity,
                                         height: double.infinity,
                                         child: ImagesEmptyWidget(),
                                       );
                                     }
 
-                                    return SizedBox(
+                                    return Container(
                                       width: 400.0,
                                       child: PageView.builder(
                                         controller:
@@ -288,11 +290,11 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                 Container(
                                   height:
                                       MediaQuery.sizeOf(context).height * 1.0,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Visibility(
-                                    visible: widget.hotel!.images.length > 1,
+                                    visible: widget!.hotel!.images.length > 1,
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 8.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -309,7 +311,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                               onTap: () async {
                                                 await _model.pageViewController1
                                                     ?.previousPage(
-                                                  duration: const Duration(
+                                                  duration: Duration(
                                                       milliseconds: 300),
                                                   curve: Curves.ease,
                                                 );
@@ -335,19 +337,19 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                           Container(
                                             width: 32.0,
                                             height: 32.0,
-                                            decoration: const BoxDecoration(
+                                            decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                             ),
                                           ),
                                           Container(
                                             width: 32.0,
                                             height: 32.0,
-                                            decoration: const BoxDecoration(
+                                            decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                             ),
                                           ),
                                           if (_model.pageViewCurrentIndex1 <
-                                              widget.hotel!.images.length)
+                                              widget!.hotel!.images.length)
                                             InkWell(
                                               splashColor: Colors.transparent,
                                               focusColor: Colors.transparent,
@@ -357,7 +359,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                               onTap: () async {
                                                 await _model.pageViewController1
                                                     ?.nextPage(
-                                                  duration: const Duration(
+                                                  duration: Duration(
                                                       milliseconds: 300),
                                                   curve: Curves.ease,
                                                 );
@@ -386,10 +388,10 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                     ),
                                   ),
                                 ),
-                                if (widget.hotel!.images.isNotEmpty)
+                                if (widget!.hotel!.images.length > 0)
                                   Builder(
                                     builder: (context) => Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           8.0, 8.0, 0.0, 0.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -398,7 +400,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
                                           await showDialog(
-                                            barrierColor: const Color(0x81FFFFFF),
+                                            barrierColor: Color(0x81FFFFFF),
                                             context: context,
                                             builder: (dialogContext) {
                                               return Dialog(
@@ -406,11 +408,11 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                                 insetPadding: EdgeInsets.zero,
                                                 backgroundColor:
                                                     Colors.transparent,
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
-                                                child: SizedBox(
+                                                child: Container(
                                                   height:
                                                       MediaQuery.sizeOf(context)
                                                               .height *
@@ -421,7 +423,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                                           0.9,
                                                   child: PopUpImagesWidget(
                                                     images:
-                                                        widget.hotel!.images,
+                                                        widget!.hotel!.images,
                                                   ),
                                                 ),
                                               );
@@ -446,11 +448,11 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                       ),
                                     ),
                                   ),
-                                if (widget.hotel!.images.length > 1)
+                                if (widget!.hotel!.images.length > 1)
                                   Align(
-                                    alignment: const AlignmentDirectional(0.0, 1.0),
+                                    alignment: AlignmentDirectional(0.0, 1.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 16.0),
                                       child: Container(
                                         decoration: BoxDecoration(
@@ -461,7 +463,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                         ),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 8.0, 16.0, 8.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
@@ -469,7 +471,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                '${(_model.pageViewCurrentIndex1 + 1).toString()}/${widget.hotel?.images.length.toString()}',
+                                                '${(_model.pageViewCurrentIndex1 + 1).toString()}/${widget!.hotel?.images?.length?.toString()}',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -512,23 +514,23 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                 Container(
                                   width: MediaQuery.sizeOf(context).width * 1.0,
                                   height: 300.0,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Stack(
                                     children: [
                                       Builder(
                                         builder: (context) {
                                           final hotelImages =
-                                              widget.hotel?.images.toList() ??
+                                              widget!.hotel?.images?.toList() ??
                                                   [];
                                           if (hotelImages.isEmpty) {
-                                            return const SizedBox(
+                                            return Container(
                                               width: double.infinity,
                                               height: double.infinity,
                                               child: ImagesEmptyWidget(),
                                             );
                                           }
 
-                                          return SizedBox(
+                                          return Container(
                                             width: double.infinity,
                                             child: PageView.builder(
                                               controller: _model
@@ -572,13 +574,13 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                           );
                                         },
                                       ),
-                                      if (widget.hotel!.images.length > 1)
+                                      if (widget!.hotel!.images.length > 1)
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 8.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -602,7 +604,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                                       await _model
                                                           .pageViewController2
                                                           ?.previousPage(
-                                                        duration: const Duration(
+                                                        duration: Duration(
                                                             milliseconds: 300),
                                                         curve: Curves.ease,
                                                       );
@@ -630,20 +632,20 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                                 Container(
                                                   width: 40.0,
                                                   height: 40.0,
-                                                  decoration: const BoxDecoration(
+                                                  decoration: BoxDecoration(
                                                     shape: BoxShape.circle,
                                                   ),
                                                 ),
                                                 Container(
                                                   width: 40.0,
                                                   height: 40.0,
-                                                  decoration: const BoxDecoration(
+                                                  decoration: BoxDecoration(
                                                     shape: BoxShape.circle,
                                                   ),
                                                 ),
                                                 if (_model
                                                         .pageViewCurrentIndex2 <
-                                                    widget
+                                                    widget!
                                                         .hotel!.images.length)
                                                   InkWell(
                                                     splashColor:
@@ -658,7 +660,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                                       await _model
                                                           .pageViewController2
                                                           ?.nextPage(
-                                                        duration: const Duration(
+                                                        duration: Duration(
                                                             milliseconds: 300),
                                                         curve: Curves.ease,
                                                       );
@@ -687,11 +689,11 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                             ),
                                           ),
                                         ),
-                                      if (widget.hotel!.images.isNotEmpty)
+                                      if (widget!.hotel!.images.length > 0)
                                         Builder(
                                           builder: (context) => Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 16.0, 0.0, 0.0),
                                             child: InkWell(
                                               splashColor: Colors.transparent,
@@ -702,7 +704,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                               onTap: () async {
                                                 await showDialog(
                                                   barrierColor:
-                                                      const Color(0x81FFFFFF),
+                                                      Color(0x81FFFFFF),
                                                   context: context,
                                                   builder: (dialogContext) {
                                                     return Dialog(
@@ -712,12 +714,12 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                                       backgroundColor:
                                                           Colors.transparent,
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
                                                                       context)),
-                                                      child: SizedBox(
+                                                      child: Container(
                                                         height:
                                                             MediaQuery.sizeOf(
                                                                         context)
@@ -730,7 +732,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                                                 0.9,
                                                         child:
                                                             PopUpImagesWidget(
-                                                          images: widget
+                                                          images: widget!
                                                               .hotel!.images,
                                                         ),
                                                       ),
@@ -758,13 +760,13 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                             ),
                                           ),
                                         ),
-                                      if (widget.hotel!.images.length > 1)
+                                      if (widget!.hotel!.images.length > 1)
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 1.0),
+                                              AlignmentDirectional(0.0, 1.0),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 16.0),
                                             child: Container(
                                               decoration: BoxDecoration(
@@ -775,7 +777,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                                     BorderRadius.circular(50.0),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         16.0, 8.0, 16.0, 8.0),
                                                 child: Row(
@@ -785,7 +787,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                                       MainAxisAlignment.center,
                                                   children: [
                                                     Text(
-                                                      '${(_model.pageViewCurrentIndex2 + 1).toString()}/${widget.hotel?.images.length.toString()}',
+                                                      '${(_model.pageViewCurrentIndex2 + 1).toString()}/${widget!.hotel?.images?.length?.toString()}',
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyMedium
@@ -816,7 +818,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                   children: [
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 16.0, 0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -829,7 +831,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                                 Expanded(
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      widget.hotel?.name,
+                                                      widget!.hotel?.name,
                                                       '0',
                                                     ),
                                                     style: FlutterFlowTheme.of(
@@ -848,7 +850,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                               ],
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 20.0, 0.0, 0.0),
                                               child: RatingBarIndicator(
@@ -861,7 +863,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                                 ),
                                                 direction: Axis.horizontal,
                                                 rating: valueOrDefault<double>(
-                                                  widget.hotel?.stars
+                                                  widget!.hotel?.stars
                                                       ?.toDouble(),
                                                   3.0,
                                                 ),
@@ -878,18 +880,18 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 24.0,
                                                                 0.0, 0.0),
                                                     child: Text(
-                                                      'Адрес: ${widget.hotel?.address}',
+                                                      'Адрес: ${widget!.hotel?.address}',
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
                                                                 'Commissioner',
-                                                            color: const Color(
+                                                            color: Color(
                                                                 0xFF636363),
                                                             fontSize: 16.0,
                                                             letterSpacing: 0.0,
@@ -903,11 +905,11 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                               ],
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 12.0, 0.0, 0.0),
                                               child: Text(
-                                                '${widget.hotel?.distanceCenter?.toString()} км от центра',
+                                                '${widget!.hotel?.distanceCenter?.toString()} км от центра',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -915,7 +917,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                                           fontFamily:
                                                               'Commissioner',
                                                           color:
-                                                              const Color(0xFF636363),
+                                                              Color(0xFF636363),
                                                           fontSize: 16.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
@@ -929,12 +931,12 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 20.0,
                                                                 0.0, 0.0),
                                                     child: Text(
                                                       valueOrDefault<String>(
-                                                        widget
+                                                        widget!
                                                             .hotel?.description,
                                                         'Описание',
                                                       ),
@@ -944,7 +946,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                                           .override(
                                                             fontFamily:
                                                                 'Commissioner',
-                                                            color: const Color(
+                                                            color: Color(
                                                                 0xFF636363),
                                                             fontSize: 17.0,
                                                             letterSpacing: 0.0,
@@ -970,7 +972,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                       ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -991,7 +993,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                       child: FutureBuilder<List<ServiceCategoryRow>>(
                         future: ServiceCategoryTable().queryRows(
                           queryFn: (q) => q
@@ -1001,7 +1003,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                               )
                               .overlaps(
                                 'services_id',
-                                widget.hotel?.services,
+                                widget!.hotel?.services,
                               ),
                         ),
                         builder: (context, snapshot) {
@@ -1024,9 +1026,9 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
 
                           return Container(
                             width: MediaQuery.sizeOf(context).width * 0.65,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Container(
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Builder(
                                 builder: (context) {
                                   final categories =
@@ -1057,7 +1059,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                               )
                                               .in_(
                                                 'id',
-                                                widget.hotel!.services,
+                                                widget!.hotel!.services,
                                               ),
                                         ),
                                         builder: (context, snapshot) {
@@ -1084,9 +1086,11 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                               snapshot.data!;
 
                                           return Container(
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Visibility(
-                                              visible: containerServiceRowList.isNotEmpty,
+                                              visible: containerServiceRowList
+                                                      .length >
+                                                  0,
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 crossAxisAlignment:
@@ -1148,13 +1152,13 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                                                           .normal,
                                                                 ),
                                                           );
-                                                        }).divide(const SizedBox(
+                                                        }).divide(SizedBox(
                                                             height: 16.0)),
                                                       );
                                                     },
                                                   ),
                                                 ].divide(
-                                                    const SizedBox(height: 24.0)),
+                                                    SizedBox(height: 24.0)),
                                               ),
                                             ),
                                           );
@@ -1171,10 +1175,10 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                       child: Container(
                         width: MediaQuery.sizeOf(context).width * 0.65,
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: MasonryGridView.builder(
                           gridDelegate:
                               SliverSimpleGridDelegateWithFixedCrossAxisCount(
@@ -1214,13 +1218,13 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                         ],
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 0.0),
                                         child: FutureBuilder<List<RoomRow>>(
                                           future: RoomTable().queryRows(
                                             queryFn: (q) => q.in_(
                                               'id',
-                                              widget.hotel!.rooms,
+                                              widget!.hotel!.rooms,
                                             ),
                                           ),
                                           builder: (context, snapshot) {
@@ -1257,7 +1261,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                                     columnRoomRowList[
                                                         columnIndex];
                                                 return Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 16.0),
                                                   child: Row(
@@ -1317,13 +1321,13 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                         ],
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 0.0, 0.0, 16.0),
                                               child: Row(
@@ -1331,7 +1335,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                                 children: [
                                                   Expanded(
                                                     child: Text(
-                                                      'Количество залов: ${widget.hotel?.hall.length.toString()}',
+                                                      'Количество залов: ${widget!.hotel?.hall?.length?.toString()}',
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyMedium
@@ -1367,7 +1371,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                     ))
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -1395,13 +1399,13 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                   ],
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 0.0),
                                   child: FutureBuilder<List<RoomRow>>(
                                     future: RoomTable().queryRows(
                                       queryFn: (q) => q.in_(
                                         'id',
-                                        widget.hotel!.rooms,
+                                        widget!.hotel!.rooms,
                                       ),
                                     ),
                                     builder: (context, snapshot) {
@@ -1435,7 +1439,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                               columnRoomRowList[columnIndex];
                                           return Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 16.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -1465,7 +1469,7 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   49.0, 0.0, 0.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -1491,20 +1495,20 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                     ],
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 16.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Text(
-                                                'Количество залов: ${widget.hotel?.hall.length.toString()}',
+                                                'Количество залов: ${widget!.hotel?.hall?.length?.toString()}',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium

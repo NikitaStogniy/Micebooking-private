@@ -2,6 +2,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'support_bottomsheet_model.dart';
 export 'support_bottomsheet_model.dart';
 
@@ -43,7 +45,7 @@ class _SupportBottomsheetWidgetState extends State<SupportBottomsheetWidget> {
       width: MediaQuery.sizeOf(context).width * 1.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
-        borderRadius: const BorderRadius.only(
+        borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
           topLeft: Radius.circular(32.0),
@@ -54,12 +56,12 @@ class _SupportBottomsheetWidgetState extends State<SupportBottomsheetWidget> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            constraints: const BoxConstraints(
+            constraints: BoxConstraints(
               maxWidth: 1250.0,
             ),
-            decoration: const BoxDecoration(),
+            decoration: BoxDecoration(),
             child: Padding(
-              padding: const EdgeInsets.all(24.0),
+              padding: EdgeInsets.all(24.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -127,9 +129,9 @@ class _SupportBottomsheetWidgetState extends State<SupportBottomsheetWidget> {
                           text: 'Перейти в телеграм-бот',
                           options: FFButtonOptions(
                             height: 50.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 43.0, 0.0, 43.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -140,7 +142,7 @@ class _SupportBottomsheetWidgetState extends State<SupportBottomsheetWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 0.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -159,7 +161,7 @@ class _SupportBottomsheetWidgetState extends State<SupportBottomsheetWidget> {
                       context.goNamed(
                         'QA',
                         extra: <String, dynamic>{
-                          kTransitionInfoKey: const TransitionInfo(
+                          kTransitionInfoKey: TransitionInfo(
                             hasTransition: true,
                             transitionType: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
@@ -180,8 +182,8 @@ class _SupportBottomsheetWidgetState extends State<SupportBottomsheetWidget> {
                     ),
                   ),
                 ]
-                    .divide(const SizedBox(height: 24.0))
-                    .addToEnd(const SizedBox(height: 70.0)),
+                    .divide(SizedBox(height: 24.0))
+                    .addToEnd(SizedBox(height: 70.0)),
               ),
             ),
           ),

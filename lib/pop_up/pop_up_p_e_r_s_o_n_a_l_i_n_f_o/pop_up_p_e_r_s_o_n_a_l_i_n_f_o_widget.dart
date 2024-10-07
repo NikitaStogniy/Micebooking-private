@@ -3,6 +3,8 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'pop_up_p_e_r_s_o_n_a_l_i_n_f_o_model.dart';
 export 'pop_up_p_e_r_s_o_n_a_l_i_n_f_o_model.dart';
 
@@ -70,7 +72,7 @@ class _PopUpPERSONALINFOWidgetState extends State<PopUpPERSONALINFOWidget> {
         return Container(
           width: MediaQuery.sizeOf(context).width * 0.9,
           height: MediaQuery.sizeOf(context).height * 0.9,
-          constraints: const BoxConstraints(
+          constraints: BoxConstraints(
             maxWidth: 1250.0,
           ),
           decoration: BoxDecoration(
@@ -78,7 +80,7 @@ class _PopUpPERSONALINFOWidgetState extends State<PopUpPERSONALINFOWidget> {
             borderRadius: BorderRadius.circular(23.0),
           ),
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 0.0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,

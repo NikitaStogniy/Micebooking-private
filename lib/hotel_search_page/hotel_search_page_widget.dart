@@ -1,3 +1,4 @@
+import '/auth/base_auth_user_provider.dart';
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/schema/enums/enums.dart';
 import '/backend/schema/structs/index.dart';
@@ -23,6 +24,8 @@ import 'dart:async';
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'hotel_search_page_model.dart';
 export 'hotel_search_page_model.dart';
 
@@ -67,19 +70,19 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.favoriteHotelsList =
-          widget.user!.favoriteHotels.toList().cast<int>();
+          widget!.user!.favoriteHotels.toList().cast<int>();
       safeSetState(() {});
-      if ((widget.hallFilter1?.type == EnumSeating.theatre) ||
-          (widget.hallFilter2?.type == EnumSeating.theatre) ||
-          (widget.hallFilter3?.type == EnumSeating.theatre)) {
+      if ((widget!.hallFilter1?.type == EnumSeating.theatre) ||
+          (widget!.hallFilter2?.type == EnumSeating.theatre) ||
+          (widget!.hallFilter3?.type == EnumSeating.theatre)) {
         _model.theaterMin = valueOrDefault<int>(
           () {
-            if (widget.hallFilter1?.type == EnumSeating.theatre) {
-              return widget.hallFilter1?.count;
-            } else if (widget.hallFilter2?.type == EnumSeating.theatre) {
-              return widget.hallFilter2?.count;
-            } else if (widget.hallFilter3?.type == EnumSeating.theatre) {
-              return widget.hallFilter3?.count;
+            if (widget!.hallFilter1?.type == EnumSeating.theatre) {
+              return widget!.hallFilter1?.count;
+            } else if (widget!.hallFilter2?.type == EnumSeating.theatre) {
+              return widget!.hallFilter2?.count;
+            } else if (widget!.hallFilter3?.type == EnumSeating.theatre) {
+              return widget!.hallFilter3?.count;
             } else {
               return 0;
             }
@@ -88,17 +91,17 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
         );
         safeSetState(() {});
       }
-      if ((widget.hallFilter1?.type == EnumSeating.klass) ||
-          (widget.hallFilter2?.type == EnumSeating.klass) ||
-          (widget.hallFilter3?.type == EnumSeating.klass)) {
+      if ((widget!.hallFilter1?.type == EnumSeating.klass) ||
+          (widget!.hallFilter2?.type == EnumSeating.klass) ||
+          (widget!.hallFilter3?.type == EnumSeating.klass)) {
         _model.classMin = valueOrDefault<int>(
           () {
-            if (widget.hallFilter1?.type == EnumSeating.klass) {
-              return widget.hallFilter1?.count;
-            } else if (widget.hallFilter2?.type == EnumSeating.klass) {
-              return widget.hallFilter2?.count;
-            } else if (widget.hallFilter3?.type == EnumSeating.klass) {
-              return widget.hallFilter3?.count;
+            if (widget!.hallFilter1?.type == EnumSeating.klass) {
+              return widget!.hallFilter1?.count;
+            } else if (widget!.hallFilter2?.type == EnumSeating.klass) {
+              return widget!.hallFilter2?.count;
+            } else if (widget!.hallFilter3?.type == EnumSeating.klass) {
+              return widget!.hallFilter3?.count;
             } else {
               return 0;
             }
@@ -107,17 +110,17 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
         );
         safeSetState(() {});
       }
-      if ((widget.hallFilter1?.type == EnumSeating.communication) ||
-          (widget.hallFilter2?.type == EnumSeating.communication) ||
-          (widget.hallFilter3?.type == EnumSeating.communication)) {
+      if ((widget!.hallFilter1?.type == EnumSeating.communication) ||
+          (widget!.hallFilter2?.type == EnumSeating.communication) ||
+          (widget!.hallFilter3?.type == EnumSeating.communication)) {
         _model.comMin = valueOrDefault<int>(
           () {
-            if (widget.hallFilter1?.type == EnumSeating.communication) {
-              return widget.hallFilter1?.count;
-            } else if (widget.hallFilter2?.type == EnumSeating.communication) {
-              return widget.hallFilter2?.count;
-            } else if (widget.hallFilter3?.type == EnumSeating.communication) {
-              return widget.hallFilter3?.count;
+            if (widget!.hallFilter1?.type == EnumSeating.communication) {
+              return widget!.hallFilter1?.count;
+            } else if (widget!.hallFilter2?.type == EnumSeating.communication) {
+              return widget!.hallFilter2?.count;
+            } else if (widget!.hallFilter3?.type == EnumSeating.communication) {
+              return widget!.hallFilter3?.count;
             } else {
               return 0;
             }
@@ -126,17 +129,17 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
         );
         safeSetState(() {});
       }
-      if ((widget.hallFilter1?.type == EnumSeating.ushape) ||
-          (widget.hallFilter2?.type == EnumSeating.ushape) ||
-          (widget.hallFilter3?.type == EnumSeating.ushape)) {
+      if ((widget!.hallFilter1?.type == EnumSeating.ushape) ||
+          (widget!.hallFilter2?.type == EnumSeating.ushape) ||
+          (widget!.hallFilter3?.type == EnumSeating.ushape)) {
         _model.uShapeMin = valueOrDefault<int>(
           () {
-            if (widget.hallFilter1?.type == EnumSeating.ushape) {
-              return widget.hallFilter1?.count;
-            } else if (widget.hallFilter2?.type == EnumSeating.ushape) {
-              return widget.hallFilter2?.count;
-            } else if (widget.hallFilter3?.type == EnumSeating.ushape) {
-              return widget.hallFilter3?.count;
+            if (widget!.hallFilter1?.type == EnumSeating.ushape) {
+              return widget!.hallFilter1?.count;
+            } else if (widget!.hallFilter2?.type == EnumSeating.ushape) {
+              return widget!.hallFilter2?.count;
+            } else if (widget!.hallFilter3?.type == EnumSeating.ushape) {
+              return widget!.hallFilter3?.count;
             } else {
               return 0;
             }
@@ -145,17 +148,17 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
         );
         safeSetState(() {});
       }
-      if ((widget.hallFilter1?.type == EnumSeating.oshape) ||
-          (widget.hallFilter2?.type == EnumSeating.oshape) ||
-          (widget.hallFilter3?.type == EnumSeating.oshape)) {
+      if ((widget!.hallFilter1?.type == EnumSeating.oshape) ||
+          (widget!.hallFilter2?.type == EnumSeating.oshape) ||
+          (widget!.hallFilter3?.type == EnumSeating.oshape)) {
         _model.oShapeMin = valueOrDefault<int>(
           () {
-            if (widget.hallFilter1?.type == EnumSeating.oshape) {
-              return widget.hallFilter1?.count;
-            } else if (widget.hallFilter2?.type == EnumSeating.oshape) {
-              return widget.hallFilter2?.count;
-            } else if (widget.hallFilter3?.type == EnumSeating.oshape) {
-              return widget.hallFilter3?.count;
+            if (widget!.hallFilter1?.type == EnumSeating.oshape) {
+              return widget!.hallFilter1?.count;
+            } else if (widget!.hallFilter2?.type == EnumSeating.oshape) {
+              return widget!.hallFilter2?.count;
+            } else if (widget!.hallFilter3?.type == EnumSeating.oshape) {
+              return widget!.hallFilter3?.count;
             } else {
               return 0;
             }
@@ -164,17 +167,17 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
         );
         safeSetState(() {});
       }
-      if ((widget.hallFilter1?.type == EnumSeating.cabare) ||
-          (widget.hallFilter2?.type == EnumSeating.cabare) ||
-          (widget.hallFilter3?.type == EnumSeating.cabare)) {
+      if ((widget!.hallFilter1?.type == EnumSeating.cabare) ||
+          (widget!.hallFilter2?.type == EnumSeating.cabare) ||
+          (widget!.hallFilter3?.type == EnumSeating.cabare)) {
         _model.cabareMin = valueOrDefault<int>(
           () {
-            if (widget.hallFilter1?.type == EnumSeating.cabare) {
-              return widget.hallFilter1?.count;
-            } else if (widget.hallFilter2?.type == EnumSeating.cabare) {
-              return widget.hallFilter2?.count;
-            } else if (widget.hallFilter3?.type == EnumSeating.cabare) {
-              return widget.hallFilter3?.count;
+            if (widget!.hallFilter1?.type == EnumSeating.cabare) {
+              return widget!.hallFilter1?.count;
+            } else if (widget!.hallFilter2?.type == EnumSeating.cabare) {
+              return widget!.hallFilter2?.count;
+            } else if (widget!.hallFilter3?.type == EnumSeating.cabare) {
+              return widget!.hallFilter3?.count;
             } else {
               return 0;
             }
@@ -183,17 +186,17 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
         );
         safeSetState(() {});
       }
-      if ((widget.hallFilter1?.type == EnumSeating.banket) ||
-          (widget.hallFilter2?.type == EnumSeating.banket) ||
-          (widget.hallFilter3?.type == EnumSeating.banket)) {
+      if ((widget!.hallFilter1?.type == EnumSeating.banket) ||
+          (widget!.hallFilter2?.type == EnumSeating.banket) ||
+          (widget!.hallFilter3?.type == EnumSeating.banket)) {
         _model.banketMin = valueOrDefault<int>(
           () {
-            if (widget.hallFilter1?.type == EnumSeating.banket) {
-              return widget.hallFilter1?.count;
-            } else if (widget.hallFilter2?.type == EnumSeating.banket) {
-              return widget.hallFilter2?.count;
-            } else if (widget.hallFilter3?.type == EnumSeating.banket) {
-              return widget.hallFilter3?.count;
+            if (widget!.hallFilter1?.type == EnumSeating.banket) {
+              return widget!.hallFilter1?.count;
+            } else if (widget!.hallFilter2?.type == EnumSeating.banket) {
+              return widget!.hallFilter2?.count;
+            } else if (widget!.hallFilter3?.type == EnumSeating.banket) {
+              return widget!.hallFilter3?.count;
             } else {
               return 0;
             }
@@ -202,17 +205,17 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
         );
         safeSetState(() {});
       }
-      if ((widget.hallFilter1?.type == EnumSeating.furshet) ||
-          (widget.hallFilter2?.type == EnumSeating.furshet) ||
-          (widget.hallFilter3?.type == EnumSeating.furshet)) {
+      if ((widget!.hallFilter1?.type == EnumSeating.furshet) ||
+          (widget!.hallFilter2?.type == EnumSeating.furshet) ||
+          (widget!.hallFilter3?.type == EnumSeating.furshet)) {
         _model.furshetMin = valueOrDefault<int>(
           () {
-            if (widget.hallFilter1?.type == EnumSeating.furshet) {
-              return widget.hallFilter1?.count;
-            } else if (widget.hallFilter2?.type == EnumSeating.furshet) {
-              return widget.hallFilter2?.count;
-            } else if (widget.hallFilter3?.type == EnumSeating.furshet) {
-              return widget.hallFilter3?.count;
+            if (widget!.hallFilter1?.type == EnumSeating.furshet) {
+              return widget!.hallFilter1?.count;
+            } else if (widget!.hallFilter2?.type == EnumSeating.furshet) {
+              return widget!.hallFilter2?.count;
+            } else if (widget!.hallFilter3?.type == EnumSeating.furshet) {
+              return widget!.hallFilter3?.count;
             } else {
               return 0;
             }
@@ -309,7 +312,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             body: Align(
-              alignment: const AlignmentDirectional(0.0, 0.0),
+              alignment: AlignmentDirectional(0.0, 0.0),
               child: Material(
                 color: Colors.transparent,
                 elevation: 0.0,
@@ -320,10 +323,10 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                     minHeight: MediaQuery.sizeOf(context).height * 1.0,
                   ),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFF9F9F9),
+                    color: Color(0xFFF9F9F9),
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      alignment: AlignmentDirectional(0.0, 0.0),
                       image: Image.asset(
                         'assets/images/Vector.png',
                       ).image,
@@ -336,7 +339,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Align(
-                          alignment: const AlignmentDirectional(0.0, -1.0),
+                          alignment: AlignmentDirectional(0.0, -1.0),
                           child: Builder(
                             builder: (context) => Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
@@ -377,7 +380,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                           elevation: 0,
                                           insetPadding: EdgeInsets.zero,
                                           backgroundColor: Colors.transparent,
-                                          alignment: const AlignmentDirectional(
+                                          alignment: AlignmentDirectional(
                                                   0.0, 0.0)
                                               .resolve(
                                                   Directionality.of(context)),
@@ -385,7 +388,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                             onTap: () =>
                                                 FocusScope.of(dialogContext)
                                                     .unfocus(),
-                                            child: SizedBox(
+                                            child: Container(
                                               height: MediaQuery.sizeOf(context)
                                                       .height *
                                                   0.8,
@@ -393,16 +396,16 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       .width *
                                                   0.9,
                                               child: HotelSearchCompWidget(
-                                                date: widget.startDate!,
-                                                duration: widget.duration!,
-                                                ciry: widget.city,
-                                                visitors: widget.visitors!,
+                                                date: widget!.startDate!,
+                                                duration: widget!.duration!,
+                                                ciry: widget!.city,
+                                                visitors: widget!.visitors!,
                                                 hallFilter1:
-                                                    widget.hallFilter1,
+                                                    widget!.hallFilter1,
                                                 hallFilter2:
-                                                    widget.hallFilter2,
+                                                    widget!.hallFilter2,
                                                 hallFilter3:
-                                                    widget.hallFilter3,
+                                                    widget!.hallFilter3,
                                                 home: true,
                                                 onSearch: (date,
                                                     duration,
@@ -420,7 +423,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                     queryParameters: {
                                                       'startDate':
                                                           serializeParam(
-                                                        widget.startDate,
+                                                        widget!.startDate,
                                                         ParamType.DateTime,
                                                       ),
                                                       'duration':
@@ -487,13 +490,13 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                             updateCallback: () => safeSetState(() {}),
                             updateOnChange: true,
                             child: HotelSearchCompWidget(
-                              duration: widget.duration!,
-                              visitors: widget.visitors!,
-                              date: widget.startDate!,
-                              ciry: widget.city,
-                              hallFilter1: widget.hallFilter1,
-                              hallFilter2: widget.hallFilter2,
-                              hallFilter3: widget.hallFilter3,
+                              duration: widget!.duration!,
+                              visitors: widget!.visitors!,
+                              date: widget!.startDate!,
+                              ciry: widget!.city,
+                              hallFilter1: widget!.hallFilter1,
+                              hallFilter2: widget!.hallFilter2,
+                              hallFilter3: widget!.hallFilter3,
                               home: false,
                               onSearch: (date,
                                   duration,
@@ -510,7 +513,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                   'HotelSearchPage',
                                   queryParameters: {
                                     'startDate': serializeParam(
-                                      widget.startDate,
+                                      widget!.startDate,
                                       ParamType.DateTime,
                                     ),
                                     'duration': serializeParam(
@@ -572,10 +575,10 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                 ),
                                 0.0),
                             child: Container(
-                              constraints: const BoxConstraints(
+                              constraints: BoxConstraints(
                                 maxWidth: 1250.0,
                               ),
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -591,11 +594,11 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                           context: context,
                                           isGlobal: false,
                                           avoidOverflow: true,
-                                          targetAnchor: const AlignmentDirectional(
+                                          targetAnchor: AlignmentDirectional(
                                                   0.0, 8.0)
                                               .resolve(
                                                   Directionality.of(context)),
-                                          followerAnchor: const AlignmentDirectional(
+                                          followerAnchor: AlignmentDirectional(
                                                   0.0, 0.0)
                                               .resolve(
                                                   Directionality.of(context)),
@@ -606,7 +609,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                 onTap: () =>
                                                     FocusScope.of(dialogContext)
                                                         .unfocus(),
-                                                child: SizedBox(
+                                                child: Container(
                                                   height:
                                                       MediaQuery.sizeOf(context)
                                                               .height *
@@ -720,13 +723,13 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                       child: Container(
                                         width: 300.0,
                                         decoration: BoxDecoration(
-                                          color: const Color(0xFFF0F0FA),
+                                          color: Color(0xFFF0F0FA),
                                           borderRadius:
                                               BorderRadius.circular(23.0),
                                         ),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   20.0, 20.0, 20.0, 20.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -741,7 +744,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 12.0, 0.0),
                                                     child: Icon(
@@ -805,7 +808,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                   ),
                                   Builder(
                                     builder: (context) => Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 20.0, 0.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -817,12 +820,12 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                             context: context,
                                             isGlobal: false,
                                             avoidOverflow: true,
-                                            targetAnchor: const AlignmentDirectional(
+                                            targetAnchor: AlignmentDirectional(
                                                     0.0, 8.0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                             followerAnchor:
-                                                const AlignmentDirectional(0.0, 0.0)
+                                                AlignmentDirectional(0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
                                             builder: (dialogContext) {
@@ -832,7 +835,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                   onTap: () => FocusScope.of(
                                                           dialogContext)
                                                       .unfocus(),
-                                                  child: SizedBox(
+                                                  child: Container(
                                                     height: MediaQuery.sizeOf(
                                                                 context)
                                                             .height *
@@ -843,11 +846,11 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       chosenSittings: _model
                                                           .hallFilterChosenSeatings,
                                                       hallfilter1:
-                                                          widget.hallFilter1,
+                                                          widget!.hallFilter1,
                                                       hallfilter2:
-                                                          widget.hallFilter2,
+                                                          widget!.hallFilter2,
                                                       hallfilter3:
-                                                          widget.hallFilter3,
+                                                          widget!.hallFilter3,
                                                       addCapacity: (maxCapacity,
                                                           minCapacity) async {
                                                         _model.hallFilterMaxCapacity =
@@ -884,13 +887,13 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                         child: Container(
                                           width: 300.0,
                                           decoration: BoxDecoration(
-                                            color: const Color(0xFFF0F0FA),
+                                            color: Color(0xFFF0F0FA),
                                             borderRadius:
                                                 BorderRadius.circular(23.0),
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     20.0, 20.0, 20.0, 20.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -906,7 +909,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1008,12 +1011,12 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                     options: FFButtonOptions(
                                       width: 180.0,
                                       height: 40.0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           24.0, 0.0, 24.0, 0.0),
                                       iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
-                                      color: const Color(0x16BE3030),
+                                      color: Color(0x16BE3030),
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
@@ -1043,10 +1046,10 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                               MainAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 4.0, 0.0),
                                               child: Text(
-                                                'зал 1: ${widget.hallFilter1?.type.name}${widget.hallFilter1?.count.toString()}',
+                                                'зал 1: ${widget!.hallFilter1?.type?.name}${widget!.hallFilter1?.count?.toString()}',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -1058,10 +1061,10 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 4.0, 0.0),
                                               child: Text(
-                                                'зал 2: ${widget.hallFilter2?.type.name}${widget.hallFilter2?.count.toString()}',
+                                                'зал 2: ${widget!.hallFilter2?.type?.name}${widget!.hallFilter2?.count?.toString()}',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -1073,10 +1076,10 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 4.0, 0.0),
                                               child: Text(
-                                                'зал 3:  ${widget.hallFilter3?.type.name}${widget.hallFilter3?.count.toString()}',
+                                                'зал 3:  ${widget!.hallFilter3?.type?.name}${widget!.hallFilter3?.count?.toString()}',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -1088,7 +1091,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 4.0, 0.0),
                                               child: Text(
                                                 'театр ${_model.theaterMin?.toString()}',
@@ -1103,7 +1106,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 4.0, 0.0),
                                               child: Text(
                                                 'класс${_model.classMin?.toString()}',
@@ -1118,7 +1121,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 4.0, 0.0),
                                               child: Text(
                                                 'комуник. ${valueOrDefault<String>(
@@ -1136,7 +1139,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 4.0, 0.0),
                                               child: Text(
                                                 'юшейп. ${_model.uShapeMin?.toString()}',
@@ -1151,7 +1154,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 4.0, 0.0),
                                               child: Text(
                                                 'ошейп. ${_model.oShapeMin?.toString()}',
@@ -1166,7 +1169,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 4.0, 0.0),
                                               child: Text(
                                                 'кабаре  ${_model.cabareMin?.toString()}',
@@ -1181,7 +1184,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 4.0, 0.0),
                                               child: Text(
                                                 'фуршет  ${_model.furshetMin?.toString()}',
@@ -1196,7 +1199,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 4.0, 0.0),
                                               child: Text(
                                                 'банкет  ${_model.banketMin?.toString()}',
@@ -1210,11 +1213,11 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                         ),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 20.0)),
+                                          ].divide(SizedBox(width: 20.0)),
                                         ),
                                       ),
                                     ),
-                                ].divide(const SizedBox(width: 10.0)),
+                                ].divide(SizedBox(width: 10.0)),
                               ),
                             ),
                           ),
@@ -1243,10 +1246,10 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                 0.0),
                             child: Container(
                               width: MediaQuery.sizeOf(context).width * 1.0,
-                              constraints: const BoxConstraints(
+                              constraints: BoxConstraints(
                                 maxWidth: 1250.0,
                               ),
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -1262,11 +1265,11 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                           context: context,
                                           isGlobal: false,
                                           avoidOverflow: true,
-                                          targetAnchor: const AlignmentDirectional(
+                                          targetAnchor: AlignmentDirectional(
                                                   0.0, 8.0)
                                               .resolve(
                                                   Directionality.of(context)),
-                                          followerAnchor: const AlignmentDirectional(
+                                          followerAnchor: AlignmentDirectional(
                                                   0.0, 0.0)
                                               .resolve(
                                                   Directionality.of(context)),
@@ -1277,7 +1280,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                 onTap: () =>
                                                     FocusScope.of(dialogContext)
                                                         .unfocus(),
-                                                child: SizedBox(
+                                                child: Container(
                                                   height:
                                                       MediaQuery.sizeOf(context)
                                                               .height *
@@ -1391,16 +1394,16 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                       child: Container(
                                         width: 300.0,
                                         decoration: BoxDecoration(
-                                          color: const Color(0xFFF0F0FA),
+                                          color: Color(0xFFF0F0FA),
                                           borderRadius:
                                               BorderRadius.circular(23.0),
                                         ),
                                         child: Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 12.0, 16.0, 12.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -1416,7 +1419,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1488,7 +1491,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                   ),
                                   Builder(
                                     builder: (context) => Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 20.0, 0.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -1500,12 +1503,12 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                             context: context,
                                             isGlobal: false,
                                             avoidOverflow: true,
-                                            targetAnchor: const AlignmentDirectional(
+                                            targetAnchor: AlignmentDirectional(
                                                     0.0, 8.0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                             followerAnchor:
-                                                const AlignmentDirectional(0.0, 0.0)
+                                                AlignmentDirectional(0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
                                             builder: (dialogContext) {
@@ -1515,7 +1518,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                   onTap: () => FocusScope.of(
                                                           dialogContext)
                                                       .unfocus(),
-                                                  child: SizedBox(
+                                                  child: Container(
                                                     height: MediaQuery.sizeOf(
                                                                 context)
                                                             .height *
@@ -1526,11 +1529,11 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       chosenSittings: _model
                                                           .hallFilterChosenSeatings,
                                                       hallfilter1:
-                                                          widget.hallFilter1,
+                                                          widget!.hallFilter1,
                                                       hallfilter2:
-                                                          widget.hallFilter2,
+                                                          widget!.hallFilter2,
                                                       hallfilter3:
-                                                          widget.hallFilter3,
+                                                          widget!.hallFilter3,
                                                       addCapacity: (maxCapacity,
                                                           minCapacity) async {
                                                         _model.hallFilterMaxCapacity =
@@ -1567,13 +1570,13 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                         child: Container(
                                           width: 300.0,
                                           decoration: BoxDecoration(
-                                            color: const Color(0xFFF0F0FA),
+                                            color: Color(0xFFF0F0FA),
                                             borderRadius:
                                                 BorderRadius.circular(23.0),
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 12.0, 16.0, 12.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -1589,7 +1592,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1691,12 +1694,12 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                     options: FFButtonOptions(
                                       width: 180.0,
                                       height: 40.0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           24.0, 0.0, 24.0, 0.0),
                                       iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
-                                      color: const Color(0x16BE3030),
+                                      color: Color(0x16BE3030),
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
@@ -1710,7 +1713,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                       borderRadius: BorderRadius.circular(24.0),
                                     ),
                                   ),
-                                ].divide(const SizedBox(height: 16.0)),
+                                ].divide(SizedBox(height: 16.0)),
                               ),
                             ),
                           ),
@@ -1731,10 +1734,10 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                               ),
                               0.0),
                           child: Container(
-                            constraints: const BoxConstraints(
+                            constraints: BoxConstraints(
                               maxWidth: 1250.0,
                             ),
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1750,7 +1753,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                     () {
                                       if (_model.step == 0) {
                                         return 'Подходящие площадки в городе ${valueOrDefault<String>(
-                                          widget.city?.name,
+                                          widget!.city?.name,
                                           'City name',
                                         )}';
                                       } else if (_model.step == 1) {
@@ -1845,19 +1848,19 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                               }
                                             },
                                             text: 'Назад',
-                                            icon: const Icon(
+                                            icon: Icon(
                                               Icons.chevron_left,
                                               size: 15.0,
                                             ),
                                             options: FFButtonOptions(
                                               width: 110.0,
                                               height: 40.0,
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
+                                              iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color: const Color(0x002431A5),
+                                              color: Color(0x002431A5),
                                               textStyle: FlutterFlowTheme.of(
                                                       context)
                                                   .titleSmall
@@ -1887,7 +1890,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                             children: [
                                               if ((_model.choosedHotel ==
                                                       null) &&
-                                                  (_model.requestList.isNotEmpty))
+                                                  (_model.requestList.length !=
+                                                      0))
                                                 FFButtonWidget(
                                                   onPressed: () async {
                                                     _model.requestWrapperCopy =
@@ -1924,36 +1928,36 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                         ),
                                                         'startDate':
                                                             serializeParam(
-                                                          widget.startDate,
+                                                          widget!.startDate,
                                                           ParamType.DateTime,
                                                         ),
                                                         'duration':
                                                             serializeParam(
-                                                          widget.duration,
+                                                          widget!.duration,
                                                           ParamType.double,
                                                         ),
                                                         'city': serializeParam(
-                                                          widget.city,
+                                                          widget!.city,
                                                           ParamType.SupabaseRow,
                                                         ),
                                                         'visitors':
                                                             serializeParam(
-                                                          widget.visitors,
+                                                          widget!.visitors,
                                                           ParamType.int,
                                                         ),
                                                         'hallFilter1':
                                                             serializeParam(
-                                                          widget.hallFilter1,
+                                                          widget!.hallFilter1,
                                                           ParamType.DataStruct,
                                                         ),
                                                         'hallFilter2':
                                                             serializeParam(
-                                                          widget.hallFilter2,
+                                                          widget!.hallFilter2,
                                                           ParamType.DataStruct,
                                                         ),
                                                         'hallFilter3':
                                                             serializeParam(
-                                                          widget.hallFilter3,
+                                                          widget!.hallFilter3,
                                                           ParamType.DataStruct,
                                                         ),
                                                       }.withoutNulls,
@@ -1966,14 +1970,14 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                     width: 200.0,
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(24.0, 0.0,
                                                                 24.0, 0.0),
                                                     iconPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
-                                                    color: const Color(0x002431A5),
+                                                    color: Color(0x002431A5),
                                                     textStyle: FlutterFlowTheme
                                                             .of(context)
                                                         .titleSmall
@@ -2001,7 +2005,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                             ],
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 16.0)),
+                                      ].divide(SizedBox(width: 16.0)),
                                     ),
                                   ),
                                 ),
@@ -2027,10 +2031,10 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                 ),
                                 0.0),
                             child: Container(
-                              constraints: const BoxConstraints(
+                              constraints: BoxConstraints(
                                 maxWidth: 1250.0,
                               ),
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -2044,11 +2048,11 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                   queryFn: (q) => q
                                                       .eq(
                                                         'city',
-                                                        widget.city?.id,
+                                                        widget!.city?.id,
                                                       )
                                                       .gte(
                                                         'Hall_max_capacity',
-                                                        widget.visitors,
+                                                        widget!.visitors,
                                                       )
                                                       .overlaps(
                                                         'hall',
@@ -2088,7 +2092,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                             snapshot.data!;
 
                                         if (hotelsHotelRowList.isEmpty) {
-                                          return const Center(
+                                          return Center(
                                             child: SearchEmprtyWidget(),
                                           );
                                         }
@@ -2171,7 +2175,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       } else {
                                                         await showDialog(
                                                           barrierColor:
-                                                              const Color(0xE8FFFFFF),
+                                                              Color(0xE8FFFFFF),
                                                           context: context,
                                                           builder:
                                                               (dialogContext) {
@@ -2183,7 +2187,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                               backgroundColor:
                                                                   Colors
                                                                       .transparent,
-                                                              alignment: const AlignmentDirectional(
+                                                              alignment: AlignmentDirectional(
                                                                       0.0, 0.0)
                                                                   .resolve(
                                                                       Directionality.of(
@@ -2195,23 +2199,23 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                             dialogContext)
                                                                         .unfocus(),
                                                                 child:
-                                                                    SizedBox(
+                                                                    Container(
                                                                   height: 400.0,
                                                                   width: 900.0,
                                                                   child:
                                                                       PleaseLogInWidget(
                                                                     startDate:
-                                                                        widget
+                                                                        widget!
                                                                             .startDate!,
                                                                     duration:
-                                                                        widget
+                                                                        widget!
                                                                             .duration!,
-                                                                    city: widget
+                                                                    city: widget!
                                                                         .city!,
                                                                     visitors:
-                                                                        widget
+                                                                        widget!
                                                                             .visitors!,
-                                                                    user: widget
+                                                                    user: widget!
                                                                         .user!,
                                                                   ),
                                                                 ),
@@ -2340,7 +2344,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                             );
                                           })
                                               .divide(
-                                                const SizedBox(height: 65.0),
+                                                SizedBox(height: 65.0),
                                                 filterFn: (hotelsIndex) {
                                                   final hotelsHotelRow =
                                                       hotelsHotelRowList[
@@ -2366,8 +2370,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                 },
                                               )
                                               .addToStart(
-                                                  const SizedBox(height: 48.0))
-                                              .addToEnd(const SizedBox(height: 72.0)),
+                                                  SizedBox(height: 48.0))
+                                              .addToEnd(SizedBox(height: 72.0)),
                                         );
                                       },
                                     ),
@@ -2378,11 +2382,11 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                         queryFn: (q) => q
                                             .eq(
                                               'city',
-                                              widget.city?.id,
+                                              widget!.city?.id,
                                             )
                                             .gte(
                                               'Hall_max_capacity',
-                                              widget.visitors,
+                                              widget!.visitors,
                                             )
                                             .overlaps(
                                               'hall',
@@ -2417,7 +2421,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                             snapshot.data!;
 
                                         if (hotelsHotelRowList.isEmpty) {
-                                          return const Center(
+                                          return Center(
                                             child: SearchEmprtyWidget(),
                                           );
                                         }
@@ -2500,7 +2504,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       } else {
                                                         await showDialog(
                                                           barrierColor:
-                                                              const Color(0xE8FFFFFF),
+                                                              Color(0xE8FFFFFF),
                                                           context: context,
                                                           builder:
                                                               (dialogContext) {
@@ -2512,7 +2516,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                               backgroundColor:
                                                                   Colors
                                                                       .transparent,
-                                                              alignment: const AlignmentDirectional(
+                                                              alignment: AlignmentDirectional(
                                                                       0.0, 0.0)
                                                                   .resolve(
                                                                       Directionality.of(
@@ -2524,23 +2528,23 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                             dialogContext)
                                                                         .unfocus(),
                                                                 child:
-                                                                    SizedBox(
+                                                                    Container(
                                                                   height: 400.0,
                                                                   width: 900.0,
                                                                   child:
                                                                       PleaseLogInWidget(
                                                                     startDate:
-                                                                        widget
+                                                                        widget!
                                                                             .startDate!,
                                                                     duration:
-                                                                        widget
+                                                                        widget!
                                                                             .duration!,
-                                                                    city: widget
+                                                                    city: widget!
                                                                         .city!,
                                                                     visitors:
-                                                                        widget
+                                                                        widget!
                                                                             .visitors!,
-                                                                    user: widget
+                                                                    user: widget!
                                                                         .user!,
                                                                   ),
                                                                 ),
@@ -2669,7 +2673,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                             );
                                           })
                                               .divide(
-                                                const SizedBox(height: 65.0),
+                                                SizedBox(height: 65.0),
                                                 filterFn: (hotelsIndex) {
                                                   final hotelsHotelRow =
                                                       hotelsHotelRowList[
@@ -2695,8 +2699,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                 },
                                               )
                                               .addToStart(
-                                                  const SizedBox(height: 48.0))
-                                              .addToEnd(const SizedBox(height: 72.0)),
+                                                  SizedBox(height: 48.0))
+                                              .addToEnd(SizedBox(height: 72.0)),
                                         );
                                       },
                                     ),
@@ -2753,10 +2757,10 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                         : null;
 
                                 return Container(
-                                  constraints: const BoxConstraints(
+                                  constraints: BoxConstraints(
                                     maxWidth: 1250.0,
                                   ),
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: wrapWithModel(
                                     model:
                                         _model.editRequestHotelComponentModel,
@@ -2771,7 +2775,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                           ),
                         if (_model.step == 1)
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 56.0),
                             child: FutureBuilder<List<HotelRow>>(
                               future: HotelTable().querySingleRow(
@@ -2805,10 +2809,10 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                         : null;
 
                                 return Container(
-                                  constraints: const BoxConstraints(
+                                  constraints: BoxConstraints(
                                     maxWidth: 1250.0,
                                   ),
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     crossAxisAlignment:
@@ -2848,10 +2852,10 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 32.0, 0.0, 0.0),
                                         child: Container(
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
@@ -2871,7 +2875,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       )
                                                       .gte(
                                                         'capacity',
-                                                        widget.visitors,
+                                                        widget!.visitors,
                                                       )
                                                       .order('name',
                                                           ascending: true),
@@ -2902,7 +2906,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
 
                                                   if (columnHallRowList
                                                       .isEmpty) {
-                                                    return const SearchEmprtyWidget();
+                                                    return SearchEmprtyWidget();
                                                   }
 
                                                   return Column(
@@ -2968,7 +2972,9 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                           )
                                                                           .eq(
                                                                             'request_id',
-                                                                            _model.lastRequestId ?? 0,
+                                                                            _model.lastRequestId != null
+                                                                                ? _model.lastRequestId
+                                                                                : 0,
                                                                           ),
                                                                 );
                                                                 _model.removeFromChoosenHall(
@@ -3027,7 +3033,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                         ),
                                                       );
                                                     }).divide(
-                                                      const SizedBox(height: 40.0),
+                                                      SizedBox(height: 40.0),
                                                       filterFn: (columnIndex) {
                                                         final columnHallRow =
                                                             columnHallRowList[
@@ -3046,7 +3052,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 24.0, 0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -3191,7 +3197,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                         ],
                                                       ),
                                                     if (_model
-                                                            .priceHall.isNotEmpty)
+                                                            .priceHall.length !=
+                                                        0)
                                                       Expanded(
                                                         child: Row(
                                                           mainAxisSize:
@@ -3209,7 +3216,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                       .end,
                                                               children: [
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -3274,7 +3281,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                               desktop: false,
                                             ))
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         16.0, 0.0, 16.0, 0.0),
                                                 child: Column(
@@ -3284,7 +3291,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     if (_model
-                                                            .priceHall.isNotEmpty)
+                                                            .priceHall.length !=
+                                                        0)
                                                       Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -3294,7 +3302,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -3349,7 +3357,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                           .bold,
                                                                 ),
                                                           ),
-                                                        ].divide(const SizedBox(
+                                                        ].divide(SizedBox(
                                                             height: 4.0)),
                                                       ),
                                                     Row(
@@ -3359,11 +3367,11 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                         Expanded(
                                                           child: Container(
                                                             constraints:
-                                                                const BoxConstraints(
+                                                                BoxConstraints(
                                                               maxWidth: 500.0,
                                                             ),
                                                             decoration:
-                                                                const BoxDecoration(),
+                                                                BoxDecoration(),
                                                             child: Visibility(
                                                               visible: (_model
                                                                           .filteredHalls!
@@ -3399,13 +3407,13 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                 options:
                                                                     FFButtonOptions(
                                                                   height: 56.0,
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           24.0,
                                                                           0.0,
                                                                           24.0,
                                                                           0.0),
-                                                                  iconPadding: const EdgeInsetsDirectional
+                                                                  iconPadding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -3453,16 +3461,16 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       ],
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(height: 40.0)),
+                                                      SizedBox(height: 40.0)),
                                                 ),
                                               ),
                                           ],
                                         ),
                                       ),
                                     ]
-                                        .divide(const SizedBox(height: 0.0))
-                                        .addToStart(const SizedBox(height: 0.0))
-                                        .addToEnd(const SizedBox(height: 0.0)),
+                                        .divide(SizedBox(height: 0.0))
+                                        .addToStart(SizedBox(height: 0.0))
+                                        .addToEnd(SizedBox(height: 0.0)),
                                   ),
                                 );
                               },
@@ -3470,7 +3478,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                           ),
                         if (_model.foodIsOpen && (_model.step == 1))
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 56.0),
                             child: FutureBuilder<List<HotelRow>>(
                               future: HotelTable().querySingleRow(
@@ -3504,17 +3512,17 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                         : null;
 
                                 return Container(
-                                  constraints: const BoxConstraints(
+                                  constraints: BoxConstraints(
                                     maxWidth: 1250.0,
                                   ),
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Visibility(
                                     visible: (foodChoseHotelRow?.food != null &&
                                             (foodChoseHotelRow?.food)!
                                                 .isNotEmpty) ==
                                         true,
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 40.0, 0.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -3559,7 +3567,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                             ),
                                           ),
                                           Container(
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: FutureBuilder<
                                                 List<ServiceCategoryRow>>(
                                               future: ServiceCategoryTable()
@@ -3735,7 +3743,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                               )
                                                                               .eq(
                                                                                 'request_id',
-                                                                                _model.lastRequestId ?? 0,
+                                                                                _model.lastRequestId != null ? _model.lastRequestId : 0,
                                                                               )
                                                                               .eq(
                                                                                 'owner',
@@ -3782,17 +3790,17 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                     },
                                                                   ),
                                                                 );
-                                                              }).divide(const SizedBox(
+                                                              }).divide(SizedBox(
                                                                   height:
                                                                       32.0)),
                                                             );
                                                           },
                                                         ),
-                                                      ].divide(const SizedBox(
+                                                      ].divide(SizedBox(
                                                           height: 24.0)),
                                                     );
                                                   }).divide(
-                                                      const SizedBox(height: 40.0)),
+                                                      SizedBox(height: 40.0)),
                                                 );
                                               },
                                             ),
@@ -3809,7 +3817,9 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   children: [
-                                                    if ((_model.foodPrice.isNotEmpty) &&
+                                                    if ((_model.foodPrice
+                                                                .length !=
+                                                            0) &&
                                                         responsiveVisibility(
                                                           context: context,
                                                           tabletLandscape:
@@ -3855,7 +3865,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                       .start,
                                                               children: [
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -3906,13 +3916,15 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                             FontWeight.bold,
                                                                       ),
                                                                 ),
-                                                              ].divide(const SizedBox(
+                                                              ].divide(SizedBox(
                                                                   height: 4.0)),
                                                             ),
                                                           ],
                                                         ),
                                                       ),
-                                                    if ((_model.foodPrice.isNotEmpty) &&
+                                                    if ((_model.foodPrice
+                                                                .length !=
+                                                            0) &&
                                                         responsiveVisibility(
                                                           context: context,
                                                           phone: false,
@@ -3935,7 +3947,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -3996,7 +4008,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                               ),
                                             ],
                                           ),
-                                        ].divide(const SizedBox(height: 32.0)),
+                                        ].divide(SizedBox(height: 32.0)),
                                       ),
                                     ),
                                   ),
@@ -4036,12 +4048,12 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                       : null;
 
                               return Container(
-                                constraints: const BoxConstraints(
+                                constraints: BoxConstraints(
                                   maxWidth: 1250.0,
                                 ),
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 48.0, 0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -4082,7 +4094,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                         ),
                                       ),
                                       Container(
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
@@ -4204,8 +4216,11 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                     )
                                                                     .eq(
                                                                       'request_id',
-                                                                      _model
-                                                                              .lastRequestId ?? 0,
+                                                                      _model.lastRequestId !=
+                                                                              null
+                                                                          ? _model
+                                                                              .lastRequestId
+                                                                          : 0,
                                                                     )
                                                                     .eq(
                                                                       'owner',
@@ -4246,7 +4261,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                     ),
                                                   );
                                                 }).divide(
-                                                    const SizedBox(height: 32.0)),
+                                                    SizedBox(height: 32.0)),
                                               );
                                             },
                                           ),
@@ -4259,7 +4274,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          if ((_model.roomPrice.isNotEmpty) &&
+                                          if ((_model.roomPrice.length != 0) &&
                                               responsiveVisibility(
                                                 context: context,
                                                 phone: false,
@@ -4279,7 +4294,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -4335,7 +4350,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                 ],
                                               ),
                                             ),
-                                          if ((_model.roomPrice.isNotEmpty) &&
+                                          if ((_model.roomPrice.length != 0) &&
                                               responsiveVisibility(
                                                 context: context,
                                                 tabletLandscape: false,
@@ -4380,7 +4395,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -4433,7 +4448,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                         .bold,
                                                               ),
                                                         ),
-                                                      ].divide(const SizedBox(
+                                                      ].divide(SizedBox(
                                                           height: 4.0)),
                                                     ),
                                                   ],
@@ -4442,7 +4457,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                             ),
                                         ],
                                       ),
-                                    ].divide(const SizedBox(height: 32.0)),
+                                    ].divide(SizedBox(height: 32.0)),
                                   ),
                                 ),
                               );
@@ -4450,7 +4465,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                           ),
                         if (_model.step == 1)
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 40.0, 0.0, 0.0),
                             child: FutureBuilder<List<HotelRow>>(
                               future: HotelTable().querySingleRow(
@@ -4484,10 +4499,10 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                         : null;
 
                                 return Container(
-                                  constraints: const BoxConstraints(
+                                  constraints: BoxConstraints(
                                     maxWidth: 1250.0,
                                   ),
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
@@ -4575,7 +4590,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       ),
                                                     ),
                                                   ),
-                                              ].divide(const SizedBox(width: 16.0)),
+                                              ].divide(SizedBox(width: 16.0)),
                                             ),
                                             Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -4583,7 +4598,9 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                 Expanded(
                                                   child: FFButtonWidget(
                                                     onPressed: () async {
-                                                      if (_model.choosenHall.isEmpty) {
+                                                      if (_model.choosenHall
+                                                              .length ==
+                                                          0) {
                                                         ScaffoldMessenger.of(
                                                                 context)
                                                             .showSnackBar(
@@ -4596,7 +4613,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                     .primaryBackground,
                                                               ),
                                                             ),
-                                                            duration: const Duration(
+                                                            duration: Duration(
                                                                 milliseconds:
                                                                     4000),
                                                             backgroundColor:
@@ -4621,19 +4638,19 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           'day_start':
                                                               supaSerialize<
                                                                       DateTime>(
-                                                                  widget
+                                                                  widget!
                                                                       .startDate),
                                                           'food': _model
                                                               .listFoodRequest,
                                                           'people_count':
-                                                              widget.visitors,
+                                                              widget!.visitors,
                                                           'day_end': supaSerialize<
                                                                   DateTime>(
                                                               functions.countDuration(
-                                                                  widget
+                                                                  widget!
                                                                       .startDate
                                                                       ?.toString(),
-                                                                  widget
+                                                                  widget!
                                                                       .duration)),
                                                           'hotel_name': _model
                                                               .chosenHotelName,
@@ -4678,7 +4695,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                               hotelSearchPageUsersRow
                                                                   ?.network,
                                                           'duration':
-                                                              widget.duration,
+                                                              widget!.duration,
                                                         });
                                                         await RequestsHallVarTable()
                                                             .update(
@@ -4793,43 +4810,43 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                             ),
                                                             'startDate':
                                                                 serializeParam(
-                                                              widget.startDate,
+                                                              widget!.startDate,
                                                               ParamType
                                                                   .DateTime,
                                                             ),
                                                             'duration':
                                                                 serializeParam(
-                                                              widget.duration,
+                                                              widget!.duration,
                                                               ParamType.double,
                                                             ),
                                                             'city':
                                                                 serializeParam(
-                                                              widget.city,
+                                                              widget!.city,
                                                               ParamType
                                                                   .SupabaseRow,
                                                             ),
                                                             'visitors':
                                                                 serializeParam(
-                                                              widget.visitors,
+                                                              widget!.visitors,
                                                               ParamType.int,
                                                             ),
                                                             'hallFilter1':
                                                                 serializeParam(
-                                                              widget
+                                                              widget!
                                                                   .hallFilter1,
                                                               ParamType
                                                                   .DataStruct,
                                                             ),
                                                             'hallFilter2':
                                                                 serializeParam(
-                                                              widget
+                                                              widget!
                                                                   .hallFilter2,
                                                               ParamType
                                                                   .DataStruct,
                                                             ),
                                                             'hallFilter3':
                                                                 serializeParam(
-                                                              widget
+                                                              widget!
                                                                   .hallFilter3,
                                                               ParamType
                                                                   .DataStruct,
@@ -4844,24 +4861,26 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                     options: FFButtonOptions(
                                                       height: 50.0,
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   43.0,
                                                                   0.0,
                                                                   43.0,
                                                                   0.0),
                                                       iconPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
                                                                   0.0,
                                                                   0.0),
-                                                      color: _model.choosenHall.isNotEmpty
+                                                      color: _model.choosenHall
+                                                                  .length !=
+                                                              0
                                                           ? FlutterFlowTheme.of(
                                                                   context)
                                                               .primary
-                                                          : const Color(0x662431A5),
+                                                          : Color(0x662431A5),
                                                       textStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -4875,7 +4894,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                     0.0,
                                                               ),
                                                       elevation: 0.0,
-                                                      borderSide: const BorderSide(
+                                                      borderSide: BorderSide(
                                                         color:
                                                             Colors.transparent,
                                                         width: 1.0,
@@ -4889,7 +4908,9 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                 Expanded(
                                                   child: FFButtonWidget(
                                                     onPressed: () async {
-                                                      if (_model.choosenHall.isEmpty) {
+                                                      if (_model.choosenHall
+                                                              .length ==
+                                                          0) {
                                                         ScaffoldMessenger.of(
                                                                 context)
                                                             .showSnackBar(
@@ -4902,7 +4923,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                     .primaryBackground,
                                                               ),
                                                             ),
-                                                            duration: const Duration(
+                                                            duration: Duration(
                                                                 milliseconds:
                                                                     4000),
                                                             backgroundColor:
@@ -4927,19 +4948,19 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           'day_start':
                                                               supaSerialize<
                                                                       DateTime>(
-                                                                  widget
+                                                                  widget!
                                                                       .startDate),
                                                           'food': _model
                                                               .listFoodRequest,
                                                           'people_count':
-                                                              widget.visitors,
+                                                              widget!.visitors,
                                                           'day_end': supaSerialize<
                                                                   DateTime>(
                                                               functions.countDuration(
-                                                                  widget
+                                                                  widget!
                                                                       .startDate
                                                                       ?.toString(),
-                                                                  widget
+                                                                  widget!
                                                                       .duration)),
                                                           'hotel_name': _model
                                                               .chosenHotelName,
@@ -4974,7 +4995,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                               hotelSearchPageUsersRow
                                                                   ?.network,
                                                           'duration':
-                                                              widget.duration,
+                                                              widget!.duration,
                                                         });
                                                         await RequestsHallVarTable()
                                                             .update(
@@ -5096,24 +5117,26 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                     options: FFButtonOptions(
                                                       height: 50.0,
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   43.0,
                                                                   0.0,
                                                                   43.0,
                                                                   0.0),
                                                       iconPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
                                                                   0.0,
                                                                   0.0),
-                                                      color: _model.choosenHall.isNotEmpty
+                                                      color: _model.choosenHall
+                                                                  .length !=
+                                                              0
                                                           ? FlutterFlowTheme.of(
                                                                   context)
                                                               .primary
-                                                          : const Color(0x662431A5),
+                                                          : Color(0x662431A5),
                                                       textStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -5127,7 +5150,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                     0.0,
                                                               ),
                                                       elevation: 0.0,
-                                                      borderSide: const BorderSide(
+                                                      borderSide: BorderSide(
                                                         color:
                                                             Colors.transparent,
                                                         width: 1.0,
@@ -5138,9 +5161,9 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                     ),
                                                   ),
                                                 ),
-                                              ].divide(const SizedBox(width: 16.0)),
+                                              ].divide(SizedBox(width: 16.0)),
                                             ),
-                                          ].divide(const SizedBox(height: 32.0)),
+                                          ].divide(SizedBox(height: 32.0)),
                                         ),
                                       if (responsiveVisibility(
                                         context: context,
@@ -5149,7 +5172,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                       ))
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 16.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -5190,7 +5213,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   24.0,
@@ -5202,7 +5225,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -5225,14 +5248,14 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                         .width *
                                                                     1.0,
                                                                 height: 56.0,
-                                                                padding: const EdgeInsetsDirectional
+                                                                padding: EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         24.0,
                                                                         0.0,
                                                                         24.0,
                                                                         0.0),
                                                                 iconPadding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -5257,7 +5280,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                     ),
                                                                 elevation: 0.0,
                                                                 borderSide:
-                                                                    const BorderSide(
+                                                                    BorderSide(
                                                                   color: Colors
                                                                       .transparent,
                                                                   width: 1.0,
@@ -5298,14 +5321,14 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                   1.0,
                                                               height: 56.0,
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           24.0,
                                                                           0.0,
                                                                           24.0,
                                                                           0.0),
                                                               iconPadding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -5313,7 +5336,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                           0.0),
                                                               color: _model
                                                                       .foodIsSkip
-                                                                  ? const Color(
+                                                                  ? Color(
                                                                       0xFF24A541)
                                                                   : Colors
                                                                       .transparent,
@@ -5325,7 +5348,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                         fontFamily:
                                                                             'Commissioner',
                                                                         color: _model.foodIsSkip
-                                                                            ? const Color(0xFFFAFAFA)
+                                                                            ? Color(0xFFFAFAFA)
                                                                             : FlutterFlowTheme.of(context).primary,
                                                                         letterSpacing:
                                                                             0.0,
@@ -5355,7 +5378,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                   (containerHotelRow!
                                                       .rooms.isNotEmpty))
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 40.0, 0.0, 0.0),
                                                   child: Column(
@@ -5393,7 +5416,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     24.0,
@@ -5405,7 +5428,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -5428,13 +5451,13 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                           .width *
                                                                       1.0,
                                                                   height: 56.0,
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           24.0,
                                                                           0.0,
                                                                           24.0,
                                                                           0.0),
-                                                                  iconPadding: const EdgeInsetsDirectional
+                                                                  iconPadding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -5459,7 +5482,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                   elevation:
                                                                       0.0,
                                                                   borderSide:
-                                                                      const BorderSide(
+                                                                      BorderSide(
                                                                     color: Colors
                                                                         .transparent,
                                                                     width: 1.0,
@@ -5498,14 +5521,14 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                         .width *
                                                                     1.0,
                                                                 height: 56.0,
-                                                                padding: const EdgeInsetsDirectional
+                                                                padding: EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         24.0,
                                                                         0.0,
                                                                         24.0,
                                                                         0.0),
                                                                 iconPadding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -5513,7 +5536,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                             0.0),
                                                                 color: _model
                                                                         .roomisSkip
-                                                                    ? const Color(
+                                                                    ? Color(
                                                                         0xFF24A541)
                                                                     : Colors
                                                                         .transparent,
@@ -5525,7 +5548,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                           'Commissioner',
                                                                       color: _model
                                                                               .roomisSkip
-                                                                          ? const Color(
+                                                                          ? Color(
                                                                               0xFFFAFAFA)
                                                                           : FlutterFlowTheme.of(context)
                                                                               .primary,
@@ -5556,7 +5579,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                   ),
                                                 ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 48.0, 0.0, 0.0),
                                                 child: Column(
@@ -5572,7 +5595,9 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                             onPressed:
                                                                 () async {
                                                               if (_model
-                                                                      .choosenHall.isEmpty) {
+                                                                      .choosenHall
+                                                                      .length ==
+                                                                  0) {
                                                                 ScaffoldMessenger.of(
                                                                         context)
                                                                     .showSnackBar(
@@ -5586,7 +5611,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                             .primaryBackground,
                                                                       ),
                                                                     ),
-                                                                    duration: const Duration(
+                                                                    duration: Duration(
                                                                         milliseconds:
                                                                             4000),
                                                                     backgroundColor:
@@ -5609,20 +5634,20 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                       .choosedHotel,
                                                                   'day_start': supaSerialize<
                                                                           DateTime>(
-                                                                      widget
+                                                                      widget!
                                                                           .startDate),
                                                                   'food': _model
                                                                       .listFoodRequest,
                                                                   'people_count':
-                                                                      widget
+                                                                      widget!
                                                                           .visitors,
                                                                   'day_end': supaSerialize<
                                                                           DateTime>(
                                                                       functions.countDuration(
-                                                                          widget
+                                                                          widget!
                                                                               .startDate
                                                                               ?.toString(),
-                                                                          widget
+                                                                          widget!
                                                                               .duration)),
                                                                   'hotel_name':
                                                                       _model
@@ -5666,7 +5691,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                       hotelSearchPageUsersRow
                                                                           ?.network,
                                                                   'duration':
-                                                                      widget
+                                                                      widget!
                                                                           .duration,
                                                                 });
                                                                 await RequestsHallVarTable()
@@ -5790,49 +5815,49 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                     ),
                                                                     'startDate':
                                                                         serializeParam(
-                                                                      widget
+                                                                      widget!
                                                                           .startDate,
                                                                       ParamType
                                                                           .DateTime,
                                                                     ),
                                                                     'duration':
                                                                         serializeParam(
-                                                                      widget
+                                                                      widget!
                                                                           .duration,
                                                                       ParamType
                                                                           .double,
                                                                     ),
                                                                     'city':
                                                                         serializeParam(
-                                                                      widget
+                                                                      widget!
                                                                           .city,
                                                                       ParamType
                                                                           .SupabaseRow,
                                                                     ),
                                                                     'visitors':
                                                                         serializeParam(
-                                                                      widget
+                                                                      widget!
                                                                           .visitors,
                                                                       ParamType
                                                                           .int,
                                                                     ),
                                                                     'hallFilter1':
                                                                         serializeParam(
-                                                                      widget
+                                                                      widget!
                                                                           .hallFilter1,
                                                                       ParamType
                                                                           .DataStruct,
                                                                     ),
                                                                     'hallFilter2':
                                                                         serializeParam(
-                                                                      widget
+                                                                      widget!
                                                                           .hallFilter2,
                                                                       ParamType
                                                                           .DataStruct,
                                                                     ),
                                                                     'hallFilter3':
                                                                         serializeParam(
-                                                                      widget
+                                                                      widget!
                                                                           .hallFilter3,
                                                                       ParamType
                                                                           .DataStruct,
@@ -5849,25 +5874,27 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                 FFButtonOptions(
                                                               height: 50.0,
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           43.0,
                                                                           0.0,
                                                                           43.0,
                                                                           0.0),
                                                               iconPadding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
                                                                           0.0),
                                                               color: _model
-                                                                          .choosenHall.isNotEmpty
+                                                                          .choosenHall
+                                                                          .length !=
+                                                                      0
                                                                   ? FlutterFlowTheme.of(
                                                                           context)
                                                                       .primary
-                                                                  : const Color(
+                                                                  : Color(
                                                                       0x662431A5),
                                                               textStyle:
                                                                   FlutterFlowTheme.of(
@@ -5883,7 +5910,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                       ),
                                                               elevation: 0.0,
                                                               borderSide:
-                                                                  const BorderSide(
+                                                                  BorderSide(
                                                                 color: Colors
                                                                     .transparent,
                                                                 width: 1.0,
@@ -5906,7 +5933,9 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                             onPressed:
                                                                 () async {
                                                               if (_model
-                                                                      .choosenHall.isEmpty) {
+                                                                      .choosenHall
+                                                                      .length ==
+                                                                  0) {
                                                                 ScaffoldMessenger.of(
                                                                         context)
                                                                     .showSnackBar(
@@ -5920,7 +5949,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                             .primaryBackground,
                                                                       ),
                                                                     ),
-                                                                    duration: const Duration(
+                                                                    duration: Duration(
                                                                         milliseconds:
                                                                             4000),
                                                                     backgroundColor:
@@ -5943,20 +5972,20 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                       .choosedHotel,
                                                                   'day_start': supaSerialize<
                                                                           DateTime>(
-                                                                      widget
+                                                                      widget!
                                                                           .startDate),
                                                                   'food': _model
                                                                       .listFoodRequest,
                                                                   'people_count':
-                                                                      widget
+                                                                      widget!
                                                                           .visitors,
                                                                   'day_end': supaSerialize<
                                                                           DateTime>(
                                                                       functions.countDuration(
-                                                                          widget
+                                                                          widget!
                                                                               .startDate
                                                                               ?.toString(),
-                                                                          widget
+                                                                          widget!
                                                                               .duration)),
                                                                   'hotel_name':
                                                                       _model
@@ -5987,7 +6016,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                       hotelSearchPageUsersRow
                                                                           ?.network,
                                                                   'duration':
-                                                                      widget
+                                                                      widget!
                                                                           .duration,
                                                                 });
                                                                 await RequestsHallVarTable()
@@ -6117,25 +6146,27 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                 FFButtonOptions(
                                                               height: 50.0,
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           43.0,
                                                                           0.0,
                                                                           43.0,
                                                                           0.0),
                                                               iconPadding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
                                                                           0.0),
                                                               color: _model
-                                                                          .choosenHall.isNotEmpty
+                                                                          .choosenHall
+                                                                          .length !=
+                                                                      0
                                                                   ? FlutterFlowTheme.of(
                                                                           context)
                                                                       .primary
-                                                                  : const Color(
+                                                                  : Color(
                                                                       0x662431A5),
                                                               textStyle:
                                                                   FlutterFlowTheme.of(
@@ -6151,7 +6182,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                       ),
                                                               elevation: 0.0,
                                                               borderSide:
-                                                                  const BorderSide(
+                                                                  BorderSide(
                                                                 color: Colors
                                                                     .transparent,
                                                                 width: 1.0,
@@ -6166,7 +6197,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       ],
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(height: 32.0)),
+                                                      SizedBox(height: 32.0)),
                                                 ),
                                               ),
                                             ],
@@ -6179,15 +6210,15 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                             ),
                           ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 56.0, 0.0, 0.0),
                           child: wrapWithModel(
                             model: _model.footerModel,
                             updateCallback: () => safeSetState(() {}),
-                            child: const FooterWidget(),
+                            child: FooterWidget(),
                           ),
                         ),
-                      ].addToEnd(const SizedBox(height: 0.0)),
+                      ].addToEnd(SizedBox(height: 0.0)),
                     ),
                   ),
                 ),

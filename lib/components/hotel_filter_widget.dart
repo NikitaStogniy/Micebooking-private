@@ -3,6 +3,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/uikit/check_box/check_box_widget.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'hotel_filter_model.dart';
 export 'hotel_filter_model.dart';
 
@@ -17,8 +19,8 @@ class HotelFilterWidget extends StatefulWidget {
     required this.updatePrice,
     double? initialMinPrice,
     double? initialMaxPrice,
-  })  : initialMinPrice = initialMinPrice ?? 0.0,
-        initialMaxPrice = initialMaxPrice ?? 10000.0;
+  })  : this.initialMinPrice = initialMinPrice ?? 0.0,
+        this.initialMaxPrice = initialMaxPrice ?? 10000.0;
 
   final List<int>? chosenServices;
   final Future Function(int? star)? addStar;
@@ -71,7 +73,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
         maxHeight: MediaQuery.sizeOf(context).height * 0.5,
       ),
       decoration: BoxDecoration(
-        color: const Color(0xFFF0F0FA),
+        color: Color(0xFFF0F0FA),
         borderRadius: BorderRadius.circular(23.0),
       ),
       child: SingleChildScrollView(
@@ -80,17 +82,17 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     width: double.infinity,
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Container(
                       width: double.infinity,
-                      color: const Color(0x00000000),
+                      color: Color(0x00000000),
                       child: ExpandableNotifier(
                         controller: _model.expandableExpandableController1,
                         child: ExpandablePanel(
@@ -100,7 +102,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Commissioner',
-                                  color: const Color(0xB714181B),
+                                  color: Color(0xB714181B),
                                   fontSize: 18.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
@@ -108,7 +110,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                           ),
                           collapsed: Container(),
                           expanded: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -118,7 +120,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    const Row(
+                                    Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Padding(
@@ -190,7 +192,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                       ),
                                       child: Checkbox(
                                         value: _model.checkboxValue1 ??=
-                                            widget.starsList?.contains(5) ==
+                                            widget!.starsList?.contains(5) ==
                                                 true,
                                         onChanged: (newValue) async {
                                           safeSetState(() => _model
@@ -224,7 +226,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    const Row(
+                                    Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Padding(
@@ -286,7 +288,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                       ),
                                       child: Checkbox(
                                         value: _model.checkboxValue2 ??=
-                                            widget.starsList?.contains(4) ==
+                                            widget!.starsList?.contains(4) ==
                                                 true,
                                         onChanged: (newValue) async {
                                           safeSetState(() => _model
@@ -320,7 +322,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    const Row(
+                                    Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Padding(
@@ -372,7 +374,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                       ),
                                       child: Checkbox(
                                         value: _model.checkboxValue3 ??=
-                                            widget.starsList?.contains(3) ==
+                                            widget!.starsList?.contains(3) ==
                                                 true,
                                         onChanged: (newValue) async {
                                           safeSetState(() => _model
@@ -406,7 +408,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    const Row(
+                                    Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Padding(
@@ -448,7 +450,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                       ),
                                       child: Checkbox(
                                         value: _model.checkboxValue4 ??=
-                                            widget.starsList?.contains(2) ==
+                                            widget!.starsList?.contains(2) ==
                                                 true,
                                         onChanged: (newValue) async {
                                           safeSetState(() => _model
@@ -499,17 +501,17 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     width: double.infinity,
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Container(
                       width: double.infinity,
-                      color: const Color(0x00000000),
+                      color: Color(0x00000000),
                       child: ExpandableNotifier(
                         controller: _model.expandableExpandableController2,
                         child: ExpandablePanel(
@@ -519,7 +521,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Commissioner',
-                                  color: const Color(0xB714181B),
+                                  color: Color(0xB714181B),
                                   fontSize: 18.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
@@ -527,7 +529,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                           ),
                           collapsed: Container(),
                           expanded: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -869,7 +871,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
               desktop: false,
             ))
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -884,7 +886,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Commissioner',
-                                  color: const Color(0xB714181B),
+                                  color: Color(0xB714181B),
                                   fontSize: 18.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
@@ -892,7 +894,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 0.0, 0.0),
                           child: wrapWithModel(
                             model: _model.checkBoxModel,
@@ -909,21 +911,21 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                 ),
               ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 20.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 20.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Container(
                       width: double.infinity,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         color: Colors.transparent,
                       ),
                       child: Container(
                         width: double.infinity,
-                        color: const Color(0x00000000),
+                        color: Color(0x00000000),
                         child: ExpandableNotifier(
                           controller: _model.expandableExpandableController3,
                           child: ExpandablePanel(
@@ -933,7 +935,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                   .displaySmall
                                   .override(
                                     fontFamily: 'Commissioner',
-                                    color: const Color(0xB714181B),
+                                    color: Color(0xB714181B),
                                     fontSize: 18.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
@@ -941,7 +943,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                             ),
                             collapsed: Container(),
                             expanded: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 8.0, 0.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -986,20 +988,20 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                           (_model.maxPrice != null)) &&
                                       (_model.minPrice! > _model.maxPrice!))
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 8.0, 0.0, 8.0),
                                       child: Container(
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 1.0,
                                         decoration: BoxDecoration(
-                                          color: const Color(0x17BE3030),
+                                          color: Color(0x17BE3030),
                                           borderRadius:
                                               BorderRadius.circular(16.0),
                                         ),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 16.0, 8.0, 16.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -1019,7 +1021,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                                 ],
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 2.0, 0.0, 0.0),
                                                 child: Text(
@@ -1040,7 +1042,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                       ),
                                     ),
                                   SliderTheme(
-                                    data: const SliderThemeData(
+                                    data: SliderThemeData(
                                       showValueIndicator:
                                           ShowValueIndicator.always,
                                     ),
@@ -1054,7 +1056,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                       max: 100000.0,
                                       value: _model.minPriceValue ??=
                                           valueOrDefault<double>(
-                                        widget.initialMinPrice,
+                                        widget!.initialMinPrice,
                                         0.0,
                                       ),
                                       label: _model.minPriceValue
@@ -1074,7 +1076,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                     ),
                                   ),
                                   SliderTheme(
-                                    data: const SliderThemeData(
+                                    data: SliderThemeData(
                                       showValueIndicator:
                                           ShowValueIndicator.always,
                                     ),
@@ -1088,7 +1090,7 @@ class _HotelFilterWidgetState extends State<HotelFilterWidget> {
                                       max: 100000.0,
                                       value: _model.maxPriceValue ??=
                                           valueOrDefault<double>(
-                                        widget.initialMaxPrice,
+                                        widget!.initialMaxPrice,
                                         100000.0,
                                       ),
                                       label: _model.maxPriceValue

@@ -14,6 +14,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'edit_hotel_model.dart';
 export 'edit_hotel_model.dart';
 
@@ -25,7 +27,7 @@ class EditHotelWidget extends StatefulWidget {
     required this.initialHotel,
     this.initialServices,
     required this.goBack,
-  }) : id = id ?? 88;
+  }) : this.id = id ?? 88;
 
   final int id;
   final Future Function(int? id)? doneCallback;
@@ -54,58 +56,58 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       safeSetState(() {
-        _model.hotelNameEditTextController?.text = widget.initialHotel!.name!;
+        _model.hotelNameEditTextController?.text = widget!.initialHotel!.name!;
         _model.hotelAddressEditTextController?.text =
-            widget.initialHotel!.address!;
+            widget!.initialHotel!.address!;
         _model.textController3?.clear();
         _model.canterTextController?.text =
-            widget.initialHotel!.distanceCenter!.toString();
+            widget!.initialHotel!.distanceCenter!.toString();
         _model.capacityTextController?.text =
-            widget.initialHotel!.capacity!.toString();
+            widget!.initialHotel!.capacity!.toString();
         _model.maxCapacityTextController?.text =
-            widget.initialHotel!.hallMaxCapacity!.toString();
-        _model.linkTextController?.text = widget.initialHotel!.mapLink!;
+            widget!.initialHotel!.hallMaxCapacity!.toString();
+        _model.linkTextController?.text = widget!.initialHotel!.mapLink!;
         _model.hotelDescriptionEditTextController?.text =
-            widget.initialHotel!.description!;
+            widget!.initialHotel!.description!;
       });
-      _model.currentCityId = widget.initialHotel?.city;
-      _model.currentCity = widget.initialHotel?.cityName;
+      _model.currentCityId = widget!.initialHotel?.city;
+      _model.currentCity = widget!.initialHotel?.cityName;
       _model.uploadedImages =
-          widget.initialHotel!.images.toList().cast<String>();
+          widget!.initialHotel!.images.toList().cast<String>();
       _model.selectedServices =
-          widget.initialHotel!.services.toList().cast<int>();
+          widget!.initialHotel!.services.toList().cast<int>();
       _model.updatePage(() {});
     });
 
     _model.hotelNameEditTextController ??=
-        TextEditingController(text: widget.initialHotel?.name);
+        TextEditingController(text: widget!.initialHotel?.name);
     _model.hotelNameEditFocusNode ??= FocusNode();
 
     _model.hotelAddressEditTextController ??=
-        TextEditingController(text: widget.initialHotel?.address);
+        TextEditingController(text: widget!.initialHotel?.address);
     _model.hotelAddressEditFocusNode ??= FocusNode();
 
     _model.textController3 ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
     _model.canterTextController ??= TextEditingController(
-        text: widget.initialHotel?.distanceCenter?.toString());
+        text: widget!.initialHotel?.distanceCenter?.toString());
     _model.canterFocusNode ??= FocusNode();
 
     _model.capacityTextController ??=
-        TextEditingController(text: widget.initialHotel?.capacity?.toString());
+        TextEditingController(text: widget!.initialHotel?.capacity?.toString());
     _model.capacityFocusNode ??= FocusNode();
 
     _model.maxCapacityTextController ??= TextEditingController(
-        text: widget.initialHotel?.hallMaxCapacity?.toString());
+        text: widget!.initialHotel?.hallMaxCapacity?.toString());
     _model.maxCapacityFocusNode ??= FocusNode();
 
     _model.linkTextController ??=
-        TextEditingController(text: widget.initialHotel?.mapLink);
+        TextEditingController(text: widget!.initialHotel?.mapLink);
     _model.linkFocusNode ??= FocusNode();
 
     _model.hotelDescriptionEditTextController ??=
-        TextEditingController(text: widget.initialHotel?.description);
+        TextEditingController(text: widget!.initialHotel?.description);
     _model.hotelDescriptionEditFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -121,7 +123,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -147,7 +149,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                 ),
                 Text(
                   valueOrDefault<String>(
-                    widget.initialHotel?.name,
+                    widget!.initialHotel?.name,
                     'Отель',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -158,10 +160,10 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                         lineHeight: 1.0,
                       ),
                 ),
-              ].divide(const SizedBox(width: 16.0)),
+              ].divide(SizedBox(width: 16.0)),
             ),
             Align(
-              alignment: const AlignmentDirectional(-1.0, 1.0),
+              alignment: AlignmentDirectional(-1.0, 1.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -171,7 +173,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                     children: [
                       Container(
                         width: 200.0,
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Text(
                           'Название отеля*:',
                           style:
@@ -185,7 +187,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 8.0, 0.0),
                           child: TextFormField(
                             controller: _model.hotelNameEditTextController,
@@ -206,7 +208,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Color(0xFFF0F0FA),
                                   width: 2.0,
                                 ),
@@ -234,7 +236,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                 borderRadius: BorderRadius.circular(24.0),
                               ),
                               filled: true,
-                              fillColor: const Color(0xFFF0F0FA),
+                              fillColor: Color(0xFFF0F0FA),
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
@@ -255,7 +257,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                     children: [
                       Container(
                         width: 200.0,
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Text(
                           'Адрес отеля*:',
                           style:
@@ -269,7 +271,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 8.0, 0.0),
                           child: TextFormField(
                             controller: _model.hotelAddressEditTextController,
@@ -290,7 +292,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Color(0xFFF0F0FA),
                                   width: 2.0,
                                 ),
@@ -318,7 +320,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                 borderRadius: BorderRadius.circular(24.0),
                               ),
                               filled: true,
-                              fillColor: const Color(0xFFF0F0FA),
+                              fillColor: Color(0xFFF0F0FA),
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
@@ -349,7 +351,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                           children: [
                             Container(
                               width: 200.0,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Text(
                                 'Город / регион*:',
                                 style: FlutterFlowTheme.of(context)
@@ -372,7 +374,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                   children: [
                                     Text(
                                       valueOrDefault<String>(
-                                        widget.initialHotel?.cityName,
+                                        widget!.initialHotel?.cityName,
                                         'Город',
                                       ),
                                       style: FlutterFlowTheme.of(context)
@@ -385,7 +387,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                           ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 0.0, 0.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -453,7 +455,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                               _model.dropDownValueController ??=
                                                   FormFieldController<String>(
                                             _model.dropDownValue ??=
-                                                widget.initialHotel?.cityName,
+                                                widget!.initialHotel?.cityName,
                                           ),
                                           options: dropDownCityRowList
                                               .map((e) => e.name)
@@ -472,7 +474,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                             _model.currentCity =
                                                 _model.dropDownValue;
                                             _model.currentCityId =
-                                                _model.cityId?.first.id;
+                                                _model.cityId?.first?.id;
                                             safeSetState(() {});
 
                                             safeSetState(() {});
@@ -502,7 +504,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                           borderWidth: 2.0,
                                           borderRadius: 8.0,
                                           margin:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 4.0, 16.0, 4.0),
                                           hidesUnderline: true,
                                           isOverButton: true,
@@ -516,23 +518,23 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                               ),
                             if (_model.newCity == true)
                               Container(
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
                                       width: 200.0,
-                                      constraints: const BoxConstraints(
+                                      constraints: BoxConstraints(
                                         minHeight: 40.0,
                                       ),
                                       decoration: BoxDecoration(
-                                        color: const Color(0xFFF0F0FA),
+                                        color: Color(0xFFF0F0FA),
                                         borderRadius:
                                             BorderRadius.circular(100.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             8.0, 4.0, 8.0, 4.0),
                                         child: TextFormField(
                                           controller: _model.textController3,
@@ -570,7 +572,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -578,6 +580,8 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                           FFButtonWidget(
                                             onPressed: () async {
                                               if (_model.textController3.text !=
+                                                      null &&
+                                                  _model.textController3.text !=
                                                       '') {
                                                 await CityTable().insert({
                                                   'name': _model
@@ -593,10 +597,10 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                             text: 'Добавить',
                                             options: FFButtonOptions(
                                               height: 40.0,
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
+                                              iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -611,7 +615,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                                         letterSpacing: 0.0,
                                                       ),
                                               elevation: 0.0,
-                                              borderSide: const BorderSide(
+                                              borderSide: BorderSide(
                                                 color: Colors.transparent,
                                                 width: 1.0,
                                               ),
@@ -640,7 +644,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                                       ),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(width: 8.0)),
+                                        ].divide(SizedBox(width: 8.0)),
                                       ),
                                     ),
                                   ],
@@ -651,14 +655,14 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               40.0, 0.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Container(
                                 width: 200.0,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Text(
                                   'Расстояние от\nцентра (км)*:',
                                   style: FlutterFlowTheme.of(context)
@@ -674,9 +678,9 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                               Expanded(
                                 child: Container(
                                   width: 200.0,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 8.0, 0.0),
                                     child: TextFormField(
                                       controller: _model.canterTextController,
@@ -697,7 +701,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                               letterSpacing: 0.0,
                                             ),
                                         enabledBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Color(0xFFF0F0FA),
                                             width: 2.0,
                                           ),
@@ -732,7 +736,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                               BorderRadius.circular(24.0),
                                         ),
                                         filled: true,
-                                        fillColor: const Color(0xFFF0F0FA),
+                                        fillColor: Color(0xFFF0F0FA),
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -757,7 +761,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                           ),
                         ),
                       ),
-                    ].divide(const SizedBox(width: 40.0)),
+                    ].divide(SizedBox(width: 40.0)),
                   ),
                   Row(
                     mainAxisSize: MainAxisSize.max,
@@ -767,7 +771,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                         children: [
                           Container(
                             width: 130.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Text(
                               'Вместимость*:',
                               style: FlutterFlowTheme.of(context)
@@ -781,9 +785,9 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 8.0, 0.0, 8.0, 0.0),
-                            child: SizedBox(
+                            child: Container(
                               width: 80.0,
                               child: TextFormField(
                                 controller: _model.capacityTextController,
@@ -804,7 +808,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   enabledBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Color(0xFFF0F0FA),
                                       width: 2.0,
                                     ),
@@ -833,7 +837,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                     borderRadius: BorderRadius.circular(24.0),
                                   ),
                                   filled: true,
-                                  fillColor: const Color(0xFFF0F0FA),
+                                  fillColor: Color(0xFFF0F0FA),
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -860,7 +864,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                         children: [
                           Container(
                             width: 200.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Text(
                               'Максимальная вместимость зала*:',
                               style: FlutterFlowTheme.of(context)
@@ -874,9 +878,9 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 8.0, 0.0, 8.0, 0.0),
-                            child: SizedBox(
+                            child: Container(
                               width: 80.0,
                               child: TextFormField(
                                 controller: _model.maxCapacityTextController,
@@ -897,7 +901,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   enabledBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Color(0xFFF0F0FA),
                                       width: 2.0,
                                     ),
@@ -926,7 +930,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                     borderRadius: BorderRadius.circular(24.0),
                                   ),
                                   filled: true,
-                                  fillColor: const Color(0xFFF0F0FA),
+                                  fillColor: Color(0xFFF0F0FA),
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -954,7 +958,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                           children: [
                             Container(
                               width: 120.0,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Text(
                                 'Ссылка на карту*:',
                                 style: FlutterFlowTheme.of(context)
@@ -970,9 +974,9 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                             Expanded(
                               child: Container(
                                 width: 200.0,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
                                   child: TextFormField(
                                     controller: _model.linkTextController,
@@ -993,7 +997,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Color(0xFFF0F0FA),
                                           width: 2.0,
                                         ),
@@ -1028,7 +1032,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                             BorderRadius.circular(24.0),
                                       ),
                                       filled: true,
-                                      fillColor: const Color(0xFFF0F0FA),
+                                      fillColor: Color(0xFFF0F0FA),
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
@@ -1052,7 +1056,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                           ],
                         ),
                       ),
-                    ].divide(const SizedBox(width: 40.0)),
+                    ].divide(SizedBox(width: 40.0)),
                   ),
                   Row(
                     mainAxisSize: MainAxisSize.max,
@@ -1060,9 +1064,9 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                     children: [
                       Container(
                         width: 200.0,
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Text(
                             'Описание отеля',
@@ -1079,7 +1083,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 8.0, 0.0),
                           child: TextFormField(
                             controller:
@@ -1101,7 +1105,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Color(0xFFF0F0FA),
                                   width: 2.0,
                                 ),
@@ -1129,7 +1133,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                 borderRadius: BorderRadius.circular(24.0),
                               ),
                               filled: true,
-                              fillColor: const Color(0xFFF0F0FA),
+                              fillColor: Color(0xFFF0F0FA),
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
@@ -1152,7 +1156,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                     children: [
                       Container(
                         width: 200.0,
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Text(
                           'Количество звезд*:',
                           style:
@@ -1173,7 +1177,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                         ),
                         direction: Axis.horizontal,
                         initialRating: _model.ratingBarEditValue ??=
-                            widget.initialHotel!.stars!.toDouble(),
+                            widget!.initialHotel!.stars!.toDouble(),
                         unratedColor: FlutterFlowTheme.of(context).accent3,
                         itemCount: 5,
                         itemSize: 24.0,
@@ -1188,9 +1192,9 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                       Container(
                         width: 200.0,
                         height: 100.0,
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Align(
-                          alignment: const AlignmentDirectional(-1.0, 0.0),
+                          alignment: AlignmentDirectional(-1.0, 0.0),
                           child: Text(
                             'Фотографии*:',
                             style: FlutterFlowTheme.of(context)
@@ -1206,7 +1210,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 24.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 24.0, 0.0),
                         child: FFButtonWidget(
                           onPressed: () async {
                             final selectedMedia = await selectMedia(
@@ -1268,16 +1272,16 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                             });
                           },
                           text: '',
-                          icon: const Icon(
+                          icon: Icon(
                             Icons.add,
                             size: 24.0,
                           ),
                           options: FFButtonOptions(
                             width: 40.0,
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 8.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -1288,7 +1292,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 0.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -1296,7 +1300,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                           ),
                         ),
                       ),
-                      if (_model.uploadedImages.isNotEmpty)
+                      if (_model.uploadedImages.length > 0)
                         Expanded(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -1305,7 +1309,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                               Container(
                                 width: MediaQuery.sizeOf(context).width * 0.7,
                                 height: 100.0,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Builder(
                                   builder: (context) {
                                     final images = _model.uploadedImages
@@ -1320,15 +1324,15 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                         final imagesItem = images[imagesIndex];
                                         return Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
-                                          child: SizedBox(
+                                              AlignmentDirectional(0.0, 0.0),
+                                          child: Container(
                                             width: 160.0,
                                             child: Stack(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   0.0, 0.0),
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           4.0, 4.0, 4.0, 0.0),
                                                   child: ClipRRect(
@@ -1345,7 +1349,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                                 ),
                                                 Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           1.0, -1.0),
                                                   child: FlutterFlowIconButton(
                                                     borderColor:
@@ -1376,7 +1380,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                                 ),
                                                 Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           -0.9, -0.8),
                                                   child: InkWell(
                                                     splashColor:
@@ -1427,7 +1431,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                               ),
                               if (_model.uploadedImages.length > 4)
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 0.0),
                                   child: Text(
                                     'Для прокрутки фотографий зажмите левую кнопку мыши или используйте свайп по тачпаду.',
@@ -1451,7 +1455,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                     children: [
                       Container(
                         width: MediaQuery.sizeOf(context).width * 1.0,
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: FutureBuilder<List<ServiceCategoryRow>>(
                           future: ServiceCategoryTable().queryRows(
                             queryFn: (q) => q
@@ -1482,7 +1486,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
 
                             return MasonryGridView.builder(
                               gridDelegate:
-                                  const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                  SliverSimpleGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
                               ),
                               crossAxisSpacing: 40.0,
@@ -1495,16 +1499,16 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                     staggeredViewServiceCategoryRowList[
                                         staggeredViewIndex];
                                 return Container(
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Container(
                                     width: double.infinity,
-                                    color: const Color(0x00000000),
+                                    color: Color(0x00000000),
                                     child: ExpandableNotifier(
                                       initialExpanded: true,
                                       child: ExpandablePanel(
                                         header: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 20.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1573,7 +1577,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                               itemCount:
                                                   listViewServiceRowList.length,
                                               separatorBuilder: (_, __) =>
-                                                  const SizedBox(height: 12.0),
+                                                  SizedBox(height: 12.0),
                                               itemBuilder:
                                                   (context, listViewIndex) {
                                                 final listViewServiceRow =
@@ -1639,9 +1643,9 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                                                     .contains(
                                                                         listViewServiceRow
                                                                             .id)
-                                                                ? const Color(
+                                                                ? Color(
                                                                     0x00EEEEEE)
-                                                                : const Color(
+                                                                : Color(
                                                                     0xFF57636C),
                                                           ),
                                                         ),
@@ -1651,7 +1655,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                                               .contains(
                                                                   listViewServiceRow
                                                                       .id),
-                                                          child: const Align(
+                                                          child: Align(
                                                             alignment:
                                                                 AlignmentDirectional(
                                                                     0.0, 0.0),
@@ -1689,7 +1693,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 4.0)),
+                                                      SizedBox(width: 4.0)),
                                                 );
                                               },
                                             );
@@ -1724,9 +1728,9 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                     ],
                   ),
                 ]
-                    .divide(const SizedBox(height: 24.0))
-                    .addToStart(const SizedBox(height: 16.0))
-                    .addToEnd(const SizedBox(height: 16.0)),
+                    .divide(SizedBox(height: 24.0))
+                    .addToStart(SizedBox(height: 16.0))
+                    .addToEnd(SizedBox(height: 16.0)),
               ),
             ),
             Row(
@@ -1739,25 +1743,37 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                     Builder(
                       builder: (context) => FFButtonWidget(
                         onPressed: ((_model.hotelNameEditTextController.text ==
+                                        null ||
+                                    _model.hotelNameEditTextController.text ==
                                         '') ||
                                 (_model.hotelAddressEditTextController
+                                            .text ==
+                                        null ||
+                                    _model.hotelAddressEditTextController
                                             .text ==
                                         '') ||
                                 (/* NOT RECOMMENDED */ _model
                                         .canterTextController.text ==
                                     'true') ||
-                                (_model.capacityTextController.text == '') ||
+                                (_model.capacityTextController.text == null ||
+                                    _model.capacityTextController.text == '') ||
                                 (_model.maxCapacityTextController.text ==
+                                        null ||
+                                    _model.maxCapacityTextController.text ==
                                         '') ||
-                                (_model.linkTextController.text == '') ||
+                                (_model.linkTextController.text == null ||
+                                    _model.linkTextController.text == '') ||
                                 (_model.hotelDescriptionEditTextController
+                                            .text ==
+                                        null ||
+                                    _model.hotelDescriptionEditTextController
                                             .text ==
                                         '') ||
                                 (_model.ratingBarEditValue == null) ||
                                 (_model.currentCity == null ||
                                     _model.currentCity == '') ||
                                 (_model.currentCityId == null) ||
-                                (_model.uploadedImages.isEmpty))
+                                (_model.uploadedImages.length == 0))
                             ? null
                             : () async {
                                 await showDialog(
@@ -1767,7 +1783,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                       elevation: 0,
                                       insetPadding: EdgeInsets.zero,
                                       backgroundColor: Colors.transparent,
-                                      alignment: const AlignmentDirectional(0.0, 0.0)
+                                      alignment: AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
                                       child: ConfirmActionWidget(
                                         title:
@@ -1808,7 +1824,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                             },
                                             matchingRows: (rows) => rows.eq(
                                               'id',
-                                              widget.initialHotel?.id,
+                                              widget!.initialHotel?.id,
                                             ),
                                           );
                                           _model.uploadedImages = [];
@@ -1817,7 +1833,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                           safeSetState(() {});
                                           Navigator.pop(context);
                                           await widget.doneCallback?.call(
-                                            widget.initialHotel?.id,
+                                            widget!.initialHotel?.id,
                                           );
                                         },
                                         cancelAction: () async {
@@ -1833,9 +1849,9 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                         text: 'Далее к реквизитам',
                         options: FFButtonOptions(
                           height: 50.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               43.0, 0.0, 43.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
@@ -1845,7 +1861,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 0.0,
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -1867,7 +1883,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                 elevation: 0,
                                 insetPadding: EdgeInsets.zero,
                                 backgroundColor: Colors.transparent,
-                                alignment: const AlignmentDirectional(0.0, 0.0)
+                                alignment: AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
                                 child: ConfirmActionWidget(
                                   title:
@@ -1880,25 +1896,25 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                     safeSetState(() {});
                                     safeSetState(() {
                                       _model.hotelNameEditTextController?.text =
-                                          widget.initialHotel!.name!;
+                                          widget!.initialHotel!.name!;
                                       _model.hotelAddressEditTextController
                                               ?.text =
-                                          widget.initialHotel!.address!;
+                                          widget!.initialHotel!.address!;
                                       _model.textController3?.clear();
                                       _model.canterTextController?.text =
-                                          widget.initialHotel!.distanceCenter!
+                                          widget!.initialHotel!.distanceCenter!
                                               .toString();
                                       _model.capacityTextController?.text =
-                                          widget.initialHotel!.capacity!
+                                          widget!.initialHotel!.capacity!
                                               .toString();
                                       _model.maxCapacityTextController?.text =
-                                          widget.initialHotel!.hallMaxCapacity!
+                                          widget!.initialHotel!.hallMaxCapacity!
                                               .toString();
                                       _model.linkTextController?.text =
-                                          widget.initialHotel!.mapLink!;
+                                          widget!.initialHotel!.mapLink!;
                                       _model.hotelDescriptionEditTextController
                                               ?.text =
-                                          widget.initialHotel!.description!;
+                                          widget!.initialHotel!.description!;
                                     });
                                     await widget.goBack?.call();
                                     Navigator.pop(context);
@@ -1914,9 +1930,9 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                         text: 'Отменить изменения',
                         options: FFButtonOptions(
                           height: 50.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               43.0, 0.0, 43.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).error,
                           textStyle:
@@ -1926,7 +1942,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 0.0,
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -1934,7 +1950,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                         ),
                       ),
                     ),
-                  ].divide(const SizedBox(width: 20.0)),
+                  ].divide(SizedBox(width: 20.0)),
                 ),
                 Builder(
                   builder: (context) => FFButtonWidget(
@@ -1946,7 +1962,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                             elevation: 0,
                             insetPadding: EdgeInsets.zero,
                             backgroundColor: Colors.transparent,
-                            alignment: const AlignmentDirectional(0.0, 0.0)
+                            alignment: AlignmentDirectional(0.0, 0.0)
                                 .resolve(Directionality.of(context)),
                             child: ConfirmActionWidget(
                               title: 'Вы действительно хотите удалить отель?',
@@ -1956,7 +1972,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                 await HotelTable().delete(
                                   matchingRows: (rows) => rows.eq(
                                     'id',
-                                    widget.id,
+                                    widget!.id,
                                   ),
                                 );
                                 await widget.goBack?.call();
@@ -1973,9 +1989,9 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                     options: FFButtonOptions(
                       height: 50.0,
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(43.0, 0.0, 43.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(43.0, 0.0, 43.0, 0.0),
                       iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).error,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
@@ -1984,7 +2000,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                 letterSpacing: 0.0,
                               ),
                       elevation: 0.0,
-                      borderSide: const BorderSide(
+                      borderSide: BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),
@@ -1994,7 +2010,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                 ),
               ],
             ),
-          ].addToEnd(const SizedBox(height: 72.0)),
+          ].addToEnd(SizedBox(height: 72.0)),
         ),
       ),
     );

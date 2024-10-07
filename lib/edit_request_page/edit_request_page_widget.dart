@@ -13,6 +13,8 @@ import '/uikit/menu/menu_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'edit_request_page_model.dart';
 export 'edit_request_page_model.dart';
 
@@ -72,12 +74,12 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.choosenHall = widget.chosenHalls!.toList().cast<int>();
-      _model.listHallRequest = widget.hallRequests!.toList().cast<int>();
-      _model.listFoodRequest = widget.foodRequests!.toList().cast<int>();
-      _model.chosenFood = widget.chosenFood!.toList().cast<int>();
-      _model.listRoomRequest = widget.roomRequests!.toList().cast<int>();
-      _model.choosenRooms = widget.chosenRoom!.toList().cast<int>();
+      _model.choosenHall = widget!.chosenHalls!.toList().cast<int>();
+      _model.listHallRequest = widget!.hallRequests!.toList().cast<int>();
+      _model.listFoodRequest = widget!.foodRequests!.toList().cast<int>();
+      _model.chosenFood = widget!.chosenFood!.toList().cast<int>();
+      _model.listRoomRequest = widget!.roomRequests!.toList().cast<int>();
+      _model.choosenRooms = widget!.chosenRoom!.toList().cast<int>();
       safeSetState(() {});
     });
 
@@ -133,7 +135,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
               future: HotelTable().querySingleRow(
                 queryFn: (q) => q.eq(
                   'id',
-                  widget.hotel,
+                  widget!.hotel,
                 ),
               ),
               builder: (context, snapshot) {
@@ -160,7 +162,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                 return Container(
                   height: MediaQuery.sizeOf(context).height * 1.0,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFF9F9F9),
+                    color: Color(0xFFF9F9F9),
                     image: DecorationImage(
                       fit: BoxFit.cover,
                       image: Image.asset(
@@ -181,9 +183,9 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                           tabletLandscape: false,
                         ))
                           Align(
-                            alignment: const AlignmentDirectional(0.0, -1.0),
+                            alignment: AlignmentDirectional(0.0, -1.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   32.0, 16.0, 32.0, 64.0),
                               child: wrapWithModel(
                                 model: _model.menuModel,
@@ -199,13 +201,13 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                             ),
                           ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 16.0, 0.0, 0.0),
                           child: Container(
-                            constraints: const BoxConstraints(
+                            constraints: BoxConstraints(
                               maxWidth: 1250.0,
                             ),
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -213,7 +215,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    'Редактрование запроса в отель ${widget.hotelName}',
+                                    'Редактрование запроса в отель ${widget!.hotelName}',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -228,14 +230,14 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           32.0, 0.0, 0.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
                                           context.safePop();
                                         },
                                         text: 'Назад',
-                                        icon: const Icon(
+                                        icon: Icon(
                                           Icons.chevron_left,
                                           size: 15.0,
                                         ),
@@ -243,12 +245,12 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                           width: 110.0,
                                           height: 40.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 0.0, 24.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
-                                          color: const Color(0x002431A5),
+                                          color: Color(0x002431A5),
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
                                               .titleSmall
@@ -260,7 +262,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                           elevation: 0.0,
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             width: 0.0,
                                           ),
                                           borderRadius:
@@ -268,20 +270,20 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                         ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 16.0)),
+                                  ].divide(SizedBox(width: 16.0)),
                                 ),
                               ],
                             ),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 32.0, 0.0, 56.0),
                           child: FutureBuilder<List<HotelRow>>(
                             future: HotelTable().querySingleRow(
                               queryFn: (q) => q.eq(
                                 'id',
-                                widget.hotel,
+                                widget!.hotel,
                               ),
                             ),
                             builder: (context, snapshot) {
@@ -308,11 +310,11 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                       : null;
 
                               return Container(
-                                constraints: const BoxConstraints(
+                                constraints: BoxConstraints(
                                   maxWidth: 1250.0,
                                 ),
-                                decoration: const BoxDecoration(),
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                decoration: BoxDecoration(),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: wrapWithModel(
                                   model: _model.editRequestHotelComponentModel,
                                   updateCallback: () => safeSetState(() {}),
@@ -325,13 +327,13 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 56.0),
                           child: FutureBuilder<List<HotelRow>>(
                             future: HotelTable().querySingleRow(
                               queryFn: (q) => q.eq(
                                 'id',
-                                widget.hotel,
+                                widget!.hotel,
                               ),
                             ),
                             builder: (context, snapshot) {
@@ -358,10 +360,10 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                       : null;
 
                               return Container(
-                                constraints: const BoxConstraints(
+                                constraints: BoxConstraints(
                                   maxWidth: 1250.0,
                                 ),
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -380,7 +382,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                           ),
                                     ),
                                     Container(
-                                      decoration: const BoxDecoration(),
+                                      decoration: BoxDecoration(),
                                       child: FutureBuilder<List<HallRow>>(
                                         future: HallTable().queryRows(
                                           queryFn: (q) => q
@@ -434,7 +436,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                         )
                                                         .eq(
                                                           'request_id',
-                                                          widget.request?.id,
+                                                          widget!.request?.id,
                                                         ),
                                                   ),
                                                   builder: (context, snapshot) {
@@ -513,12 +515,12 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                                       )
                                                                       .in_(
                                                                         'hall_id',
-                                                                        widget
+                                                                        widget!
                                                                             .chosenHalls!,
                                                                       )
                                                                       .eq(
                                                                         'request_id',
-                                                                        widget
+                                                                        widget!
                                                                             .request
                                                                             ?.id,
                                                                       ),
@@ -549,7 +551,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                                   editRequestPageUsersRow
                                                                       ?.id,
                                                               'request_id':
-                                                                  widget
+                                                                  widget!
                                                                       .request
                                                                       ?.id,
                                                               'seating':
@@ -579,7 +581,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                 ),
                                               );
                                             }).divide(
-                                              const SizedBox(height: 40.0),
+                                              SizedBox(height: 40.0),
                                               filterFn: (columnIndex) {
                                                 final columnHallRow =
                                                     columnHallRowList[
@@ -616,7 +618,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                     safeSetState(() {});
                                                   },
                                                   child: Text(
-                                                    'Показать ешё ${(hallChooseHotelRow.hall.length - 2).toString()} зал(ов)',
+                                                    'Показать ешё ${(hallChooseHotelRow!.hall.length - 2).toString()} зал(ов)',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
@@ -674,7 +676,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                 ),
                                             ],
                                           ),
-                                        if (_model.priceHall.isNotEmpty)
+                                        if (_model.priceHall.length != 0)
                                           Expanded(
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -689,7 +691,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -746,23 +748,23 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                           ),
                                       ],
                                     ),
-                                  ].divide(const SizedBox(height: 48.0)),
+                                  ].divide(SizedBox(height: 48.0)),
                                 ),
                               );
                             },
                           ),
                         ),
-                        if ((containerHotelRow?.food.isNotEmpty) &&
+                        if ((containerHotelRow?.food?.length != 0) &&
                             (_model.foodIsOpen &&
-                                (widget.chosenFood?.length.toString() != '0')))
+                                (widget!.chosenFood?.length.toString() != '0')))
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 40.0, 0.0, 56.0),
                             child: FutureBuilder<List<HotelRow>>(
                               future: HotelTable().querySingleRow(
                                 queryFn: (q) => q.eq(
                                   'id',
-                                  widget.hotel,
+                                  widget!.hotel,
                                 ),
                               ),
                               builder: (context, snapshot) {
@@ -790,10 +792,10 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                         : null;
 
                                 return Container(
-                                  constraints: const BoxConstraints(
+                                  constraints: BoxConstraints(
                                     maxWidth: 1250.0,
                                   ),
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     crossAxisAlignment:
@@ -814,7 +816,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                             ),
                                       ),
                                       Container(
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: FutureBuilder<List<FoodRow>>(
                                           future: FoodTable().queryRows(
                                             queryFn: (q) => q.in_(
@@ -864,7 +866,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                         )
                                                         .eq(
                                                           'request_id',
-                                                          widget.request?.id,
+                                                          widget!.request?.id,
                                                         ),
                                                   ),
                                                   builder: (context, snapshot) {
@@ -951,7 +953,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                                       )
                                                                       .eq(
                                                                         'request_id',
-                                                                        widget
+                                                                        widget!
                                                                             .request
                                                                             ?.id,
                                                                       ),
@@ -975,7 +977,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                                   persons,
                                                               'name': name,
                                                               'request_id':
-                                                                  widget
+                                                                  widget!
                                                                       .request
                                                                       ?.id,
                                                             });
@@ -1001,7 +1003,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                     );
                                                   },
                                                 );
-                                              }).divide(const SizedBox(height: 40.0)),
+                                              }).divide(SizedBox(height: 40.0)),
                                             );
                                           },
                                         ),
@@ -1009,7 +1011,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                       Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          if (_model.foodPrice.isNotEmpty)
+                                          if (_model.foodPrice.length != 0)
                                             Expanded(
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1024,7 +1026,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -1082,23 +1084,23 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                             ),
                                         ],
                                       ),
-                                    ].divide(const SizedBox(height: 48.0)),
+                                    ].divide(SizedBox(height: 48.0)),
                                   ),
                                 );
                               },
                             ),
                           ),
-                        if ((containerHotelRow?.rooms.isNotEmpty) &&
+                        if ((containerHotelRow?.rooms?.length != 0) &&
                             (_model.roomsIsOpen &&
-                                (widget.chosenRoom?.length != 0)))
+                                (widget!.chosenRoom?.length != 0)))
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 40.0, 0.0, 56.0),
                             child: FutureBuilder<List<HotelRow>>(
                               future: HotelTable().querySingleRow(
                                 queryFn: (q) => q.eq(
                                   'id',
-                                  widget.hotel,
+                                  widget!.hotel,
                                 ),
                               ),
                               builder: (context, snapshot) {
@@ -1126,10 +1128,10 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                         : null;
 
                                 return Container(
-                                  constraints: const BoxConstraints(
+                                  constraints: BoxConstraints(
                                     maxWidth: 1250.0,
                                   ),
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     crossAxisAlignment:
@@ -1150,7 +1152,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                             ),
                                       ),
                                       Container(
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: FutureBuilder<List<RoomRow>>(
                                           future: RoomTable().queryRows(
                                             queryFn: (q) => q.in_(
@@ -1200,7 +1202,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                         )
                                                         .eq(
                                                           'request_id',
-                                                          widget.request?.id,
+                                                          widget!.request?.id,
                                                         ),
                                                   ),
                                                   builder: (context, snapshot) {
@@ -1288,7 +1290,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                                       )
                                                                       .eq(
                                                                         'request_id',
-                                                                        widget
+                                                                        widget!
                                                                             .request
                                                                             ?.id,
                                                                       ),
@@ -1313,7 +1315,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                                   editRequestPageUsersRow
                                                                       ?.id,
                                                               'request_id':
-                                                                  widget
+                                                                  widget!
                                                                       .request
                                                                       ?.id,
                                                             });
@@ -1338,7 +1340,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                     );
                                                   },
                                                 );
-                                              }).divide(const SizedBox(height: 40.0)),
+                                              }).divide(SizedBox(height: 40.0)),
                                             );
                                           },
                                         ),
@@ -1346,7 +1348,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                       Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          if (_model.roomPrice.isNotEmpty)
+                                          if (_model.roomPrice.length != 0)
                                             Expanded(
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1361,7 +1363,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -1419,20 +1421,20 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                             ),
                                         ],
                                       ),
-                                    ].divide(const SizedBox(height: 32.0)),
+                                    ].divide(SizedBox(height: 32.0)),
                                   ),
                                 );
                               },
                             ),
                           ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 40.0, 0.0, 40.0),
                           child: FutureBuilder<List<HotelRow>>(
                             future: HotelTable().querySingleRow(
                               queryFn: (q) => q.eq(
                                 'id',
-                                widget.hotel,
+                                widget!.hotel,
                               ),
                             ),
                             builder: (context, snapshot) {
@@ -1459,10 +1461,10 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                       : null;
 
                               return Container(
-                                constraints: const BoxConstraints(
+                                constraints: BoxConstraints(
                                   maxWidth: 1250.0,
                                 ),
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
@@ -1482,7 +1484,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                               if (!_model.foodIsOpen &&
                                                   (containerHotelRow!
                                                       .food.isNotEmpty) &&
-                                                  (widget.chosenFood?.length
+                                                  (widget!.chosenFood?.length
                                                           .toString() !=
                                                       '0'))
                                                 Expanded(
@@ -1548,9 +1550,9 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                     ),
                                                   ),
                                                 ),
-                                            ].divide(const SizedBox(width: 16.0)),
+                                            ].divide(SizedBox(width: 16.0)),
                                           ),
-                                        ].divide(const SizedBox(height: 32.0)),
+                                        ].divide(SizedBox(height: 32.0)),
                                       ),
                                     if (responsiveVisibility(
                                       context: context,
@@ -1558,7 +1560,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                       desktop: false,
                                     ))
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             16.0, 0.0, 16.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -1600,7 +1602,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 24.0,
                                                                 0.0, 0.0),
                                                     child: Column(
@@ -1609,7 +1611,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -1633,14 +1635,14 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                                   1.0,
                                                               height: 56.0,
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           24.0,
                                                                           0.0,
                                                                           24.0,
                                                                           0.0),
                                                               iconPadding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -1665,7 +1667,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                                       ),
                                                               elevation: 0.0,
                                                               borderSide:
-                                                                  const BorderSide(
+                                                                  BorderSide(
                                                                 color: Colors
                                                                     .transparent,
                                                                 width: 1.0,
@@ -1705,14 +1707,14 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                                 1.0,
                                                             height: 56.0,
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         24.0,
                                                                         0.0,
                                                                         24.0,
                                                                         0.0),
                                                             iconPadding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -1720,7 +1722,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                                         0.0),
                                                             color: _model
                                                                     .foodIsSkip
-                                                                ? const Color(
+                                                                ? Color(
                                                                     0xFF24A541)
                                                                 : Colors
                                                                     .transparent,
@@ -1733,7 +1735,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                                           'Commissioner',
                                                                       color: _model
                                                                               .foodIsSkip
-                                                                          ? const Color(
+                                                                          ? Color(
                                                                               0xFFFAFAFA)
                                                                           : FlutterFlowTheme.of(context)
                                                                               .primary,
@@ -1766,7 +1768,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                 (containerHotelRow!
                                                     .rooms.isNotEmpty))
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 40.0, 0.0, 0.0),
                                                 child: Column(
@@ -1802,7 +1804,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   24.0,
@@ -1814,7 +1816,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -1837,14 +1839,14 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                                         .width *
                                                                     1.0,
                                                                 height: 56.0,
-                                                                padding: const EdgeInsetsDirectional
+                                                                padding: EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         24.0,
                                                                         0.0,
                                                                         24.0,
                                                                         0.0),
                                                                 iconPadding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1869,7 +1871,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                                     ),
                                                                 elevation: 0.0,
                                                                 borderSide:
-                                                                    const BorderSide(
+                                                                    BorderSide(
                                                                   color: Colors
                                                                       .transparent,
                                                                   width: 1.0,
@@ -1910,14 +1912,14 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                                   1.0,
                                                               height: 56.0,
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           24.0,
                                                                           0.0,
                                                                           24.0,
                                                                           0.0),
                                                               iconPadding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -1925,7 +1927,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                                           0.0),
                                                               color: _model
                                                                       .roomisSkip
-                                                                  ? const Color(
+                                                                  ? Color(
                                                                       0xFF24A541)
                                                                   : Colors
                                                                       .transparent,
@@ -1937,7 +1939,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                                         fontFamily:
                                                                             'Commissioner',
                                                                         color: _model.roomisSkip
-                                                                            ? const Color(0xFFFAFAFA)
+                                                                            ? Color(0xFFFAFAFA)
                                                                             : FlutterFlowTheme.of(context).primary,
                                                                         letterSpacing:
                                                                             0.0,
@@ -1974,10 +1976,10 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                           ),
                         ),
                         Container(
-                          constraints: const BoxConstraints(
+                          constraints: BoxConstraints(
                             maxWidth: 1250.0,
                           ),
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -1987,7 +1989,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                   Expanded(
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        if (_model.choosenHall.isEmpty) {
+                                        if (_model.choosenHall.length == 0) {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
                                             SnackBar(
@@ -2000,7 +2002,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                 ),
                                               ),
                                               duration:
-                                                  const Duration(milliseconds: 4000),
+                                                  Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .error,
@@ -2038,12 +2040,12 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                             },
                                             matchingRows: (rows) => rows.eq(
                                               'id',
-                                              widget.request?.id,
+                                              widget!.request?.id,
                                             ),
                                           );
                                           await RequestsHallVarTable().update(
                                             data: {
-                                              'request_id': widget.request?.id,
+                                              'request_id': widget!.request?.id,
                                             },
                                             matchingRows: (rows) => rows
                                                 .eq(
@@ -2066,11 +2068,11 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                             'Request',
                                             queryParameters: {
                                               'requestWrapper': serializeParam(
-                                                widget.wrapper,
+                                                widget!.wrapper,
                                                 ParamType.SupabaseRow,
                                               ),
                                               'lastRequest': serializeParam(
-                                                widget.request,
+                                                widget!.request,
                                                 ParamType.SupabaseRow,
                                               ),
                                               'wasEdited': serializeParam(
@@ -2078,31 +2080,31 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                 ParamType.bool,
                                               ),
                                               'startDate': serializeParam(
-                                                widget.dayStart,
+                                                widget!.dayStart,
                                                 ParamType.DateTime,
                                               ),
                                               'duration': serializeParam(
-                                                widget.duration,
+                                                widget!.duration,
                                                 ParamType.double,
                                               ),
                                               'city': serializeParam(
-                                                widget.city,
+                                                widget!.city,
                                                 ParamType.SupabaseRow,
                                               ),
                                               'visitors': serializeParam(
-                                                widget.visitors,
+                                                widget!.visitors,
                                                 ParamType.int,
                                               ),
                                               'hallFilter1': serializeParam(
-                                                widget.hallFilter1,
+                                                widget!.hallFilter1,
                                                 ParamType.DataStruct,
                                               ),
                                               'hallFilter2': serializeParam(
-                                                widget.hallFilter2,
+                                                widget!.hallFilter2,
                                                 ParamType.DataStruct,
                                               ),
                                               'hallFilter3': serializeParam(
-                                                widget.hallFilter3,
+                                                widget!.hallFilter3,
                                                 ParamType.DataStruct,
                                               ),
                                             }.withoutNulls,
@@ -2114,15 +2116,15 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                       text: 'Сохранить',
                                       options: FFButtonOptions(
                                         height: 50.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             43.0, 0.0, 43.0, 0.0),
                                         iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
+                                            EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: _model.choosenHall.isNotEmpty
+                                        color: _model.choosenHall.length != 0
                                             ? FlutterFlowTheme.of(context)
                                                 .primary
-                                            : const Color(0x662431A5),
+                                            : Color(0x662431A5),
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -2131,7 +2133,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                               letterSpacing: 0.0,
                                             ),
                                         elevation: 0.0,
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Colors.transparent,
                                           width: 1.0,
                                         ),
@@ -2140,12 +2142,12 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                       ),
                                     ),
                                   ),
-                                ].divide(const SizedBox(width: 16.0)),
+                                ].divide(SizedBox(width: 16.0)),
                               ),
-                            ].divide(const SizedBox(height: 32.0)),
+                            ].divide(SizedBox(height: 32.0)),
                           ),
                         ),
-                      ].addToEnd(const SizedBox(height: 72.0)),
+                      ].addToEnd(SizedBox(height: 72.0)),
                     ),
                   ),
                 );

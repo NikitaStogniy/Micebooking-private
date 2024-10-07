@@ -9,6 +9,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'menu_model.dart';
 export 'menu_model.dart';
 
@@ -22,9 +24,9 @@ class MenuWidget extends StatefulWidget {
     this.clientFavorite,
     bool? search,
     this.searchAction,
-  })  : isBlue = isBlue ?? false,
-        page = page ?? 'home',
-        search = search ?? false;
+  })  : this.isBlue = isBlue ?? false,
+        this.page = page ?? 'home',
+        this.search = search ?? false;
 
   final bool isBlue;
   final String page;
@@ -68,7 +70,7 @@ class _MenuWidgetState extends State<MenuWidget> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Align(
-          alignment: const AlignmentDirectional(0.0, 0.0),
+          alignment: AlignmentDirectional(0.0, 0.0),
           child: FutureBuilder<List<UsersRow>>(
             future: UsersTable().querySingleRow(
               queryFn: (q) => q.eq(
@@ -100,24 +102,24 @@ class _MenuWidgetState extends State<MenuWidget> {
               return Container(
                 width: double.infinity,
                 height: MediaQuery.sizeOf(context).width < 1000.0 ? 50.0 : 85.0,
-                constraints: const BoxConstraints(
+                constraints: BoxConstraints(
                   maxWidth: 1250.0,
                 ),
                 decoration: BoxDecoration(
                   color: valueOrDefault<Color>(
-                    widget.isBlue
+                    widget!.isBlue
                         ? FlutterFlowTheme.of(context).primary
                         : FlutterFlowTheme.of(context).secondaryBackground,
                     FlutterFlowTheme.of(context).secondaryBackground,
                   ),
                   borderRadius: BorderRadius.circular(100.0),
                 ),
-                alignment: const AlignmentDirectional(0.0, 0.0),
+                alignment: AlignmentDirectional(0.0, 0.0),
                 child: Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: Stack(
                     children: [
-                      if (widget.isBlue &&
+                      if (widget!.isBlue &&
                           responsiveVisibility(
                             context: context,
                             phone: false,
@@ -125,9 +127,9 @@ class _MenuWidgetState extends State<MenuWidget> {
                             tabletLandscape: false,
                           ))
                         Align(
-                          alignment: const AlignmentDirectional(-1.0, 0.0),
+                          alignment: AlignmentDirectional(-1.0, 0.0),
                           child: Padding(
-                            padding: const EdgeInsets.all(30.0),
+                            padding: EdgeInsets.all(30.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
                               focusColor: Colors.transparent,
@@ -137,7 +139,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                 context.pushNamed(
                                   'Home',
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -152,13 +154,13 @@ class _MenuWidgetState extends State<MenuWidget> {
                                   width: 200.0,
                                   height: 24.0,
                                   fit: BoxFit.contain,
-                                  alignment: const Alignment(0.0, 0.0),
+                                  alignment: Alignment(0.0, 0.0),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      if (!widget.isBlue &&
+                      if (!widget!.isBlue &&
                           responsiveVisibility(
                             context: context,
                             phone: false,
@@ -166,9 +168,9 @@ class _MenuWidgetState extends State<MenuWidget> {
                             tabletLandscape: false,
                           ))
                         Align(
-                          alignment: const AlignmentDirectional(-1.0, 0.0),
+                          alignment: AlignmentDirectional(-1.0, 0.0),
                           child: Padding(
-                            padding: const EdgeInsets.all(30.0),
+                            padding: EdgeInsets.all(30.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
                               focusColor: Colors.transparent,
@@ -178,7 +180,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                 context.pushNamed(
                                   'Home',
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -193,7 +195,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                   width: 200.0,
                                   height: 24.0,
                                   fit: BoxFit.contain,
-                                  alignment: const Alignment(0.0, 0.0),
+                                  alignment: Alignment(0.0, 0.0),
                                 ),
                               ),
                             ),
@@ -206,7 +208,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                         tabletLandscape: false,
                       ))
                         Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -220,7 +222,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                   context.pushNamed(
                                     'aboutservice',
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -235,7 +237,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                       .override(
                                         fontFamily: 'Commissioner',
                                         color: valueOrDefault<Color>(
-                                          widget.isBlue
+                                          widget!.isBlue
                                               ? FlutterFlowTheme.of(context)
                                                   .secondaryBackground
                                               : FlutterFlowTheme.of(context)
@@ -258,7 +260,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                   context.pushNamed(
                                     'why',
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -273,7 +275,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                       .override(
                                         fontFamily: 'Commissioner',
                                         color: valueOrDefault<Color>(
-                                          widget.isBlue
+                                          widget!.isBlue
                                               ? FlutterFlowTheme.of(context)
                                                   .secondaryBackground
                                               : FlutterFlowTheme.of(context)
@@ -296,7 +298,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                   context.pushNamed(
                                     'AboutUs',
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -311,7 +313,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                       .override(
                                         fontFamily: 'Commissioner',
                                         color: valueOrDefault<Color>(
-                                          widget.isBlue
+                                          widget!.isBlue
                                               ? FlutterFlowTheme.of(context)
                                                   .secondaryBackground
                                               : FlutterFlowTheme.of(context)
@@ -339,7 +341,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                       return Padding(
                                         padding:
                                             MediaQuery.viewInsetsOf(context),
-                                        child: const SizedBox(
+                                        child: Container(
                                           height: 300.0,
                                           child: SupportBottomsheetWidget(),
                                         ),
@@ -354,7 +356,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                       .override(
                                         fontFamily: 'Commissioner',
                                         color: valueOrDefault<Color>(
-                                          widget.isBlue
+                                          widget!.isBlue
                                               ? FlutterFlowTheme.of(context)
                                                   .secondaryBackground
                                               : FlutterFlowTheme.of(context)
@@ -368,7 +370,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                       ),
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 30.0)),
+                            ].divide(SizedBox(width: 30.0)),
                           ),
                         ),
                       if (responsiveVisibility(
@@ -378,16 +380,17 @@ class _MenuWidgetState extends State<MenuWidget> {
                         tabletLandscape: false,
                       ))
                         Align(
-                          alignment: const AlignmentDirectional(0.9, 0.0),
+                          alignment: AlignmentDirectional(0.9, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (currentUserUid != '') {
+                              if (currentUserUid != null &&
+                                  currentUserUid != '') {
                                 if (containerUsersRow?.role ==
                                     EnumRole.HOTEL.name) {
                                   context.pushNamed(
                                     'HOTEL_HOME',
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -400,7 +403,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                     context.pushNamed(
                                       'Client_home',
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
+                                        kTransitionInfoKey: TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -414,7 +417,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                       context.pushNamed(
                                         'SUPER_Home',
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: const TransitionInfo(
+                                          kTransitionInfoKey: TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -429,7 +432,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                 context.goNamed(
                                   'PC_LoginCopy',
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -441,9 +444,9 @@ class _MenuWidgetState extends State<MenuWidget> {
                             text: 'Личный кабинет',
                             options: FFButtonOptions(
                               height: 50.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -464,14 +467,14 @@ class _MenuWidgetState extends State<MenuWidget> {
                           ),
                         ),
                       Align(
-                        alignment: const AlignmentDirectional(1.0, 0.0),
+                        alignment: AlignmentDirectional(1.0, 0.0),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              if ((widget.search == true) &&
+                              if ((widget!.search == true) &&
                                   responsiveVisibility(
                                     context: context,
                                     desktop: false,
@@ -482,7 +485,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                   buttonSize: 48.0,
                                   icon: Icon(
                                     Icons.search_rounded,
-                                    color: widget.isBlue
+                                    color: widget!.isBlue
                                         ? Colors.white
                                         : FlutterFlowTheme.of(context).primary,
                                     size: 24.0,
@@ -509,11 +512,11 @@ class _MenuWidgetState extends State<MenuWidget> {
                                             elevation: 0,
                                             insetPadding: EdgeInsets.zero,
                                             backgroundColor: Colors.transparent,
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                     1.0, -1.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                            child: const MobileMenuWidget(),
+                                            child: MobileMenuWidget(),
                                           );
                                         },
                                       );
@@ -521,13 +524,13 @@ class _MenuWidgetState extends State<MenuWidget> {
                                     child: Container(
                                       width: 48.0,
                                       height: 48.0,
-                                      decoration: const BoxDecoration(),
+                                      decoration: BoxDecoration(),
                                       child: Align(
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: Icon(
                                           Icons.menu_rounded,
-                                          color: widget.isBlue
+                                          color: widget!.isBlue
                                               ? Colors.white
                                               : FlutterFlowTheme.of(context)
                                                   .primary,
@@ -537,19 +540,19 @@ class _MenuWidgetState extends State<MenuWidget> {
                                     ),
                                   ),
                                 ),
-                            ].divide(const SizedBox(width: 16.0)),
+                            ].divide(SizedBox(width: 16.0)),
                           ),
                         ),
                       ),
-                      if (!widget.isBlue &&
+                      if (!widget!.isBlue &&
                           responsiveVisibility(
                             context: context,
                             desktop: false,
                           ))
                         Align(
-                          alignment: const AlignmentDirectional(-1.0, 0.0),
+                          alignment: AlignmentDirectional(-1.0, 0.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 0.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -560,7 +563,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                 context.pushNamed(
                                   'Home',
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -575,21 +578,21 @@ class _MenuWidgetState extends State<MenuWidget> {
                                   width: 150.0,
                                   height: 20.0,
                                   fit: BoxFit.contain,
-                                  alignment: const Alignment(-1.0, 0.0),
+                                  alignment: Alignment(-1.0, 0.0),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      if (widget.isBlue &&
+                      if (widget!.isBlue &&
                           responsiveVisibility(
                             context: context,
                             desktop: false,
                           ))
                         Align(
-                          alignment: const AlignmentDirectional(-1.0, 0.0),
+                          alignment: AlignmentDirectional(-1.0, 0.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 0.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -600,7 +603,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                 context.pushNamed(
                                   'Home',
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -615,7 +618,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                   width: 150.0,
                                   height: 20.0,
                                   fit: BoxFit.contain,
-                                  alignment: const Alignment(-1.0, 0.0),
+                                  alignment: Alignment(-1.0, 0.0),
                                 ),
                               ),
                             ),

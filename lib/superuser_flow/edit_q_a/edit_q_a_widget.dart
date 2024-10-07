@@ -7,6 +7,8 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'edit_q_a_model.dart';
 export 'edit_q_a_model.dart';
 
@@ -50,7 +52,7 @@ class _EditQAWidgetState extends State<EditQAWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -114,7 +116,7 @@ class _EditQAWidgetState extends State<EditQAWidget> {
                         },
                       ),
                     );
-                  }).divide(const SizedBox(height: 40.0)),
+                  }).divide(SizedBox(height: 40.0)),
                 );
               },
             ),
@@ -157,7 +159,7 @@ class _EditQAWidgetState extends State<EditQAWidget> {
                             size: 24.0,
                           ),
                         ),
-                      ].divide(const SizedBox(width: 8.0)),
+                      ].divide(SizedBox(width: 8.0)),
                     ),
                   ),
                 if (_model.newQA == true)
@@ -167,7 +169,7 @@ class _EditQAWidgetState extends State<EditQAWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 16.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -189,7 +191,7 @@ class _EditQAWidgetState extends State<EditQAWidget> {
                                 focusNode: _model.newTitleFocusNode,
                                 onChanged: (_) => EasyDebounce.debounce(
                                   '_model.newTitleTextController',
-                                  const Duration(milliseconds: 200),
+                                  Duration(milliseconds: 200),
                                   () => safeSetState(() {}),
                                 ),
                                 autofocus: false,
@@ -211,35 +213,35 @@ class _EditQAWidgetState extends State<EditQAWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   enabledBorder: UnderlineInputBorder(
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Color(0x00000000),
                                       width: 2.0,
                                     ),
                                     borderRadius: BorderRadius.circular(80.0),
                                   ),
                                   focusedBorder: UnderlineInputBorder(
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Color(0x00000000),
                                       width: 2.0,
                                     ),
                                     borderRadius: BorderRadius.circular(80.0),
                                   ),
                                   errorBorder: UnderlineInputBorder(
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Color(0x00000000),
                                       width: 2.0,
                                     ),
                                     borderRadius: BorderRadius.circular(80.0),
                                   ),
                                   focusedErrorBorder: UnderlineInputBorder(
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Color(0x00000000),
                                       width: 2.0,
                                     ),
                                     borderRadius: BorderRadius.circular(80.0),
                                   ),
                                   filled: true,
-                                  fillColor: const Color(0xFFF0F0FA),
+                                  fillColor: Color(0xFFF0F0FA),
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -254,11 +256,11 @@ class _EditQAWidgetState extends State<EditQAWidget> {
                                     .newTitleTextControllerValidator
                                     .asValidator(context),
                               ),
-                            ].divide(const SizedBox(height: 24.0)),
+                            ].divide(SizedBox(height: 24.0)),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 16.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -269,7 +271,7 @@ class _EditQAWidgetState extends State<EditQAWidget> {
                                 focusNode: _model.newTextFocusNode,
                                 onChanged: (_) => EasyDebounce.debounce(
                                   '_model.newTextTextController',
-                                  const Duration(milliseconds: 200),
+                                  Duration(milliseconds: 200),
                                   () => safeSetState(() {}),
                                 ),
                                 autofocus: false,
@@ -291,35 +293,35 @@ class _EditQAWidgetState extends State<EditQAWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   enabledBorder: UnderlineInputBorder(
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Color(0x00000000),
                                       width: 2.0,
                                     ),
                                     borderRadius: BorderRadius.circular(80.0),
                                   ),
                                   focusedBorder: UnderlineInputBorder(
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Color(0x00000000),
                                       width: 2.0,
                                     ),
                                     borderRadius: BorderRadius.circular(80.0),
                                   ),
                                   errorBorder: UnderlineInputBorder(
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Color(0x00000000),
                                       width: 2.0,
                                     ),
                                     borderRadius: BorderRadius.circular(80.0),
                                   ),
                                   focusedErrorBorder: UnderlineInputBorder(
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Color(0x00000000),
                                       width: 2.0,
                                     ),
                                     borderRadius: BorderRadius.circular(80.0),
                                   ),
                                   filled: true,
-                                  fillColor: const Color(0xFFF0F0FA),
+                                  fillColor: Color(0xFFF0F0FA),
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -333,7 +335,7 @@ class _EditQAWidgetState extends State<EditQAWidget> {
                                 validator: _model.newTextTextControllerValidator
                                     .asValidator(context),
                               ),
-                            ].divide(const SizedBox(height: 24.0)),
+                            ].divide(SizedBox(height: 24.0)),
                           ),
                         ),
                         Row(
@@ -341,8 +343,12 @@ class _EditQAWidgetState extends State<EditQAWidget> {
                           children: [
                             FFButtonWidget(
                               onPressed: ((_model.newTitleTextController.text ==
+                                              null ||
+                                          _model.newTitleTextController.text ==
                                               '') &&
                                       (_model.newTextTextController.text ==
+                                              null ||
+                                          _model.newTextTextController.text ==
                                               ''))
                                   ? null
                                   : () async {
@@ -364,9 +370,9 @@ class _EditQAWidgetState extends State<EditQAWidget> {
                               options: FFButtonOptions(
                                 width: 300.0,
                                 height: 50.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -377,12 +383,12 @@ class _EditQAWidgetState extends State<EditQAWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 0.0,
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
                                 borderRadius: BorderRadius.circular(80.0),
-                                disabledColor: const Color(0x642431A5),
+                                disabledColor: Color(0x642431A5),
                               ),
                             ),
                             InkWell(
@@ -410,14 +416,14 @@ class _EditQAWidgetState extends State<EditQAWidget> {
                                     ),
                               ),
                             ),
-                          ].divide(const SizedBox(width: 40.0)),
+                          ].divide(SizedBox(width: 40.0)),
                         ),
-                      ].divide(const SizedBox(height: 20.0)),
+                      ].divide(SizedBox(height: 20.0)),
                     ),
                   ),
               ],
             ),
-          ].divide(const SizedBox(height: 40.0)).addToEnd(const SizedBox(height: 70.0)),
+          ].divide(SizedBox(height: 40.0)).addToEnd(SizedBox(height: 70.0)),
         ),
       ),
     );

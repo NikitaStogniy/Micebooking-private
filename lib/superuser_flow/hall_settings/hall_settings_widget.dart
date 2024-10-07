@@ -7,6 +7,8 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'hall_settings_model.dart';
 export 'hall_settings_model.dart';
 
@@ -48,7 +50,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.sizeOf(context).height * 1.0,
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -88,7 +90,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                         snapshot.data!;
 
                     return Container(
-                      decoration: const BoxDecoration(),
+                      decoration: BoxDecoration(),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,7 +99,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 16.0, 0.0),
                                 child: Text(
                                   'Категории для залов:',
@@ -138,7 +140,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                             ],
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 20.0, 0.0, 0.0),
                             child: Builder(
                               builder: (context) {
@@ -158,21 +160,21 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 16.0, 0.0),
                                             child: Container(
                                               width: 500.0,
                                               height: 37.0,
                                               decoration: BoxDecoration(
-                                                color: const Color(0xFFF0F0FA),
+                                                color: Color(0xFFF0F0FA),
                                                 borderRadius:
                                                     BorderRadius.circular(40.0),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     -1.0, 0.0),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           20.0, 0.0, 0.0, 0.0),
                                                   child: Text(
@@ -227,7 +229,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                                         ),
                                       ],
                                     );
-                                  }).divide(const SizedBox(height: 10.0)),
+                                  }).divide(SizedBox(height: 10.0)),
                                 );
                               },
                             ),
@@ -237,7 +239,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                             children: [
                               if (_model.newCaterory == true)
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 20.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -256,7 +258,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 0.0, 0.0),
                                           child: Container(
                                             width: 500.0,
@@ -269,7 +271,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                                                   BorderRadius.circular(40.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(8.0, 0.0, 8.0, 0.0),
                                               child: TextFormField(
                                                 controller: _model
@@ -302,7 +304,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                                                           ),
                                                   enabledBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -312,7 +314,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                                                   ),
                                                   focusedBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -322,7 +324,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                                                   ),
                                                   errorBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -332,7 +334,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                                                   ),
                                                   focusedErrorBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -341,7 +343,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                                                             8.0),
                                                   ),
                                                   contentPadding:
-                                                      const EdgeInsetsDirectional
+                                                      EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 8.0),
                                                 ),
@@ -363,7 +365,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             16.0, 0.0, 0.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -399,11 +401,11 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                                               text: 'Сохранть',
                                               options: FFButtonOptions(
                                                 height: 40.0,
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         24.0, 0.0, 24.0, 0.0),
                                                 iconPadding:
-                                                    const EdgeInsetsDirectional
+                                                    EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color:
@@ -419,7 +421,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                                                           letterSpacing: 0.0,
                                                         ),
                                                 elevation: 0.0,
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Colors.transparent,
                                                   width: 1.0,
                                                 ),
@@ -435,14 +437,14 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                                               text: 'Отменить',
                                               options: FFButtonOptions(
                                                 height: 40.0,
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         24.0, 0.0, 24.0, 0.0),
                                                 iconPadding:
-                                                    const EdgeInsetsDirectional
+                                                    EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
-                                                color: const Color(0x00BE3030),
+                                                color: Color(0x00BE3030),
                                                 textStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .titleSmall
@@ -465,7 +467,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                                                     BorderRadius.circular(24.0),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 8.0)),
+                                          ].divide(SizedBox(width: 8.0)),
                                         ),
                                       ),
                                     ],
@@ -479,7 +481,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                   },
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -488,7 +490,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 16.0, 0.0),
                             child: Text(
                               'Удобства для залов:',
@@ -506,7 +508,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                         child: FutureBuilder<List<ServiceCategoryRow>>(
                           future: (_model.requestCompleter1 ??=
                                   Completer<List<ServiceCategoryRow>>()
@@ -589,7 +591,7 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                                     safeSetState(() {});
                                   },
                                 );
-                              }).divide(const SizedBox(height: 40.0)),
+                              }).divide(SizedBox(height: 40.0)),
                             );
                           },
                         ),
@@ -597,9 +599,9 @@ class _HallSettingsWidgetState extends State<HallSettingsWidget> {
                     ],
                   ),
                 ),
-              ].addToEnd(const SizedBox(height: 72.0)),
+              ].addToEnd(SizedBox(height: 72.0)),
             ),
-          ].divide(const SizedBox(height: 16.0)),
+          ].divide(SizedBox(height: 16.0)),
         ),
       ),
     );

@@ -4,6 +4,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'client_search_model.dart';
 export 'client_search_model.dart';
 
@@ -50,7 +52,7 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.sizeOf(context).height * 1.0,
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -70,13 +72,13 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                 Expanded(
                   child: Container(
                     height: 37.0,
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: TextFormField(
                       controller: _model.textController,
                       focusNode: _model.textFieldFocusNode,
                       onChanged: (_) => EasyDebounce.debounce(
                         '_model.textController',
-                        const Duration(milliseconds: 200),
+                        Duration(milliseconds: 200),
                         () => safeSetState(() {}),
                       ),
                       autofocus: false,
@@ -94,7 +96,7 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                                   letterSpacing: 0.0,
                                 ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Color(0xFFF0F0FA),
                             width: 2.0,
                           ),
@@ -122,7 +124,7 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         filled: true,
-                        fillColor: const Color(0xFFF0F0FA),
+                        fillColor: Color(0xFFF0F0FA),
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Commissioner',
@@ -133,7 +135,7 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                     ),
                   ),
                 ),
-              ].divide(const SizedBox(width: 24.0)),
+              ].divide(SizedBox(width: 24.0)),
             ),
             Column(
               mainAxisSize: MainAxisSize.min,
@@ -144,7 +146,7 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                   height: 40.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).primary,
-                    borderRadius: const BorderRadius.only(
+                    borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(0.0),
                       bottomRight: Radius.circular(0.0),
                       topLeft: Radius.circular(16.0),
@@ -158,7 +160,7 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                         flex: 3,
                         child: Container(
                           width: MediaQuery.sizeOf(context).width * 0.5,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Text(
                             'Название компании',
                             style: FlutterFlowTheme.of(context)
@@ -178,7 +180,7 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                         flex: 2,
                         child: Container(
                           width: MediaQuery.sizeOf(context).width * 0.5,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Text(
                             'Последний запрос',
                             style: FlutterFlowTheme.of(context)
@@ -198,7 +200,7 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                         flex: 2,
                         child: Container(
                           width: MediaQuery.sizeOf(context).width * 0.5,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Text(
                             'Почта',
                             style: FlutterFlowTheme.of(context)
@@ -218,7 +220,7 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                         flex: 2,
                         child: Container(
                           width: MediaQuery.sizeOf(context).width * 0.5,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Text(
                             'Телефон',
                             style: FlutterFlowTheme.of(context)
@@ -236,12 +238,12 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                       ),
                       Container(
                         width: 30.0,
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                       ),
                     ]
-                        .divide(const SizedBox(width: 8.0))
-                        .addToStart(const SizedBox(width: 16.0))
-                        .addToEnd(const SizedBox(width: 16.0)),
+                        .divide(SizedBox(width: 8.0))
+                        .addToStart(SizedBox(width: 16.0))
+                        .addToEnd(SizedBox(width: 16.0)),
                   ),
                 ),
                 FutureBuilder<ApiCallResponse>(
@@ -288,7 +290,7 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                                   FlutterFlowTheme.of(context)
                                       .primaryBackground,
                                 ),
-                                borderRadius: const BorderRadius.only(
+                                borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(0.0),
                                   bottomRight: Radius.circular(0.0),
                                   topLeft: Radius.circular(0.0),
@@ -296,7 +298,7 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 8.0, 0.0, 8.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
@@ -307,7 +309,7 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           valueOrDefault<String>(
                                             getJsonField(
@@ -373,7 +375,7 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 0.5,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Text(
                                               valueOrDefault<String>(
                                                 dateTimeFormat(
@@ -410,7 +412,7 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           getJsonField(
                                             clientsItem,
@@ -436,7 +438,7 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           valueOrDefault<String>(
                                             getJsonField(
@@ -461,7 +463,7 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                                     ),
                                     Container(
                                       width: 30.0,
-                                      decoration: const BoxDecoration(),
+                                      decoration: BoxDecoration(),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
                                         focusColor: Colors.transparent,
@@ -484,9 +486,9 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                                       ),
                                     ),
                                   ]
-                                      .divide(const SizedBox(width: 8.0))
-                                      .addToStart(const SizedBox(width: 16.0))
-                                      .addToEnd(const SizedBox(width: 16.0)),
+                                      .divide(SizedBox(width: 8.0))
+                                      .addToStart(SizedBox(width: 16.0))
+                                      .addToEnd(SizedBox(width: 16.0)),
                                 ),
                               ),
                             );
@@ -498,7 +500,7 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                 ),
               ],
             ),
-          ].divide(const SizedBox(height: 16.0)).addToEnd(const SizedBox(height: 72.0)),
+          ].divide(SizedBox(height: 16.0)).addToEnd(SizedBox(height: 72.0)),
         ),
       ),
     );

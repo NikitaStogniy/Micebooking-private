@@ -1,7 +1,17 @@
+import '/backend/supabase/supabase.dart';
+import '/empty_states/images_empty/images_empty_widget.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/pop_up/hall_pop_up/hall_pop_up_widget.dart';
+import '/pop_up/pop_up_images/pop_up_images_widget.dart';
 import '/uikit/check_box/check_box_widget.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'client_hall_component_widget.dart' show ClientHallComponentWidget;
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class ClientHallComponentModel
     extends FlutterFlowModel<ClientHallComponentWidget> {

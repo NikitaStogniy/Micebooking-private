@@ -1,5 +1,8 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/backend/schema/enums/enums.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/hotel_flow/add_or_edit_food/add_or_edit_food_widget.dart';
 import '/hotel_flow/add_or_edit_hall/add_or_edit_hall_widget.dart';
 import '/hotel_flow/add_or_edit_room/add_or_edit_room_widget.dart';
@@ -26,6 +29,9 @@ import '/superuser_flow/super_hotel_juridical/super_hotel_juridical_widget.dart'
 import '/superuser_flow/super_requests/super_requests_widget.dart';
 import 's_u_p_e_r_home_widget.dart' show SUPERHomeWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class SUPERHomeModel extends FlutterFlowModel<SUPERHomeWidget> {
   ///  Local state fields for this page.

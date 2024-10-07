@@ -5,6 +5,8 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/uikit/login_form/login_form_widget.dart';
 import '/uikit/signup_form/signup_form_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'p_c_login_copy_model.dart';
 export 'p_c_login_copy_model.dart';
 
@@ -54,14 +56,14 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
             ),
           ),
           child: Align(
-            alignment: const AlignmentDirectional(0.0, 0.0),
+            alignment: AlignmentDirectional(0.0, 0.0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Align(
-                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    alignment: AlignmentDirectional(0.0, 0.0),
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(
                           valueOrDefault<double>(
@@ -87,9 +89,9 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                               FlutterFlowTheme.of(context).secondaryBackground,
                           borderRadius: BorderRadius.circular(50.0),
                         ),
-                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               12.0, 25.0, 12.0, 25.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -151,7 +153,7 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                         shape: BoxShape.circle,
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 32.0)),
+                                  ].divide(SizedBox(width: 32.0)),
                                 ),
                               if (responsiveVisibility(
                                 context: context,
@@ -181,7 +183,7 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                         context.safePop();
                                       },
                                     ),
-                                  ].divide(const SizedBox(width: 32.0)),
+                                  ].divide(SizedBox(width: 32.0)),
                                 ),
                               if (responsiveVisibility(
                                 context: context,
@@ -214,25 +216,25 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                             ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 32.0)),
+                                  ].divide(SizedBox(width: 32.0)),
                                 ),
                               if (_model.lastEmail != null &&
                                   _model.lastEmail != '')
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 16.0, 0.0, 8.0),
                                   child: Container(
                                     width:
                                         MediaQuery.sizeOf(context).width * 1.0,
-                                    constraints: const BoxConstraints(
+                                    constraints: BoxConstraints(
                                       maxWidth: 500.0,
                                     ),
                                     decoration: BoxDecoration(
-                                      color: const Color(0x17000000),
+                                      color: Color(0x17000000),
                                       borderRadius: BorderRadius.circular(16.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           8.0, 16.0, 8.0, 16.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -253,7 +255,7 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 2.0, 0.0, 0.0),
                                             child: Text(
                                               'Указанная почта ${_model.lastEmail} ещё не подтверждена. Перед входом в аккаунт, пожалуйста, перейдите по ссылке из письма',
@@ -274,10 +276,10 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                 ),
                               if (_model.isRegister == true)
                                 Container(
-                                  constraints: const BoxConstraints(
+                                  constraints: BoxConstraints(
                                     maxWidth: 500.0,
                                   ),
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -292,17 +294,17 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                           options: FFButtonOptions(
                                             height: 40.0,
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     24.0, 0.0, 24.0, 0.0),
                                             iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: valueOrDefault<Color>(
                                               _model.isHotel
-                                                  ? const Color(0xFFF0F0FA)
+                                                  ? Color(0xFFF0F0FA)
                                                   : FlutterFlowTheme.of(context)
                                                       .primary,
-                                              const Color(0xFFF0F0FA),
+                                              Color(0xFFF0F0FA),
                                             ),
                                             textStyle: FlutterFlowTheme.of(
                                                     context)
@@ -314,18 +316,18 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                                         ? FlutterFlowTheme.of(
                                                                 context)
                                                             .primary
-                                                        : const Color(0xFFF0F0FA),
+                                                        : Color(0xFFF0F0FA),
                                                     FlutterFlowTheme.of(context)
                                                         .primary,
                                                   ),
                                                   letterSpacing: 0.0,
                                                 ),
                                             elevation: 0.0,
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               color: Colors.transparent,
                                               width: 1.0,
                                             ),
-                                            borderRadius: const BorderRadius.only(
+                                            borderRadius: BorderRadius.only(
                                               bottomLeft:
                                                   Radius.circular(100.0),
                                               bottomRight: Radius.circular(0.0),
@@ -346,17 +348,17 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                           options: FFButtonOptions(
                                             height: 40.0,
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     24.0, 0.0, 24.0, 0.0),
                                             iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: valueOrDefault<Color>(
                                               _model.isHotel
                                                   ? FlutterFlowTheme.of(context)
                                                       .primary
-                                                  : const Color(0xFFF0F0FA),
-                                              const Color(0xFFF0F0FA),
+                                                  : Color(0xFFF0F0FA),
+                                              Color(0xFFF0F0FA),
                                             ),
                                             textStyle: FlutterFlowTheme.of(
                                                     context)
@@ -365,7 +367,7 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                                   fontFamily: 'Commissioner',
                                                   color: valueOrDefault<Color>(
                                                     _model.isHotel
-                                                        ? const Color(0xFFF0F0FA)
+                                                        ? Color(0xFFF0F0FA)
                                                         : FlutterFlowTheme.of(
                                                                 context)
                                                             .primary,
@@ -375,11 +377,11 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                                   letterSpacing: 0.0,
                                                 ),
                                             elevation: 0.0,
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               color: Colors.transparent,
                                               width: 1.0,
                                             ),
-                                            borderRadius: const BorderRadius.only(
+                                            borderRadius: BorderRadius.only(
                                               bottomLeft: Radius.circular(0.0),
                                               bottomRight:
                                                   Radius.circular(100.0),
@@ -395,7 +397,7 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                 ),
                               Container(
                                 width: 500.0,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
@@ -433,9 +435,9 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                       children: [
                                         Expanded(
                                           child: Container(
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 24.0, 16.0, 0.0),
                                               child: FFButtonWidget(
@@ -453,11 +455,11 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                                 options: FFButtonOptions(
                                                   width: 350.0,
                                                   height: 60.0,
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(24.0, 24.0,
                                                           24.0, 24.0),
                                                   iconPadding:
-                                                      const EdgeInsetsDirectional
+                                                      EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
                                                   color: FlutterFlowTheme.of(
@@ -495,7 +497,7 @@ class _PCLoginCopyWidgetState extends State<PCLoginCopyWidget> {
                                   ],
                                 ),
                               ),
-                            ].divide(const SizedBox(height: 24.0)),
+                            ].divide(SizedBox(height: 24.0)),
                           ),
                         ),
                       ),

@@ -3,6 +3,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'client_optional_model.dart';
 export 'client_optional_model.dart';
 
@@ -13,8 +15,8 @@ class ClientOptionalWidget extends StatefulWidget {
     required this.show,
     required this.skip,
     bool? isSkipped,
-  })  : isRoom = isRoom ?? false,
-        isSkipped = isSkipped ?? false;
+  })  : this.isRoom = isRoom ?? false,
+        this.isSkipped = isSkipped ?? false;
 
   final bool isRoom;
   final Future Function(bool isRoom)? show;
@@ -60,12 +62,12 @@ class _ClientOptionalWidgetState extends State<ClientOptionalWidget> {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(40.0, 56.0, 40.0, 56.0),
+        padding: EdgeInsetsDirectional.fromSTEB(40.0, 56.0, 40.0, 56.0),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            if (!widget.isRoom)
+            if (!widget!.isRoom)
               ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
                 child: SvgPicture.asset(
@@ -75,7 +77,7 @@ class _ClientOptionalWidgetState extends State<ClientOptionalWidget> {
                   fit: BoxFit.cover,
                 ),
               ),
-            if (widget.isRoom)
+            if (widget!.isRoom)
               ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
                 child: SvgPicture.asset(
@@ -89,7 +91,7 @@ class _ClientOptionalWidgetState extends State<ClientOptionalWidget> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                if (!widget.isRoom)
+                if (!widget!.isRoom)
                   FFButtonWidget(
                     onPressed: () async {
                       await widget.show?.call(
@@ -101,9 +103,9 @@ class _ClientOptionalWidgetState extends State<ClientOptionalWidget> {
                       width: 250.0,
                       height: 50.0,
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(43.0, 0.0, 43.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(43.0, 0.0, 43.0, 0.0),
                       iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
@@ -112,14 +114,14 @@ class _ClientOptionalWidgetState extends State<ClientOptionalWidget> {
                                 letterSpacing: 0.0,
                               ),
                       elevation: 0.0,
-                      borderSide: const BorderSide(
+                      borderSide: BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),
                       borderRadius: BorderRadius.circular(24.0),
                     ),
                   ),
-                if (widget.isRoom)
+                if (widget!.isRoom)
                   FFButtonWidget(
                     onPressed: () async {
                       await widget.show?.call(
@@ -131,9 +133,9 @@ class _ClientOptionalWidgetState extends State<ClientOptionalWidget> {
                       width: 250.0,
                       height: 50.0,
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(43.0, 0.0, 43.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(43.0, 0.0, 43.0, 0.0),
                       iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
@@ -142,7 +144,7 @@ class _ClientOptionalWidgetState extends State<ClientOptionalWidget> {
                                 letterSpacing: 0.0,
                               ),
                       elevation: 0.0,
-                      borderSide: const BorderSide(
+                      borderSide: BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),
@@ -150,13 +152,13 @@ class _ClientOptionalWidgetState extends State<ClientOptionalWidget> {
                     ),
                   ),
                 if (!valueOrDefault<bool>(
-                  widget.isSkipped,
+                  widget!.isSkipped,
                   false,
                 ))
                   FFButtonWidget(
                     onPressed: () async {
                       await widget.skip?.call(
-                        widget.isRoom,
+                        widget!.isRoom,
                       );
                     },
                     text: 'Пропустить выбор',
@@ -164,10 +166,10 @@ class _ClientOptionalWidgetState extends State<ClientOptionalWidget> {
                       width: 250.0,
                       height: 50.0,
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(43.0, 0.0, 43.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(43.0, 0.0, 43.0, 0.0),
                       iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: const Color(0x002431A5),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: Color(0x002431A5),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Commissioner',
@@ -183,13 +185,13 @@ class _ClientOptionalWidgetState extends State<ClientOptionalWidget> {
                     ),
                   ),
                 if (valueOrDefault<bool>(
-                  widget.isSkipped,
+                  widget!.isSkipped,
                   false,
                 ))
                   FFButtonWidget(
                     onPressed: () async {
                       await widget.skip?.call(
-                        widget.isRoom,
+                        widget!.isRoom,
                       );
                     },
                     text: 'Выбор пропущен',
@@ -197,10 +199,10 @@ class _ClientOptionalWidgetState extends State<ClientOptionalWidget> {
                       width: 250.0,
                       height: 50.0,
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(43.0, 0.0, 43.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(43.0, 0.0, 43.0, 0.0),
                       iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: const Color(0xFF24A541),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: Color(0xFF24A541),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Commissioner',
@@ -209,15 +211,15 @@ class _ClientOptionalWidgetState extends State<ClientOptionalWidget> {
                                 letterSpacing: 0.0,
                               ),
                       elevation: 0.0,
-                      borderSide: const BorderSide(
+                      borderSide: BorderSide(
                         width: 1.0,
                       ),
                       borderRadius: BorderRadius.circular(24.0),
                     ),
                   ),
-              ].divide(const SizedBox(height: 8.0)),
+              ].divide(SizedBox(height: 8.0)),
             ),
-          ].divide(const SizedBox(width: 64.0)),
+          ].divide(SizedBox(width: 64.0)),
         ),
       ),
     );

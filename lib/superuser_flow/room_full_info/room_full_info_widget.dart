@@ -8,6 +8,8 @@ import '/uikit/check_box/check_box_widget.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'room_full_info_model.dart';
 export 'room_full_info_model.dart';
 
@@ -16,7 +18,7 @@ class RoomFullInfoWidget extends StatefulWidget {
     super.key,
     int? id,
     required this.goBack,
-  }) : id = id ?? 88;
+  }) : this.id = id ?? 88;
 
   final int id;
   final Future Function()? goBack;
@@ -55,7 +57,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
       future: RoomTable().querySingleRow(
         queryFn: (q) => q.eq(
           'id',
-          widget.id,
+          widget!.id,
         ),
       ),
       builder: (context, snapshot) {
@@ -79,7 +81,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
             containerRoomRowList.isNotEmpty ? containerRoomRowList.first : null;
 
         return Container(
-          decoration: const BoxDecoration(),
+          decoration: BoxDecoration(),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -160,12 +162,12 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                             },
                           ),
                         ),
-                      ].divide(const SizedBox(width: 24.0)),
+                      ].divide(SizedBox(width: 24.0)),
                     );
                   },
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(-1.0, 1.0),
+                  alignment: AlignmentDirectional(-1.0, 1.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -175,7 +177,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                         children: [
                           Container(
                             width: 200.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Text(
                               'Название номера',
                               style: FlutterFlowTheme.of(context)
@@ -192,13 +194,13 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                             child: Container(
                               height: 40.0,
                               decoration: BoxDecoration(
-                                color: const Color(0xFFF0F0FA),
+                                color: Color(0xFFF0F0FA),
                                 borderRadius: BorderRadius.circular(40.0),
                               ),
                               child: Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       22.0, 0.0, 0.0, 0.0),
                                   child: Text(
                                     valueOrDefault<String>(
@@ -218,7 +220,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                               ),
                             ),
                           ),
-                        ].divide(const SizedBox(width: 16.0)),
+                        ].divide(SizedBox(width: 16.0)),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
@@ -226,7 +228,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                         children: [
                           Container(
                             width: 200.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Text(
                               'Описание номера',
                               style: FlutterFlowTheme.of(context)
@@ -242,13 +244,13 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                           Expanded(
                             child: Container(
                               decoration: BoxDecoration(
-                                color: const Color(0xFFF0F0FA),
+                                color: Color(0xFFF0F0FA),
                                 borderRadius: BorderRadius.circular(40.0),
                               ),
                               child: Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       22.0, 12.0, 22.0, 12.0),
                                   child: Text(
                                     valueOrDefault<String>(
@@ -268,7 +270,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                               ),
                             ),
                           ),
-                        ].divide(const SizedBox(width: 16.0)),
+                        ].divide(SizedBox(width: 16.0)),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
@@ -277,9 +279,9 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                           Container(
                             width: 200.0,
                             height: 100.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Text(
                                 'Фотографии',
                                 style: FlutterFlowTheme.of(context)
@@ -301,14 +303,14 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                                 Container(
                                   width: MediaQuery.sizeOf(context).width * 1.0,
                                   height: 100.0,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Builder(
                                     builder: (context) {
                                       final images =
-                                          containerRoomRow?.images.toList() ??
+                                          containerRoomRow?.images?.toList() ??
                                               [];
                                       if (images.isEmpty) {
-                                        return const Center(
+                                        return Center(
                                           child: ImagesEmptyWidget(),
                                         );
                                       }
@@ -322,16 +324,16 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                                               images[imagesIndex];
                                           return Align(
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
-                                            child: SizedBox(
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: Container(
                                               width: 160.0,
                                               child: Stack(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(4.0, 4.0,
                                                                 4.0, 0.0),
                                                     child: ClipRRect(
@@ -348,7 +350,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -0.9, -0.8),
                                                     child: Icon(
                                                       Icons.star,
@@ -391,7 +393,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                             children: [
                               Container(
                                 width: 200.0,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Text(
                                   'Количество номеров:',
                                   style: FlutterFlowTheme.of(context)
@@ -408,13 +410,13 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                                 width: 130.0,
                                 height: 40.0,
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFFF0F0FA),
+                                  color: Color(0xFFF0F0FA),
                                   borderRadius: BorderRadius.circular(40.0),
                                 ),
                                 child: Align(
-                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         22.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
@@ -425,7 +427,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Commissioner',
-                                            color: const Color(0xFF636363),
+                                            color: Color(0xFF636363),
                                             fontSize: 18.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
@@ -434,7 +436,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 16.0)),
+                            ].divide(SizedBox(width: 16.0)),
                           ),
                           Row(
                             mainAxisSize: MainAxisSize.max,
@@ -444,7 +446,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                                 children: [
                                   Container(
                                     width: 200.0,
-                                    decoration: const BoxDecoration(),
+                                    decoration: BoxDecoration(),
                                     child: Text(
                                       'Цена за ночь',
                                       style: FlutterFlowTheme.of(context)
@@ -461,14 +463,14 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                                     width: 130.0,
                                     height: 40.0,
                                     decoration: BoxDecoration(
-                                      color: const Color(0xFFF0F0FA),
+                                      color: Color(0xFFF0F0FA),
                                       borderRadius: BorderRadius.circular(40.0),
                                     ),
                                     child: Align(
                                       alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
+                                          AlignmentDirectional(-1.0, 0.0),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             22.0, 0.0, 0.0, 0.0),
                                         child: Text(
                                           valueOrDefault<String>(
@@ -479,7 +481,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Commissioner',
-                                                color: const Color(0xFF636363),
+                                                color: Color(0xFF636363),
                                                 fontSize: 18.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
@@ -495,7 +497,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Container(
-                                      decoration: const BoxDecoration(),
+                                      decoration: BoxDecoration(),
                                       child: Text(
                                         'Цена за ночь (одноместное размещение):',
                                         style: FlutterFlowTheme.of(context)
@@ -512,16 +514,16 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                                       width: 130.0,
                                       height: 40.0,
                                       decoration: BoxDecoration(
-                                        color: const Color(0xFFF0F0FA),
+                                        color: Color(0xFFF0F0FA),
                                         borderRadius:
                                             BorderRadius.circular(40.0),
                                       ),
                                       child: Align(
                                         alignment:
-                                            const AlignmentDirectional(-1.0, 0.0),
+                                            AlignmentDirectional(-1.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   22.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             valueOrDefault<String>(
@@ -533,7 +535,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Commissioner',
-                                                  color: const Color(0xFF636363),
+                                                  color: Color(0xFF636363),
                                                   fontSize: 18.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
@@ -542,12 +544,12 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                                         ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 16.0)),
+                                  ].divide(SizedBox(width: 16.0)),
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 16.0)),
+                            ].divide(SizedBox(width: 16.0)),
                           ),
-                        ].divide(const SizedBox(height: 24.0)),
+                        ].divide(SizedBox(height: 24.0)),
                       ),
                       Column(
                         mainAxisSize: MainAxisSize.min,
@@ -555,7 +557,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                         children: [
                           Container(
                             width: MediaQuery.sizeOf(context).width * 1.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: FutureBuilder<List<ServiceCategoryRow>>(
                               future: ServiceCategoryTable().queryRows(
                                 queryFn: (q) => q.eq(
@@ -585,7 +587,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
 
                                 return MasonryGridView.builder(
                                   gridDelegate:
-                                      const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                      SliverSimpleGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
                                   ),
                                   crossAxisSpacing: 40.0,
@@ -598,15 +600,15 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                                         staggeredViewServiceCategoryRowList[
                                             staggeredViewIndex];
                                     return Container(
-                                      decoration: const BoxDecoration(),
+                                      decoration: BoxDecoration(),
                                       child: Container(
                                         width: double.infinity,
-                                        color: const Color(0x00000000),
+                                        color: Color(0x00000000),
                                         child: ExpandableNotifier(
                                           initialExpanded: true,
                                           child: ExpandablePanel(
                                             header: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 0.0, 0.0, 20.0),
                                               child: Row(
@@ -678,7 +680,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                                                       listViewServiceRowList
                                                           .length,
                                                   separatorBuilder: (_, __) =>
-                                                      const SizedBox(height: 12.0),
+                                                      SizedBox(height: 12.0),
                                                   itemBuilder:
                                                       (context, listViewIndex) {
                                                     final listViewServiceRow =
@@ -691,7 +693,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                                                         Expanded(
                                                           child: Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     -1.0, 0.0),
                                                             child:
                                                                 wrapWithModel(
@@ -765,9 +767,9 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                         ],
                       ),
                     ]
-                        .divide(const SizedBox(height: 24.0))
-                        .addToStart(const SizedBox(height: 16.0))
-                        .addToEnd(const SizedBox(height: 16.0)),
+                        .divide(SizedBox(height: 24.0))
+                        .addToStart(SizedBox(height: 16.0))
+                        .addToEnd(SizedBox(height: 16.0)),
                   ),
                 ),
                 Row(
@@ -784,9 +786,9 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                           text: 'Назад',
                           options: FFButtonOptions(
                             height: 50.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 43.0, 0.0, 43.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -797,18 +799,18 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 0.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(24.0),
                           ),
                         ),
-                      ].divide(const SizedBox(width: 20.0)),
+                      ].divide(SizedBox(width: 20.0)),
                     ),
                   ],
                 ),
-              ].addToEnd(const SizedBox(height: 72.0)),
+              ].addToEnd(SizedBox(height: 72.0)),
             ),
           ),
         );

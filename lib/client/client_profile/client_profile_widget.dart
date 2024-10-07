@@ -9,6 +9,9 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:provider/provider.dart';
 import 'client_profile_model.dart';
 export 'client_profile_model.dart';
 
@@ -41,7 +44,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
           currentUserUid,
         ),
       );
-      while (_model.currentUser?.first.email != currentUserEmail) {
+      while (_model.currentUser?.first?.email != currentUserEmail) {
         await UsersTable().update(
           data: {
             'email': currentUserEmail,
@@ -167,10 +170,10 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
             : null;
 
         return Container(
-          constraints: const BoxConstraints(
+          constraints: BoxConstraints(
             maxHeight: 900.0,
           ),
-          decoration: const BoxDecoration(),
+          decoration: BoxDecoration(),
           child: FutureBuilder<List<JuridicalInfoRow>>(
             future: JuridicalInfoTable().querySingleRow(
               queryFn: (q) => q.eq(
@@ -202,7 +205,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                       : null;
 
               return Container(
-                decoration: const BoxDecoration(),
+                decoration: BoxDecoration(),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
@@ -250,7 +253,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                             children: [
                                               Container(
                                                 width: 200.0,
-                                                decoration: const BoxDecoration(
+                                                decoration: BoxDecoration(
                                                   color: Color(0x00FFFFFF),
                                                 ),
                                                 child: Text(
@@ -270,10 +273,10 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                               ),
                                               Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           8.0, 0.0, 8.0, 0.0),
-                                                  child: SizedBox(
+                                                  child: Container(
                                                     width: MediaQuery.sizeOf(
                                                                 context)
                                                             .width *
@@ -363,7 +366,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                         ),
                                                         filled: true,
                                                         fillColor:
-                                                            const Color(0xFFF0F0FA),
+                                                            Color(0xFFF0F0FA),
                                                       ),
                                                       style: FlutterFlowTheme
                                                               .of(context)
@@ -401,7 +404,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                             children: [
                                               Container(
                                                 width: 110.0,
-                                                decoration: const BoxDecoration(
+                                                decoration: BoxDecoration(
                                                   color: Color(0x00FFFFFF),
                                                 ),
                                                 child: Text(
@@ -421,10 +424,10 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                               ),
                                               Flexible(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           8.0, 0.0, 8.0, 0.0),
-                                                  child: SizedBox(
+                                                  child: Container(
                                                     width: MediaQuery.sizeOf(
                                                                 context)
                                                             .width *
@@ -514,7 +517,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                         ),
                                                         filled: true,
                                                         fillColor:
-                                                            const Color(0xFFF0F0FA),
+                                                            Color(0xFFF0F0FA),
                                                       ),
                                                       style: FlutterFlowTheme
                                                               .of(context)
@@ -546,10 +549,10 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                             ],
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 40.0)),
+                                      ].divide(SizedBox(width: 40.0)),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 12.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -562,7 +565,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                               children: [
                                                 Container(
                                                   width: 200.0,
-                                                  decoration: const BoxDecoration(
+                                                  decoration: BoxDecoration(
                                                     color: Color(0x00FFFFFF),
                                                   ),
                                                   child: Text(
@@ -583,10 +586,10 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                 Flexible(
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 8.0, 0.0),
-                                                    child: SizedBox(
+                                                    child: Container(
                                                       width: MediaQuery.sizeOf(
                                                                   context)
                                                               .width *
@@ -605,7 +608,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                             ScaffoldMessenger
                                                                     .of(context)
                                                                 .showSnackBar(
-                                                              const SnackBar(
+                                                              SnackBar(
                                                                 content: Text(
                                                                   'Email required!',
                                                                 ),
@@ -666,7 +669,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                   ? FlutterFlowTheme.of(
                                                                           context)
                                                                       .primary
-                                                                  : const Color(
+                                                                  : Color(
                                                                       0x00000000),
                                                               width: 2.0,
                                                             ),
@@ -705,7 +708,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                           ),
                                                           filled: true,
                                                           fillColor:
-                                                              const Color(0xFFF0F0FA),
+                                                              Color(0xFFF0F0FA),
                                                         ),
                                                         style: FlutterFlowTheme
                                                                 .of(context)
@@ -715,7 +718,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                   'Commissioner',
                                                               color: _model
                                                                       .editEmail
-                                                                  ? const Color(
+                                                                  ? Color(
                                                                       0xFF141414)
                                                                   : FlutterFlowTheme.of(
                                                                           context)
@@ -740,7 +743,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                 ),
                                                 Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           -1.0, 0.0),
                                                   child: InkWell(
                                                     splashColor:
@@ -760,7 +763,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                           ScaffoldMessenger.of(
                                                                   context)
                                                               .showSnackBar(
-                                                            const SnackBar(
+                                                            SnackBar(
                                                               content: Text(
                                                                 'Email required!',
                                                               ),
@@ -792,7 +795,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                           .override(
                                                             fontFamily:
                                                                 'Commissioner',
-                                                            color: const Color(
+                                                            color: Color(
                                                                 0xFF2431A5),
                                                             fontSize: 16.0,
                                                             letterSpacing: 0.0,
@@ -814,7 +817,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                               children: [
                                                 Container(
                                                   width: 110.0,
-                                                  decoration: const BoxDecoration(
+                                                  decoration: BoxDecoration(
                                                     color: Color(0x00FFFFFF),
                                                   ),
                                                   child: Text(
@@ -835,10 +838,10 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 8.0, 0.0),
-                                                    child: SizedBox(
+                                                    child: Container(
                                                       width: MediaQuery.sizeOf(
                                                                   context)
                                                               .width *
@@ -931,7 +934,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                           ),
                                                           filled: true,
                                                           fillColor:
-                                                              const Color(0xFFF0F0FA),
+                                                              Color(0xFFF0F0FA),
                                                         ),
                                                         style: FlutterFlowTheme
                                                                 .of(context)
@@ -971,7 +974,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                               ],
                                             ),
                                           ),
-                                        ].divide(const SizedBox(width: 40.0)),
+                                        ].divide(SizedBox(width: 40.0)),
                                       ),
                                     ),
                                     Row(
@@ -979,15 +982,15 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                       children: [
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Container(
                                             width: 200.0,
                                             height: 40.0,
-                                            decoration: const BoxDecoration(
+                                            decoration: BoxDecoration(
                                               color: Color(0x00FFFFFF),
                                             ),
                                             child: Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   -1.0, 0.0),
                                               child: Builder(
                                                 builder: (context) => InkWell(
@@ -1002,7 +1005,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   onTap: () async {
                                                     await showDialog(
                                                       barrierColor:
-                                                          const Color(0xE6FFFFFF),
+                                                          Color(0xE6FFFFFF),
                                                       context: context,
                                                       builder: (dialogContext) {
                                                         return Dialog(
@@ -1012,12 +1015,12 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                           backgroundColor:
                                                               Colors
                                                                   .transparent,
-                                                          alignment: const AlignmentDirectional(
+                                                          alignment: AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
                                                                       context)),
-                                                          child: SizedBox(
+                                                          child: Container(
                                                             height: MediaQuery
                                                                         .sizeOf(
                                                                             context)
@@ -1029,7 +1032,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                     .width *
                                                                 0.7,
                                                             child:
-                                                                const ChangePasswordWidget(),
+                                                                ChangePasswordWidget(),
                                                           ),
                                                         );
                                                       },
@@ -1044,7 +1047,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                           fontFamily:
                                                               'Commissioner',
                                                           color:
-                                                              const Color(0xFF2431A5),
+                                                              Color(0xFF2431A5),
                                                           fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
@@ -1062,7 +1065,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                       ],
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 24.0, 0.0, 0.0),
                                       child: Text(
                                         'Реквизиты организации:',
@@ -1077,7 +1080,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 12.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -1088,7 +1091,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                               children: [
                                                 Container(
                                                   width: 200.0,
-                                                  decoration: const BoxDecoration(
+                                                  decoration: BoxDecoration(
                                                     color: Color(0x00FFFFFF),
                                                   ),
                                                   child: Text(
@@ -1109,10 +1112,10 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                 Flexible(
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 8.0, 0.0),
-                                                    child: SizedBox(
+                                                    child: Container(
                                                       width: MediaQuery.sizeOf(
                                                                   context)
                                                               .width *
@@ -1131,7 +1134,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                             EasyDebounce
                                                                 .debounce(
                                                           '_model.jurNameTextController',
-                                                          const Duration(
+                                                          Duration(
                                                               milliseconds:
                                                                   200),
                                                           () => safeSetState(
@@ -1215,7 +1218,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                           ),
                                                           filled: true,
                                                           fillColor:
-                                                              const Color(0xFFF0F0FA),
+                                                              Color(0xFFF0F0FA),
                                                         ),
                                                         style: FlutterFlowTheme
                                                                 .of(context)
@@ -1256,7 +1259,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                               children: [
                                                 Container(
                                                   width: 110.0,
-                                                  decoration: const BoxDecoration(
+                                                  decoration: BoxDecoration(
                                                     color: Color(0x00FFFFFF),
                                                   ),
                                                   child: Text(
@@ -1277,10 +1280,10 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                 Flexible(
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 8.0, 0.0),
-                                                    child: SizedBox(
+                                                    child: Container(
                                                       width: MediaQuery.sizeOf(
                                                                   context)
                                                               .width *
@@ -1299,7 +1302,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                             EasyDebounce
                                                                 .debounce(
                                                           '_model.jurAddressTextController',
-                                                          const Duration(
+                                                          Duration(
                                                               milliseconds:
                                                                   200),
                                                           () => safeSetState(
@@ -1383,7 +1386,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                           ),
                                                           filled: true,
                                                           fillColor:
-                                                              const Color(0xFFF0F0FA),
+                                                              Color(0xFFF0F0FA),
                                                         ),
                                                         style: FlutterFlowTheme
                                                                 .of(context)
@@ -1421,11 +1424,11 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                               ],
                                             ),
                                           ),
-                                        ].divide(const SizedBox(width: 40.0)),
+                                        ].divide(SizedBox(width: 40.0)),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 12.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -1436,7 +1439,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                               children: [
                                                 Container(
                                                   width: 200.0,
-                                                  decoration: const BoxDecoration(
+                                                  decoration: BoxDecoration(
                                                     color: Color(0x00FFFFFF),
                                                   ),
                                                   child: Text(
@@ -1457,10 +1460,10 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                 Flexible(
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 8.0, 0.0),
-                                                    child: SizedBox(
+                                                    child: Container(
                                                       width: MediaQuery.sizeOf(
                                                                   context)
                                                               .width *
@@ -1479,7 +1482,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                             EasyDebounce
                                                                 .debounce(
                                                           '_model.jurLeadTextController',
-                                                          const Duration(
+                                                          Duration(
                                                               milliseconds:
                                                                   200),
                                                           () => safeSetState(
@@ -1564,7 +1567,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                           ),
                                                           filled: true,
                                                           fillColor:
-                                                              const Color(0xFFF0F0FA),
+                                                              Color(0xFFF0F0FA),
                                                         ),
                                                         style: FlutterFlowTheme
                                                                 .of(context)
@@ -1599,17 +1602,17 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                               ],
                                             ),
                                           ),
-                                          const Expanded(
+                                          Expanded(
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [],
                                             ),
                                           ),
-                                        ].divide(const SizedBox(width: 40.0)),
+                                        ].divide(SizedBox(width: 40.0)),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 12.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -1628,7 +1631,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       child: Container(
                                                         width: 200.0,
                                                         decoration:
-                                                            const BoxDecoration(),
+                                                            BoxDecoration(),
                                                         child: Row(
                                                           mainAxisSize:
                                                               MainAxisSize.min,
@@ -1636,7 +1639,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                             Container(
                                                               width: 200.0,
                                                               decoration:
-                                                                  const BoxDecoration(
+                                                                  BoxDecoration(
                                                                 color: Color(
                                                                     0x00FFFFFF),
                                                               ),
@@ -1661,7 +1664,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                             Expanded(
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             0.0,
@@ -1681,7 +1684,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                       EasyDebounce
                                                                           .debounce(
                                                                     '_model.jurOgrnTextController',
-                                                                    const Duration(
+                                                                    Duration(
                                                                         milliseconds:
                                                                             200),
                                                                     () => safeSetState(
@@ -1765,7 +1768,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                     filled:
                                                                         true,
                                                                     fillColor:
-                                                                        const Color(
+                                                                        Color(
                                                                             0xFFF0F0FA),
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
@@ -1808,7 +1811,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       child: Container(
                                                         width: 200.0,
                                                         decoration:
-                                                            const BoxDecoration(),
+                                                            BoxDecoration(),
                                                         child: Row(
                                                           mainAxisSize:
                                                               MainAxisSize.min,
@@ -1816,7 +1819,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                             Container(
                                                               width: 110.0,
                                                               decoration:
-                                                                  const BoxDecoration(
+                                                                  BoxDecoration(
                                                                 color: Color(
                                                                     0x00FFFFFF),
                                                               ),
@@ -1841,7 +1844,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                             Expanded(
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             0.0,
@@ -1861,7 +1864,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                       EasyDebounce
                                                                           .debounce(
                                                                     '_model.jurOkpoTextController',
-                                                                    const Duration(
+                                                                    Duration(
                                                                         milliseconds:
                                                                             200),
                                                                     () => safeSetState(
@@ -1949,7 +1952,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                     filled:
                                                                         true,
                                                                     fillColor:
-                                                                        const Color(
+                                                                        Color(
                                                                             0xFFF0F0FA),
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
@@ -1989,7 +1992,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 40.0)),
+                                                      SizedBox(width: 40.0)),
                                                 ),
                                                 Row(
                                                   mainAxisSize:
@@ -1999,7 +2002,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       child: Container(
                                                         width: 200.0,
                                                         decoration:
-                                                            const BoxDecoration(),
+                                                            BoxDecoration(),
                                                         child: Row(
                                                           mainAxisSize:
                                                               MainAxisSize.min,
@@ -2007,7 +2010,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                             Container(
                                                               width: 200.0,
                                                               decoration:
-                                                                  const BoxDecoration(
+                                                                  BoxDecoration(
                                                                 color: Color(
                                                                     0x00FFFFFF),
                                                               ),
@@ -2032,7 +2035,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                             Expanded(
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             0.0,
@@ -2052,7 +2055,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                       EasyDebounce
                                                                           .debounce(
                                                                     '_model.jurInnTextController',
-                                                                    const Duration(
+                                                                    Duration(
                                                                         milliseconds:
                                                                             200),
                                                                     () => safeSetState(
@@ -2136,7 +2139,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                     filled:
                                                                         true,
                                                                     fillColor:
-                                                                        const Color(
+                                                                        Color(
                                                                             0xFFF0F0FA),
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
@@ -2179,7 +2182,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       child: Container(
                                                         width: 200.0,
                                                         decoration:
-                                                            const BoxDecoration(),
+                                                            BoxDecoration(),
                                                         child: Row(
                                                           mainAxisSize:
                                                               MainAxisSize.min,
@@ -2187,7 +2190,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                             Container(
                                                               width: 110.0,
                                                               decoration:
-                                                                  const BoxDecoration(
+                                                                  BoxDecoration(
                                                                 color: Color(
                                                                     0x00FFFFFF),
                                                               ),
@@ -2212,7 +2215,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                             Expanded(
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             0.0,
@@ -2232,7 +2235,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                       EasyDebounce
                                                                           .debounce(
                                                                     '_model.jurKppTextController',
-                                                                    const Duration(
+                                                                    Duration(
                                                                         milliseconds:
                                                                             200),
                                                                     () => safeSetState(
@@ -2316,7 +2319,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                     filled:
                                                                         true,
                                                                     fillColor:
-                                                                        const Color(
+                                                                        Color(
                                                                             0xFFF0F0FA),
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
@@ -2356,12 +2359,12 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 40.0)),
+                                                      SizedBox(width: 40.0)),
                                                 ),
-                                              ].divide(const SizedBox(height: 6.0)),
+                                              ].divide(SizedBox(height: 6.0)),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(width: 40.0)),
+                                        ].divide(SizedBox(width: 40.0)),
                                       ),
                                     ),
                                   ],
@@ -2387,7 +2390,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                       children: [
                                         Container(
                                           width: 200.0,
-                                          decoration: const BoxDecoration(
+                                          decoration: BoxDecoration(
                                             color: Color(0x00FFFFFF),
                                           ),
                                           child: Text(
@@ -2405,9 +2408,9 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                         Flexible(
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 8.0, 0.0),
-                                            child: SizedBox(
+                                            child: Container(
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   0.6,
@@ -2424,7 +2427,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                 onChanged: (_) =>
                                                     EasyDebounce.debounce(
                                                   '_model.bankNameTextController',
-                                                  const Duration(milliseconds: 200),
+                                                  Duration(milliseconds: 200),
                                                   () => safeSetState(() {}),
                                                 ),
                                                 autofocus: false,
@@ -2497,7 +2500,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                             24.0),
                                                   ),
                                                   filled: true,
-                                                  fillColor: const Color(0xFFF0F0FA),
+                                                  fillColor: Color(0xFFF0F0FA),
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -2535,7 +2538,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                       children: [
                                         Container(
                                           width: 110.0,
-                                          decoration: const BoxDecoration(
+                                          decoration: BoxDecoration(
                                             color: Color(0x00FFFFFF),
                                           ),
                                           child: Text(
@@ -2553,9 +2556,9 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                         Flexible(
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 8.0, 0.0),
-                                            child: SizedBox(
+                                            child: Container(
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   0.6,
@@ -2572,7 +2575,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                 onChanged: (_) =>
                                                     EasyDebounce.debounce(
                                                   '_model.bankKorrTextController',
-                                                  const Duration(milliseconds: 200),
+                                                  Duration(milliseconds: 200),
                                                   () => safeSetState(() {}),
                                                 ),
                                                 autofocus: false,
@@ -2645,7 +2648,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                             24.0),
                                                   ),
                                                   filled: true,
-                                                  fillColor: const Color(0xFFF0F0FA),
+                                                  fillColor: Color(0xFFF0F0FA),
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -2676,7 +2679,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                       ],
                                     ),
                                   ),
-                                ].divide(const SizedBox(width: 40.0)),
+                                ].divide(SizedBox(width: 40.0)),
                               ),
                               Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -2687,13 +2690,13 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                       Expanded(
                                         child: Container(
                                           width: 200.0,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Container(
                                                 width: 200.0,
-                                                decoration: const BoxDecoration(
+                                                decoration: BoxDecoration(
                                                   color: Color(0x00FFFFFF),
                                                 ),
                                                 child: Text(
@@ -2713,7 +2716,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                               ),
                                               Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           8.0, 0.0, 8.0, 0.0),
                                                   child: TextFormField(
@@ -2729,7 +2732,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                     onChanged: (_) =>
                                                         EasyDebounce.debounce(
                                                       '_model.bankInnTextController',
-                                                      const Duration(
+                                                      Duration(
                                                           milliseconds: 200),
                                                       () => safeSetState(() {}),
                                                     ),
@@ -2801,7 +2804,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       filled: true,
                                                       fillColor:
-                                                          const Color(0xFFF0F0FA),
+                                                          Color(0xFFF0F0FA),
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -2838,13 +2841,13 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                       Expanded(
                                         child: Container(
                                           width: 200.0,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Container(
                                                 width: 110.0,
-                                                decoration: const BoxDecoration(
+                                                decoration: BoxDecoration(
                                                   color: Color(0x00FFFFFF),
                                                 ),
                                                 child: Text(
@@ -2864,7 +2867,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                               ),
                                               Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           8.0, 0.0, 8.0, 0.0),
                                                   child: TextFormField(
@@ -2880,7 +2883,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                     onChanged: (_) =>
                                                         EasyDebounce.debounce(
                                                       '_model.bankRcTextController',
-                                                      const Duration(
+                                                      Duration(
                                                           milliseconds: 200),
                                                       () => safeSetState(() {}),
                                                     ),
@@ -2952,7 +2955,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       filled: true,
                                                       fillColor:
-                                                          const Color(0xFFF0F0FA),
+                                                          Color(0xFFF0F0FA),
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -2986,7 +2989,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                           ),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(width: 40.0)),
+                                    ].divide(SizedBox(width: 40.0)),
                                   ),
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -2994,13 +2997,13 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                       Expanded(
                                         child: Container(
                                           width: 200.0,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Container(
                                                 width: 200.0,
-                                                decoration: const BoxDecoration(
+                                                decoration: BoxDecoration(
                                                   color: Color(0x00FFFFFF),
                                                 ),
                                                 child: Text(
@@ -3020,7 +3023,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                               ),
                                               Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           8.0, 0.0, 8.0, 0.0),
                                                   child: TextFormField(
@@ -3036,7 +3039,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                     onChanged: (_) =>
                                                         EasyDebounce.debounce(
                                                       '_model.bankKppTextController',
-                                                      const Duration(
+                                                      Duration(
                                                           milliseconds: 200),
                                                       () => safeSetState(() {}),
                                                     ),
@@ -3108,7 +3111,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       filled: true,
                                                       fillColor:
-                                                          const Color(0xFFF0F0FA),
+                                                          Color(0xFFF0F0FA),
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -3145,13 +3148,13 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                       Expanded(
                                         child: Container(
                                           width: 200.0,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Container(
                                                 width: 110.0,
-                                                decoration: const BoxDecoration(
+                                                decoration: BoxDecoration(
                                                   color: Color(0x00FFFFFF),
                                                 ),
                                                 child: Text(
@@ -3171,7 +3174,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                               ),
                                               Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           8.0, 0.0, 8.0, 0.0),
                                                   child: TextFormField(
@@ -3187,7 +3190,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                     onChanged: (_) =>
                                                         EasyDebounce.debounce(
                                                       '_model.bankBicTextController',
-                                                      const Duration(
+                                                      Duration(
                                                           milliseconds: 200),
                                                       () => safeSetState(() {}),
                                                     ),
@@ -3259,7 +3262,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       filled: true,
                                                       fillColor:
-                                                          const Color(0xFFF0F0FA),
+                                                          Color(0xFFF0F0FA),
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -3293,9 +3296,9 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                           ),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(width: 40.0)),
+                                    ].divide(SizedBox(width: 40.0)),
                                   ),
-                                ].divide(const SizedBox(height: 6.0)),
+                                ].divide(SizedBox(height: 6.0)),
                               ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -3309,10 +3312,10 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                       text: 'Редактировать',
                                       options: FFButtonOptions(
                                         height: 50.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             64.0, 24.0, 64.0, 24.0),
                                         iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
+                                            EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
@@ -3324,7 +3327,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                               letterSpacing: 0.0,
                                             ),
                                         elevation: 0.0,
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Colors.transparent,
                                           width: 1.0,
                                         ),
@@ -3337,7 +3340,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                       builder: (context) => FFButtonWidget(
                                         onPressed: () async {
                                           await showDialog(
-                                            barrierColor: const Color(0xE5FFFFFF),
+                                            barrierColor: Color(0xE5FFFFFF),
                                             context: context,
                                             builder: (dialogContext) {
                                               return Dialog(
@@ -3345,7 +3348,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                 insetPadding: EdgeInsets.zero,
                                                 backgroundColor:
                                                     Colors.transparent,
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
@@ -3357,8 +3360,14 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   successAction: () async {
                                                     if ((_model.fioTextController
                                                                     .text ==
+                                                                null ||
+                                                            _model.fioTextController
+                                                                    .text ==
                                                                 '') ||
                                                         (_model.emailTextController
+                                                                    .text ==
+                                                                null ||
+                                                            _model.emailTextController
                                                                     .text ==
                                                                 '')) {
                                                       ScaffoldMessenger.of(
@@ -3374,7 +3383,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                               fontSize: 14.0,
                                                             ),
                                                           ),
-                                                          duration: const Duration(
+                                                          duration: Duration(
                                                               milliseconds:
                                                                   4000),
                                                           backgroundColor:
@@ -3470,7 +3479,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                               fontSize: 14.0,
                                                             ),
                                                           ),
-                                                          duration: const Duration(
+                                                          duration: Duration(
                                                               milliseconds:
                                                                   4000),
                                                           backgroundColor:
@@ -3493,10 +3502,10 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                         options: FFButtonOptions(
                                           height: 50.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   64.0, 24.0, 64.0, 24.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -3509,7 +3518,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                     letterSpacing: 0.0,
                                                   ),
                                           elevation: 0.0,
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,
                                           ),
@@ -3523,7 +3532,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                       builder: (context) => FFButtonWidget(
                                         onPressed: () async {
                                           await showDialog(
-                                            barrierColor: const Color(0xE5FFFFFF),
+                                            barrierColor: Color(0xE5FFFFFF),
                                             context: context,
                                             builder: (dialogContext) {
                                               return Dialog(
@@ -3531,7 +3540,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                 insetPadding: EdgeInsets.zero,
                                                 backgroundColor:
                                                     Colors.transparent,
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
@@ -3560,12 +3569,12 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                         options: FFButtonOptions(
                                           height: 50.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   64.0, 24.0, 64.0, 24.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
-                                          color: const Color(0xFFBE3030),
+                                          color: Color(0xFFBE3030),
                                           textStyle:
                                               FlutterFlowTheme.of(context)
                                                   .titleSmall
@@ -3575,7 +3584,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                     letterSpacing: 0.0,
                                                   ),
                                           elevation: 0.0,
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,
                                           ),
@@ -3584,12 +3593,12 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                         ),
                                       ),
                                     ),
-                                ].divide(const SizedBox(width: 16.0)),
+                                ].divide(SizedBox(width: 16.0)),
                               ),
                             ]
-                                .divide(const SizedBox(height: 30.0))
-                                .addToStart(const SizedBox(height: 20.0))
-                                .addToEnd(const SizedBox(height: 72.0)),
+                                .divide(SizedBox(height: 30.0))
+                                .addToStart(SizedBox(height: 20.0))
+                                .addToEnd(SizedBox(height: 72.0)),
                           ),
                         ),
                       if (responsiveVisibility(
@@ -3603,7 +3612,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: Text(
                                   'Общая информация',
@@ -3618,7 +3627,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -3654,12 +3663,12 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                         1.0,
                                                 height: 40.0,
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xFFF0F0FA),
+                                                  color: Color(0xFFF0F0FA),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           80.0),
                                                 ),
-                                                child: SizedBox(
+                                                child: Container(
                                                   width:
                                                       MediaQuery.sizeOf(context)
                                                               .width *
@@ -3700,7 +3709,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                               ),
                                                       enabledBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -3711,7 +3720,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       focusedBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -3722,7 +3731,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       errorBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -3733,7 +3742,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       focusedErrorBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -3743,7 +3752,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                 .circular(80.0),
                                                       ),
                                                       contentPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   15.0,
                                                                   0.0,
@@ -3767,7 +3776,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(height: 16.0)),
+                                            ].divide(SizedBox(height: 16.0)),
                                           ),
                                         ),
                                       ],
@@ -3802,12 +3811,12 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                         1.0,
                                                 height: 40.0,
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xFFF0F0FA),
+                                                  color: Color(0xFFF0F0FA),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           80.0),
                                                 ),
-                                                child: SizedBox(
+                                                child: Container(
                                                   width:
                                                       MediaQuery.sizeOf(context)
                                                               .width *
@@ -3849,7 +3858,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                               ),
                                                       enabledBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -3860,7 +3869,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       focusedBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -3871,7 +3880,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       errorBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -3882,7 +3891,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       focusedErrorBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -3892,7 +3901,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                 .circular(80.0),
                                                       ),
                                                       contentPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   15.0,
                                                                   0.0,
@@ -3916,7 +3925,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(height: 16.0)),
+                                            ].divide(SizedBox(height: 16.0)),
                                           ),
                                         ),
                                       ],
@@ -3951,12 +3960,12 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                         1.0,
                                                 height: 40.0,
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xFFF0F0FA),
+                                                  color: Color(0xFFF0F0FA),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           80.0),
                                                 ),
-                                                child: SizedBox(
+                                                child: Container(
                                                   width:
                                                       MediaQuery.sizeOf(context)
                                                               .width *
@@ -3997,7 +4006,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                               ),
                                                       enabledBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -4008,7 +4017,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       focusedBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -4019,7 +4028,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       errorBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -4030,7 +4039,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       focusedErrorBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -4040,7 +4049,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                 .circular(80.0),
                                                       ),
                                                       contentPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   15.0,
                                                                   0.0,
@@ -4066,7 +4075,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(height: 16.0)),
+                                            ].divide(SizedBox(height: 16.0)),
                                           ),
                                         ),
                                       ],
@@ -4101,12 +4110,12 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                         1.0,
                                                 height: 40.0,
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xFFF0F0FA),
+                                                  color: Color(0xFFF0F0FA),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           80.0),
                                                 ),
-                                                child: SizedBox(
+                                                child: Container(
                                                   width:
                                                       MediaQuery.sizeOf(context)
                                                               .width *
@@ -4148,7 +4157,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                               ),
                                                       enabledBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -4159,7 +4168,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       focusedBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -4170,7 +4179,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       errorBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -4181,7 +4190,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       focusedErrorBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -4191,7 +4200,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                 .circular(80.0),
                                                       ),
                                                       contentPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   15.0,
                                                                   0.0,
@@ -4220,7 +4229,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(height: 16.0)),
+                                            ].divide(SizedBox(height: 16.0)),
                                           ),
                                         ),
                                       ],
@@ -4228,12 +4237,12 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                     Container(
                                       width: 200.0,
                                       height: 40.0,
-                                      decoration: const BoxDecoration(
+                                      decoration: BoxDecoration(
                                         color: Color(0x00FFFFFF),
                                       ),
                                       child: Align(
                                         alignment:
-                                            const AlignmentDirectional(-1.0, 0.0),
+                                            AlignmentDirectional(-1.0, 0.0),
                                         child: Builder(
                                           builder: (context) => InkWell(
                                             splashColor: Colors.transparent,
@@ -4242,7 +4251,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
                                               await showDialog(
-                                                barrierColor: const Color(0xE6FFFFFF),
+                                                barrierColor: Color(0xE6FFFFFF),
                                                 context: context,
                                                 builder: (dialogContext) {
                                                   return Dialog(
@@ -4252,12 +4261,12 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                     backgroundColor:
                                                         Colors.transparent,
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                                 0.0, 0.0)
                                                             .resolve(
                                                                 Directionality.of(
                                                                     context)),
-                                                    child: SizedBox(
+                                                    child: Container(
                                                       height: MediaQuery.sizeOf(
                                                                   context)
                                                               .height *
@@ -4267,7 +4276,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                               .width *
                                                           0.95,
                                                       child:
-                                                          const ChangePasswordWidget(),
+                                                          ChangePasswordWidget(),
                                                     ),
                                                   );
                                                 },
@@ -4280,7 +4289,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   .bodyMedium
                                                   .override(
                                                     fontFamily: 'Commissioner',
-                                                    color: const Color(0xFF2431A5),
+                                                    color: Color(0xFF2431A5),
                                                     fontSize: 18.0,
                                                     letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w500,
@@ -4292,11 +4301,11 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                         ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(height: 24.0)),
+                                  ].divide(SizedBox(height: 24.0)),
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -4343,12 +4352,12 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                         1.0,
                                                 height: 40.0,
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xFFF0F0FA),
+                                                  color: Color(0xFFF0F0FA),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           80.0),
                                                 ),
-                                                child: SizedBox(
+                                                child: Container(
                                                   width:
                                                       MediaQuery.sizeOf(context)
                                                               .width *
@@ -4391,7 +4400,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                               ),
                                                       enabledBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -4402,7 +4411,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       focusedBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -4413,7 +4422,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       errorBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -4424,7 +4433,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       focusedErrorBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -4434,7 +4443,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                 .circular(80.0),
                                                       ),
                                                       contentPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   15.0,
                                                                   0.0,
@@ -4458,7 +4467,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(height: 16.0)),
+                                            ].divide(SizedBox(height: 16.0)),
                                           ),
                                         ),
                                       ],
@@ -4491,16 +4500,16 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         1.0,
-                                                constraints: const BoxConstraints(
+                                                constraints: BoxConstraints(
                                                   minHeight: 40.0,
                                                 ),
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xFFF0F0FA),
+                                                  color: Color(0xFFF0F0FA),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           80.0),
                                                 ),
-                                                child: SizedBox(
+                                                child: Container(
                                                   width:
                                                       MediaQuery.sizeOf(context)
                                                               .width *
@@ -4543,7 +4552,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                               ),
                                                       enabledBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -4554,7 +4563,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       focusedBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -4565,7 +4574,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       errorBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -4576,7 +4585,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       focusedErrorBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -4586,7 +4595,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                 .circular(80.0),
                                                       ),
                                                       contentPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   15.0,
                                                                   0.0,
@@ -4612,7 +4621,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(height: 16.0)),
+                                            ].divide(SizedBox(height: 16.0)),
                                           ),
                                         ),
                                       ],
@@ -4647,12 +4656,12 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                         1.0,
                                                 height: 40.0,
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xFFF0F0FA),
+                                                  color: Color(0xFFF0F0FA),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           80.0),
                                                 ),
-                                                child: SizedBox(
+                                                child: Container(
                                                   width:
                                                       MediaQuery.sizeOf(context)
                                                               .width *
@@ -4694,7 +4703,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                               ),
                                                       enabledBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -4705,7 +4714,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       focusedBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -4716,7 +4725,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       errorBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -4727,7 +4736,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       focusedErrorBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -4737,7 +4746,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                 .circular(80.0),
                                                       ),
                                                       contentPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   15.0,
                                                                   0.0,
@@ -4763,7 +4772,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(height: 16.0)),
+                                            ].divide(SizedBox(height: 16.0)),
                                           ),
                                         ),
                                       ],
@@ -4773,7 +4782,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                       children: [
                                         Container(
                                           width: 80.0,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Text(
                                             'КПП:',
                                             style: FlutterFlowTheme.of(context)
@@ -4793,11 +4802,11 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                 1.0,
                                             height: 40.0,
                                             decoration: BoxDecoration(
-                                              color: const Color(0xFFF0F0FA),
+                                              color: Color(0xFFF0F0FA),
                                               borderRadius:
                                                   BorderRadius.circular(80.0),
                                             ),
-                                            child: SizedBox(
+                                            child: Container(
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   1.0,
@@ -4836,7 +4845,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                           ),
                                                   enabledBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -4846,7 +4855,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                   focusedBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -4856,7 +4865,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                   errorBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -4866,7 +4875,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                   focusedErrorBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -4875,7 +4884,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                             80.0),
                                                   ),
                                                   contentPadding:
-                                                      const EdgeInsetsDirectional
+                                                      EdgeInsetsDirectional
                                                           .fromSTEB(15.0, 0.0,
                                                               0.0, 10.0),
                                                 ),
@@ -4906,7 +4915,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                       children: [
                                         Container(
                                           width: 80.0,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Text(
                                             'ИНН:',
                                             style: FlutterFlowTheme.of(context)
@@ -4926,11 +4935,11 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                 1.0,
                                             height: 40.0,
                                             decoration: BoxDecoration(
-                                              color: const Color(0xFFF0F0FA),
+                                              color: Color(0xFFF0F0FA),
                                               borderRadius:
                                                   BorderRadius.circular(80.0),
                                             ),
-                                            child: SizedBox(
+                                            child: Container(
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   1.0,
@@ -4969,7 +4978,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                           ),
                                                   enabledBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -4979,7 +4988,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                   focusedBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -4989,7 +4998,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                   errorBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -4999,7 +5008,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                   focusedErrorBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -5008,7 +5017,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                             80.0),
                                                   ),
                                                   contentPadding:
-                                                      const EdgeInsetsDirectional
+                                                      EdgeInsetsDirectional
                                                           .fromSTEB(15.0, 0.0,
                                                               0.0, 10.0),
                                                 ),
@@ -5039,7 +5048,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                       children: [
                                         Container(
                                           width: 80.0,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Text(
                                             'ОГРН:',
                                             style: FlutterFlowTheme.of(context)
@@ -5059,11 +5068,11 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                 1.0,
                                             height: 40.0,
                                             decoration: BoxDecoration(
-                                              color: const Color(0xFFF0F0FA),
+                                              color: Color(0xFFF0F0FA),
                                               borderRadius:
                                                   BorderRadius.circular(80.0),
                                             ),
-                                            child: SizedBox(
+                                            child: Container(
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   1.0,
@@ -5102,7 +5111,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                           ),
                                                   enabledBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -5112,7 +5121,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                   focusedBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -5122,7 +5131,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                   errorBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -5132,7 +5141,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                   focusedErrorBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -5141,7 +5150,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                             80.0),
                                                   ),
                                                   contentPadding:
-                                                      const EdgeInsetsDirectional
+                                                      EdgeInsetsDirectional
                                                           .fromSTEB(15.0, 0.0,
                                                               0.0, 10.0),
                                                 ),
@@ -5172,7 +5181,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                       children: [
                                         Container(
                                           width: 80.0,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Text(
                                             'ОКПО:',
                                             style: FlutterFlowTheme.of(context)
@@ -5192,11 +5201,11 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                 1.0,
                                             height: 40.0,
                                             decoration: BoxDecoration(
-                                              color: const Color(0xFFF0F0FA),
+                                              color: Color(0xFFF0F0FA),
                                               borderRadius:
                                                   BorderRadius.circular(80.0),
                                             ),
-                                            child: SizedBox(
+                                            child: Container(
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   1.0,
@@ -5235,7 +5244,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                           ),
                                                   enabledBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -5245,7 +5254,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                   focusedBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -5255,7 +5264,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                   errorBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -5265,7 +5274,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                   focusedErrorBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -5274,7 +5283,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                             80.0),
                                                   ),
                                                   contentPadding:
-                                                      const EdgeInsetsDirectional
+                                                      EdgeInsetsDirectional
                                                           .fromSTEB(15.0, 0.0,
                                                               0.0, 10.0),
                                                 ),
@@ -5300,11 +5309,11 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                         ),
                                       ],
                                     ),
-                                  ].divide(const SizedBox(height: 24.0)),
+                                  ].divide(SizedBox(height: 24.0)),
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -5351,12 +5360,12 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                         1.0,
                                                 height: 40.0,
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xFFF0F0FA),
+                                                  color: Color(0xFFF0F0FA),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           80.0),
                                                 ),
-                                                child: SizedBox(
+                                                child: Container(
                                                   width:
                                                       MediaQuery.sizeOf(context)
                                                               .width *
@@ -5399,7 +5408,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                               ),
                                                       enabledBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -5410,7 +5419,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       focusedBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -5421,7 +5430,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       errorBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -5432,7 +5441,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       focusedErrorBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -5442,7 +5451,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                 .circular(80.0),
                                                       ),
                                                       contentPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   15.0,
                                                                   0.0,
@@ -5466,7 +5475,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(height: 16.0)),
+                                            ].divide(SizedBox(height: 16.0)),
                                           ),
                                         ),
                                       ],
@@ -5499,16 +5508,16 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         1.0,
-                                                constraints: const BoxConstraints(
+                                                constraints: BoxConstraints(
                                                   minHeight: 40.0,
                                                 ),
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xFFF0F0FA),
+                                                  color: Color(0xFFF0F0FA),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           80.0),
                                                 ),
-                                                child: SizedBox(
+                                                child: Container(
                                                   width:
                                                       MediaQuery.sizeOf(context)
                                                               .width *
@@ -5551,7 +5560,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                               ),
                                                       enabledBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -5562,7 +5571,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       focusedBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -5573,7 +5582,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       errorBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -5584,7 +5593,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       focusedErrorBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -5594,7 +5603,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                 .circular(80.0),
                                                       ),
                                                       contentPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   15.0,
                                                                   0.0,
@@ -5620,7 +5629,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(height: 16.0)),
+                                            ].divide(SizedBox(height: 16.0)),
                                           ),
                                         ),
                                       ],
@@ -5655,12 +5664,12 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                         1.0,
                                                 height: 40.0,
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xFFF0F0FA),
+                                                  color: Color(0xFFF0F0FA),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           80.0),
                                                 ),
-                                                child: SizedBox(
+                                                child: Container(
                                                   width:
                                                       MediaQuery.sizeOf(context)
                                                               .width *
@@ -5702,7 +5711,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                               ),
                                                       enabledBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -5713,7 +5722,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       focusedBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -5724,7 +5733,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       errorBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -5735,7 +5744,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       ),
                                                       focusedErrorBorder:
                                                           UnderlineInputBorder(
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 2.0,
@@ -5745,7 +5754,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                                 .circular(80.0),
                                                       ),
                                                       contentPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   15.0,
                                                                   0.0,
@@ -5771,7 +5780,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(height: 16.0)),
+                                            ].divide(SizedBox(height: 16.0)),
                                           ),
                                         ),
                                       ],
@@ -5781,7 +5790,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                       children: [
                                         Container(
                                           width: 80.0,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Text(
                                             'БИК:',
                                             style: FlutterFlowTheme.of(context)
@@ -5801,11 +5810,11 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                 1.0,
                                             height: 40.0,
                                             decoration: BoxDecoration(
-                                              color: const Color(0xFFF0F0FA),
+                                              color: Color(0xFFF0F0FA),
                                               borderRadius:
                                                   BorderRadius.circular(80.0),
                                             ),
-                                            child: SizedBox(
+                                            child: Container(
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   1.0,
@@ -5844,7 +5853,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                           ),
                                                   enabledBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -5854,7 +5863,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                   focusedBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -5864,7 +5873,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                   errorBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -5874,7 +5883,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                   focusedErrorBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -5883,7 +5892,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                             80.0),
                                                   ),
                                                   contentPadding:
-                                                      const EdgeInsetsDirectional
+                                                      EdgeInsetsDirectional
                                                           .fromSTEB(15.0, 0.0,
                                                               0.0, 10.0),
                                                 ),
@@ -5914,7 +5923,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                       children: [
                                         Container(
                                           width: 80.0,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Text(
                                             'ИНН:',
                                             style: FlutterFlowTheme.of(context)
@@ -5934,11 +5943,11 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                 1.0,
                                             height: 40.0,
                                             decoration: BoxDecoration(
-                                              color: const Color(0xFFF0F0FA),
+                                              color: Color(0xFFF0F0FA),
                                               borderRadius:
                                                   BorderRadius.circular(80.0),
                                             ),
-                                            child: SizedBox(
+                                            child: Container(
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   1.0,
@@ -5977,7 +5986,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                           ),
                                                   enabledBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -5987,7 +5996,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                   focusedBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -5997,7 +6006,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                   errorBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -6007,7 +6016,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                   focusedErrorBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -6016,7 +6025,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                             80.0),
                                                   ),
                                                   contentPadding:
-                                                      const EdgeInsetsDirectional
+                                                      EdgeInsetsDirectional
                                                           .fromSTEB(15.0, 0.0,
                                                               0.0, 10.0),
                                                 ),
@@ -6047,7 +6056,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                       children: [
                                         Container(
                                           width: 80.0,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Text(
                                             'КПП:',
                                             style: FlutterFlowTheme.of(context)
@@ -6067,11 +6076,11 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                 1.0,
                                             height: 40.0,
                                             decoration: BoxDecoration(
-                                              color: const Color(0xFFF0F0FA),
+                                              color: Color(0xFFF0F0FA),
                                               borderRadius:
                                                   BorderRadius.circular(80.0),
                                             ),
-                                            child: SizedBox(
+                                            child: Container(
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   1.0,
@@ -6110,7 +6119,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                           ),
                                                   enabledBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -6120,7 +6129,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                   focusedBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -6130,7 +6139,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                   errorBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -6140,7 +6149,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                   ),
                                                   focusedErrorBorder:
                                                       UnderlineInputBorder(
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Color(0x00000000),
                                                       width: 2.0,
                                                     ),
@@ -6149,7 +6158,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                             80.0),
                                                   ),
                                                   contentPadding:
-                                                      const EdgeInsetsDirectional
+                                                      EdgeInsetsDirectional
                                                           .fromSTEB(15.0, 0.0,
                                                               0.0, 10.0),
                                                 ),
@@ -6175,14 +6184,14 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                         ),
                                       ],
                                     ),
-                                  ].divide(const SizedBox(height: 24.0)),
+                                  ].divide(SizedBox(height: 24.0)),
                                 ),
                               ),
                               Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -6192,8 +6201,14 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                             onPressed: () async {
                                               if ((_model.fioMobTextController
                                                               .text ==
+                                                          null ||
+                                                      _model.fioMobTextController
+                                                              .text ==
                                                           '') ||
                                                   (_model.mailMobTextController
+                                                              .text ==
+                                                          null ||
+                                                      _model.mailMobTextController
                                                               .text ==
                                                           '')) {
                                                 ScaffoldMessenger.of(context)
@@ -6208,7 +6223,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                         fontSize: 14.0,
                                                       ),
                                                     ),
-                                                    duration: const Duration(
+                                                    duration: Duration(
                                                         milliseconds: 4000),
                                                     backgroundColor:
                                                         FlutterFlowTheme.of(
@@ -6302,7 +6317,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                         fontSize: 14.0,
                                                       ),
                                                     ),
-                                                    duration: const Duration(
+                                                    duration: Duration(
                                                         milliseconds: 4000),
                                                     backgroundColor:
                                                         FlutterFlowTheme.of(
@@ -6318,10 +6333,10 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       .width *
                                                   1.0,
                                               height: 50.0,
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
+                                              iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -6336,7 +6351,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                         letterSpacing: 0.0,
                                                       ),
                                               elevation: 0.0,
-                                              borderSide: const BorderSide(
+                                              borderSide: BorderSide(
                                                 color: Colors.transparent,
                                                 width: 1.0,
                                               ),
@@ -6349,7 +6364,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -6365,10 +6380,10 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                       .width *
                                                   1.0,
                                               height: 50.0,
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
+                                              iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -6383,7 +6398,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                         letterSpacing: 0.0,
                                                       ),
                                               elevation: 0.0,
-                                              borderSide: const BorderSide(
+                                              borderSide: BorderSide(
                                                 color: Colors.transparent,
                                                 width: 1.0,
                                               ),
@@ -6395,12 +6410,12 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                       ],
                                     ),
                                   ),
-                                ].divide(const SizedBox(height: 10.0)),
+                                ].divide(SizedBox(height: 10.0)),
                               ),
                             ]
-                                .divide(const SizedBox(height: 40.0))
-                                .addToStart(const SizedBox(height: 40.0))
-                                .addToEnd(const SizedBox(height: 40.0)),
+                                .divide(SizedBox(height: 40.0))
+                                .addToStart(SizedBox(height: 40.0))
+                                .addToEnd(SizedBox(height: 40.0)),
                           ),
                         ),
                     ],

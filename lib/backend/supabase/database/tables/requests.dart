@@ -9,7 +9,7 @@ class RequestsTable extends SupabaseTable<RequestsRow> {
 }
 
 class RequestsRow extends SupabaseDataRow {
-  RequestsRow(super.data);
+  RequestsRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => RequestsTable();

@@ -1,8 +1,15 @@
+import '/backend/schema/enums/enums.dart';
 import '/backend/supabase/supabase.dart';
+import '/cms/super_service_elment/super_service_elment_widget.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'hall_settings_widget.dart' show HallSettingsWidget;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class HallSettingsModel extends FlutterFlowModel<HallSettingsWidget> {
   ///  Local state fields for this component.
@@ -51,7 +58,7 @@ class HallSettingsModel extends FlutterFlowModel<HallSettingsWidget> {
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(const Duration(milliseconds: 50));
+      await Future.delayed(Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete = requestCompleter2?.isCompleted ?? false;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
@@ -66,7 +73,7 @@ class HallSettingsModel extends FlutterFlowModel<HallSettingsWidget> {
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(const Duration(milliseconds: 50));
+      await Future.delayed(Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete = requestCompleter1?.isCompleted ?? false;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {

@@ -3,6 +3,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'food_full_info_model.dart';
 export 'food_full_info_model.dart';
 
@@ -11,7 +13,7 @@ class FoodFullInfoWidget extends StatefulWidget {
     super.key,
     int? id,
     required this.goBack,
-  }) : id = id ?? 88;
+  }) : this.id = id ?? 88;
 
   final int id;
   final Future Function()? goBack;
@@ -50,7 +52,7 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
       future: FoodTable().querySingleRow(
         queryFn: (q) => q.eq(
           'id',
-          widget.id,
+          widget!.id,
         ),
       ),
       builder: (context, snapshot) {
@@ -74,7 +76,7 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
             containerFoodRowList.isNotEmpty ? containerFoodRowList.first : null;
 
         return Container(
-          decoration: const BoxDecoration(),
+          decoration: BoxDecoration(),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -155,12 +157,12 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                             },
                           ),
                         ),
-                      ].divide(const SizedBox(width: 24.0)),
+                      ].divide(SizedBox(width: 24.0)),
                     );
                   },
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(-1.0, 1.0),
+                  alignment: AlignmentDirectional(-1.0, 1.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -170,7 +172,7 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                         children: [
                           Container(
                             width: 200.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Text(
                               'Название пакета',
                               style: FlutterFlowTheme.of(context)
@@ -187,13 +189,13 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                             child: Container(
                               height: 40.0,
                               decoration: BoxDecoration(
-                                color: const Color(0xFFF0F0FA),
+                                color: Color(0xFFF0F0FA),
                                 borderRadius: BorderRadius.circular(40.0),
                               ),
                               child: Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       22.0, 0.0, 0.0, 0.0),
                                   child: Text(
                                     valueOrDefault<String>(
@@ -213,7 +215,7 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                               ),
                             ),
                           ),
-                        ].divide(const SizedBox(width: 16.0)),
+                        ].divide(SizedBox(width: 16.0)),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
@@ -221,7 +223,7 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                         children: [
                           Container(
                             width: 200.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Text(
                               'Тип пакета',
                               style: FlutterFlowTheme.of(context)
@@ -237,13 +239,13 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                           Expanded(
                             child: Container(
                               decoration: BoxDecoration(
-                                color: const Color(0xFFF0F0FA),
+                                color: Color(0xFFF0F0FA),
                                 borderRadius: BorderRadius.circular(40.0),
                               ),
                               child: Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       22.0, 12.0, 22.0, 12.0),
                                   child:
                                       FutureBuilder<List<ServiceCategoryRow>>(
@@ -301,12 +303,12 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 40.0, 0.0, 0.0, 0.0),
                             child: Container(
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Text(
                                   'Цена',
                                   style: FlutterFlowTheme.of(context)
@@ -324,13 +326,13 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                           Expanded(
                             child: Container(
                               decoration: BoxDecoration(
-                                color: const Color(0xFFF0F0FA),
+                                color: Color(0xFFF0F0FA),
                                 borderRadius: BorderRadius.circular(40.0),
                               ),
                               child: Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       22.0, 12.0, 22.0, 12.0),
                                   child: Text(
                                     valueOrDefault<String>(
@@ -354,7 +356,7 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                               ),
                             ),
                           ),
-                        ].divide(const SizedBox(width: 16.0)),
+                        ].divide(SizedBox(width: 16.0)),
                       ),
                       Column(
                         mainAxisSize: MainAxisSize.max,
@@ -371,7 +373,7 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                                   fontWeight: FontWeight.w500,
                                 ),
                           ),
-                        ].divide(const SizedBox(height: 24.0)),
+                        ].divide(SizedBox(height: 24.0)),
                       ),
                       FutureBuilder<List<FoodPositionRow>>(
                         future: FoodPositionTable().queryRows(
@@ -407,16 +409,16 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                               final listViewFoodPositionRow =
                                   listViewFoodPositionRowList[listViewIndex];
                               return Container(
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 8.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Container(
                                         width: 200.0,
-                                        decoration: const BoxDecoration(
+                                        decoration: BoxDecoration(
                                           color: Color(0x00FFFFFF),
                                         ),
                                         child: Text(
@@ -436,13 +438,13 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                                           width: 100.0,
                                           height: 40.0,
                                           decoration: BoxDecoration(
-                                            color: const Color(0xFFF0F0FA),
+                                            color: Color(0xFFF0F0FA),
                                             borderRadius:
                                                 BorderRadius.circular(100.0),
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 0.0, 16.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -478,13 +480,13 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                                           width: 100.0,
                                           height: 40.0,
                                           decoration: BoxDecoration(
-                                            color: const Color(0xFFF0F0FA),
+                                            color: Color(0xFFF0F0FA),
                                             borderRadius:
                                                 BorderRadius.circular(100.0),
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 0.0, 16.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -515,7 +517,7 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                                           ),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(width: 16.0)),
+                                    ].divide(SizedBox(width: 16.0)),
                                   ),
                                 ),
                               );
@@ -524,9 +526,9 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                         },
                       ),
                     ]
-                        .divide(const SizedBox(height: 24.0))
-                        .addToStart(const SizedBox(height: 16.0))
-                        .addToEnd(const SizedBox(height: 16.0)),
+                        .divide(SizedBox(height: 24.0))
+                        .addToStart(SizedBox(height: 16.0))
+                        .addToEnd(SizedBox(height: 16.0)),
                   ),
                 ),
                 Row(
@@ -543,9 +545,9 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                           text: 'Назад',
                           options: FFButtonOptions(
                             height: 50.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 43.0, 0.0, 43.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -556,18 +558,18 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 0.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(24.0),
                           ),
                         ),
-                      ].divide(const SizedBox(width: 20.0)),
+                      ].divide(SizedBox(width: 20.0)),
                     ),
                   ],
                 ),
-              ].addToEnd(const SizedBox(height: 72.0)),
+              ].addToEnd(SizedBox(height: 72.0)),
             ),
           ),
         );

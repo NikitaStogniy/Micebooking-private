@@ -18,6 +18,8 @@ import '/pop_up/hotel_pop_up/hotel_pop_up_widget.dart';
 import '/superuser_flow/super_requests/super_requests_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'hotel_home_model.dart';
 export 'hotel_home_model.dart';
 
@@ -73,7 +75,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                   height: MediaQuery.sizeOf(context).height * 1.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).primary,
-                    borderRadius: const BorderRadius.only(
+                    borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(0.0),
                       bottomRight: Radius.circular(50.0),
                       topLeft: Radius.circular(0.0),
@@ -82,7 +84,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                   ),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 32.0, 16.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 32.0, 16.0, 0.0),
                     child: Stack(
                       children: [
                         InkWell(
@@ -104,7 +106,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                           ),
                         ),
                         Align(
-                          alignment: const AlignmentDirectional(0.0, -0.6),
+                          alignment: AlignmentDirectional(0.0, -0.6),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -130,8 +132,8 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                           _model.page == EnumHotelPage.PROFILE
                                               ? FlutterFlowTheme.of(context)
                                                   .secondaryBackground
-                                              : const Color(0xB1FFFFFF),
-                                          const Color(0xB1FFFFFF),
+                                              : Color(0xB1FFFFFF),
+                                          Color(0xB1FFFFFF),
                                         ),
                                         fontSize: 18.0,
                                         letterSpacing: 0.0,
@@ -159,8 +161,8 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                           _model.page == EnumHotelPage.REQUESTS
                                               ? FlutterFlowTheme.of(context)
                                                   .secondaryBackground
-                                              : const Color(0xB1FFFFFF),
-                                          const Color(0xB1FFFFFF),
+                                              : Color(0xB1FFFFFF),
+                                          Color(0xB1FFFFFF),
                                         ),
                                         fontSize: 18.0,
                                         letterSpacing: 0.0,
@@ -188,8 +190,8 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                           _model.page == EnumHotelPage.HOTELS
                                               ? FlutterFlowTheme.of(context)
                                                   .secondaryBackground
-                                              : const Color(0xB1FFFFFF),
-                                          const Color(0xB1FFFFFF),
+                                              : Color(0xB1FFFFFF),
+                                          Color(0xB1FFFFFF),
                                         ),
                                         fontSize: 18.0,
                                         letterSpacing: 0.0,
@@ -217,8 +219,8 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                           _model.page == EnumHotelPage.HALLS
                                               ? FlutterFlowTheme.of(context)
                                                   .secondaryBackground
-                                              : const Color(0xB1FFFFFF),
-                                          const Color(0xB1FFFFFF),
+                                              : Color(0xB1FFFFFF),
+                                          Color(0xB1FFFFFF),
                                         ),
                                         fontSize: 18.0,
                                         letterSpacing: 0.0,
@@ -246,8 +248,8 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                           _model.page == EnumHotelPage.FOOD
                                               ? FlutterFlowTheme.of(context)
                                                   .secondaryBackground
-                                              : const Color(0xB1FFFFFF),
-                                          const Color(0xB1FFFFFF),
+                                              : Color(0xB1FFFFFF),
+                                          Color(0xB1FFFFFF),
                                         ),
                                         fontSize: 18.0,
                                         letterSpacing: 0.0,
@@ -275,8 +277,8 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                           _model.page == EnumHotelPage.ROOMS
                                               ? FlutterFlowTheme.of(context)
                                                   .secondaryBackground
-                                              : const Color(0xB1FFFFFF),
-                                          const Color(0xB1FFFFFF),
+                                              : Color(0xB1FFFFFF),
+                                          Color(0xB1FFFFFF),
                                         ),
                                         fontSize: 18.0,
                                         letterSpacing: 0.0,
@@ -363,7 +365,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                   ),
                                 ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 40.0, 0.0, 0.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
@@ -378,9 +380,9 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                   text: 'Выйти',
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         24.0, 0.0, 24.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context)
                                         .primaryBackground,
@@ -393,7 +395,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 0.0,
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Colors.transparent,
                                       width: 0.0,
                                     ),
@@ -401,7 +403,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(const SizedBox(height: 20.0)),
+                            ].divide(SizedBox(height: 20.0)),
                           ),
                         ),
                       ],
@@ -409,28 +411,28 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                   child: Container(
                     width: MediaQuery.sizeOf(context).width * 0.8,
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         if (_model.page == EnumHotelPage.PROFILE)
                           Expanded(
                             child: Align(
-                              alignment: const AlignmentDirectional(-1.0, -1.0),
+                              alignment: AlignmentDirectional(-1.0, -1.0),
                               child: wrapWithModel(
                                 model: _model.managerInfoModel,
                                 updateCallback: () => safeSetState(() {}),
-                                child: const ManagerInfoWidget(),
+                                child: ManagerInfoWidget(),
                               ),
                             ),
                           ),
                         if (_model.page == EnumHotelPage.HOTELS)
                           Expanded(
                             child: Align(
-                              alignment: const AlignmentDirectional(-1.0, -1.0),
+                              alignment: AlignmentDirectional(-1.0, -1.0),
                               child: Builder(
                                 builder: (context) => wrapWithModel(
                                   model: _model.profileHotelsModel,
@@ -452,14 +454,14 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                     },
                                     seeCallback: (hotel) async {
                                       await showDialog(
-                                        barrierColor: const Color(0x66000000),
+                                        barrierColor: Color(0x66000000),
                                         context: context,
                                         builder: (dialogContext) {
                                           return Dialog(
                                             elevation: 0,
                                             insetPadding: EdgeInsets.zero,
                                             backgroundColor: Colors.transparent,
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                     0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
@@ -467,7 +469,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                                               onTap: () =>
                                                   FocusScope.of(dialogContext)
                                                       .unfocus(),
-                                              child: SizedBox(
+                                              child: Container(
                                                 height:
                                                     MediaQuery.sizeOf(context)
                                                             .height *
@@ -493,7 +495,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                         if (_model.page == EnumHotelPage.EDIT_HOTELS)
                           Expanded(
                             child: Align(
-                              alignment: const AlignmentDirectional(-1.0, -1.0),
+                              alignment: AlignmentDirectional(-1.0, -1.0),
                               child: wrapWithModel(
                                 model: _model.addOrEditHotelModel,
                                 updateCallback: () => safeSetState(() {}),
@@ -519,7 +521,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                         if (_model.page == EnumHotelPage.ROOMS)
                           Expanded(
                             child: Align(
-                              alignment: const AlignmentDirectional(-1.0, -1.0),
+                              alignment: AlignmentDirectional(-1.0, -1.0),
                               child: wrapWithModel(
                                 model: _model.profileRoomsModel,
                                 updateCallback: () => safeSetState(() {}),
@@ -546,7 +548,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                         if (_model.page == EnumHotelPage.EDIT_ROOMS)
                           Expanded(
                             child: Align(
-                              alignment: const AlignmentDirectional(-1.0, -1.0),
+                              alignment: AlignmentDirectional(-1.0, -1.0),
                               child: wrapWithModel(
                                 model: _model.addOrEditRoomModel,
                                 updateCallback: () => safeSetState(() {}),
@@ -569,7 +571,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                         if (_model.page == EnumHotelPage.HALLS)
                           Expanded(
                             child: Align(
-                              alignment: const AlignmentDirectional(-1.0, -1.0),
+                              alignment: AlignmentDirectional(-1.0, -1.0),
                               child: wrapWithModel(
                                 model: _model.profileHallsModel,
                                 updateCallback: () => safeSetState(() {}),
@@ -599,7 +601,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                         if (_model.page == EnumHotelPage.FOOD)
                           Expanded(
                             child: Align(
-                              alignment: const AlignmentDirectional(-1.0, -1.0),
+                              alignment: AlignmentDirectional(-1.0, -1.0),
                               child: wrapWithModel(
                                 model: _model.profileFoodModel,
                                 updateCallback: () => safeSetState(() {}),
@@ -626,7 +628,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                         if (_model.page == EnumHotelPage.EDIT_HALLS)
                           Expanded(
                             child: Align(
-                              alignment: const AlignmentDirectional(-1.0, -1.0),
+                              alignment: AlignmentDirectional(-1.0, -1.0),
                               child: wrapWithModel(
                                 model: _model.addOrEditHallModel,
                                 updateCallback: () => safeSetState(() {}),
@@ -649,7 +651,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                         if (_model.page == EnumHotelPage.EDIT_FOOD)
                           Expanded(
                             child: Align(
-                              alignment: const AlignmentDirectional(-1.0, -1.0),
+                              alignment: AlignmentDirectional(-1.0, -1.0),
                               child: wrapWithModel(
                                 model: _model.addOrEditFoodModel,
                                 updateCallback: () => safeSetState(() {}),
@@ -672,7 +674,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                         if (_model.page == EnumHotelPage.HOTEL_JURIDICAL)
                           Expanded(
                             child: Align(
-                              alignment: const AlignmentDirectional(-1.0, -1.0),
+                              alignment: AlignmentDirectional(-1.0, -1.0),
                               child: wrapWithModel(
                                 model: _model.hotelJuridicalModel,
                                 updateCallback: () => safeSetState(() {}),
@@ -715,7 +717,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                     ),
                   ),
                 ),
-              ].divide(const SizedBox(width: 48.0)),
+              ].divide(SizedBox(width: 48.0)),
             ),
           ),
         ),

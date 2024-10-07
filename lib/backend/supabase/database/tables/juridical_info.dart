@@ -10,7 +10,7 @@ class JuridicalInfoTable extends SupabaseTable<JuridicalInfoRow> {
 }
 
 class JuridicalInfoRow extends SupabaseDataRow {
-  JuridicalInfoRow(super.data);
+  JuridicalInfoRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => JuridicalInfoTable();

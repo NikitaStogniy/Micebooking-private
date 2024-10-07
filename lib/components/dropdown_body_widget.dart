@@ -2,6 +2,8 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'dropdown_body_model.dart';
 export 'dropdown_body_model.dart';
 
@@ -46,11 +48,11 @@ class _DropdownBodyWidgetState extends State<DropdownBodyWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(16.0),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(16.0),
         child: Container(
-          constraints: const BoxConstraints(
+          constraints: BoxConstraints(
             maxWidth: 300.0,
             maxHeight: 300.0,
           ),
@@ -60,7 +62,7 @@ class _DropdownBodyWidgetState extends State<DropdownBodyWidget> {
           ),
           child: Builder(
             builder: (context) {
-              final values = widget.values!.toList();
+              final values = widget!.values!.toList();
 
               return ListView.builder(
                 padding: EdgeInsets.zero,
@@ -86,9 +88,9 @@ class _DropdownBodyWidgetState extends State<DropdownBodyWidget> {
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                       ),
                       child: Align(
-                        alignment: const AlignmentDirectional(-1.0, 0.0),
+                        alignment: AlignmentDirectional(-1.0, 0.0),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 0.0, 0.0),
                           child: Text(
                             valuesItem.label,

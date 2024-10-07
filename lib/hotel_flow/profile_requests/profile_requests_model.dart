@@ -1,8 +1,12 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/hotel_flow/profile_requests_component/profile_requests_component_widget.dart';
 import 'profile_requests_widget.dart' show ProfileRequestsWidget;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class ProfileRequestsModel extends FlutterFlowModel<ProfileRequestsWidget> {
   ///  Local state fields for this component.

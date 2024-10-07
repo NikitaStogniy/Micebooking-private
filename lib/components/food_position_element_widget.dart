@@ -10,6 +10,8 @@ import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'food_position_element_model.dart';
 export 'food_position_element_model.dart';
 
@@ -46,15 +48,15 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.addToMergePosition(widget.position!.id);
-      _model.categoryId = widget.position?.category;
-      _model.name = widget.position?.name;
-      _model.categotyName = widget.position?.type;
+      _model.addToMergePosition(widget!.position!.id);
+      _model.categoryId = widget!.position?.category;
+      _model.name = widget!.position?.name;
+      _model.categotyName = widget!.position?.type;
       safeSetState(() {});
     });
 
     _model.textController ??=
-        TextEditingController(text: widget.position?.name);
+        TextEditingController(text: widget!.position?.name);
     _model.textFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -100,20 +102,20 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                 : null;
 
         return Container(
-          decoration: const BoxDecoration(),
+          decoration: BoxDecoration(),
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Container(
                   width: 150.0,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     color: Color(0x00FFFFFF),
                   ),
                   child: Text(
                     'Позиция ${valueOrDefault<String>(
-                      ((widget.index!) + 1).toString(),
+                      ((widget!.index!) + 1).toString(),
                       '1',
                     )}:',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -129,12 +131,12 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                     width: 100.0,
                     height: 48.0,
                     decoration: BoxDecoration(
-                      color: const Color(0xFFF0F0FA),
+                      color: Color(0xFFF0F0FA),
                       borderRadius: BorderRadius.circular(100.0),
                     ),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -156,16 +158,16 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                           if (_model.edit)
                             Expanded(
                               child: Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
                                   child: TextFormField(
                                     controller: _model.textController,
                                     focusNode: _model.textFieldFocusNode,
                                     onChanged: (_) => EasyDebounce.debounce(
                                       '_model.textController',
-                                      const Duration(milliseconds: 200),
+                                      Duration(milliseconds: 200),
                                       () => safeSetState(() {}),
                                     ),
                                     autofocus: true,
@@ -184,7 +186,7 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: UnderlineInputBorder(
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Color(0x00000000),
                                           width: 0.0,
                                         ),
@@ -192,7 +194,7 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                                             BorderRadius.circular(8.0),
                                       ),
                                       focusedBorder: UnderlineInputBorder(
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Color(0x00000000),
                                           width: 0.0,
                                         ),
@@ -200,7 +202,7 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                                             BorderRadius.circular(8.0),
                                       ),
                                       errorBorder: UnderlineInputBorder(
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Color(0x00000000),
                                           width: 0.0,
                                         ),
@@ -208,7 +210,7 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                                             BorderRadius.circular(8.0),
                                       ),
                                       focusedErrorBorder: UnderlineInputBorder(
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Color(0x00000000),
                                           width: 0.0,
                                         ),
@@ -267,7 +269,7 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                         controller: _model.dropDownValueController ??=
                             FormFieldController<String>(
                           _model.dropDownValue ??= valueOrDefault<String>(
-                            widget.position?.type,
+                            widget!.position?.type,
                             'Холодные закуски',
                           ),
                         ),
@@ -284,8 +286,8 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                               _model.dropDownValue,
                             ),
                           );
-                          _model.categoryId = _model.category?.first.id;
-                          _model.categotyName = _model.category?.first.name;
+                          _model.categoryId = _model.category?.first?.id;
+                          _model.categotyName = _model.category?.first?.name;
                           safeSetState(() {});
                           safeSetState(() => _model.requestCompleter = null);
                           await _model.waitForRequestCompleted();
@@ -312,7 +314,7 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                         borderColor: FlutterFlowTheme.of(context).alternate,
                         borderWidth: 2.0,
                         borderRadius: 100.0,
-                        margin: const EdgeInsetsDirectional.fromSTEB(
+                        margin: EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
                         hidesUnderline: true,
                         isOverButton: true,
@@ -327,9 +329,9 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                     children: [
                       Container(
                         width: 150.0,
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 8.0, 0.0),
                           child: Text(
                             valueOrDefault<String>(
@@ -369,7 +371,7 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                         borderRadius: 40.0,
                         borderWidth: 1.0,
                         buttonSize: 32.0,
-                        fillColor: const Color(0x34BE3030),
+                        fillColor: Color(0x34BE3030),
                         icon: Icon(
                           Icons.delete_rounded,
                           color: FlutterFlowTheme.of(context).primaryText,
@@ -379,13 +381,13 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                           await FoodPositionTable().delete(
                             matchingRows: (rows) => rows.eq(
                               'id',
-                              widget.position?.id,
+                              widget!.position?.id,
                             ),
                           );
                           await widget.updateRequest?.call();
                         },
                       ),
-                    ].divide(const SizedBox(width: 16.0)),
+                    ].divide(SizedBox(width: 16.0)),
                   ),
                 if (_model.edit)
                   Row(
@@ -412,7 +414,7 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                             },
                             matchingRows: (rows) => rows.eq(
                               'id',
-                              widget.position?.id,
+                              widget!.position?.id,
                             ),
                           );
                           await ServiceCategoryTable().update(
@@ -424,7 +426,7 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                             },
                             matchingRows: (rows) => rows.eq(
                               'id',
-                              containerServiceCategoryRow.id,
+                              containerServiceCategoryRow?.id,
                             ),
                           );
                           _model.edit = false;
@@ -437,7 +439,7 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                         borderRadius: 40.0,
                         borderWidth: 1.0,
                         buttonSize: 32.0,
-                        fillColor: const Color(0x34BE3030),
+                        fillColor: Color(0x34BE3030),
                         icon: Icon(
                           Icons.close_rounded,
                           color: FlutterFlowTheme.of(context).primaryText,
@@ -448,9 +450,9 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                           safeSetState(() {});
                         },
                       ),
-                    ].divide(const SizedBox(width: 16.0)),
+                    ].divide(SizedBox(width: 16.0)),
                   ),
-              ].divide(const SizedBox(width: 16.0)),
+              ].divide(SizedBox(width: 16.0)),
             ),
           ),
         );

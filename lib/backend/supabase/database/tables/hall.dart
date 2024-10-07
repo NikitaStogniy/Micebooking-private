@@ -9,7 +9,7 @@ class HallTable extends SupabaseTable<HallRow> {
 }
 
 class HallRow extends SupabaseDataRow {
-  HallRow(super.data);
+  HallRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => HallTable();

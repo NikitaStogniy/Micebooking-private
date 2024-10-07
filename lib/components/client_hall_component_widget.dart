@@ -9,6 +9,8 @@ import '/uikit/check_box/check_box_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'client_hall_component_model.dart';
 export 'client_hall_component_model.dart';
 
@@ -18,7 +20,7 @@ class ClientHallComponentWidget extends StatefulWidget {
     required this.hall,
     bool? isChosen,
     required this.chooseAction,
-  }) : isChosen = isChosen ?? false;
+  }) : this.isChosen = isChosen ?? false;
 
   final HallRow? hall;
   final bool isChosen;
@@ -57,7 +59,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,29 +75,29 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
               children: [
                 Container(
                   width: 375.0,
-                  decoration: const BoxDecoration(),
+                  decoration: BoxDecoration(),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Container(
                         width: 375.0,
                         height: 230.0,
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Stack(
                           children: [
                             Builder(
                               builder: (context) {
                                 final hallImages =
-                                    widget.hall?.images.toList() ?? [];
+                                    widget!.hall?.images?.toList() ?? [];
                                 if (hallImages.isEmpty) {
-                                  return const SizedBox(
+                                  return Container(
                                     width: double.infinity,
                                     height: double.infinity,
                                     child: ImagesEmptyWidget(),
                                   );
                                 }
 
-                                return SizedBox(
+                                return Container(
                                   width: double.infinity,
                                   child: PageView.builder(
                                     controller: _model.pageViewController1 ??=
@@ -128,11 +130,11 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                             ),
                             Container(
                               height: MediaQuery.sizeOf(context).height * 1.0,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Visibility(
-                                visible: widget.hall!.images.length > 1,
+                                visible: widget!.hall!.images.length > 1,
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -149,7 +151,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                             await _model.pageViewController1
                                                 ?.previousPage(
                                               duration:
-                                                  const Duration(milliseconds: 300),
+                                                  Duration(milliseconds: 300),
                                               curve: Curves.ease,
                                             );
                                           },
@@ -174,19 +176,19 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                       Container(
                                         width: 32.0,
                                         height: 32.0,
-                                        decoration: const BoxDecoration(
+                                        decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
                                       ),
                                       Container(
                                         width: 32.0,
                                         height: 32.0,
-                                        decoration: const BoxDecoration(
+                                        decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
                                       ),
                                       if (_model.pageViewCurrentIndex1 <
-                                          widget.hall!.images.length)
+                                          widget!.hall!.images.length)
                                         InkWell(
                                           splashColor: Colors.transparent,
                                           focusColor: Colors.transparent,
@@ -196,7 +198,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                             await _model.pageViewController1
                                                 ?.nextPage(
                                               duration:
-                                                  const Duration(milliseconds: 300),
+                                                  Duration(milliseconds: 300),
                                               curve: Curves.ease,
                                             );
                                           },
@@ -223,10 +225,10 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                 ),
                               ),
                             ),
-                            if (widget.hall!.images.isNotEmpty)
+                            if (widget!.hall!.images.length > 0)
                               Builder(
                                 builder: (context) => Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 8.0, 0.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -235,18 +237,18 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
                                       await showDialog(
-                                        barrierColor: const Color(0x81FFFFFF),
+                                        barrierColor: Color(0x81FFFFFF),
                                         context: context,
                                         builder: (dialogContext) {
                                           return Dialog(
                                             elevation: 0,
                                             insetPadding: EdgeInsets.zero,
                                             backgroundColor: Colors.transparent,
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                     0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                            child: SizedBox(
+                                            child: Container(
                                               height: MediaQuery.sizeOf(context)
                                                       .height *
                                                   0.9,
@@ -254,7 +256,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                       .width *
                                                   0.9,
                                               child: PopUpImagesWidget(
-                                                images: widget.hall!.images,
+                                                images: widget!.hall!.images,
                                               ),
                                             ),
                                           );
@@ -279,11 +281,11 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   ),
                                 ),
                               ),
-                            if (widget.hall!.images.length > 1)
+                            if (widget!.hall!.images.length > 1)
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                alignment: AlignmentDirectional(0.0, 1.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 16.0),
                                   child: Container(
                                     decoration: BoxDecoration(
@@ -292,7 +294,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                       borderRadius: BorderRadius.circular(50.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           16.0, 8.0, 16.0, 8.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
@@ -300,7 +302,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                             MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            '${(_model.pageViewCurrentIndex1 + 1).toString()}/${widget.hall?.images.length.toString()}',
+                                            '${(_model.pageViewCurrentIndex1 + 1).toString()}/${widget!.hall?.images?.length?.toString()}',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -324,7 +326,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -332,11 +334,11 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                               child: Container(
                                 height: 40.0,
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFFE1E1FF),
+                                  color: Color(0xFFE1E1FF),
                                   borderRadius: BorderRadius.circular(100.0),
                                 ),
                                 child: Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Text(
                                     '${functions.daysGen(_model.days)}',
                                     style: FlutterFlowTheme.of(context)
@@ -361,11 +363,11 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   height: 40.0,
                                   decoration: BoxDecoration(
                                     color: valueOrDefault<Color>(
-                                      widget.isChosen == true
-                                          ? const Color(0x652431A5)
+                                      widget!.isChosen == true
+                                          ? Color(0x652431A5)
                                           : FlutterFlowTheme.of(context)
                                               .primary,
-                                      const Color(0x00000000),
+                                      Color(0x00000000),
                                     ),
                                     shape: BoxShape.circle,
                                   ),
@@ -375,7 +377,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      if (widget.isChosen != true) {
+                                      if (widget!.isChosen != true) {
                                         _model.days = _model.days + 0.5;
                                         safeSetState(() {});
                                       }
@@ -395,7 +397,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     if (_model.days != 0.5) {
-                                      if (widget.isChosen != true) {
+                                      if (widget!.isChosen != true) {
                                         _model.days = _model.days + -0.5;
                                         safeSetState(() {});
                                       }
@@ -407,21 +409,21 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                     decoration: BoxDecoration(
                                       color: valueOrDefault<Color>(
                                         () {
-                                          if (widget.isChosen == true) {
-                                            return const Color(0x652431A5);
+                                          if (widget!.isChosen == true) {
+                                            return Color(0x652431A5);
                                           } else if (_model.days == 0.5) {
-                                            return const Color(0x652431A5);
+                                            return Color(0x652431A5);
                                           } else {
                                             return FlutterFlowTheme.of(context)
                                                 .primary;
                                           }
                                         }(),
-                                        const Color(0x00000000),
+                                        Color(0x00000000),
                                       ),
                                       shape: BoxShape.circle,
                                     ),
                                     child: Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: FaIcon(
                                         FontAwesomeIcons.minus,
                                         color: FlutterFlowTheme.of(context)
@@ -431,9 +433,9 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                     ),
                                   ),
                                 ),
-                              ].divide(const SizedBox(width: 8.0)),
+                              ].divide(SizedBox(width: 8.0)),
                             ),
-                          ].divide(const SizedBox(width: 24.0)),
+                          ].divide(SizedBox(width: 24.0)),
                         ),
                       ),
                     ],
@@ -442,7 +444,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                 Flexible(
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -471,7 +473,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                             Expanded(
                                               child: Text(
                                                 valueOrDefault<String>(
-                                                  widget.hall?.name,
+                                                  widget!.hall?.name,
                                                   'namne',
                                                 ),
                                                 style:
@@ -487,10 +489,10 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                         ),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 24.0)),
+                                          ].divide(SizedBox(width: 24.0)),
                                         ),
                                         Text(
-                                          'Площадь:  ${widget.hall?.size?.toString()} кв2',
+                                          'Площадь:  ${widget!.hall?.size?.toString()} кв2',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -503,7 +505,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                 fontWeight: FontWeight.bold,
                                               ),
                                         ),
-                                      ].divide(const SizedBox(height: 8.0)),
+                                      ].divide(SizedBox(height: 8.0)),
                                     ),
                                   ),
                                 ],
@@ -515,7 +517,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                               children: [
                                 Builder(
                                   builder: (context) => Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 8.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -524,7 +526,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
                                         await showDialog(
-                                          barrierColor: const Color(0x6914181B),
+                                          barrierColor: Color(0x6914181B),
                                           context: context,
                                           builder: (dialogContext) {
                                             return Dialog(
@@ -533,11 +535,11 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                               backgroundColor:
                                                   Colors.transparent,
                                               alignment:
-                                                  const AlignmentDirectional(0.0, 0.0)
+                                                  AlignmentDirectional(0.0, 0.0)
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
-                                              child: SizedBox(
+                                              child: Container(
                                                 height:
                                                     MediaQuery.sizeOf(context)
                                                             .height *
@@ -547,7 +549,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                             .width *
                                                         0.8,
                                                 child: HallPopUpWidget(
-                                                  hall: widget.hall!,
+                                                  hall: widget!.hall!,
                                                   isChosen: false,
                                                   chosed: (id) async {
                                                     await Future.delayed(
@@ -574,7 +576,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Commissioner',
-                                                  color: const Color(0xFF636363),
+                                                  color: Color(0xFF636363),
                                                   fontSize: 16.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.bold,
@@ -588,7 +590,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                 .primary,
                                             size: 24.0,
                                           ),
-                                        ].divide(const SizedBox(width: 8.0)),
+                                        ].divide(SizedBox(width: 8.0)),
                                       ),
                                     ),
                                   ),
@@ -608,11 +610,11 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                 ),
                                 Text(
                                   '${formatNumber(
-                                    (widget.hall!.price!) * 0.5,
+                                    (widget!.hall!.price!) * 0.5,
                                     formatType: FormatType.decimal,
                                     decimalType: DecimalType.automatic,
                                   )} / ${formatNumber(
-                                    widget.hall?.price,
+                                    widget!.hall?.price,
                                     formatType: FormatType.decimal,
                                     decimalType: DecimalType.automatic,
                                   )} руб',
@@ -627,12 +629,12 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                         fontWeight: FontWeight.bold,
                                       ),
                                 ),
-                              ].divide(const SizedBox(height: 4.0)),
+                              ].divide(SizedBox(height: 4.0)),
                             ),
-                          ].divide(const SizedBox(width: 40.0)),
+                          ].divide(SizedBox(width: 40.0)),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -641,7 +643,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                               Expanded(
                                 child: Text(
                                   valueOrDefault<String>(
-                                    widget.hall?.description,
+                                    widget!.hall?.description,
                                     'Description',
                                   ),
                                   maxLines: 5,
@@ -649,7 +651,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Commissioner',
-                                        color: const Color(0xFF636363),
+                                        color: Color(0xFF636363),
                                         fontSize: 17.0,
                                         letterSpacing: 0.0,
                                       ),
@@ -659,7 +661,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 24.0, 0.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -683,7 +685,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
                                   ClipRRect(
-                                    borderRadius: const BorderRadius.only(
+                                    borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(0.0),
                                       bottomRight: Radius.circular(0.0),
                                       topLeft: Radius.circular(16.0),
@@ -694,7 +696,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
-                                        borderRadius: const BorderRadius.only(
+                                        borderRadius: BorderRadius.only(
                                           bottomLeft: Radius.circular(0.0),
                                           bottomRight: Radius.circular(0.0),
                                           topLeft: Radius.circular(16.0),
@@ -704,15 +706,15 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          if (widget.hall!.seatingTheater! > 0)
+                                          if (widget!.hall!.seatingTheater! > 0)
                                             Expanded(
                                               flex: 1,
                                               child: Container(
                                                 height: 100.0,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Text(
                                                     'Театр',
@@ -733,15 +735,15 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                 ),
                                               ),
                                             ),
-                                          if (widget.hall!.seatingClass! > 0)
+                                          if (widget!.hall!.seatingClass! > 0)
                                             Expanded(
                                               flex: 1,
                                               child: Container(
                                                 height: 100.0,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Text(
                                                     'Класс',
@@ -762,17 +764,17 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                 ),
                                               ),
                                             ),
-                                          if (widget
+                                          if (widget!
                                                   .hall!.seatingCommunication! >
                                               0)
                                             Expanded(
                                               flex: 2,
                                               child: Container(
                                                 height: 100.0,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Text(
                                                     'Переговорная',
@@ -793,15 +795,15 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                 ),
                                               ),
                                             ),
-                                          if (widget.hall!.seatingUshape! > 0)
+                                          if (widget!.hall!.seatingUshape! > 0)
                                             Expanded(
                                               flex: 1,
                                               child: Container(
                                                 height: 100.0,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Text(
                                                     'U-shape',
@@ -822,15 +824,15 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                 ),
                                               ),
                                             ),
-                                          if (widget.hall!.seatingOshape! > 0)
+                                          if (widget!.hall!.seatingOshape! > 0)
                                             Expanded(
                                               flex: 1,
                                               child: Container(
                                                 height: 100.0,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Text(
                                                     'O-shape',
@@ -851,15 +853,15 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                 ),
                                               ),
                                             ),
-                                          if (widget.hall!.seatingKabare! > 0)
+                                          if (widget!.hall!.seatingKabare! > 0)
                                             Expanded(
                                               flex: 1,
                                               child: Container(
                                                 height: 100.0,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Text(
                                                     'Кабаре',
@@ -880,15 +882,15 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                 ),
                                               ),
                                             ),
-                                          if (widget.hall!.seatingBanket! > 0)
+                                          if (widget!.hall!.seatingBanket! > 0)
                                             Expanded(
                                               flex: 1,
                                               child: Container(
                                                 height: 100.0,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Text(
                                                     'Банкет',
@@ -909,15 +911,15 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                 ),
                                               ),
                                             ),
-                                          if (widget.hall!.seatingFurshet! > 0)
+                                          if (widget!.hall!.seatingFurshet! > 0)
                                             Expanded(
                                               flex: 1,
                                               child: Container(
                                                 height: 100.0,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Text(
                                                     'Фуршет',
@@ -943,7 +945,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                     ),
                                   ),
                                   ClipRRect(
-                                    borderRadius: const BorderRadius.only(
+                                    borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(16.0),
                                       bottomRight: Radius.circular(16.0),
                                       topLeft: Radius.circular(0.0),
@@ -953,7 +955,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
-                                        borderRadius: const BorderRadius.only(
+                                        borderRadius: BorderRadius.only(
                                           bottomLeft: Radius.circular(16.0),
                                           bottomRight: Radius.circular(16.0),
                                           topLeft: Radius.circular(0.0),
@@ -963,13 +965,13 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          if (widget.hall!.seatingTheater! > 0)
+                                          if (widget!.hall!.seatingTheater! > 0)
                                             Expanded(
                                               flex: 1,
                                               child: Container(
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 20.0),
                                                   child: Column(
@@ -978,12 +980,12 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                     children: [
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Text(
                                                           valueOrDefault<
                                                               String>(
-                                                            widget.hall
+                                                            widget!.hall
                                                                 ?.seatingTheater
                                                                 ?.toString(),
                                                             '0',
@@ -1010,7 +1012,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     17.0,
@@ -1028,7 +1030,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                                     .seating ==
                                                                 'Театр',
                                                             onClick: () async {
-                                                              if (!widget
+                                                              if (!widget!
                                                                   .isChosen) {
                                                                 _model.seating =
                                                                     'Театр';
@@ -1044,13 +1046,13 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                 ),
                                               ),
                                             ),
-                                          if (widget.hall!.seatingClass! > 0)
+                                          if (widget!.hall!.seatingClass! > 0)
                                             Expanded(
                                               flex: 1,
                                               child: Container(
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 20.0),
                                                   child: Column(
@@ -1059,12 +1061,12 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                     children: [
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Text(
                                                           valueOrDefault<
                                                               String>(
-                                                            widget.hall
+                                                            widget!.hall
                                                                 ?.seatingClass
                                                                 ?.toString(),
                                                             '0',
@@ -1091,7 +1093,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     17.0,
@@ -1109,7 +1111,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                                     .seating ==
                                                                 'Класс',
                                                             onClick: () async {
-                                                              if (!widget
+                                                              if (!widget!
                                                                   .isChosen) {
                                                                 _model.seating =
                                                                     'Класс';
@@ -1125,15 +1127,15 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                 ),
                                               ),
                                             ),
-                                          if (widget
+                                          if (widget!
                                                   .hall!.seatingCommunication! >
                                               0)
                                             Expanded(
                                               flex: 2,
                                               child: Container(
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 20.0),
                                                   child: Column(
@@ -1142,12 +1144,12 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                     children: [
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Text(
                                                           valueOrDefault<
                                                               String>(
-                                                            widget.hall
+                                                            widget!.hall
                                                                 ?.seatingCommunication
                                                                 ?.toString(),
                                                             '0',
@@ -1174,7 +1176,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     17.0,
@@ -1192,7 +1194,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                                     .seating ==
                                                                 'Переговорная',
                                                             onClick: () async {
-                                                              if (!widget
+                                                              if (!widget!
                                                                   .isChosen) {
                                                                 _model.seating =
                                                                     'Переговорная';
@@ -1208,13 +1210,13 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                 ),
                                               ),
                                             ),
-                                          if (widget.hall!.seatingUshape! > 0)
+                                          if (widget!.hall!.seatingUshape! > 0)
                                             Expanded(
                                               flex: 1,
                                               child: Container(
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 20.0),
                                                   child: Column(
@@ -1223,12 +1225,12 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                     children: [
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Text(
                                                           valueOrDefault<
                                                               String>(
-                                                            widget.hall
+                                                            widget!.hall
                                                                 ?.seatingUshape
                                                                 ?.toString(),
                                                             '0',
@@ -1255,7 +1257,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     17.0,
@@ -1273,7 +1275,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                                     .seating ==
                                                                 'U-shape',
                                                             onClick: () async {
-                                                              if (!widget
+                                                              if (!widget!
                                                                   .isChosen) {
                                                                 _model.seating =
                                                                     'U-shape';
@@ -1289,13 +1291,13 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                 ),
                                               ),
                                             ),
-                                          if (widget.hall!.seatingOshape! > 0)
+                                          if (widget!.hall!.seatingOshape! > 0)
                                             Expanded(
                                               flex: 1,
                                               child: Container(
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 20.0),
                                                   child: Column(
@@ -1304,12 +1306,12 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                     children: [
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Text(
                                                           valueOrDefault<
                                                               String>(
-                                                            widget.hall
+                                                            widget!.hall
                                                                 ?.seatingOshape
                                                                 ?.toString(),
                                                             '0',
@@ -1336,7 +1338,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     17.0,
@@ -1354,7 +1356,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                                     .seating ==
                                                                 'O-shape',
                                                             onClick: () async {
-                                                              if (!widget
+                                                              if (!widget!
                                                                   .isChosen) {
                                                                 _model.seating =
                                                                     'O-shape';
@@ -1370,13 +1372,13 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                 ),
                                               ),
                                             ),
-                                          if (widget.hall!.seatingKabare! > 0)
+                                          if (widget!.hall!.seatingKabare! > 0)
                                             Expanded(
                                               flex: 1,
                                               child: Container(
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 20.0),
                                                   child: Column(
@@ -1385,12 +1387,12 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                     children: [
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Text(
                                                           valueOrDefault<
                                                               String>(
-                                                            widget.hall
+                                                            widget!.hall
                                                                 ?.seatingKabare
                                                                 ?.toString(),
                                                             '0',
@@ -1417,7 +1419,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     17.0,
@@ -1435,7 +1437,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                                     .seating ==
                                                                 'Кабаре',
                                                             onClick: () async {
-                                                              if (!widget
+                                                              if (!widget!
                                                                   .isChosen) {
                                                                 _model.seating =
                                                                     'Кабаре';
@@ -1451,13 +1453,13 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                 ),
                                               ),
                                             ),
-                                          if (widget.hall!.seatingBanket! > 0)
+                                          if (widget!.hall!.seatingBanket! > 0)
                                             Expanded(
                                               flex: 1,
                                               child: Container(
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 20.0),
                                                   child: Column(
@@ -1466,12 +1468,12 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                     children: [
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Text(
                                                           valueOrDefault<
                                                               String>(
-                                                            widget.hall
+                                                            widget!.hall
                                                                 ?.seatingBanket
                                                                 ?.toString(),
                                                             '0',
@@ -1498,7 +1500,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     17.0,
@@ -1516,7 +1518,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                                     .seating ==
                                                                 'Банкет',
                                                             onClick: () async {
-                                                              if (!widget
+                                                              if (!widget!
                                                                   .isChosen) {
                                                                 _model.seating =
                                                                     'Банкет';
@@ -1532,13 +1534,13 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                 ),
                                               ),
                                             ),
-                                          if (widget.hall!.seatingFurshet! > 0)
+                                          if (widget!.hall!.seatingFurshet! > 0)
                                             Expanded(
                                               flex: 1,
                                               child: Container(
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 20.0),
                                                   child: Column(
@@ -1547,12 +1549,12 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                     children: [
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Text(
                                                           valueOrDefault<
                                                               String>(
-                                                            widget.hall
+                                                            widget!.hall
                                                                 ?.seatingFurshet
                                                                 ?.toString(),
                                                             '0',
@@ -1579,7 +1581,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     17.0,
@@ -1597,7 +1599,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                                     .seating ==
                                                                 'Фуршет',
                                                             onClick: () async {
-                                                              if (!widget
+                                                              if (!widget!
                                                                   .isChosen) {
                                                                 _model.seating =
                                                                     'Фуршет';
@@ -1619,11 +1621,11 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   ),
                                 ],
                               ),
-                            ].divide(const SizedBox(height: 8.0)),
+                            ].divide(SizedBox(height: 8.0)),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 40.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -1638,14 +1640,14 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                         if (_model.seating != null &&
                                             _model.seating != '') {
                                           await widget.chooseAction?.call(
-                                            widget.hall?.id,
+                                            widget!.hall?.id,
                                             _model.days,
                                             valueOrDefault<double>(
-                                              (widget.hall!.price!) *
+                                              (widget!.hall!.price!) *
                                                   _model.days,
                                               0.0,
                                             ),
-                                            widget.hall?.name,
+                                            widget!.hall?.name,
                                             _model.seating,
                                           );
                                         } else {
@@ -1661,7 +1663,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                 ),
                                               ),
                                               duration:
-                                                  const Duration(milliseconds: 4000),
+                                                  Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .error,
@@ -1670,7 +1672,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                         }
                                       },
                                 text: valueOrDefault<String>(
-                                  widget.isChosen == true
+                                  widget!.isChosen == true
                                       ? 'Площадка выбрана'
                                       : 'Выбрать площадку',
                                   'Выбрать площадку',
@@ -1678,12 +1680,12 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                 options: FFButtonOptions(
                                   width: 250.0,
                                   height: 56.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  color: widget.isChosen
-                                      ? const Color(0xFF24A541)
+                                  color: widget!.isChosen
+                                      ? Color(0xFF24A541)
                                       : FlutterFlowTheme.of(context).primary,
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
@@ -1693,25 +1695,25 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   elevation: 0.0,
-                                  borderSide: const BorderSide(
+                                  borderSide: BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
                                   borderRadius: BorderRadius.circular(100.0),
-                                  disabledColor: const Color(0x672431A5),
+                                  disabledColor: Color(0x672431A5),
                                   disabledTextColor:
                                       FlutterFlowTheme.of(context)
                                           .secondaryBackground,
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 44.0)),
+                            ].divide(SizedBox(width: 44.0)),
                           ),
                         ),
                       ],
                     ),
                   ),
                 ),
-              ].divide(const SizedBox(width: 48.0)),
+              ].divide(SizedBox(width: 48.0)),
             ),
           if (responsiveVisibility(
             context: context,
@@ -1723,26 +1725,26 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   child: Container(
                     width: MediaQuery.sizeOf(context).width * 1.0,
                     height: 300.0,
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Stack(
                       children: [
                         Builder(
                           builder: (context) {
                             final hallImages =
-                                widget.hall?.images.toList() ?? [];
+                                widget!.hall?.images?.toList() ?? [];
                             if (hallImages.isEmpty) {
-                              return const SizedBox(
+                              return Container(
                                 width: double.infinity,
                                 height: double.infinity,
                                 child: ImagesEmptyWidget(),
                               );
                             }
 
-                            return SizedBox(
+                            return Container(
                               width: double.infinity,
                               child: PageView.builder(
                                 controller: _model.pageViewController2 ??=
@@ -1763,7 +1765,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
                                         await showDialog(
-                                          barrierColor: const Color(0x81FFFFFF),
+                                          barrierColor: Color(0x81FFFFFF),
                                           context: context,
                                           builder: (dialogContext) {
                                             return Dialog(
@@ -1772,11 +1774,11 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                               backgroundColor:
                                                   Colors.transparent,
                                               alignment:
-                                                  const AlignmentDirectional(0.0, 0.0)
+                                                  AlignmentDirectional(0.0, 0.0)
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
-                                              child: SizedBox(
+                                              child: Container(
                                                 height:
                                                     MediaQuery.sizeOf(context)
                                                             .height *
@@ -1786,7 +1788,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                                             .width *
                                                         0.9,
                                                 child: PopUpImagesWidget(
-                                                  images: widget.hall!.images,
+                                                  images: widget!.hall!.images,
                                                 ),
                                               ),
                                             );
@@ -1814,11 +1816,11 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                         ),
                         Container(
                           height: MediaQuery.sizeOf(context).height * 1.0,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Visibility(
-                            visible: widget.hall!.images.length > 1,
+                            visible: widget!.hall!.images.length > 1,
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 8.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -1834,7 +1836,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                       onTap: () async {
                                         await _model.pageViewController2
                                             ?.previousPage(
-                                          duration: const Duration(milliseconds: 300),
+                                          duration: Duration(milliseconds: 300),
                                           curve: Curves.ease,
                                         );
                                       },
@@ -1857,19 +1859,19 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   Container(
                                     width: 32.0,
                                     height: 32.0,
-                                    decoration: const BoxDecoration(
+                                    decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                     ),
                                   ),
                                   Container(
                                     width: 32.0,
                                     height: 32.0,
-                                    decoration: const BoxDecoration(
+                                    decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                     ),
                                   ),
                                   if (_model.pageViewCurrentIndex2 <
-                                      widget.hall!.images.length)
+                                      widget!.hall!.images.length)
                                     InkWell(
                                       splashColor: Colors.transparent,
                                       focusColor: Colors.transparent,
@@ -1878,7 +1880,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                       onTap: () async {
                                         await _model.pageViewController2
                                             ?.nextPage(
-                                          duration: const Duration(milliseconds: 300),
+                                          duration: Duration(milliseconds: 300),
                                           curve: Curves.ease,
                                         );
                                       },
@@ -1903,11 +1905,11 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                             ),
                           ),
                         ),
-                        if (widget.hall!.images.length > 1)
+                        if (widget!.hall!.images.length > 1)
                           Align(
-                            alignment: const AlignmentDirectional(0.0, 1.0),
+                            alignment: AlignmentDirectional(0.0, 1.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 16.0),
                               child: Container(
                                 decoration: BoxDecoration(
@@ -1915,14 +1917,14 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   borderRadius: BorderRadius.circular(50.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 8.0, 16.0, 8.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        '${(_model.pageViewCurrentIndex2 + 1).toString()}/${widget.hall?.images.length.toString()}',
+                                        '${(_model.pageViewCurrentIndex2 + 1).toString()}/${widget!.hall?.images?.length?.toString()}',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -1946,21 +1948,21 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
                         child: Text(
                           valueOrDefault<String>(
-                            widget.hall?.description,
+                            widget!.hall?.description,
                             'Без описания',
                           ),
                           maxLines: 5,
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Commissioner',
-                                    color: const Color(0xFF636363),
+                                    color: Color(0xFF636363),
                                     fontSize: 13.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
@@ -1973,7 +1975,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                 Builder(
                   builder: (context) => Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 8.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 8.0),
                     child: InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
@@ -1981,17 +1983,17 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                       highlightColor: Colors.transparent,
                       onTap: () async {
                         await showDialog(
-                          barrierColor: const Color(0x6914181B),
+                          barrierColor: Color(0x6914181B),
                           context: context,
                           builder: (dialogContext) {
                             return Dialog(
                               elevation: 0,
                               insetPadding: EdgeInsets.zero,
                               backgroundColor: Colors.transparent,
-                              alignment: const AlignmentDirectional(0.0, 0.0)
+                              alignment: AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
                               child: HallPopUpWidget(
-                                hall: widget.hall!,
+                                hall: widget!.hall!,
                                 isChosen: false,
                                 chosed: (id) async {
                                   await Future.delayed(
@@ -2020,20 +2022,20 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Commissioner',
-                                  color: const Color(0xFF636363),
+                                  color: Color(0xFF636363),
                                   fontSize: 16.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
                                   decoration: TextDecoration.underline,
                                 ),
                           ),
-                        ].divide(const SizedBox(width: 8.0)),
+                        ].divide(SizedBox(width: 8.0)),
                       ),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -2050,11 +2052,11 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                       ),
                       Text(
                         '${formatNumber(
-                          (widget.hall!.price!) * 0.5,
+                          (widget!.hall!.price!) * 0.5,
                           formatType: FormatType.decimal,
                           decimalType: DecimalType.automatic,
                         )} / ${formatNumber(
-                          widget.hall?.price,
+                          widget!.hall?.price,
                           formatType: FormatType.decimal,
                           decimalType: DecimalType.automatic,
                         )} руб',
@@ -2066,11 +2068,11 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                               fontWeight: FontWeight.bold,
                             ),
                       ),
-                    ].divide(const SizedBox(height: 8.0)),
+                    ].divide(SizedBox(height: 8.0)),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -2088,19 +2090,19 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 24.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 24.0),
                   child: Container(
                     width: MediaQuery.sizeOf(context).width * 1.0,
                     decoration: BoxDecoration(
-                      color: const Color(0xFFF0F0FA),
+                      color: Color(0xFFF0F0FA),
                       borderRadius: BorderRadius.circular(25.0),
                     ),
                     child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(
+                      padding: EdgeInsetsDirectional.fromSTEB(
                           16.0, 20.0, 16.0, 12.0),
                       child: GridView(
                         padding: EdgeInsets.zero,
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           crossAxisSpacing: 12.0,
                           mainAxisSpacing: 24.0,
@@ -2110,13 +2112,13 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         children: [
-                          if (widget.hall!.seatingTheater! > 0)
+                          if (widget!.hall!.seatingTheater! > 0)
                             Column(
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Text(
                                     'Театр',
                                     textAlign: TextAlign.center,
@@ -2133,13 +2135,13 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 12.0, 0.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
-                                        widget.hall?.seatingTheater
+                                        widget!.hall?.seatingTheater
                                             ?.toString(),
                                         '0',
                                       ),
@@ -2148,7 +2150,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Commissioner',
-                                            color: const Color(0xFF636363),
+                                            color: Color(0xFF636363),
                                             fontSize: 13.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
@@ -2157,7 +2159,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 12.0, 0.0, 0.0),
                                   child: wrapWithModel(
                                     model: _model.checkBoxModel9,
@@ -2166,7 +2168,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                     child: CheckBoxWidget(
                                       isChecked: _model.seating == 'Театр',
                                       onClick: () async {
-                                        if (!widget.isChosen) {
+                                        if (!widget!.isChosen) {
                                           _model.seating = 'Театр';
                                           safeSetState(() {});
                                         }
@@ -2176,12 +2178,12 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                 ),
                               ],
                             ),
-                          if (widget.hall!.seatingClass! > 0)
+                          if (widget!.hall!.seatingClass! > 0)
                             Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Text(
                                     'Класс',
                                     textAlign: TextAlign.center,
@@ -2198,13 +2200,13 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 12.0, 0.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
-                                        widget.hall?.seatingClass?.toString(),
+                                        widget!.hall?.seatingClass?.toString(),
                                         '0',
                                       ),
                                       textAlign: TextAlign.center,
@@ -2212,7 +2214,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Commissioner',
-                                            color: const Color(0xFF636363),
+                                            color: Color(0xFF636363),
                                             fontSize: 13.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
@@ -2221,7 +2223,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 12.0, 0.0, 0.0),
                                   child: wrapWithModel(
                                     model: _model.checkBoxModel10,
@@ -2230,7 +2232,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                     child: CheckBoxWidget(
                                       isChecked: _model.seating == 'Класс',
                                       onClick: () async {
-                                        if (!widget.isChosen) {
+                                        if (!widget!.isChosen) {
                                           _model.seating = 'Класс';
                                           safeSetState(() {});
                                         }
@@ -2240,12 +2242,12 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                 ),
                               ],
                             ),
-                          if (widget.hall!.seatingCommunication! > 0)
+                          if (widget!.hall!.seatingCommunication! > 0)
                             Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Text(
                                     'Переговорная',
                                     textAlign: TextAlign.center,
@@ -2262,13 +2264,13 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 12.0, 0.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
-                                        widget.hall?.seatingCommunication
+                                        widget!.hall?.seatingCommunication
                                             ?.toString(),
                                         '0',
                                       ),
@@ -2277,7 +2279,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Commissioner',
-                                            color: const Color(0xFF636363),
+                                            color: Color(0xFF636363),
                                             fontSize: 13.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
@@ -2286,7 +2288,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 12.0, 0.0, 0.0),
                                   child: wrapWithModel(
                                     model: _model.checkBoxModel11,
@@ -2296,7 +2298,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                       isChecked:
                                           _model.seating == 'Переговорная',
                                       onClick: () async {
-                                        if (!widget.isChosen) {
+                                        if (!widget!.isChosen) {
                                           _model.seating = 'Переговорная';
                                           safeSetState(() {});
                                         }
@@ -2306,12 +2308,12 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                 ),
                               ],
                             ),
-                          if (widget.hall!.seatingUshape! > 0)
+                          if (widget!.hall!.seatingUshape! > 0)
                             Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Text(
                                     'U-shape',
                                     textAlign: TextAlign.center,
@@ -2328,13 +2330,13 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 12.0, 0.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
-                                        widget.hall?.seatingUshape?.toString(),
+                                        widget!.hall?.seatingUshape?.toString(),
                                         '0',
                                       ),
                                       textAlign: TextAlign.center,
@@ -2342,7 +2344,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Commissioner',
-                                            color: const Color(0xFF636363),
+                                            color: Color(0xFF636363),
                                             fontSize: 13.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
@@ -2351,7 +2353,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 12.0, 0.0, 0.0),
                                   child: wrapWithModel(
                                     model: _model.checkBoxModel12,
@@ -2360,7 +2362,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                     child: CheckBoxWidget(
                                       isChecked: _model.seating == 'U-shape',
                                       onClick: () async {
-                                        if (!widget.isChosen) {
+                                        if (!widget!.isChosen) {
                                           _model.seating = 'U-shape';
                                           safeSetState(() {});
                                         }
@@ -2370,12 +2372,12 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                 ),
                               ],
                             ),
-                          if (widget.hall!.seatingOshape! > 0)
+                          if (widget!.hall!.seatingOshape! > 0)
                             Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Text(
                                     'O-shape',
                                     textAlign: TextAlign.center,
@@ -2392,13 +2394,13 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 12.0, 0.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
-                                        widget.hall?.seatingOshape?.toString(),
+                                        widget!.hall?.seatingOshape?.toString(),
                                         '0',
                                       ),
                                       textAlign: TextAlign.center,
@@ -2406,7 +2408,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Commissioner',
-                                            color: const Color(0xFF636363),
+                                            color: Color(0xFF636363),
                                             fontSize: 13.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
@@ -2415,7 +2417,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 12.0, 0.0, 0.0),
                                   child: wrapWithModel(
                                     model: _model.checkBoxModel13,
@@ -2424,7 +2426,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                     child: CheckBoxWidget(
                                       isChecked: _model.seating == 'O-shape',
                                       onClick: () async {
-                                        if (!widget.isChosen) {
+                                        if (!widget!.isChosen) {
                                           _model.seating = 'O-shape';
                                           safeSetState(() {});
                                         }
@@ -2434,12 +2436,12 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                 ),
                               ],
                             ),
-                          if (widget.hall!.seatingKabare! > 0)
+                          if (widget!.hall!.seatingKabare! > 0)
                             Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Text(
                                     'Кабаре',
                                     textAlign: TextAlign.center,
@@ -2456,13 +2458,13 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 12.0, 0.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
-                                        widget.hall?.seatingKabare?.toString(),
+                                        widget!.hall?.seatingKabare?.toString(),
                                         '0',
                                       ),
                                       textAlign: TextAlign.center,
@@ -2470,7 +2472,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Commissioner',
-                                            color: const Color(0xFF636363),
+                                            color: Color(0xFF636363),
                                             fontSize: 13.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
@@ -2479,7 +2481,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 12.0, 0.0, 0.0),
                                   child: wrapWithModel(
                                     model: _model.checkBoxModel14,
@@ -2488,7 +2490,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                     child: CheckBoxWidget(
                                       isChecked: _model.seating == 'Кабаре',
                                       onClick: () async {
-                                        if (!widget.isChosen) {
+                                        if (!widget!.isChosen) {
                                           _model.seating = 'Кабаре';
                                           safeSetState(() {});
                                         }
@@ -2498,12 +2500,12 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                 ),
                               ],
                             ),
-                          if (widget.hall!.seatingBanket! > 0)
+                          if (widget!.hall!.seatingBanket! > 0)
                             Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Text(
                                     'Банкет',
                                     textAlign: TextAlign.center,
@@ -2520,13 +2522,13 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 12.0, 0.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
-                                        widget.hall?.seatingBanket?.toString(),
+                                        widget!.hall?.seatingBanket?.toString(),
                                         '0',
                                       ),
                                       textAlign: TextAlign.center,
@@ -2534,7 +2536,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Commissioner',
-                                            color: const Color(0xFF636363),
+                                            color: Color(0xFF636363),
                                             fontSize: 13.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
@@ -2543,7 +2545,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 12.0, 0.0, 0.0),
                                   child: wrapWithModel(
                                     model: _model.checkBoxModel15,
@@ -2552,7 +2554,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                     child: CheckBoxWidget(
                                       isChecked: _model.seating == 'Банкет',
                                       onClick: () async {
-                                        if (!widget.isChosen) {
+                                        if (!widget!.isChosen) {
                                           _model.seating = 'Банкет';
                                           safeSetState(() {});
                                         }
@@ -2562,12 +2564,12 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                 ),
                               ],
                             ),
-                          if (widget.hall!.seatingFurshet! > 0)
+                          if (widget!.hall!.seatingFurshet! > 0)
                             Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Text(
                                     'Фуршет',
                                     textAlign: TextAlign.center,
@@ -2584,13 +2586,13 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 12.0, 0.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
-                                        widget.hall?.seatingFurshet
+                                        widget!.hall?.seatingFurshet
                                             ?.toString(),
                                         '0',
                                       ),
@@ -2599,7 +2601,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Commissioner',
-                                            color: const Color(0xFF636363),
+                                            color: Color(0xFF636363),
                                             fontSize: 13.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
@@ -2608,7 +2610,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 12.0, 0.0, 0.0),
                                   child: wrapWithModel(
                                     model: _model.checkBoxModel16,
@@ -2617,7 +2619,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                     child: CheckBoxWidget(
                                       isChecked: _model.seating == 'Фуршет',
                                       onClick: () async {
-                                        if (!widget.isChosen) {
+                                        if (!widget!.isChosen) {
                                           _model.seating = 'Фуршет';
                                           safeSetState(() {});
                                         }
@@ -2634,7 +2636,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -2642,11 +2644,11 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                         child: Container(
                           height: 40.0,
                           decoration: BoxDecoration(
-                            color: const Color(0xFFE1E1FF),
+                            color: Color(0xFFE1E1FF),
                             borderRadius: BorderRadius.circular(100.0),
                           ),
                           child: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Text(
                               '${functions.daysGen(_model.days)}',
                               style: FlutterFlowTheme.of(context)
@@ -2670,10 +2672,10 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                             height: 40.0,
                             decoration: BoxDecoration(
                               color: valueOrDefault<Color>(
-                                widget.isChosen == true
-                                    ? const Color(0x652431A5)
+                                widget!.isChosen == true
+                                    ? Color(0x652431A5)
                                     : FlutterFlowTheme.of(context).primary,
-                                const Color(0x00000000),
+                                Color(0x00000000),
                               ),
                               shape: BoxShape.circle,
                             ),
@@ -2683,7 +2685,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                if (widget.isChosen != true) {
+                                if (widget!.isChosen != true) {
                                   _model.days = _model.days + 0.5;
                                   safeSetState(() {});
                                 }
@@ -2703,7 +2705,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               if (_model.days != 0.5) {
-                                if (widget.isChosen != true) {
+                                if (widget!.isChosen != true) {
                                   _model.days = _model.days + -0.5;
                                   safeSetState(() {});
                                 }
@@ -2715,21 +2717,21 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                               decoration: BoxDecoration(
                                 color: valueOrDefault<Color>(
                                   () {
-                                    if (widget.isChosen == true) {
-                                      return const Color(0x652431A5);
+                                    if (widget!.isChosen == true) {
+                                      return Color(0x652431A5);
                                     } else if (_model.days == 0.5) {
-                                      return const Color(0x652431A5);
+                                      return Color(0x652431A5);
                                     } else {
                                       return FlutterFlowTheme.of(context)
                                           .primary;
                                     }
                                   }(),
-                                  const Color(0x00000000),
+                                  Color(0x00000000),
                                 ),
                                 shape: BoxShape.circle,
                               ),
                               child: Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: FaIcon(
                                   FontAwesomeIcons.minus,
                                   color: FlutterFlowTheme.of(context)
@@ -2739,13 +2741,13 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                               ),
                             ),
                           ),
-                        ].divide(const SizedBox(width: 24.0)),
+                        ].divide(SizedBox(width: 24.0)),
                       ),
-                    ].divide(const SizedBox(width: 24.0)),
+                    ].divide(SizedBox(width: 24.0)),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: ((_model.days <= 0.0) ||
                             (_model.seating == null || _model.seating == ''))
@@ -2754,13 +2756,13 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                             if (_model.seating != null &&
                                 _model.seating != '') {
                               await widget.chooseAction?.call(
-                                widget.hall?.id,
+                                widget!.hall?.id,
                                 _model.days,
                                 valueOrDefault<double>(
-                                  (widget.hall!.price!) * _model.days,
+                                  (widget!.hall!.price!) * _model.days,
                                   0.0,
                                 ),
-                                widget.hall?.name,
+                                widget!.hall?.name,
                                 _model.seating,
                               );
                             } else {
@@ -2773,7 +2775,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                           .secondaryBackground,
                                     ),
                                   ),
-                                  duration: const Duration(milliseconds: 4000),
+                                  duration: Duration(milliseconds: 4000),
                                   backgroundColor:
                                       FlutterFlowTheme.of(context).error,
                                 ),
@@ -2781,7 +2783,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                             }
                           },
                     text: valueOrDefault<String>(
-                      widget.isChosen == true
+                      widget!.isChosen == true
                           ? 'Площадка выбрана'
                           : 'Выбрать площадку',
                       'Выбрать площадку',
@@ -2790,11 +2792,11 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                       width: MediaQuery.sizeOf(context).width * 1.0,
                       height: 56.0,
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: widget.isChosen
-                          ? const Color(0xFF24A541)
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: widget!.isChosen
+                          ? Color(0xFF24A541)
                           : FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
@@ -2803,18 +2805,18 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                 letterSpacing: 0.0,
                               ),
                       elevation: 0.0,
-                      borderSide: const BorderSide(
+                      borderSide: BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),
                       borderRadius: BorderRadius.circular(100.0),
-                      disabledColor: const Color(0x672431A5),
+                      disabledColor: Color(0x672431A5),
                       disabledTextColor:
                           FlutterFlowTheme.of(context).secondaryBackground,
                     ),
                   ),
                 ),
-              ].divide(const SizedBox(height: 16.0)),
+              ].divide(SizedBox(height: 16.0)),
             ),
         ],
       ),

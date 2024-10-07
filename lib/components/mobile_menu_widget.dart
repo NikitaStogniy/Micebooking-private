@@ -1,3 +1,4 @@
+import '/auth/base_auth_user_provider.dart';
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/schema/enums/enums.dart';
 import '/backend/supabase/supabase.dart';
@@ -8,6 +9,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'mobile_menu_model.dart';
 export 'mobile_menu_model.dart';
 
@@ -45,7 +48,7 @@ class _MobileMenuWidgetState extends State<MobileMenuWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(1.0, -1.0),
+      alignment: AlignmentDirectional(1.0, -1.0),
       child: FutureBuilder<List<UsersRow>>(
         future: UsersTable().querySingleRow(
           queryFn: (q) => q.eq(
@@ -76,12 +79,12 @@ class _MobileMenuWidgetState extends State<MobileMenuWidget> {
 
           return Container(
             width: MediaQuery.sizeOf(context).width * 0.9,
-            constraints: const BoxConstraints(
+            constraints: BoxConstraints(
               maxWidth: 500.0,
             ),
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
-              borderRadius: const BorderRadius.only(
+              borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(30.0),
                 bottomRight: Radius.circular(0.0),
                 topLeft: Radius.circular(30.0),
@@ -89,7 +92,7 @@ class _MobileMenuWidgetState extends State<MobileMenuWidget> {
               ),
             ),
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 40.0, 24.0, 40.0),
+              padding: EdgeInsetsDirectional.fromSTEB(24.0, 40.0, 24.0, 40.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -115,7 +118,7 @@ class _MobileMenuWidgetState extends State<MobileMenuWidget> {
                             width: 180.0,
                             height: 20.0,
                             fit: BoxFit.contain,
-                            alignment: const Alignment(-1.0, 0.0),
+                            alignment: Alignment(-1.0, 0.0),
                           ),
                         ),
                       ),
@@ -239,7 +242,7 @@ class _MobileMenuWidgetState extends State<MobileMenuWidget> {
                                   builder: (context) {
                                     return Padding(
                                       padding: MediaQuery.viewInsetsOf(context),
-                                      child: const SizedBox(
+                                      child: Container(
                                         height: 600.0,
                                         child: SupportBottomsheetWidget(),
                                       ),
@@ -262,20 +265,20 @@ class _MobileMenuWidgetState extends State<MobileMenuWidget> {
                           ),
                         ],
                       ),
-                    ].divide(const SizedBox(height: 24.0)),
+                    ].divide(SizedBox(height: 24.0)),
                   ),
                   Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       FFButtonWidget(
                         onPressed: () async {
-                          if (currentUserUid != '') {
+                          if (currentUserUid != null && currentUserUid != '') {
                             if (containerUsersRow?.role ==
                                 EnumRole.HOTEL.name) {
                               context.pushNamed(
                                 'HOTEL_HOME',
                                 extra: <String, dynamic>{
-                                  kTransitionInfoKey: const TransitionInfo(
+                                  kTransitionInfoKey: TransitionInfo(
                                     hasTransition: true,
                                     transitionType: PageTransitionType.fade,
                                     duration: Duration(milliseconds: 0),
@@ -288,7 +291,7 @@ class _MobileMenuWidgetState extends State<MobileMenuWidget> {
                                 context.pushNamed(
                                   'Client_home',
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -301,7 +304,7 @@ class _MobileMenuWidgetState extends State<MobileMenuWidget> {
                                   context.pushNamed(
                                     'SUPER_Home',
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -315,7 +318,7 @@ class _MobileMenuWidgetState extends State<MobileMenuWidget> {
                             context.goNamed(
                               'PC_LoginCopy',
                               extra: <String, dynamic>{
-                                kTransitionInfoKey: const TransitionInfo(
+                                kTransitionInfoKey: TransitionInfo(
                                   hasTransition: true,
                                   transitionType: PageTransitionType.fade,
                                   duration: Duration(milliseconds: 0),
@@ -328,9 +331,9 @@ class _MobileMenuWidgetState extends State<MobileMenuWidget> {
                         options: FFButtonOptions(
                           width: MediaQuery.sizeOf(context).width * 1.0,
                           height: 48.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
@@ -340,7 +343,7 @@ class _MobileMenuWidgetState extends State<MobileMenuWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 0.0,
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -360,11 +363,11 @@ class _MobileMenuWidgetState extends State<MobileMenuWidget> {
                           options: FFButtonOptions(
                             width: MediaQuery.sizeOf(context).width * 1.0,
                             height: 48.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: const Color(0x00AAAAEE),
+                            color: Color(0x00AAAAEE),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -380,9 +383,9 @@ class _MobileMenuWidgetState extends State<MobileMenuWidget> {
                             borderRadius: BorderRadius.circular(80.0),
                           ),
                         ),
-                    ].divide(const SizedBox(height: 24.0)),
+                    ].divide(SizedBox(height: 24.0)),
                   ),
-                ].divide(const SizedBox(height: 80.0)),
+                ].divide(SizedBox(height: 80.0)),
               ),
             ),
           );

@@ -1,4 +1,5 @@
 import '/backend/schema/enums/enums.dart';
+import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
@@ -8,13 +9,18 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/hotel_flow/edit_hall/edit_hall_widget.dart';
+import 'dart:math';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'add_or_edit_hall_model.dart';
 export 'add_or_edit_hall_model.dart';
 
@@ -24,8 +30,8 @@ class AddOrEditHallWidget extends StatefulWidget {
     int? id,
     required this.doneCallback,
     int? hotelId,
-  })  : id = id ?? 88,
-        hotelId = hotelId ?? 88;
+  })  : this.id = id ?? 88,
+        this.hotelId = hotelId ?? 88;
 
   final int id;
   final Future Function()? doneCallback;
@@ -109,8 +115,8 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 200.0.ms,
-            begin: const Offset(0.0, 100.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 100.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -139,14 +145,14 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0x00FFFFFF),
+        color: Color(0x00FFFFFF),
         borderRadius: BorderRadius.circular(32.0),
       ),
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            if (widget.id == 0)
+            if (widget!.id == 0)
               Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -182,10 +188,10 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                               lineHeight: 1.0,
                             ),
                       ),
-                    ].divide(const SizedBox(width: 16.0)),
+                    ].divide(SizedBox(width: 16.0)),
                   ),
                   Align(
-                    alignment: const AlignmentDirectional(-1.0, 1.0),
+                    alignment: AlignmentDirectional(-1.0, 1.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -195,7 +201,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                           children: [
                             Container(
                               width: 200.0,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Text(
                                 'Название зала*',
                                 style: FlutterFlowTheme.of(context)
@@ -210,14 +216,14 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                             ),
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 8.0, 0.0),
                                 child: TextFormField(
                                   controller: _model.nameTextController,
                                   focusNode: _model.nameFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.nameTextController',
-                                    const Duration(milliseconds: 300),
+                                    Duration(milliseconds: 300),
                                     () => safeSetState(() {}),
                                   ),
                                   autofocus: false,
@@ -236,7 +242,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                           letterSpacing: 0.0,
                                         ),
                                     enabledBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
+                                      borderSide: BorderSide(
                                         color: Color(0xFFF0F0FA),
                                         width: 2.0,
                                       ),
@@ -267,7 +273,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                       borderRadius: BorderRadius.circular(24.0),
                                     ),
                                     filled: true,
-                                    fillColor: const Color(0xFFF0F0FA),
+                                    fillColor: Color(0xFFF0F0FA),
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
@@ -288,9 +294,9 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                           children: [
                             Container(
                               width: 200.0,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 8.0, 0.0, 0.0),
                                 child: Text(
                                   'Описание зала*',
@@ -307,14 +313,14 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                             ),
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 8.0, 0.0),
                                 child: TextFormField(
                                   controller: _model.descriptionTextController,
                                   focusNode: _model.descriptionFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.descriptionTextController',
-                                    const Duration(milliseconds: 300),
+                                    Duration(milliseconds: 300),
                                     () => safeSetState(() {}),
                                   ),
                                   autofocus: false,
@@ -333,7 +339,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                           letterSpacing: 0.0,
                                         ),
                                     enabledBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
+                                      borderSide: BorderSide(
                                         color: Color(0xFFF0F0FA),
                                         width: 2.0,
                                       ),
@@ -364,7 +370,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                       borderRadius: BorderRadius.circular(24.0),
                                     ),
                                     filled: true,
-                                    fillColor: const Color(0xFFF0F0FA),
+                                    fillColor: Color(0xFFF0F0FA),
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
@@ -388,9 +394,9 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                             Container(
                               width: 200.0,
                               height: 100.0,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Text(
                                   'Фотографии*',
                                   style: FlutterFlowTheme.of(context)
@@ -405,7 +411,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 24.0, 0.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
@@ -476,16 +482,16 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                   });
                                 },
                                 text: '',
-                                icon: const Icon(
+                                icon: Icon(
                                   Icons.add,
                                   size: 24.0,
                                 ),
                                 options: FFButtonOptions(
                                   width: 40.0,
                                   height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).primary,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -496,7 +502,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                         letterSpacing: 0.0,
                                       ),
                                   elevation: 0.0,
-                                  borderSide: const BorderSide(
+                                  borderSide: BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
@@ -504,7 +510,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                 ),
                               ),
                             ),
-                            if (_model.uploadedImages.isNotEmpty)
+                            if (_model.uploadedImages.length > 0)
                               Expanded(
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -514,7 +520,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                       width: MediaQuery.sizeOf(context).width *
                                           1.0,
                                       height: 100.0,
-                                      decoration: const BoxDecoration(),
+                                      decoration: BoxDecoration(),
                                       child: Builder(
                                         builder: (context) {
                                           final images =
@@ -529,18 +535,18 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                               final imagesItem =
                                                   images[imagesIndex];
                                               return Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
-                                                child: SizedBox(
+                                                child: Container(
                                                   width: 160.0,
                                                   child: Stack(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     4.0,
                                                                     4.0,
@@ -604,7 +610,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                       ),
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 1.0, -1.0),
                                                         child:
                                                             FlutterFlowIconButton(
@@ -636,7 +642,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                       ),
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 -0.9, -0.8),
                                                         child: InkWell(
                                                           splashColor: Colors
@@ -689,7 +695,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                     ),
                                     if (_model.uploadedImages.length > 4)
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 4.0, 0.0, 0.0),
                                         child: Text(
                                           'Для прокрутки фотографий зажмите левую кнопку мыши или используйте свайп по тачпаду.',
@@ -708,7 +714,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                           ],
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 32.0, 0.0, 0.0),
                           child: Text(
                             'Общая информация о зале',
@@ -723,7 +729,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 16.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -739,14 +745,14 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                       fontWeight: FontWeight.w500,
                                     ),
                               ),
-                              SizedBox(
+                              Container(
                                 width: 100.0,
                                 child: TextFormField(
                                   controller: _model.sizeTextController,
                                   focusNode: _model.sizeFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.sizeTextController',
-                                    const Duration(milliseconds: 300),
+                                    Duration(milliseconds: 300),
                                     () => safeSetState(() {}),
                                   ),
                                   autofocus: false,
@@ -798,9 +804,9 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                       borderRadius: BorderRadius.circular(24.0),
                                     ),
                                     filled: true,
-                                    fillColor: const Color(0xFFF0F0FA),
+                                    fillColor: Color(0xFFF0F0FA),
                                     contentPadding:
-                                        const EdgeInsetsDirectional.fromSTEB(
+                                        EdgeInsetsDirectional.fromSTEB(
                                             8.0, 8.0, 8.0, 8.0),
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -827,7 +833,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                       letterSpacing: 0.0,
                                     ),
                               ),
-                            ].divide(const SizedBox(width: 24.0)),
+                            ].divide(SizedBox(width: 24.0)),
                           ),
                         ),
                         Row(
@@ -844,14 +850,14 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                     fontWeight: FontWeight.w500,
                                   ),
                             ),
-                            SizedBox(
+                            Container(
                               width: 100.0,
                               child: TextFormField(
                                 controller: _model.capacityTextController,
                                 focusNode: _model.capacityFocusNode,
                                 onChanged: (_) => EasyDebounce.debounce(
                                   '_model.capacityTextController',
-                                  const Duration(milliseconds: 300),
+                                  Duration(milliseconds: 300),
                                   () => safeSetState(() {}),
                                 ),
                                 autofocus: false,
@@ -901,9 +907,9 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                     borderRadius: BorderRadius.circular(24.0),
                                   ),
                                   filled: true,
-                                  fillColor: const Color(0xFFF0F0FA),
+                                  fillColor: Color(0xFFF0F0FA),
                                   contentPadding:
-                                      const EdgeInsetsDirectional.fromSTEB(
+                                      EdgeInsetsDirectional.fromSTEB(
                                           8.0, 8.0, 8.0, 8.0),
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -931,7 +937,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                     letterSpacing: 0.0,
                                   ),
                             ),
-                          ].divide(const SizedBox(width: 24.0)),
+                          ].divide(SizedBox(width: 24.0)),
                         ),
                         Column(
                           mainAxisSize: MainAxisSize.max,
@@ -946,23 +952,23 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 16.0, 0.0, 8.0),
                                       child: Container(
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 1.0,
-                                        constraints: const BoxConstraints(
+                                        constraints: BoxConstraints(
                                           maxWidth: 500.0,
                                         ),
                                         decoration: BoxDecoration(
-                                          color: const Color(0x17000000),
+                                          color: Color(0x17000000),
                                           borderRadius:
                                               BorderRadius.circular(16.0),
                                         ),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 16.0, 8.0, 16.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -982,7 +988,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                 ],
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 2.0, 0.0, 0.0),
                                                 child: Text(
@@ -1003,7 +1009,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 12.0, 0.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -1024,7 +1030,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                               FontWeight.w500,
                                                         ),
                                               ),
-                                              SizedBox(
+                                              Container(
                                                 width: 100.0,
                                                 child: TextFormField(
                                                   controller: _model
@@ -1105,9 +1111,9 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                     ),
                                                     filled: true,
                                                     fillColor:
-                                                        const Color(0xFFF0F0FA),
+                                                        Color(0xFFF0F0FA),
                                                     contentPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 8.0,
                                                                 8.0, 8.0),
                                                   ),
@@ -1141,7 +1147,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                            ].divide(const SizedBox(width: 24.0)),
+                                            ].divide(SizedBox(width: 24.0)),
                                           ),
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1159,7 +1165,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                               FontWeight.w500,
                                                         ),
                                               ),
-                                              SizedBox(
+                                              Container(
                                                 width: 100.0,
                                                 child: TextFormField(
                                                   controller:
@@ -1240,9 +1246,9 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                     ),
                                                     filled: true,
                                                     fillColor:
-                                                        const Color(0xFFF0F0FA),
+                                                        Color(0xFFF0F0FA),
                                                     contentPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 8.0,
                                                                 8.0, 8.0),
                                                   ),
@@ -1276,7 +1282,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                            ].divide(const SizedBox(width: 24.0)),
+                                            ].divide(SizedBox(width: 24.0)),
                                           ),
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1294,7 +1300,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                               FontWeight.w500,
                                                         ),
                                               ),
-                                              SizedBox(
+                                              Container(
                                                 width: 100.0,
                                                 child: TextFormField(
                                                   controller:
@@ -1375,9 +1381,9 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                     ),
                                                     filled: true,
                                                     fillColor:
-                                                        const Color(0xFFF0F0FA),
+                                                        Color(0xFFF0F0FA),
                                                     contentPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 8.0,
                                                                 8.0, 8.0),
                                                   ),
@@ -1411,7 +1417,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                            ].divide(const SizedBox(width: 24.0)),
+                                            ].divide(SizedBox(width: 24.0)),
                                           ),
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1429,7 +1435,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                               FontWeight.w500,
                                                         ),
                                               ),
-                                              SizedBox(
+                                              Container(
                                                 width: 100.0,
                                                 child: TextFormField(
                                                   controller: _model
@@ -1510,9 +1516,9 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                     ),
                                                     filled: true,
                                                     fillColor:
-                                                        const Color(0xFFF0F0FA),
+                                                        Color(0xFFF0F0FA),
                                                     contentPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 8.0,
                                                                 8.0, 8.0),
                                                   ),
@@ -1546,7 +1552,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                            ].divide(const SizedBox(width: 24.0)),
+                                            ].divide(SizedBox(width: 24.0)),
                                           ),
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1564,7 +1570,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                               FontWeight.w500,
                                                         ),
                                               ),
-                                              SizedBox(
+                                              Container(
                                                 width: 100.0,
                                                 child: TextFormField(
                                                   controller: _model
@@ -1645,9 +1651,9 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                     ),
                                                     filled: true,
                                                     fillColor:
-                                                        const Color(0xFFF0F0FA),
+                                                        Color(0xFFF0F0FA),
                                                     contentPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 8.0,
                                                                 8.0, 8.0),
                                                   ),
@@ -1681,7 +1687,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                            ].divide(const SizedBox(width: 24.0)),
+                                            ].divide(SizedBox(width: 24.0)),
                                           ),
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1699,7 +1705,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                               FontWeight.w500,
                                                         ),
                                               ),
-                                              SizedBox(
+                                              Container(
                                                 width: 100.0,
                                                 child: TextFormField(
                                                   controller: _model
@@ -1780,9 +1786,9 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                     ),
                                                     filled: true,
                                                     fillColor:
-                                                        const Color(0xFFF0F0FA),
+                                                        Color(0xFFF0F0FA),
                                                     contentPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 8.0,
                                                                 8.0, 8.0),
                                                   ),
@@ -1816,7 +1822,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                            ].divide(const SizedBox(width: 24.0)),
+                                            ].divide(SizedBox(width: 24.0)),
                                           ),
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1834,7 +1840,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                               FontWeight.w500,
                                                         ),
                                               ),
-                                              SizedBox(
+                                              Container(
                                                 width: 100.0,
                                                 child: TextFormField(
                                                   controller: _model
@@ -1915,9 +1921,9 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                     ),
                                                     filled: true,
                                                     fillColor:
-                                                        const Color(0xFFF0F0FA),
+                                                        Color(0xFFF0F0FA),
                                                     contentPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 8.0,
                                                                 8.0, 8.0),
                                                   ),
@@ -1951,7 +1957,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                            ].divide(const SizedBox(width: 24.0)),
+                                            ].divide(SizedBox(width: 24.0)),
                                           ),
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1969,7 +1975,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                               FontWeight.w500,
                                                         ),
                                               ),
-                                              SizedBox(
+                                              Container(
                                                 width: 100.0,
                                                 child: TextFormField(
                                                   controller: _model
@@ -2050,9 +2056,9 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                     ),
                                                     filled: true,
                                                     fillColor:
-                                                        const Color(0xFFF0F0FA),
+                                                        Color(0xFFF0F0FA),
                                                     contentPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 8.0,
                                                                 8.0, 8.0),
                                                   ),
@@ -2086,16 +2092,16 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                            ].divide(const SizedBox(width: 24.0)),
+                                            ].divide(SizedBox(width: 24.0)),
                                           ),
-                                        ].divide(const SizedBox(height: 8.0)),
+                                        ].divide(SizedBox(height: 8.0)),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(height: 8.0)),
+                                  ].divide(SizedBox(height: 8.0)),
                                 ),
-                              ].divide(const SizedBox(height: 8.0)),
+                              ].divide(SizedBox(height: 8.0)),
                             ),
-                          ].divide(const SizedBox(height: 8.0)),
+                          ].divide(SizedBox(height: 8.0)),
                         ),
                         Column(
                           mainAxisSize: MainAxisSize.min,
@@ -2103,7 +2109,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                           children: [
                             Container(
                               width: MediaQuery.sizeOf(context).width * 1.0,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: FutureBuilder<List<ServiceCategoryRow>>(
                                 future: ServiceCategoryTable().queryRows(
                                   queryFn: (q) => q.eq(
@@ -2134,7 +2140,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
 
                                   return MasonryGridView.builder(
                                     gridDelegate:
-                                        const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                        SliverSimpleGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 2,
                                     ),
                                     crossAxisSpacing: 40.0,
@@ -2148,15 +2154,15 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                           staggeredViewServiceCategoryRowList[
                                               staggeredViewIndex];
                                       return Container(
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Container(
                                           width: double.infinity,
-                                          color: const Color(0x00000000),
+                                          color: Color(0x00000000),
                                           child: ExpandableNotifier(
                                             initialExpanded: true,
                                             child: ExpandablePanel(
                                               header: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 20.0),
                                                 child: Row(
@@ -2230,7 +2236,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                         listViewServiceRowList
                                                             .length,
                                                     separatorBuilder: (_, __) =>
-                                                        const SizedBox(height: 12.0),
+                                                        SizedBox(height: 12.0),
                                                     itemBuilder: (context,
                                                         listViewIndex) {
                                                       final listViewServiceRow =
@@ -2299,9 +2305,9 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                                           .selectedServices
                                                                           .contains(listViewServiceRow
                                                                               .id)
-                                                                      ? const Color(
+                                                                      ? Color(
                                                                           0x00EEEEEE)
-                                                                      : const Color(
+                                                                      : Color(
                                                                           0xFF57636C),
                                                                 ),
                                                               ),
@@ -2311,7 +2317,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                                     .contains(
                                                                         listViewServiceRow
                                                                             .id),
-                                                                child: const Align(
+                                                                child: Align(
                                                                   alignment:
                                                                       AlignmentDirectional(
                                                                           0.0,
@@ -2351,7 +2357,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                                   ),
                                                             ),
                                                           ),
-                                                        ].divide(const SizedBox(
+                                                        ].divide(SizedBox(
                                                             width: 4.0)),
                                                       );
                                                     },
@@ -2403,14 +2409,14 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ),
-                                SizedBox(
+                                Container(
                                   width: 100.0,
                                   child: TextFormField(
                                     controller: _model.priceTextController,
                                     focusNode: _model.priceFocusNode,
                                     onChanged: (_) => EasyDebounce.debounce(
                                       '_model.priceTextController',
-                                      const Duration(milliseconds: 300),
+                                      Duration(milliseconds: 300),
                                       () => safeSetState(() {}),
                                     ),
                                     autofocus: false,
@@ -2466,9 +2472,9 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                             BorderRadius.circular(24.0),
                                       ),
                                       filled: true,
-                                      fillColor: const Color(0xFFF0F0FA),
+                                      fillColor: Color(0xFFF0F0FA),
                                       contentPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               8.0, 8.0, 8.0, 8.0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -2487,7 +2493,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                     ],
                                   ),
                                 ),
-                              ].divide(const SizedBox(width: 8.0)),
+                              ].divide(SizedBox(width: 8.0)),
                             ),
                             Row(
                               mainAxisSize: MainAxisSize.max,
@@ -2503,7 +2509,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ),
-                                SizedBox(
+                                Container(
                                   width: 100.0,
                                   child: TextFormField(
                                     controller: _model.halfPriceTextController,
@@ -2561,9 +2567,9 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                             BorderRadius.circular(24.0),
                                       ),
                                       filled: true,
-                                      fillColor: const Color(0xFFF0F0FA),
+                                      fillColor: Color(0xFFF0F0FA),
                                       contentPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               8.0, 8.0, 8.0, 8.0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -2582,19 +2588,24 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                     ],
                                   ),
                                 ),
-                              ].divide(const SizedBox(width: 8.0)),
+                              ].divide(SizedBox(width: 8.0)),
                             ),
-                          ].divide(const SizedBox(width: 24.0)),
+                          ].divide(SizedBox(width: 24.0)),
                         ),
-                      ].divide(const SizedBox(height: 10.0)),
+                      ].divide(SizedBox(height: 10.0)),
                     ),
                   ),
                   FFButtonWidget(
-                    onPressed: ((_model.nameTextController.text == '') ||
-                            (_model.descriptionTextController.text == '') ||
-                            (_model.sizeTextController.text == '') ||
-                            (_model.capacityTextController.text == '') ||
-                            (_model.priceTextController.text == '') ||
+                    onPressed: ((_model.nameTextController.text == null ||
+                                _model.nameTextController.text == '') ||
+                            (_model.descriptionTextController.text == null ||
+                                _model.descriptionTextController.text == '') ||
+                            (_model.sizeTextController.text == null ||
+                                _model.sizeTextController.text == '') ||
+                            (_model.capacityTextController.text == null ||
+                                _model.capacityTextController.text == '') ||
+                            (_model.priceTextController.text == null ||
+                                _model.priceTextController.text == '') ||
                             ((_model.theatreTextController.text == '0') &&
                                 (_model.clasTextController.text == '0') &&
                                 (_model.commTextController.text == '0') &&
@@ -2603,14 +2614,14 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                 (_model.kabareTextController.text == '0') &&
                                 (_model.banketTextController.text == '0') &&
                                 (_model.furshetTextController.text == '0')) ||
-                            (_model.uploadedImages.isEmpty))
+                            (_model.uploadedImages.length == 0))
                         ? null
                         : () async {
                             _model.hotelOfHall = await HotelTable().queryRows(
                               queryFn: (q) => q
                                   .eq(
                                     'id',
-                                    widget.hotelId,
+                                    widget!.hotelId,
                                   )
                                   .order('created_at'),
                             );
@@ -2671,7 +2682,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                               },
                               matchingRows: (rows) => rows.eq(
                                 'id',
-                                widget.hotelId,
+                                widget!.hotelId,
                               ),
                             );
                             _model.hotel = null;
@@ -2687,9 +2698,9 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                     options: FFButtonOptions(
                       height: 50.0,
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(43.0, 0.0, 43.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(43.0, 0.0, 43.0, 0.0),
                       iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
@@ -2698,7 +2709,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                 letterSpacing: 0.0,
                               ),
                       elevation: 0.0,
-                      borderSide: const BorderSide(
+                      borderSide: BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),
@@ -2709,15 +2720,15 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                           FlutterFlowTheme.of(context).secondaryText,
                     ),
                   ),
-                ].divide(const SizedBox(height: 32.0)),
+                ].divide(SizedBox(height: 32.0)),
               ),
-            if (widget.id != 0)
+            if (widget!.id != 0)
               FutureBuilder<List<HallRow>>(
                 future: HallTable().querySingleRow(
                   queryFn: (q) => q.eq(
                     'id',
                     valueOrDefault<int>(
-                      widget.id,
+                      widget!.id,
                       88,
                     ),
                   ),
@@ -2752,7 +2763,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                     updateCallback: () => safeSetState(() {}),
                     updateOnChange: true,
                     child: EditHallWidget(
-                      id: widget.id,
+                      id: widget!.id,
                       initialHall: editHallHallRow!,
                       doneCallback: () async {
                         await widget.doneCallback?.call();
@@ -2761,7 +2772,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                   );
                 },
               ),
-          ].addToEnd(const SizedBox(height: 72.0)),
+          ].addToEnd(SizedBox(height: 72.0)),
         ),
       ),
     ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!);

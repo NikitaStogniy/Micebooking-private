@@ -10,7 +10,7 @@ class RequestWrapperTable extends SupabaseTable<RequestWrapperRow> {
 }
 
 class RequestWrapperRow extends SupabaseDataRow {
-  RequestWrapperRow(super.data);
+  RequestWrapperRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => RequestWrapperTable();

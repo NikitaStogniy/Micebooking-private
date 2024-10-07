@@ -4,6 +4,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'edit_about_us_model.dart';
 export 'edit_about_us_model.dart';
 
@@ -74,7 +76,7 @@ class _EditAboutUsWidgetState extends State<EditAboutUsWidget> {
             containerCmsRowList.isNotEmpty ? containerCmsRowList.first : null;
 
         return Container(
-          decoration: const BoxDecoration(),
+          decoration: BoxDecoration(),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -85,7 +87,7 @@ class _EditAboutUsWidgetState extends State<EditAboutUsWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -124,7 +126,7 @@ class _EditAboutUsWidgetState extends State<EditAboutUsWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               enabledBorder: UnderlineInputBorder(
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Color(0xFFF0F0FA),
                                   width: 2.0,
                                 ),
@@ -152,7 +154,7 @@ class _EditAboutUsWidgetState extends State<EditAboutUsWidget> {
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               filled: true,
-                              fillColor: const Color(0xFFF0F0FA),
+                              fillColor: Color(0xFFF0F0FA),
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
@@ -164,12 +166,12 @@ class _EditAboutUsWidgetState extends State<EditAboutUsWidget> {
                                 .aboutUsTitleTextControllerValidator
                                 .asValidator(context),
                           ),
-                        ].divide(const SizedBox(height: 24.0)),
+                        ].divide(SizedBox(height: 24.0)),
                       ),
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -208,7 +210,7 @@ class _EditAboutUsWidgetState extends State<EditAboutUsWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               enabledBorder: UnderlineInputBorder(
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Color(0xFFF0F0FA),
                                   width: 2.0,
                                 ),
@@ -236,7 +238,7 @@ class _EditAboutUsWidgetState extends State<EditAboutUsWidget> {
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               filled: true,
-                              fillColor: const Color(0xFFF0F0FA),
+                              fillColor: Color(0xFFF0F0FA),
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
@@ -249,10 +251,10 @@ class _EditAboutUsWidgetState extends State<EditAboutUsWidget> {
                                 .aboutUsText1TextControllerValidator
                                 .asValidator(context),
                           ),
-                        ].divide(const SizedBox(height: 24.0)),
+                        ].divide(SizedBox(height: 24.0)),
                       ),
                     ),
-                  ].divide(const SizedBox(height: 40.0)),
+                  ].divide(SizedBox(height: 40.0)),
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
@@ -266,9 +268,9 @@ class _EditAboutUsWidgetState extends State<EditAboutUsWidget> {
                         text: 'Редактировать',
                         options: FFButtonOptions(
                           height: 50.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               43.0, 0.0, 43.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
@@ -278,7 +280,7 @@ class _EditAboutUsWidgetState extends State<EditAboutUsWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 0.0,
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -304,9 +306,9 @@ class _EditAboutUsWidgetState extends State<EditAboutUsWidget> {
                         text: 'Сохранить',
                         options: FFButtonOptions(
                           height: 50.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               43.0, 0.0, 43.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
@@ -316,7 +318,7 @@ class _EditAboutUsWidgetState extends State<EditAboutUsWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 0.0,
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -339,9 +341,9 @@ class _EditAboutUsWidgetState extends State<EditAboutUsWidget> {
                         text: 'Отменить изменения',
                         options: FFButtonOptions(
                           height: 50.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               43.0, 0.0, 43.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).error,
                           textStyle:
@@ -351,16 +353,16 @@ class _EditAboutUsWidgetState extends State<EditAboutUsWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 0.0,
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
                           borderRadius: BorderRadius.circular(24.0),
                         ),
                       ),
-                  ].divide(const SizedBox(width: 16.0)),
+                  ].divide(SizedBox(width: 16.0)),
                 ),
-              ].divide(const SizedBox(height: 40.0)).addToEnd(const SizedBox(height: 70.0)),
+              ].divide(SizedBox(height: 40.0)).addToEnd(SizedBox(height: 70.0)),
             ),
           ),
         );

@@ -1,10 +1,21 @@
+import '/backend/schema/enums/enums.dart';
 import '/backend/supabase/supabase.dart';
+import '/cms/super_service_elment/super_service_elment_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/pop_up/confirm_action/confirm_action_widget.dart';
 import '/superuser_flow/add_new/add_new_widget.dart';
 import '/superuser_flow/info_component/info_component_widget.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'hotel_settings_widget.dart' show HotelSettingsWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class HotelSettingsModel extends FlutterFlowModel<HotelSettingsWidget> {
   ///  Local state fields for this component.
@@ -96,7 +107,7 @@ class HotelSettingsModel extends FlutterFlowModel<HotelSettingsWidget> {
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(const Duration(milliseconds: 50));
+      await Future.delayed(Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete = requestCompleter1?.isCompleted ?? false;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
@@ -111,7 +122,7 @@ class HotelSettingsModel extends FlutterFlowModel<HotelSettingsWidget> {
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(const Duration(milliseconds: 50));
+      await Future.delayed(Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete = requestCompleter2?.isCompleted ?? false;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
@@ -126,7 +137,7 @@ class HotelSettingsModel extends FlutterFlowModel<HotelSettingsWidget> {
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(const Duration(milliseconds: 50));
+      await Future.delayed(Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete = requestCompleter4?.isCompleted ?? false;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
@@ -141,7 +152,7 @@ class HotelSettingsModel extends FlutterFlowModel<HotelSettingsWidget> {
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(const Duration(milliseconds: 50));
+      await Future.delayed(Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete = requestCompleter3?.isCompleted ?? false;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {

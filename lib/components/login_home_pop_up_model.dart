@@ -1,10 +1,21 @@
+import '/auth/supabase_auth/auth_util.dart';
+import '/backend/schema/enums/enums.dart';
+import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
+import '/components/change_password_widget.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/pop_up/pop_up_p_p/pop_up_p_p_widget.dart';
 import '/uikit/login_form/login_form_widget.dart';
 import '/uikit/signup_form/signup_form_widget.dart';
 import 'login_home_pop_up_widget.dart' show LoginHomePopUpWidget;
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:provider/provider.dart';
 
 class LoginHomePopUpModel extends FlutterFlowModel<LoginHomePopUpWidget> {
   ///  Local state fields for this component.

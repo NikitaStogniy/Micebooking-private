@@ -1,6 +1,8 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'add_new_model.dart';
 export 'add_new_model.dart';
 
@@ -9,7 +11,7 @@ class AddNewWidget extends StatefulWidget {
     super.key,
     required this.onClick,
     String? label,
-  }) : label = label ?? 'Добавить';
+  }) : this.label = label ?? 'Добавить';
 
   final Future Function()? onClick;
   final String label;
@@ -69,7 +71,7 @@ class _AddNewWidgetState extends State<AddNewWidget> {
             ),
           ),
           Text(
-            widget.label,
+            widget!.label,
             style: FlutterFlowTheme.of(context).bodyMedium.override(
                   fontFamily: 'Commissioner',
                   fontSize: 18.0,
@@ -77,7 +79,7 @@ class _AddNewWidgetState extends State<AddNewWidget> {
                   fontWeight: FontWeight.w500,
                 ),
           ),
-        ].divide(const SizedBox(width: 16.0)),
+        ].divide(SizedBox(width: 16.0)),
       ),
     );
   }

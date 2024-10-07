@@ -9,7 +9,7 @@ class PageTable extends SupabaseTable<PageRow> {
 }
 
 class PageRow extends SupabaseDataRow {
-  PageRow(super.data);
+  PageRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => PageTable();
@@ -23,8 +23,8 @@ class PageRow extends SupabaseDataRow {
   String? get checksum => getField<String>('checksum');
   set checksum(String? value) => setField<String>('checksum', value);
 
-  dynamic get meta => getField<dynamic>('meta');
-  set meta(dynamic value) => setField<dynamic>('meta', value);
+  dynamic? get meta => getField<dynamic>('meta');
+  set meta(dynamic? value) => setField<dynamic>('meta', value);
 
   String? get type => getField<String>('type');
   set type(String? value) => setField<String>('type', value);

@@ -8,6 +8,8 @@ import '/custom_code/actions/index.dart' as actions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'login_form_model.dart';
 export 'login_form_model.dart';
 
@@ -74,13 +76,13 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                     ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                 child: TextFormField(
                   controller: _model.textController1,
                   focusNode: _model.textFieldFocusNode1,
                   onChanged: (_) => EasyDebounce.debounce(
                     '_model.textController1',
-                    const Duration(milliseconds: 200),
+                    Duration(milliseconds: 200),
                     () => safeSetState(() {}),
                   ),
                   autofocus: false,
@@ -126,7 +128,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                       borderRadius: BorderRadius.circular(24.0),
                     ),
                     filled: true,
-                    fillColor: const Color(0xFFF0F0FA),
+                    fillColor: Color(0xFFF0F0FA),
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Commissioner',
@@ -143,7 +145,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                       _model.textController1Validator.asValidator(context),
                 ),
               ),
-            ].divide(const SizedBox(height: 13.0)),
+            ].divide(SizedBox(height: 13.0)),
           ),
           Column(
             mainAxisSize: MainAxisSize.max,
@@ -158,13 +160,13 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                     ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                 child: TextFormField(
                   controller: _model.textController2,
                   focusNode: _model.textFieldFocusNode2,
                   onChanged: (_) => EasyDebounce.debounce(
                     '_model.textController2',
-                    const Duration(milliseconds: 200),
+                    Duration(milliseconds: 200),
                     () => safeSetState(() {}),
                   ),
                   autofocus: false,
@@ -210,7 +212,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                       borderRadius: BorderRadius.circular(24.0),
                     ),
                     filled: true,
-                    fillColor: const Color(0xFFF0F0FA),
+                    fillColor: Color(0xFFF0F0FA),
                     suffixIcon: InkWell(
                       onTap: () => safeSetState(
                         () => _model.passwordVisibility =
@@ -240,10 +242,10 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                       _model.textController2Validator.asValidator(context),
                 ),
               ),
-            ].divide(const SizedBox(height: 13.0)),
+            ].divide(SizedBox(height: 13.0)),
           ),
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 16.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 16.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -266,19 +268,19 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                                 _model.textController1.text,
                               ),
                             );
-                            if (_model.user?.first.role ==
+                            if (_model.user?.first?.role ==
                                 EnumRole.CLIENT.name) {
                               context.goNamed('Home');
 
                               await widget.action?.call();
                             } else {
-                              if (_model.user?.first.role ==
+                              if (_model.user?.first?.role ==
                                   EnumRole.HOTEL.name) {
                                 await widget.action?.call();
 
                                 context.pushNamed('HOTEL_HOME');
                               } else {
-                                if (_model.user?.first.role ==
+                                if (_model.user?.first?.role ==
                                     EnumRole.SUPERUSER.name) {
                                   await widget.action?.call();
 
@@ -293,9 +295,9 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                         text: 'Войти',
                         options: FFButtonOptions(
                           width: MediaQuery.sizeOf(context).width * 1.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               24.0, 32.0, 24.0, 32.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
@@ -305,7 +307,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 0.0,
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -313,10 +315,10 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                         ),
                       ),
                     ),
-                  ].divide(const SizedBox(width: 20.0)),
+                  ].divide(SizedBox(width: 20.0)),
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: Builder(
                     builder: (context) => InkWell(
                       splashColor: Colors.transparent,
@@ -325,16 +327,16 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                       highlightColor: Colors.transparent,
                       onTap: () async {
                         await showDialog(
-                          barrierColor: const Color(0xE6FFFFFF),
+                          barrierColor: Color(0xE6FFFFFF),
                           context: context,
                           builder: (dialogContext) {
                             return Dialog(
                               elevation: 0,
                               insetPadding: EdgeInsets.zero,
                               backgroundColor: Colors.transparent,
-                              alignment: const AlignmentDirectional(0.0, 0.0)
+                              alignment: AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
-                              child: const ChangePasswordWidget(),
+                              child: ChangePasswordWidget(),
                             );
                           },
                         );
@@ -342,18 +344,18 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                       child: Container(
                         width: 150.0,
                         height: 40.0,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           color: Color(0x00FFFFFF),
                         ),
                         child: Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: Text(
                             'Забыли пароль?',
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Commissioner',
-                                  color: const Color(0xFF2431A5),
+                                  color: Color(0xFF2431A5),
                                   fontSize: 18.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
@@ -365,10 +367,10 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                     ),
                   ),
                 ),
-              ].divide(const SizedBox(height: 20.0)),
+              ].divide(SizedBox(height: 20.0)),
             ),
           ),
-        ].divide(const SizedBox(height: 18.0)),
+        ].divide(SizedBox(height: 18.0)),
       ),
     );
   }

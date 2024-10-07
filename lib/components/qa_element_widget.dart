@@ -4,6 +4,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'qa_element_model.dart';
 export 'qa_element_model.dart';
 
@@ -16,9 +18,9 @@ class QaElementWidget extends StatefulWidget {
     String? title2,
     required this.delete,
     bool? readOnly,
-  })  : title = title ?? 'Элемент',
-        title2 = title2 ?? 'Текст',
-        readOnly = readOnly ?? false;
+  })  : this.title = title ?? 'Элемент',
+        this.title2 = title2 ?? 'Текст',
+        this.readOnly = readOnly ?? false;
 
   final CmsRow? qa;
   final int? index;
@@ -46,11 +48,11 @@ class _QaElementWidgetState extends State<QaElementWidget> {
     _model = createModel(context, () => QaElementModel());
 
     _model.aboutUsText1TextController1 ??=
-        TextEditingController(text: widget.qa?.title1);
+        TextEditingController(text: widget!.qa?.title1);
     _model.aboutUsText1FocusNode1 ??= FocusNode();
 
     _model.aboutUsText1TextController2 ??=
-        TextEditingController(text: widget.qa?.text1);
+        TextEditingController(text: widget!.qa?.text1);
     _model.aboutUsText1FocusNode2 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -69,7 +71,7 @@ class _QaElementWidgetState extends State<QaElementWidget> {
       mainAxisSize: MainAxisSize.max,
       children: [
         Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,8 +80,8 @@ class _QaElementWidgetState extends State<QaElementWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Text(
-                    '${widget.title} ${valueOrDefault<String>(
-                      widget.index?.toString(),
+                    '${widget!.title} ${valueOrDefault<String>(
+                      widget!.index?.toString(),
                       '1',
                     )}',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -89,13 +91,13 @@ class _QaElementWidgetState extends State<QaElementWidget> {
                           fontWeight: FontWeight.w500,
                         ),
                   ),
-                  if (widget.readOnly)
+                  if (widget!.readOnly)
                     FlutterFlowIconButton(
                       borderColor: FlutterFlowTheme.of(context).error,
                       borderRadius: 20.0,
                       borderWidth: 1.0,
                       buttonSize: 40.0,
-                      fillColor: const Color(0x19BE3030),
+                      fillColor: Color(0x19BE3030),
                       icon: Icon(
                         Icons.delete_rounded,
                         color: FlutterFlowTheme.of(context).primaryText,
@@ -105,14 +107,14 @@ class _QaElementWidgetState extends State<QaElementWidget> {
                         await widget.delete?.call();
                       },
                     ),
-                ].divide(const SizedBox(width: 24.0)),
+                ].divide(SizedBox(width: 24.0)),
               ),
               TextFormField(
                 controller: _model.aboutUsText1TextController1,
                 focusNode: _model.aboutUsText1FocusNode1,
                 onChanged: (_) => EasyDebounce.debounce(
                   '_model.aboutUsText1TextController1',
-                  const Duration(milliseconds: 1000),
+                  Duration(milliseconds: 1000),
                   () async {
                     await CmsTable().update(
                       data: {
@@ -120,13 +122,13 @@ class _QaElementWidgetState extends State<QaElementWidget> {
                       },
                       matchingRows: (rows) => rows.eq(
                         'id',
-                        widget.qa?.id,
+                        widget!.qa?.id,
                       ),
                     );
                   },
                 ),
                 autofocus: false,
-                readOnly: !widget.readOnly,
+                readOnly: !widget!.readOnly,
                 obscureText: false,
                 decoration: InputDecoration(
                   labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
@@ -139,35 +141,35 @@ class _QaElementWidgetState extends State<QaElementWidget> {
                         letterSpacing: 0.0,
                       ),
                   enabledBorder: UnderlineInputBorder(
-                    borderSide: const BorderSide(
+                    borderSide: BorderSide(
                       color: Color(0xFFF0F0FA),
                       width: 2.0,
                     ),
                     borderRadius: BorderRadius.circular(4.0),
                   ),
                   focusedBorder: UnderlineInputBorder(
-                    borderSide: const BorderSide(
+                    borderSide: BorderSide(
                       color: Color(0x00000000),
                       width: 2.0,
                     ),
                     borderRadius: BorderRadius.circular(4.0),
                   ),
                   errorBorder: UnderlineInputBorder(
-                    borderSide: const BorderSide(
+                    borderSide: BorderSide(
                       color: Color(0x00000000),
                       width: 2.0,
                     ),
                     borderRadius: BorderRadius.circular(4.0),
                   ),
                   focusedErrorBorder: UnderlineInputBorder(
-                    borderSide: const BorderSide(
+                    borderSide: BorderSide(
                       color: Color(0x00000000),
                       width: 2.0,
                     ),
                     borderRadius: BorderRadius.circular(4.0),
                   ),
                   filled: true,
-                  fillColor: const Color(0xFFF0F0FA),
+                  fillColor: Color(0xFFF0F0FA),
                 ),
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Commissioner',
@@ -179,18 +181,18 @@ class _QaElementWidgetState extends State<QaElementWidget> {
                 validator: _model.aboutUsText1TextController1Validator
                     .asValidator(context),
               ),
-            ].divide(const SizedBox(height: 24.0)),
+            ].divide(SizedBox(height: 24.0)),
           ),
         ),
         Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '${widget.title2} ${valueOrDefault<String>(
-                  widget.index?.toString(),
+                '${widget!.title2} ${valueOrDefault<String>(
+                  widget!.index?.toString(),
                   '1',
                 )}',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -205,7 +207,7 @@ class _QaElementWidgetState extends State<QaElementWidget> {
                 focusNode: _model.aboutUsText1FocusNode2,
                 onChanged: (_) => EasyDebounce.debounce(
                   '_model.aboutUsText1TextController2',
-                  const Duration(milliseconds: 1000),
+                  Duration(milliseconds: 1000),
                   () async {
                     await CmsTable().update(
                       data: {
@@ -213,13 +215,13 @@ class _QaElementWidgetState extends State<QaElementWidget> {
                       },
                       matchingRows: (rows) => rows.eq(
                         'id',
-                        widget.qa?.id,
+                        widget!.qa?.id,
                       ),
                     );
                   },
                 ),
                 autofocus: false,
-                readOnly: !widget.readOnly,
+                readOnly: !widget!.readOnly,
                 obscureText: false,
                 decoration: InputDecoration(
                   labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
@@ -233,35 +235,35 @@ class _QaElementWidgetState extends State<QaElementWidget> {
                         letterSpacing: 0.0,
                       ),
                   enabledBorder: UnderlineInputBorder(
-                    borderSide: const BorderSide(
+                    borderSide: BorderSide(
                       color: Color(0xFFF0F0FA),
                       width: 2.0,
                     ),
                     borderRadius: BorderRadius.circular(4.0),
                   ),
                   focusedBorder: UnderlineInputBorder(
-                    borderSide: const BorderSide(
+                    borderSide: BorderSide(
                       color: Color(0x00000000),
                       width: 2.0,
                     ),
                     borderRadius: BorderRadius.circular(4.0),
                   ),
                   errorBorder: UnderlineInputBorder(
-                    borderSide: const BorderSide(
+                    borderSide: BorderSide(
                       color: Color(0x00000000),
                       width: 2.0,
                     ),
                     borderRadius: BorderRadius.circular(4.0),
                   ),
                   focusedErrorBorder: UnderlineInputBorder(
-                    borderSide: const BorderSide(
+                    borderSide: BorderSide(
                       color: Color(0x00000000),
                       width: 2.0,
                     ),
                     borderRadius: BorderRadius.circular(4.0),
                   ),
                   filled: true,
-                  fillColor: const Color(0xFFF0F0FA),
+                  fillColor: Color(0xFFF0F0FA),
                 ),
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Commissioner',
@@ -273,10 +275,10 @@ class _QaElementWidgetState extends State<QaElementWidget> {
                 validator: _model.aboutUsText1TextController2Validator
                     .asValidator(context),
               ),
-            ].divide(const SizedBox(height: 24.0)),
+            ].divide(SizedBox(height: 24.0)),
           ),
         ),
-      ].divide(const SizedBox(height: 32.0)),
+      ].divide(SizedBox(height: 32.0)),
     );
   }
 }

@@ -7,6 +7,8 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'room_settings_model.dart';
 export 'room_settings_model.dart';
 
@@ -47,7 +49,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -65,7 +67,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 16.0, 0.0),
                             child: Text(
                               'Категории для номеров:',
@@ -107,7 +109,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                         child: FutureBuilder<List<ServiceCategoryRow>>(
                           future: (_model.requestCompleter2 ??=
                                   Completer<List<ServiceCategoryRow>>()
@@ -153,21 +155,21 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                                   children: [
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 16.0, 0.0),
                                         child: Container(
                                           width: 500.0,
                                           height: 37.0,
                                           decoration: BoxDecoration(
-                                            color: const Color(0xFFF0F0FA),
+                                            color: Color(0xFFF0F0FA),
                                             borderRadius:
                                                 BorderRadius.circular(40.0),
                                           ),
                                           child: Align(
                                             alignment:
-                                                const AlignmentDirectional(-1.0, 0.0),
+                                                AlignmentDirectional(-1.0, 0.0),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       20.0, 0.0, 0.0, 0.0),
                                               child: Text(
@@ -221,7 +223,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                                     ),
                                   ],
                                 );
-                              }).divide(const SizedBox(height: 10.0)),
+                              }).divide(SizedBox(height: 10.0)),
                             );
                           },
                         ),
@@ -231,7 +233,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                         children: [
                           if (_model.newCategory == true)
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 20.0, 0.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -249,7 +251,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           16.0, 0.0, 0.0, 0.0),
                                       child: Container(
                                         width: 500.0,
@@ -262,7 +264,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                                         ),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
                                           child: TextFormField(
                                             controller: _model
@@ -293,7 +295,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                                                       ),
                                               enabledBorder:
                                                   UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -302,7 +304,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                                               ),
                                               focusedBorder:
                                                   UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -310,7 +312,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                                                     BorderRadius.circular(8.0),
                                               ),
                                               errorBorder: UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -319,7 +321,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                                               ),
                                               focusedErrorBorder:
                                                   UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -327,7 +329,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                                                     BorderRadius.circular(8.0),
                                               ),
                                               contentPadding:
-                                                  const EdgeInsetsDirectional
+                                                  EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 8.0),
                                             ),
@@ -347,7 +349,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 0.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -380,10 +382,10 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                                           options: FFButtonOptions(
                                             height: 40.0,
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     24.0, 0.0, 24.0, 0.0),
                                             iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
@@ -397,7 +399,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                                                       letterSpacing: 0.0,
                                                     ),
                                             elevation: 0.0,
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               color: Colors.transparent,
                                               width: 1.0,
                                             ),
@@ -414,12 +416,12 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                                           options: FFButtonOptions(
                                             height: 40.0,
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     24.0, 0.0, 24.0, 0.0),
                                             iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
-                                            color: const Color(0x00BE3030),
+                                            color: Color(0x00BE3030),
                                             textStyle: FlutterFlowTheme.of(
                                                     context)
                                                 .titleSmall
@@ -441,7 +443,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                                                 BorderRadius.circular(24.0),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 8.0)),
+                                      ].divide(SizedBox(width: 8.0)),
                                     ),
                                   ),
                                 ],
@@ -453,7 +455,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -462,7 +464,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 16.0, 0.0),
                               child: Text(
                                 'Удобства для номеров:',
@@ -479,7 +481,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                           ],
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 24.0, 0.0, 0.0),
                           child: FutureBuilder<List<ServiceCategoryRow>>(
                             future: (_model.requestCompleter1 ??= Completer<
@@ -563,7 +565,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                                       safeSetState(() {});
                                     },
                                   );
-                                }).divide(const SizedBox(height: 40.0)),
+                                }).divide(SizedBox(height: 40.0)),
                               );
                             },
                           ),
@@ -571,10 +573,10 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                       ],
                     ),
                   ),
-                ].addToEnd(const SizedBox(height: 72.0)),
+                ].addToEnd(SizedBox(height: 72.0)),
               ),
             ),
-          ].divide(const SizedBox(height: 16.0)),
+          ].divide(SizedBox(height: 16.0)),
         ),
       ),
     );

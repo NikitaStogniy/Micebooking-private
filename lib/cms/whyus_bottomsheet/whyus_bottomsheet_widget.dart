@@ -3,7 +3,10 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'whyus_bottomsheet_model.dart';
 export 'whyus_bottomsheet_model.dart';
 
@@ -79,7 +82,7 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
                 'assets/images/Vector.png',
               ).image,
             ),
-            borderRadius: const BorderRadius.only(
+            borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(0.0),
               bottomRight: Radius.circular(0.0),
               topLeft: Radius.circular(32.0),
@@ -91,12 +94,12 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(24.0),
+                  padding: EdgeInsets.all(24.0),
                   child: Container(
-                    constraints: const BoxConstraints(
+                    constraints: BoxConstraints(
                       maxWidth: 1250.0,
                     ),
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,7 +108,7 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
                           textScaler: MediaQuery.of(context).textScaler,
                           text: TextSpan(
                             children: [
-                              const TextSpan(
+                              TextSpan(
                                 text: 'Почему ',
                                 style: TextStyle(),
                               ),
@@ -128,7 +131,7 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
                         ),
                         Container(
                           width: double.infinity,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Wrap(
                             spacing: 0.0,
                             runSpacing: 0.0,
@@ -144,11 +147,11 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
                                 Container(
                                   width: 300.0,
                                   decoration: BoxDecoration(
-                                    color: const Color(0xFFF0F0FA),
+                                    color: Color(0xFFF0F0FA),
                                     borderRadius: BorderRadius.circular(16.0),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 24.0, 16.0, 24.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
@@ -161,12 +164,12 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
                                             Container(
                                               width: 64.0,
                                               height: 64.0,
-                                              decoration: const BoxDecoration(
+                                              decoration: BoxDecoration(
                                                 color: Color(0xFF2431A5),
                                                 shape: BoxShape.circle,
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   '1',
@@ -191,7 +194,7 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
                                             ),
                                             Expanded(
                                               child: Container(
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Wrap(
                                                   spacing: 0.0,
                                                   runSpacing: 0.0,
@@ -229,7 +232,7 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
                                                 ),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 16.0)),
+                                          ].divide(SizedBox(width: 16.0)),
                                         ),
                                         Text(
                                           valueOrDefault<String>(
@@ -247,7 +250,7 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                      ].divide(const SizedBox(height: 16.0)),
+                                      ].divide(SizedBox(height: 16.0)),
                                     ),
                                   ),
                                 ),
@@ -256,11 +259,11 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
                                 Container(
                                   width: 300.0,
                                   decoration: BoxDecoration(
-                                    color: const Color(0xFFF0F0FA),
+                                    color: Color(0xFFF0F0FA),
                                     borderRadius: BorderRadius.circular(16.0),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 24.0, 16.0, 24.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
@@ -273,12 +276,12 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
                                             Container(
                                               width: 64.0,
                                               height: 64.0,
-                                              decoration: const BoxDecoration(
+                                              decoration: BoxDecoration(
                                                 color: Color(0xFF2431A5),
                                                 shape: BoxShape.circle,
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   '2',
@@ -303,7 +306,7 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
                                             ),
                                             Expanded(
                                               child: Container(
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Wrap(
                                                   spacing: 0.0,
                                                   runSpacing: 0.0,
@@ -341,7 +344,7 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
                                                 ),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 16.0)),
+                                          ].divide(SizedBox(width: 16.0)),
                                         ),
                                         Text(
                                           valueOrDefault<String>(
@@ -359,7 +362,7 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                      ].divide(const SizedBox(height: 16.0)),
+                                      ].divide(SizedBox(height: 16.0)),
                                     ),
                                   ),
                                 ),
@@ -368,11 +371,11 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
                                 Container(
                                   width: 300.0,
                                   decoration: BoxDecoration(
-                                    color: const Color(0xFFF0F0FA),
+                                    color: Color(0xFFF0F0FA),
                                     borderRadius: BorderRadius.circular(16.0),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 24.0, 16.0, 24.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
@@ -385,12 +388,12 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
                                             Container(
                                               width: 64.0,
                                               height: 64.0,
-                                              decoration: const BoxDecoration(
+                                              decoration: BoxDecoration(
                                                 color: Color(0xFF2431A5),
                                                 shape: BoxShape.circle,
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   '3',
@@ -415,7 +418,7 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
                                             ),
                                             Expanded(
                                               child: Container(
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Wrap(
                                                   spacing: 0.0,
                                                   runSpacing: 0.0,
@@ -453,7 +456,7 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
                                                 ),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 16.0)),
+                                          ].divide(SizedBox(width: 16.0)),
                                         ),
                                         Text(
                                           valueOrDefault<String>(
@@ -471,7 +474,7 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                      ].divide(const SizedBox(height: 16.0)),
+                                      ].divide(SizedBox(height: 16.0)),
                                     ),
                                   ),
                                 ),
@@ -479,8 +482,8 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
                           ),
                         ),
                       ]
-                          .divide(const SizedBox(height: 24.0))
-                          .addToEnd(const SizedBox(height: 70.0)),
+                          .divide(SizedBox(height: 24.0))
+                          .addToEnd(SizedBox(height: 70.0)),
                     ),
                   ),
                 ),

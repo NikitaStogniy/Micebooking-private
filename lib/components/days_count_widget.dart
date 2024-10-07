@@ -3,6 +3,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'days_count_model.dart';
 export 'days_count_model.dart';
 
@@ -12,7 +14,7 @@ class DaysCountWidget extends StatefulWidget {
     double? count,
     required this.onAdd,
     required this.onRemove,
-  }) : count = count ?? 0.0;
+  }) : this.count = count ?? 0.0;
 
   final double count;
   final Future Function()? onAdd;
@@ -38,7 +40,7 @@ class _DaysCountWidgetState extends State<DaysCountWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.countDublicate = widget.count;
+      _model.countDublicate = widget!.count;
       safeSetState(() {});
     });
 
@@ -65,7 +67,7 @@ class _DaysCountWidgetState extends State<DaysCountWidget> {
             borderRadius: BorderRadius.circular(24.0),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(16.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -117,7 +119,7 @@ class _DaysCountWidgetState extends State<DaysCountWidget> {
                           ),
                         ),
                         child: Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: FaIcon(
                             FontAwesomeIcons.minus,
                             color: FlutterFlowTheme.of(context).primary,
@@ -147,7 +149,7 @@ class _DaysCountWidgetState extends State<DaysCountWidget> {
                           ),
                         ),
                         child: Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: FaIcon(
                             FontAwesomeIcons.plus,
                             color: FlutterFlowTheme.of(context).primary,
@@ -156,7 +158,7 @@ class _DaysCountWidgetState extends State<DaysCountWidget> {
                         ),
                       ),
                     ),
-                  ].divide(const SizedBox(width: 8.0)),
+                  ].divide(SizedBox(width: 8.0)),
                 ),
               ],
             ),

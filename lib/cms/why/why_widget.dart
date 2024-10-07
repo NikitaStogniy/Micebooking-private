@@ -3,8 +3,12 @@ import '/backend/supabase/supabase.dart';
 import '/components/footer_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/uikit/menu/menu_widget.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'why_model.dart';
 export 'why_model.dart';
 
@@ -85,7 +89,7 @@ class _WhyWidgetState extends State<WhyWidget> {
                       'assets/images/Vector.png',
                     ).image,
                   ),
-                  borderRadius: const BorderRadius.only(
+                  borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(0.0),
                     bottomRight: Radius.circular(0.0),
                     topLeft: Radius.circular(32.0),
@@ -97,17 +101,17 @@ class _WhyWidgetState extends State<WhyWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 24.0, 24.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Container(
-                              constraints: const BoxConstraints(
+                              constraints: BoxConstraints(
                                 maxWidth: 1250.0,
                               ),
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: wrapWithModel(
                                 model: _model.menuModel,
                                 updateCallback: () => safeSetState(() {}),
@@ -122,10 +126,10 @@ class _WhyWidgetState extends State<WhyWidget> {
                               ),
                             ),
                             Container(
-                              constraints: const BoxConstraints(
+                              constraints: BoxConstraints(
                                 maxWidth: 1250.0,
                               ),
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -135,7 +139,7 @@ class _WhyWidgetState extends State<WhyWidget> {
                                         MediaQuery.of(context).textScaler,
                                     text: TextSpan(
                                       children: [
-                                        const TextSpan(
+                                        TextSpan(
                                           text: 'Почему ',
                                           style: TextStyle(),
                                         ),
@@ -161,7 +165,7 @@ class _WhyWidgetState extends State<WhyWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 16.0, 0.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -228,7 +232,7 @@ class _WhyWidgetState extends State<WhyWidget> {
                                             itemCount:
                                                 listViewCmsRowList.length,
                                             separatorBuilder: (_, __) =>
-                                                const SizedBox(height: 32.0),
+                                                SizedBox(height: 32.0),
                                             itemBuilder:
                                                 (context, listViewIndex) {
                                               final listViewCmsRow =
@@ -305,13 +309,13 @@ class _WhyWidgetState extends State<WhyWidget> {
                                                     ],
                                                   ),
                                                 ].divide(
-                                                    const SizedBox(height: 16.0)),
+                                                    SizedBox(height: 16.0)),
                                               );
                                             },
                                           );
                                         },
                                       ),
-                                    ].divide(const SizedBox(height: 24.0)),
+                                    ].divide(SizedBox(height: 24.0)),
                                   ),
                                   Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -321,7 +325,7 @@ class _WhyWidgetState extends State<WhyWidget> {
                                         children: [
                                           Expanded(
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 16.0, 0.0, 0.0),
                                               child: Text(
@@ -385,7 +389,7 @@ class _WhyWidgetState extends State<WhyWidget> {
                                             itemCount:
                                                 listViewCmsRowList.length,
                                             separatorBuilder: (_, __) =>
-                                                const SizedBox(height: 32.0),
+                                                SizedBox(height: 32.0),
                                             itemBuilder:
                                                 (context, listViewIndex) {
                                               final listViewCmsRow =
@@ -462,13 +466,13 @@ class _WhyWidgetState extends State<WhyWidget> {
                                                     ],
                                                   ),
                                                 ].divide(
-                                                    const SizedBox(height: 16.0)),
+                                                    SizedBox(height: 16.0)),
                                               );
                                             },
                                           );
                                         },
                                       ),
-                                    ].divide(const SizedBox(height: 24.0)),
+                                    ].divide(SizedBox(height: 24.0)),
                                   ),
                                   Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -478,7 +482,7 @@ class _WhyWidgetState extends State<WhyWidget> {
                                         children: [
                                           Expanded(
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 16.0, 0.0, 0.0),
                                               child: Text(
@@ -542,7 +546,7 @@ class _WhyWidgetState extends State<WhyWidget> {
                                             itemCount:
                                                 listViewCmsRowList.length,
                                             separatorBuilder: (_, __) =>
-                                                const SizedBox(height: 32.0),
+                                                SizedBox(height: 32.0),
                                             itemBuilder:
                                                 (context, listViewIndex) {
                                               final listViewCmsRow =
@@ -619,28 +623,28 @@ class _WhyWidgetState extends State<WhyWidget> {
                                                     ],
                                                   ),
                                                 ].divide(
-                                                    const SizedBox(height: 16.0)),
+                                                    SizedBox(height: 16.0)),
                                               );
                                             },
                                           );
                                         },
                                       ),
-                                    ].divide(const SizedBox(height: 24.0)),
+                                    ].divide(SizedBox(height: 24.0)),
                                   ),
                                 ]
-                                    .divide(const SizedBox(height: 24.0))
-                                    .addToEnd(const SizedBox(height: 70.0)),
+                                    .divide(SizedBox(height: 24.0))
+                                    .addToEnd(SizedBox(height: 70.0)),
                               ),
                             ),
-                          ].divide(const SizedBox(height: 40.0)),
+                          ].divide(SizedBox(height: 40.0)),
                         ),
                       ),
                       wrapWithModel(
                         model: _model.footerModel,
                         updateCallback: () => safeSetState(() {}),
-                        child: const FooterWidget(),
+                        child: FooterWidget(),
                       ),
-                    ].divide(const SizedBox(height: 40.0)),
+                    ].divide(SizedBox(height: 40.0)),
                   ),
                 ),
               );

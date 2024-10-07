@@ -1,6 +1,8 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'pop_up_images_model.dart';
 export 'pop_up_images_model.dart';
 
@@ -45,7 +47,7 @@ class _PopUpImagesWidgetState extends State<PopUpImagesWidget> {
     return Container(
       width: MediaQuery.sizeOf(context).width * 0.9,
       height: MediaQuery.sizeOf(context).height * 0.9,
-      constraints: const BoxConstraints(
+      constraints: BoxConstraints(
         maxWidth: 1250.0,
       ),
       decoration: BoxDecoration(
@@ -56,9 +58,9 @@ class _PopUpImagesWidgetState extends State<PopUpImagesWidget> {
         children: [
           Builder(
             builder: (context) {
-              final images = widget.images!.toList();
+              final images = widget!.images!.toList();
 
-              return SizedBox(
+              return Container(
                 width: double.infinity,
                 height: MediaQuery.sizeOf(context).height * 1.0,
                 child: PageView.builder(
@@ -83,11 +85,11 @@ class _PopUpImagesWidgetState extends State<PopUpImagesWidget> {
               );
             },
           ),
-          if (widget.images!.length > 1)
+          if (widget!.images!.length > 1)
             Align(
-              alignment: const AlignmentDirectional(0.0, 1.0),
+              alignment: AlignmentDirectional(0.0, 1.0),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 50.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 50.0),
                 child: Container(
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).primary,
@@ -95,13 +97,13 @@ class _PopUpImagesWidgetState extends State<PopUpImagesWidget> {
                   ),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(24.0, 12.0, 24.0, 12.0),
+                        EdgeInsetsDirectional.fromSTEB(24.0, 12.0, 24.0, 12.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          '${(_model.pageViewCurrentIndex + 1).toString()}/${widget.images?.length.toString()}',
+                          '${(_model.pageViewCurrentIndex + 1).toString()}/${widget!.images?.length?.toString()}',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Commissioner',
@@ -118,11 +120,11 @@ class _PopUpImagesWidgetState extends State<PopUpImagesWidget> {
                 ),
               ),
             ),
-          if (widget.images!.length > 1)
+          if (widget!.images!.length > 1)
             Align(
-              alignment: const AlignmentDirectional(0.0, 0.0),
+              alignment: AlignmentDirectional(0.0, 0.0),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -135,7 +137,7 @@ class _PopUpImagesWidgetState extends State<PopUpImagesWidget> {
                         highlightColor: Colors.transparent,
                         onTap: () async {
                           await _model.pageViewController?.previousPage(
-                            duration: const Duration(milliseconds: 300),
+                            duration: Duration(milliseconds: 300),
                             curve: Curves.ease,
                           );
                         },
@@ -157,18 +159,18 @@ class _PopUpImagesWidgetState extends State<PopUpImagesWidget> {
                     Container(
                       width: 48.0,
                       height: 48.0,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         shape: BoxShape.circle,
                       ),
                     ),
                     Container(
                       width: 48.0,
                       height: 48.0,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         shape: BoxShape.circle,
                       ),
                     ),
-                    if (_model.pageViewCurrentIndex < widget.images!.length)
+                    if (_model.pageViewCurrentIndex < widget!.images!.length)
                       InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -176,7 +178,7 @@ class _PopUpImagesWidgetState extends State<PopUpImagesWidget> {
                         highlightColor: Colors.transparent,
                         onTap: () async {
                           await _model.pageViewController?.nextPage(
-                            duration: const Duration(milliseconds: 300),
+                            duration: Duration(milliseconds: 300),
                             curve: Curves.ease,
                           );
                         },
@@ -200,9 +202,9 @@ class _PopUpImagesWidgetState extends State<PopUpImagesWidget> {
               ),
             ),
           Align(
-            alignment: const AlignmentDirectional(1.0, -1.0),
+            alignment: AlignmentDirectional(1.0, -1.0),
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 24.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 24.0, 0.0),
               child: InkWell(
                 splashColor: Colors.transparent,
                 focusColor: Colors.transparent,
@@ -214,7 +216,7 @@ class _PopUpImagesWidgetState extends State<PopUpImagesWidget> {
                 child: Container(
                   width: 48.0,
                   height: 48.0,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     color: Color(0x4D14181B),
                     shape: BoxShape.circle,
                   ),

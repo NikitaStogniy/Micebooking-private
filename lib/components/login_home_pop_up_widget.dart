@@ -9,8 +9,12 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pop_up/pop_up_p_p/pop_up_p_p_widget.dart';
 import '/uikit/login_form/login_form_widget.dart';
 import '/uikit/signup_form/signup_form_widget.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:provider/provider.dart';
 import 'login_home_pop_up_model.dart';
 export 'login_home_pop_up_model.dart';
 
@@ -25,7 +29,7 @@ class LoginHomePopUpWidget extends StatefulWidget {
     this.filter2,
     this.filter3,
     bool? hotel,
-  }) : hotel = hotel ?? false;
+  }) : this.hotel = hotel ?? false;
 
   final DateTime? startDate;
   final double? duration;
@@ -88,14 +92,14 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 16.0),
+        padding: EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 16.0),
         child: Container(
           height: _model.isRegister
               ? (MediaQuery.sizeOf(context).height * 0.98)
               : (MediaQuery.sizeOf(context).height * 0.6),
-          constraints: const BoxConstraints(
+          constraints: BoxConstraints(
             maxWidth: 1400.0,
           ),
           decoration: BoxDecoration(
@@ -106,7 +110,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
             )),
           ),
           child: Align(
-            alignment: const AlignmentDirectional(0.0, 0.0),
+            alignment: AlignmentDirectional(0.0, 0.0),
             child: Padding(
               padding: EdgeInsetsDirectional.fromSTEB(
                   0.0,
@@ -125,7 +129,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 16.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 16.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -181,14 +185,14 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                 ),
                           ),
                         ),
-                      ].divide(const SizedBox(width: 40.0)),
+                      ].divide(SizedBox(width: 40.0)),
                     ),
                     if (_model.isRegister == true)
                       Container(
-                        constraints: const BoxConstraints(
+                        constraints: BoxConstraints(
                           maxWidth: 500.0,
                         ),
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -202,15 +206,15 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                 text: 'Я –  Организатор',
                                 options: FFButtonOptions(
                                   height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: valueOrDefault<Color>(
                                     _model.isHotel
-                                        ? const Color(0xFFF0F0FA)
+                                        ? Color(0xFFF0F0FA)
                                         : FlutterFlowTheme.of(context).primary,
-                                    const Color(0xFFF0F0FA),
+                                    Color(0xFFF0F0FA),
                                   ),
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
@@ -220,17 +224,17 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                           _model.isHotel
                                               ? FlutterFlowTheme.of(context)
                                                   .primary
-                                              : const Color(0xFFF0F0FA),
+                                              : Color(0xFFF0F0FA),
                                           FlutterFlowTheme.of(context).primary,
                                         ),
                                         letterSpacing: 0.0,
                                       ),
                                   elevation: 0.0,
-                                  borderSide: const BorderSide(
+                                  borderSide: BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
-                                  borderRadius: const BorderRadius.only(
+                                  borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(100.0),
                                     bottomRight: Radius.circular(0.0),
                                     topLeft: Radius.circular(100.0),
@@ -249,15 +253,15 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                 text: 'Я – Отель',
                                 options: FFButtonOptions(
                                   height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: valueOrDefault<Color>(
                                     _model.isHotel
                                         ? FlutterFlowTheme.of(context).primary
-                                        : const Color(0xFFF0F0FA),
-                                    const Color(0xFFF0F0FA),
+                                        : Color(0xFFF0F0FA),
+                                    Color(0xFFF0F0FA),
                                   ),
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
@@ -265,7 +269,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                         fontFamily: 'Commissioner',
                                         color: valueOrDefault<Color>(
                                           _model.isHotel
-                                              ? const Color(0xFFF0F0FA)
+                                              ? Color(0xFFF0F0FA)
                                               : FlutterFlowTheme.of(context)
                                                   .primary,
                                           FlutterFlowTheme.of(context).primary,
@@ -273,11 +277,11 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   elevation: 0.0,
-                                  borderSide: const BorderSide(
+                                  borderSide: BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
-                                  borderRadius: const BorderRadius.only(
+                                  borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(0.0),
                                     bottomRight: Radius.circular(100.0),
                                     topLeft: Radius.circular(0.0),
@@ -293,18 +297,18 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                     if (_model.lastEmail != null && _model.lastEmail != '')
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 8.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 8.0),
                         child: Container(
                           width: MediaQuery.sizeOf(context).width * 1.0,
-                          constraints: const BoxConstraints(
+                          constraints: BoxConstraints(
                             maxWidth: 500.0,
                           ),
                           decoration: BoxDecoration(
-                            color: const Color(0x17000000),
+                            color: Color(0x17000000),
                             borderRadius: BorderRadius.circular(16.0),
                           ),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 8.0, 16.0, 8.0, 16.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -322,7 +326,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                   ],
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 2.0, 0.0, 0.0),
                                   child: Text(
                                     'Указанная почта ${_model.lastEmail} ещё не подтверждена. Перед входом в аккаунт, пожалуйста, перейдите по ссылке из письма',
@@ -341,7 +345,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                       ),
                     Container(
                       width: 500.0,
-                      decoration: const BoxDecoration(),
+                      decoration: BoxDecoration(),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -393,7 +397,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                             ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 8.0, 0.0),
                                         child: TextFormField(
                                           controller:
@@ -461,7 +465,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                   BorderRadius.circular(24.0),
                                             ),
                                             filled: true,
-                                            fillColor: const Color(0xFFF0F0FA),
+                                            fillColor: Color(0xFFF0F0FA),
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -482,7 +486,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                               .asValidator(context),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(height: 13.0)),
+                                    ].divide(SizedBox(height: 13.0)),
                                   ),
                                   Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -499,7 +503,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                             ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 8.0, 0.0),
                                         child: TextFormField(
                                           controller:
@@ -569,7 +573,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                   BorderRadius.circular(24.0),
                                             ),
                                             filled: true,
-                                            fillColor: const Color(0xFFF0F0FA),
+                                            fillColor: Color(0xFFF0F0FA),
                                             suffixIcon: InkWell(
                                               onTap: () => safeSetState(
                                                 () => _model
@@ -607,19 +611,19 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                               .asValidator(context),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(height: 13.0)),
+                                    ].divide(SizedBox(height: 13.0)),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Container(
-                                          constraints: const BoxConstraints(
+                                          constraints: BoxConstraints(
                                             maxWidth: 350.0,
                                           ),
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment:
@@ -656,36 +660,36 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                       queryParameters: {
                                                         'startDate':
                                                             serializeParam(
-                                                          widget.startDate,
+                                                          widget!.startDate,
                                                           ParamType.DateTime,
                                                         ),
                                                         'duration':
                                                             serializeParam(
-                                                          widget.duration,
+                                                          widget!.duration,
                                                           ParamType.double,
                                                         ),
                                                         'city': serializeParam(
-                                                          widget.city,
+                                                          widget!.city,
                                                           ParamType.SupabaseRow,
                                                         ),
                                                         'visitors':
                                                             serializeParam(
-                                                          widget.visitors,
+                                                          widget!.visitors,
                                                           ParamType.int,
                                                         ),
                                                         'hallFilter1':
                                                             serializeParam(
-                                                          widget.filter1,
+                                                          widget!.filter1,
                                                           ParamType.DataStruct,
                                                         ),
                                                         'hallFilter2':
                                                             serializeParam(
-                                                          widget.filter2,
+                                                          widget!.filter2,
                                                           ParamType.DataStruct,
                                                         ),
                                                         'hallFilter3':
                                                             serializeParam(
-                                                          widget.filter3,
+                                                          widget!.filter3,
                                                           ParamType.DataStruct,
                                                         ),
                                                         'user': serializeParam(
@@ -702,14 +706,14 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                   options: FFButtonOptions(
                                                     width: 350.0,
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 24.0,
                                                                 24.0,
                                                                 24.0,
                                                                 24.0),
                                                     iconPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
                                                     color: FlutterFlowTheme.of(
@@ -725,7 +729,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                           letterSpacing: 0.0,
                                                         ),
                                                     elevation: 3.0,
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Colors.transparent,
                                                       width: 1.0,
                                                     ),
@@ -739,10 +743,10 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                           ),
                                         ),
                                         Container(
-                                          constraints: const BoxConstraints(
+                                          constraints: BoxConstraints(
                                             maxWidth: 350.0,
                                           ),
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment:
@@ -750,7 +754,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                             children: [
                                               Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 24.0, 0.0, 0.0),
                                                   child: FFButtonWidget(
@@ -769,14 +773,14 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                     options: FFButtonOptions(
                                                       width: 350.0,
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   24.0,
                                                                   24.0,
                                                                   24.0,
                                                                   24.0),
                                                       iconPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -818,7 +822,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                         ),
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Builder(
                                             builder: (context) => InkWell(
                                               splashColor: Colors.transparent,
@@ -829,7 +833,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                               onTap: () async {
                                                 await showDialog(
                                                   barrierColor:
-                                                      const Color(0xE6FFFFFF),
+                                                      Color(0xE6FFFFFF),
                                                   context: context,
                                                   builder: (dialogContext) {
                                                     return Dialog(
@@ -839,13 +843,13 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                       backgroundColor:
                                                           Colors.transparent,
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
                                                                       context)),
                                                       child:
-                                                          const ChangePasswordWidget(),
+                                                          ChangePasswordWidget(),
                                                     );
                                                   },
                                                 );
@@ -853,12 +857,12 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                               child: Container(
                                                 width: 150.0,
                                                 height: 40.0,
-                                                decoration: const BoxDecoration(
+                                                decoration: BoxDecoration(
                                                   color: Color(0x00FFFFFF),
                                                 ),
                                                 child: Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Text(
                                                     'Забыли пароль?',
@@ -869,7 +873,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                           fontFamily:
                                                               'Commissioner',
                                                           color:
-                                                              const Color(0xFF2431A5),
+                                                              Color(0xFF2431A5),
                                                           fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
@@ -884,10 +888,10 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                             ),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(height: 20.0)),
+                                      ].divide(SizedBox(height: 20.0)),
                                     ),
                                   ),
-                                ].divide(const SizedBox(height: 18.0)),
+                                ].divide(SizedBox(height: 18.0)),
                               ),
                             ),
                           if (_model.isRegister &&
@@ -913,7 +917,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                         desktop: false,
                                       ))
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 8.0, 0.0, 8.0),
                                       child: Container(
                                         width:
@@ -927,7 +931,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                         ),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 16.0, 8.0, 16.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -947,7 +951,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                 ],
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 2.0, 0.0, 0.0),
                                                 child: Text(
@@ -986,7 +990,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                             ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 8.0, 0.0),
                                         child: TextFormField(
                                           controller: _model.fioTextController,
@@ -1053,7 +1057,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                   BorderRadius.circular(24.0),
                                             ),
                                             filled: true,
-                                            fillColor: const Color(0xFFF0F0FA),
+                                            fillColor: Color(0xFFF0F0FA),
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -1074,7 +1078,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                               .asValidator(context),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(height: 13.0)),
+                                    ].divide(SizedBox(height: 13.0)),
                                   ),
                                   Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -1091,7 +1095,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                             ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 8.0, 0.0),
                                         child: TextFormField(
                                           controller: _model.mailTextController,
@@ -1159,7 +1163,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                   BorderRadius.circular(24.0),
                                             ),
                                             filled: true,
-                                            fillColor: const Color(0xFFF0F0FA),
+                                            fillColor: Color(0xFFF0F0FA),
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -1182,7 +1186,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                               .asValidator(context),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(height: 13.0)),
+                                    ].divide(SizedBox(height: 13.0)),
                                   ),
                                   Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -1199,7 +1203,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                             ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 8.0, 0.0),
                                         child: TextFormField(
                                           controller:
@@ -1252,7 +1256,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                   BorderRadius.circular(24.0),
                                             ),
                                             filled: true,
-                                            fillColor: const Color(0xFFF0F0FA),
+                                            fillColor: Color(0xFFF0F0FA),
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -1277,7 +1281,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                           ],
                                         ),
                                       ),
-                                    ].divide(const SizedBox(height: 13.0)),
+                                    ].divide(SizedBox(height: 13.0)),
                                   ),
                                   Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -1293,10 +1297,10 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                               fontWeight: FontWeight.w500,
                                             ),
                                       ),
-                                    ].divide(const SizedBox(height: 13.0)),
+                                    ].divide(SizedBox(height: 13.0)),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 8.0, 0.0),
                                     child: TextFormField(
                                       controller:
@@ -1355,7 +1359,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                               BorderRadius.circular(24.0),
                                         ),
                                         filled: true,
-                                        fillColor: const Color(0xFFF0F0FA),
+                                        fillColor: Color(0xFFF0F0FA),
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -1391,7 +1395,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                             ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 8.0, 0.0),
                                         child: TextFormField(
                                           controller:
@@ -1470,7 +1474,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                   BorderRadius.circular(24.0),
                                             ),
                                             filled: true,
-                                            fillColor: const Color(0xFFF0F0FA),
+                                            fillColor: Color(0xFFF0F0FA),
                                             suffixIcon: InkWell(
                                               onTap: () => safeSetState(
                                                 () => _model
@@ -1507,10 +1511,10 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                               .asValidator(context),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(height: 13.0)),
+                                    ].divide(SizedBox(height: 13.0)),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -1575,7 +1579,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                   onTap: () async {
                                                     await showDialog(
                                                       barrierColor:
-                                                          const Color(0x56000000),
+                                                          Color(0x56000000),
                                                       context: context,
                                                       builder: (dialogContext) {
                                                         return Dialog(
@@ -1585,13 +1589,13 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                           backgroundColor:
                                                               Colors
                                                                   .transparent,
-                                                          alignment: const AlignmentDirectional(
+                                                          alignment: AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
                                                                       context)),
                                                           child:
-                                                              const PopUpPPWidget(),
+                                                              PopUpPPWidget(),
                                                         );
                                                       },
                                                     );
@@ -1656,17 +1660,30 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                         FFButtonWidget(
                                           onPressed: (!_model.checkboxValue! &&
                                                   (_model.fioTextController.text ==
+                                                          null ||
+                                                      _model.fioTextController.text ==
                                                           '') &&
-                                                  (_model.mailTextController
+                                                  (_model.mailTextController.text ==
+                                                          null ||
+                                                      _model.mailTextController
                                                               .text ==
                                                           '') &&
                                                   (_model.phoneRegTextController
                                                               .text ==
+                                                          null ||
+                                                      _model.phoneRegTextController
+                                                              .text ==
                                                           '') &&
                                                   (_model.companyNameTextController
                                                               .text ==
+                                                          null ||
+                                                      _model.companyNameTextController
+                                                              .text ==
                                                           '') &&
                                                   (_model.passwordTextController
+                                                              .text ==
+                                                          null ||
+                                                      _model.passwordTextController
                                                               .text ==
                                                           ''))
                                               ? null
@@ -1697,7 +1714,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                                 .secondaryBackground,
                                                           ),
                                                         ),
-                                                        duration: const Duration(
+                                                        duration: Duration(
                                                             milliseconds: 4000),
                                                         backgroundColor:
                                                             FlutterFlowTheme.of(
@@ -1721,7 +1738,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                       'network': _model
                                                           .companyNameTextController
                                                           .text,
-                                                      'role': widget.hotel ==
+                                                      'role': widget!.hotel ==
                                                               true
                                                           ? EnumRole.HOTEL.name
                                                           : EnumRole
@@ -1753,7 +1770,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                             fontSize: 16.0,
                                                           ),
                                                         ),
-                                                        duration: const Duration(
+                                                        duration: Duration(
                                                             milliseconds: 4000),
                                                         backgroundColor:
                                                             FlutterFlowTheme.of(
@@ -1812,10 +1829,10 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                           options: FFButtonOptions(
                                             width: 350.0,
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     24.0, 24.0, 24.0, 24.0),
                                             iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
@@ -1829,7 +1846,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                       letterSpacing: 0.0,
                                                     ),
                                             elevation: 0.0,
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               color: Colors.transparent,
                                               width: 1.0,
                                             ),
@@ -1839,10 +1856,10 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                 FlutterFlowTheme.of(context)
                                                     .secondaryText,
                                             disabledTextColor:
-                                                const Color(0xFF383838),
+                                                Color(0xFF383838),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(height: 20.0)),
+                                      ].divide(SizedBox(height: 20.0)),
                                     ),
                                   ),
                                   InkWell(
@@ -1856,7 +1873,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                     },
                                     child: Container(
                                       height: 40.0,
-                                      decoration: const BoxDecoration(
+                                      decoration: BoxDecoration(
                                         color: Color(0x00FFFFFF),
                                       ),
                                       child: Text(
@@ -1865,7 +1882,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Commissioner',
-                                              color: const Color(0xFF2431A5),
+                                              color: Color(0xFF2431A5),
                                               fontSize: 18.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
@@ -1876,11 +1893,11 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                       ),
                                     ),
                                   ),
-                                ].divide(const SizedBox(height: 24.0)),
+                                ].divide(SizedBox(height: 24.0)),
                               ),
                             ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 24.0, 16.0, 8.0),
                             child: FFButtonWidget(
                               onPressed: () async {
@@ -1895,9 +1912,9 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                               ),
                               options: FFButtonOptions(
                                 width: 500.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     24.0, 32.0, 24.0, 32.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context)
                                     .primaryBackground,
@@ -1921,7 +1938,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                         ],
                       ),
                     ),
-                  ].divide(const SizedBox(height: 24.0)).addToEnd(SizedBox(
+                  ].divide(SizedBox(height: 24.0)).addToEnd(SizedBox(
                       height: MediaQuery.sizeOf(context).width > 1000.0
                           ? 0.0
                           : 32.0)),

@@ -4,6 +4,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'client_request_model.dart';
 export 'client_request_model.dart';
 
@@ -63,7 +65,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                     .eq(
                       'owner',
                       valueOrDefault<int>(
-                        widget.userId?.id,
+                        widget!.userId?.id,
                         88,
                       ),
                     )
@@ -87,14 +89,14 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                 List<RequestsRow> containerRequestsRowList = snapshot.data!;
 
                 return ClipRRect(
-                  borderRadius: const BorderRadius.only(
+                  borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(16.0),
                     bottomRight: Radius.circular(16.0),
                     topLeft: Radius.circular(0.0),
                     topRight: Radius.circular(0.0),
                   ),
                   child: Container(
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(16.0),
                         bottomRight: Radius.circular(16.0),
@@ -119,10 +121,10 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                     fontWeight: FontWeight.bold,
                                   ),
                             ),
-                          ].divide(const SizedBox(width: 24.0)),
+                          ].divide(SizedBox(width: 24.0)),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 40.0, 0.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -133,7 +135,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                 height: 50.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context).primary,
-                                  borderRadius: const BorderRadius.only(
+                                  borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(0.0),
                                     bottomRight: Radius.circular(0.0),
                                     topLeft: Radius.circular(16.0),
@@ -145,7 +147,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                   children: [
                                     Container(
                                       width: 90.0,
-                                      decoration: const BoxDecoration(),
+                                      decoration: BoxDecoration(),
                                       child: Text(
                                         '№ запроса',
                                         textAlign: TextAlign.center,
@@ -168,7 +170,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Мероприятие',
                                           style: FlutterFlowTheme.of(context)
@@ -191,7 +193,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Площадка',
                                           style: FlutterFlowTheme.of(context)
@@ -214,7 +216,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Сумма',
                                           textAlign: TextAlign.end,
@@ -234,12 +236,12 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                     ),
                                     Container(
                                       width: 80.0,
-                                      decoration: const BoxDecoration(),
+                                      decoration: BoxDecoration(),
                                     ),
                                   ]
-                                      .divide(const SizedBox(width: 40.0))
-                                      .addToStart(const SizedBox(width: 16.0))
-                                      .addToEnd(const SizedBox(width: 16.0)),
+                                      .divide(SizedBox(width: 40.0))
+                                      .addToStart(SizedBox(width: 16.0))
+                                      .addToEnd(SizedBox(width: 16.0)),
                                 ),
                               ),
                               Builder(
@@ -273,7 +275,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                             FlutterFlowTheme.of(context)
                                                 .primaryBackground,
                                           ),
-                                          borderRadius: const BorderRadius.only(
+                                          borderRadius: BorderRadius.only(
                                             bottomLeft: Radius.circular(0.0),
                                             bottomRight: Radius.circular(0.0),
                                             topLeft: Radius.circular(0.0),
@@ -285,7 +287,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                           children: [
                                             Container(
                                               width: 90.0,
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Text(
                                                 requestsItem.id.toString(),
                                                 textAlign: TextAlign.center,
@@ -312,7 +314,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         0.5,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     requestsItem.name,
@@ -344,7 +346,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         0.5,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     requestsItem.hotelName,
@@ -376,7 +378,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                                     MediaQuery.sizeOf(context)
                                                             .width *
                                                         0.5,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     formatNumber(
@@ -409,7 +411,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                             ),
                                             Container(
                                               width: 80.0,
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: InkWell(
                                                 splashColor: Colors.transparent,
                                                 focusColor: Colors.transparent,
@@ -442,9 +444,9 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                               ),
                                             ),
                                           ]
-                                              .divide(const SizedBox(width: 40.0))
-                                              .addToStart(const SizedBox(width: 16.0))
-                                              .addToEnd(const SizedBox(width: 16.0)),
+                                              .divide(SizedBox(width: 40.0))
+                                              .addToStart(SizedBox(width: 16.0))
+                                              .addToEnd(SizedBox(width: 16.0)),
                                         ),
                                       );
                                     }),
@@ -490,7 +492,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                     : null;
 
                 return Container(
-                  decoration: const BoxDecoration(),
+                  decoration: BoxDecoration(),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -511,7 +513,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                             color: FlutterFlowTheme.of(context).primary,
                             shape: BoxShape.circle,
                           ),
-                          child: const Align(
+                          child: Align(
                             alignment: AlignmentDirectional(0.0, 0.0),
                             child: Icon(
                               Icons.arrow_back_ios_new_rounded,
@@ -526,7 +528,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                         children: [
                           Expanded(
                             child: Text(
-                              'Запрос №${containerRequestsRow?.id.toString()} в отель ${containerRequestsRow?.hotelName}',
+                              'Запрос №${containerRequestsRow?.id?.toString()} в отель ${containerRequestsRow?.hotelName}',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -595,9 +597,9 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                       letterSpacing: 0.0,
                                     ),
                               ),
-                            ].divide(const SizedBox(width: 16.0)),
+                            ].divide(SizedBox(width: 16.0)),
                           ),
-                        ].divide(const SizedBox(height: 16.0)),
+                        ].divide(SizedBox(height: 16.0)),
                       ),
                       FutureBuilder<List<HotelRow>>(
                         future: HotelTable().querySingleRow(
@@ -715,9 +717,9 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                                     fontWeight: FontWeight.w500,
                                                   ),
                                             ),
-                                        ].divide(const SizedBox(width: 40.0)),
+                                        ].divide(SizedBox(width: 40.0)),
                                       ),
-                                    ].divide(const SizedBox(height: 16.0)),
+                                    ].divide(SizedBox(height: 16.0)),
                                   );
                                 },
                               ),
@@ -725,13 +727,13 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                           );
                         },
                       ),
-                      if (containerRequestsRow?.halls.isNotEmpty)
+                      if (containerRequestsRow?.halls?.length != 0)
                         Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 16.0),
                               child: Text(
                                 'Залы:',
@@ -749,7 +751,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                               width: MediaQuery.sizeOf(context).width * 1.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context).primary,
-                                borderRadius: const BorderRadius.only(
+                                borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(0.0),
                                   bottomRight: Radius.circular(0.0),
                                   topLeft: Radius.circular(16.0),
@@ -757,7 +759,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 8.0, 0.0, 8.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
@@ -768,7 +770,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.1,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Название зала',
                                           textAlign: TextAlign.start,
@@ -792,7 +794,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Рассадка',
                                           style: FlutterFlowTheme.of(context)
@@ -815,7 +817,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Количество дней',
                                           style: FlutterFlowTheme.of(context)
@@ -836,7 +838,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                       flex: 1,
                                       child: Container(
                                         width: 200.0,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Стоимость',
                                           textAlign: TextAlign.end,
@@ -855,9 +857,9 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                       ),
                                     ),
                                   ]
-                                      .divide(const SizedBox(width: 8.0))
-                                      .addToStart(const SizedBox(width: 16.0))
-                                      .addToEnd(const SizedBox(width: 16.0)),
+                                      .divide(SizedBox(width: 8.0))
+                                      .addToStart(SizedBox(width: 16.0))
+                                      .addToEnd(SizedBox(width: 16.0)),
                                 ),
                               ),
                             ),
@@ -911,7 +913,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                           FlutterFlowTheme.of(context)
                                               .primaryBackground,
                                         ),
-                                        borderRadius: const BorderRadius.only(
+                                        borderRadius: BorderRadius.only(
                                           bottomLeft: Radius.circular(0.0),
                                           bottomRight: Radius.circular(0.0),
                                           topLeft: Radius.circular(0.0),
@@ -927,7 +929,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   0.1,
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Text(
                                                 valueOrDefault<String>(
                                                   columnRequestsHallVarRow
@@ -957,7 +959,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   0.5,
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Text(
                                                 valueOrDefault<String>(
                                                   columnRequestsHallVarRow
@@ -987,7 +989,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   0.5,
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Text(
                                                 valueOrDefault<String>(
                                                   columnRequestsHallVarRow.days
@@ -1015,7 +1017,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                             flex: 1,
                                             child: Container(
                                               width: 200.0,
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Text(
                                                 valueOrDefault<String>(
                                                   formatNumber(
@@ -1047,9 +1049,9 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                             ),
                                           ),
                                         ]
-                                            .divide(const SizedBox(width: 8.0))
-                                            .addToStart(const SizedBox(width: 16.0))
-                                            .addToEnd(const SizedBox(width: 16.0)),
+                                            .divide(SizedBox(width: 8.0))
+                                            .addToStart(SizedBox(width: 16.0))
+                                            .addToEnd(SizedBox(width: 16.0)),
                                       ),
                                     );
                                   }),
@@ -1065,7 +1067,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                   height: 40.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context).primary,
-                                    borderRadius: const BorderRadius.only(
+                                    borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(8.0),
                                       bottomRight: Radius.circular(0.0),
                                       topLeft: Radius.circular(0.0),
@@ -1073,7 +1075,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                     ),
                                   ),
                                   child: Align(
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       'Итого:',
                                       textAlign: TextAlign.end,
@@ -1097,9 +1099,9 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                         .secondaryBackground,
                                   ),
                                   child: Align(
-                                    alignment: const AlignmentDirectional(1.0, 0.0),
+                                    alignment: AlignmentDirectional(1.0, 0.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           34.0, 0.0, 16.0, 0.0),
                                       child: Text(
                                         '${formatNumber(
@@ -1126,13 +1128,13 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                             ),
                           ],
                         ),
-                      if (containerRequestsRow?.food.isNotEmpty)
+                      if (containerRequestsRow?.food?.length != 0)
                         Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 16.0),
                               child: Text(
                                 'Питание:',
@@ -1150,7 +1152,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                               width: MediaQuery.sizeOf(context).width * 1.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context).primary,
-                                borderRadius: const BorderRadius.only(
+                                borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(0.0),
                                   bottomRight: Radius.circular(0.0),
                                   topLeft: Radius.circular(16.0),
@@ -1158,7 +1160,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 8.0, 0.0, 8.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
@@ -1169,7 +1171,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.1,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Категория питания',
                                           textAlign: TextAlign.start,
@@ -1193,7 +1195,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Количество порций',
                                           style: FlutterFlowTheme.of(context)
@@ -1216,7 +1218,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Количество персон',
                                           style: FlutterFlowTheme.of(context)
@@ -1237,7 +1239,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                       flex: 1,
                                       child: Container(
                                         width: 200.0,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Стоимость',
                                           textAlign: TextAlign.end,
@@ -1256,9 +1258,9 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                       ),
                                     ),
                                   ]
-                                      .divide(const SizedBox(width: 8.0))
-                                      .addToStart(const SizedBox(width: 16.0))
-                                      .addToEnd(const SizedBox(width: 16.0)),
+                                      .divide(SizedBox(width: 8.0))
+                                      .addToStart(SizedBox(width: 16.0))
+                                      .addToEnd(SizedBox(width: 16.0)),
                                 ),
                               ),
                             ),
@@ -1312,7 +1314,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                           FlutterFlowTheme.of(context)
                                               .primaryBackground,
                                         ),
-                                        borderRadius: const BorderRadius.only(
+                                        borderRadius: BorderRadius.only(
                                           bottomLeft: Radius.circular(0.0),
                                           bottomRight: Radius.circular(0.0),
                                           topLeft: Radius.circular(0.0),
@@ -1328,7 +1330,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   0.1,
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Text(
                                                 valueOrDefault<String>(
                                                   columnRequestsFoodVarRow.name,
@@ -1357,7 +1359,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   0.5,
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Text(
                                                 valueOrDefault<String>(
                                                   columnRequestsFoodVarRow.count
@@ -1387,7 +1389,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   0.5,
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Text(
                                                 valueOrDefault<String>(
                                                   columnRequestsFoodVarRow
@@ -1416,7 +1418,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                             flex: 1,
                                             child: Container(
                                               width: 200.0,
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Text(
                                                 valueOrDefault<String>(
                                                   formatNumber(
@@ -1448,9 +1450,9 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                             ),
                                           ),
                                         ]
-                                            .divide(const SizedBox(width: 8.0))
-                                            .addToStart(const SizedBox(width: 16.0))
-                                            .addToEnd(const SizedBox(width: 16.0)),
+                                            .divide(SizedBox(width: 8.0))
+                                            .addToStart(SizedBox(width: 16.0))
+                                            .addToEnd(SizedBox(width: 16.0)),
                                       ),
                                     );
                                   }),
@@ -1466,7 +1468,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                   height: 40.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context).primary,
-                                    borderRadius: const BorderRadius.only(
+                                    borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(8.0),
                                       bottomRight: Radius.circular(0.0),
                                       topLeft: Radius.circular(0.0),
@@ -1474,7 +1476,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                     ),
                                   ),
                                   child: Align(
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       'Итого:',
                                       textAlign: TextAlign.end,
@@ -1498,9 +1500,9 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                         .secondaryBackground,
                                   ),
                                   child: Align(
-                                    alignment: const AlignmentDirectional(1.0, 0.0),
+                                    alignment: AlignmentDirectional(1.0, 0.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           34.0, 0.0, 16.0, 0.0),
                                       child: Text(
                                         '${formatNumber(
@@ -1527,13 +1529,13 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                             ),
                           ],
                         ),
-                      if (containerRequestsRow?.rooms.isNotEmpty)
+                      if (containerRequestsRow?.rooms?.length != 0)
                         Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 16.0),
                               child: Text(
                                 'Номера:',
@@ -1551,7 +1553,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                               width: MediaQuery.sizeOf(context).width * 1.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context).primary,
-                                borderRadius: const BorderRadius.only(
+                                borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(0.0),
                                   bottomRight: Radius.circular(0.0),
                                   topLeft: Radius.circular(16.0),
@@ -1559,7 +1561,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 8.0, 0.0, 8.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
@@ -1570,7 +1572,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.1,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Название зала',
                                           textAlign: TextAlign.start,
@@ -1594,7 +1596,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Количество',
                                           style: FlutterFlowTheme.of(context)
@@ -1617,7 +1619,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.5,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Количество дней',
                                           style: FlutterFlowTheme.of(context)
@@ -1637,7 +1639,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                     Expanded(
                                       child: Container(
                                         width: 200.0,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Text(
                                           'Стоимость',
                                           textAlign: TextAlign.end,
@@ -1656,9 +1658,9 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                       ),
                                     ),
                                   ]
-                                      .divide(const SizedBox(width: 8.0))
-                                      .addToStart(const SizedBox(width: 16.0))
-                                      .addToEnd(const SizedBox(width: 16.0)),
+                                      .divide(SizedBox(width: 8.0))
+                                      .addToStart(SizedBox(width: 16.0))
+                                      .addToEnd(SizedBox(width: 16.0)),
                                 ),
                               ),
                             ),
@@ -1712,7 +1714,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                           FlutterFlowTheme.of(context)
                                               .primaryBackground,
                                         ),
-                                        borderRadius: const BorderRadius.only(
+                                        borderRadius: BorderRadius.only(
                                           bottomLeft: Radius.circular(0.0),
                                           bottomRight: Radius.circular(0.0),
                                           topLeft: Radius.circular(0.0),
@@ -1728,7 +1730,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   0.1,
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Text(
                                                 valueOrDefault<String>(
                                                   columnRequestsRoomVarRow
@@ -1758,7 +1760,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   0.5,
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Text(
                                                 valueOrDefault<String>(
                                                   columnRequestsRoomVarRow
@@ -1789,7 +1791,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   0.5,
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Text(
                                                 valueOrDefault<String>(
                                                   columnRequestsRoomVarRow.days
@@ -1816,7 +1818,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                           Expanded(
                                             child: Container(
                                               width: 200.0,
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Text(
                                                 valueOrDefault<String>(
                                                   formatNumber(
@@ -1848,9 +1850,9 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                             ),
                                           ),
                                         ]
-                                            .divide(const SizedBox(width: 8.0))
-                                            .addToStart(const SizedBox(width: 16.0))
-                                            .addToEnd(const SizedBox(width: 16.0)),
+                                            .divide(SizedBox(width: 8.0))
+                                            .addToStart(SizedBox(width: 16.0))
+                                            .addToEnd(SizedBox(width: 16.0)),
                                       ),
                                     );
                                   }),
@@ -1866,7 +1868,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                   height: 40.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context).primary,
-                                    borderRadius: const BorderRadius.only(
+                                    borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(8.0),
                                       bottomRight: Radius.circular(0.0),
                                       topLeft: Radius.circular(0.0),
@@ -1874,7 +1876,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                     ),
                                   ),
                                   child: Align(
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       'Итого:',
                                       textAlign: TextAlign.end,
@@ -1898,9 +1900,9 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                         .secondaryBackground,
                                   ),
                                   child: Align(
-                                    alignment: const AlignmentDirectional(1.0, 0.0),
+                                    alignment: AlignmentDirectional(1.0, 0.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           34.0, 0.0, 16.0, 0.0),
                                       child: Text(
                                         '${containerRequestsRow?.roomPrice?.toString()} руб.',
@@ -1931,7 +1933,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                             flex: 3,
                             child: Container(
                               width: MediaQuery.sizeOf(context).width * 0.5,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Text(
                                 'Общий итог: ',
                                 textAlign: TextAlign.end,
@@ -1947,7 +1949,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                             ),
                           ),
                           Container(
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Text(
                               '${formatNumber(
                                 containerRequestsRow?.price,
@@ -1958,7 +1960,7 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Commissioner',
-                                    color: const Color(0xFF2431A5),
+                                    color: Color(0xFF2431A5),
                                     fontSize: 20.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
@@ -1966,19 +1968,19 @@ class _ClientRequestWidgetState extends State<ClientRequestWidget> {
                             ),
                           ),
                         ]
-                            .divide(const SizedBox(width: 8.0))
-                            .addToStart(const SizedBox(width: 16.0))
-                            .addToEnd(const SizedBox(width: 16.0)),
+                            .divide(SizedBox(width: 8.0))
+                            .addToStart(SizedBox(width: 16.0))
+                            .addToEnd(SizedBox(width: 16.0)),
                       ),
-                    ].divide(const SizedBox(height: 40.0)),
+                    ].divide(SizedBox(height: 40.0)),
                   ),
                 );
               },
             ),
         ]
-            .divide(const SizedBox(height: 22.0))
-            .addToStart(const SizedBox(height: 20.0))
-            .addToEnd(const SizedBox(height: 72.0)),
+            .divide(SizedBox(height: 22.0))
+            .addToStart(SizedBox(height: 20.0))
+            .addToEnd(SizedBox(height: 72.0)),
       ),
     );
   }

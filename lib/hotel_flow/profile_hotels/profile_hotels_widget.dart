@@ -4,8 +4,12 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'profile_hotels_model.dart';
 export 'profile_hotels_model.dart';
 
@@ -57,8 +61,8 @@ class _ProfileHotelsWidgetState extends State<ProfileHotelsWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 200.0.ms,
-            begin: const Offset(0.0, 100.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 100.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -80,7 +84,7 @@ class _ProfileHotelsWidgetState extends State<ProfileHotelsWidget>
       future: HotelTable().queryRows(
         queryFn: (q) => q.contains(
           'owner_id',
-          '{$currentUserUid}',
+          '{${currentUserUid}}',
         ),
       ),
       builder: (context, snapshot) {
@@ -103,7 +107,7 @@ class _ProfileHotelsWidgetState extends State<ProfileHotelsWidget>
         return Container(
           width: MediaQuery.sizeOf(context).width * 1.0,
           height: MediaQuery.sizeOf(context).height * 1.0,
-          decoration: const BoxDecoration(),
+          decoration: BoxDecoration(),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -135,7 +139,7 @@ class _ProfileHotelsWidgetState extends State<ProfileHotelsWidget>
                                             MediaQuery.sizeOf(context).width *
                                                 0.8,
                                       ),
-                                      decoration: const BoxDecoration(),
+                                      decoration: BoxDecoration(),
                                       child: Text(
                                         valueOrDefault<String>(
                                           hotelsItem.name,
@@ -186,7 +190,7 @@ class _ProfileHotelsWidgetState extends State<ProfileHotelsWidget>
                                         size: 24.0,
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 8.0)),
+                                  ].divide(SizedBox(width: 8.0)),
                                 ),
                                 Text(
                                   valueOrDefault<String>(
@@ -203,15 +207,15 @@ class _ProfileHotelsWidgetState extends State<ProfileHotelsWidget>
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ),
-                              ].divide(const SizedBox(height: 8.0)),
+                              ].divide(SizedBox(height: 8.0)),
                             ),
                           ],
                         );
-                      }).divide(const SizedBox(height: 32.0)),
+                      }).divide(SizedBox(height: 32.0)),
                     );
                   },
                 ),
-                if (containerHotelRowList.isEmpty)
+                if (containerHotelRowList.length == 0)
                   FFButtonWidget(
                     onPressed: () async {
                       await widget.newCallback?.call();
@@ -220,9 +224,9 @@ class _ProfileHotelsWidgetState extends State<ProfileHotelsWidget>
                     options: FFButtonOptions(
                       height: 50.0,
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(43.0, 0.0, 43.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(43.0, 0.0, 43.0, 0.0),
                       iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
@@ -231,14 +235,14 @@ class _ProfileHotelsWidgetState extends State<ProfileHotelsWidget>
                                 letterSpacing: 0.0,
                               ),
                       elevation: 0.0,
-                      borderSide: const BorderSide(
+                      borderSide: BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),
                       borderRadius: BorderRadius.circular(24.0),
                     ),
                   ),
-              ].divide(const SizedBox(height: 24.0)).addToEnd(const SizedBox(height: 70.0)),
+              ].divide(SizedBox(height: 24.0)).addToEnd(SizedBox(height: 70.0)),
             ),
           ),
         ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!);

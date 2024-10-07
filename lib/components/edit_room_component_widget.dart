@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'edit_room_component_model.dart';
 export 'edit_room_component_model.dart';
 
@@ -22,7 +24,7 @@ class EditRoomComponentWidget extends StatefulWidget {
     required this.choseAction,
     this.request,
     required this.onLoad,
-  }) : isChosen = isChosen ?? false;
+  }) : this.isChosen = isChosen ?? false;
 
   final RoomRow? room;
   final bool isChosen;
@@ -53,12 +55,12 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (widget.request != null) {
-        _model.days = widget.request!.days!;
-        _model.rooms = widget.request?.roomCount;
+      if (widget!.request != null) {
+        _model.days = widget!.request!.days!;
+        _model.rooms = widget!.request?.roomCount;
         safeSetState(() {});
         await widget.onLoad?.call(
-          (_model.rooms!) * _model.days * (widget.room!.price!),
+          (_model.rooms!) * _model.days * (widget!.room!.price!),
         );
       }
     });
@@ -91,29 +93,29 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
         ))
           Container(
             height: 250.0,
-            decoration: const BoxDecoration(),
+            decoration: BoxDecoration(),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   width: 375.0,
-                  decoration: const BoxDecoration(),
+                  decoration: BoxDecoration(),
                   child: Stack(
                     children: [
                       Builder(
                         builder: (context) {
                           final roomImages =
-                              widget.room?.images.toList() ?? [];
+                              widget!.room?.images?.toList() ?? [];
                           if (roomImages.isEmpty) {
-                            return const SizedBox(
+                            return Container(
                               width: double.infinity,
                               height: double.infinity,
                               child: ImagesEmptyWidget(),
                             );
                           }
 
-                          return SizedBox(
+                          return Container(
                             width: double.infinity,
                             child: PageView.builder(
                               controller: _model.pageViewController1 ??=
@@ -143,11 +145,11 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                           );
                         },
                       ),
-                      if (widget.room!.images.length > 1)
+                      if (widget!.room!.images.length > 1)
                         Align(
-                          alignment: const AlignmentDirectional(0.0, -0.09),
+                          alignment: AlignmentDirectional(0.0, -0.09),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 8.0, 0.0, 8.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -162,7 +164,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                     onTap: () async {
                                       await _model.pageViewController1
                                           ?.previousPage(
-                                        duration: const Duration(milliseconds: 300),
+                                        duration: Duration(milliseconds: 300),
                                         curve: Curves.ease,
                                       );
                                     },
@@ -185,19 +187,19 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                 Container(
                                   width: 32.0,
                                   height: 32.0,
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
                                 ),
                                 Container(
                                   width: 32.0,
                                   height: 32.0,
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
                                 ),
                                 if (_model.pageViewCurrentIndex1 <
-                                    widget.room!.images.length)
+                                    widget!.room!.images.length)
                                   InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
@@ -206,7 +208,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                     onTap: () async {
                                       await _model.pageViewController1
                                           ?.nextPage(
-                                        duration: const Duration(milliseconds: 300),
+                                        duration: Duration(milliseconds: 300),
                                         curve: Curves.ease,
                                       );
                                     },
@@ -230,10 +232,10 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                             ),
                           ),
                         ),
-                      if (widget.room!.images.isNotEmpty)
+                      if (widget!.room!.images.length > 0)
                         Builder(
                           builder: (context) => Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 8.0, 16.0, 0.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -242,16 +244,16 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 await showDialog(
-                                  barrierColor: const Color(0x81FFFFFF),
+                                  barrierColor: Color(0x81FFFFFF),
                                   context: context,
                                   builder: (dialogContext) {
                                     return Dialog(
                                       elevation: 0,
                                       insetPadding: EdgeInsets.zero,
                                       backgroundColor: Colors.transparent,
-                                      alignment: const AlignmentDirectional(0.0, 0.0)
+                                      alignment: AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
-                                      child: SizedBox(
+                                      child: Container(
                                         height:
                                             MediaQuery.sizeOf(context).height *
                                                 0.9,
@@ -259,7 +261,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                             MediaQuery.sizeOf(context).width *
                                                 0.9,
                                         child: PopUpImagesWidget(
-                                          images: widget.room!.images,
+                                          images: widget!.room!.images,
                                         ),
                                       ),
                                     );
@@ -284,11 +286,11 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                             ),
                           ),
                         ),
-                      if (widget.room!.images.length > 1)
+                      if (widget!.room!.images.length > 1)
                         Align(
-                          alignment: const AlignmentDirectional(0.0, 1.0),
+                          alignment: AlignmentDirectional(0.0, 1.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 16.0),
                             child: Container(
                               decoration: BoxDecoration(
@@ -296,14 +298,14 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                 borderRadius: BorderRadius.circular(50.0),
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 8.0, 16.0, 8.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      '${(_model.pageViewCurrentIndex1 + 1).toString()}/${widget.room?.images.length.toString()}',
+                                      '${(_model.pageViewCurrentIndex1 + 1).toString()}/${widget!.room?.images?.length?.toString()}',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -352,7 +354,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                           Expanded(
                                             child: Text(
                                               valueOrDefault<String>(
-                                                widget.room?.name,
+                                                widget!.room?.name,
                                                 'namne',
                                               ),
                                               style: FlutterFlowTheme.of(
@@ -366,7 +368,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                                   ),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(width: 24.0)),
+                                        ].divide(SizedBox(width: 24.0)),
                                       ),
                                       Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -374,7 +376,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                           Expanded(
                                             child: Text(
                                               '${formatNumber(
-                                                widget.room?.price,
+                                                widget!.room?.price,
                                                 formatType: FormatType.decimal,
                                                 decimalType:
                                                     DecimalType.automatic,
@@ -395,7 +397,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                           ),
                                         ],
                                       ),
-                                    ].divide(const SizedBox(height: 8.0)),
+                                    ].divide(SizedBox(height: 8.0)),
                                   ),
                                 ),
                                 Builder(
@@ -406,18 +408,18 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
                                       await showDialog(
-                                        barrierColor: const Color(0x6914181B),
+                                        barrierColor: Color(0x6914181B),
                                         context: context,
                                         builder: (dialogContext) {
                                           return Dialog(
                                             elevation: 0,
                                             insetPadding: EdgeInsets.zero,
                                             backgroundColor: Colors.transparent,
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                     0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                            child: SizedBox(
+                                            child: Container(
                                               height: MediaQuery.sizeOf(context)
                                                       .height *
                                                   0.8,
@@ -425,7 +427,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                                       .width *
                                                   0.8,
                                               child: RoomPopUpWidget(
-                                                room: widget.room!,
+                                                room: widget!.room!,
                                                 isChosen: false,
                                               ),
                                             ),
@@ -442,7 +444,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Commissioner',
-                                                color: const Color(0xFF636363),
+                                                color: Color(0xFF636363),
                                                 fontSize: 16.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
@@ -456,19 +458,19 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                               .primary,
                                           size: 24.0,
                                         ),
-                                      ].divide(const SizedBox(width: 8.0)),
+                                      ].divide(SizedBox(width: 8.0)),
                                     ),
                                   ),
                                 ),
-                              ].divide(const SizedBox(width: 24.0)),
+                              ].divide(SizedBox(width: 24.0)),
                             ),
                             Expanded(
                               child: Container(
                                 width: double.infinity,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    widget.room?.description,
+                                    widget!.room?.description,
                                     'Description',
                                   ),
                                   maxLines: 5,
@@ -476,14 +478,14 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Commissioner',
-                                        color: const Color(0xFF636363),
+                                        color: Color(0xFF636363),
                                         fontSize: 13.0,
                                         letterSpacing: 0.0,
                                       ),
                                 ),
                               ),
                             ),
-                          ].divide(const SizedBox(height: 12.0)),
+                          ].divide(SizedBox(height: 12.0)),
                         ),
                       ),
                       Row(
@@ -492,7 +494,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                         children: [
                           Expanded(
                             child: Container(
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -500,13 +502,13 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                     child: Container(
                                       height: 30.0,
                                       decoration: BoxDecoration(
-                                        color: const Color(0xFFF0F0FA),
+                                        color: Color(0xFFF0F0FA),
                                         borderRadius:
                                             BorderRadius.circular(100.0),
                                       ),
                                       child: Align(
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: Text(
                                           '${functions.daysGen2(_model.days.toDouble())}',
                                           style: FlutterFlowTheme.of(context)
@@ -531,24 +533,24 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                         height: 30.0,
                                         decoration: BoxDecoration(
                                           color: valueOrDefault<Color>(
-                                            widget.isChosen == true
-                                                ? const Color(0x652431A5)
+                                            widget!.isChosen == true
+                                                ? Color(0x652431A5)
                                                 : FlutterFlowTheme.of(context)
                                                     .primary,
-                                            const Color(0x00000000),
+                                            Color(0x00000000),
                                           ),
                                           shape: BoxShape.circle,
                                         ),
                                         child: Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
                                             focusColor: Colors.transparent,
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              if (widget.isChosen != true) {
+                                              if (widget!.isChosen != true) {
                                                 _model.days = _model.days + 1;
                                                 safeSetState(() {});
                                               }
@@ -569,7 +571,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          if (widget.isChosen != true) {
+                                          if (widget!.isChosen != true) {
                                             if (_model.days > 1) {
                                               _model.days = _model.days + -1;
                                               safeSetState(() {});
@@ -582,23 +584,23 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                           decoration: BoxDecoration(
                                             color: valueOrDefault<Color>(
                                               () {
-                                                if (widget.isChosen == true) {
-                                                  return const Color(0x652431A5);
+                                                if (widget!.isChosen == true) {
+                                                  return Color(0x652431A5);
                                                 } else if (_model.days <= 1) {
-                                                  return const Color(0x652431A5);
+                                                  return Color(0x652431A5);
                                                 } else {
                                                   return FlutterFlowTheme.of(
                                                           context)
                                                       .primary;
                                                 }
                                               }(),
-                                              const Color(0x00000000),
+                                              Color(0x00000000),
                                             ),
                                             shape: BoxShape.circle,
                                           ),
                                           child: Align(
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0.0, 0.0),
                                             child: FaIcon(
                                               FontAwesomeIcons.minus,
                                               color:
@@ -609,15 +611,15 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                           ),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(width: 8.0)),
+                                    ].divide(SizedBox(width: 8.0)),
                                   ),
-                                ].divide(const SizedBox(width: 16.0)),
+                                ].divide(SizedBox(width: 16.0)),
                               ),
                             ),
                           ),
                           Expanded(
                             child: Container(
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -629,7 +631,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          if (!widget.isChosen) {
+                                          if (!widget!.isChosen) {
                                             _model.roomFieldOpen = true;
                                             safeSetState(() {});
                                             safeSetState(() {
@@ -640,13 +642,13 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                         child: Container(
                                           height: 30.0,
                                           decoration: BoxDecoration(
-                                            color: const Color(0xFFF0F0FA),
+                                            color: Color(0xFFF0F0FA),
                                             borderRadius:
                                                 BorderRadius.circular(100.0),
                                           ),
                                           child: Align(
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0.0, 0.0),
                                             child: Text(
                                               '${functions.roomsGen(_model.rooms)}',
                                               style: FlutterFlowTheme.of(
@@ -673,7 +675,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          if (widget.isChosen != true) {
+                                          if (widget!.isChosen != true) {
                                             _model.roomFieldOpen = true;
                                             safeSetState(() {});
                                           }
@@ -681,13 +683,13 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                         child: Container(
                                           height: 30.0,
                                           decoration: BoxDecoration(
-                                            color: const Color(0xFFF0F0FA),
+                                            color: Color(0xFFF0F0FA),
                                             borderRadius:
                                                 BorderRadius.circular(100.0),
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 8.0, 0.0),
                                             child: TextFormField(
                                               controller:
@@ -697,7 +699,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                               onChanged: (_) =>
                                                   EasyDebounce.debounce(
                                                 '_model.textController1',
-                                                const Duration(milliseconds: 100),
+                                                Duration(milliseconds: 100),
                                                 () async {
                                                   _model.rooms =
                                                       valueOrDefault<int>(
@@ -735,7 +737,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                                         ),
                                                 enabledBorder:
                                                     UnderlineInputBorder(
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Color(0x00000000),
                                                     width: 1.0,
                                                   ),
@@ -745,7 +747,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                                 ),
                                                 focusedBorder:
                                                     UnderlineInputBorder(
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Color(0x00000000),
                                                     width: 1.0,
                                                   ),
@@ -755,7 +757,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                                 ),
                                                 errorBorder:
                                                     UnderlineInputBorder(
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Color(0x00000000),
                                                     width: 1.0,
                                                   ),
@@ -765,7 +767,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                                 ),
                                                 focusedErrorBorder:
                                                     UnderlineInputBorder(
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Color(0x00000000),
                                                     width: 1.0,
                                                   ),
@@ -774,7 +776,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                                           8.0),
                                                 ),
                                                 contentPadding:
-                                                    const EdgeInsetsDirectional
+                                                    EdgeInsetsDirectional
                                                         .fromSTEB(0.0, 0.0, 0.0,
                                                             15.0),
                                               ),
@@ -809,24 +811,24 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                         height: 30.0,
                                         decoration: BoxDecoration(
                                           color: valueOrDefault<Color>(
-                                            widget.isChosen == true
-                                                ? const Color(0x652431A5)
+                                            widget!.isChosen == true
+                                                ? Color(0x652431A5)
                                                 : FlutterFlowTheme.of(context)
                                                     .primary,
-                                            const Color(0x00000000),
+                                            Color(0x00000000),
                                           ),
                                           shape: BoxShape.circle,
                                         ),
                                         child: Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
                                             focusColor: Colors.transparent,
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              if (widget.isChosen != true) {
+                                              if (widget!.isChosen != true) {
                                                 _model.rooms =
                                                     _model.rooms! + 1;
                                                 _model.roomFieldOpen = false;
@@ -849,7 +851,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          if (widget.isChosen != true) {
+                                          if (widget!.isChosen != true) {
                                             if (_model.rooms! > 1) {
                                               _model.rooms = _model.rooms! + -1;
                                               _model.roomFieldOpen = false;
@@ -863,23 +865,23 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                           decoration: BoxDecoration(
                                             color: valueOrDefault<Color>(
                                               () {
-                                                if (widget.isChosen == true) {
-                                                  return const Color(0x652431A5);
+                                                if (widget!.isChosen == true) {
+                                                  return Color(0x652431A5);
                                                 } else if (_model.rooms! <= 1) {
-                                                  return const Color(0x652431A5);
+                                                  return Color(0x652431A5);
                                                 } else {
                                                   return FlutterFlowTheme.of(
                                                           context)
                                                       .primary;
                                                 }
                                               }(),
-                                              const Color(0x00000000),
+                                              Color(0x00000000),
                                             ),
                                             shape: BoxShape.circle,
                                           ),
                                           child: Align(
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0.0, 0.0),
                                             child: FaIcon(
                                               FontAwesomeIcons.minus,
                                               color:
@@ -890,20 +892,20 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                           ),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(width: 8.0)),
+                                    ].divide(SizedBox(width: 8.0)),
                                   ),
-                                ].divide(const SizedBox(width: 16.0)),
+                                ].divide(SizedBox(width: 16.0)),
                               ),
                             ),
                           ),
                           FFButtonWidget(
                             onPressed: () async {
                               await widget.choseAction?.call(
-                                widget.room?.id,
-                                widget.room?.name,
+                                widget!.room?.id,
+                                widget!.room?.name,
                                 (_model.rooms!) *
                                     _model.days *
-                                    (widget.room!.price!),
+                                    (widget!.room!.price!),
                                 _model.rooms,
                                 _model.days,
                               );
@@ -911,7 +913,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                               safeSetState(() {});
                             },
                             text: valueOrDefault<String>(
-                              widget.isChosen == true
+                              widget!.isChosen == true
                                   ? 'Номер выбран'
                                   : 'Выбрать номер',
                               'Выбрать номер',
@@ -919,12 +921,12 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                             options: FFButtonOptions(
                               width: 250.0,
                               height: 56.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: widget.isChosen
-                                  ? const Color(0xFF24A541)
+                              color: widget!.isChosen
+                                  ? Color(0xFF24A541)
                                   : FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
@@ -934,19 +936,19 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 0.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
                               borderRadius: BorderRadius.circular(100.0),
                             ),
                           ),
-                        ].divide(const SizedBox(width: 24.0)),
+                        ].divide(SizedBox(width: 24.0)),
                       ),
-                    ].divide(const SizedBox(height: 24.0)),
+                    ].divide(SizedBox(height: 24.0)),
                   ),
                 ),
-              ].divide(const SizedBox(width: 48.0)),
+              ].divide(SizedBox(width: 48.0)),
             ),
           ),
         if (responsiveVisibility(
@@ -963,7 +965,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                 children: [
                   Text(
                     valueOrDefault<String>(
-                      widget.room?.name,
+                      widget!.room?.name,
                       'Без названия',
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -976,13 +978,13 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Text(
                       '${valueOrDefault<String>(
-                        widget.room?.price?.toString(),
+                        widget!.room?.price?.toString(),
                         '0',
                       )} руб / сутки',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -997,26 +999,26 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                 child: Container(
                   width: MediaQuery.sizeOf(context).width * 1.0,
                   height: 300.0,
-                  decoration: const BoxDecoration(),
+                  decoration: BoxDecoration(),
                   child: Stack(
                     children: [
                       Builder(
                         builder: (context) {
                           final hallImages =
-                              widget.room?.images.toList() ?? [];
+                              widget!.room?.images?.toList() ?? [];
                           if (hallImages.isEmpty) {
-                            return const SizedBox(
+                            return Container(
                               width: double.infinity,
                               height: double.infinity,
                               child: ImagesEmptyWidget(),
                             );
                           }
 
-                          return SizedBox(
+                          return Container(
                             width: double.infinity,
                             child: PageView.builder(
                               controller: _model.pageViewController2 ??=
@@ -1037,18 +1039,18 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
                                       await showDialog(
-                                        barrierColor: const Color(0x81FFFFFF),
+                                        barrierColor: Color(0x81FFFFFF),
                                         context: context,
                                         builder: (dialogContext) {
                                           return Dialog(
                                             elevation: 0,
                                             insetPadding: EdgeInsets.zero,
                                             backgroundColor: Colors.transparent,
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                     0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                            child: SizedBox(
+                                            child: Container(
                                               height: MediaQuery.sizeOf(context)
                                                       .height *
                                                   0.9,
@@ -1056,7 +1058,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                                       .width *
                                                   0.9,
                                               child: PopUpImagesWidget(
-                                                images: widget.room!.images,
+                                                images: widget!.room!.images,
                                               ),
                                             ),
                                           );
@@ -1082,11 +1084,11 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                           );
                         },
                       ),
-                      if (widget.room!.images.length > 1)
+                      if (widget!.room!.images.length > 1)
                         Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 8.0, 0.0, 8.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -1101,7 +1103,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                     onTap: () async {
                                       await _model.pageViewController2
                                           ?.previousPage(
-                                        duration: const Duration(milliseconds: 300),
+                                        duration: Duration(milliseconds: 300),
                                         curve: Curves.ease,
                                       );
                                     },
@@ -1124,19 +1126,19 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                 Container(
                                   width: 32.0,
                                   height: 32.0,
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
                                 ),
                                 Container(
                                   width: 32.0,
                                   height: 32.0,
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
                                 ),
                                 if (_model.pageViewCurrentIndex2 <
-                                    widget.room!.images.length)
+                                    widget!.room!.images.length)
                                   InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
@@ -1145,7 +1147,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                     onTap: () async {
                                       await _model.pageViewController2
                                           ?.nextPage(
-                                        duration: const Duration(milliseconds: 300),
+                                        duration: Duration(milliseconds: 300),
                                         curve: Curves.ease,
                                       );
                                     },
@@ -1169,11 +1171,11 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                             ),
                           ),
                         ),
-                      if (widget.room!.images.length > 1)
+                      if (widget!.room!.images.length > 1)
                         Align(
-                          alignment: const AlignmentDirectional(0.0, 1.0),
+                          alignment: AlignmentDirectional(0.0, 1.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 16.0),
                             child: Container(
                               decoration: BoxDecoration(
@@ -1181,14 +1183,14 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                 borderRadius: BorderRadius.circular(50.0),
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 8.0, 16.0, 8.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      '${(_model.pageViewCurrentIndex2 + 1).toString()}/${widget.room?.images.length.toString()}',
+                                      '${(_model.pageViewCurrentIndex2 + 1).toString()}/${widget!.room?.images?.length?.toString()}',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -1211,20 +1213,20 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Expanded(
                       child: Text(
                         valueOrDefault<String>(
-                          widget.room?.description,
+                          widget!.room?.description,
                           'Описание отсутствует',
                         ),
                         maxLines: 6,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Commissioner',
-                              color: const Color(0xFF636363),
+                              color: Color(0xFF636363),
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w500,
                             ),
@@ -1234,7 +1236,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -1247,7 +1249,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                             width: MediaQuery.sizeOf(context).width * 1.0,
                             height: 40.0,
                             decoration: BoxDecoration(
-                              color: const Color(0xFFF0F0FA),
+                              color: Color(0xFFF0F0FA),
                               borderRadius: BorderRadius.circular(30.0),
                             ),
                             child: Row(
@@ -1255,7 +1257,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                               children: [
                                 Expanded(
                                   child: Align(
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
                                         functions
@@ -1289,7 +1291,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                if (!widget.isChosen) {
+                                if (!widget!.isChosen) {
                                   _model.days = _model.days + 1;
                                   safeSetState(() {});
                                 }
@@ -1301,7 +1303,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                   color: FlutterFlowTheme.of(context).primary,
                                   shape: BoxShape.circle,
                                 ),
-                                child: const Align(
+                                child: Align(
                                   alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Icon(
                                     Icons.add,
@@ -1317,7 +1319,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                if (!widget.isChosen) {
+                                if (!widget!.isChosen) {
                                   _model.days = _model.days + -1;
                                   safeSetState(() {});
                                 }
@@ -1329,7 +1331,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                   color: FlutterFlowTheme.of(context).primary,
                                   shape: BoxShape.circle,
                                 ),
-                                child: const Align(
+                                child: Align(
                                   alignment: AlignmentDirectional(0.0, 0.0),
                                   child: FaIcon(
                                     FontAwesomeIcons.minus,
@@ -1339,9 +1341,9 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                 ),
                               ),
                             ),
-                          ].divide(const SizedBox(width: 8.0)),
+                          ].divide(SizedBox(width: 8.0)),
                         ),
-                      ].divide(const SizedBox(width: 16.0)),
+                      ].divide(SizedBox(width: 16.0)),
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
@@ -1354,7 +1356,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              if (!widget.isChosen) {
+                              if (!widget!.isChosen) {
                                 _model.roomFieldOpen = true;
                                 safeSetState(() {});
                                 safeSetState(() {
@@ -1366,7 +1368,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                               width: MediaQuery.sizeOf(context).width * 1.0,
                               height: 40.0,
                               decoration: BoxDecoration(
-                                color: const Color(0xFFF0F0FA),
+                                color: Color(0xFFF0F0FA),
                                 borderRadius: BorderRadius.circular(30.0),
                               ),
                               child: Row(
@@ -1376,7 +1378,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                     Expanded(
                                       child: Align(
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: Text(
                                           valueOrDefault<String>(
                                             functions.roomsGen(_model.rooms),
@@ -1401,10 +1403,10 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                     Expanded(
                                       child: Align(
                                         alignment:
-                                            const AlignmentDirectional(-1.0, 0.0),
+                                            AlignmentDirectional(-1.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 16.0, 10.0),
                                           child: TextFormField(
                                             controller:
@@ -1413,7 +1415,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                             onChanged: (_) =>
                                                 EasyDebounce.debounce(
                                               '_model.countmobTextController',
-                                              const Duration(milliseconds: 200),
+                                              Duration(milliseconds: 200),
                                               () async {
                                                 _model.rooms = int.tryParse(
                                                     _model
@@ -1450,7 +1452,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                                       ),
                                               enabledBorder:
                                                   UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 0.0,
                                                 ),
@@ -1459,7 +1461,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                               ),
                                               focusedBorder:
                                                   UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 0.0,
                                                 ),
@@ -1467,7 +1469,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                                     BorderRadius.circular(8.0),
                                               ),
                                               errorBorder: UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 0.0,
                                                 ),
@@ -1476,7 +1478,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                               ),
                                               focusedErrorBorder:
                                                   UnderlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 0.0,
                                                 ),
@@ -1512,7 +1514,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                if (!widget.isChosen) {
+                                if (!widget!.isChosen) {
                                   _model.rooms = _model.rooms! + 1;
                                   _model.roomFieldOpen = false;
                                   safeSetState(() {});
@@ -1525,7 +1527,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                   color: FlutterFlowTheme.of(context).primary,
                                   shape: BoxShape.circle,
                                 ),
-                                child: const Align(
+                                child: Align(
                                   alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Icon(
                                     Icons.add,
@@ -1541,7 +1543,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                if (!widget.isChosen) {
+                                if (!widget!.isChosen) {
                                   _model.rooms = _model.rooms! + -1;
                                   _model.roomFieldOpen = false;
                                   safeSetState(() {});
@@ -1554,7 +1556,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                   color: FlutterFlowTheme.of(context).primary,
                                   shape: BoxShape.circle,
                                 ),
-                                child: const Align(
+                                child: Align(
                                   alignment: AlignmentDirectional(0.0, 0.0),
                                   child: FaIcon(
                                     FontAwesomeIcons.minus,
@@ -1564,15 +1566,15 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                 ),
                               ),
                             ),
-                          ].divide(const SizedBox(width: 8.0)),
+                          ].divide(SizedBox(width: 8.0)),
                         ),
-                      ].divide(const SizedBox(width: 16.0)),
+                      ].divide(SizedBox(width: 16.0)),
                     ),
-                  ].divide(const SizedBox(height: 12.0)),
+                  ].divide(SizedBox(height: 12.0)),
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -1582,26 +1584,26 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                           _model.roomFieldOpen = false;
                           safeSetState(() {});
                           await widget.choseAction?.call(
-                            widget.room?.id,
-                            widget.room?.name,
+                            widget!.room?.id,
+                            widget!.room?.name,
                             (_model.rooms!) *
                                 _model.days *
-                                (widget.room!.price!),
+                                (widget!.room!.price!),
                             _model.rooms,
                             _model.days,
                           );
                         },
-                        text: widget.isChosen
+                        text: widget!.isChosen
                             ? 'Номер выбран'
                             : 'Подтвердить выбор',
                         options: FFButtonOptions(
                           height: 56.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: widget.isChosen
-                              ? const Color(0xFF24A541)
+                          color: widget!.isChosen
+                              ? Color(0xFF24A541)
                               : FlutterFlowTheme.of(context).primary,
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
@@ -1610,7 +1612,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 0.0,
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
