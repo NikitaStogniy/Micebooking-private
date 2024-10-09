@@ -123,7 +123,7 @@ class _DaysCountWidgetState extends State<DaysCountWidget> {
                           child: FaIcon(
                             FontAwesomeIcons.minus,
                             color: FlutterFlowTheme.of(context).primary,
-                            size: 18.0,
+                            size: 12.0,
                           ),
                         ),
                       ),
@@ -153,7 +153,7 @@ class _DaysCountWidgetState extends State<DaysCountWidget> {
                           child: FaIcon(
                             FontAwesomeIcons.plus,
                             color: FlutterFlowTheme.of(context).primary,
-                            size: 18.0,
+                            size: 12.0,
                           ),
                         ),
                       ),

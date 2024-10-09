@@ -295,8 +295,9 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                         text: 'Войти',
                         options: FFButtonOptions(
                           width: MediaQuery.sizeOf(context).width * 1.0,
+                          height: 48.0,
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              24.0, 32.0, 24.0, 32.0),
+                              0.0, 0.0, 0.0, 0.0),
                           iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,

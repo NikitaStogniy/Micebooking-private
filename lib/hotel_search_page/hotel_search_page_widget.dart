@@ -595,7 +595,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                           isGlobal: false,
                                           avoidOverflow: true,
                                           targetAnchor: AlignmentDirectional(
-                                                  0.0, 8.0)
+                                                  0.0, 0.6)
                                               .resolve(
                                                   Directionality.of(context)),
                                           followerAnchor: AlignmentDirectional(
@@ -821,7 +821,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                             isGlobal: false,
                                             avoidOverflow: true,
                                             targetAnchor: AlignmentDirectional(
-                                                    0.0, 8.0)
+                                                    0.0, -0.8)
                                                 .resolve(
                                                     Directionality.of(context)),
                                             followerAnchor:
@@ -1266,7 +1266,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                           isGlobal: false,
                                           avoidOverflow: true,
                                           targetAnchor: AlignmentDirectional(
-                                                  0.0, 8.0)
+                                                  0.0, -0.7)
                                               .resolve(
                                                   Directionality.of(context)),
                                           followerAnchor: AlignmentDirectional(
@@ -1504,7 +1504,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                             isGlobal: false,
                                             avoidOverflow: true,
                                             targetAnchor: AlignmentDirectional(
-                                                    0.0, 8.0)
+                                                    0.0, -0.8)
                                                 .resolve(
                                                     Directionality.of(context)),
                                             followerAnchor:

@@ -114,7 +114,7 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                       'Всего участников',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Commissioner',
-                            fontSize: 18.0,
+                            fontSize: 16.0,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.bold,
                           ),
@@ -349,10 +349,11 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                               }
                             },
                             child: Container(
-                              width: 24.0,
-                              height: 24.0,
+                              width: 32.0,
+                              height: 32.0,
                               decoration: BoxDecoration(
-                                shape: BoxShape.circle,
+                                borderRadius: BorderRadius.circular(40.0),
+                                shape: BoxShape.rectangle,
                                 border: Border.all(
                                   color: FlutterFlowTheme.of(context).primary,
                                   width: 2.0,
@@ -363,7 +364,7 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                 child: FaIcon(
                                   FontAwesomeIcons.minus,
                                   color: FlutterFlowTheme.of(context).primary,
-                                  size: 12.0,
+                                  size: 16.0,
                                 ),
                               ),
                             ),
@@ -382,10 +383,11 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                               safeSetState(() {});
                             },
                             child: Container(
-                              width: 24.0,
-                              height: 24.0,
+                              width: 32.0,
+                              height: 32.0,
                               decoration: BoxDecoration(
-                                shape: BoxShape.circle,
+                                borderRadius: BorderRadius.circular(40.0),
+                                shape: BoxShape.rectangle,
                                 border: Border.all(
                                   color: FlutterFlowTheme.of(context).primary,
                                   width: 2.0,
@@ -396,7 +398,7 @@ class _VisitorsCountWidgetState extends State<VisitorsCountWidget> {
                                 child: FaIcon(
                                   FontAwesomeIcons.plus,
                                   color: FlutterFlowTheme.of(context).primary,
-                                  size: 12.0,
+                                  size: 16.0,
                                 ),
                               ),
                             ),
