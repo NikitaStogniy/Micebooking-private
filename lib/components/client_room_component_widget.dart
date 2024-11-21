@@ -13,6 +13,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
 import 'client_room_component_model.dart';
 export 'client_room_component_model.dart';
 
@@ -123,14 +124,14 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
           tablet: false,
         ))
           Container(
-            height: 250.0,
+            height: 250,
             decoration: BoxDecoration(),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  width: 375.0,
+                  width: 375,
                   decoration: BoxDecoration(),
                   child: Stack(
                     children: [
@@ -160,14 +161,14 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                 final roomImagesItem =
                                     roomImages[roomImagesIndex];
                                 return ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
+                                  borderRadius: BorderRadius.circular(8),
                                   child: Image.network(
                                     valueOrDefault<String>(
                                       roomImagesItem,
                                       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiFYZkovo6Uq69lsMtG9ZPzszPBTa55NlR85uUqbmjNRy6Zvdh7WSBwLFpivd_70aNtmU&usqp=CAU',
                                     ),
-                                    width: 300.0,
-                                    height: 200.0,
+                                    width: 300,
+                                    height: 200,
                                     fit: BoxFit.cover,
                                   ),
                                 );
@@ -177,13 +178,12 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                         },
                       ),
                       Container(
-                        height: MediaQuery.sizeOf(context).height * 1.0,
+                        height: MediaQuery.sizeOf(context).height * 1,
                         decoration: BoxDecoration(),
                         child: Visibility(
                           visible: widget!.room!.images.length > 1,
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                8.0, 0.0, 8.0, 0.0),
+                            padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -202,8 +202,8 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                       );
                                     },
                                     child: Container(
-                                      width: 32.0,
-                                      height: 32.0,
+                                      width: 32,
+                                      height: 32,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .primaryBackground,
@@ -213,20 +213,20 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                         Icons.arrow_back_ios_rounded,
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
-                                        size: 20.0,
+                                        size: 20,
                                       ),
                                     ),
                                   ),
                                 Container(
-                                  width: 32.0,
-                                  height: 32.0,
+                                  width: 32,
+                                  height: 32,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
                                 ),
                                 Container(
-                                  width: 32.0,
-                                  height: 32.0,
+                                  width: 32,
+                                  height: 32,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
@@ -246,8 +246,8 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                       );
                                     },
                                     child: Container(
-                                      width: 32.0,
-                                      height: 32.0,
+                                      width: 32,
+                                      height: 32,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .primaryBackground,
@@ -257,7 +257,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                         Icons.arrow_forward_ios_rounded,
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
-                                        size: 20.0,
+                                        size: 20,
                                       ),
                                     ),
                                   ),
@@ -269,8 +269,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                       if (widget!.room!.images.length > 0)
                         Builder(
                           builder: (context) => Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                8.0, 8.0, 0.0, 0.0),
+                            padding: EdgeInsetsDirectional.fromSTEB(8, 8, 0, 0),
                             child: InkWell(
                               splashColor: Colors.transparent,
                               focusColor: Colors.transparent,
@@ -285,7 +284,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                       elevation: 0,
                                       insetPadding: EdgeInsets.zero,
                                       backgroundColor: Colors.transparent,
-                                      alignment: AlignmentDirectional(0.0, 0.0)
+                                      alignment: AlignmentDirectional(0, 0)
                                           .resolve(Directionality.of(context)),
                                       child: Container(
                                         height:
@@ -303,8 +302,8 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                 );
                               },
                               child: Container(
-                                width: 32.0,
-                                height: 32.0,
+                                width: 32,
+                                height: 32,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -314,7 +313,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                   Icons.add_rounded,
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
-                                  size: 20.0,
+                                  size: 20,
                                 ),
                               ),
                             ),
@@ -322,18 +321,18 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                         ),
                       if (widget!.room!.images.length > 1)
                         Align(
-                          alignment: AlignmentDirectional(0.0, 1.0),
+                          alignment: AlignmentDirectional(0, 1),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 16.0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                             child: Container(
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context).primary,
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(50),
                               ),
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 8.0, 16.0, 8.0),
+                                    16, 8, 16, 8),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -346,7 +345,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                             fontFamily: 'Commissioner',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
-                                            fontSize: 16.0,
+                                            fontSize: 16,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w300,
                                           ),
@@ -396,13 +395,13 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                                   .bodyMedium
                                                   .override(
                                                     fontFamily: 'Commissioner',
-                                                    fontSize: 34.0,
+                                                    fontSize: 34,
                                                     letterSpacing: 0.0,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                             ),
                                           ),
-                                        ].divide(SizedBox(width: 24.0)),
+                                        ].divide(SizedBox(width: 24)),
                                       ),
                                       Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -423,7 +422,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primary,
-                                                    fontSize: 18.0,
+                                                    fontSize: 18,
                                                     letterSpacing: 0.0,
                                                     fontWeight: FontWeight.bold,
                                                   ),
@@ -431,51 +430,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                           ),
                                         ],
                                       ),
-                                      Builder(
-                                        builder: (context) {
-                                          final test = _model.price.toList();
-
-                                          return SingleChildScrollView(
-                                            scrollDirection: Axis.horizontal,
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: List.generate(
-                                                  test.length, (testIndex) {
-                                                final testItem =
-                                                    test[testIndex];
-                                                return Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Text(
-                                                      testItem.toString(),
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Commissioner',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                                fontSize: 16.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                              ),
-                                                    ),
-                                                  ].divide(
-                                                      SizedBox(height: 4.0)),
-                                                );
-                                              }).divide(SizedBox(width: 12.0)),
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                    ].divide(SizedBox(height: 8.0)),
+                                    ].divide(SizedBox(height: 8)),
                                   ),
                                 ),
                                 Builder(
@@ -494,7 +449,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                             insetPadding: EdgeInsets.zero,
                                             backgroundColor: Colors.transparent,
                                             alignment: AlignmentDirectional(
-                                                    0.0, 0.0)
+                                                    0, 0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                             child: Container(
@@ -523,7 +478,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                               .override(
                                                 fontFamily: 'Commissioner',
                                                 color: Color(0xFF636363),
-                                                fontSize: 16.0,
+                                                fontSize: 16,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
                                                 decoration:
@@ -534,13 +489,13 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                           Icons.info,
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
-                                          size: 24.0,
+                                          size: 24,
                                         ),
-                                      ].divide(SizedBox(width: 8.0)),
+                                      ].divide(SizedBox(width: 8)),
                                     ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 24.0)),
+                              ].divide(SizedBox(width: 24)),
                             ),
                             Expanded(
                               child: Container(
@@ -557,13 +512,13 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                       .override(
                                         fontFamily: 'Commissioner',
                                         color: Color(0xFF636363),
-                                        fontSize: 14.0,
+                                        fontSize: 14,
                                         letterSpacing: 0.0,
                                       ),
                                 ),
                               ),
                             ),
-                          ].divide(SizedBox(height: 12.0)),
+                          ].divide(SizedBox(height: 12)),
                         ),
                       ),
                       Row(
@@ -578,15 +533,14 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                 children: [
                                   Expanded(
                                     child: Container(
-                                      height: 30.0,
+                                      height: 30,
                                       decoration: BoxDecoration(
                                         color: Color(0xFFF0F0FA),
                                         borderRadius:
-                                            BorderRadius.circular(100.0),
+                                            BorderRadius.circular(100),
                                       ),
                                       child: Align(
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                        alignment: AlignmentDirectional(0, 0),
                                         child: Text(
                                           '${functions.daysGen2(_model.days?.toDouble())}',
                                           style: FlutterFlowTheme.of(context)
@@ -607,8 +561,8 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Container(
-                                        width: 30.0,
-                                        height: 30.0,
+                                        width: 30,
+                                        height: 30,
                                         decoration: BoxDecoration(
                                           color: valueOrDefault<Color>(
                                             widget!.isChosen == true
@@ -620,8 +574,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                           shape: BoxShape.circle,
                                         ),
                                         child: Align(
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
+                                          alignment: AlignmentDirectional(0, 0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
                                             focusColor: Colors.transparent,
@@ -689,7 +642,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
-                                              size: 16.0,
+                                              size: 16,
                                             ),
                                           ),
                                         ),
@@ -710,8 +663,8 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                           }
                                         },
                                         child: Container(
-                                          width: 30.0,
-                                          height: 30.0,
+                                          width: 30,
+                                          height: 30,
                                           decoration: BoxDecoration(
                                             color: valueOrDefault<Color>(
                                               () {
@@ -731,20 +684,20 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                           ),
                                           child: Align(
                                             alignment:
-                                                AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0, 0),
                                             child: FaIcon(
                                               FontAwesomeIcons.minus,
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
-                                              size: 16.0,
+                                              size: 16,
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ].divide(SizedBox(width: 8.0)),
+                                    ].divide(SizedBox(width: 8)),
                                   ),
-                                ].divide(SizedBox(width: 16.0)),
+                                ].divide(SizedBox(width: 16)),
                               ),
                             ),
                           ),
@@ -771,15 +724,15 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                           }
                                         },
                                         child: Container(
-                                          height: 30.0,
+                                          height: 30,
                                           decoration: BoxDecoration(
                                             color: Color(0xFFF0F0FA),
                                             borderRadius:
-                                                BorderRadius.circular(100.0),
+                                                BorderRadius.circular(100),
                                           ),
                                           child: Align(
                                             alignment:
-                                                AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0, 0),
                                             child: Text(
                                               '${functions.roomsGen(_model.rooms)}',
                                               style: FlutterFlowTheme.of(
@@ -812,16 +765,16 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                           }
                                         },
                                         child: Container(
-                                          height: 30.0,
+                                          height: 30,
                                           decoration: BoxDecoration(
                                             color: Color(0xFFF0F0FA),
                                             borderRadius:
-                                                BorderRadius.circular(100.0),
+                                                BorderRadius.circular(100),
                                           ),
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    8.0, 0.0, 8.0, 0.0),
+                                                    8, 0, 8, 0),
                                             child: TextFormField(
                                               controller:
                                                   _model.textController1,
@@ -873,8 +826,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                                     width: 1.0,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
+                                                      BorderRadius.circular(8),
                                                 ),
                                                 focusedBorder:
                                                     UnderlineInputBorder(
@@ -883,8 +835,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                                     width: 1.0,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
+                                                      BorderRadius.circular(8),
                                                 ),
                                                 errorBorder:
                                                     UnderlineInputBorder(
@@ -893,8 +844,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                                     width: 1.0,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
+                                                      BorderRadius.circular(8),
                                                 ),
                                                 focusedErrorBorder:
                                                     UnderlineInputBorder(
@@ -903,13 +853,11 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                                     width: 1.0,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
+                                                      BorderRadius.circular(8),
                                                 ),
                                                 contentPadding:
                                                     EdgeInsetsDirectional
-                                                        .fromSTEB(0.0, 0.0, 0.0,
-                                                            15.0),
+                                                        .fromSTEB(0, 0, 0, 15),
                                               ),
                                               style:
                                                   FlutterFlowTheme.of(context)
@@ -938,8 +886,8 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Container(
-                                        width: 30.0,
-                                        height: 30.0,
+                                        width: 30,
+                                        height: 30,
                                         decoration: BoxDecoration(
                                           color: valueOrDefault<Color>(
                                             widget!.isChosen == true
@@ -951,8 +899,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                           shape: BoxShape.circle,
                                         ),
                                         child: Align(
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
+                                          alignment: AlignmentDirectional(0, 0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
                                             focusColor: Colors.transparent,
@@ -971,7 +918,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
-                                              size: 16.0,
+                                              size: 16,
                                             ),
                                           ),
                                         ),
@@ -991,8 +938,8 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                           }
                                         },
                                         child: Container(
-                                          width: 30.0,
-                                          height: 30.0,
+                                          width: 30,
+                                          height: 30,
                                           decoration: BoxDecoration(
                                             color: valueOrDefault<Color>(
                                               () {
@@ -1012,20 +959,20 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                           ),
                                           child: Align(
                                             alignment:
-                                                AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0, 0),
                                             child: FaIcon(
                                               FontAwesomeIcons.minus,
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
-                                              size: 16.0,
+                                              size: 16,
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ].divide(SizedBox(width: 8.0)),
+                                    ].divide(SizedBox(width: 8)),
                                   ),
-                                ].divide(SizedBox(width: 16.0)),
+                                ].divide(SizedBox(width: 16)),
                               ),
                             ),
                           ),
@@ -1049,12 +996,12 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                               'Выбрать номер',
                             ),
                             options: FFButtonOptions(
-                              width: 250.0,
-                              height: 56.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
+                              width: 250,
+                              height: 56,
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                              iconPadding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                               color: widget!.isChosen
                                   ? Color(0xFF24A541)
                                   : FlutterFlowTheme.of(context).primary,
@@ -1065,20 +1012,20 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                     color: Colors.white,
                                     letterSpacing: 0.0,
                                   ),
-                              elevation: 0.0,
+                              elevation: 0,
                               borderSide: BorderSide(
                                 color: Colors.transparent,
-                                width: 1.0,
+                                width: 1,
                               ),
-                              borderRadius: BorderRadius.circular(100.0),
+                              borderRadius: BorderRadius.circular(100),
                             ),
                           ),
-                        ].divide(SizedBox(width: 24.0)),
+                        ].divide(SizedBox(width: 24)),
                       ),
-                    ].divide(SizedBox(height: 24.0)),
+                    ].divide(SizedBox(height: 24)),
                   ),
                 ),
-              ].divide(SizedBox(width: 48.0)),
+              ].divide(SizedBox(width: 48)),
             ),
           ),
         if (responsiveVisibility(
@@ -1107,7 +1054,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Commissioner',
-                                  fontSize: 25.0,
+                                  fontSize: 25,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -1119,7 +1066,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                 ],
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -1131,7 +1078,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Commissioner',
                             color: FlutterFlowTheme.of(context).primary,
-                            fontSize: 16.0,
+                            fontSize: 16,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.bold,
                           ),
@@ -1140,10 +1087,10 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
                 child: Container(
-                  width: MediaQuery.sizeOf(context).width * 1.0,
-                  height: 300.0,
+                  width: MediaQuery.sizeOf(context).width,
+                  height: 300,
                   decoration: BoxDecoration(),
                   child: Stack(
                     children: [
@@ -1188,7 +1135,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                             insetPadding: EdgeInsets.zero,
                                             backgroundColor: Colors.transparent,
                                             alignment: AlignmentDirectional(
-                                                    0.0, 0.0)
+                                                    0, 0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                             child: Container(
@@ -1207,14 +1154,14 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                       );
                                     },
                                     child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
+                                      borderRadius: BorderRadius.circular(8),
                                       child: Image.network(
                                         valueOrDefault<String>(
                                           hallImagesItem,
                                           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiFYZkovo6Uq69lsMtG9ZPzszPBTa55NlR85uUqbmjNRy6Zvdh7WSBwLFpivd_70aNtmU&usqp=CAU',
                                         ),
-                                        width: 300.0,
-                                        height: 280.0,
+                                        width: 300,
+                                        height: 280,
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -1226,13 +1173,12 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                         },
                       ),
                       Container(
-                        height: MediaQuery.sizeOf(context).height * 1.0,
+                        height: MediaQuery.sizeOf(context).height * 1,
                         decoration: BoxDecoration(),
                         child: Visibility(
                           visible: widget!.room!.images.length > 1,
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                8.0, 0.0, 8.0, 0.0),
+                            padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1251,8 +1197,8 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                       );
                                     },
                                     child: Container(
-                                      width: 40.0,
-                                      height: 40.0,
+                                      width: 40,
+                                      height: 40,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .primaryBackground,
@@ -1262,20 +1208,20 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                         Icons.arrow_back_ios_rounded,
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
-                                        size: 20.0,
+                                        size: 20,
                                       ),
                                     ),
                                   ),
                                 Container(
-                                  width: 32.0,
-                                  height: 32.0,
+                                  width: 32,
+                                  height: 32,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
                                 ),
                                 Container(
-                                  width: 32.0,
-                                  height: 32.0,
+                                  width: 32,
+                                  height: 32,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
@@ -1295,8 +1241,8 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                       );
                                     },
                                     child: Container(
-                                      width: 40.0,
-                                      height: 40.0,
+                                      width: 40,
+                                      height: 40,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .primaryBackground,
@@ -1306,7 +1252,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                         Icons.arrow_forward_ios_rounded,
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
-                                        size: 20.0,
+                                        size: 20,
                                       ),
                                     ),
                                   ),
@@ -1317,18 +1263,18 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                       ),
                       if (widget!.room!.images.length > 1)
                         Align(
-                          alignment: AlignmentDirectional(0.0, 1.0),
+                          alignment: AlignmentDirectional(0, 1),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 16.0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                             child: Container(
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context).primary,
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(50),
                               ),
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 8.0, 16.0, 8.0),
+                                    16, 8, 16, 8),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -1341,7 +1287,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                             fontFamily: 'Commissioner',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
-                                            fontSize: 16.0,
+                                            fontSize: 16,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w300,
                                           ),
@@ -1358,7 +1304,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
               ),
               Builder(
                 builder: (context) => Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -1373,7 +1319,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                             elevation: 0,
                             insetPadding: EdgeInsets.zero,
                             backgroundColor: Colors.transparent,
-                            alignment: AlignmentDirectional(0.0, 0.0)
+                            alignment: AlignmentDirectional(0, 0)
                                 .resolve(Directionality.of(context)),
                             child: RoomPopUpWidget(
                               room: widget!.room!,
@@ -1392,7 +1338,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Commissioner',
                                     color: Color(0xFF636363),
-                                    fontSize: 16.0,
+                                    fontSize: 16,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.bold,
                                     decoration: TextDecoration.underline,
@@ -1401,15 +1347,15 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                         Icon(
                           Icons.info,
                           color: FlutterFlowTheme.of(context).primary,
-                          size: 24.0,
+                          size: 24,
                         ),
-                      ].divide(SizedBox(width: 8.0)),
+                      ].divide(SizedBox(width: 8)),
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -1432,7 +1378,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -1442,18 +1388,18 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                       children: [
                         Expanded(
                           child: Container(
-                            width: MediaQuery.sizeOf(context).width * 1.0,
-                            height: 40.0,
+                            width: MediaQuery.sizeOf(context).width,
+                            height: 40,
                             decoration: BoxDecoration(
                               color: Color(0xFFF0F0FA),
-                              borderRadius: BorderRadius.circular(30.0),
+                              borderRadius: BorderRadius.circular(30),
                             ),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Expanded(
                                   child: Align(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0, 0),
                                     child: Text(
                                       valueOrDefault<String>(
                                         functions
@@ -1467,7 +1413,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                             fontFamily: 'Commissioner',
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
-                                            fontSize: 15.0,
+                                            fontSize: 15,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -1493,18 +1439,18 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                 }
                               },
                               child: Container(
-                                width: 40.0,
-                                height: 40.0,
+                                width: 40,
+                                height: 40,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context).primary,
                                   shape: BoxShape.circle,
                                 ),
                                 child: Align(
-                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0, 0),
                                   child: Icon(
                                     Icons.add,
                                     color: Colors.white,
-                                    size: 20.0,
+                                    size: 20,
                                   ),
                                 ),
                               ),
@@ -1521,25 +1467,25 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                 }
                               },
                               child: Container(
-                                width: 40.0,
-                                height: 40.0,
+                                width: 40,
+                                height: 40,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context).primary,
                                   shape: BoxShape.circle,
                                 ),
                                 child: Align(
-                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0, 0),
                                   child: FaIcon(
                                     FontAwesomeIcons.minus,
                                     color: Colors.white,
-                                    size: 20.0,
+                                    size: 20,
                                   ),
                                 ),
                               ),
                             ),
-                          ].divide(SizedBox(width: 8.0)),
+                          ].divide(SizedBox(width: 8)),
                         ),
-                      ].divide(SizedBox(width: 16.0)),
+                      ].divide(SizedBox(width: 16)),
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
@@ -1561,11 +1507,11 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                               }
                             },
                             child: Container(
-                              width: MediaQuery.sizeOf(context).width * 1.0,
-                              height: 40.0,
+                              width: MediaQuery.sizeOf(context).width,
+                              height: 40,
                               decoration: BoxDecoration(
                                 color: Color(0xFFF0F0FA),
-                                borderRadius: BorderRadius.circular(30.0),
+                                borderRadius: BorderRadius.circular(30),
                               ),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -1573,8 +1519,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                   if (_model.roomFieldOpen == false)
                                     Expanded(
                                       child: Align(
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                        alignment: AlignmentDirectional(0, 0),
                                         child: Text(
                                           valueOrDefault<String>(
                                             functions.roomsGen(_model.rooms),
@@ -1588,7 +1533,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primary,
-                                                fontSize: 15.0,
+                                                fontSize: 15,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
                                               ),
@@ -1598,12 +1543,11 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                   if (_model.roomFieldOpen == true)
                                     Expanded(
                                       child: Align(
-                                        alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                        alignment: AlignmentDirectional(-1, 0),
                                         child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 0.0, 16.0, 10.0),
+                                                  16, 0, 16, 10),
                                           child: TextFormField(
                                             controller:
                                                 _model.countmobTextController,
@@ -1650,36 +1594,36 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                                   UnderlineInputBorder(
                                                 borderSide: BorderSide(
                                                   color: Color(0x00000000),
-                                                  width: 0.0,
+                                                  width: 0,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(0.0),
+                                                    BorderRadius.circular(0),
                                               ),
                                               focusedBorder:
                                                   UnderlineInputBorder(
                                                 borderSide: BorderSide(
                                                   color: Color(0x00000000),
-                                                  width: 0.0,
+                                                  width: 0,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(0.0),
+                                                    BorderRadius.circular(0),
                                               ),
                                               errorBorder: UnderlineInputBorder(
                                                 borderSide: BorderSide(
                                                   color: Color(0x00000000),
-                                                  width: 0.0,
+                                                  width: 0,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(0.0),
+                                                    BorderRadius.circular(0),
                                               ),
                                               focusedErrorBorder:
                                                   UnderlineInputBorder(
                                                 borderSide: BorderSide(
                                                   color: Color(0x00000000),
-                                                  width: 0.0,
+                                                  width: 0,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(0.0),
+                                                    BorderRadius.circular(0),
                                               ),
                                             ),
                                             style: FlutterFlowTheme.of(context)
@@ -1730,18 +1674,18 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                 }
                               },
                               child: Container(
-                                width: 40.0,
-                                height: 40.0,
+                                width: 40,
+                                height: 40,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context).primary,
                                   shape: BoxShape.circle,
                                 ),
                                 child: Align(
-                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0, 0),
                                   child: Icon(
                                     Icons.add,
                                     color: Colors.white,
-                                    size: 20.0,
+                                    size: 20,
                                   ),
                                 ),
                               ),
@@ -1759,31 +1703,31 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                 }
                               },
                               child: Container(
-                                width: 40.0,
-                                height: 40.0,
+                                width: 40,
+                                height: 40,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context).primary,
                                   shape: BoxShape.circle,
                                 ),
                                 child: Align(
-                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0, 0),
                                   child: FaIcon(
                                     FontAwesomeIcons.minus,
                                     color: Colors.white,
-                                    size: 20.0,
+                                    size: 20,
                                   ),
                                 ),
                               ),
                             ),
-                          ].divide(SizedBox(width: 8.0)),
+                          ].divide(SizedBox(width: 8)),
                         ),
-                      ].divide(SizedBox(width: 16.0)),
+                      ].divide(SizedBox(width: 16)),
                     ),
-                  ].divide(SizedBox(height: 12.0)),
+                  ].divide(SizedBox(height: 12)),
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -1806,11 +1750,10 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                             ? 'Номер выбран'
                             : 'Подтвердить выбор',
                         options: FFButtonOptions(
-                          height: 56.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              24.0, 0.0, 24.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
+                          height: 56,
+                          padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                          iconPadding:
+                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                           color: widget!.isChosen
                               ? Color(0xFF24A541)
                               : FlutterFlowTheme.of(context).primary,
@@ -1820,12 +1763,12 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                     color: Colors.white,
                                     letterSpacing: 0.0,
                                   ),
-                          elevation: 0.0,
+                          elevation: 0,
                           borderSide: BorderSide(
                             color: Colors.transparent,
-                            width: 1.0,
+                            width: 1,
                           ),
-                          borderRadius: BorderRadius.circular(30.0),
+                          borderRadius: BorderRadius.circular(30),
                         ),
                       ),
                     ),
