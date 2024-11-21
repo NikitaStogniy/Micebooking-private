@@ -7,8 +7,8 @@ import '/pop_up/hotel_pop_up/hotel_pop_up_widget.dart';
 import '/pop_up/pop_up_images/pop_up_images_widget.dart';
 import '/uikit/favorite/favorite_widget.dart';
 import 'client_hotel_component_widget.dart' show ClientHotelComponentWidget;
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 

@@ -73,7 +73,7 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
   Widget build(BuildContext context) {
     return FutureBuilder<List<ServiceCategoryRow>>(
       future: ServiceCategoryTable().querySingleRow(
-        queryFn: (q) => q.eq(
+        queryFn: (q) => q.eqOrNull(
           'id',
           _model.categoryId,
         ),
@@ -241,7 +241,7 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                     future: (_model.requestCompleter ??=
                             Completer<List<ServiceCategoryRow>>()
                               ..complete(ServiceCategoryTable().queryRows(
-                                queryFn: (q) => q.eq(
+                                queryFn: (q) => q.eqOrNull(
                                   'type',
                                   EnumType.FOOD_POSITION.name,
                                 ),
@@ -281,7 +281,7 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                           safeSetState(() => _model.dropDownValue = val);
                           _model.category =
                               await ServiceCategoryTable().queryRows(
-                            queryFn: (q) => q.eq(
+                            queryFn: (q) => q.eqOrNull(
                               'name',
                               _model.dropDownValue,
                             ),
@@ -379,7 +379,7 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                         ),
                         onPressed: () async {
                           await FoodPositionTable().delete(
-                            matchingRows: (rows) => rows.eq(
+                            matchingRows: (rows) => rows.eqOrNull(
                               'id',
                               widget!.position?.id,
                             ),
@@ -412,7 +412,7 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                               'category': _model.categoryId,
                               'type': _model.categotyName,
                             },
-                            matchingRows: (rows) => rows.eq(
+                            matchingRows: (rows) => rows.eqOrNull(
                               'id',
                               widget!.position?.id,
                             ),
@@ -424,7 +424,7 @@ class _FoodPositionElementWidgetState extends State<FoodPositionElementWidget> {
                                       .toList(),
                                   _model.mergePosition.toList()),
                             },
-                            matchingRows: (rows) => rows.eq(
+                            matchingRows: (rows) => rows.eqOrNull(
                               'id',
                               containerServiceCategoryRow?.id,
                             ),

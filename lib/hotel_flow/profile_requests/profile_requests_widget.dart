@@ -142,7 +142,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
             if (_model.requestOpen == false)
               FutureBuilder<List<HotelRow>>(
                 future: HotelTable().queryRows(
-                  queryFn: (q) => q.contains(
+                  queryFn: (q) => q.containsOrNull(
                     'owner_id',
                     '{${currentUserUid}}',
                   ),
@@ -197,7 +197,7 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
             if (_model.requestOpen == true)
               FutureBuilder<List<RequestsRow>>(
                 future: RequestsTable().querySingleRow(
-                  queryFn: (q) => q.eq(
+                  queryFn: (q) => q.eqOrNull(
                     'id',
                     _model.request?.id,
                   ),
@@ -469,9 +469,9 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                 ),
                                 FutureBuilder<List<RequestsRoomVarRow>>(
                                   future: RequestsRoomVarTable().queryRows(
-                                    queryFn: (q) => q.in_(
+                                    queryFn: (q) => q.inFilterOrNull(
                                       'id',
-                                      containerRequestsRow!.rooms,
+                                      containerRequestsRow?.rooms,
                                     ),
                                   ),
                                   builder: (context, snapshot) {
@@ -901,9 +901,9 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                 ),
                                 FutureBuilder<List<RequestsHallVarRow>>(
                                   future: RequestsHallVarTable().queryRows(
-                                    queryFn: (q) => q.in_(
+                                    queryFn: (q) => q.inFilterOrNull(
                                       'id',
-                                      containerRequestsRow!.halls,
+                                      containerRequestsRow?.halls,
                                     ),
                                   ),
                                   builder: (context, snapshot) {
@@ -1326,9 +1326,9 @@ class _ProfileRequestsWidgetState extends State<ProfileRequestsWidget> {
                                 ),
                                 FutureBuilder<List<RequestsFoodVarRow>>(
                                   future: RequestsFoodVarTable().queryRows(
-                                    queryFn: (q) => q.in_(
+                                    queryFn: (q) => q.inFilterOrNull(
                                       'id',
-                                      containerRequestsRow!.food,
+                                      containerRequestsRow?.food,
                                     ),
                                   ),
                                   builder: (context, snapshot) {

@@ -631,7 +631,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                               decoration: BoxDecoration(),
                               child: FutureBuilder<List<ServiceCategoryRow>>(
                                 future: ServiceCategoryTable().queryRows(
-                                  queryFn: (q) => q.eq(
+                                  queryFn: (q) => q.eqOrNull(
                                     'type',
                                     EnumType.ROOM.name,
                                   ),
@@ -716,7 +716,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                                   List<ServiceRow>>(
                                                 future:
                                                     ServiceTable().queryRows(
-                                                  queryFn: (q) => q.eq(
+                                                  queryFn: (q) => q.eqOrNull(
                                                     'category',
                                                     staggeredViewServiceCategoryRow
                                                         .id,
@@ -1292,7 +1292,8 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                             (_model.countTextController.text == null ||
                                 _model.countTextController.text == '') ||
                             (_model.priceTextController.text == null ||
-                                _model.priceTextController.text == ''))
+                                _model.priceTextController.text == '') ||
+                            (_model.priceTextController.text == '0'))
                         ? null
                         : () async {
                             _model.newRoom = await RoomTable().insert({
@@ -1311,7 +1312,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                               'show_single': false,
                             });
                             _model.hotel = await HotelTable().queryRows(
-                              queryFn: (q) => q.eq(
+                              queryFn: (q) => q.eqOrNull(
                                 'id',
                                 valueOrDefault<int>(
                                   widget!.hotelId,
@@ -1333,7 +1334,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                               data: {
                                 'rooms': _model.newRoomSet,
                               },
-                              matchingRows: (rows) => rows.eq(
+                              matchingRows: (rows) => rows.eqOrNull(
                                 'id',
                                 widget!.hotelId,
                               ),
@@ -1383,7 +1384,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
             if (widget!.id != 0)
               FutureBuilder<List<RoomRow>>(
                 future: RoomTable().querySingleRow(
-                  queryFn: (q) => q.eq(
+                  queryFn: (q) => q.eqOrNull(
                     'id',
                     widget!.id,
                   ),

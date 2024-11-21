@@ -91,7 +91,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
             FutureBuilder<List<HotelRow>>(
               future: _model.profileInfo(
                 requestFn: () => HotelTable().querySingleRow(
-                  queryFn: (q) => q.eq(
+                  queryFn: (q) => q.eqOrNull(
                     'id',
                     widget!.id,
                   ),
@@ -122,9 +122,9 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                   decoration: BoxDecoration(),
                   child: FutureBuilder<List<UsersRow>>(
                     future: UsersTable().querySingleRow(
-                      queryFn: (q) => q.in_(
+                      queryFn: (q) => q.inFilterOrNull(
                         'uid',
-                        containerHotelRow!.ownerId,
+                        containerHotelRow?.ownerId,
                       ),
                     ),
                     builder: (context, snapshot) {
@@ -152,7 +152,7 @@ class _SuperHotelJuridicalWidgetState extends State<SuperHotelJuridicalWidget> {
                         decoration: BoxDecoration(),
                         child: FutureBuilder<List<JuridicalInfoRow>>(
                           future: JuridicalInfoTable().querySingleRow(
-                            queryFn: (q) => q.eq(
+                            queryFn: (q) => q.eqOrNull(
                               'owner',
                               containerUsersRow?.id,
                             ),

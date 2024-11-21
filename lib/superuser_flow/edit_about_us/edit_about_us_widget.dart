@@ -49,7 +49,7 @@ class _EditAboutUsWidgetState extends State<EditAboutUsWidget> {
     return FutureBuilder<List<CmsRow>>(
       future: CmsTable().querySingleRow(
         queryFn: (q) => q
-            .eq(
+            .eqOrNull(
               'type',
               EnumCms.ABOUT_US.name,
             )
@@ -295,7 +295,7 @@ class _EditAboutUsWidgetState extends State<EditAboutUsWidget> {
                               'text1': _model.aboutUsText1TextController.text,
                               'title1': _model.aboutUsTitleTextController.text,
                             },
-                            matchingRows: (rows) => rows.eq(
+                            matchingRows: (rows) => rows.eqOrNull(
                               'id',
                               containerCmsRow?.id,
                             ),
@@ -331,6 +331,7 @@ class _EditAboutUsWidgetState extends State<EditAboutUsWidget> {
                           safeSetState(() {
                             _model.aboutUsTitleTextController?.text =
                                 containerCmsRow!.title1!;
+
                             _model.aboutUsText1TextController?.text =
                                 containerCmsRow!.text1!;
                           });

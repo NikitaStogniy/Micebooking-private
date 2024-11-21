@@ -39,7 +39,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (loggedIn == true) {
         _model.role = await UsersTable().queryRows(
-          queryFn: (q) => q.eq(
+          queryFn: (q) => q.eqOrNull(
             'uid',
             currentUserUid,
           ),

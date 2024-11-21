@@ -59,15 +59,19 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
         _model.days = widget!.request!.days!;
         _model.rooms = widget!.request?.roomCount;
         safeSetState(() {});
-        await widget.onLoad?.call(
-          (_model.rooms!) * _model.days * (widget!.room!.price!),
-        );
       }
     });
 
     _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
-
+    _model.textFieldFocusNode!.addListener(
+      () async {
+        if ((_model.textFieldFocusNode?.hasFocus ?? false) != true) {
+          _model.roomFieldOpen = false;
+          safeSetState(() {});
+        }
+      },
+    );
     _model.countmobTextController ??= TextEditingController();
     _model.countmobFocusNode ??= FocusNode();
 

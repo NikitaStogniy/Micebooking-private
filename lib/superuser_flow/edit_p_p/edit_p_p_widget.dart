@@ -47,7 +47,7 @@ class _EditPPWidgetState extends State<EditPPWidget> {
     return FutureBuilder<List<CmsRow>>(
       future: CmsTable().querySingleRow(
         queryFn: (q) => q
-            .eq(
+            .eqOrNull(
               'type',
               EnumCms.PRIVACY_POLICY.name,
             )
@@ -210,7 +210,7 @@ class _EditPPWidgetState extends State<EditPPWidget> {
                             data: {
                               'text1': _model.aboutUsText1TextController.text,
                             },
-                            matchingRows: (rows) => rows.eq(
+                            matchingRows: (rows) => rows.eqOrNull(
                               'id',
                               containerCmsRow?.id,
                             ),

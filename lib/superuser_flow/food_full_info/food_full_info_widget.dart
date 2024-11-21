@@ -50,7 +50,7 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
   Widget build(BuildContext context) {
     return FutureBuilder<List<FoodRow>>(
       future: FoodTable().querySingleRow(
-        queryFn: (q) => q.eq(
+        queryFn: (q) => q.eqOrNull(
           'id',
           widget!.id,
         ),
@@ -84,7 +84,7 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
               children: [
                 FutureBuilder<List<HotelRow>>(
                   future: HotelTable().querySingleRow(
-                    queryFn: (q) => q.contains(
+                    queryFn: (q) => q.containsOrNull(
                       'food',
                       '{${containerFoodRow?.id}}',
                     ),
@@ -117,7 +117,7 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                         Expanded(
                           child: FutureBuilder<List<CityRow>>(
                             future: CityTable().querySingleRow(
-                              queryFn: (q) => q.eq(
+                              queryFn: (q) => q.eqOrNull(
                                 'id',
                                 rowHotelRow?.city,
                               ),
@@ -251,7 +251,7 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                                       FutureBuilder<List<ServiceCategoryRow>>(
                                     future:
                                         ServiceCategoryTable().querySingleRow(
-                                      queryFn: (q) => q.eq(
+                                      queryFn: (q) => q.eqOrNull(
                                         'id',
                                         containerFoodRow?.category,
                                       ),
@@ -377,9 +377,9 @@ class _FoodFullInfoWidgetState extends State<FoodFullInfoWidget> {
                       ),
                       FutureBuilder<List<FoodPositionRow>>(
                         future: FoodPositionTable().queryRows(
-                          queryFn: (q) => q.in_(
+                          queryFn: (q) => q.inFilterOrNull(
                             'id',
-                            containerFoodRow!.positions,
+                            containerFoodRow?.positions,
                           ),
                         ),
                         builder: (context, snapshot) {

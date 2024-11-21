@@ -53,7 +53,7 @@ class _ClientDetailWidgetState extends State<ClientDetailWidget> {
   Widget build(BuildContext context) {
     return FutureBuilder<List<UsersRow>>(
       future: UsersTable().querySingleRow(
-        queryFn: (q) => q.eq(
+        queryFn: (q) => q.eqOrNull(
           'id',
           widget!.id,
         ),
@@ -297,7 +297,7 @@ class _ClientDetailWidgetState extends State<ClientDetailWidget> {
                     FutureBuilder<List<UsersRow>>(
                       future: UsersTable().queryRows(
                         queryFn: (q) => q
-                            .eq(
+                            .eqOrNull(
                               'role',
                               EnumRole.CLIENT.name,
                             )

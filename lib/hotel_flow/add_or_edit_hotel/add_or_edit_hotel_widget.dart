@@ -434,7 +434,8 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                                     _model.cityId =
                                                         await CityTable()
                                                             .queryRows(
-                                                      queryFn: (q) => q.eq(
+                                                      queryFn: (q) =>
+                                                          q.eqOrNull(
                                                         'name',
                                                         _model.dropDownValue,
                                                       ),
@@ -1779,7 +1780,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                 decoration: BoxDecoration(),
                                 child: FutureBuilder<List<ServiceCategoryRow>>(
                                   future: ServiceCategoryTable().queryRows(
-                                    queryFn: (q) => q.eq(
+                                    queryFn: (q) => q.eqOrNull(
                                       'type',
                                       EnumType.HOTEL.name,
                                     ),
@@ -1864,7 +1865,8 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
                                                       List<ServiceRow>>(
                                                     future: ServiceTable()
                                                         .queryRows(
-                                                      queryFn: (q) => q.eq(
+                                                      queryFn: (q) =>
+                                                          q.eqOrNull(
                                                         'category',
                                                         staggeredViewServiceCategoryRow
                                                             .id,
@@ -2232,7 +2234,7 @@ class _AddOrEditHotelWidgetState extends State<AddOrEditHotelWidget>
             if (widget!.id != 0)
               FutureBuilder<List<HotelRow>>(
                 future: HotelTable().querySingleRow(
-                  queryFn: (q) => q.eq(
+                  queryFn: (q) => q.eqOrNull(
                     'id',
                     valueOrDefault<int>(
                       widget!.id,

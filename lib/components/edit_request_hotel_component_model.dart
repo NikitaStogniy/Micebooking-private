@@ -7,7 +7,6 @@ import '/pop_up/pop_up_images/pop_up_images_widget.dart';
 import 'edit_request_hotel_component_widget.dart'
     show EditRequestHotelComponentWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 

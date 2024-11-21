@@ -90,7 +90,7 @@ class _RequestWidgetState extends State<RequestWidget> {
   Widget build(BuildContext context) {
     return FutureBuilder<List<UsersRow>>(
       future: UsersTable().querySingleRow(
-        queryFn: (q) => q.eq(
+        queryFn: (q) => q.eqOrNull(
           'uid',
           currentUserUid,
         ),
@@ -309,13 +309,15 @@ class _RequestWidgetState extends State<RequestWidget> {
                                       FFButtonWidget(
                                         onPressed: () async {
                                           await RequestWrapperTable().delete(
-                                            matchingRows: (rows) => rows.eq(
+                                            matchingRows: (rows) =>
+                                                rows.eqOrNull(
                                               'id',
                                               widget!.requestWrapper?.id,
                                             ),
                                           );
                                           await RequestsTable().delete(
-                                            matchingRows: (rows) => rows.eq(
+                                            matchingRows: (rows) =>
+                                                rows.eqOrNull(
                                               'id',
                                               widget!.lastRequest?.id,
                                             ),
@@ -361,7 +363,8 @@ class _RequestWidgetState extends State<RequestWidget> {
                                               'name': _model
                                                   .eventNamTextController.text,
                                             },
-                                            matchingRows: (rows) => rows.eq(
+                                            matchingRows: (rows) =>
+                                                rows.eqOrNull(
                                               'id',
                                               widget!.requestWrapper?.id,
                                             ),
@@ -372,10 +375,11 @@ class _RequestWidgetState extends State<RequestWidget> {
                                               'name': _model
                                                   .eventNamTextController.text,
                                             },
-                                            matchingRows: (rows) => rows.in_(
+                                            matchingRows: (rows) =>
+                                                rows.inFilterOrNull(
                                               'id',
                                               widget!
-                                                  .requestWrapper!.requestsId,
+                                                  .requestWrapper?.requestsId,
                                             ),
                                           );
                                           _model.requestName = _model
@@ -447,7 +451,8 @@ class _RequestWidgetState extends State<RequestWidget> {
                                               'name': _model
                                                   .eventNamTextController.text,
                                             },
-                                            matchingRows: (rows) => rows.eq(
+                                            matchingRows: (rows) =>
+                                                rows.eqOrNull(
                                               'id',
                                               widget!.requestWrapper?.id,
                                             ),
@@ -458,10 +463,11 @@ class _RequestWidgetState extends State<RequestWidget> {
                                               'name': _model
                                                   .eventNamTextController.text,
                                             },
-                                            matchingRows: (rows) => rows.in_(
+                                            matchingRows: (rows) =>
+                                                rows.inFilterOrNull(
                                               'id',
                                               widget!
-                                                  .requestWrapper!.requestsId,
+                                                  .requestWrapper?.requestsId,
                                             ),
                                           );
                                           _model.requestName = _model
@@ -515,13 +521,15 @@ class _RequestWidgetState extends State<RequestWidget> {
                                       FFButtonWidget(
                                         onPressed: () async {
                                           await RequestWrapperTable().delete(
-                                            matchingRows: (rows) => rows.eq(
+                                            matchingRows: (rows) =>
+                                                rows.eqOrNull(
                                               'id',
                                               widget!.requestWrapper?.id,
                                             ),
                                           );
                                           await RequestsTable().delete(
-                                            matchingRows: (rows) => rows.eq(
+                                            matchingRows: (rows) =>
+                                                rows.eqOrNull(
                                               'id',
                                               widget!.lastRequest?.id,
                                             ),
@@ -615,9 +623,9 @@ class _RequestWidgetState extends State<RequestWidget> {
                                       ),
                                       FutureBuilder<List<RequestsRow>>(
                                         future: RequestsTable().queryRows(
-                                          queryFn: (q) => q.in_(
+                                          queryFn: (q) => q.inFilterOrNull(
                                             'id',
-                                            widget!.requestWrapper!.requestsId,
+                                            widget!.requestWrapper?.requestsId,
                                           ),
                                         ),
                                         builder: (context, snapshot) {
@@ -727,8 +735,8 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                             future:
                                                                 RequestsHallVarTable()
                                                                     .queryRows(
-                                                              queryFn: (q) =>
-                                                                  q.in_(
+                                                              queryFn: (q) => q
+                                                                  .inFilterOrNull(
                                                                 'id',
                                                                 columnRequestsRow
                                                                     .halls,
@@ -883,8 +891,8 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                             future:
                                                                 RequestsFoodVarTable()
                                                                     .queryRows(
-                                                              queryFn: (q) =>
-                                                                  q.in_(
+                                                              queryFn: (q) => q
+                                                                  .inFilterOrNull(
                                                                 'id',
                                                                 columnRequestsRow
                                                                     .food,
@@ -1039,8 +1047,8 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                             future:
                                                                 RequestsRoomVarTable()
                                                                     .queryRows(
-                                                              queryFn: (q) =>
-                                                                  q.in_(
+                                                              queryFn: (q) => q
+                                                                  .inFilterOrNull(
                                                                 'id',
                                                                 columnRequestsRow
                                                                     .rooms,
@@ -1268,14 +1276,14 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                 await RequestWrapperTable()
                                                     .delete(
                                                   matchingRows: (rows) =>
-                                                      rows.eq(
+                                                      rows.eqOrNull(
                                                     'id',
                                                     widget!.requestWrapper?.id,
                                                   ),
                                                 );
                                                 await RequestsTable().delete(
                                                   matchingRows: (rows) =>
-                                                      rows.eq(
+                                                      rows.eqOrNull(
                                                     'id',
                                                     widget!.lastRequest?.id,
                                                   ),
@@ -1471,10 +1479,10 @@ class _RequestWidgetState extends State<RequestWidget> {
                                             0.0, 24.0, 0.0, 0.0),
                                         child: FutureBuilder<List<RequestsRow>>(
                                           future: RequestsTable().queryRows(
-                                            queryFn: (q) => q.in_(
+                                            queryFn: (q) => q.inFilterOrNull(
                                               'id',
                                               widget!
-                                                  .requestWrapper!.requestsId,
+                                                  .requestWrapper?.requestsId,
                                             ),
                                           ),
                                           builder: (context, snapshot) {
@@ -1530,7 +1538,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                               future: HotelTable()
                                                                   .querySingleRow(
                                                                 queryFn: (q) =>
-                                                                    q.eq(
+                                                                    q.eqOrNull(
                                                                   'id',
                                                                   columnRequestsRow
                                                                       .hotel,
@@ -1613,7 +1621,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                   RequestsHallVarTable()
                                                                       .queryRows(
                                                                 queryFn: (q) =>
-                                                                    q.in_(
+                                                                    q.inFilterOrNull(
                                                                   'id',
                                                                   columnRequestsRow
                                                                       .halls,
@@ -1711,7 +1719,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                   RequestsFoodVarTable()
                                                                       .queryRows(
                                                                 queryFn: (q) =>
-                                                                    q.in_(
+                                                                    q.inFilterOrNull(
                                                                   'id',
                                                                   columnRequestsRow
                                                                       .food,
@@ -1809,9 +1817,8 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                         RequestsRoomVarRow>>(
                                                                   future: RequestsRoomVarTable()
                                                                       .queryRows(
-                                                                    queryFn:
-                                                                        (q) => q
-                                                                            .in_(
+                                                                    queryFn: (q) =>
+                                                                        q.inFilterOrNull(
                                                                       'id',
                                                                       columnRequestsRow
                                                                           .rooms,
@@ -2004,14 +2011,18 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                           ),
                                                                           'foodRequests':
                                                                               serializeParam(
-                                                                            columnRequestsRow.food,
+                                                                            columnRequestsRow.food.isNotEmpty
+                                                                                ? columnRequestsRow.food
+                                                                                : _model.emptyList,
                                                                             ParamType.int,
                                                                             isList:
                                                                                 true,
                                                                           ),
                                                                           'chosenFood':
                                                                               serializeParam(
-                                                                            columnRequestsRow.foodOriginalId,
+                                                                            columnRequestsRow.foodOriginalId.isNotEmpty
+                                                                                ? columnRequestsRow.foodOriginalId
+                                                                                : _model.emptyList,
                                                                             ParamType.int,
                                                                             isList:
                                                                                 true,
@@ -2134,7 +2145,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                           await RequestsTable()
                                                                               .delete(
                                                                             matchingRows: (rows) =>
-                                                                                rows.eq(
+                                                                                rows.eqOrNull(
                                                                               'id',
                                                                               columnRequestsRow.id,
                                                                             ),
@@ -2183,7 +2194,7 @@ class _RequestWidgetState extends State<RequestWidget> {
                                                                           await RequestsTable()
                                                                               .delete(
                                                                             matchingRows: (rows) =>
-                                                                                rows.eq(
+                                                                                rows.eqOrNull(
                                                                               'id',
                                                                               columnRequestsRow.id,
                                                                             ),
@@ -2260,13 +2271,15 @@ class _RequestWidgetState extends State<RequestWidget> {
                                             onPressed: () async {
                                               await RequestWrapperTable()
                                                   .delete(
-                                                matchingRows: (rows) => rows.eq(
+                                                matchingRows: (rows) =>
+                                                    rows.eqOrNull(
                                                   'id',
                                                   widget!.requestWrapper?.id,
                                                 ),
                                               );
                                               await RequestsTable().delete(
-                                                matchingRows: (rows) => rows.eq(
+                                                matchingRows: (rows) =>
+                                                    rows.eqOrNull(
                                                   'id',
                                                   widget!.lastRequest?.id,
                                                 ),

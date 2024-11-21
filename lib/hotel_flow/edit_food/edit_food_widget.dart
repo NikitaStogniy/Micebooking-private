@@ -54,6 +54,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
       safeSetState(() {});
       safeSetState(() {
         _model.editNameTextController?.text = widget!.initialFood!.name!;
+
         _model.editPriceTextController?.text =
             widget!.initialFood!.price!.toString();
       });
@@ -99,7 +100,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
       future:
           (_model.requestCompleter1 ??= Completer<List<ServiceCategoryRow>>()
                 ..complete(ServiceCategoryTable().querySingleRow(
-                  queryFn: (q) => q.eq(
+                  queryFn: (q) => q.eqOrNull(
                     'id',
                     _model.categoryId,
                   ),
@@ -387,7 +388,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                   List<ServiceCategoryRow>>(
                                                 future: ServiceCategoryTable()
                                                     .queryRows(
-                                                  queryFn: (q) => q.eq(
+                                                  queryFn: (q) => q.eqOrNull(
                                                     'type',
                                                     EnumType.FOOD.name,
                                                   ),
@@ -434,7 +435,8 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                       _model.category =
                                                           await ServiceCategoryTable()
                                                               .queryRows(
-                                                        queryFn: (q) => q.eq(
+                                                        queryFn: (q) =>
+                                                            q.eqOrNull(
                                                           'name',
                                                           _model
                                                               .editCategoryValue,
@@ -669,7 +671,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                             ..complete(
                                                 FoodPositionTable().queryRows(
                                               queryFn: (q) => q
-                                                  .in_(
+                                                  .inFilterOrNull(
                                                     'id',
                                                     _model.menuTest,
                                                   )
@@ -744,7 +746,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                   ..complete(
                                                       ServiceCategoryTable()
                                                           .querySingleRow(
-                                                    queryFn: (q) => q.eq(
+                                                    queryFn: (q) => q.eqOrNull(
                                                       'name',
                                                       _model.menuCategoryValue,
                                                     ),
@@ -890,7 +892,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                   List<ServiceCategoryRow>>(
                                                 future: ServiceCategoryTable()
                                                     .queryRows(
-                                                  queryFn: (q) => q.eq(
+                                                  queryFn: (q) => q.eqOrNull(
                                                     'type',
                                                     EnumType.FOOD_POSITION.name,
                                                   ),
@@ -937,7 +939,8 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                       _model.categoryDrop =
                                                           await ServiceCategoryTable()
                                                               .queryRows(
-                                                        queryFn: (q) => q.eq(
+                                                        queryFn: (q) =>
+                                                            q.eqOrNull(
                                                           'name',
                                                           _model
                                                               .menuCategoryValue,
@@ -1030,7 +1033,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                                                   .toList()),
                                                     },
                                                     matchingRows: (rows) =>
-                                                        rows.eq(
+                                                        rows.eqOrNull(
                                                       'id',
                                                       rowServiceCategoryRow?.id,
                                                     ),
@@ -1199,7 +1202,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                       'category': _model.categoryId,
                                       'category_name': _model.categooryName,
                                     },
-                                    matchingRows: (rows) => rows.eq(
+                                    matchingRows: (rows) => rows.eqOrNull(
                                       'id',
                                       widget!.initialFood?.id,
                                     ),
@@ -1211,7 +1214,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                               .toList(),
                                           _model.currentFoodId.toList()),
                                     },
-                                    matchingRows: (rows) => rows.eq(
+                                    matchingRows: (rows) => rows.eqOrNull(
                                       'id',
                                       bodyServiceCategoryRow?.id,
                                     ),
@@ -1228,6 +1231,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                                   safeSetState(() {
                                     _model.editNameTextController?.text =
                                         widget!.initialFood!.name!;
+
                                     _model.editPriceTextController?.text =
                                         widget!.initialFood!.price!.toString();
                                   });
@@ -1297,7 +1301,7 @@ class _EditFoodWidgetState extends State<EditFoodWidget> {
                           FFButtonWidget(
                             onPressed: () async {
                               await FoodTable().delete(
-                                matchingRows: (rows) => rows.eq(
+                                matchingRows: (rows) => rows.eqOrNull(
                                   'id',
                                   widget!.initialFood?.id,
                                 ),

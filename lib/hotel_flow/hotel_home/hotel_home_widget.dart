@@ -73,6 +73,9 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
               children: [
                 Container(
                   height: MediaQuery.sizeOf(context).height * 1.0,
+                  constraints: BoxConstraints(
+                    maxWidth: 200.0,
+                  ),
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).primary,
                     borderRadius: BorderRadius.only(
@@ -100,7 +103,7 @@ class _HotelHomeWidgetState extends State<HotelHomeWidget> {
                             child: SvgPicture.asset(
                               'assets/images/MICEBOOKING.svg',
                               width: 140.0,
-                              height: 16.0,
+                              height: 48.0,
                               fit: BoxFit.contain,
                             ),
                           ),

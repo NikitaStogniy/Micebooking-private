@@ -166,6 +166,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               isList: false,
               structBuilder: HotelSeatingStruct.fromSerializableMap,
             ),
+            dayEnd: params.getParam(
+              'dayEnd',
+              ParamType.DateTime,
+            ),
           ),
         ),
         FFRoute(

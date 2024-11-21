@@ -82,7 +82,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                             Completer<List<ServiceCategoryRow>>()
                               ..complete(ServiceCategoryTable().queryRows(
                                 queryFn: (q) => q
-                                    .eq(
+                                    .eqOrNull(
                                       'type',
                                       EnumType.FOOD.name,
                                     )
@@ -153,7 +153,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                                     data: {
                                       'name': data,
                                     },
-                                    matchingRows: (rows) => rows.eq(
+                                    matchingRows: (rows) => rows.eqOrNull(
                                       'id',
                                       listViewServiceCategoryRow.id,
                                     ),
@@ -163,7 +163,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                                 },
                                 delete: () async {
                                   await ServiceCategoryTable().delete(
-                                    matchingRows: (rows) => rows.eq(
+                                    matchingRows: (rows) => rows.eqOrNull(
                                       'id',
                                       listViewServiceCategoryRow.id,
                                     ),
@@ -335,7 +335,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                             Completer<List<ServiceCategoryRow>>()
                               ..complete(ServiceCategoryTable().queryRows(
                                 queryFn: (q) => q
-                                    .eq(
+                                    .eqOrNull(
                                       'type',
                                       EnumType.FOOD_POSITION.name,
                                     )
@@ -406,7 +406,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                                     data: {
                                       'name': data,
                                     },
-                                    matchingRows: (rows) => rows.eq(
+                                    matchingRows: (rows) => rows.eqOrNull(
                                       'id',
                                       listViewServiceCategoryRow.id,
                                     ),
@@ -416,7 +416,7 @@ class _FoodSettingsWidgetState extends State<FoodSettingsWidget> {
                                 },
                                 delete: () async {
                                   await ServiceCategoryTable().delete(
-                                    matchingRows: (rows) => rows.eq(
+                                    matchingRows: (rows) => rows.eqOrNull(
                                       'id',
                                       listViewServiceCategoryRow.id,
                                     ),

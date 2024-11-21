@@ -57,18 +57,29 @@ class _EditFoodComponentWidgetState extends State<EditFoodComponentWidget> {
         _model.count = widget!.request?.count;
         _model.persons = widget!.request?.personsCount;
         safeSetState(() {});
-        await widget.onLoad?.call(
-          (widget!.food!.price!) * (_model.count!) * (_model.persons!),
-        );
       }
     });
 
     _model.countTextController ??= TextEditingController();
     _model.countFocusNode ??= FocusNode();
-
+    _model.countFocusNode!.addListener(
+      () async {
+        if ((_model.countFocusNode?.hasFocus ?? false) != true) {
+          _model.countFieldOpen = false;
+          safeSetState(() {});
+        }
+      },
+    );
     _model.personsTextController ??= TextEditingController();
     _model.personsFocusNode ??= FocusNode();
-
+    _model.personsFocusNode!.addListener(
+      () async {
+        if ((_model.personsFocusNode?.hasFocus ?? false) != true) {
+          _model.personsFirldOpen = false;
+          safeSetState(() {});
+        }
+      },
+    );
     _model.countmobTextController1 ??= TextEditingController();
     _model.countmobFocusNode1 ??= FocusNode();
 
@@ -283,7 +294,7 @@ class _EditFoodComponentWidgetState extends State<EditFoodComponentWidget> {
                                       _model.countFieldOpen = false;
                                       safeSetState(() {});
                                     },
-                                    autofocus: false,
+                                    autofocus: true,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       labelStyle: FlutterFlowTheme.of(context)
@@ -491,7 +502,7 @@ class _EditFoodComponentWidgetState extends State<EditFoodComponentWidget> {
                                       _model.personsFirldOpen = false;
                                       safeSetState(() {});
                                     },
-                                    autofocus: false,
+                                    autofocus: true,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       labelStyle: FlutterFlowTheme.of(context)

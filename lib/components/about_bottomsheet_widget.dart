@@ -45,7 +45,7 @@ class _AboutBottomsheetWidgetState extends State<AboutBottomsheetWidget> {
     return FutureBuilder<List<CmsRow>>(
       future: CmsTable().querySingleRow(
         queryFn: (q) => q
-            .eq(
+            .eqOrNull(
               'type',
               EnumCms.ABOUT.name,
             )

@@ -55,7 +55,7 @@ class _PopUpTermsWidgetState extends State<PopUpTermsWidget> {
           0.0),
       child: FutureBuilder<List<CmsRow>>(
         future: CmsTable().querySingleRow(
-          queryFn: (q) => q.eq(
+          queryFn: (q) => q.eqOrNull(
             'type',
             EnumCms.TERMS_OF_USE.name,
           ),

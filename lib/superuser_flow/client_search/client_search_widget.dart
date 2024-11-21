@@ -336,7 +336,7 @@ class _ClientSearchWidgetState extends State<ClientSearchWidget> {
                                       flex: 2,
                                       child: FutureBuilder<List<UsersRow>>(
                                         future: UsersTable().querySingleRow(
-                                          queryFn: (q) => q.eq(
+                                          queryFn: (q) => q.eqOrNull(
                                             'id',
                                             getJsonField(
                                               clientsItem,

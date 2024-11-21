@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/pop_up/hotel_pop_up/hotel_pop_up_widget.dart';
 import '/pop_up/pop_up_images/pop_up_images_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'edit_request_hotel_component_model.dart';
@@ -334,22 +333,52 @@ class _EditRequestHotelComponentWidgetState
                                           ),
                                         ),
                                       ),
-                                      RatingBarIndicator(
-                                        itemBuilder: (context, index) => Icon(
-                                          Icons.star_rounded,
-                                          color: FlutterFlowTheme.of(context)
-                                              .tertiary,
-                                        ),
-                                        direction: Axis.horizontal,
-                                        rating: valueOrDefault<double>(
-                                          widget!.hotel?.stars?.toDouble(),
-                                          3.0,
-                                        ),
-                                        unratedColor:
-                                            FlutterFlowTheme.of(context)
-                                                .accent3,
-                                        itemCount: 5,
-                                        itemSize: 24.0,
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Icon(
+                                            Icons.star_rounded,
+                                            color: widget!.hotel!.stars! >= 1
+                                                ? FlutterFlowTheme.of(context)
+                                                    .tertiary
+                                                : Color(0x4DEE8B60),
+                                            size: 24.0,
+                                          ),
+                                          Icon(
+                                            Icons.star_rounded,
+                                            color: widget!.hotel!.stars! >= 2
+                                                ? FlutterFlowTheme.of(context)
+                                                    .tertiary
+                                                : Color(0x4DEE8B60),
+                                            size: 24.0,
+                                          ),
+                                          Icon(
+                                            Icons.star_rounded,
+                                            color: widget!.hotel!.stars! >= 3
+                                                ? FlutterFlowTheme.of(context)
+                                                    .tertiary
+                                                : Color(0x4DEE8B60),
+                                            size: 24.0,
+                                          ),
+                                          Icon(
+                                            Icons.star_rounded,
+                                            color: widget!.hotel!.stars! >= 4
+                                                ? FlutterFlowTheme.of(context)
+                                                    .tertiary
+                                                : Color(0x4DEE8B60),
+                                            size: 24.0,
+                                          ),
+                                          Icon(
+                                            Icons.star_rounded,
+                                            color: widget!.hotel!.stars! >= 5
+                                                ? FlutterFlowTheme.of(context)
+                                                    .tertiary
+                                                : Color(0x4DEE8B60),
+                                            size: 24.0,
+                                          ),
+                                        ],
                                       ),
                                     ].divide(SizedBox(width: 24.0)),
                                   ),
@@ -544,19 +573,46 @@ class _EditRequestHotelComponentWidgetState
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    RatingBarIndicator(
-                      itemBuilder: (context, index) => Icon(
-                        Icons.star_rounded,
-                        color: FlutterFlowTheme.of(context).tertiary,
-                      ),
-                      direction: Axis.horizontal,
-                      rating: valueOrDefault<double>(
-                        widget!.hotel?.stars?.toDouble(),
-                        3.0,
-                      ),
-                      unratedColor: FlutterFlowTheme.of(context).accent3,
-                      itemCount: 5,
-                      itemSize: 24.0,
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.star_rounded,
+                          color: widget!.hotel!.stars! >= 1
+                              ? FlutterFlowTheme.of(context).tertiary
+                              : Color(0x4DEE8B60),
+                          size: 24.0,
+                        ),
+                        Icon(
+                          Icons.star_rounded,
+                          color: widget!.hotel!.stars! >= 2
+                              ? FlutterFlowTheme.of(context).tertiary
+                              : Color(0x4DEE8B60),
+                          size: 24.0,
+                        ),
+                        Icon(
+                          Icons.star_rounded,
+                          color: widget!.hotel!.stars! >= 3
+                              ? FlutterFlowTheme.of(context).tertiary
+                              : Color(0x4DEE8B60),
+                          size: 24.0,
+                        ),
+                        Icon(
+                          Icons.star_rounded,
+                          color: widget!.hotel!.stars! >= 4
+                              ? FlutterFlowTheme.of(context).tertiary
+                              : Color(0x4DEE8B60),
+                          size: 24.0,
+                        ),
+                        Icon(
+                          Icons.star_rounded,
+                          color: widget!.hotel!.stars! >= 5
+                              ? FlutterFlowTheme.of(context).tertiary
+                              : Color(0x4DEE8B60),
+                          size: 24.0,
+                        ),
+                      ],
                     ),
                   ],
                 ),

@@ -263,7 +263,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                           );
                           if (_model.login == 'Вход выполнен успешно') {
                             _model.user = await UsersTable().queryRows(
-                              queryFn: (q) => q.eq(
+                              queryFn: (q) => q.eqOrNull(
                                 'email',
                                 _model.textController1.text,
                               ),

@@ -122,9 +122,9 @@ class _ProfileFoodComponentWidgetState extends State<ProfileFoodComponentWidget>
           FutureBuilder<List<FoodRow>>(
             future: FoodTable().queryRows(
               queryFn: (q) => q
-                  .in_(
+                  .inFilterOrNull(
                     'id',
-                    widget!.hotel!.food,
+                    widget!.hotel?.food,
                   )
                   .order('created_at'),
             ),

@@ -44,7 +44,7 @@ class _PopUpPERSONALINFOWidgetState extends State<PopUpPERSONALINFOWidget> {
   Widget build(BuildContext context) {
     return FutureBuilder<List<CmsRow>>(
       future: CmsTable().querySingleRow(
-        queryFn: (q) => q.eq(
+        queryFn: (q) => q.eqOrNull(
           'type',
           EnumCms.PERSONAL_INFO.name,
         ),

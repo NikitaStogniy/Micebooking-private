@@ -492,7 +492,7 @@ class _ClientHallComponentWidgetState extends State<ClientHallComponentWidget> {
                                           ].divide(SizedBox(width: 24.0)),
                                         ),
                                         Text(
-                                          'Площадь:  ${widget!.hall?.size?.toString()} кв2',
+                                          'Площадь:  ${widget!.hall?.size?.toString()} м²',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(

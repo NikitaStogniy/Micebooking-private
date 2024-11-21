@@ -94,7 +94,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
             FutureBuilder<List<UsersRow>>(
               future: _model.profileInfo(
                 requestFn: () => UsersTable().querySingleRow(
-                  queryFn: (q) => q.eq(
+                  queryFn: (q) => q.eqOrNull(
                     'uid',
                     currentUserUid,
                   ),
@@ -125,7 +125,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                   decoration: BoxDecoration(),
                   child: FutureBuilder<List<JuridicalInfoRow>>(
                     future: JuridicalInfoTable().querySingleRow(
-                      queryFn: (q) => q.eq(
+                      queryFn: (q) => q.eqOrNull(
                         'owner',
                         containerUsersRow?.id,
                       ),
@@ -2857,7 +2857,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                             .text,
                                                       },
                                                       matchingRows: (rows) =>
-                                                          rows.eq(
+                                                          rows.eqOrNull(
                                                         'uid',
                                                         currentUserUid,
                                                       ),
@@ -2906,7 +2906,7 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                             .text,
                                                       },
                                                       matchingRows: (rows) =>
-                                                          rows.eq(
+                                                          rows.eqOrNull(
                                                         'owner',
                                                         containerUsersRow?.id,
                                                       ),
@@ -3001,58 +3001,79 @@ class _HotelJuridicalWidgetState extends State<HotelJuridicalWidget> {
                                                               ?.text =
                                                           containerJuridicalInfoRow!
                                                               .name!;
+
                                                       _model.jurAddressTextController
                                                               ?.text =
                                                           containerJuridicalInfoRow!
                                                               .address!;
+
                                                       _model.phoneTextController
                                                               ?.text =
                                                           containerUsersRow!
                                                               .phone!;
+
+                                                      _model.phoneMask
+                                                          .updateMask(
+                                                        newValue: TextEditingValue(
+                                                            text:
+                                                                containerUsersRow!
+                                                                    .phone!),
+                                                      );
                                                       _model.jurLeadTextController
                                                               ?.text =
                                                           containerJuridicalInfoRow!
                                                               .lead!;
+
                                                       _model.jurKppTextController
                                                               ?.text =
                                                           containerJuridicalInfoRow!
                                                               .kpp!;
+
                                                       _model.jurInnTextController
                                                               ?.text =
                                                           containerJuridicalInfoRow!
                                                               .inn!;
+
                                                       _model.jurOgrnTextController
                                                               ?.text =
                                                           containerJuridicalInfoRow!
                                                               .ogrn!;
+
                                                       _model.jurOkpoTextController
                                                               ?.text =
                                                           containerJuridicalInfoRow!
                                                               .okpo!;
+
                                                       _model.bankNameTextController
                                                               ?.text =
                                                           containerJuridicalInfoRow!
                                                               .bankName!;
+
                                                       _model.bankKorrTextController
                                                               ?.text =
                                                           containerJuridicalInfoRow!
                                                               .bankKorr!;
+
                                                       _model.bankRcTextController
                                                               ?.text =
                                                           containerJuridicalInfoRow!
                                                               .bankRC!;
+
                                                       _model.bankBicTextController
                                                               ?.text =
                                                           containerJuridicalInfoRow!
                                                               .bankBIC!;
+
                                                       _model.bankInnTextController
                                                               ?.text =
                                                           containerJuridicalInfoRow!
                                                               .bankINN!;
+
                                                       _model.bankKppTextController
                                                               ?.text =
                                                           containerJuridicalInfoRow!
                                                               .bankKPP!;
+
                                                       _model.emailTextController
                                                               ?.text =
                                                           containerUsersRow!

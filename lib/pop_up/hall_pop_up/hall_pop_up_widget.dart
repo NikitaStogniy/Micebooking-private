@@ -180,7 +180,7 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 40.0, 0.0, 0.0),
                                         child: Text(
-                                          '${widget!.hall?.size?.toString()} кв м2',
+                                          '${widget!.hall?.size?.toString()} м²',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -928,11 +928,11 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                       child: FutureBuilder<List<ServiceCategoryRow>>(
                         future: ServiceCategoryTable().queryRows(
                           queryFn: (q) => q
-                              .eq(
+                              .eqOrNull(
                                 'type',
                                 EnumType.HALL.name,
                               )
-                              .overlaps(
+                              .overlapsOrNull(
                                 'services_id',
                                 widget!.hall?.services,
                               ),
@@ -984,13 +984,13 @@ class _HallPopUpWidgetState extends State<HallPopUpWidget> {
                                       return FutureBuilder<List<ServiceRow>>(
                                         future: ServiceTable().queryRows(
                                           queryFn: (q) => q
-                                              .eq(
+                                              .eqOrNull(
                                                 'category',
                                                 categoriesItem.id,
                                               )
-                                              .in_(
+                                              .inFilterOrNull(
                                                 'id',
-                                                widget!.hall!.services,
+                                                widget!.hall?.services,
                                               ),
                                         ),
                                         builder: (context, snapshot) {

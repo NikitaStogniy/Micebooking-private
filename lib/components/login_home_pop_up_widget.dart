@@ -98,7 +98,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
         child: Container(
           height: _model.isRegister
               ? (MediaQuery.sizeOf(context).height * 0.98)
-              : (MediaQuery.sizeOf(context).height * 0.6),
+              : (MediaQuery.sizeOf(context).height * 0.75),
           constraints: BoxConstraints(
             maxWidth: 1400.0,
           ),
@@ -1687,7 +1687,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                   _model.userCheck =
                                                       await UsersTable()
                                                           .queryRows(
-                                                    queryFn: (q) => q.eq(
+                                                    queryFn: (q) => q.eqOrNull(
                                                       'email',
                                                       _model.mailTextController
                                                           .text,
@@ -1780,13 +1780,21 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                           _model
                                                               .mailTextController
                                                               .text;
-                                                      _model.emailLogTextController
-                                                              ?.selection =
-                                                          TextSelection.collapsed(
-                                                              offset: _model
-                                                                  .emailLogTextController!
-                                                                  .text
-                                                                  .length);
+                                                      _model.emailLogFocusNode
+                                                          ?.requestFocus();
+                                                      WidgetsBinding.instance
+                                                          .addPostFrameCallback(
+                                                              (_) {
+                                                        _model.emailLogTextController
+                                                                ?.selection =
+                                                            TextSelection
+                                                                .collapsed(
+                                                          offset: _model
+                                                              .emailLogTextController!
+                                                              .text
+                                                              .length,
+                                                        );
+                                                      });
                                                     });
                                                     safeSetState(() {
                                                       _model.passwordLogTextController
@@ -1794,13 +1802,22 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                           _model
                                                               .passwordTextController
                                                               .text;
-                                                      _model.passwordLogTextController
-                                                              ?.selection =
-                                                          TextSelection.collapsed(
-                                                              offset: _model
-                                                                  .passwordLogTextController!
-                                                                  .text
-                                                                  .length);
+                                                      _model
+                                                          .passwordLogFocusNode
+                                                          ?.requestFocus();
+                                                      WidgetsBinding.instance
+                                                          .addPostFrameCallback(
+                                                              (_) {
+                                                        _model.passwordLogTextController
+                                                                ?.selection =
+                                                            TextSelection
+                                                                .collapsed(
+                                                          offset: _model
+                                                              .passwordLogTextController!
+                                                              .text
+                                                              .length,
+                                                        );
+                                                      });
                                                     });
                                                     GoRouter.of(context)
                                                         .prepareAuthEvent();

@@ -102,7 +102,7 @@ class _ProfileRequestsComponentWidgetState
                   Expanded(
                     child: FutureBuilder<List<CityRow>>(
                       future: CityTable().querySingleRow(
-                        queryFn: (q) => q.eq(
+                        queryFn: (q) => q.eqOrNull(
                           'id',
                           widget!.hotels?.city,
                         ),
@@ -162,9 +162,9 @@ class _ProfileRequestsComponentWidgetState
                     flex: 3,
                     child: FutureBuilder<List<UsersRow>>(
                       future: UsersTable().querySingleRow(
-                        queryFn: (q) => q.in_(
+                        queryFn: (q) => q.inFilterOrNull(
                           'uid',
-                          widget!.hotels!.ownerId,
+                          widget!.hotels?.ownerId,
                         ),
                       ),
                       builder: (context, snapshot) {
@@ -512,11 +512,11 @@ class _ProfileRequestsComponentWidgetState
                         FutureBuilder<List<RequestsRow>>(
                           future: RequestsTable().queryRows(
                             queryFn: (q) => q
-                                .eq(
+                                .eqOrNull(
                                   'hotel',
                                   widget!.hotels?.id,
                                 )
-                                .eq(
+                                .eqOrNull(
                                   'monthYear',
                                   _model.formatedDate,
                                 ),
@@ -625,7 +625,7 @@ class _ProfileRequestsComponentWidgetState
                                                           'Complete': true,
                                                         },
                                                         matchingRows: (rows) =>
-                                                            rows.eq(
+                                                            rows.eqOrNull(
                                                           'id',
                                                           columnRequestsRow.id,
                                                         ),
@@ -637,7 +637,7 @@ class _ProfileRequestsComponentWidgetState
                                                           'Complete': false,
                                                         },
                                                         matchingRows: (rows) =>
-                                                            rows.eq(
+                                                            rows.eqOrNull(
                                                           'id',
                                                           columnRequestsRow.id,
                                                         ),

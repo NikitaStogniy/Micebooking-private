@@ -57,7 +57,7 @@ class _HotelRequestsComponentWidgetState
     return FutureBuilder<List<RequestsRow>>(
       future: RequestsTable().queryRows(
         queryFn: (q) => q
-            .eq(
+            .eqOrNull(
               'hotel',
               widget!.hotels?.id,
             )
@@ -412,7 +412,7 @@ class _HotelRequestsComponentWidgetState
                                                         'inProgress': true,
                                                       },
                                                       matchingRows: (rows) =>
-                                                          rows.eq(
+                                                          rows.eqOrNull(
                                                         'id',
                                                         requestsItem.id,
                                                       ),
@@ -426,7 +426,7 @@ class _HotelRequestsComponentWidgetState
                                                         'inProgress': false,
                                                       },
                                                       matchingRows: (rows) =>
-                                                          rows.eq(
+                                                          rows.eqOrNull(
                                                         'id',
                                                         requestsItem.id,
                                                       ),
@@ -681,7 +681,7 @@ class _HotelRequestsComponentWidgetState
                                                         'Complete': true,
                                                       },
                                                       matchingRows: (rows) =>
-                                                          rows.eq(
+                                                          rows.eqOrNull(
                                                         'id',
                                                         requestsItem.id,
                                                       ),
@@ -693,7 +693,7 @@ class _HotelRequestsComponentWidgetState
                                                         'Complete': false,
                                                       },
                                                       matchingRows: (rows) =>
-                                                          rows.eq(
+                                                          rows.eqOrNull(
                                                         'id',
                                                         requestsItem.id,
                                                       ),

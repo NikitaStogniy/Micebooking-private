@@ -84,11 +84,11 @@ class _CityDropDownWidgetState extends State<CityDropDownWidget> {
                         FutureBuilder<List<CityRow>>(
                           future: CityTable().queryRows(
                             queryFn: (q) => q
-                                .eq(
+                                .eqOrNull(
                                   'popular',
                                   true,
                                 )
-                                .eq(
+                                .eqOrNull(
                                   'visible',
                                   true,
                                 )
@@ -176,11 +176,11 @@ class _CityDropDownWidgetState extends State<CityDropDownWidget> {
                           child: FutureBuilder<List<CityRow>>(
                             future: CityTable().queryRows(
                               queryFn: (q) => q
-                                  .eq(
+                                  .eqOrNull(
                                     'popular',
                                     false,
                                   )
-                                  .eq(
+                                  .eqOrNull(
                                     'visible',
                                     true,
                                   )

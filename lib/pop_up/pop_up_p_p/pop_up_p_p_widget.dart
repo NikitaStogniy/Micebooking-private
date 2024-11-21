@@ -55,7 +55,7 @@ class _PopUpPPWidgetState extends State<PopUpPPWidget> {
           0.0),
       child: FutureBuilder<List<CmsRow>>(
         future: CmsTable().querySingleRow(
-          queryFn: (q) => q.eq(
+          queryFn: (q) => q.eqOrNull(
             'type',
             EnumCms.PRIVACY_POLICY.name,
           ),

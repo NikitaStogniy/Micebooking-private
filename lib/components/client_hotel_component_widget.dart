@@ -6,8 +6,8 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pop_up/hotel_pop_up/hotel_pop_up_widget.dart';
 import '/pop_up/pop_up_images/pop_up_images_widget.dart';
 import '/uikit/favorite/favorite_widget.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'client_hotel_component_model.dart';
@@ -119,11 +119,17 @@ class _ClientHotelComponentWidgetState
                                         hotelImages[hotelImagesIndex];
                                     return ClipRRect(
                                       borderRadius: BorderRadius.circular(8.0),
-                                      child: Image.network(
-                                        hotelImagesItem,
+                                      child: CachedNetworkImage(
+                                        fadeInDuration:
+                                            Duration(milliseconds: 500),
+                                        fadeOutDuration:
+                                            Duration(milliseconds: 500),
+                                        imageUrl: hotelImagesItem,
                                         width: 300.0,
                                         height: 200.0,
                                         fit: BoxFit.cover,
+                                        memCacheWidth: 300,
+                                        memCacheHeight: 200,
                                       ),
                                     );
                                   },
@@ -372,26 +378,52 @@ class _ClientHotelComponentWidgetState
                                             ),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8.0, 0.0, 0.0, 0.0),
-                                      child: RatingBarIndicator(
-                                        itemBuilder: (context, index) => Icon(
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Icon(
                                           Icons.star_rounded,
-                                          color: FlutterFlowTheme.of(context)
-                                              .tertiary,
+                                          color: widget!.hotel!.stars! >= 1
+                                              ? FlutterFlowTheme.of(context)
+                                                  .tertiary
+                                              : Color(0x4DEE8B60),
+                                          size: 24.0,
                                         ),
-                                        direction: Axis.horizontal,
-                                        rating: valueOrDefault<double>(
-                                          widget!.hotel?.stars?.toDouble(),
-                                          3.0,
+                                        Icon(
+                                          Icons.star_rounded,
+                                          color: widget!.hotel!.stars! >= 2
+                                              ? FlutterFlowTheme.of(context)
+                                                  .tertiary
+                                              : Color(0x4DEE8B60),
+                                          size: 24.0,
                                         ),
-                                        unratedColor:
-                                            FlutterFlowTheme.of(context)
-                                                .accent3,
-                                        itemCount: 5,
-                                        itemSize: 24.0,
-                                      ),
+                                        Icon(
+                                          Icons.star_rounded,
+                                          color: widget!.hotel!.stars! >= 3
+                                              ? FlutterFlowTheme.of(context)
+                                                  .tertiary
+                                              : Color(0x4DEE8B60),
+                                          size: 24.0,
+                                        ),
+                                        Icon(
+                                          Icons.star_rounded,
+                                          color: widget!.hotel!.stars! >= 4
+                                              ? FlutterFlowTheme.of(context)
+                                                  .tertiary
+                                              : Color(0x4DEE8B60),
+                                          size: 24.0,
+                                        ),
+                                        Icon(
+                                          Icons.star_rounded,
+                                          color: widget!.hotel!.stars! >= 5
+                                              ? FlutterFlowTheme.of(context)
+                                                  .tertiary
+                                              : Color(0x4DEE8B60),
+                                          size: 24.0,
+                                        ),
+                                      ],
                                     ),
                                   ].divide(SizedBox(width: 16.0)),
                                 ),
@@ -534,9 +566,9 @@ class _ClientHotelComponentWidgetState
                                         child: FutureBuilder<List<RoomRow>>(
                                           future: RoomTable().queryRows(
                                             queryFn: (q) => q
-                                                .in_(
+                                                .inFilterOrNull(
                                                   'id',
-                                                  widget!.hotel!.rooms,
+                                                  widget!.hotel?.rooms,
                                                 )
                                                 .order('price',
                                                     ascending: true),
@@ -685,9 +717,9 @@ class _ClientHotelComponentWidgetState
                                       Expanded(
                                         child: FutureBuilder<List<HallRow>>(
                                           future: HallTable().queryRows(
-                                            queryFn: (q) => q.in_(
+                                            queryFn: (q) => q.inFilterOrNull(
                                               'id',
-                                              widget!.hotel!.hall,
+                                              widget!.hotel?.hall,
                                             ),
                                           ),
                                           builder: (context, snapshot) {
@@ -1226,19 +1258,40 @@ class _ClientHotelComponentWidgetState
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      RatingBarIndicator(
-                        itemBuilder: (context, index) => Icon(
-                          Icons.star_rounded,
-                          color: FlutterFlowTheme.of(context).tertiary,
-                        ),
-                        direction: Axis.horizontal,
-                        rating: valueOrDefault<double>(
-                          widget!.hotel?.stars?.toDouble(),
-                          3.0,
-                        ),
-                        unratedColor: FlutterFlowTheme.of(context).accent3,
-                        itemCount: 5,
-                        itemSize: 24.0,
+                      Icon(
+                        Icons.star_rounded,
+                        color: widget!.hotel!.stars! >= 1
+                            ? FlutterFlowTheme.of(context).tertiary
+                            : Color(0x4DEE8B60),
+                        size: 24.0,
+                      ),
+                      Icon(
+                        Icons.star_rounded,
+                        color: widget!.hotel!.stars! >= 2
+                            ? FlutterFlowTheme.of(context).tertiary
+                            : Color(0x4DEE8B60),
+                        size: 24.0,
+                      ),
+                      Icon(
+                        Icons.star_rounded,
+                        color: widget!.hotel!.stars! >= 3
+                            ? FlutterFlowTheme.of(context).tertiary
+                            : Color(0x4DEE8B60),
+                        size: 24.0,
+                      ),
+                      Icon(
+                        Icons.star_rounded,
+                        color: widget!.hotel!.stars! >= 4
+                            ? FlutterFlowTheme.of(context).tertiary
+                            : Color(0x4DEE8B60),
+                        size: 24.0,
+                      ),
+                      Icon(
+                        Icons.star_rounded,
+                        color: widget!.hotel!.stars! >= 5
+                            ? FlutterFlowTheme.of(context).tertiary
+                            : Color(0x4DEE8B60),
+                        size: 24.0,
                       ),
                     ],
                   ),
@@ -1265,25 +1318,27 @@ class _ClientHotelComponentWidgetState
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Text(
-                      valueOrDefault<String>(
-                        '${valueOrDefault<String>(
-                          widget!.hotel?.cityName,
-                          'Город N',
-                        )}, ${valueOrDefault<String>(
-                          widget!.hotel?.distanceCenter?.toString(),
-                          '0',
-                        )}км от центра',
-                        'Ошибка в получении адреса',
+                    Expanded(
+                      child: Text(
+                        valueOrDefault<String>(
+                          '${valueOrDefault<String>(
+                            widget!.hotel?.cityName,
+                            'Город N',
+                          )}, ${valueOrDefault<String>(
+                            widget!.hotel?.distanceCenter?.toString(),
+                            '0',
+                          )}км от центра',
+                          'Ошибка в получении адреса',
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Commissioner',
+                              color: Color(0xFF636363),
+                              fontSize: 16.0,
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.w500,
+                              fontStyle: FontStyle.italic,
+                            ),
                       ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Commissioner',
-                            color: Color(0xFF636363),
-                            fontSize: 16.0,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w500,
-                            fontStyle: FontStyle.italic,
-                          ),
                     ),
                   ],
                 ),
@@ -1336,9 +1391,9 @@ class _ClientHotelComponentWidgetState
                   child: FutureBuilder<List<RoomRow>>(
                     future: RoomTable().queryRows(
                       queryFn: (q) => q
-                          .in_(
+                          .inFilterOrNull(
                             'id',
-                            widget!.hotel!.rooms,
+                            widget!.hotel?.rooms,
                           )
                           .order('price', ascending: true),
                       limit: 6,

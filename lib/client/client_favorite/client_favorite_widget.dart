@@ -287,11 +287,11 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                         child: FutureBuilder<List<HotelRow>>(
                           future: HotelTable().queryRows(
                             queryFn: (q) => q
-                                .in_(
+                                .inFilterOrNull(
                                   'id',
                                   _model.favoriteHotels,
                                 )
-                                .eq(
+                                .eqOrNull(
                                   'city_name',
                                   _model.searchCity,
                                 ),
@@ -495,7 +495,8 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                                   'favorite_hotels':
                                                       _model.favoriteHotels,
                                                 },
-                                                matchingRows: (rows) => rows.eq(
+                                                matchingRows: (rows) =>
+                                                    rows.eqOrNull(
                                                   'id',
                                                   widget!.user?.id,
                                                 ),
@@ -540,7 +541,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                         ))
                       FutureBuilder<List<HotelRow>>(
                         future: HotelTable().queryRows(
-                          queryFn: (q) => q.in_(
+                          queryFn: (q) => q.inFilterOrNull(
                             'id',
                             _model.favoriteHotels,
                           ),
@@ -736,7 +737,8 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                                                 'favorite_hotels':
                                                     _model.favoriteHotels,
                                               },
-                                              matchingRows: (rows) => rows.eq(
+                                              matchingRows: (rows) =>
+                                                  rows.eqOrNull(
                                                 'id',
                                                 widget!.user?.id,
                                               ),
@@ -780,11 +782,11 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                       FutureBuilder<List<HotelRow>>(
                         future: HotelTable().queryRows(
                           queryFn: (q) => q
-                              .in_(
+                              .inFilterOrNull(
                                 'id',
                                 _model.favoriteHotels,
                               )
-                              .eq(
+                              .eqOrNull(
                                 'city_name',
                                 _model.searchCity,
                               ),
@@ -970,7 +972,7 @@ class _ClientFavoriteWidgetState extends State<ClientFavoriteWidget> {
                         ))
                       FutureBuilder<List<HotelRow>>(
                         future: HotelTable().queryRows(
-                          queryFn: (q) => q.in_(
+                          queryFn: (q) => q.inFilterOrNull(
                             'id',
                             _model.favoriteHotels,
                           ),

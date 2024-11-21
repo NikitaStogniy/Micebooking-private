@@ -51,7 +51,7 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
           child: FutureBuilder<List<CmsRow>>(
             future: CmsTable().querySingleRow(
               queryFn: (q) => q
-                  .eq(
+                  .eqOrNull(
                     'type',
                     EnumCms.ABOUT_US.name,
                   )

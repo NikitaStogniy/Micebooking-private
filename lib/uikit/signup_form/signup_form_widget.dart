@@ -1213,7 +1213,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                     : () async {
                                         _model.userCheck =
                                             await UsersTable().queryRows(
-                                          queryFn: (q) => q.eq(
+                                          queryFn: (q) => q.eqOrNull(
                                             'email',
                                             _model.emailMobTextController.text,
                                           ),
@@ -1378,7 +1378,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                     : () async {
                                         _model.userCheckMob =
                                             await UsersTable().queryRows(
-                                          queryFn: (q) => q.eq(
+                                          queryFn: (q) => q.eqOrNull(
                                             'email',
                                             _model.emailDescTextController.text,
                                           ),
@@ -1465,8 +1465,9 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                 text: 'Зарегистрироваться',
                                 options: FFButtonOptions(
                                   width: 350.0,
+                                  height: 49.0,
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 32.0, 24.0, 32.0),
+                                      0.0, 0.0, 0.0, 0.0),
                                   iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).primary,

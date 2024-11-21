@@ -109,8 +109,8 @@ class _DaysCountWidgetState extends State<DaysCountWidget> {
                         }
                       },
                       child: Container(
-                        width: 24.0,
-                        height: 24.0,
+                        width: 32.0,
+                        height: 32.0,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
@@ -123,7 +123,7 @@ class _DaysCountWidgetState extends State<DaysCountWidget> {
                           child: FaIcon(
                             FontAwesomeIcons.minus,
                             color: FlutterFlowTheme.of(context).primary,
-                            size: 12.0,
+                            size: 16.0,
                           ),
                         ),
                       ),
@@ -139,8 +139,8 @@ class _DaysCountWidgetState extends State<DaysCountWidget> {
                         safeSetState(() {});
                       },
                       child: Container(
-                        width: 24.0,
-                        height: 24.0,
+                        width: 32.0,
+                        height: 32.0,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
@@ -153,7 +153,7 @@ class _DaysCountWidgetState extends State<DaysCountWidget> {
                           child: FaIcon(
                             FontAwesomeIcons.plus,
                             color: FlutterFlowTheme.of(context).primary,
-                            size: 12.0,
+                            size: 16.0,
                           ),
                         ),
                       ),

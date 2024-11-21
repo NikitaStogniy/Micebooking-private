@@ -82,7 +82,7 @@ class _ProfileHotelsWidgetState extends State<ProfileHotelsWidget>
   Widget build(BuildContext context) {
     return FutureBuilder<List<HotelRow>>(
       future: HotelTable().queryRows(
-        queryFn: (q) => q.contains(
+        queryFn: (q) => q.containsOrNull(
           'owner_id',
           '{${currentUserUid}}',
         ),

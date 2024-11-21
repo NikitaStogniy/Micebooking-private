@@ -64,7 +64,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
   Widget build(BuildContext context) {
     return FutureBuilder<List<HotelRow>>(
       future: HotelTable().querySingleRow(
-        queryFn: (q) => q.eq(
+        queryFn: (q) => q.eqOrNull(
           'id',
           widget!.selectedID,
         ),
@@ -99,7 +99,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
               children: [
                 FutureBuilder<List<CityRow>>(
                   future: CityTable().querySingleRow(
-                    queryFn: (q) => q.eq(
+                    queryFn: (q) => q.eqOrNull(
                       'id',
                       containerHotelRow?.city,
                     ),
@@ -228,9 +228,9 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                     if (containerHotelRow!.hall.length > 0)
                       FutureBuilder<List<HallRow>>(
                         future: HallTable().queryRows(
-                          queryFn: (q) => q.in_(
+                          queryFn: (q) => q.inFilterOrNull(
                             'id',
-                            containerHotelRow!.hall,
+                            containerHotelRow?.hall,
                           ),
                         ),
                         builder: (context, snapshot) {
@@ -543,7 +543,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                                   },
                                                                   matchingRows:
                                                                       (rows) =>
-                                                                          rows.eq(
+                                                                          rows.eqOrNull(
                                                                     'id',
                                                                     widget!
                                                                         .selectedID,
@@ -747,9 +747,9 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                     if (containerHotelRow!.food.length > 0)
                       FutureBuilder<List<FoodRow>>(
                         future: FoodTable().queryRows(
-                          queryFn: (q) => q.in_(
+                          queryFn: (q) => q.inFilterOrNull(
                             'id',
-                            containerHotelRow!.food,
+                            containerHotelRow?.food,
                           ),
                         ),
                         builder: (context, snapshot) {
@@ -1066,7 +1066,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                               ServiceCategoryTable()
                                                                   .querySingleRow(
                                                             queryFn: (q) =>
-                                                                q.eq(
+                                                                q.eqOrNull(
                                                               'id',
                                                               foodItem.category,
                                                             ),
@@ -1220,9 +1220,9 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                     if (containerHotelRow!.rooms.length > 0)
                       FutureBuilder<List<RoomRow>>(
                         future: RoomTable().queryRows(
-                          queryFn: (q) => q.in_(
+                          queryFn: (q) => q.inFilterOrNull(
                             'id',
-                            containerHotelRow!.rooms,
+                            containerHotelRow?.rooms,
                           ),
                         ),
                         builder: (context, snapshot) {
@@ -1553,7 +1553,7 @@ class _HotelDetailWidgetState extends State<HotelDetailWidget> {
                                                                   },
                                                                   matchingRows:
                                                                       (rows) =>
-                                                                          rows.eq(
+                                                                          rows.eqOrNull(
                                                                     'id',
                                                                     widget!
                                                                         .selectedID,

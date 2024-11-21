@@ -101,9 +101,9 @@ class _ProfileRoomsComponentWidgetState
           FutureBuilder<List<RoomRow>>(
             future: RoomTable().queryRows(
               queryFn: (q) => q
-                  .in_(
+                  .inFilterOrNull(
                     'id',
-                    widget!.hotel!.rooms,
+                    widget!.hotel?.rooms,
                   )
                   .order('created_at'),
             ),
@@ -411,7 +411,7 @@ class _ProfileRoomsComponentWidgetState
                                                               _model.newRooms,
                                                         },
                                                         matchingRows: (rows) =>
-                                                            rows.eq(
+                                                            rows.eqOrNull(
                                                           'id',
                                                           valueOrDefault<int>(
                                                             widget!.hotel?.id,

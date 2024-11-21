@@ -75,7 +75,7 @@ class _AddToFavoriteComponentWidgetState
             padding: EdgeInsets.all(16.0),
             child: FutureBuilder<List<FavoriteHotelsRow>>(
               future: FavoriteHotelsTable().queryRows(
-                queryFn: (q) => q.eq(
+                queryFn: (q) => q.eqOrNull(
                   'owner',
                   widget!.user,
                 ),
@@ -153,7 +153,7 @@ class _AddToFavoriteComponentWidgetState
                                 data: {
                                   'hotel_id': _model.varHotels,
                                 },
-                                matchingRows: (rows) => rows.eq(
+                                matchingRows: (rows) => rows.eqOrNull(
                                   'id',
                                   columnFavoriteHotelsRow.id,
                                 ),

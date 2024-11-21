@@ -115,7 +115,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                                   Completer<List<ServiceCategoryRow>>()
                                     ..complete(ServiceCategoryTable().queryRows(
                                       queryFn: (q) => q
-                                          .eq(
+                                          .eqOrNull(
                                             'type',
                                             EnumType.ROOM.name,
                                           )
@@ -202,7 +202,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
                                         await ServiceCategoryTable().delete(
-                                          matchingRows: (rows) => rows.eq(
+                                          matchingRows: (rows) => rows.eqOrNull(
                                             'id',
                                             categoryListServiceCategoryRow.id,
                                           ),
@@ -488,7 +488,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                                     List<ServiceCategoryRow>>()
                                   ..complete(ServiceCategoryTable().queryRows(
                                     queryFn: (q) => q
-                                        .eq(
+                                        .eqOrNull(
                                           'type',
                                           EnumType.ROOM.name,
                                         )
@@ -551,7 +551,7 @@ class _RoomSettingsWidgetState extends State<RoomSettingsWidget> {
                                                   .toList(),
                                               _model.servicesList.toList()),
                                         },
-                                        matchingRows: (rows) => rows.eq(
+                                        matchingRows: (rows) => rows.eqOrNull(
                                           'id',
                                           serviscesListServiceCategoryRow.id,
                                         ),

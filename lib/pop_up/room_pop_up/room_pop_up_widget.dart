@@ -770,11 +770,11 @@ class _RoomPopUpWidgetState extends State<RoomPopUpWidget> {
                   child: FutureBuilder<List<ServiceCategoryRow>>(
                     future: ServiceCategoryTable().queryRows(
                       queryFn: (q) => q
-                          .eq(
+                          .eqOrNull(
                             'type',
                             EnumType.ROOM.name,
                           )
-                          .overlaps(
+                          .overlapsOrNull(
                             'services_id',
                             widget!.room?.services,
                           ),
@@ -825,13 +825,13 @@ class _RoomPopUpWidgetState extends State<RoomPopUpWidget> {
                                   return FutureBuilder<List<ServiceRow>>(
                                     future: ServiceTable().queryRows(
                                       queryFn: (q) => q
-                                          .eq(
+                                          .eqOrNull(
                                             'category',
                                             categoriesItem.id,
                                           )
-                                          .in_(
+                                          .inFilterOrNull(
                                             'id',
-                                            widget!.room!.services,
+                                            widget!.room?.services,
                                           ),
                                     ),
                                     builder: (context, snapshot) {

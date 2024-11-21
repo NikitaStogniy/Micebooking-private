@@ -51,7 +51,7 @@ class _WhyWidgetState extends State<WhyWidget> {
           child: FutureBuilder<List<CmsRow>>(
             future: CmsTable().querySingleRow(
               queryFn: (q) => q
-                  .eq(
+                  .eqOrNull(
                     'type',
                     EnumCms.WHYUS.name,
                   )
@@ -195,7 +195,7 @@ class _WhyWidgetState extends State<WhyWidget> {
                                       FutureBuilder<List<CmsRow>>(
                                         future: CmsTable().queryRows(
                                           queryFn: (q) => q
-                                              .eq(
+                                              .eqOrNull(
                                                 'type',
                                                 EnumCms.WHY_ELEMENT_1.name,
                                               )
@@ -243,16 +243,14 @@ class _WhyWidgetState extends State<WhyWidget> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      if (listViewCmsRow
-                                                                  .title1 !=
-                                                              null &&
-                                                          listViewCmsRow
-                                                                  .title1 !=
-                                                              '')
+                                                  if (listViewCmsRow.title1 !=
+                                                          null &&
+                                                      listViewCmsRow.title1 !=
+                                                          '')
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
                                                         Expanded(
                                                           child: Text(
                                                             valueOrDefault<
@@ -277,8 +275,8 @@ class _WhyWidgetState extends State<WhyWidget> {
                                                                 ),
                                                           ),
                                                         ),
-                                                    ],
-                                                  ),
+                                                      ],
+                                                    ),
                                                   Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -352,7 +350,7 @@ class _WhyWidgetState extends State<WhyWidget> {
                                       FutureBuilder<List<CmsRow>>(
                                         future: CmsTable().queryRows(
                                           queryFn: (q) => q
-                                              .eq(
+                                              .eqOrNull(
                                                 'type',
                                                 EnumCms.WHY_ELEMENT_2.name,
                                               )
@@ -400,16 +398,14 @@ class _WhyWidgetState extends State<WhyWidget> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      if (listViewCmsRow
-                                                                  .title1 !=
-                                                              null &&
-                                                          listViewCmsRow
-                                                                  .title1 !=
-                                                              '')
+                                                  if (listViewCmsRow.title1 !=
+                                                          null &&
+                                                      listViewCmsRow.title1 !=
+                                                          '')
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
                                                         Expanded(
                                                           child: Text(
                                                             valueOrDefault<
@@ -434,37 +430,42 @@ class _WhyWidgetState extends State<WhyWidget> {
                                                                 ),
                                                           ),
                                                         ),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Expanded(
-                                                        child: Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            listViewCmsRow
-                                                                .text1,
-                                                            'текст 1',
+                                                      ],
+                                                    ),
+                                                  if (listViewCmsRow.text1 !=
+                                                          null &&
+                                                      listViewCmsRow.text1 !=
+                                                          '')
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Expanded(
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              listViewCmsRow
+                                                                  .text1,
+                                                              'текст 1',
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Commissioner',
+                                                                  fontSize:
+                                                                      18.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                ),
                                                           ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Commissioner',
-                                                                fontSize: 18.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                              ),
                                                         ),
-                                                      ),
-                                                    ],
-                                                  ),
+                                                      ],
+                                                    ),
                                                 ].divide(
                                                     SizedBox(height: 16.0)),
                                               );
@@ -509,7 +510,7 @@ class _WhyWidgetState extends State<WhyWidget> {
                                       FutureBuilder<List<CmsRow>>(
                                         future: CmsTable().queryRows(
                                           queryFn: (q) => q
-                                              .eq(
+                                              .eqOrNull(
                                                 'type',
                                                 EnumCms.WHY_ELEMENT_3.name,
                                               )
@@ -557,16 +558,14 @@ class _WhyWidgetState extends State<WhyWidget> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      if (listViewCmsRow
-                                                                  .title1 !=
-                                                              null &&
-                                                          listViewCmsRow
-                                                                  .title1 !=
-                                                              '')
+                                                  if (listViewCmsRow.title1 !=
+                                                          null &&
+                                                      listViewCmsRow.title1 !=
+                                                          '')
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
                                                         Expanded(
                                                           child: Text(
                                                             valueOrDefault<
@@ -591,37 +590,42 @@ class _WhyWidgetState extends State<WhyWidget> {
                                                                 ),
                                                           ),
                                                         ),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Expanded(
-                                                        child: Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            listViewCmsRow
-                                                                .text1,
-                                                            'текст 1',
+                                                      ],
+                                                    ),
+                                                  if (listViewCmsRow.text1 !=
+                                                          null &&
+                                                      listViewCmsRow.text1 !=
+                                                          '')
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Expanded(
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              listViewCmsRow
+                                                                  .text1,
+                                                              'текст 1',
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Commissioner',
+                                                                  fontSize:
+                                                                      18.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                ),
                                                           ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Commissioner',
-                                                                fontSize: 18.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                              ),
                                                         ),
-                                                      ),
-                                                    ],
-                                                  ),
+                                                      ],
+                                                    ),
                                                 ].divide(
                                                     SizedBox(height: 16.0)),
                                               );
