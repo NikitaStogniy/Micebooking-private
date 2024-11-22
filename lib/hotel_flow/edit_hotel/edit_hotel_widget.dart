@@ -57,16 +57,22 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       safeSetState(() {
         _model.hotelNameEditTextController?.text = widget!.initialHotel!.name!;
+
         _model.hotelAddressEditTextController?.text =
             widget!.initialHotel!.address!;
+
         _model.textController3?.clear();
         _model.canterTextController?.text =
             widget!.initialHotel!.distanceCenter!.toString();
+
         _model.capacityTextController?.text =
             widget!.initialHotel!.capacity!.toString();
+
         _model.maxCapacityTextController?.text =
             widget!.initialHotel!.hallMaxCapacity!.toString();
+
         _model.linkTextController?.text = widget!.initialHotel!.mapLink!;
+
         _model.hotelDescriptionEditTextController?.text =
             widget!.initialHotel!.description!;
       });
@@ -466,7 +472,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                                 _model.dropDownValue = val);
                                             _model.cityId =
                                                 await CityTable().queryRows(
-                                              queryFn: (q) => q.eq(
+                                              queryFn: (q) => q.eqOrNull(
                                                 'name',
                                                 _model.dropDownValue,
                                               ),
@@ -1459,7 +1465,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                         child: FutureBuilder<List<ServiceCategoryRow>>(
                           future: ServiceCategoryTable().queryRows(
                             queryFn: (q) => q
-                                .eq(
+                                .eqOrNull(
                                   'type',
                                   EnumType.HOTEL.name,
                                 )
@@ -1540,7 +1546,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                         expanded:
                                             FutureBuilder<List<ServiceRow>>(
                                           future: ServiceTable().queryRows(
-                                            queryFn: (q) => q.eq(
+                                            queryFn: (q) => q.eqOrNull(
                                               'category',
                                               staggeredViewServiceCategoryRow
                                                   .id,
@@ -1822,7 +1828,8 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                                   .linkTextController.text,
                                               'city_name': _model.currentCity,
                                             },
-                                            matchingRows: (rows) => rows.eq(
+                                            matchingRows: (rows) =>
+                                                rows.eqOrNull(
                                               'id',
                                               widget!.initialHotel?.id,
                                             ),
@@ -1897,21 +1904,27 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                                     safeSetState(() {
                                       _model.hotelNameEditTextController?.text =
                                           widget!.initialHotel!.name!;
+
                                       _model.hotelAddressEditTextController
                                               ?.text =
                                           widget!.initialHotel!.address!;
+
                                       _model.textController3?.clear();
                                       _model.canterTextController?.text =
                                           widget!.initialHotel!.distanceCenter!
                                               .toString();
+
                                       _model.capacityTextController?.text =
                                           widget!.initialHotel!.capacity!
                                               .toString();
+
                                       _model.maxCapacityTextController?.text =
                                           widget!.initialHotel!.hallMaxCapacity!
                                               .toString();
+
                                       _model.linkTextController?.text =
                                           widget!.initialHotel!.mapLink!;
+
                                       _model.hotelDescriptionEditTextController
                                               ?.text =
                                           widget!.initialHotel!.description!;
@@ -1970,7 +1983,7 @@ class _EditHotelWidgetState extends State<EditHotelWidget> {
                               cancelText: 'Нет, отменить',
                               successAction: () async {
                                 await HotelTable().delete(
-                                  matchingRows: (rows) => rows.eq(
+                                  matchingRows: (rows) => rows.eqOrNull(
                                     'id',
                                     widget!.id,
                                   ),

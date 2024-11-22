@@ -155,6 +155,12 @@ class EditRequestPageModel extends FlutterFlowModel<EditRequestPageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  // Stores action output result for [Backend Call - Query Rows] action in EditRequestPage widget.
+  List<RequestsHallVarRow>? initialhalHallRequest;
+  // Stores action output result for [Backend Call - Query Rows] action in EditRequestPage widget.
+  List<RequestsFoodVarRow>? initialhalFoodRequest;
+  // Stores action output result for [Backend Call - Query Rows] action in EditRequestPage widget.
+  List<RequestsRoomVarRow>? initialhalRoomRequest;
   // Model for Menu component.
   late MenuModel menuModel;
   // Model for EditRequestHotelComponent component.

@@ -46,90 +46,97 @@ class _SeatingIconWidgetState extends State<SeatingIconWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        if (widget!.type == EnumSeating.theatre)
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: SvgPicture.asset(
-              'assets/images/Theatre.svg',
-              width: 32.0,
-              height: 32.0,
-              fit: BoxFit.cover,
-            ),
-          ),
-        if (widget!.type == EnumSeating.ushape)
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: SvgPicture.asset(
-              'assets/images/ushape.svg',
-              width: 32.0,
-              height: 32.0,
-              fit: BoxFit.cover,
-            ),
-          ),
-        if (widget!.type == EnumSeating.communication)
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: SvgPicture.asset(
-              'assets/images/Talking.svg',
-              width: 32.0,
-              height: 32.0,
-              fit: BoxFit.cover,
-            ),
-          ),
-        if (widget!.type == EnumSeating.oshape)
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: SvgPicture.asset(
-              'assets/images/oshape.svg',
-              width: 32.0,
-              height: 32.0,
-              fit: BoxFit.cover,
-            ),
-          ),
-        if (widget!.type == EnumSeating.cabare)
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: SvgPicture.asset(
-              'assets/images/kabare.svg',
-              width: 32.0,
-              height: 32.0,
-              fit: BoxFit.cover,
-            ),
-          ),
-        if (widget!.type == EnumSeating.klass)
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: SvgPicture.asset(
-              'assets/images/Classroom.svg',
-              width: 32.0,
-              height: 32.0,
-              fit: BoxFit.cover,
-            ),
-          ),
-        if (widget!.type == EnumSeating.banket)
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: SvgPicture.asset(
-              'assets/images/Banket.svg',
-              width: 32.0,
-              height: 32.0,
-              fit: BoxFit.cover,
-            ),
-          ),
-        if (widget!.type == EnumSeating.furshet)
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: SvgPicture.asset(
-              'assets/images/furshet.svg',
-              width: 32.0,
-              height: 32.0,
-              fit: BoxFit.cover,
-            ),
-          ),
-      ],
+    return ClipRRect(
+      child: Container(
+        width: 32.0,
+        height: 32.0,
+        decoration: BoxDecoration(),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (widget!.type == EnumSeating.theatre)
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: SvgPicture.asset(
+                  'assets/images/Theatre.svg',
+                  width: 32.0,
+                  height: 32.0,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            if (widget!.type == EnumSeating.ushape)
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: SvgPicture.asset(
+                  'assets/images/ushape.svg',
+                  width: 32.0,
+                  height: 32.0,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            if (widget!.type == EnumSeating.communication)
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: SvgPicture.asset(
+                  'assets/images/Talking.svg',
+                  width: 32.0,
+                  height: 32.0,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            if (widget!.type == EnumSeating.oshape)
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: SvgPicture.asset(
+                  'assets/images/oshape.svg',
+                  width: 32.0,
+                  height: 32.0,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            if (widget!.type == EnumSeating.cabare)
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: SvgPicture.asset(
+                  'assets/images/kabare.svg',
+                  width: 32.0,
+                  height: 32.0,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            if (widget!.type == EnumSeating.klass)
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: SvgPicture.asset(
+                  'assets/images/Classroom.svg',
+                  width: 32.0,
+                  height: 32.0,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            if (widget!.type == EnumSeating.banket)
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: SvgPicture.asset(
+                  'assets/images/Banket.svg',
+                  width: 32.0,
+                  height: 32.0,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            if (widget!.type == EnumSeating.furshet)
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: SvgPicture.asset(
+                  'assets/images/furshet.svg',
+                  width: 32.0,
+                  height: 32.0,
+                  fit: BoxFit.cover,
+                ),
+              ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -52,7 +52,7 @@ class _FavoriteComponentWidgetState extends State<FavoriteComponentWidget> {
   Widget build(BuildContext context) {
     return FutureBuilder<List<UsersRow>>(
       future: UsersTable().querySingleRow(
-        queryFn: (q) => q.eq(
+        queryFn: (q) => q.eqOrNull(
           'uid',
           currentUserUid,
         ),
@@ -82,7 +82,7 @@ class _FavoriteComponentWidgetState extends State<FavoriteComponentWidget> {
           decoration: BoxDecoration(),
           child: FutureBuilder<List<FavoriteHotelsRow>>(
             future: FavoriteHotelsTable().queryRows(
-              queryFn: (q) => q.eq(
+              queryFn: (q) => q.eqOrNull(
                 'owner',
                 containerUsersRow?.id,
               ),

@@ -144,7 +144,7 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
                     children: [
                       FutureBuilder<List<ServiceCategoryRow>>(
                         future: ServiceCategoryTable().querySingleRow(
-                          queryFn: (q) => q.eq(
+                          queryFn: (q) => q.eqOrNull(
                             'id',
                             widget!.food?.category,
                           ),
@@ -208,11 +208,11 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
                   child: FutureBuilder<List<ServiceCategoryRow>>(
                     future: ServiceCategoryTable().queryRows(
                       queryFn: (q) => q
-                          .eq(
+                          .eqOrNull(
                             'type',
                             EnumType.FOOD_POSITION.name,
                           )
-                          .overlaps(
+                          .overlapsOrNull(
                             'services_id',
                             widget!.food?.positions,
                           ),
@@ -270,13 +270,13 @@ class _FoodPopUpWidgetState extends State<FoodPopUpWidget> {
                               FutureBuilder<List<FoodPositionRow>>(
                                 future: FoodPositionTable().queryRows(
                                   queryFn: (q) => q
-                                      .eq(
+                                      .eqOrNull(
                                         'category',
                                         staggeredViewServiceCategoryRow.id,
                                       )
-                                      .in_(
+                                      .inFilterOrNull(
                                         'id',
-                                        widget!.food!.positions,
+                                        widget!.food?.positions,
                                       ),
                                 ),
                                 builder: (context, snapshot) {

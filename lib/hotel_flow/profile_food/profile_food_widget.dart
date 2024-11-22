@@ -85,7 +85,7 @@ class _ProfileFoodWidgetState extends State<ProfileFoodWidget>
         child: FutureBuilder<List<HotelRow>>(
           future: HotelTable().queryRows(
             queryFn: (q) => q
-                .contains(
+                .containsOrNull(
                   'owner_id',
                   '{${currentUserUid}}',
                 )

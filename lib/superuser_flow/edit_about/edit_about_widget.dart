@@ -63,7 +63,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
     return FutureBuilder<List<CmsRow>>(
       future: CmsTable().querySingleRow(
         queryFn: (q) => q
-            .eq(
+            .eqOrNull(
               'type',
               EnumCms.ABOUT.name,
             )
@@ -252,7 +252,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                   future: (_model.requestCompleter ??= Completer<List<CmsRow>>()
                         ..complete(CmsTable().queryRows(
                           queryFn: (q) => q
-                              .eq(
+                              .eqOrNull(
                                 'type',
                                 EnumCms.ABOUT_ELEMENT.name,
                               )
@@ -300,7 +300,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                             readOnly: _model.isEdit,
                             delete: () async {
                               await CmsTable().delete(
-                                matchingRows: (rows) => rows.eq(
+                                matchingRows: (rows) => rows.eqOrNull(
                                   'id',
                                   elementsCmsRow.id,
                                 ),
@@ -676,7 +676,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                 'title1': _model.title1TextController1.text,
                                 'title2': _model.title1TextController2.text,
                               },
-                              matchingRows: (rows) => rows.eq(
+                              matchingRows: (rows) => rows.eqOrNull(
                                 'id',
                                 containerCmsRow?.id,
                               ),
@@ -713,6 +713,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                             safeSetState(() {
                               _model.title1TextController1?.text =
                                   containerCmsRow!.title1!;
+
                               _model.title1TextController2?.text =
                                   containerCmsRow!.title2!;
                             });

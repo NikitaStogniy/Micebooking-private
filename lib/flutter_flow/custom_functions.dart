@@ -201,13 +201,16 @@ String? countGen(int? count) {
 }
 
 DateTime? countDuration(
-  String? startDate,
-  double? duration,
+  DateTime startDate,
+  double duration,
 ) {
-  // count date end (if duration with half - round to bigger value)
-  if (startDate == null || duration == null) {
-    return null;
-  }
+// Округляем продолжительность (duration) до большего целого числа
+  int daysToAdd = duration.ceil(); // ceil округляет в большую сторону
+
+  // Добавляем дни к начальной дате
+  DateTime endDate = startDate.add(Duration(days: daysToAdd));
+
+  return endDate;
 }
 
 List<int>? mergeListsInt(
@@ -232,6 +235,28 @@ List<String>? mergeListsCopy(
 ) {
   list2.addAll(list1); // Добавляем все элементы из list1 в list2
   return list2;
+}
+
+List<DateTime> getDisabledDates(
+  List<DateTime> dayStartList,
+  List<DateTime> dayEndList,
+) {
+  List<DateTime> disabledDates = [];
+
+  // Перебираем все пары дат из dayStartList и dayEndList
+  for (int i = 0; i < dayStartList.length; i++) {
+    DateTime startDate = dayStartList[i];
+    DateTime endDate = dayEndList[i];
+
+    // Добавляем все даты между startDate и endDate
+    while (!startDate.isAfter(endDate)) {
+      disabledDates.add(startDate);
+      startDate =
+          startDate.add(Duration(days: 1)); // Переходим на следующий день
+    }
+  }
+
+  return disabledDates;
 }
 
 List<String>? mergeLists(
@@ -344,4 +369,67 @@ List<DateTime>? calendarGeneratorTest(DateTime currentMonth) {
 
 int getDayOfMonth(DateTime date) {
   return date.day;
+}
+
+bool areListsEqualInt(
+  List<int> listA,
+  List<int> listB,
+) {
+  // Проверяем, если длины списков не совпадают, то они точно не равны
+  if (listA.length != listB.length) {
+    return false;
+  }
+
+  // Сортируем оба списка
+  List<int> sortedListA = List.from(listA)..sort();
+  List<int> sortedListB = List.from(listB)..sort();
+
+  // Сравниваем элементы списков один к одному
+  for (int i = 0; i < sortedListA.length; i++) {
+    if (sortedListA[i] != sortedListB[i]) {
+      return false;
+    }
+  }
+
+  // Если все элементы совпадают
+  return true;
+}
+
+List<DateTime> getDatesRange(
+  DateTime dayStart,
+  DateTime dayEnd,
+) {
+  List<DateTime> dates = [];
+
+  // Добавляем все даты между dayStart и dayEnd
+  while (!dayStart.isAfter(dayEnd)) {
+    dates.add(dayStart);
+    dayStart = dayStart.add(Duration(days: 1)); // Переходим на следующий день
+  }
+  return dates;
+}
+
+bool checkForCommonElements(
+  List<DateTime> list1,
+  List<DateTime> list2,
+) {
+  for (var item in list1) {
+    // Сравниваем только год, месяц и день (игнорируем время)
+    if (list2.any((date) =>
+        date.year == item.year &&
+        date.month == item.month &&
+        date.day == item.day)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+List<int> removeElementFromList(
+  int element,
+  List<int> list,
+) {
+// Создаем копию списка без указанного элемента
+  list.remove(element);
+  return list;
 }

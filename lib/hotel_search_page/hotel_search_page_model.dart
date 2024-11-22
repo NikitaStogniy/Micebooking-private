@@ -154,9 +154,9 @@ class HotelSearchPageModel extends FlutterFlowModel<HotelSearchPageWidget> {
   void updateHotelFilterServicesAtIndex(int index, Function(int) updateFn) =>
       hotelFilterServices[index] = updateFn(hotelFilterServices[index]);
 
-  int? hotelFilterMaxDistance = 100000;
+  double? hotelFilterMaxDistance = 100000.0;
 
-  int? hotelFilterMinDistance = 0;
+  double? hotelFilterMinDistance = 0.0;
 
   bool filterShowAllServices = false;
 
@@ -245,21 +245,71 @@ class HotelSearchPageModel extends FlutterFlowModel<HotelSearchPageWidget> {
 
   double? filterMinPrice = 1.0;
 
+  List<int> filteredHallsAction = [];
+  void addToFilteredHallsAction(int item) => filteredHallsAction.add(item);
+  void removeFromFilteredHallsAction(int item) =>
+      filteredHallsAction.remove(item);
+  void removeAtIndexFromFilteredHallsAction(int index) =>
+      filteredHallsAction.removeAt(index);
+  void insertAtIndexInFilteredHallsAction(int index, int item) =>
+      filteredHallsAction.insert(index, item);
+  void updateFilteredHallsActionAtIndex(int index, Function(int) updateFn) =>
+      filteredHallsAction[index] = updateFn(filteredHallsAction[index]);
+
+  List<int> hallsissuance = [];
+  void addToHallsissuance(int item) => hallsissuance.add(item);
+  void removeFromHallsissuance(int item) => hallsissuance.remove(item);
+  void removeAtIndexFromHallsissuance(int index) =>
+      hallsissuance.removeAt(index);
+  void insertAtIndexInHallsissuance(int index, int item) =>
+      hallsissuance.insert(index, item);
+  void updateHallsissuanceAtIndex(int index, Function(int) updateFn) =>
+      hallsissuance[index] = updateFn(hallsissuance[index]);
+
+  HotelSeatingStruct? hallSeating1;
+  void updateHallSeating1Struct(Function(HotelSeatingStruct) updateFn) {
+    updateFn(hallSeating1 ??= HotelSeatingStruct());
+  }
+
+  HotelSeatingStruct? hallSeating2;
+  void updateHallSeating2Struct(Function(HotelSeatingStruct) updateFn) {
+    updateFn(hallSeating2 ??= HotelSeatingStruct());
+  }
+
+  HotelSeatingStruct? hallSeating3;
+  void updateHallSeating3Struct(Function(HotelSeatingStruct) updateFn) {
+    updateFn(hallSeating3 ??= HotelSeatingStruct());
+  }
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Backend Call - Query Rows] action in HotelSearchPage widget.
-  List<HallRow>? filteredHalls;
+  List<HallRow>? filteredHallTheatre;
+  // Stores action output result for [Backend Call - Query Rows] action in HotelSearchPage widget.
+  List<HallRow>? filteredHalClass;
+  // Stores action output result for [Backend Call - Query Rows] action in HotelSearchPage widget.
+  List<HallRow>? filteredHalComm;
+  // Stores action output result for [Backend Call - Query Rows] action in HotelSearchPage widget.
+  List<HallRow>? filteredHallUShape;
+  // Stores action output result for [Backend Call - Query Rows] action in HotelSearchPage widget.
+  List<HallRow>? filteredHallOShape;
+  // Stores action output result for [Backend Call - Query Rows] action in HotelSearchPage widget.
+  List<HallRow>? filteredHallKabare;
+  // Stores action output result for [Backend Call - Query Rows] action in HotelSearchPage widget.
+  List<HallRow>? filteredHallBanket;
+  // Stores action output result for [Backend Call - Query Rows] action in HotelSearchPage widget.
+  List<HallRow>? filteredHallFurshet;
+  // Stores action output result for [Backend Call - Query Rows] action in HotelSearchPage widget.
+  List<HallRow>? allHalls;
   Completer<List<HotelRow>>? requestCompleter;
   // Model for Menu component.
   late MenuModel menuModel;
   // Model for HotelSearchComp component.
   late HotelSearchCompModel hotelSearchCompModel;
   // Stores action output result for [Backend Call - Query Rows] action in Container widget.
-  List<RoomRow>? rooms;
+  List<HallRow>? hallFilteredOnPage;
   // Stores action output result for [Backend Call - Query Rows] action in Button widget.
   List<RoomRow>? deleteFiltersRooms;
-  // Stores action output result for [Backend Call - Query Rows] action in Container widget.
-  List<RoomRow>? roomsMob;
   // Stores action output result for [Backend Call - Query Rows] action in Button widget.
   List<RoomRow>? deleteFiltersRooms2;
   // Stores action output result for [Backend Call - Insert Row] action in Button widget.
@@ -267,9 +317,13 @@ class HotelSearchPageModel extends FlutterFlowModel<HotelSearchPageWidget> {
   // Models for ClientHotelComponent dynamic component.
   late FlutterFlowDynamicModels<ClientHotelComponentModel>
       clientHotelComponentModels1;
+  // Stores action output result for [Backend Call - Query Rows] action in ClientHotelComponent widget.
+  List<HallRow>? hallissuance;
   // Models for ClientHotelComponent dynamic component.
   late FlutterFlowDynamicModels<ClientHotelComponentModel>
       clientHotelComponentModels2;
+  // Stores action output result for [Backend Call - Query Rows] action in ClientHotelComponent widget.
+  List<HallRow>? hallissuance2;
   // Model for EditRequestHotelComponent component.
   late EditRequestHotelComponentModel editRequestHotelComponentModel;
   // Models for Client_Hall_Component dynamic component.

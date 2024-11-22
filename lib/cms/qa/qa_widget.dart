@@ -123,7 +123,7 @@ class _QaWidgetState extends State<QaWidget> {
                           FutureBuilder<List<CmsRow>>(
                             future: CmsTable().queryRows(
                               queryFn: (q) => q
-                                  .eq(
+                                  .eqOrNull(
                                     'type',
                                     EnumCms.QA.name,
                                   )

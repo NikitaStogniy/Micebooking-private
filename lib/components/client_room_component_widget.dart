@@ -8,6 +8,7 @@ import '/pop_up/room_pop_up/room_pop_up_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,6 +22,8 @@ class ClientRoomComponentWidget extends StatefulWidget {
     required this.room,
     bool? isChosen,
     required this.choseAction,
+    required this.dayStart,
+    required this.hotel,
   }) : this.isChosen = isChosen ?? false;
 
   final RoomRow? room;
@@ -28,6 +31,8 @@ class ClientRoomComponentWidget extends StatefulWidget {
   final Future Function(
           int? roomId, String? roomName, double? price, int? count, int? days)?
       choseAction;
+  final DateTime? dayStart;
+  final int? hotel;
 
   @override
   State<ClientRoomComponentWidget> createState() =>
@@ -48,12 +53,55 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
     super.initState();
     _model = createModel(context, () => ClientRoomComponentModel());
 
+    // On component load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.reguldarPrice = widget!.room?.price;
+      safeSetState(() {});
+      _model.initialElement = await RoomSeasonElementTable().queryRows(
+        queryFn: (q) => q
+            .eqOrNull(
+              'room_id',
+              widget!.room?.id,
+            )
+            .lteOrNull(
+              'day_start',
+              supaSerialize<DateTime>(widget!.dayStart),
+            )
+            .gteOrNull(
+              'day_end',
+              supaSerialize<DateTime>(widget!.dayStart),
+            )
+            .order('main', ascending: true),
+      );
+      if (_model.initialElement?.length != 0) {
+        _model.addToPrice(_model.initialElement!.first.price!);
+        safeSetState(() {});
+      } else {
+        _model.addToPrice(_model.reguldarPrice!);
+        safeSetState(() {});
+      }
+    });
+
     _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
-
+    _model.textFieldFocusNode!.addListener(
+      () async {
+        if ((_model.textFieldFocusNode?.hasFocus ?? false) != true) {
+          _model.roomFieldOpen = false;
+          safeSetState(() {});
+        }
+      },
+    );
     _model.countmobTextController ??= TextEditingController();
     _model.countmobFocusNode ??= FocusNode();
-
+    _model.countmobFocusNode!.addListener(
+      () async {
+        if ((_model.countmobFocusNode?.hasFocus ?? false) != true) {
+          _model.roomFieldOpen = false;
+          safeSetState(() {});
+        }
+      },
+    );
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -341,7 +389,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                             child: Text(
                                               valueOrDefault<String>(
                                                 widget!.room?.name,
-                                                'namne',
+                                                'Загружаем название номера...',
                                               ),
                                               style: FlutterFlowTheme.of(
                                                       context)
@@ -361,7 +409,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                         children: [
                                           Expanded(
                                             child: Text(
-                                              '${formatNumber(
+                                              'от ${formatNumber(
                                                 widget!.room?.price,
                                                 formatType: FormatType.decimal,
                                                 decimalType:
@@ -465,7 +513,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                       .override(
                                         fontFamily: 'Commissioner',
                                         color: Color(0xFF636363),
-                                        fontSize: 13.0,
+                                        fontSize: 14.0,
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -536,10 +584,61 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              if (widget!.isChosen != true) {
-                                                _model.days = _model.days! + 1;
+                                              var _shouldSetState = false;
+                                              if (widget!.isChosen == true) {
+                                                if (_shouldSetState)
+                                                  safeSetState(() {});
+                                                return;
+                                              }
+
+                                              _model.days = _model.days! + 1;
+                                              safeSetState(() {});
+                                              _model.searchElement =
+                                                  await RoomSeasonElementTable()
+                                                      .queryRows(
+                                                queryFn: (q) => q
+                                                    .eqOrNull(
+                                                      'room_id',
+                                                      widget!.room?.id,
+                                                    )
+                                                    .lteOrNull(
+                                                      'day_start',
+                                                      supaSerialize<DateTime>(
+                                                          functions.countDuration(
+                                                              widget!.dayStart!,
+                                                              _model.days!
+                                                                      .toDouble() -
+                                                                  1)),
+                                                    )
+                                                    .gteOrNull(
+                                                      'day_end',
+                                                      supaSerialize<DateTime>(
+                                                          functions.countDuration(
+                                                              widget!.dayStart!,
+                                                              _model.days!
+                                                                      .toDouble() -
+                                                                  1)),
+                                                    )
+                                                    .order('main',
+                                                        ascending: true),
+                                              );
+                                              _shouldSetState = true;
+                                              if (_model
+                                                      .searchElement?.length !=
+                                                  0) {
+                                                _model.addToPrice(_model
+                                                    .searchElement!
+                                                    .first
+                                                    .price!);
+                                                safeSetState(() {});
+                                              } else {
+                                                _model.addToPrice(
+                                                    _model.reguldarPrice!);
                                                 safeSetState(() {});
                                               }
+
+                                              if (_shouldSetState)
+                                                safeSetState(() {});
                                             },
                                             child: Icon(
                                               Icons.add,
@@ -560,6 +659,8 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                           if (widget!.isChosen != true) {
                                             if (_model.days! > 1) {
                                               _model.days = _model.days! + -1;
+                                              _model.removeAtIndexFromPrice(
+                                                  _model.price.length - 1);
                                               safeSetState(() {});
                                             }
                                           }
@@ -890,8 +991,7 @@ class _ClientRoomComponentWidgetState extends State<ClientRoomComponentWidget> {
                                 widget!.room?.id,
                                 widget!.room?.name,
                                 (_model.rooms!) *
-                                    (_model.days!) *
-                                    (widget!.room!.price!),
+                                    (functions.sumList(_model.price.toList())!),
                                 _model.rooms,
                                 _model.days,
                               );

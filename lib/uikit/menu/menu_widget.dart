@@ -73,7 +73,7 @@ class _MenuWidgetState extends State<MenuWidget> {
           alignment: AlignmentDirectional(0.0, 0.0),
           child: FutureBuilder<List<UsersRow>>(
             future: UsersTable().querySingleRow(
-              queryFn: (q) => q.eq(
+              queryFn: (q) => q.eqOrNull(
                 'uid',
                 currentUserUid,
               ),

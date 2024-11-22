@@ -47,7 +47,7 @@ class _EditPIWidgetState extends State<EditPIWidget> {
     return FutureBuilder<List<CmsRow>>(
       future: CmsTable().querySingleRow(
         queryFn: (q) => q
-            .eq(
+            .eqOrNull(
               'type',
               EnumCms.PERSONAL_INFO.name,
             )
@@ -210,7 +210,7 @@ class _EditPIWidgetState extends State<EditPIWidget> {
                             data: {
                               'text1': _model.aboutUsText1TextController.text,
                             },
-                            matchingRows: (rows) => rows.eq(
+                            matchingRows: (rows) => rows.eqOrNull(
                               'id',
                               containerCmsRow?.id,
                             ),

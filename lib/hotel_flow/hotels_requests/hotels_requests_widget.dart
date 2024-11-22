@@ -61,7 +61,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
             if (_model.requestOpen == false)
               FutureBuilder<List<HotelRow>>(
                 future: HotelTable().queryRows(
-                  queryFn: (q) => q.contains(
+                  queryFn: (q) => q.containsOrNull(
                     'owner_id',
                     '{${currentUserUid}}',
                   ),
@@ -94,7 +94,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                         child: FutureBuilder<List<RequestsRow>>(
                           future: RequestsTable().queryRows(
                             queryFn: (q) => q
-                                .eq(
+                                .eqOrNull(
                                   'hotel',
                                   columnHotelRow.id,
                                 )
@@ -576,7 +576,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                                 true,
                                                                           },
                                                                           matchingRows: (rows) =>
-                                                                              rows.eq(
+                                                                              rows.eqOrNull(
                                                                             'id',
                                                                             requestsItem.id,
                                                                           ),
@@ -594,7 +594,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                                 false,
                                                                           },
                                                                           matchingRows: (rows) =>
-                                                                              rows.eq(
+                                                                              rows.eqOrNull(
                                                                             'id',
                                                                             requestsItem.id,
                                                                           ),
@@ -936,7 +936,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                                 true,
                                                                           },
                                                                           matchingRows: (rows) =>
-                                                                              rows.eq(
+                                                                              rows.eqOrNull(
                                                                             'id',
                                                                             requestsItem.id,
                                                                           ),
@@ -949,7 +949,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                                                                                 false,
                                                                           },
                                                                           matchingRows: (rows) =>
-                                                                              rows.eq(
+                                                                              rows.eqOrNull(
                                                                             'id',
                                                                             requestsItem.id,
                                                                           ),
@@ -1038,7 +1038,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
             if (_model.requestOpen == true)
               FutureBuilder<List<RequestsRow>>(
                 future: RequestsTable().querySingleRow(
-                  queryFn: (q) => q.eq(
+                  queryFn: (q) => q.eqOrNull(
                     'id',
                     _model.request?.id,
                   ),
@@ -1183,7 +1183,7 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                         ),
                         FutureBuilder<List<UsersRow>>(
                           future: UsersTable().querySingleRow(
-                            queryFn: (q) => q.eq(
+                            queryFn: (q) => q.eqOrNull(
                               'id',
                               _model.request?.owner,
                             ),
@@ -1427,9 +1427,9 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                               ),
                               FutureBuilder<List<RequestsHallVarRow>>(
                                 future: RequestsHallVarTable().queryRows(
-                                  queryFn: (q) => q.in_(
+                                  queryFn: (q) => q.inFilterOrNull(
                                     'id',
-                                    containerRequestsRow!.halls,
+                                    containerRequestsRow?.halls,
                                   ),
                                 ),
                                 builder: (context, snapshot) {
@@ -1834,9 +1834,9 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                               ),
                               FutureBuilder<List<RequestsFoodVarRow>>(
                                 future: RequestsFoodVarTable().queryRows(
-                                  queryFn: (q) => q.in_(
+                                  queryFn: (q) => q.inFilterOrNull(
                                     'id',
-                                    _model.request!.food,
+                                    _model.request?.food,
                                   ),
                                 ),
                                 builder: (context, snapshot) {
@@ -2246,9 +2246,9 @@ class _HotelsRequestsWidgetState extends State<HotelsRequestsWidget> {
                               ),
                               FutureBuilder<List<RequestsRoomVarRow>>(
                                 future: RequestsRoomVarTable().queryRows(
-                                  queryFn: (q) => q.in_(
+                                  queryFn: (q) => q.inFilterOrNull(
                                     'id',
-                                    containerRequestsRow!.rooms,
+                                    containerRequestsRow?.rooms,
                                   ),
                                 ),
                                 builder: (context, snapshot) {

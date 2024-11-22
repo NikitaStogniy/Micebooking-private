@@ -142,7 +142,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                               ..complete(ServiceCategoryTable()
                                                   .queryRows(
                                                 queryFn: (q) => q
-                                                    .eq(
+                                                    .eqOrNull(
                                                       'type',
                                                       EnumType.HOTEL.name,
                                                     )
@@ -253,7 +253,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                     await ServiceCategoryTable()
                                                         .delete(
                                                       matchingRows: (rows) =>
-                                                          rows.eq(
+                                                          rows.eqOrNull(
                                                         'id',
                                                         categoryListServiceCategoryRow
                                                             .id,
@@ -279,7 +279,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                   await ServiceCategoryTable()
                                                       .delete(
                                                     matchingRows: (rows) =>
-                                                        rows.eq(
+                                                        rows.eqOrNull(
                                                       'id',
                                                       categoryListServiceCategoryRow
                                                           .id,
@@ -642,7 +642,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                     ServiceCategoryTable()
                                                         .queryRows(
                                                   queryFn: (q) => q
-                                                      .eq(
+                                                      .eqOrNull(
                                                         'type',
                                                         EnumType.HOTEL.name,
                                                       )
@@ -720,7 +720,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                                 .toList()),
                                                   },
                                                   matchingRows: (rows) =>
-                                                      rows.eq(
+                                                      rows.eqOrNull(
                                                     'id',
                                                     serviscesListServiceCategoryRow
                                                         .id,
@@ -866,7 +866,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                           'visible': false,
                                                         },
                                                         matchingRows: (rows) =>
-                                                            rows.eq(
+                                                            rows.eqOrNull(
                                                           'id',
                                                           citysCityRow.id,
                                                         ),
@@ -903,7 +903,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                           'visible': true,
                                                         },
                                                         matchingRows: (rows) =>
-                                                            rows.eq(
+                                                            rows.eqOrNull(
                                                           'id',
                                                           citysCityRow.id,
                                                         ),
@@ -940,7 +940,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                           'popular': false,
                                                         },
                                                         matchingRows: (rows) =>
-                                                            rows.eq(
+                                                            rows.eqOrNull(
                                                           'id',
                                                           citysCityRow.id,
                                                         ),
@@ -956,7 +956,7 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                           'popular': true,
                                                         },
                                                         matchingRows: (rows) =>
-                                                            rows.eq(
+                                                            rows.eqOrNull(
                                                           'id',
                                                           citysCityRow.id,
                                                         ),
@@ -1031,8 +1031,8 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                                               await CityTable()
                                                                   .delete(
                                                                 matchingRows:
-                                                                    (rows) =>
-                                                                        rows.eq(
+                                                                    (rows) => rows
+                                                                        .eqOrNull(
                                                                   'id',
                                                                   citysCityRow
                                                                       .id,
@@ -1312,7 +1312,8 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                             category) async {},
                                         delete: () async {
                                           await CenterDistanceTable().delete(
-                                            matchingRows: (rows) => rows.eq(
+                                            matchingRows: (rows) =>
+                                                rows.eqOrNull(
                                               'id',
                                               listViewCenterDistanceRow.id,
                                             ),
@@ -1326,7 +1327,8 @@ class _HotelSettingsWidgetState extends State<HotelSettingsWidget> {
                                               'second': last,
                                               'isOn': avalibility,
                                             },
-                                            matchingRows: (rows) => rows.eq(
+                                            matchingRows: (rows) =>
+                                                rows.eqOrNull(
                                               'id',
                                               listViewCenterDistanceRow.id,
                                             ),

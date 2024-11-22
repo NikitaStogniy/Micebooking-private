@@ -65,7 +65,7 @@ class _CompanyRequestsComponentWidgetState
   Widget build(BuildContext context) {
     return FutureBuilder<List<UsersRow>>(
       future: UsersTable().querySingleRow(
-        queryFn: (q) => q.eq(
+        queryFn: (q) => q.eqOrNull(
           'id',
           widget!.user,
         ),
@@ -460,11 +460,11 @@ class _CompanyRequestsComponentWidgetState
                               FutureBuilder<List<RequestsRow>>(
                                 future: RequestsTable().queryRows(
                                   queryFn: (q) => q
-                                      .eq(
+                                      .eqOrNull(
                                         'monthYear',
                                         _model.formatedDate,
                                       )
-                                      .eq(
+                                      .eqOrNull(
                                         'owner',
                                         widget!.user,
                                       )
@@ -582,8 +582,8 @@ class _CompanyRequestsComponentWidgetState
                                                               'Complete': true,
                                                             },
                                                             matchingRows:
-                                                                (rows) =>
-                                                                    rows.eq(
+                                                                (rows) => rows
+                                                                    .eqOrNull(
                                                               'id',
                                                               columnRequestsRow
                                                                   .id,
@@ -596,8 +596,8 @@ class _CompanyRequestsComponentWidgetState
                                                               'Complete': false,
                                                             },
                                                             matchingRows:
-                                                                (rows) =>
-                                                                    rows.eq(
+                                                                (rows) => rows
+                                                                    .eqOrNull(
                                                               'id',
                                                               columnRequestsRow
                                                                   .id,
@@ -902,7 +902,7 @@ class _CompanyRequestsComponentWidgetState
                       ),
                       FutureBuilder<List<UsersRow>>(
                         future: UsersTable().querySingleRow(
-                          queryFn: (q) => q.eq(
+                          queryFn: (q) => q.eqOrNull(
                             'id',
                             _model.request?.owner,
                           ),
@@ -1146,9 +1146,9 @@ class _CompanyRequestsComponentWidgetState
                             ),
                             FutureBuilder<List<RequestsHallVarRow>>(
                               future: RequestsHallVarTable().queryRows(
-                                queryFn: (q) => q.in_(
+                                queryFn: (q) => q.inFilterOrNull(
                                   'id',
-                                  _model.request!.halls,
+                                  _model.request?.halls,
                                 ),
                               ),
                               builder: (context, snapshot) {
@@ -1551,9 +1551,9 @@ class _CompanyRequestsComponentWidgetState
                             ),
                             FutureBuilder<List<RequestsFoodVarRow>>(
                               future: RequestsFoodVarTable().queryRows(
-                                queryFn: (q) => q.in_(
+                                queryFn: (q) => q.inFilterOrNull(
                                   'id',
-                                  _model.request!.food,
+                                  _model.request?.food,
                                 ),
                               ),
                               builder: (context, snapshot) {
@@ -1955,9 +1955,9 @@ class _CompanyRequestsComponentWidgetState
                             ),
                             FutureBuilder<List<RequestsRoomVarRow>>(
                               future: RequestsRoomVarTable().queryRows(
-                                queryFn: (q) => q.in_(
+                                queryFn: (q) => q.inFilterOrNull(
                                   'id',
-                                  _model.request!.rooms,
+                                  _model.request?.rooms,
                                 ),
                               ),
                               builder: (context, snapshot) {

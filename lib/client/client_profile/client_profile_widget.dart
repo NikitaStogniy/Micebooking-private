@@ -39,7 +39,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.currentUser = await UsersTable().queryRows(
-        queryFn: (q) => q.eq(
+        queryFn: (q) => q.eqOrNull(
           'uid',
           currentUserUid,
         ),
@@ -49,7 +49,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
           data: {
             'email': currentUserEmail,
           },
-          matchingRows: (rows) => rows.eq(
+          matchingRows: (rows) => rows.eqOrNull(
             'uid',
             currentUserUid,
           ),
@@ -142,7 +142,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
     return FutureBuilder<List<UsersRow>>(
       future: _model.profileInfo(
         requestFn: () => UsersTable().querySingleRow(
-          queryFn: (q) => q.eq(
+          queryFn: (q) => q.eqOrNull(
             'uid',
             currentUserUid,
           ),
@@ -176,7 +176,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
           decoration: BoxDecoration(),
           child: FutureBuilder<List<JuridicalInfoRow>>(
             future: JuridicalInfoTable().querySingleRow(
-              queryFn: (q) => q.eq(
+              queryFn: (q) => q.eqOrNull(
                 'owner',
                 containerUsersRow?.id,
               ),
@@ -3409,7 +3409,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                               .text,
                                                         },
                                                         matchingRows: (rows) =>
-                                                            rows.eq(
+                                                            rows.eqOrNull(
                                                           'uid',
                                                           currentUserUid,
                                                         ),
@@ -3458,7 +3458,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                               .text,
                                                         },
                                                         matchingRows: (rows) =>
-                                                            rows.eq(
+                                                            rows.eqOrNull(
                                                           'owner',
                                                           containerUsersRow?.id,
                                                         ),
@@ -6248,7 +6248,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                         .text,
                                                   },
                                                   matchingRows: (rows) =>
-                                                      rows.eq(
+                                                      rows.eqOrNull(
                                                     'uid',
                                                     currentUserUid,
                                                   ),
@@ -6297,7 +6297,7 @@ class _ClientProfileWidgetState extends State<ClientProfileWidget> {
                                                         .text,
                                                   },
                                                   matchingRows: (rows) =>
-                                                      rows.eq(
+                                                      rows.eqOrNull(
                                                     'owner',
                                                     containerUsersRow?.id,
                                                   ),

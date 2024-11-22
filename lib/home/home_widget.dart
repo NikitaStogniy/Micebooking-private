@@ -10,6 +10,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/uikit/menu/menu_widget.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -42,7 +43,7 @@ class _HomeWidgetState extends State<HomeWidget> {
           data: {
             'uid': currentUserUid,
           },
-          matchingRows: (rows) => rows.eq(
+          matchingRows: (rows) => rows.eqOrNull(
             'email',
             currentUserEmail,
           ),
@@ -79,7 +80,7 @@ class _HomeWidgetState extends State<HomeWidget> {
               ))
                 FutureBuilder<List<UsersRow>>(
                   future: UsersTable().querySingleRow(
-                    queryFn: (q) => q.eq(
+                    queryFn: (q) => q.eqOrNull(
                       'uid',
                       currentUserUid,
                     ),
@@ -112,7 +113,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         image: DecorationImage(
                           fit: BoxFit.cover,
                           image: Image.asset(
-                            'assets/images/bg.png',
+                            'assets/images/main_DARK_(1).jpg',
                           ).image,
                         ),
                       ),
@@ -562,101 +563,136 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           updateCallback: () =>
                                               safeSetState(() {}),
                                           updateOnChange: true,
-                                          child: HotelSearchCompWidget(
-                                            duration: 0.0,
-                                            visitors: 0,
-                                            date: getCurrentTimestamp,
-                                            hallFilter1: null,
-                                            home: true,
-                                            onSearch: (date,
-                                                duration,
-                                                city,
-                                                visitors,
-                                                seatings,
-                                                hallFilter1,
-                                                hallFilter2,
-                                                hallFilter3) async {
-                                              if (loggedIn) {
-                                                context.pushNamed(
-                                                  'HotelSearchPage',
-                                                  queryParameters: {
-                                                    'startDate': serializeParam(
-                                                      date,
-                                                      ParamType.DateTime,
-                                                    ),
-                                                    'duration': serializeParam(
-                                                      duration,
-                                                      ParamType.double,
-                                                    ),
-                                                    'city': serializeParam(
-                                                      city,
-                                                      ParamType.SupabaseRow,
-                                                    ),
-                                                    'visitors': serializeParam(
-                                                      visitors,
-                                                      ParamType.int,
-                                                    ),
-                                                    'user': serializeParam(
-                                                      descUsersRow,
-                                                      ParamType.SupabaseRow,
-                                                    ),
-                                                    'hallFilter1':
-                                                        serializeParam(
-                                                      hallFilter1,
-                                                      ParamType.DataStruct,
-                                                    ),
-                                                    'hallFilter2':
-                                                        serializeParam(
-                                                      hallFilter2,
-                                                      ParamType.DataStruct,
-                                                    ),
-                                                    'hallFilter3':
-                                                        serializeParam(
-                                                      hallFilter3,
-                                                      ParamType.DataStruct,
-                                                    ),
-                                                  }.withoutNulls,
-                                                );
-                                              } else {
-                                                await showDialog(
-                                                  barrierColor:
-                                                      Color(0x68121212),
-                                                  context: context,
-                                                  builder: (dialogContext) {
-                                                    return Dialog(
-                                                      elevation: 0,
-                                                      insetPadding:
-                                                          EdgeInsets.zero,
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      alignment:
-                                                          AlignmentDirectional(
+                                          child: Hero(
+                                            tag: 'SearchBar',
+                                            transitionOnUserGestures: true,
+                                            child: Material(
+                                              color: Colors.transparent,
+                                              child: HotelSearchCompWidget(
+                                                duration: 0.0,
+                                                visitors: 0,
+                                                date: getCurrentTimestamp,
+                                                hallFilter1: null,
+                                                home: true,
+                                                onSearch: (date,
+                                                    duration,
+                                                    city,
+                                                    visitors,
+                                                    seatings,
+                                                    hallFilter1,
+                                                    hallFilter2,
+                                                    hallFilter3) async {
+                                                  if (loggedIn) {
+                                                    context.pushNamed(
+                                                      'HotelSearchPage',
+                                                      queryParameters: {
+                                                        'startDate':
+                                                            serializeParam(
+                                                          date,
+                                                          ParamType.DateTime,
+                                                        ),
+                                                        'duration':
+                                                            serializeParam(
+                                                          duration,
+                                                          ParamType.double,
+                                                        ),
+                                                        'city': serializeParam(
+                                                          city,
+                                                          ParamType.SupabaseRow,
+                                                        ),
+                                                        'visitors':
+                                                            serializeParam(
+                                                          visitors,
+                                                          ParamType.int,
+                                                        ),
+                                                        'user': serializeParam(
+                                                          descUsersRow,
+                                                          ParamType.SupabaseRow,
+                                                        ),
+                                                        'hallFilter1':
+                                                            serializeParam(
+                                                          hallFilter1,
+                                                          ParamType.DataStruct,
+                                                        ),
+                                                        'hallFilter2':
+                                                            serializeParam(
+                                                          hallFilter2,
+                                                          ParamType.DataStruct,
+                                                        ),
+                                                        'hallFilter3':
+                                                            serializeParam(
+                                                          hallFilter3,
+                                                          ParamType.DataStruct,
+                                                        ),
+                                                        'dayEnd':
+                                                            serializeParam(
+                                                          functions
+                                                              .countDuration(
+                                                                  date!,
+                                                                  duration!),
+                                                          ParamType.DateTime,
+                                                        ),
+                                                      }.withoutNulls,
+                                                      extra: <String, dynamic>{
+                                                        kTransitionInfoKey:
+                                                            TransitionInfo(
+                                                          hasTransition: true,
+                                                          transitionType:
+                                                              PageTransitionType
+                                                                  .fade,
+                                                          duration: Duration(
+                                                              milliseconds: 0),
+                                                        ),
+                                                      },
+                                                    );
+                                                  } else {
+                                                    await showDialog(
+                                                      barrierColor:
+                                                          Color(0x68121212),
+                                                      context: context,
+                                                      builder: (dialogContext) {
+                                                        return Dialog(
+                                                          elevation: 0,
+                                                          insetPadding:
+                                                              EdgeInsets.zero,
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          alignment: AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
                                                                       context)),
-                                                      child: GestureDetector(
-                                                        onTap: () =>
-                                                            FocusScope.of(
-                                                                    dialogContext)
-                                                                .unfocus(),
-                                                        child:
-                                                            LoginHomePopUpWidget(
-                                                          startDate: date,
-                                                          duration: duration,
-                                                          city: city,
-                                                          visitors: visitors,
-                                                          filter1: hallFilter1,
-                                                          filter2: hallFilter2,
-                                                          filter3: hallFilter3,
-                                                          hotel: false,
-                                                        ),
-                                                      ),
+                                                          child:
+                                                              GestureDetector(
+                                                            onTap: () =>
+                                                                FocusScope.of(
+                                                                        dialogContext)
+                                                                    .unfocus(),
+                                                            child:
+                                                                LoginHomePopUpWidget(
+                                                              startDate: date,
+                                                              duration:
+                                                                  duration,
+                                                              city: city,
+                                                              visitors:
+                                                                  visitors,
+                                                              filter1:
+                                                                  hallFilter1,
+                                                              filter2:
+                                                                  hallFilter2,
+                                                              filter3:
+                                                                  hallFilter3,
+                                                              hotel: false,
+                                                            ),
+                                                          ),
+                                                        );
+                                                      },
                                                     );
-                                                  },
-                                                );
-                                              }
-                                            },
+                                                  }
+                                                },
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -677,7 +713,7 @@ class _HomeWidgetState extends State<HomeWidget> {
               ))
                 FutureBuilder<List<UsersRow>>(
                   future: UsersTable().querySingleRow(
-                    queryFn: (q) => q.eq(
+                    queryFn: (q) => q.eqOrNull(
                       'uid',
                       currentUserUid,
                     ),

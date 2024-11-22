@@ -72,7 +72,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
     return FutureBuilder<List<CmsRow>>(
       future: CmsTable().querySingleRow(
         queryFn: (q) => q
-            .eq(
+            .eqOrNull(
               'type',
               EnumCms.WHYUS.name,
             )
@@ -229,7 +229,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                   Completer<List<CmsRow>>()
                                     ..complete(CmsTable().queryRows(
                                       queryFn: (q) => q
-                                          .eq(
+                                          .eqOrNull(
                                             'type',
                                             EnumCms.WHY_ELEMENT_1.name,
                                           )
@@ -277,7 +277,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                     readOnly: _model.isEdit,
                                     delete: () async {
                                       await CmsTable().delete(
-                                        matchingRows: (rows) => rows.eq(
+                                        matchingRows: (rows) => rows.eqOrNull(
                                           'id',
                                           elements1CmsRow.id,
                                         ),
@@ -784,7 +784,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                   Completer<List<CmsRow>>()
                                     ..complete(CmsTable().queryRows(
                                       queryFn: (q) => q
-                                          .eq(
+                                          .eqOrNull(
                                             'type',
                                             EnumCms.WHY_ELEMENT_2.name,
                                           )
@@ -832,7 +832,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                     readOnly: _model.isEdit,
                                     delete: () async {
                                       await CmsTable().delete(
-                                        matchingRows: (rows) => rows.eq(
+                                        matchingRows: (rows) => rows.eqOrNull(
                                           'id',
                                           elements2CmsRow.id,
                                         ),
@@ -1336,7 +1336,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                   Completer<List<CmsRow>>()
                                     ..complete(CmsTable().queryRows(
                                       queryFn: (q) => q
-                                          .eq(
+                                          .eqOrNull(
                                             'type',
                                             EnumCms.WHY_ELEMENT_3.name,
                                           )
@@ -1384,7 +1384,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                                     readOnly: _model.isEdit,
                                     delete: () async {
                                       await CmsTable().delete(
-                                        matchingRows: (rows) => rows.eq(
+                                        matchingRows: (rows) => rows.eqOrNull(
                                           'id',
                                           elements3CmsRow.id,
                                         ),
@@ -1807,7 +1807,7 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                               'title3': _model.whyusTitle3TextController.text,
                               'title2': _model.whyusTitle2TextController.text,
                             },
-                            matchingRows: (rows) => rows.eq(
+                            matchingRows: (rows) => rows.eqOrNull(
                               'id',
                               containerCmsRow?.id,
                             ),
@@ -1846,8 +1846,10 @@ class _EditWhyusWidgetState extends State<EditWhyusWidget> {
                           safeSetState(() {
                             _model.whyusTitle1TextController?.text =
                                 containerCmsRow!.title1!;
+
                             _model.whyusTitle2TextController?.text =
                                 containerCmsRow!.title2!;
+
                             _model.whyusTitle3TextController?.text =
                                 containerCmsRow!.title3!;
                           });

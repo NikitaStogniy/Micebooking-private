@@ -115,20 +115,16 @@ class _ClientSeatingCompWidgetState extends State<ClientSeatingCompWidget> {
                                 '_model.countTextController',
                                 Duration(milliseconds: 100),
                                 () async {
-                                  await widget.onChangeSeating?.call(
-                                    widget!.seating?.type,
-                                    valueOrDefault<int>(
-                                      int.tryParse(
-                                          _model.countTextController.text),
-                                      0,
-                                    ),
-                                  );
                                   _model.currentHallCount = valueOrDefault<int>(
                                     int.tryParse(
                                         _model.countTextController.text),
                                     0,
                                   );
                                   safeSetState(() {});
+                                  await widget.onChangeSeating?.call(
+                                    widget!.seating?.type,
+                                    _model.currentHallCount,
+                                  );
                                 },
                               ),
                               autofocus: false,
@@ -300,20 +296,21 @@ class _ClientSeatingCompWidgetState extends State<ClientSeatingCompWidget> {
                   Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          await widget.onNew?.call();
-                        },
-                        child: Icon(
-                          Icons.add_circle,
-                          color: FlutterFlowTheme.of(context).secondary,
-                          size: 24.0,
+                      if (widget!.index != 3)
+                        InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            await widget.onNew?.call();
+                          },
+                          child: Icon(
+                            Icons.add_circle,
+                            color: FlutterFlowTheme.of(context).secondary,
+                            size: 24.0,
+                          ),
                         ),
-                      ),
                       InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,

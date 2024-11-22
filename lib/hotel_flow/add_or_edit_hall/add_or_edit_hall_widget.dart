@@ -825,7 +825,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                 ),
                               ),
                               Text(
-                                'м2',
+                                'м²',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -2112,7 +2112,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                               decoration: BoxDecoration(),
                               child: FutureBuilder<List<ServiceCategoryRow>>(
                                 future: ServiceCategoryTable().queryRows(
-                                  queryFn: (q) => q.eq(
+                                  queryFn: (q) => q.eqOrNull(
                                     'type',
                                     EnumType.HALL.name,
                                   ),
@@ -2197,7 +2197,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                                   List<ServiceRow>>(
                                                 future:
                                                     ServiceTable().queryRows(
-                                                  queryFn: (q) => q.eq(
+                                                  queryFn: (q) => q.eqOrNull(
                                                     'category',
                                                     staggeredViewServiceCategoryRow
                                                         .id,
@@ -2614,12 +2614,13 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                                 (_model.kabareTextController.text == '0') &&
                                 (_model.banketTextController.text == '0') &&
                                 (_model.furshetTextController.text == '0')) ||
-                            (_model.uploadedImages.length == 0))
+                            (_model.uploadedImages.length == 0) ||
+                            (_model.priceTextController.text == '0'))
                         ? null
                         : () async {
                             _model.hotelOfHall = await HotelTable().queryRows(
                               queryFn: (q) => q
-                                  .eq(
+                                  .eqOrNull(
                                     'id',
                                     widget!.hotelId,
                                   )
@@ -2680,7 +2681,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
                               data: {
                                 'hall': _model.hallList,
                               },
-                              matchingRows: (rows) => rows.eq(
+                              matchingRows: (rows) => rows.eqOrNull(
                                 'id',
                                 widget!.hotelId,
                               ),
@@ -2725,7 +2726,7 @@ class _AddOrEditHallWidgetState extends State<AddOrEditHallWidget>
             if (widget!.id != 0)
               FutureBuilder<List<HallRow>>(
                 future: HallTable().querySingleRow(
-                  queryFn: (q) => q.eq(
+                  queryFn: (q) => q.eqOrNull(
                     'id',
                     valueOrDefault<int>(
                       widget!.id,

@@ -1,5 +1,7 @@
 import '/backend/schema/enums/enums.dart';
 import '/backend/supabase/supabase.dart';
+import '/components/calendar_seasons_widget.dart';
+import '/components/room_season_element_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -9,6 +11,8 @@ import '/flutter_flow/upload_data.dart';
 import '/hotel_flow/edit_room/edit_room_widget.dart';
 import 'dart:math';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/flutter_flow/random_data_util.dart' as random_data;
+import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -54,11 +58,35 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
     super.initState();
     _model = createModel(context, () => AddOrEditRoomModel());
 
+    // On component load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await Future.delayed(const Duration(milliseconds: 1000));
+      _model.seasons = await RoomSeasonsTable().queryRows(
+        queryFn: (q) => q,
+      );
+      _model.seasonElements = await RoomSeasonElementTable().queryRows(
+        queryFn: (q) => q,
+      );
+      _model.randomId = random_data.randomInteger(500, 1000000);
+      safeSetState(() {});
+      _model.seasonsList = _model.seasons!.toList().cast<RoomSeasonsRow>();
+      _model.seasonElementsList =
+          _model.seasonElements!.toList().cast<RoomSeasonElementRow>();
+      _model.newSeason = false;
+      safeSetState(() {});
+    });
+
     _model.hotelNameTextController1 ??= TextEditingController();
     _model.hotelNameFocusNode1 ??= FocusNode();
 
     _model.hotelNameTextController2 ??= TextEditingController();
     _model.hotelNameFocusNode2 ??= FocusNode();
+
+    _model.newSeasonNameTextController ??= TextEditingController();
+    _model.newSeasonNameFocusNode ??= FocusNode();
+
+    _model.newSeasonPriceTextController ??= TextEditingController();
+    _model.newSeasonPriceFocusNode ??= FocusNode();
 
     _model.countTextController ??= TextEditingController();
     _model.countFocusNode ??= FocusNode();
@@ -626,12 +654,1049 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Text(
+                                      'Сезонное ценообразование:',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Commissioner',
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                                Container(
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
+                                  decoration: BoxDecoration(),
+                                  child: Builder(
+                                    builder: (context) {
+                                      final mainSeasons = _model.seasons
+                                              ?.where((e) => e.main == true)
+                                              .toList()
+                                              ?.sortedList(
+                                                  keyOf: (e) => e.id,
+                                                  desc: false)
+                                              ?.toList() ??
+                                          [];
+
+                                      return ListView.separated(
+                                        padding: EdgeInsets.zero,
+                                        primary: false,
+                                        shrinkWrap: true,
+                                        scrollDirection: Axis.vertical,
+                                        itemCount: mainSeasons.length,
+                                        separatorBuilder: (_, __) =>
+                                            SizedBox(height: 8.0),
+                                        itemBuilder:
+                                            (context, mainSeasonsIndex) {
+                                          final mainSeasonsItem =
+                                              mainSeasons[mainSeasonsIndex];
+                                          return wrapWithModel(
+                                            model: _model
+                                                .roomSeasonElementModels1
+                                                .getModel(
+                                              mainSeasonsItem.id.toString(),
+                                              mainSeasonsIndex,
+                                            ),
+                                            updateCallback: () =>
+                                                safeSetState(() {}),
+                                            child: RoomSeasonElementWidget(
+                                              key: Key(
+                                                'Key968_${mainSeasonsItem.id.toString()}',
+                                              ),
+                                              isElemExist: false,
+                                              season: mainSeasonsItem,
+                                              seasonElem: null,
+                                              hotel: widget!.hotelId,
+                                              main: true,
+                                              save: (dayStart, dayEnd, price,
+                                                  name) async {
+                                                if (_model.seasonElements!
+                                                        .where((e) =>
+                                                            (e.seasonId ==
+                                                                mainSeasonsItem
+                                                                    .id) &&
+                                                            (e.roomIdentificator ==
+                                                                _model
+                                                                    .randomId))
+                                                        .toList()
+                                                        .length >
+                                                    0) {
+                                                  await RoomSeasonElementTable()
+                                                      .update(
+                                                    data: {
+                                                      'day_start':
+                                                          supaSerialize<
+                                                                  DateTime>(
+                                                              dayStart),
+                                                      'day_end': supaSerialize<
+                                                          DateTime>(dayEnd),
+                                                    },
+                                                    matchingRows: (rows) =>
+                                                        rows.eqOrNull(
+                                                      'season_id',
+                                                      mainSeasonsItem.id,
+                                                    ),
+                                                  );
+                                                  await RoomSeasonElementTable()
+                                                      .update(
+                                                    data: {
+                                                      'price': price,
+                                                    },
+                                                    matchingRows: (rows) => rows
+                                                        .eqOrNull(
+                                                          'season_id',
+                                                          mainSeasonsItem.id,
+                                                        )
+                                                        .eqOrNull(
+                                                          'room_id',
+                                                          widget!.id,
+                                                        ),
+                                                  );
+                                                } else {
+                                                  _model.newMainElement =
+                                                      await RoomSeasonElementTable()
+                                                          .insert({
+                                                    'season_name': name,
+                                                    'price': price,
+                                                    'room_identificator':
+                                                        _model.randomId,
+                                                    'season_id':
+                                                        mainSeasonsItem.id,
+                                                    'day_start':
+                                                        supaSerialize<DateTime>(
+                                                            dayStart),
+                                                    'day_end':
+                                                        supaSerialize<DateTime>(
+                                                            dayEnd),
+                                                    'main': true,
+                                                    'hotel_id': widget!.hotelId,
+                                                  });
+                                                  await RoomSeasonElementTable()
+                                                      .update(
+                                                    data: {
+                                                      'price': price,
+                                                      'season_name': name,
+                                                      'day_start':
+                                                          supaSerialize<
+                                                                  DateTime>(
+                                                              dayStart),
+                                                      'day_end': supaSerialize<
+                                                          DateTime>(dayEnd),
+                                                    },
+                                                    matchingRows: (rows) =>
+                                                        rows.eqOrNull(
+                                                      'season_id',
+                                                      mainSeasonsItem.id,
+                                                    ),
+                                                  );
+                                                  _model
+                                                      .addToSeasonElementsList(
+                                                          _model
+                                                              .newMainElement!);
+                                                  safeSetState(() {});
+                                                }
+
+                                                safeSetState(() {});
+                                              },
+                                              delete:
+                                                  (season, seasonElem) async {
+                                                Navigator.pop(context);
+                                                await RoomSeasonElementTable()
+                                                    .delete(
+                                                  matchingRows: (rows) => rows
+                                                      .eqOrNull(
+                                                        'season_id',
+                                                        mainSeasonsItem.id,
+                                                      )
+                                                      .eqOrNull(
+                                                        'room_identificator',
+                                                        _model.randomId,
+                                                      ),
+                                                );
+                                                _model.removeFromSeasonElementsList(
+                                                    _model
+                                                        .deletedMainSeasonElements!
+                                                        .first);
+                                                safeSetState(() {});
+
+                                                safeSetState(() {});
+                                              },
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ].divide(SizedBox(height: 16.0)),
+                            ),
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Text(
+                                      'Особое ценообразование:',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Commissioner',
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                                Container(
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
+                                  decoration: BoxDecoration(),
+                                  child: Builder(
+                                    builder: (context) {
+                                      final regularSeasons = _model.seasonsList
+                                          .where((e) =>
+                                              !e.main! &&
+                                              (e.hotelId == widget!.hotelId))
+                                          .toList()
+                                          .sortedList(
+                                              keyOf: (e) => e.createdAt,
+                                              desc: false)
+                                          .toList();
+
+                                      return ListView.separated(
+                                        padding: EdgeInsets.zero,
+                                        primary: false,
+                                        shrinkWrap: true,
+                                        scrollDirection: Axis.vertical,
+                                        itemCount: regularSeasons.length,
+                                        separatorBuilder: (_, __) =>
+                                            SizedBox(height: 8.0),
+                                        itemBuilder:
+                                            (context, regularSeasonsIndex) {
+                                          final regularSeasonsItem =
+                                              regularSeasons[
+                                                  regularSeasonsIndex];
+                                          return wrapWithModel(
+                                            model: _model
+                                                .roomSeasonElementModels2
+                                                .getModel(
+                                              regularSeasonsItem.id.toString(),
+                                              regularSeasonsIndex,
+                                            ),
+                                            updateCallback: () =>
+                                                safeSetState(() {}),
+                                            child: RoomSeasonElementWidget(
+                                              key: Key(
+                                                'Key2k5_${regularSeasonsItem.id.toString()}',
+                                              ),
+                                              isElemExist: _model
+                                                      .seasonElements!
+                                                      .where((e) =>
+                                                          (e.seasonId ==
+                                                              regularSeasonsItem
+                                                                  .id) &&
+                                                          (e.roomIdentificator ==
+                                                              _model.randomId))
+                                                      .toList()
+                                                      .length >
+                                                  0,
+                                              season: regularSeasonsItem,
+                                              seasonElem: _model.seasonElements!
+                                                          .where((e) =>
+                                                              (e.seasonId ==
+                                                                  regularSeasonsItem
+                                                                      .id) &&
+                                                              (e.roomIdentificator ==
+                                                                  _model
+                                                                      .randomId))
+                                                          .toList()
+                                                          .length >
+                                                      0
+                                                  ? _model.seasonElementsList
+                                                      .where((e) =>
+                                                          _model.seasonElements!
+                                                              .where((e) =>
+                                                                  (e.seasonId ==
+                                                                      regularSeasonsItem
+                                                                          .id) &&
+                                                                  (e.roomIdentificator ==
+                                                                      _model
+                                                                          .randomId))
+                                                              .toList()
+                                                              .length >
+                                                          0)
+                                                      .toList()
+                                                      .first
+                                                  : null,
+                                              hotel: widget!.hotelId,
+                                              main: false,
+                                              isNew: false,
+                                              save: (dayStart, dayEnd, price,
+                                                  name) async {
+                                                await RoomSeasonsTable().update(
+                                                  data: {
+                                                    'day_start':
+                                                        supaSerialize<DateTime>(
+                                                            dayStart),
+                                                    'day_end':
+                                                        supaSerialize<DateTime>(
+                                                            dayEnd),
+                                                    'name': name,
+                                                  },
+                                                  matchingRows: (rows) =>
+                                                      rows.eqOrNull(
+                                                    'id',
+                                                    regularSeasonsItem.id,
+                                                  ),
+                                                );
+                                                if (_model.seasonElements!
+                                                        .where((e) =>
+                                                            (e.seasonId ==
+                                                                regularSeasonsItem
+                                                                    .id) &&
+                                                            (e.roomIdentificator ==
+                                                                _model
+                                                                    .randomId))
+                                                        .toList()
+                                                        .length >
+                                                    0) {
+                                                  await RoomSeasonElementTable()
+                                                      .update(
+                                                    data: {
+                                                      'price': price,
+                                                      'season_name': name,
+                                                      'day_start':
+                                                          supaSerialize<
+                                                                  DateTime>(
+                                                              dayStart),
+                                                      'day_end': supaSerialize<
+                                                          DateTime>(dayEnd),
+                                                    },
+                                                    matchingRows: (rows) => rows
+                                                        .eqOrNull(
+                                                          'room_identificator',
+                                                          _model.randomId,
+                                                        )
+                                                        .eqOrNull(
+                                                          'season_id',
+                                                          regularSeasonsItem.id,
+                                                        ),
+                                                  );
+                                                } else {
+                                                  _model.newElement =
+                                                      await RoomSeasonElementTable()
+                                                          .insert({
+                                                    'season_name': name,
+                                                    'price': price,
+                                                    'room_identificator':
+                                                        _model.randomId,
+                                                    'season_id':
+                                                        regularSeasonsItem.id,
+                                                    'day_start':
+                                                        supaSerialize<DateTime>(
+                                                            dayStart),
+                                                    'day_end':
+                                                        supaSerialize<DateTime>(
+                                                            dayEnd),
+                                                    'main': false,
+                                                    'hotel_id':
+                                                        regularSeasonsItem
+                                                            .hotelId,
+                                                  });
+                                                  _model
+                                                      .addToSeasonElementsList(
+                                                          _model.newElement!);
+                                                  safeSetState(() {});
+                                                }
+
+                                                safeSetState(() {});
+                                              },
+                                              delete:
+                                                  (season, seasonElem) async {
+                                                Navigator.pop(context);
+                                                await RoomSeasonElementTable()
+                                                    .delete(
+                                                  matchingRows: (rows) =>
+                                                      rows.eqOrNull(
+                                                    'season_id',
+                                                    regularSeasonsItem.id,
+                                                  ),
+                                                );
+                                                await RoomSeasonsTable().delete(
+                                                  matchingRows: (rows) =>
+                                                      rows.eqOrNull(
+                                                    'id',
+                                                    season,
+                                                  ),
+                                                );
+                                                _model.removeFromSeasonsList(
+                                                    _model
+                                                        .deletedSeasons!.first);
+                                                _model.removeFromSeasonElementsList(
+                                                    _model
+                                                        .deletedSeasonElements!
+                                                        .first);
+                                                safeSetState(() {});
+
+                                                safeSetState(() {});
+                                              },
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    if (!_model.newSeason)
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          _model.newSeason = true;
+                                          safeSetState(() {});
+                                        },
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Container(
+                                              width: 30.0,
+                                              height: 30.0,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Icon(
+                                                Icons.add_rounded,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                size: 15.0,
+                                              ),
+                                            ),
+                                            Text(
+                                              'Добавить новое',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        fontSize: 20.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                            ),
+                                          ].divide(SizedBox(width: 8.0)),
+                                        ),
+                                      ),
+                                    if (_model.newSeason)
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Text(
+                                            'Название:',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Commissioner',
+                                                  fontSize: 18.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w300,
+                                                ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 8.0, 0.0),
+                                            child: Container(
+                                              width: 300.0,
+                                              decoration: BoxDecoration(),
+                                              child: Container(
+                                                width: 200.0,
+                                                child: TextFormField(
+                                                  controller: _model
+                                                      .newSeasonNameTextController,
+                                                  focusNode: _model
+                                                      .newSeasonNameFocusNode,
+                                                  autofocus: false,
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    isDense: false,
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    hintText:
+                                                        'Введите название',
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                          fontSize: 18.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w300,
+                                                        ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Color(0x00000000),
+                                                        width: 1.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              40.0),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Color(0x00000000),
+                                                        width: 1.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              40.0),
+                                                    ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 1.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              40.0),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 1.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              40.0),
+                                                    ),
+                                                    filled: true,
+                                                    fillColor:
+                                                        Color(0xFFF0F0FA),
+                                                    contentPadding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(16.0, 0.0,
+                                                                16.0, 0.0),
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        fontSize: 18.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w300,
+                                                      ),
+                                                  textAlign: TextAlign.center,
+                                                  maxLines: null,
+                                                  minLines: 1,
+                                                  cursorColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryText,
+                                                  validator: _model
+                                                      .newSeasonNameTextControllerValidator
+                                                      .asValidator(context),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Text(
+                                            'Даты:',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Commissioner',
+                                                  fontSize: 18.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w300,
+                                                ),
+                                          ),
+                                          Builder(
+                                            builder: (context) => Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      16.0, 0.0, 0.0, 0.0),
+                                              child: InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  await showAlignedDialog(
+                                                    barrierColor:
+                                                        Colors.transparent,
+                                                    context: context,
+                                                    isGlobal: false,
+                                                    avoidOverflow: true,
+                                                    targetAnchor:
+                                                        AlignmentDirectional(
+                                                                0.0, -1.3)
+                                                            .resolve(
+                                                                Directionality.of(
+                                                                    context)),
+                                                    followerAnchor:
+                                                        AlignmentDirectional(
+                                                                0.0, -1.3)
+                                                            .resolve(
+                                                                Directionality.of(
+                                                                    context)),
+                                                    builder: (dialogContext) {
+                                                      return Material(
+                                                        color:
+                                                            Colors.transparent,
+                                                        child: Container(
+                                                          height: 460.0,
+                                                          width: 400.0,
+                                                          child:
+                                                              CalendarSeasonsWidget(
+                                                            month:
+                                                                getCurrentTimestamp,
+                                                            dayStart: _model
+                                                                        .newSeasonDayStart !=
+                                                                    null
+                                                                ? _model
+                                                                    .newSeasonDayStart
+                                                                : null,
+                                                            dayEnd: _model
+                                                                        .newSeasonDayEnd !=
+                                                                    null
+                                                                ? _model
+                                                                    .newSeasonDayEnd
+                                                                : null,
+                                                            hotel:
+                                                                widget!.hotelId,
+                                                            seasonId: 0,
+                                                            main: false,
+                                                            setDate: (dayStart,
+                                                                dayEnd) async {
+                                                              _model.newSeasonDayStart =
+                                                                  dayStart;
+                                                              _model.newSeasonDayEnd =
+                                                                  dayEnd;
+                                                              safeSetState(
+                                                                  () {});
+                                                            },
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                                child: Container(
+                                                  width: 220.0,
+                                                  height: 40.0,
+                                                  decoration: BoxDecoration(
+                                                    color:
+                                                        _model.dateHoverHovered!
+                                                            ? Color(0x192431A5)
+                                                            : Color(0x00000000),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20.0),
+                                                    border: Border.all(
+                                                      color: Color(0xFF2431A5),
+                                                      width: 1.0,
+                                                    ),
+                                                  ),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                8.0, 0.0),
+                                                    child: MouseRegion(
+                                                      opaque: false,
+                                                      cursor: SystemMouseCursors
+                                                              .click ??
+                                                          MouseCursor.defer,
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              (_model.newSeasonDayStart !=
+                                                                          null) &&
+                                                                      (_model.newSeasonDayEnd !=
+                                                                          null)
+                                                                  ? valueOrDefault<
+                                                                      String>(
+                                                                      '${dateTimeFormat(
+                                                                        "d.M.y",
+                                                                        _model
+                                                                            .newSeasonDayStart,
+                                                                        locale:
+                                                                            FFLocalizations.of(context).languageCode,
+                                                                      )}- ${dateTimeFormat(
+                                                                        "d.M.y",
+                                                                        _model
+                                                                            .newSeasonDayEnd,
+                                                                        locale:
+                                                                            FFLocalizations.of(context).languageCode,
+                                                                      )}',
+                                                                      'Выберите даты',
+                                                                    )
+                                                                  : 'Выберите даты',
+                                                              'Выберите даты',
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Commissioner',
+                                                                  fontSize:
+                                                                      16.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w300,
+                                                                ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      onEnter: ((event) async {
+                                                        safeSetState(() => _model
+                                                                .dateHoverHovered =
+                                                            true);
+                                                      }),
+                                                      onExit: ((event) async {
+                                                        safeSetState(() => _model
+                                                                .dateHoverHovered =
+                                                            false);
+                                                      }),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Text(
+                                            'Цена:',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Commissioner',
+                                                  fontSize: 18.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w300,
+                                                ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 8.0, 0.0),
+                                            child: Container(
+                                              width: 90.0,
+                                              decoration: BoxDecoration(),
+                                              child: Container(
+                                                width: 200.0,
+                                                child: TextFormField(
+                                                  controller: _model
+                                                      .newSeasonPriceTextController,
+                                                  focusNode: _model
+                                                      .newSeasonPriceFocusNode,
+                                                  autofocus: false,
+                                                  textInputAction:
+                                                      TextInputAction.done,
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    isDense: false,
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    hintText: 'Цена',
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                          fontSize: 18.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w300,
+                                                        ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Color(0x00000000),
+                                                        width: 1.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              40.0),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Color(0x00000000),
+                                                        width: 1.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              40.0),
+                                                    ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 1.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              40.0),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 1.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              40.0),
+                                                    ),
+                                                    filled: true,
+                                                    fillColor:
+                                                        Color(0xFFF0F0FA),
+                                                    contentPadding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(16.0, 0.0,
+                                                                16.0, 0.0),
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        fontSize: 18.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w300,
+                                                      ),
+                                                  textAlign: TextAlign.center,
+                                                  minLines: 1,
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                  cursorColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryText,
+                                                  validator: _model
+                                                      .newSeasonPriceTextControllerValidator
+                                                      .asValidator(context),
+                                                  inputFormatters: [
+                                                    FilteringTextInputFormatter
+                                                        .allow(RegExp('[0-9]'))
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          FlutterFlowIconButton(
+                                            borderColor: Colors.transparent,
+                                            borderRadius: 40.0,
+                                            buttonSize: 40.0,
+                                            fillColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            disabledColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryText,
+                                            disabledIconColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .accent4,
+                                            icon: Icon(
+                                              Icons.add_rounded,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .info,
+                                              size: 24.0,
+                                            ),
+                                            onPressed: ((_model
+                                                                .newSeasonNameTextController
+                                                                .text ==
+                                                            null ||
+                                                        _model
+                                                                .newSeasonNameTextController
+                                                                .text ==
+                                                            '') ||
+                                                    (_model.newSeasonPriceTextController
+                                                                .text ==
+                                                            null ||
+                                                        _model.newSeasonPriceTextController
+                                                                .text ==
+                                                            '') ||
+                                                    (_model.newSeasonDayStart ==
+                                                        null) ||
+                                                    (_model.newSeasonDayEnd ==
+                                                        null))
+                                                ? null
+                                                : () async {
+                                                    _model.newSeasonCreate =
+                                                        await RoomSeasonsTable()
+                                                            .insert({
+                                                      'name': _model
+                                                          .newSeasonNameTextController
+                                                          .text,
+                                                      'day_start': supaSerialize<
+                                                              DateTime>(
+                                                          _model
+                                                              .newSeasonDayStart),
+                                                      'day_end': supaSerialize<
+                                                              DateTime>(
+                                                          _model
+                                                              .newSeasonDayEnd),
+                                                      'main': false,
+                                                      'hotel_id':
+                                                          widget!.hotelId,
+                                                    });
+                                                    _model.newElementCreate =
+                                                        await RoomSeasonElementTable()
+                                                            .insert({
+                                                      'season_name': _model
+                                                          .newSeasonNameTextController
+                                                          .text,
+                                                      'season_id': _model
+                                                          .newSeasonCreate?.id,
+                                                      'price': double.tryParse(
+                                                          _model
+                                                              .newSeasonPriceTextController
+                                                              .text),
+                                                      'room_identificator':
+                                                          _model.randomId,
+                                                    });
+                                                    _model.newSeason = false;
+                                                    _model.newSeasonDayStart =
+                                                        null;
+                                                    _model.newSeasonDayEnd =
+                                                        null;
+                                                    _model.addToSeasonElementsList(
+                                                        _model
+                                                            .newElementCreate!);
+                                                    safeSetState(() {});
+
+                                                    safeSetState(() {});
+                                                  },
+                                          ),
+                                          FlutterFlowIconButton(
+                                            borderColor: Colors.transparent,
+                                            borderRadius: 40.0,
+                                            buttonSize: 40.0,
+                                            fillColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .error,
+                                            icon: Icon(
+                                              Icons.close_rounded,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .info,
+                                              size: 24.0,
+                                            ),
+                                            onPressed: () async {
+                                              _model.newSeason = false;
+                                              _model.newSeasonDayEnd = null;
+                                              _model.newSeasonDayStart = null;
+                                              safeSetState(() {});
+                                            },
+                                          ),
+                                        ].divide(SizedBox(width: 16.0)),
+                                      ),
+                                  ],
+                                ),
+                              ].divide(SizedBox(height: 16.0)),
+                            ),
+                          ]
+                              .divide(SizedBox(height: 24.0))
+                              .addToStart(SizedBox(height: 8.0))
+                              .addToEnd(SizedBox(height: 8.0)),
+                        ),
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
                             Container(
                               width: MediaQuery.sizeOf(context).width * 1.0,
                               decoration: BoxDecoration(),
                               child: FutureBuilder<List<ServiceCategoryRow>>(
                                 future: ServiceCategoryTable().queryRows(
-                                  queryFn: (q) => q.eq(
+                                  queryFn: (q) => q.eqOrNull(
                                     'type',
                                     EnumType.ROOM.name,
                                   ),
@@ -680,208 +1745,208 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                           child: ExpandableNotifier(
                                             initialExpanded: true,
                                             child: ExpandablePanel(
-                                              header: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 20.0),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      valueOrDefault<String>(
-                                                        staggeredViewServiceCategoryRow
-                                                            .name,
-                                                        '0',
-                                                      ),
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Commissioner',
-                                                            fontSize: 18.0,
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          ),
+                                              header: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    valueOrDefault<String>(
+                                                      staggeredViewServiceCategoryRow
+                                                          .name,
+                                                      'Загрузка...',
                                                     ),
-                                                  ],
-                                                ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Commissioner',
+                                                          fontSize: 18.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                  ),
+                                                ],
                                               ),
                                               collapsed: Container(),
-                                              expanded: FutureBuilder<
-                                                  List<ServiceRow>>(
-                                                future:
-                                                    ServiceTable().queryRows(
-                                                  queryFn: (q) => q.eq(
-                                                    'category',
-                                                    staggeredViewServiceCategoryRow
-                                                        .id,
+                                              expanded: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 20.0, 0.0, 0.0),
+                                                child: FutureBuilder<
+                                                    List<ServiceRow>>(
+                                                  future:
+                                                      ServiceTable().queryRows(
+                                                    queryFn: (q) => q.eqOrNull(
+                                                      'category',
+                                                      staggeredViewServiceCategoryRow
+                                                          .id,
+                                                    ),
                                                   ),
-                                                ),
-                                                builder: (context, snapshot) {
-                                                  // Customize what your widget looks like when it's loading.
-                                                  if (!snapshot.hasData) {
-                                                    return Center(
-                                                      child: SizedBox(
-                                                        width: 50.0,
-                                                        height: 50.0,
-                                                        child:
-                                                            CircularProgressIndicator(
-                                                          valueColor:
-                                                              AlwaysStoppedAnimation<
-                                                                  Color>(
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
+                                                  builder: (context, snapshot) {
+                                                    // Customize what your widget looks like when it's loading.
+                                                    if (!snapshot.hasData) {
+                                                      return Center(
+                                                        child: SizedBox(
+                                                          width: 50.0,
+                                                          height: 50.0,
+                                                          child:
+                                                              CircularProgressIndicator(
+                                                            valueColor:
+                                                                AlwaysStoppedAnimation<
+                                                                    Color>(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primary,
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    );
-                                                  }
-                                                  List<ServiceRow>
-                                                      listViewServiceRowList =
-                                                      snapshot.data!;
+                                                      );
+                                                    }
+                                                    List<ServiceRow>
+                                                        listViewServiceRowList =
+                                                        snapshot.data!;
 
-                                                  return ListView.separated(
-                                                    padding: EdgeInsets.zero,
-                                                    shrinkWrap: true,
-                                                    scrollDirection:
-                                                        Axis.vertical,
-                                                    itemCount:
-                                                        listViewServiceRowList
-                                                            .length,
-                                                    separatorBuilder: (_, __) =>
-                                                        SizedBox(height: 12.0),
-                                                    itemBuilder: (context,
-                                                        listViewIndex) {
-                                                      final listViewServiceRow =
-                                                          listViewServiceRowList[
-                                                              listViewIndex];
-                                                      return Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          InkWell(
-                                                            splashColor: Colors
-                                                                .transparent,
-                                                            focusColor: Colors
-                                                                .transparent,
-                                                            hoverColor: Colors
-                                                                .transparent,
-                                                            highlightColor:
-                                                                Colors
-                                                                    .transparent,
-                                                            onTap: () async {
-                                                              if (_model
-                                                                  .selectedServices
-                                                                  .contains(
-                                                                      listViewServiceRow
-                                                                          .id)) {
-                                                                _model.removeFromSelectedServices(
-                                                                    listViewServiceRow
-                                                                        .id);
-                                                                safeSetState(
-                                                                    () {});
-                                                              } else {
-                                                                _model.addToSelectedServices(
-                                                                    listViewServiceRow
-                                                                        .id);
-                                                                safeSetState(
-                                                                    () {});
-                                                              }
-                                                            },
-                                                            child: Container(
-                                                              width: 20.0,
-                                                              height: 20.0,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color:
-                                                                    valueOrDefault<
-                                                                        Color>(
-                                                                  _model.selectedServices.contains(
-                                                                          listViewServiceRow
-                                                                              .id)
-                                                                      ? FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary
-                                                                      : Colors
-                                                                          .transparent,
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                ),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            4.0),
-                                                                border:
-                                                                    Border.all(
-                                                                  color: _model
-                                                                          .selectedServices
-                                                                          .contains(listViewServiceRow
-                                                                              .id)
-                                                                      ? Color(
-                                                                          0x00EEEEEE)
-                                                                      : Color(
-                                                                          0xFF57636C),
-                                                                ),
-                                                              ),
-                                                              child: Visibility(
-                                                                visible: _model
+                                                    return ListView.separated(
+                                                      padding: EdgeInsets.zero,
+                                                      shrinkWrap: true,
+                                                      scrollDirection:
+                                                          Axis.vertical,
+                                                      itemCount:
+                                                          listViewServiceRowList
+                                                              .length,
+                                                      separatorBuilder:
+                                                          (_, __) => SizedBox(
+                                                              height: 12.0),
+                                                      itemBuilder: (context,
+                                                          listViewIndex) {
+                                                        final listViewServiceRow =
+                                                            listViewServiceRowList[
+                                                                listViewIndex];
+                                                        return Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap: () async {
+                                                                if (_model
                                                                     .selectedServices
                                                                     .contains(
                                                                         listViewServiceRow
-                                                                            .id),
-                                                                child: Align(
-                                                                  alignment:
-                                                                      AlignmentDirectional(
-                                                                          0.0,
-                                                                          0.0),
-                                                                  child: Icon(
-                                                                    Icons
-                                                                        .check_rounded,
-                                                                    color: Color(
-                                                                        0xFFFAFAFA),
-                                                                    size: 16.0,
+                                                                            .id)) {
+                                                                  _model.removeFromSelectedServices(
+                                                                      listViewServiceRow
+                                                                          .id);
+                                                                  safeSetState(
+                                                                      () {});
+                                                                } else {
+                                                                  _model.addToSelectedServices(
+                                                                      listViewServiceRow
+                                                                          .id);
+                                                                  safeSetState(
+                                                                      () {});
+                                                                }
+                                                              },
+                                                              child: Container(
+                                                                width: 20.0,
+                                                                height: 20.0,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color:
+                                                                      valueOrDefault<
+                                                                          Color>(
+                                                                    _model.selectedServices.contains(listViewServiceRow
+                                                                            .id)
+                                                                        ? FlutterFlowTheme.of(context)
+                                                                            .primary
+                                                                        : Colors
+                                                                            .transparent,
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                  ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              4.0),
+                                                                  border: Border
+                                                                      .all(
+                                                                    color: _model
+                                                                            .selectedServices
+                                                                            .contains(listViewServiceRow
+                                                                                .id)
+                                                                        ? Color(
+                                                                            0x00EEEEEE)
+                                                                        : Color(
+                                                                            0xFF57636C),
+                                                                  ),
+                                                                ),
+                                                                child:
+                                                                    Visibility(
+                                                                  visible: _model
+                                                                      .selectedServices
+                                                                      .contains(
+                                                                          listViewServiceRow
+                                                                              .id),
+                                                                  child: Align(
+                                                                    alignment:
+                                                                        AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                    child: Icon(
+                                                                      Icons
+                                                                          .check_rounded,
+                                                                      color: Color(
+                                                                          0xFFFAFAFA),
+                                                                      size:
+                                                                          16.0,
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
                                                             ),
-                                                          ),
-                                                          Expanded(
-                                                            child: Text(
-                                                              valueOrDefault<
-                                                                  String>(
-                                                                listViewServiceRow
-                                                                    .name,
-                                                                'Без названия',
+                                                            Expanded(
+                                                              child: Text(
+                                                                valueOrDefault<
+                                                                    String>(
+                                                                  listViewServiceRow
+                                                                      .name,
+                                                                  'Без названия',
+                                                                ),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Commissioner',
+                                                                      fontSize:
+                                                                          15.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .normal,
+                                                                    ),
                                                               ),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Commissioner',
-                                                                    fontSize:
-                                                                        15.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .normal,
-                                                                  ),
                                                             ),
-                                                          ),
-                                                        ].divide(SizedBox(
-                                                            width: 4.0)),
-                                                      );
-                                                    },
-                                                  );
-                                                },
+                                                          ].divide(SizedBox(
+                                                              width: 4.0)),
+                                                        );
+                                                      },
+                                                    );
+                                                  },
+                                                ),
                                               ),
                                               theme: ExpandableThemeData(
                                                 tapHeaderToExpand: true,
@@ -1292,7 +2357,8 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                             (_model.countTextController.text == null ||
                                 _model.countTextController.text == '') ||
                             (_model.priceTextController.text == null ||
-                                _model.priceTextController.text == ''))
+                                _model.priceTextController.text == '') ||
+                            (_model.priceTextController.text == '0'))
                         ? null
                         : () async {
                             _model.newRoom = await RoomTable().insert({
@@ -1309,19 +2375,15 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                                   _model.priceTextController.text),
                               'single_price': 0.0,
                               'show_single': false,
+                              'identifier': _model.randomId,
                             });
-                            _model.hotel = await HotelTable().queryRows(
-                              queryFn: (q) => q.eq(
+                            _model.currentHotel = await HotelTable().queryRows(
+                              queryFn: (q) => q.eqOrNull(
                                 'id',
-                                valueOrDefault<int>(
-                                  widget!.hotelId,
-                                  00,
-                                ),
+                                widget!.hotelId,
                               ),
                             );
-                            _model.editableHotel = _model.hotel?.first;
-                            safeSetState(() {});
-                            _model.newRoomSet = _model.editableHotel!.rooms
+                            _model.newRoomSet = _model.currentHotel!.first.rooms
                                 .toList()
                                 .cast<int>();
                             safeSetState(() {});
@@ -1333,9 +2395,18 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
                               data: {
                                 'rooms': _model.newRoomSet,
                               },
-                              matchingRows: (rows) => rows.eq(
+                              matchingRows: (rows) => rows.eqOrNull(
                                 'id',
                                 widget!.hotelId,
+                              ),
+                            );
+                            await RoomSeasonElementTable().update(
+                              data: {
+                                'room_id': _model.newRoom?.id,
+                              },
+                              matchingRows: (rows) => rows.eqOrNull(
+                                'room_identificator',
+                                _model.randomId,
                               ),
                             );
                             safeSetState(() {
@@ -1383,7 +2454,7 @@ class _AddOrEditRoomWidgetState extends State<AddOrEditRoomWidget>
             if (widget!.id != 0)
               FutureBuilder<List<RoomRow>>(
                 future: RoomTable().querySingleRow(
-                  queryFn: (q) => q.eq(
+                  queryFn: (q) => q.eqOrNull(
                     'id',
                     widget!.id,
                   ),

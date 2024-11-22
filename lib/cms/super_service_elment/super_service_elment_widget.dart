@@ -107,7 +107,7 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
           future: (_model.requestCompleter ??= Completer<List<ServiceRow>>()
                 ..complete(ServiceTable().queryRows(
                   queryFn: (q) => q
-                      .eq(
+                      .eqOrNull(
                         'category',
                         widget!.categoryId,
                       )
@@ -187,7 +187,7 @@ class _SuperServiceElmentWidgetState extends State<SuperServiceElmentWidget> {
                       highlightColor: Colors.transparent,
                       onTap: () async {
                         await ServiceTable().delete(
-                          matchingRows: (rows) => rows.eq(
+                          matchingRows: (rows) => rows.eqOrNull(
                             'id',
                             hotelServiceRow.id,
                           ),

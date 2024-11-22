@@ -61,7 +61,7 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
             if (_model.requestOpen == false)
               FutureBuilder<List<HotelRow>>(
                 future: HotelTable().querySingleRow(
-                  queryFn: (q) => q.eq(
+                  queryFn: (q) => q.eqOrNull(
                     'id',
                     widget!.hotel,
                   ),
@@ -114,7 +114,7 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
             if (_model.requestOpen == true)
               FutureBuilder<List<RequestsRow>>(
                 future: RequestsTable().querySingleRow(
-                  queryFn: (q) => q.eq(
+                  queryFn: (q) => q.eqOrNull(
                     'id',
                     _model.request?.id,
                   ),
@@ -257,7 +257,7 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
                         ),
                         FutureBuilder<List<UsersRow>>(
                           future: UsersTable().querySingleRow(
-                            queryFn: (q) => q.eq(
+                            queryFn: (q) => q.eqOrNull(
                               'id',
                               containerRequestsRow?.owner,
                             ),
@@ -501,9 +501,9 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
                               ),
                               FutureBuilder<List<RequestsHallVarRow>>(
                                 future: RequestsHallVarTable().queryRows(
-                                  queryFn: (q) => q.in_(
+                                  queryFn: (q) => q.inFilterOrNull(
                                     'id',
-                                    containerRequestsRow!.halls,
+                                    containerRequestsRow?.halls,
                                   ),
                                 ),
                                 builder: (context, snapshot) {
@@ -911,9 +911,9 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
                               ),
                               FutureBuilder<List<RequestsFoodVarRow>>(
                                 future: RequestsFoodVarTable().queryRows(
-                                  queryFn: (q) => q.in_(
+                                  queryFn: (q) => q.inFilterOrNull(
                                     'id',
-                                    containerRequestsRow!.food,
+                                    containerRequestsRow?.food,
                                   ),
                                 ),
                                 builder: (context, snapshot) {
@@ -1322,9 +1322,9 @@ class _SuperRequestsWidgetState extends State<SuperRequestsWidget> {
                               ),
                               FutureBuilder<List<RequestsRoomVarRow>>(
                                 future: RequestsRoomVarTable().queryRows(
-                                  queryFn: (q) => q.in_(
+                                  queryFn: (q) => q.inFilterOrNull(
                                     'id',
-                                    containerRequestsRow!.rooms,
+                                    containerRequestsRow?.rooms,
                                   ),
                                 ),
                                 builder: (context, snapshot) {

@@ -41,6 +41,7 @@ class HotelSearchPageWidget extends StatefulWidget {
     this.hallFilter1,
     this.hallFilter2,
     this.hallFilter3,
+    this.dayEnd,
   });
 
   final DateTime? startDate;
@@ -52,6 +53,7 @@ class HotelSearchPageWidget extends StatefulWidget {
   final HotelSeatingStruct? hallFilter1;
   final HotelSeatingStruct? hallFilter2;
   final HotelSeatingStruct? hallFilter3;
+  final DateTime? dayEnd;
 
   @override
   State<HotelSearchPageWidget> createState() => _HotelSearchPageWidgetState();
@@ -71,6 +73,9 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.favoriteHotelsList =
           widget!.user!.favoriteHotels.toList().cast<int>();
+      _model.hallSeating1 = widget!.hallFilter1;
+      _model.hallSeating2 = widget!.hallFilter2;
+      _model.hallSeating3 = widget!.hallFilter3;
       safeSetState(() {});
       if ((widget!.hallFilter1?.type == EnumSeating.theatre) ||
           (widget!.hallFilter2?.type == EnumSeating.theatre) ||
@@ -89,6 +94,23 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
           }(),
           0,
         );
+        safeSetState(() {});
+        _model.filteredHallTheatre = await HallTable().queryRows(
+          queryFn: (q) => q
+              .gteOrNull(
+                'seating_theater',
+                _model.theaterMin,
+              )
+              .gteOrNull(
+                'capacity',
+                widget!.visitors,
+              ),
+        );
+        _model.filteredHallsAction = functions
+            .mergeListsInt(_model.filteredHallsAction.toList(),
+                _model.filteredHallTheatre!.map((e) => e.id).toList().toList())!
+            .toList()
+            .cast<int>();
         safeSetState(() {});
       }
       if ((widget!.hallFilter1?.type == EnumSeating.klass) ||
@@ -109,6 +131,23 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
           0,
         );
         safeSetState(() {});
+        _model.filteredHalClass = await HallTable().queryRows(
+          queryFn: (q) => q
+              .gteOrNull(
+                'seating_class',
+                _model.classMin,
+              )
+              .gteOrNull(
+                'capacity',
+                widget!.visitors,
+              ),
+        );
+        _model.filteredHallsAction = functions
+            .mergeListsInt(_model.filteredHallsAction.toList(),
+                _model.filteredHalClass!.map((e) => e.id).toList().toList())!
+            .toList()
+            .cast<int>();
+        safeSetState(() {});
       }
       if ((widget!.hallFilter1?.type == EnumSeating.communication) ||
           (widget!.hallFilter2?.type == EnumSeating.communication) ||
@@ -127,6 +166,23 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
           }(),
           0,
         );
+        safeSetState(() {});
+        _model.filteredHalComm = await HallTable().queryRows(
+          queryFn: (q) => q
+              .gteOrNull(
+                'seating_communication',
+                _model.comMin,
+              )
+              .gteOrNull(
+                'capacity',
+                widget!.visitors,
+              ),
+        );
+        _model.filteredHallsAction = functions
+            .mergeListsInt(_model.filteredHallsAction.toList(),
+                _model.filteredHalComm!.map((e) => e.id).toList().toList())!
+            .toList()
+            .cast<int>();
         safeSetState(() {});
       }
       if ((widget!.hallFilter1?.type == EnumSeating.ushape) ||
@@ -147,6 +203,23 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
           0,
         );
         safeSetState(() {});
+        _model.filteredHallUShape = await HallTable().queryRows(
+          queryFn: (q) => q
+              .gteOrNull(
+                'seating_ushape',
+                _model.uShapeMin,
+              )
+              .gteOrNull(
+                'capacity',
+                widget!.visitors,
+              ),
+        );
+        _model.filteredHallsAction = functions
+            .mergeListsInt(_model.filteredHallsAction.toList(),
+                _model.filteredHallUShape!.map((e) => e.id).toList().toList())!
+            .toList()
+            .cast<int>();
+        safeSetState(() {});
       }
       if ((widget!.hallFilter1?.type == EnumSeating.oshape) ||
           (widget!.hallFilter2?.type == EnumSeating.oshape) ||
@@ -165,6 +238,23 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
           }(),
           0,
         );
+        safeSetState(() {});
+        _model.filteredHallOShape = await HallTable().queryRows(
+          queryFn: (q) => q
+              .gteOrNull(
+                'seating_oshape',
+                _model.oShapeMin,
+              )
+              .gteOrNull(
+                'capacity',
+                widget!.visitors,
+              ),
+        );
+        _model.filteredHallsAction = functions
+            .mergeListsInt(_model.filteredHallsAction.toList(),
+                _model.filteredHallOShape!.map((e) => e.id).toList().toList())!
+            .toList()
+            .cast<int>();
         safeSetState(() {});
       }
       if ((widget!.hallFilter1?.type == EnumSeating.cabare) ||
@@ -185,6 +275,23 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
           0,
         );
         safeSetState(() {});
+        _model.filteredHallKabare = await HallTable().queryRows(
+          queryFn: (q) => q
+              .gteOrNull(
+                'seating_kabare',
+                _model.cabareMin,
+              )
+              .gteOrNull(
+                'capacity',
+                widget!.visitors,
+              ),
+        );
+        _model.filteredHallsAction = functions
+            .mergeListsInt(_model.filteredHallsAction.toList(),
+                _model.filteredHallKabare!.map((e) => e.id).toList().toList())!
+            .toList()
+            .cast<int>();
+        safeSetState(() {});
       }
       if ((widget!.hallFilter1?.type == EnumSeating.banket) ||
           (widget!.hallFilter2?.type == EnumSeating.banket) ||
@@ -203,6 +310,23 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
           }(),
           0,
         );
+        safeSetState(() {});
+        _model.filteredHallBanket = await HallTable().queryRows(
+          queryFn: (q) => q
+              .gteOrNull(
+                'seating_banket',
+                _model.banketMin,
+              )
+              .gteOrNull(
+                'capacity',
+                widget!.visitors,
+              ),
+        );
+        _model.filteredHallsAction = functions
+            .mergeListsInt(_model.filteredHallsAction.toList(),
+                _model.filteredHallBanket!.map((e) => e.id).toList().toList())!
+            .toList()
+            .cast<int>();
         safeSetState(() {});
       }
       if ((widget!.hallFilter1?.type == EnumSeating.furshet) ||
@@ -223,42 +347,34 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
           0,
         );
         safeSetState(() {});
+        _model.filteredHallFurshet = await HallTable().queryRows(
+          queryFn: (q) => q
+              .gteOrNull(
+                'seating_furshet',
+                _model.furshetMin,
+              )
+              .gteOrNull(
+                'capacity',
+                widget!.visitors,
+              ),
+        );
+        _model.filteredHallsAction = functions
+            .mergeListsInt(_model.filteredHallsAction.toList(),
+                _model.filteredHallFurshet!.map((e) => e.id).toList().toList())!
+            .toList()
+            .cast<int>();
+        safeSetState(() {});
       }
-      _model.filteredHalls = await HallTable().queryRows(
-        queryFn: (q) => q
-            .gte(
-              'seating_theater',
-              _model.theaterMin,
-            )
-            .gte(
-              'seating_class',
-              _model.classMin,
-            )
-            .gte(
-              'seating_communication',
-              _model.comMin,
-            )
-            .gte(
-              'seating_ushape',
-              _model.uShapeMin,
-            )
-            .gte(
-              'seating_oshape',
-              _model.oShapeMin,
-            )
-            .gte(
-              'seating_kabare',
-              _model.cabareMin,
-            )
-            .gte(
-              'seating_banket',
-              _model.banketMin,
-            )
-            .gte(
-              'seating_furshet',
-              _model.furshetMin,
-            ),
-      );
+      if (!((widget!.hallFilter1?.count != null) ||
+          (widget!.hallFilter2?.count != null) ||
+          (widget!.hallFilter3?.count != null))) {
+        _model.allHalls = await HallTable().queryRows(
+          queryFn: (q) => q,
+        );
+        _model.filteredHallsAction =
+            _model.allHalls!.map((e) => e.id).toList().toList().cast<int>();
+        safeSetState(() {});
+      }
       safeSetState(() => _model.requestCompleter = null);
       await _model.waitForRequestCompleted(minWait: 1000, maxWait: 3000);
     });
@@ -277,7 +393,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
   Widget build(BuildContext context) {
     return FutureBuilder<List<UsersRow>>(
       future: UsersTable().querySingleRow(
-        queryFn: (q) => q.eq(
+        queryFn: (q) => q.eqOrNull(
           'email',
           currentUserEmail,
         ),
@@ -398,7 +514,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                               child: HotelSearchCompWidget(
                                                 date: widget!.startDate!,
                                                 duration: widget!.duration!,
-                                                ciry: widget!.city,
+                                                city: widget!.city,
                                                 visitors: widget!.visitors!,
                                                 hallFilter1:
                                                     widget!.hallFilter1,
@@ -489,68 +605,75 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                             model: _model.hotelSearchCompModel,
                             updateCallback: () => safeSetState(() {}),
                             updateOnChange: true,
-                            child: HotelSearchCompWidget(
-                              duration: widget!.duration!,
-                              visitors: widget!.visitors!,
-                              date: widget!.startDate!,
-                              ciry: widget!.city,
-                              hallFilter1: widget!.hallFilter1,
-                              hallFilter2: widget!.hallFilter2,
-                              hallFilter3: widget!.hallFilter3,
-                              home: false,
-                              onSearch: (date,
-                                  duration,
-                                  city,
-                                  visitors,
-                                  seatings,
-                                  hallFilter1,
-                                  hallFilter2,
-                                  hallFilter3) async {
-                                _model.step = 0;
-                                safeSetState(() {});
-
-                                context.goNamed(
-                                  'HotelSearchPage',
-                                  queryParameters: {
-                                    'startDate': serializeParam(
-                                      widget!.startDate,
-                                      ParamType.DateTime,
-                                    ),
-                                    'duration': serializeParam(
+                            child: Hero(
+                              tag: 'SearchBar',
+                              transitionOnUserGestures: true,
+                              child: Material(
+                                color: Colors.transparent,
+                                child: HotelSearchCompWidget(
+                                  duration: widget!.duration!,
+                                  visitors: widget!.visitors!,
+                                  date: widget!.startDate!,
+                                  city: widget!.city,
+                                  hallFilter1: widget!.hallFilter1,
+                                  hallFilter2: widget!.hallFilter2,
+                                  hallFilter3: widget!.hallFilter3,
+                                  home: false,
+                                  onSearch: (date,
                                       duration,
-                                      ParamType.double,
-                                    ),
-                                    'city': serializeParam(
                                       city,
-                                      ParamType.SupabaseRow,
-                                    ),
-                                    'visitors': serializeParam(
                                       visitors,
-                                      ParamType.int,
-                                    ),
-                                    'user': serializeParam(
-                                      hotelSearchPageUsersRow,
-                                      ParamType.SupabaseRow,
-                                    ),
-                                    'hallFilter1': serializeParam(
+                                      seatings,
                                       hallFilter1,
-                                      ParamType.DataStruct,
-                                    ),
-                                    'hallFilter2': serializeParam(
                                       hallFilter2,
-                                      ParamType.DataStruct,
-                                    ),
-                                    'hallFilter3': serializeParam(
-                                      hallFilter3,
-                                      ParamType.DataStruct,
-                                    ),
-                                  }.withoutNulls,
-                                );
+                                      hallFilter3) async {
+                                    _model.step = 0;
+                                    safeSetState(() {});
 
-                                safeSetState(
-                                    () => _model.requestCompleter = null);
-                                await _model.waitForRequestCompleted();
-                              },
+                                    context.goNamed(
+                                      'HotelSearchPage',
+                                      queryParameters: {
+                                        'startDate': serializeParam(
+                                          widget!.startDate,
+                                          ParamType.DateTime,
+                                        ),
+                                        'duration': serializeParam(
+                                          duration,
+                                          ParamType.double,
+                                        ),
+                                        'city': serializeParam(
+                                          city,
+                                          ParamType.SupabaseRow,
+                                        ),
+                                        'visitors': serializeParam(
+                                          visitors,
+                                          ParamType.int,
+                                        ),
+                                        'user': serializeParam(
+                                          hotelSearchPageUsersRow,
+                                          ParamType.SupabaseRow,
+                                        ),
+                                        'hallFilter1': serializeParam(
+                                          hallFilter1,
+                                          ParamType.DataStruct,
+                                        ),
+                                        'hallFilter2': serializeParam(
+                                          hallFilter2,
+                                          ParamType.DataStruct,
+                                        ),
+                                        'hallFilter3': serializeParam(
+                                          hallFilter3,
+                                          ParamType.DataStruct,
+                                        ),
+                                      }.withoutNulls,
+                                    );
+
+                                    safeSetState(
+                                        () => _model.requestCompleter = null);
+                                    await _model.waitForRequestCompleted();
+                                  },
+                                ),
+                              ),
                             ),
                           ),
                         if ((_model.step == 0) &&
@@ -595,7 +718,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                           isGlobal: false,
                                           avoidOverflow: true,
                                           targetAnchor: AlignmentDirectional(
-                                                  0.0, 8.0)
+                                                  0.0, -1.0)
                                               .resolve(
                                                   Directionality.of(context)),
                                           followerAnchor: AlignmentDirectional(
@@ -609,116 +732,50 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                 onTap: () =>
                                                     FocusScope.of(dialogContext)
                                                         .unfocus(),
-                                                child: Container(
-                                                  height:
-                                                      MediaQuery.sizeOf(context)
-                                                              .height *
-                                                          0.3,
-                                                  child: HotelFilterWidget(
-                                                    chosenServices: _model
-                                                        .hotelFilterServices,
-                                                    starsList:
-                                                        _model.hotelFilterStars,
-                                                    initialMinPrice:
-                                                        valueOrDefault<double>(
-                                                      _model.filterMinPrice,
-                                                      1.0,
-                                                    ),
-                                                    initialMaxPrice:
-                                                        valueOrDefault<double>(
-                                                      _model.filterMaxPrice,
-                                                      100000.0,
-                                                    ),
-                                                    addStar: (star) async {
-                                                      if (_model
-                                                              .hotelFilterStars
-                                                              .contains(star) ==
-                                                          true) {
-                                                        _model
-                                                            .removeFromHotelFilterStars(
-                                                                star!);
-                                                        safeSetState(() {});
-                                                      } else {
-                                                        _model
-                                                            .addToHotelFilterStars(
-                                                                star!);
-                                                        safeSetState(() {});
-                                                      }
-                                                    },
-                                                    addDistance:
-                                                        (min, max) async {
-                                                      if ((_model.hotelFilterMinDistance ==
-                                                              min) &&
-                                                          (_model.hotelFilterMaxDistance ==
-                                                              max)) {
-                                                        _model.hotelFilterMaxDistance =
-                                                            100000;
-                                                        _model.hotelFilterMinDistance =
-                                                            0;
-                                                        safeSetState(() {});
-                                                      } else {
-                                                        _model.hotelFilterMaxDistance =
-                                                            max;
-                                                        _model.hotelFilterMinDistance =
-                                                            min;
-                                                        safeSetState(() {});
-                                                      }
-                                                    },
-                                                    choseService: (id) async {
-                                                      if (_model
-                                                              .hotelFilterServices
-                                                              .contains(id) ==
-                                                          true) {
-                                                        _model
-                                                            .removeFromHotelFilterServices(
-                                                                id!);
-                                                        safeSetState(() {});
-                                                      } else {
-                                                        _model
-                                                            .addToHotelFilterServices(
-                                                                id!);
-                                                        safeSetState(() {});
-                                                      }
-                                                    },
-                                                    updatePrice: (minPrice,
-                                                        maxPrice) async {
-                                                      _model.rooms =
-                                                          await RoomTable()
-                                                              .queryRows(
-                                                        queryFn: (q) => q
-                                                            .gte(
-                                                              'price',
-                                                              minPrice,
-                                                            )
-                                                            .lte(
-                                                              'price',
-                                                              maxPrice,
-                                                            ),
-                                                      );
-                                                      _model.filteredRooms =
-                                                          _model.rooms!
-                                                              .map((e) => e.id)
-                                                              .toList()
-                                                              .cast<int>();
-                                                      _model.filterMinPrice =
-                                                          minPrice;
-                                                      _model.filterMaxPrice =
-                                                          maxPrice;
-                                                      safeSetState(() {});
-                                                      safeSetState(() => _model
-                                                              .requestCompleter =
-                                                          null);
-                                                      await _model
-                                                          .waitForRequestCompleted();
-                                                    },
+                                                child: HotelFilterWidget(
+                                                  initialStars:
+                                                      _model.hotelFilterStars,
+                                                  initialMinPrice:
+                                                      valueOrDefault<double>(
+                                                    _model.filterMinPrice,
+                                                    0.0,
                                                   ),
+                                                  initialMaxPrice:
+                                                      valueOrDefault<double>(
+                                                    _model.filterMaxPrice,
+                                                    100000.0,
+                                                  ),
+                                                  initialMinDistance: _model
+                                                      .hotelFilterMinDistance!,
+                                                  initialMaxDistance: _model
+                                                      .hotelFilterMaxDistance!,
+                                                  acceptChanges: (stars,
+                                                      minDistance,
+                                                      maxDistance,
+                                                      minPrice,
+                                                      maxPrice) async {
+                                                    _model.hotelFilterStars =
+                                                        stars
+                                                            .toList()
+                                                            .cast<int>();
+                                                    _model.hotelFilterMaxDistance =
+                                                        valueOrDefault<double>(
+                                                      maxDistance,
+                                                      100000.0,
+                                                    );
+                                                    _model.hotelFilterMinDistance =
+                                                        minDistance;
+                                                    _model.filterMinPrice =
+                                                        minPrice;
+                                                    _model.filterMaxPrice =
+                                                        maxPrice;
+                                                    safeSetState(() {});
+                                                  },
                                                 ),
                                               ),
                                             );
                                           },
                                         );
-
-                                        safeSetState(() {});
                                       },
                                       child: Container(
                                         width: 300.0,
@@ -821,7 +878,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                             isGlobal: false,
                                             avoidOverflow: true,
                                             targetAnchor: AlignmentDirectional(
-                                                    0.0, 8.0)
+                                                    0.0, -1.0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                             followerAnchor:
@@ -835,54 +892,321 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                   onTap: () => FocusScope.of(
                                                           dialogContext)
                                                       .unfocus(),
-                                                  child: Container(
-                                                    height: MediaQuery.sizeOf(
-                                                                context)
-                                                            .height *
-                                                        0.3,
-                                                    child: HallFilterWidget(
-                                                      maxCapacity: _model
-                                                          .hallFilterMaxCapacity,
-                                                      chosenSittings: _model
-                                                          .hallFilterChosenSeatings,
-                                                      hallfilter1:
-                                                          widget!.hallFilter1,
-                                                      hallfilter2:
-                                                          widget!.hallFilter2,
-                                                      hallfilter3:
-                                                          widget!.hallFilter3,
-                                                      addCapacity: (maxCapacity,
-                                                          minCapacity) async {
-                                                        _model.hallFilterMaxCapacity =
-                                                            maxCapacity;
-                                                        _model.hallFilterMinCapacity =
-                                                            minCapacity;
-                                                        safeSetState(() {});
-                                                      },
-                                                      addSeating:
-                                                          (seating) async {
-                                                        if (_model
-                                                                .hallFilterChosenSeatings
-                                                                .contains(
-                                                                    seating) ==
-                                                            true) {
+                                                  child: HallFilterWidget(
+                                                    maxCapacity: _model
+                                                        .hallFilterMaxCapacity,
+                                                    hallfilter1:
+                                                        _model.hallSeating1,
+                                                    hallfilter2:
+                                                        _model.hallSeating2,
+                                                    hallfilter3:
+                                                        _model.hallSeating3,
+                                                    visitors: widget!.visitors!,
+                                                    minCapacity: _model
+                                                        .hallFilterMinCapacity!,
+                                                    confirmFilters:
+                                                        (minCapacity,
+                                                            firstSeating,
+                                                            secondSeating,
+                                                            thirdSeating,
+                                                            maxCapacity) async {
+                                                      _model.theaterMin = 0;
+                                                      _model.classMin = 0;
+                                                      _model.comMin = 0;
+                                                      _model.uShapeMin = 0;
+                                                      _model.oShapeMin = 0;
+                                                      _model.cabareMin = 0;
+                                                      _model.banketMin = 0;
+                                                      _model.furshetMin = 0;
+                                                      _model.filteredHallsAction =
+                                                          [];
+                                                      safeSetState(() {});
+                                                      _model.hallFilterMinCapacity =
+                                                          minCapacity;
+                                                      _model.hallFilterMaxCapacity =
+                                                          maxCapacity;
+                                                      _model.filteredHallsAction =
+                                                          [];
+                                                      _model.theaterMin =
+                                                          valueOrDefault<int>(
+                                                        () {
+                                                          if (firstSeating
+                                                                  ?.type ==
+                                                              EnumSeating
+                                                                  .theatre) {
+                                                            return firstSeating
+                                                                ?.count;
+                                                          } else if (secondSeating
+                                                                  ?.type ==
+                                                              EnumSeating
+                                                                  .theatre) {
+                                                            return secondSeating
+                                                                ?.count;
+                                                          } else if (thirdSeating
+                                                                  ?.type ==
+                                                              EnumSeating
+                                                                  .theatre) {
+                                                            return thirdSeating
+                                                                ?.count;
+                                                          } else {
+                                                            return 0;
+                                                          }
+                                                        }(),
+                                                        0,
+                                                      );
+                                                      _model.classMin =
+                                                          valueOrDefault<int>(
+                                                        () {
+                                                          if (firstSeating
+                                                                  ?.type ==
+                                                              EnumSeating
+                                                                  .klass) {
+                                                            return firstSeating
+                                                                ?.count;
+                                                          } else if (secondSeating
+                                                                  ?.type ==
+                                                              EnumSeating
+                                                                  .klass) {
+                                                            return secondSeating
+                                                                ?.count;
+                                                          } else if (thirdSeating
+                                                                  ?.type ==
+                                                              EnumSeating
+                                                                  .klass) {
+                                                            return thirdSeating
+                                                                ?.count;
+                                                          } else {
+                                                            return 0;
+                                                          }
+                                                        }(),
+                                                        0,
+                                                      );
+                                                      _model.comMin =
+                                                          valueOrDefault<int>(
+                                                        () {
+                                                          if (firstSeating
+                                                                  ?.type ==
+                                                              EnumSeating
+                                                                  .communication) {
+                                                            return firstSeating
+                                                                ?.count;
+                                                          } else if (secondSeating
+                                                                  ?.type ==
+                                                              EnumSeating
+                                                                  .communication) {
+                                                            return secondSeating
+                                                                ?.count;
+                                                          } else if (thirdSeating
+                                                                  ?.type ==
+                                                              EnumSeating
+                                                                  .communication) {
+                                                            return thirdSeating
+                                                                ?.count;
+                                                          } else {
+                                                            return 0;
+                                                          }
+                                                        }(),
+                                                        0,
+                                                      );
+                                                      _model.uShapeMin =
+                                                          valueOrDefault<int>(
+                                                        () {
+                                                          if (firstSeating
+                                                                  ?.type ==
+                                                              EnumSeating
+                                                                  .ushape) {
+                                                            return firstSeating
+                                                                ?.count;
+                                                          } else if (secondSeating
+                                                                  ?.type ==
+                                                              EnumSeating
+                                                                  .ushape) {
+                                                            return secondSeating
+                                                                ?.count;
+                                                          } else if (thirdSeating
+                                                                  ?.type ==
+                                                              EnumSeating
+                                                                  .ushape) {
+                                                            return thirdSeating
+                                                                ?.count;
+                                                          } else {
+                                                            return 0;
+                                                          }
+                                                        }(),
+                                                        0,
+                                                      );
+                                                      _model.oShapeMin =
+                                                          valueOrDefault<int>(
+                                                        () {
+                                                          if (firstSeating
+                                                                  ?.type ==
+                                                              EnumSeating
+                                                                  .oshape) {
+                                                            return firstSeating
+                                                                ?.count;
+                                                          } else if (secondSeating
+                                                                  ?.type ==
+                                                              EnumSeating
+                                                                  .oshape) {
+                                                            return secondSeating
+                                                                ?.count;
+                                                          } else if (thirdSeating
+                                                                  ?.type ==
+                                                              EnumSeating
+                                                                  .oshape) {
+                                                            return thirdSeating
+                                                                ?.count;
+                                                          } else {
+                                                            return 0;
+                                                          }
+                                                        }(),
+                                                        0,
+                                                      );
+                                                      _model.cabareMin =
+                                                          valueOrDefault<int>(
+                                                        () {
+                                                          if (firstSeating
+                                                                  ?.type ==
+                                                              EnumSeating
+                                                                  .cabare) {
+                                                            return firstSeating
+                                                                ?.count;
+                                                          } else if (secondSeating
+                                                                  ?.type ==
+                                                              EnumSeating
+                                                                  .cabare) {
+                                                            return secondSeating
+                                                                ?.count;
+                                                          } else if (thirdSeating
+                                                                  ?.type ==
+                                                              EnumSeating
+                                                                  .cabare) {
+                                                            return thirdSeating
+                                                                ?.count;
+                                                          } else {
+                                                            return 0;
+                                                          }
+                                                        }(),
+                                                        0,
+                                                      );
+                                                      _model.banketMin =
+                                                          valueOrDefault<int>(
+                                                        () {
+                                                          if (firstSeating
+                                                                  ?.type ==
+                                                              EnumSeating
+                                                                  .banket) {
+                                                            return firstSeating
+                                                                ?.count;
+                                                          } else if (secondSeating
+                                                                  ?.type ==
+                                                              EnumSeating
+                                                                  .banket) {
+                                                            return secondSeating
+                                                                ?.count;
+                                                          } else if (thirdSeating
+                                                                  ?.type ==
+                                                              EnumSeating
+                                                                  .banket) {
+                                                            return thirdSeating
+                                                                ?.count;
+                                                          } else {
+                                                            return 0;
+                                                          }
+                                                        }(),
+                                                        0,
+                                                      );
+                                                      _model.furshetMin =
+                                                          valueOrDefault<int>(
+                                                        () {
+                                                          if (firstSeating
+                                                                  ?.type ==
+                                                              EnumSeating
+                                                                  .furshet) {
+                                                            return firstSeating
+                                                                ?.count;
+                                                          } else if (secondSeating
+                                                                  ?.type ==
+                                                              EnumSeating
+                                                                  .furshet) {
+                                                            return secondSeating
+                                                                ?.count;
+                                                          } else if (thirdSeating
+                                                                  ?.type ==
+                                                              EnumSeating
+                                                                  .furshet) {
+                                                            return thirdSeating
+                                                                ?.count;
+                                                          } else {
+                                                            return 0;
+                                                          }
+                                                        }(),
+                                                        0,
+                                                      );
+                                                      safeSetState(() {});
+                                                      _model.hallFilteredOnPage =
+                                                          await HallTable()
+                                                              .queryRows(
+                                                        queryFn: (q) => q
+                                                            .gteOrNull(
+                                                              'capacity',
+                                                              widget!.visitors,
+                                                            )
+                                                            .gteOrNull(
+                                                              'seating_theater',
+                                                              _model.theaterMin,
+                                                            )
+                                                            .gteOrNull(
+                                                              'seating_class',
+                                                              _model.classMin,
+                                                            )
+                                                            .gteOrNull(
+                                                              'seating_ushape',
+                                                              _model.uShapeMin,
+                                                            )
+                                                            .gteOrNull(
+                                                              'seating_communication',
+                                                              _model.comMin,
+                                                            )
+                                                            .gteOrNull(
+                                                              'seating_oshape',
+                                                              _model.oShapeMin,
+                                                            )
+                                                            .gteOrNull(
+                                                              'seating_kabare',
+                                                              _model.cabareMin,
+                                                            )
+                                                            .gteOrNull(
+                                                              'seating_banket',
+                                                              _model.banketMin,
+                                                            )
+                                                            .gteOrNull(
+                                                              'seating_furshet',
+                                                              _model.furshetMin,
+                                                            ),
+                                                      );
+                                                      _model.filteredHallsAction =
                                                           _model
-                                                              .removeFromHallFilterChosenSeatings(
-                                                                  seating!);
-                                                          safeSetState(() {});
-                                                        } else {
-                                                          _model
-                                                              .addToHallFilterChosenSeatings(
-                                                                  seating!);
-                                                          safeSetState(() {});
-                                                        }
-                                                      },
-                                                    ),
+                                                              .hallFilteredOnPage!
+                                                              .map((e) => e.id)
+                                                              .toList()
+                                                              .cast<int>();
+                                                      _model.hallSeating1 =
+                                                          firstSeating;
+                                                      _model.hallSeating2 =
+                                                          secondSeating;
+                                                      _model.hallSeating3 =
+                                                          thirdSeating;
+                                                      safeSetState(() {});
+                                                      Navigator.pop(context);
+                                                    },
                                                   ),
                                                 ),
                                               );
                                             },
                                           );
+
+                                          safeSetState(() {});
                                         },
                                         child: Container(
                                           width: 300.0,
@@ -982,14 +1306,14 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                   FFButtonWidget(
                                     onPressed: () async {
                                       _model.hotelFilterStars = [];
-                                      _model.hotelFilterMinDistance = 0;
-                                      _model.hotelFilterMaxDistance = 100000;
+                                      _model.hotelFilterMinDistance = 0.0;
+                                      _model.hotelFilterMaxDistance = 100000.0;
                                       _model.filterMaxPrice = 100000.0;
                                       _model.filterMinPrice = 1.0;
                                       safeSetState(() {});
                                       _model.deleteFiltersRooms =
                                           await RoomTable().queryRows(
-                                        queryFn: (q) => q.gte(
+                                        queryFn: (q) => q.gteOrNull(
                                           'price',
                                           _model.filterMinPrice,
                                         ),
@@ -1030,193 +1354,197 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                       borderRadius: BorderRadius.circular(24.0),
                                     ),
                                   ),
-                                  if (responsiveVisibility(
-                                    context: context,
-                                    phone: false,
-                                    tablet: false,
-                                    tabletLandscape: false,
-                                    desktop: false,
-                                  ))
-                                    Expanded(
-                                      child: SingleChildScrollView(
-                                        scrollDirection: Axis.horizontal,
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                              child: Text(
-                                                'зал 1: ${widget!.hallFilter1?.type?.name}${widget!.hallFilter1?.count?.toString()}',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
+                                  Expanded(
+                                    child: SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 4.0, 0.0),
+                                            child: Text(
+                                              'зал 1: ${widget!.hallFilter1?.type?.name}${widget!.hallFilter1?.count?.toString()}',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        letterSpacing: 0.0,
+                                                      ),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                              child: Text(
-                                                'зал 2: ${widget!.hallFilter2?.type?.name}${widget!.hallFilter2?.count?.toString()}',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 4.0, 0.0),
+                                            child: Text(
+                                              'зал 2: ${widget!.hallFilter2?.type?.name}${widget!.hallFilter2?.count?.toString()}',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        letterSpacing: 0.0,
+                                                      ),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                              child: Text(
-                                                'зал 3:  ${widget!.hallFilter3?.type?.name}${widget!.hallFilter3?.count?.toString()}',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 4.0, 0.0),
+                                            child: Text(
+                                              'зал 3:  ${widget!.hallFilter3?.type?.name}${widget!.hallFilter3?.count?.toString()}',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        letterSpacing: 0.0,
+                                                      ),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                              child: Text(
-                                                'театр ${_model.theaterMin?.toString()}',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 4.0, 0.0),
+                                            child: Text(
+                                              'театр ${_model.theaterMin?.toString()}',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        letterSpacing: 0.0,
+                                                      ),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                              child: Text(
-                                                'класс${_model.classMin?.toString()}',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 4.0, 0.0),
+                                            child: Text(
+                                              'класс${_model.classMin?.toString()}',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        letterSpacing: 0.0,
+                                                      ),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                              child: Text(
-                                                'комуник. ${valueOrDefault<String>(
-                                                  _model.comMin?.toString(),
-                                                  '0',
-                                                )}',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 4.0, 0.0),
+                                            child: Text(
+                                              'комуник. ${valueOrDefault<String>(
+                                                _model.comMin?.toString(),
+                                                '0',
+                                              )}',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        letterSpacing: 0.0,
+                                                      ),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                              child: Text(
-                                                'юшейп. ${_model.uShapeMin?.toString()}',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 4.0, 0.0),
+                                            child: Text(
+                                              'юшейп. ${_model.uShapeMin?.toString()}',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        letterSpacing: 0.0,
+                                                      ),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                              child: Text(
-                                                'ошейп. ${_model.oShapeMin?.toString()}',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 4.0, 0.0),
+                                            child: Text(
+                                              'ошейп. ${_model.oShapeMin?.toString()}',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        letterSpacing: 0.0,
+                                                      ),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                              child: Text(
-                                                'кабаре  ${_model.cabareMin?.toString()}',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 4.0, 0.0),
+                                            child: Text(
+                                              'кабаре  ${_model.cabareMin?.toString()}',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        letterSpacing: 0.0,
+                                                      ),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                              child: Text(
-                                                'фуршет  ${_model.furshetMin?.toString()}',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 4.0, 0.0),
+                                            child: Text(
+                                              'фуршет  ${_model.furshetMin?.toString()}',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        letterSpacing: 0.0,
+                                                      ),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                              child: Text(
-                                                'банкет  ${_model.banketMin?.toString()}',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Commissioner',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 4.0, 0.0),
+                                            child: Text(
+                                              'банкет  ${_model.banketMin?.toString()}',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Commissioner',
+                                                        letterSpacing: 0.0,
+                                                      ),
                                             ),
-                                          ].divide(SizedBox(width: 20.0)),
-                                        ),
+                                          ),
+                                        ].divide(SizedBox(width: 20.0)),
                                       ),
                                     ),
+                                  ),
                                 ].divide(SizedBox(width: 10.0)),
                               ),
                             ),
@@ -1266,7 +1594,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                           isGlobal: false,
                                           avoidOverflow: true,
                                           targetAnchor: AlignmentDirectional(
-                                                  0.0, 8.0)
+                                                  0.0, -0.7)
                                               .resolve(
                                                   Directionality.of(context)),
                                           followerAnchor: AlignmentDirectional(
@@ -1280,116 +1608,32 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                 onTap: () =>
                                                     FocusScope.of(dialogContext)
                                                         .unfocus(),
-                                                child: Container(
-                                                  height:
-                                                      MediaQuery.sizeOf(context)
-                                                              .height *
-                                                          0.3,
-                                                  child: HotelFilterWidget(
-                                                    chosenServices: _model
-                                                        .hotelFilterServices,
-                                                    starsList:
-                                                        _model.hotelFilterStars,
-                                                    initialMinPrice:
-                                                        valueOrDefault<double>(
-                                                      _model.filterMinPrice,
-                                                      1.0,
-                                                    ),
-                                                    initialMaxPrice:
-                                                        valueOrDefault<double>(
-                                                      _model.filterMaxPrice,
-                                                      100000.0,
-                                                    ),
-                                                    addStar: (star) async {
-                                                      if (_model
-                                                              .hotelFilterStars
-                                                              .contains(star) ==
-                                                          true) {
-                                                        _model
-                                                            .removeFromHotelFilterStars(
-                                                                star!);
-                                                        safeSetState(() {});
-                                                      } else {
-                                                        _model
-                                                            .addToHotelFilterStars(
-                                                                star!);
-                                                        safeSetState(() {});
-                                                      }
-                                                    },
-                                                    addDistance:
-                                                        (min, max) async {
-                                                      if ((_model.hotelFilterMinDistance ==
-                                                              min) &&
-                                                          (_model.hotelFilterMaxDistance ==
-                                                              max)) {
-                                                        _model.hotelFilterMaxDistance =
-                                                            100000;
-                                                        _model.hotelFilterMinDistance =
-                                                            0;
-                                                        safeSetState(() {});
-                                                      } else {
-                                                        _model.hotelFilterMaxDistance =
-                                                            max;
-                                                        _model.hotelFilterMinDistance =
-                                                            min;
-                                                        safeSetState(() {});
-                                                      }
-                                                    },
-                                                    choseService: (id) async {
-                                                      if (_model
-                                                              .hotelFilterServices
-                                                              .contains(id) ==
-                                                          true) {
-                                                        _model
-                                                            .removeFromHotelFilterServices(
-                                                                id!);
-                                                        safeSetState(() {});
-                                                      } else {
-                                                        _model
-                                                            .addToHotelFilterServices(
-                                                                id!);
-                                                        safeSetState(() {});
-                                                      }
-                                                    },
-                                                    updatePrice: (minPrice,
-                                                        maxPrice) async {
-                                                      _model.roomsMob =
-                                                          await RoomTable()
-                                                              .queryRows(
-                                                        queryFn: (q) => q
-                                                            .gte(
-                                                              'price',
-                                                              minPrice,
-                                                            )
-                                                            .lte(
-                                                              'price',
-                                                              maxPrice,
-                                                            ),
-                                                      );
-                                                      _model.filteredRooms =
-                                                          _model.roomsMob!
-                                                              .map((e) => e.id)
-                                                              .toList()
-                                                              .cast<int>();
-                                                      _model.filterMinPrice =
-                                                          minPrice;
-                                                      _model.filterMaxPrice =
-                                                          maxPrice;
-                                                      safeSetState(() {});
-                                                      safeSetState(() => _model
-                                                              .requestCompleter =
-                                                          null);
-                                                      await _model
-                                                          .waitForRequestCompleted();
-                                                    },
+                                                child: HotelFilterWidget(
+                                                  initialStars:
+                                                      _model.hotelFilterStars,
+                                                  initialMinPrice:
+                                                      valueOrDefault<double>(
+                                                    _model.filterMinPrice,
+                                                    1.0,
                                                   ),
+                                                  initialMaxPrice:
+                                                      valueOrDefault<double>(
+                                                    _model.filterMaxPrice,
+                                                    100000.0,
+                                                  ),
+                                                  acceptChanges: (stars,
+                                                      minDistance,
+                                                      maxDistance,
+                                                      minPrice,
+                                                      maxPrice) async {
+                                                    _model.isRegister = true;
+                                                    safeSetState(() {});
+                                                  },
                                                 ),
                                               ),
                                             );
                                           },
                                         );
-
-                                        safeSetState(() {});
                                       },
                                       child: Container(
                                         width: 300.0,
@@ -1504,7 +1748,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                             isGlobal: false,
                                             avoidOverflow: true,
                                             targetAnchor: AlignmentDirectional(
-                                                    0.0, 8.0)
+                                                    0.0, -0.8)
                                                 .resolve(
                                                     Directionality.of(context)),
                                             followerAnchor:
@@ -1526,39 +1770,21 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                     child: HallFilterWidget(
                                                       maxCapacity: _model
                                                           .hallFilterMaxCapacity,
-                                                      chosenSittings: _model
-                                                          .hallFilterChosenSeatings,
                                                       hallfilter1:
                                                           widget!.hallFilter1,
                                                       hallfilter2:
                                                           widget!.hallFilter2,
                                                       hallfilter3:
                                                           widget!.hallFilter3,
-                                                      addCapacity: (maxCapacity,
-                                                          minCapacity) async {
-                                                        _model.hallFilterMaxCapacity =
-                                                            maxCapacity;
-                                                        _model.hallFilterMinCapacity =
-                                                            minCapacity;
-                                                        safeSetState(() {});
-                                                      },
-                                                      addSeating:
-                                                          (seating) async {
-                                                        if (_model
-                                                                .hallFilterChosenSeatings
-                                                                .contains(
-                                                                    seating) ==
-                                                            true) {
-                                                          _model
-                                                              .removeFromHallFilterChosenSeatings(
-                                                                  seating!);
-                                                          safeSetState(() {});
-                                                        } else {
-                                                          _model
-                                                              .addToHallFilterChosenSeatings(
-                                                                  seating!);
-                                                          safeSetState(() {});
-                                                        }
+                                                      visitors:
+                                                          widget!.visitors!,
+                                                      confirmFilters:
+                                                          (minCapacity,
+                                                              firstSeating,
+                                                              secondSeating,
+                                                              thirdSeating,
+                                                              maxCapacity) async {
+                                                        context.safePop();
                                                       },
                                                     ),
                                                   ),
@@ -1665,14 +1891,14 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                   FFButtonWidget(
                                     onPressed: () async {
                                       _model.hotelFilterStars = [];
-                                      _model.hotelFilterMinDistance = 0;
-                                      _model.hotelFilterMaxDistance = 100000;
+                                      _model.hotelFilterMinDistance = 0.0;
+                                      _model.hotelFilterMaxDistance = 100000.0;
                                       _model.filterMaxPrice = 100000.0;
                                       _model.filterMinPrice = 1.0;
                                       safeSetState(() {});
                                       _model.deleteFiltersRooms2 =
                                           await RoomTable().queryRows(
-                                        queryFn: (q) => q.gte(
+                                        queryFn: (q) => q.gteOrNull(
                                           'price',
                                           _model.filterMinPrice,
                                         ),
@@ -2046,27 +2272,36 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                 ..complete(
                                                     HotelTable().queryRows(
                                                   queryFn: (q) => q
-                                                      .eq(
+                                                      .eqOrNull(
                                                         'city',
                                                         widget!.city?.id,
                                                       )
-                                                      .gte(
+                                                      .gteOrNull(
                                                         'Hall_max_capacity',
                                                         widget!.visitors,
                                                       )
-                                                      .overlaps(
+                                                      .overlapsOrNull(
                                                         'hall',
-                                                        _model.filteredHalls
-                                                            ?.map((e) => e.id)
-                                                            .toList(),
+                                                        _model
+                                                            .filteredHallsAction,
                                                       )
-                                                      .eq(
+                                                      .eqOrNull(
                                                         'isVisible',
                                                         true,
                                                       )
-                                                      .overlaps(
+                                                      .overlapsOrNull(
                                                         'rooms',
                                                         _model.filteredRooms,
+                                                      )
+                                                      .gteOrNull(
+                                                        'distance_center',
+                                                        _model
+                                                            .hotelFilterMinDistance,
+                                                      )
+                                                      .lteOrNull(
+                                                        'distance_center',
+                                                        _model
+                                                            .hotelFilterMaxDistance,
                                                       ),
                                                 )))
                                           .future,
@@ -2116,13 +2351,11 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                   ((hotelsHotelRow
                                                               .distanceCenter! <=
                                                           _model
-                                                              .hotelFilterMaxDistance!
-                                                              .toDouble()) &&
+                                                              .hotelFilterMaxDistance!) &&
                                                       (hotelsHotelRow
                                                               .distanceCenter! >=
                                                           _model
-                                                              .hotelFilterMinDistance!
-                                                              .toDouble())),
+                                                              .hotelFilterMinDistance!)),
                                               child: Builder(
                                                 builder: (context) =>
                                                     wrapWithModel(
@@ -2169,8 +2402,32 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                         _model.chosenHotelName =
                                                             hotelsHotelRow.name;
                                                         safeSetState(() {});
-                                                        _model.step =
-                                                            _model.step + 1;
+                                                        _model.hallissuance =
+                                                            await HallTable()
+                                                                .queryRows(
+                                                          queryFn: (q) => q
+                                                              .inFilterOrNull(
+                                                                'id',
+                                                                hotelsHotelRow
+                                                                    .hall,
+                                                              )
+                                                              .gteOrNull(
+                                                                'capacity',
+                                                                widget!
+                                                                    .visitors,
+                                                              )
+                                                              .inFilterOrNull(
+                                                                'id',
+                                                                _model
+                                                                    .filteredHallsAction,
+                                                              ),
+                                                        );
+                                                        _model.hallsissuance =
+                                                            _model.hallissuance!
+                                                                .map(
+                                                                    (e) => e.id)
+                                                                .toList()
+                                                                .cast<int>();
                                                         safeSetState(() {});
                                                       } else {
                                                         await showDialog(
@@ -2224,6 +2481,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           },
                                                         );
                                                       }
+
+                                                      safeSetState(() {});
                                                     },
                                                     unchosen: (id) async {
                                                       _model.choosedHotel =
@@ -2237,17 +2496,17 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           .delete(
                                                         matchingRows: (rows) =>
                                                             rows
-                                                                .eq(
+                                                                .eqOrNull(
                                                                   'hotel',
                                                                   hotelsHotelRow
                                                                       .id,
                                                                 )
-                                                                .in_(
+                                                                .inFilterOrNull(
                                                                   'hotel',
                                                                   _model
                                                                       .chosenHotels,
                                                                 )
-                                                                .eq(
+                                                                .eqOrNull(
                                                                   'wrapper_id',
                                                                   0,
                                                                 ),
@@ -2278,8 +2537,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                       .favoriteHotelsList,
                                                             },
                                                             matchingRows:
-                                                                (rows) =>
-                                                                    rows.eq(
+                                                                (rows) => rows
+                                                                    .eqOrNull(
                                                               'uid',
                                                               currentUserUid,
                                                             ),
@@ -2302,8 +2561,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                       .favoriteHotelsList,
                                                             },
                                                             matchingRows:
-                                                                (rows) =>
-                                                                    rows.eq(
+                                                                (rows) => rows
+                                                                    .eqOrNull(
                                                               'uid',
                                                               currentUserUid,
                                                             ),
@@ -2323,16 +2582,16 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           .delete(
                                                         matchingRows: (rows) =>
                                                             rows
-                                                                .eq(
+                                                                .eqOrNull(
                                                                   'owner',
                                                                   hotelSearchPageUsersRow
                                                                       ?.id,
                                                                 )
-                                                                .eq(
+                                                                .eqOrNull(
                                                                   'hotel',
                                                                   id,
                                                                 )
-                                                                .eq(
+                                                                .eqOrNull(
                                                                   'wrapper_id',
                                                                   0,
                                                                 ),
@@ -2360,13 +2619,11 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       ((hotelsHotelRow
                                                                   .distanceCenter! <=
                                                               _model
-                                                                  .hotelFilterMaxDistance!
-                                                                  .toDouble()) &&
+                                                                  .hotelFilterMaxDistance!) &&
                                                           (hotelsHotelRow
                                                                   .distanceCenter! >=
                                                               _model
-                                                                  .hotelFilterMinDistance!
-                                                                  .toDouble()));
+                                                                  .hotelFilterMinDistance!));
                                                 },
                                               )
                                               .addToStart(
@@ -2380,24 +2637,23 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                     FutureBuilder<List<HotelRow>>(
                                       future: HotelTable().queryRows(
                                         queryFn: (q) => q
-                                            .eq(
+                                            .eqOrNull(
                                               'city',
                                               widget!.city?.id,
                                             )
-                                            .gte(
+                                            .gteOrNull(
                                               'Hall_max_capacity',
                                               widget!.visitors,
                                             )
-                                            .overlaps(
+                                            .overlapsOrNull(
                                               'hall',
-                                              _model.filteredHalls
-                                                  ?.map((e) => e.id)
-                                                  .toList(),
+                                              _model.filteredHallsAction,
                                             )
-                                            .eq(
+                                            .eqOrNull(
                                               'isVisible',
                                               true,
-                                            ),
+                                            )
+                                            .order('name', ascending: true),
                                       ),
                                       builder: (context, snapshot) {
                                         // Customize what your widget looks like when it's loading.
@@ -2445,13 +2701,11 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                   ((hotelsHotelRow
                                                               .distanceCenter! <=
                                                           _model
-                                                              .hotelFilterMaxDistance!
-                                                              .toDouble()) &&
+                                                              .hotelFilterMaxDistance!) &&
                                                       (hotelsHotelRow
                                                               .distanceCenter! >=
                                                           _model
-                                                              .hotelFilterMinDistance!
-                                                              .toDouble())),
+                                                              .hotelFilterMinDistance!)),
                                               child: Builder(
                                                 builder: (context) =>
                                                     wrapWithModel(
@@ -2501,6 +2755,34 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                         _model.step =
                                                             _model.step + 1;
                                                         safeSetState(() {});
+                                                        _model.hallissuance2 =
+                                                            await HallTable()
+                                                                .queryRows(
+                                                          queryFn: (q) => q
+                                                              .inFilterOrNull(
+                                                                'id',
+                                                                hotelsHotelRow
+                                                                    .hall,
+                                                              )
+                                                              .gteOrNull(
+                                                                'capacity',
+                                                                widget!
+                                                                    .visitors,
+                                                              )
+                                                              .inFilterOrNull(
+                                                                'id',
+                                                                _model
+                                                                    .filteredHallsAction,
+                                                              ),
+                                                        );
+                                                        _model.hallsissuance =
+                                                            _model
+                                                                .hallissuance2!
+                                                                .map(
+                                                                    (e) => e.id)
+                                                                .toList()
+                                                                .cast<int>();
+                                                        safeSetState(() {});
                                                       } else {
                                                         await showDialog(
                                                           barrierColor:
@@ -2553,6 +2835,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           },
                                                         );
                                                       }
+
+                                                      safeSetState(() {});
                                                     },
                                                     unchosen: (id) async {
                                                       _model.choosedHotel =
@@ -2566,17 +2850,17 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           .delete(
                                                         matchingRows: (rows) =>
                                                             rows
-                                                                .eq(
+                                                                .eqOrNull(
                                                                   'hotel',
                                                                   hotelsHotelRow
                                                                       .id,
                                                                 )
-                                                                .in_(
+                                                                .inFilterOrNull(
                                                                   'hotel',
                                                                   _model
                                                                       .chosenHotels,
                                                                 )
-                                                                .eq(
+                                                                .eqOrNull(
                                                                   'wrapper_id',
                                                                   0,
                                                                 ),
@@ -2607,8 +2891,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                       .favoriteHotelsList,
                                                             },
                                                             matchingRows:
-                                                                (rows) =>
-                                                                    rows.eq(
+                                                                (rows) => rows
+                                                                    .eqOrNull(
                                                               'uid',
                                                               currentUserUid,
                                                             ),
@@ -2631,8 +2915,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                       .favoriteHotelsList,
                                                             },
                                                             matchingRows:
-                                                                (rows) =>
-                                                                    rows.eq(
+                                                                (rows) => rows
+                                                                    .eqOrNull(
                                                               'uid',
                                                               currentUserUid,
                                                             ),
@@ -2652,16 +2936,16 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           .delete(
                                                         matchingRows: (rows) =>
                                                             rows
-                                                                .eq(
+                                                                .eqOrNull(
                                                                   'owner',
                                                                   hotelSearchPageUsersRow
                                                                       ?.id,
                                                                 )
-                                                                .eq(
+                                                                .eqOrNull(
                                                                   'hotel',
                                                                   id,
                                                                 )
-                                                                .eq(
+                                                                .eqOrNull(
                                                                   'wrapper_id',
                                                                   0,
                                                                 ),
@@ -2689,13 +2973,11 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                       ((hotelsHotelRow
                                                                   .distanceCenter! <=
                                                               _model
-                                                                  .hotelFilterMaxDistance!
-                                                                  .toDouble()) &&
+                                                                  .hotelFilterMaxDistance!) &&
                                                           (hotelsHotelRow
                                                                   .distanceCenter! >=
                                                               _model
-                                                                  .hotelFilterMinDistance!
-                                                                  .toDouble()));
+                                                                  .hotelFilterMinDistance!));
                                                 },
                                               )
                                               .addToStart(
@@ -2727,7 +3009,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                 56.0),
                             child: FutureBuilder<List<HotelRow>>(
                               future: HotelTable().querySingleRow(
-                                queryFn: (q) => q.eq(
+                                queryFn: (q) => q.eqOrNull(
                                   'id',
                                   _model.choosedHotel,
                                 ),
@@ -2779,7 +3061,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                 0.0, 0.0, 0.0, 56.0),
                             child: FutureBuilder<List<HotelRow>>(
                               future: HotelTable().querySingleRow(
-                                queryFn: (q) => q.eq(
+                                queryFn: (q) => q.eqOrNull(
                                   'id',
                                   _model.choosedHotel,
                                 ),
@@ -2862,20 +3144,19 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                               FutureBuilder<List<HallRow>>(
                                                 future: HallTable().queryRows(
                                                   queryFn: (q) => q
-                                                      .in_(
+                                                      .inFilterOrNull(
                                                         'id',
-                                                        hallChooseHotelRow!
-                                                            .hall,
+                                                        _model
+                                                            .filteredHallsAction,
                                                       )
-                                                      .in_(
-                                                        'id',
-                                                        _model.filteredHalls!
-                                                            .map((e) => e.id)
-                                                            .toList(),
-                                                      )
-                                                      .gte(
+                                                      .gteOrNull(
                                                         'capacity',
                                                         widget!.visitors,
+                                                      )
+                                                      .inFilterOrNull(
+                                                        'id',
+                                                        hallChooseHotelRow
+                                                            ?.hall,
                                                       )
                                                       .order('name',
                                                           ascending: true),
@@ -2941,11 +3222,10 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                               'Key9ob_${columnHallRow.id.toString()}',
                                                             ),
                                                             isChosen: _model
-                                                                    .choosenHall
-                                                                    .contains(
-                                                                        columnHallRow
-                                                                            .id) ==
-                                                                true,
+                                                                .choosenHall
+                                                                .contains(
+                                                                    columnHallRow
+                                                                        .id),
                                                             hall: columnHallRow,
                                                             chooseAction: (idHall,
                                                                 days,
@@ -2960,22 +3240,24 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                   true) {
                                                                 await RequestsHallVarTable()
                                                                     .delete(
-                                                                  matchingRows:
-                                                                      (rows) => rows
-                                                                          .eq(
-                                                                            'owner',
-                                                                            hotelSearchPageUsersRow?.id,
-                                                                          )
-                                                                          .eq(
-                                                                            'hall_id',
-                                                                            columnHallRow.id,
-                                                                          )
-                                                                          .eq(
-                                                                            'request_id',
-                                                                            _model.lastRequestId != null
-                                                                                ? _model.lastRequestId
-                                                                                : 0,
-                                                                          ),
+                                                                  matchingRows: (rows) => rows
+                                                                      .eqOrNull(
+                                                                        'owner',
+                                                                        hotelSearchPageUsersRow
+                                                                            ?.id,
+                                                                      )
+                                                                      .eqOrNull(
+                                                                        'hall_id',
+                                                                        columnHallRow
+                                                                            .id,
+                                                                      )
+                                                                      .eqOrNull(
+                                                                        'request_id',
+                                                                        _model.lastRequestId !=
+                                                                                null
+                                                                            ? _model.lastRequestId
+                                                                            : 0,
+                                                                      ),
                                                                 );
                                                                 _model.removeFromChoosenHall(
                                                                     columnHallRow
@@ -3094,13 +3376,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    if ((_model.filteredHalls!
-                                                                .where((e) =>
-                                                                    hallChooseHotelRow!
-                                                                        .hall
-                                                                        .contains(
-                                                                            e.id))
-                                                                .toList()
+                                                    if ((_model.hallsissuance
                                                                 .length -
                                                             2) >
                                                         0)
@@ -3128,7 +3404,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                     () {});
                                                               },
                                                               child: Text(
-                                                                'Показать ешё ${(_model.filteredHalls!.where((e) => hallChooseHotelRow!.hall.contains(e.id)).toList().length - 2).toString()} зал(ов)',
+                                                                'Показать ешё ${(_model.hallsissuance.length - 2).toString()} зал(ов)',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -3373,15 +3649,14 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                             decoration:
                                                                 BoxDecoration(),
                                                             child: Visibility(
-                                                              visible: (_model
-                                                                          .filteredHalls!
-                                                                          .where((e) => hallChooseHotelRow!
+                                                              visible: (hallChooseHotelRow!
                                                                               .hall
-                                                                              .contains(e.id))
-                                                                          .toList()
-                                                                          .length -
-                                                                      2) >
-                                                                  0,
+                                                                              .where((e) => _model.filteredHallsAction.contains(e))
+                                                                              .toList()
+                                                                              .length -
+                                                                          2)
+                                                                      .toString() !=
+                                                                  '0',
                                                               child:
                                                                   FFButtonWidget(
                                                                 onPressed:
@@ -3402,7 +3677,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                 },
                                                                 text: _model.showMoreHalls ==
                                                                         false
-                                                                    ? 'Показать ешё ${(_model.filteredHalls!.where((e) => hallChooseHotelRow!.hall.contains(e.id)).toList().length - 2).toString()} зал(ов)'
+                                                                    ? 'Показать ешё ${(hallChooseHotelRow!.hall.where((e) => _model.filteredHallsAction.contains(e)).toList().length - 2).toString()} зал(ов)'
                                                                     : 'Показать меньше',
                                                                 options:
                                                                     FFButtonOptions(
@@ -3482,7 +3757,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                 0.0, 0.0, 0.0, 56.0),
                             child: FutureBuilder<List<HotelRow>>(
                               future: HotelTable().querySingleRow(
-                                queryFn: (q) => q.eq(
+                                queryFn: (q) => q.eqOrNull(
                                   'id',
                                   _model.choosedHotel,
                                 ),
@@ -3573,11 +3848,11 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                               future: ServiceCategoryTable()
                                                   .queryRows(
                                                 queryFn: (q) => q
-                                                    .eq(
+                                                    .eqOrNull(
                                                       'type',
                                                       EnumType.FOOD.name,
                                                     )
-                                                    .overlaps(
+                                                    .overlapsOrNull(
                                                       'services_id',
                                                       foodChoseHotelRow?.food,
                                                     ),
@@ -3651,12 +3926,12 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           future: FoodTable()
                                                               .queryRows(
                                                             queryFn: (q) => q
-                                                                .in_(
+                                                                .inFilterOrNull(
                                                                   'id',
-                                                                  foodChoseHotelRow!
-                                                                      .food,
+                                                                  foodChoseHotelRow
+                                                                      ?.food,
                                                                 )
-                                                                .eq(
+                                                                .eqOrNull(
                                                                   'category',
                                                                   columnServiceCategoryRow
                                                                       .id,
@@ -3737,15 +4012,15 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                         await RequestsFoodVarTable()
                                                                             .delete(
                                                                           matchingRows: (rows) => rows
-                                                                              .eq(
+                                                                              .eqOrNull(
                                                                                 'food_id',
                                                                                 foodsFoodRow.id,
                                                                               )
-                                                                              .eq(
+                                                                              .eqOrNull(
                                                                                 'request_id',
                                                                                 _model.lastRequestId != null ? _model.lastRequestId : 0,
                                                                               )
-                                                                              .eq(
+                                                                              .eqOrNull(
                                                                                 'owner',
                                                                                 hotelSearchPageUsersRow?.id,
                                                                               ),
@@ -4019,7 +4294,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                         if (_model.roomsIsOpen && (_model.step == 1))
                           FutureBuilder<List<HotelRow>>(
                             future: HotelTable().querySingleRow(
-                              queryFn: (q) => q.eq(
+                              queryFn: (q) => q.eqOrNull(
                                 'id',
                                 _model.choosedHotel,
                               ),
@@ -4119,15 +4394,15 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                           child: FutureBuilder<List<RoomRow>>(
                                             future: RoomTable().queryRows(
                                               queryFn: (q) => q
-                                                  .in_(
+                                                  .inFilterOrNull(
                                                     'id',
-                                                    roomChooseHotelRow!.rooms,
+                                                    roomChooseHotelRow?.rooms,
                                                   )
-                                                  .lte(
+                                                  .lteOrNull(
                                                     'price',
                                                     _model.filterMaxPrice,
                                                   )
-                                                  .gte(
+                                                  .gteOrNull(
                                                     'price',
                                                     _model.filterMinPrice,
                                                   )
@@ -4187,6 +4462,10 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                       .id) ==
                                                           true,
                                                       room: columnRoomRow,
+                                                      hotel: roomChooseHotelRow!
+                                                          .id,
+                                                      dayStart:
+                                                          widget!.startDate!,
                                                       choseAction: (roomId,
                                                           roomName,
                                                           price,
@@ -4209,12 +4488,12 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                               .delete(
                                                             matchingRows:
                                                                 (rows) => rows
-                                                                    .eq(
+                                                                    .eqOrNull(
                                                                       'room_id',
                                                                       columnRoomRow
                                                                           .id,
                                                                     )
-                                                                    .eq(
+                                                                    .eqOrNull(
                                                                       'request_id',
                                                                       _model.lastRequestId !=
                                                                               null
@@ -4222,7 +4501,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                               .lastRequestId
                                                                           : 0,
                                                                     )
-                                                                    .eq(
+                                                                    .eqOrNull(
                                                                       'owner',
                                                                       hotelSearchPageUsersRow
                                                                           ?.id,
@@ -4469,7 +4748,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                 0.0, 40.0, 0.0, 0.0),
                             child: FutureBuilder<List<HotelRow>>(
                               future: HotelTable().querySingleRow(
-                                queryFn: (q) => q.eq(
+                                queryFn: (q) => q.eqOrNull(
                                   'id',
                                   _model.choosedHotel,
                                 ),
@@ -4648,10 +4927,9 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                   DateTime>(
                                                               functions.countDuration(
                                                                   widget!
-                                                                      .startDate
-                                                                      ?.toString(),
+                                                                      .startDate!,
                                                                   widget!
-                                                                      .duration)),
+                                                                      .duration!)),
                                                           'hotel_name': _model
                                                               .chosenHotelName,
                                                           'price': (functions
@@ -4705,12 +4983,12 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           },
                                                           matchingRows:
                                                               (rows) => rows
-                                                                  .eq(
+                                                                  .eqOrNull(
                                                                     'owner',
                                                                     hotelSearchPageUsersRow
                                                                         ?.id,
                                                                   )
-                                                                  .in_(
+                                                                  .inFilterOrNull(
                                                                     'id',
                                                                     _model
                                                                         .listHallRequest,
@@ -4724,12 +5002,12 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           },
                                                           matchingRows:
                                                               (rows) => rows
-                                                                  .in_(
+                                                                  .inFilterOrNull(
                                                                     'id',
                                                                     _model
                                                                         .listFoodRequest,
                                                                   )
-                                                                  .eq(
+                                                                  .eqOrNull(
                                                                     'owner',
                                                                     hotelSearchPageUsersRow
                                                                         ?.id,
@@ -4743,12 +5021,12 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           },
                                                           matchingRows:
                                                               (rows) => rows
-                                                                  .in_(
+                                                                  .inFilterOrNull(
                                                                     'id',
                                                                     _model
                                                                         .listRoomRequest,
                                                                   )
-                                                                  .eq(
+                                                                  .eqOrNull(
                                                                     'owner',
                                                                     hotelSearchPageUsersRow
                                                                         ?.id,
@@ -4780,7 +5058,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                     getCurrentTimestamp),
                                                           },
                                                           matchingRows:
-                                                              (rows) => rows.eq(
+                                                              (rows) =>
+                                                                  rows.eqOrNull(
                                                             'id',
                                                             hotelSearchPageUsersRow
                                                                 ?.id,
@@ -4958,10 +5237,9 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                   DateTime>(
                                                               functions.countDuration(
                                                                   widget!
-                                                                      .startDate
-                                                                      ?.toString(),
+                                                                      .startDate!,
                                                                   widget!
-                                                                      .duration)),
+                                                                      .duration!)),
                                                           'hotel_name': _model
                                                               .chosenHotelName,
                                                           'price': (functions
@@ -5005,16 +5283,16 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           },
                                                           matchingRows:
                                                               (rows) => rows
-                                                                  .eq(
+                                                                  .eqOrNull(
                                                                     'owner',
                                                                     hotelSearchPageUsersRow
                                                                         ?.id,
                                                                   )
-                                                                  .eq(
+                                                                  .eqOrNull(
                                                                     'request_id',
                                                                     0,
                                                                   )
-                                                                  .in_(
+                                                                  .inFilterOrNull(
                                                                     'hall_id',
                                                                     _model
                                                                         .choosenHall,
@@ -5028,16 +5306,16 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           },
                                                           matchingRows:
                                                               (rows) => rows
-                                                                  .in_(
+                                                                  .inFilterOrNull(
                                                                     'food_id',
                                                                     _model
                                                                         .chosenFood,
                                                                   )
-                                                                  .eq(
+                                                                  .eqOrNull(
                                                                     'request_id',
                                                                     0,
                                                                   )
-                                                                  .eq(
+                                                                  .eqOrNull(
                                                                     'owner',
                                                                     hotelSearchPageUsersRow
                                                                         ?.id,
@@ -5051,16 +5329,16 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                           },
                                                           matchingRows:
                                                               (rows) => rows
-                                                                  .in_(
+                                                                  .inFilterOrNull(
                                                                     'room_id',
                                                                     _model
                                                                         .choosenRooms,
                                                                   )
-                                                                  .eq(
+                                                                  .eqOrNull(
                                                                     'request_id',
                                                                     0,
                                                                   )
-                                                                  .eq(
+                                                                  .eqOrNull(
                                                                     'owner',
                                                                     hotelSearchPageUsersRow
                                                                         ?.id,
@@ -5075,7 +5353,8 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                     getCurrentTimestamp),
                                                           },
                                                           matchingRows:
-                                                              (rows) => rows.eq(
+                                                              (rows) =>
+                                                                  rows.eqOrNull(
                                                             'id',
                                                             hotelSearchPageUsersRow
                                                                 ?.id,
@@ -5645,10 +5924,9 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                           DateTime>(
                                                                       functions.countDuration(
                                                                           widget!
-                                                                              .startDate
-                                                                              ?.toString(),
+                                                                              .startDate!,
                                                                           widget!
-                                                                              .duration)),
+                                                                              .duration!)),
                                                                   'hotel_name':
                                                                       _model
                                                                           .chosenHotelName,
@@ -5704,11 +5982,11 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                   },
                                                                   matchingRows:
                                                                       (rows) => rows
-                                                                          .eq(
+                                                                          .eqOrNull(
                                                                             'owner',
                                                                             hotelSearchPageUsersRow?.id,
                                                                           )
-                                                                          .in_(
+                                                                          .inFilterOrNull(
                                                                             'id',
                                                                             _model.listHallRequest,
                                                                           ),
@@ -5723,11 +6001,11 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                   },
                                                                   matchingRows:
                                                                       (rows) => rows
-                                                                          .in_(
+                                                                          .inFilterOrNull(
                                                                             'id',
                                                                             _model.listFoodRequest,
                                                                           )
-                                                                          .eq(
+                                                                          .eqOrNull(
                                                                             'owner',
                                                                             hotelSearchPageUsersRow?.id,
                                                                           ),
@@ -5742,11 +6020,11 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                   },
                                                                   matchingRows:
                                                                       (rows) => rows
-                                                                          .in_(
+                                                                          .inFilterOrNull(
                                                                             'id',
                                                                             _model.listRoomRequest,
                                                                           )
-                                                                          .eq(
+                                                                          .eqOrNull(
                                                                             'owner',
                                                                             hotelSearchPageUsersRow?.id,
                                                                           ),
@@ -5781,7 +6059,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                   },
                                                                   matchingRows:
                                                                       (rows) =>
-                                                                          rows.eq(
+                                                                          rows.eqOrNull(
                                                                     'id',
                                                                     hotelSearchPageUsersRow
                                                                         ?.id,
@@ -5983,10 +6261,9 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                           DateTime>(
                                                                       functions.countDuration(
                                                                           widget!
-                                                                              .startDate
-                                                                              ?.toString(),
+                                                                              .startDate!,
                                                                           widget!
-                                                                              .duration)),
+                                                                              .duration!)),
                                                                   'hotel_name':
                                                                       _model
                                                                           .chosenHotelName,
@@ -6027,20 +6304,21 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                             .requestWr
                                                                             ?.id,
                                                                   },
-                                                                  matchingRows:
-                                                                      (rows) => rows
-                                                                          .eq(
-                                                                            'owner',
-                                                                            hotelSearchPageUsersRow?.id,
-                                                                          )
-                                                                          .eq(
-                                                                            'request_id',
-                                                                            0,
-                                                                          )
-                                                                          .in_(
-                                                                            'hall_id',
-                                                                            _model.choosenHall,
-                                                                          ),
+                                                                  matchingRows: (rows) => rows
+                                                                      .eqOrNull(
+                                                                        'owner',
+                                                                        hotelSearchPageUsersRow
+                                                                            ?.id,
+                                                                      )
+                                                                      .eqOrNull(
+                                                                        'request_id',
+                                                                        0,
+                                                                      )
+                                                                      .inFilterOrNull(
+                                                                        'hall_id',
+                                                                        _model
+                                                                            .choosenHall,
+                                                                      ),
                                                                 );
                                                                 await RequestsFoodVarTable()
                                                                     .update(
@@ -6050,20 +6328,21 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                             .requestWr
                                                                             ?.id,
                                                                   },
-                                                                  matchingRows:
-                                                                      (rows) => rows
-                                                                          .in_(
-                                                                            'food_id',
-                                                                            _model.chosenFood,
-                                                                          )
-                                                                          .eq(
-                                                                            'request_id',
-                                                                            0,
-                                                                          )
-                                                                          .eq(
-                                                                            'owner',
-                                                                            hotelSearchPageUsersRow?.id,
-                                                                          ),
+                                                                  matchingRows: (rows) => rows
+                                                                      .inFilterOrNull(
+                                                                        'food_id',
+                                                                        _model
+                                                                            .chosenFood,
+                                                                      )
+                                                                      .eqOrNull(
+                                                                        'request_id',
+                                                                        0,
+                                                                      )
+                                                                      .eqOrNull(
+                                                                        'owner',
+                                                                        hotelSearchPageUsersRow
+                                                                            ?.id,
+                                                                      ),
                                                                 );
                                                                 await RequestsRoomVarTable()
                                                                     .update(
@@ -6073,20 +6352,21 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                             .requestWr
                                                                             ?.id,
                                                                   },
-                                                                  matchingRows:
-                                                                      (rows) => rows
-                                                                          .in_(
-                                                                            'room_id',
-                                                                            _model.choosenRooms,
-                                                                          )
-                                                                          .eq(
-                                                                            'request_id',
-                                                                            0,
-                                                                          )
-                                                                          .eq(
-                                                                            'owner',
-                                                                            hotelSearchPageUsersRow?.id,
-                                                                          ),
+                                                                  matchingRows: (rows) => rows
+                                                                      .inFilterOrNull(
+                                                                        'room_id',
+                                                                        _model
+                                                                            .choosenRooms,
+                                                                      )
+                                                                      .eqOrNull(
+                                                                        'request_id',
+                                                                        0,
+                                                                      )
+                                                                      .eqOrNull(
+                                                                        'owner',
+                                                                        hotelSearchPageUsersRow
+                                                                            ?.id,
+                                                                      ),
                                                                 );
                                                                 await UsersTable()
                                                                     .update(
@@ -6097,7 +6377,7 @@ class _HotelSearchPageWidgetState extends State<HotelSearchPageWidget> {
                                                                   },
                                                                   matchingRows:
                                                                       (rows) =>
-                                                                          rows.eq(
+                                                                          rows.eqOrNull(
                                                                     'id',
                                                                     hotelSearchPageUsersRow
                                                                         ?.id,

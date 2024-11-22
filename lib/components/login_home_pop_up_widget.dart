@@ -98,7 +98,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
         child: Container(
           height: _model.isRegister
               ? (MediaQuery.sizeOf(context).height * 0.98)
-              : (MediaQuery.sizeOf(context).height * 0.6),
+              : (MediaQuery.sizeOf(context).height * 0.75),
           constraints: BoxConstraints(
             maxWidth: 1400.0,
           ),
@@ -155,20 +155,6 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        if (responsiveVisibility(
-                          context: context,
-                          phone: false,
-                          tablet: false,
-                        ))
-                          Container(
-                            width: 32.0,
-                            height: 32.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              shape: BoxShape.circle,
-                            ),
-                          ),
                         Expanded(
                           child: Text(
                             _model.isRegister == false
@@ -179,119 +165,129 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Commissioner',
-                                  fontSize: 38.0,
+                                  fontSize:
+                                      MediaQuery.sizeOf(context).width > 800.0
+                                          ? 38.0
+                                          : 24.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
                                 ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 40.0)),
+                      ],
                     ),
                     if (_model.isRegister == true)
-                      Container(
-                        constraints: BoxConstraints(
-                          maxWidth: 500.0,
-                        ),
-                        decoration: BoxDecoration(),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: FFButtonWidget(
-                                onPressed: () async {
-                                  _model.isHotel = false;
-                                  safeSetState(() {});
-                                },
-                                text: 'Я –  Организатор',
-                                options: FFButtonOptions(
-                                  height: 40.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: valueOrDefault<Color>(
-                                    _model.isHotel
-                                        ? Color(0xFFF0F0FA)
-                                        : FlutterFlowTheme.of(context).primary,
-                                    Color(0xFFF0F0FA),
-                                  ),
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Commissioner',
-                                        color: valueOrDefault<Color>(
-                                          _model.isHotel
-                                              ? FlutterFlowTheme.of(context)
-                                                  .primary
-                                              : Color(0xFFF0F0FA),
-                                          FlutterFlowTheme.of(context).primary,
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                        child: Container(
+                          constraints: BoxConstraints(
+                            maxWidth: 500.0,
+                          ),
+                          decoration: BoxDecoration(),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    _model.isHotel = false;
+                                    safeSetState(() {});
+                                  },
+                                  text: 'Я –  Организатор',
+                                  options: FFButtonOptions(
+                                    height: 40.0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        24.0, 0.0, 24.0, 0.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: valueOrDefault<Color>(
+                                      _model.isHotel
+                                          ? Color(0xFFF0F0FA)
+                                          : FlutterFlowTheme.of(context)
+                                              .primary,
+                                      Color(0xFFF0F0FA),
+                                    ),
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Commissioner',
+                                          color: valueOrDefault<Color>(
+                                            _model.isHotel
+                                                ? FlutterFlowTheme.of(context)
+                                                    .primary
+                                                : Color(0xFFF0F0FA),
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                          ),
+                                          letterSpacing: 0.0,
                                         ),
-                                        letterSpacing: 0.0,
-                                      ),
-                                  elevation: 0.0,
-                                  borderSide: BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1.0,
+                                    elevation: 0.0,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(100.0),
+                                      bottomRight: Radius.circular(0.0),
+                                      topLeft: Radius.circular(100.0),
+                                      topRight: Radius.circular(0.0),
+                                    ),
                                   ),
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(100.0),
-                                    bottomRight: Radius.circular(0.0),
-                                    topLeft: Radius.circular(100.0),
-                                    topRight: Radius.circular(0.0),
-                                  ),
+                                  showLoadingIndicator: false,
                                 ),
-                                showLoadingIndicator: false,
                               ),
-                            ),
-                            Expanded(
-                              child: FFButtonWidget(
-                                onPressed: () async {
-                                  _model.isHotel = true;
-                                  safeSetState(() {});
-                                },
-                                text: 'Я – Отель',
-                                options: FFButtonOptions(
-                                  height: 40.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: valueOrDefault<Color>(
-                                    _model.isHotel
-                                        ? FlutterFlowTheme.of(context).primary
-                                        : Color(0xFFF0F0FA),
-                                    Color(0xFFF0F0FA),
-                                  ),
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Commissioner',
-                                        color: valueOrDefault<Color>(
-                                          _model.isHotel
-                                              ? Color(0xFFF0F0FA)
-                                              : FlutterFlowTheme.of(context)
-                                                  .primary,
-                                          FlutterFlowTheme.of(context).primary,
+                              Expanded(
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    _model.isHotel = true;
+                                    safeSetState(() {});
+                                  },
+                                  text: 'Я – Отель',
+                                  options: FFButtonOptions(
+                                    height: 40.0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        24.0, 0.0, 24.0, 0.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: valueOrDefault<Color>(
+                                      _model.isHotel
+                                          ? FlutterFlowTheme.of(context).primary
+                                          : Color(0xFFF0F0FA),
+                                      Color(0xFFF0F0FA),
+                                    ),
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Commissioner',
+                                          color: valueOrDefault<Color>(
+                                            _model.isHotel
+                                                ? Color(0xFFF0F0FA)
+                                                : FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                          ),
+                                          letterSpacing: 0.0,
                                         ),
-                                        letterSpacing: 0.0,
-                                      ),
-                                  elevation: 0.0,
-                                  borderSide: BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1.0,
+                                    elevation: 0.0,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(0.0),
+                                      bottomRight: Radius.circular(100.0),
+                                      topLeft: Radius.circular(0.0),
+                                      topRight: Radius.circular(100.0),
+                                    ),
                                   ),
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(0.0),
-                                    bottomRight: Radius.circular(100.0),
-                                    topLeft: Radius.circular(0.0),
-                                    topRight: Radius.circular(100.0),
-                                  ),
+                                  showLoadingIndicator: false,
                                 ),
-                                showLoadingIndicator: false,
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     if (_model.lastEmail != null && _model.lastEmail != '')
@@ -1691,7 +1687,7 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                   _model.userCheck =
                                                       await UsersTable()
                                                           .queryRows(
-                                                    queryFn: (q) => q.eq(
+                                                    queryFn: (q) => q.eqOrNull(
                                                       'email',
                                                       _model.mailTextController
                                                           .text,
@@ -1784,13 +1780,21 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                           _model
                                                               .mailTextController
                                                               .text;
-                                                      _model.emailLogTextController
-                                                              ?.selection =
-                                                          TextSelection.collapsed(
-                                                              offset: _model
-                                                                  .emailLogTextController!
-                                                                  .text
-                                                                  .length);
+                                                      _model.emailLogFocusNode
+                                                          ?.requestFocus();
+                                                      WidgetsBinding.instance
+                                                          .addPostFrameCallback(
+                                                              (_) {
+                                                        _model.emailLogTextController
+                                                                ?.selection =
+                                                            TextSelection
+                                                                .collapsed(
+                                                          offset: _model
+                                                              .emailLogTextController!
+                                                              .text
+                                                              .length,
+                                                        );
+                                                      });
                                                     });
                                                     safeSetState(() {
                                                       _model.passwordLogTextController
@@ -1798,13 +1802,22 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                                                           _model
                                                               .passwordTextController
                                                               .text;
-                                                      _model.passwordLogTextController
-                                                              ?.selection =
-                                                          TextSelection.collapsed(
-                                                              offset: _model
-                                                                  .passwordLogTextController!
-                                                                  .text
-                                                                  .length);
+                                                      _model
+                                                          .passwordLogFocusNode
+                                                          ?.requestFocus();
+                                                      WidgetsBinding.instance
+                                                          .addPostFrameCallback(
+                                                              (_) {
+                                                        _model.passwordLogTextController
+                                                                ?.selection =
+                                                            TextSelection
+                                                                .collapsed(
+                                                          offset: _model
+                                                              .passwordLogTextController!
+                                                              .text
+                                                              .length,
+                                                        );
+                                                      });
                                                     });
                                                     GoRouter.of(context)
                                                         .prepareAuthEvent();
@@ -1912,8 +1925,9 @@ class _LoginHomePopUpWidgetState extends State<LoginHomePopUpWidget> {
                               ),
                               options: FFButtonOptions(
                                 width: 500.0,
+                                height: 48.0,
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 32.0, 24.0, 32.0),
+                                    0.0, 0.0, 0.0, 0.0),
                                 iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context)

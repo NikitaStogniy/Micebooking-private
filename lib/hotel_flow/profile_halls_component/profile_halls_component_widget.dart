@@ -95,9 +95,9 @@ class _ProfileHallsComponentWidgetState
           FutureBuilder<List<HallRow>>(
             future: HallTable().queryRows(
               queryFn: (q) => q
-                  .in_(
+                  .inFilterOrNull(
                     'id',
-                    widget!.hotel!.hall,
+                    widget!.hotel?.hall,
                   )
                   .order('created_at'),
             ),
@@ -178,7 +178,7 @@ class _ProfileHallsComponentWidgetState
                                 width: MediaQuery.sizeOf(context).width * 0.1,
                                 decoration: BoxDecoration(),
                                 child: Text(
-                                  'Площадь м2',
+                                  'Площадь м²',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -393,7 +393,7 @@ class _ProfileHallsComponentWidgetState
                                                               _model.newHalls,
                                                         },
                                                         matchingRows: (rows) =>
-                                                            rows.eq(
+                                                            rows.eqOrNull(
                                                           'id',
                                                           valueOrDefault<int>(
                                                             widget!.hotel?.id,

@@ -58,7 +58,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
   Widget build(BuildContext context) {
     return FutureBuilder<List<UsersRow>>(
       future: UsersTable().querySingleRow(
-        queryFn: (q) => q.eq(
+        queryFn: (q) => q.eqOrNull(
           'uid',
           currentUserUid,
         ),
@@ -661,7 +661,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                             'network': _model
                                                 .networkTextController.text,
                                           },
-                                          matchingRows: (rows) => rows.eq(
+                                          matchingRows: (rows) => rows.eqOrNull(
                                             'uid',
                                             currentUserUid,
                                           ),
@@ -726,13 +726,20 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                       safeSetState(() {
                                         _model.emailTextController?.text =
                                             currentUserEmail;
+
                                         _model.networkTextController?.text =
                                             valueOrDefault<String>(
                                           containerUsersRow?.network,
                                           'network',
                                         );
+
                                         _model.phoneTextController?.text =
                                             containerUsersRow!.phone!;
+
+                                        _model.phoneMask.updateMask(
+                                          newValue: TextEditingValue(
+                                              text: containerUsersRow!.phone!),
+                                        );
                                       });
                                       _model.isEdit = false;
                                       safeSetState(() {});
@@ -813,7 +820,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                   true,
                                 ),
                               },
-                              matchingRows: (rows) => rows.eq(
+                              matchingRows: (rows) => rows.eqOrNull(
                                 'id',
                                 containerUsersRow?.id,
                               ),
@@ -837,7 +844,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                   true,
                                 ),
                               },
-                              matchingRows: (rows) => rows.eq(
+                              matchingRows: (rows) => rows.eqOrNull(
                                 'id',
                                 containerUsersRow?.id,
                               ),
@@ -861,7 +868,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                   true,
                                 ),
                               },
-                              matchingRows: (rows) => rows.eq(
+                              matchingRows: (rows) => rows.eqOrNull(
                                 'id',
                                 containerUsersRow?.id,
                               ),
@@ -885,7 +892,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                   true,
                                 ),
                               },
-                              matchingRows: (rows) => rows.eq(
+                              matchingRows: (rows) => rows.eqOrNull(
                                 'id',
                                 containerUsersRow?.id,
                               ),
@@ -908,7 +915,7 @@ class _ManagerInfoWidgetState extends State<ManagerInfoWidget> {
                                   true,
                                 ),
                               },
-                              matchingRows: (rows) => rows.eq(
+                              matchingRows: (rows) => rows.eqOrNull(
                                 'id',
                                 containerUsersRow?.id,
                               ),

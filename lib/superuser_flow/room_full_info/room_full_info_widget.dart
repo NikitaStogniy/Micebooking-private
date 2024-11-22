@@ -55,7 +55,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
   Widget build(BuildContext context) {
     return FutureBuilder<List<RoomRow>>(
       future: RoomTable().querySingleRow(
-        queryFn: (q) => q.eq(
+        queryFn: (q) => q.eqOrNull(
           'id',
           widget!.id,
         ),
@@ -89,7 +89,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
               children: [
                 FutureBuilder<List<HotelRow>>(
                   future: HotelTable().querySingleRow(
-                    queryFn: (q) => q.contains(
+                    queryFn: (q) => q.containsOrNull(
                       'rooms',
                       '{${containerRoomRow?.id}}',
                     ),
@@ -122,7 +122,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                         Expanded(
                           child: FutureBuilder<List<CityRow>>(
                             future: CityTable().querySingleRow(
-                              queryFn: (q) => q.eq(
+                              queryFn: (q) => q.eqOrNull(
                                 'id',
                                 rowHotelRow?.city,
                               ),
@@ -560,7 +560,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                             decoration: BoxDecoration(),
                             child: FutureBuilder<List<ServiceCategoryRow>>(
                               future: ServiceCategoryTable().queryRows(
-                                queryFn: (q) => q.eq(
+                                queryFn: (q) => q.eqOrNull(
                                   'type',
                                   EnumType.ROOM.name,
                                 ),
@@ -641,7 +641,7 @@ class _RoomFullInfoWidgetState extends State<RoomFullInfoWidget> {
                                             expanded:
                                                 FutureBuilder<List<ServiceRow>>(
                                               future: ServiceTable().queryRows(
-                                                queryFn: (q) => q.eq(
+                                                queryFn: (q) => q.eqOrNull(
                                                   'category',
                                                   staggeredViewServiceCategoryRow
                                                       .id,

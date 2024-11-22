@@ -59,12 +59,6 @@ class _ClientHallEditComponentWidgetState
         _model.price = widget!.request!.price!;
         _model.seating = widget!.request?.seating;
         safeSetState(() {});
-        await widget.onLoad?.call(
-          valueOrDefault<double>(
-            (widget!.hall!.price!) * _model.days,
-            0.0,
-          ),
-        );
       }
     });
 
@@ -511,7 +505,7 @@ class _ClientHallEditComponentWidgetState
                                           ].divide(SizedBox(width: 24.0)),
                                         ),
                                         Text(
-                                          'Площадь:  ${widget!.hall?.size?.toString()} кв2',
+                                          'Площадь:  ${widget!.hall?.size?.toString()} м²',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -1378,7 +1372,7 @@ class _ClientHallEditComponentWidgetState
                                                               if (!widget!
                                                                   .isChosen) {
                                                                 _model.seating =
-                                                                    'U-shape';
+                                                                    'O-shape';
                                                                 safeSetState(
                                                                     () {});
                                                               }

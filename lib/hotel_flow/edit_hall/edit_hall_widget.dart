@@ -53,30 +53,43 @@ class _EditHallWidgetState extends State<EditHallWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       safeSetState(() {
         _model.nameEditTextController?.text = widget!.initialHall!.name!;
+
         _model.sizeEditTextController?.text =
             widget!.initialHall!.size!.toString();
+
         _model.descriptionEditTextController?.text =
             widget!.initialHall!.description!;
+
         _model.capacityEditTextController?.text =
             widget!.initialHall!.capacity!.toString();
+
         _model.priceEditTextController?.text =
             widget!.initialHall!.price!.toString();
+
         _model.halfPriceEditTextController?.text =
             widget!.initialHall!.halfprice!.toString();
+
         _model.clasTextController?.text =
             widget!.initialHall!.seatingClass!.toString();
+
         _model.theatreTextController?.text =
             widget!.initialHall!.seatingTheater!.toString();
+
         _model.commTextController?.text =
             widget!.initialHall!.seatingCommunication!.toString();
+
         _model.ushapeTextController?.text =
             widget!.initialHall!.seatingUshape!.toString();
+
         _model.oshapeTextController?.text =
             widget!.initialHall!.seatingOshape!.toString();
+
         _model.furshetTextController?.text =
             widget!.initialHall!.seatingFurshet!.toString();
+
         _model.banketTextController?.text =
             widget!.initialHall!.seatingBanket!.toString();
+
         _model.kabareTextController?.text =
             widget!.initialHall!.seatingKabare!.toString();
       });
@@ -112,8 +125,12 @@ class _EditHallWidgetState extends State<EditHallWidget> {
             _model.theatreTextController.text == '') {
           safeSetState(() {
             _model.theatreTextController?.text = '0';
-            _model.theatreTextController?.selection = TextSelection.collapsed(
-                offset: _model.theatreTextController!.text.length);
+            _model.theatreFocusNode?.requestFocus();
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              _model.theatreTextController?.selection = TextSelection.collapsed(
+                offset: _model.theatreTextController!.text.length,
+              );
+            });
           });
         }
       },
@@ -127,8 +144,12 @@ class _EditHallWidgetState extends State<EditHallWidget> {
             _model.clasTextController.text == '') {
           safeSetState(() {
             _model.clasTextController?.text = '0';
-            _model.clasTextController?.selection = TextSelection.collapsed(
-                offset: _model.clasTextController!.text.length);
+            _model.clasFocusNode?.requestFocus();
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              _model.clasTextController?.selection = TextSelection.collapsed(
+                offset: _model.clasTextController!.text.length,
+              );
+            });
           });
         }
       },
@@ -142,8 +163,12 @@ class _EditHallWidgetState extends State<EditHallWidget> {
             _model.commTextController.text == '') {
           safeSetState(() {
             _model.commTextController?.text = '0';
-            _model.commTextController?.selection = TextSelection.collapsed(
-                offset: _model.commTextController!.text.length);
+            _model.commFocusNode?.requestFocus();
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              _model.commTextController?.selection = TextSelection.collapsed(
+                offset: _model.commTextController!.text.length,
+              );
+            });
           });
         }
       },
@@ -157,8 +182,12 @@ class _EditHallWidgetState extends State<EditHallWidget> {
             _model.ushapeTextController.text == '') {
           safeSetState(() {
             _model.ushapeTextController?.text = '0';
-            _model.ushapeTextController?.selection = TextSelection.collapsed(
-                offset: _model.ushapeTextController!.text.length);
+            _model.ushapeFocusNode?.requestFocus();
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              _model.ushapeTextController?.selection = TextSelection.collapsed(
+                offset: _model.ushapeTextController!.text.length,
+              );
+            });
           });
         }
       },
@@ -172,8 +201,12 @@ class _EditHallWidgetState extends State<EditHallWidget> {
             _model.oshapeTextController.text == '') {
           safeSetState(() {
             _model.oshapeTextController?.text = '0';
-            _model.oshapeTextController?.selection = TextSelection.collapsed(
-                offset: _model.oshapeTextController!.text.length);
+            _model.oshapeFocusNode?.requestFocus();
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              _model.oshapeTextController?.selection = TextSelection.collapsed(
+                offset: _model.oshapeTextController!.text.length,
+              );
+            });
           });
         }
       },
@@ -242,31 +275,44 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                           safeSetState(() {
                             _model.nameEditTextController?.text =
                                 widget!.initialHall!.name!;
+
                             _model.descriptionEditTextController?.text =
                                 widget!.initialHall!.description!;
+
                             _model.sizeEditTextController?.text =
                                 widget!.initialHall!.size!.toString();
+
                             _model.capacityEditTextController?.text =
                                 widget!.initialHall!.capacity!.toString();
+
                             _model.priceEditTextController?.text =
                                 widget!.initialHall!.price!.toString();
+
                             _model.halfPriceEditTextController?.text =
                                 widget!.initialHall!.halfprice!.toString();
+
                             _model.clasTextController?.text =
                                 widget!.initialHall!.seatingClass!.toString();
+
                             _model.commTextController?.text = widget!
                                 .initialHall!.seatingCommunication!
                                 .toString();
+
                             _model.theatreTextController?.text =
                                 widget!.initialHall!.seatingTheater!.toString();
+
                             _model.ushapeTextController?.text =
                                 widget!.initialHall!.seatingUshape!.toString();
+
                             _model.oshapeTextController?.text =
                                 widget!.initialHall!.seatingOshape!.toString();
+
                             _model.kabareTextController?.text =
                                 widget!.initialHall!.seatingKabare!.toString();
+
                             _model.banketTextController?.text =
                                 widget!.initialHall!.seatingBanket!.toString();
+
                             _model.furshetTextController?.text =
                                 widget!.initialHall!.seatingFurshet!.toString();
                           });
@@ -878,7 +924,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                 ),
                               ),
                               Text(
-                                'м2',
+                                'м²',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -1091,13 +1137,21 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                       _model
                                                           .theatreTextController
                                                           ?.text = '0';
-                                                      _model.theatreTextController
-                                                              ?.selection =
-                                                          TextSelection.collapsed(
-                                                              offset: _model
-                                                                  .theatreTextController!
-                                                                  .text
-                                                                  .length);
+                                                      _model.theatreFocusNode
+                                                          ?.requestFocus();
+                                                      WidgetsBinding.instance
+                                                          .addPostFrameCallback(
+                                                              (_) {
+                                                        _model.theatreTextController
+                                                                ?.selection =
+                                                            TextSelection
+                                                                .collapsed(
+                                                          offset: _model
+                                                              .theatreTextController!
+                                                              .text
+                                                              .length,
+                                                        );
+                                                      });
                                                     });
                                                   }
                                                 },
@@ -1112,13 +1166,21 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                   safeSetState(() {
                                                     _model.theatreTextController
                                                         ?.text = '0';
-                                                    _model.theatreTextController
-                                                            ?.selection =
-                                                        TextSelection.collapsed(
-                                                            offset: _model
-                                                                .theatreTextController!
-                                                                .text
-                                                                .length);
+                                                    _model.theatreFocusNode
+                                                        ?.requestFocus();
+                                                    WidgetsBinding.instance
+                                                        .addPostFrameCallback(
+                                                            (_) {
+                                                      _model.theatreTextController
+                                                              ?.selection =
+                                                          TextSelection
+                                                              .collapsed(
+                                                        offset: _model
+                                                            .theatreTextController!
+                                                            .text
+                                                            .length,
+                                                      );
+                                                    });
                                                   });
                                                 }
                                               },
@@ -1259,13 +1321,21 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                     safeSetState(() {
                                                       _model.clasTextController
                                                           ?.text = '0';
-                                                      _model.clasTextController
-                                                              ?.selection =
-                                                          TextSelection.collapsed(
-                                                              offset: _model
-                                                                  .clasTextController!
-                                                                  .text
-                                                                  .length);
+                                                      _model.clasFocusNode
+                                                          ?.requestFocus();
+                                                      WidgetsBinding.instance
+                                                          .addPostFrameCallback(
+                                                              (_) {
+                                                        _model.clasTextController
+                                                                ?.selection =
+                                                            TextSelection
+                                                                .collapsed(
+                                                          offset: _model
+                                                              .clasTextController!
+                                                              .text
+                                                              .length,
+                                                        );
+                                                      });
                                                     });
                                                   }
                                                 },
@@ -1280,13 +1350,21 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                   safeSetState(() {
                                                     _model.clasTextController
                                                         ?.text = '0';
-                                                    _model.clasTextController
-                                                            ?.selection =
-                                                        TextSelection.collapsed(
-                                                            offset: _model
-                                                                .clasTextController!
-                                                                .text
-                                                                .length);
+                                                    _model.clasFocusNode
+                                                        ?.requestFocus();
+                                                    WidgetsBinding.instance
+                                                        .addPostFrameCallback(
+                                                            (_) {
+                                                      _model.clasTextController
+                                                              ?.selection =
+                                                          TextSelection
+                                                              .collapsed(
+                                                        offset: _model
+                                                            .clasTextController!
+                                                            .text
+                                                            .length,
+                                                      );
+                                                    });
                                                   });
                                                 }
                                               },
@@ -1427,13 +1505,21 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                     safeSetState(() {
                                                       _model.commTextController
                                                           ?.text = '0';
-                                                      _model.commTextController
-                                                              ?.selection =
-                                                          TextSelection.collapsed(
-                                                              offset: _model
-                                                                  .commTextController!
-                                                                  .text
-                                                                  .length);
+                                                      _model.commFocusNode
+                                                          ?.requestFocus();
+                                                      WidgetsBinding.instance
+                                                          .addPostFrameCallback(
+                                                              (_) {
+                                                        _model.commTextController
+                                                                ?.selection =
+                                                            TextSelection
+                                                                .collapsed(
+                                                          offset: _model
+                                                              .commTextController!
+                                                              .text
+                                                              .length,
+                                                        );
+                                                      });
                                                     });
                                                   }
                                                 },
@@ -1448,13 +1534,21 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                   safeSetState(() {
                                                     _model.commTextController
                                                         ?.text = '0';
-                                                    _model.commTextController
-                                                            ?.selection =
-                                                        TextSelection.collapsed(
-                                                            offset: _model
-                                                                .commTextController!
-                                                                .text
-                                                                .length);
+                                                    _model.commFocusNode
+                                                        ?.requestFocus();
+                                                    WidgetsBinding.instance
+                                                        .addPostFrameCallback(
+                                                            (_) {
+                                                      _model.commTextController
+                                                              ?.selection =
+                                                          TextSelection
+                                                              .collapsed(
+                                                        offset: _model
+                                                            .commTextController!
+                                                            .text
+                                                            .length,
+                                                      );
+                                                    });
                                                   });
                                                 }
                                               },
@@ -1596,13 +1690,21 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                       _model
                                                           .ushapeTextController
                                                           ?.text = '0';
-                                                      _model.ushapeTextController
-                                                              ?.selection =
-                                                          TextSelection.collapsed(
-                                                              offset: _model
-                                                                  .ushapeTextController!
-                                                                  .text
-                                                                  .length);
+                                                      _model.ushapeFocusNode
+                                                          ?.requestFocus();
+                                                      WidgetsBinding.instance
+                                                          .addPostFrameCallback(
+                                                              (_) {
+                                                        _model.ushapeTextController
+                                                                ?.selection =
+                                                            TextSelection
+                                                                .collapsed(
+                                                          offset: _model
+                                                              .ushapeTextController!
+                                                              .text
+                                                              .length,
+                                                        );
+                                                      });
                                                     });
                                                   }
                                                 },
@@ -1617,13 +1719,21 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                   safeSetState(() {
                                                     _model.ushapeTextController
                                                         ?.text = '0';
-                                                    _model.ushapeTextController
-                                                            ?.selection =
-                                                        TextSelection.collapsed(
-                                                            offset: _model
-                                                                .ushapeTextController!
-                                                                .text
-                                                                .length);
+                                                    _model.ushapeFocusNode
+                                                        ?.requestFocus();
+                                                    WidgetsBinding.instance
+                                                        .addPostFrameCallback(
+                                                            (_) {
+                                                      _model.ushapeTextController
+                                                              ?.selection =
+                                                          TextSelection
+                                                              .collapsed(
+                                                        offset: _model
+                                                            .ushapeTextController!
+                                                            .text
+                                                            .length,
+                                                      );
+                                                    });
                                                   });
                                                 }
                                               },
@@ -1765,13 +1875,21 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                       _model
                                                           .oshapeTextController
                                                           ?.text = '0';
-                                                      _model.oshapeTextController
-                                                              ?.selection =
-                                                          TextSelection.collapsed(
-                                                              offset: _model
-                                                                  .oshapeTextController!
-                                                                  .text
-                                                                  .length);
+                                                      _model.oshapeFocusNode
+                                                          ?.requestFocus();
+                                                      WidgetsBinding.instance
+                                                          .addPostFrameCallback(
+                                                              (_) {
+                                                        _model.oshapeTextController
+                                                                ?.selection =
+                                                            TextSelection
+                                                                .collapsed(
+                                                          offset: _model
+                                                              .oshapeTextController!
+                                                              .text
+                                                              .length,
+                                                        );
+                                                      });
                                                     });
                                                   }
                                                 },
@@ -1786,13 +1904,21 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                   safeSetState(() {
                                                     _model.oshapeTextController
                                                         ?.text = '0';
-                                                    _model.oshapeTextController
-                                                            ?.selection =
-                                                        TextSelection.collapsed(
-                                                            offset: _model
-                                                                .oshapeTextController!
-                                                                .text
-                                                                .length);
+                                                    _model.oshapeFocusNode
+                                                        ?.requestFocus();
+                                                    WidgetsBinding.instance
+                                                        .addPostFrameCallback(
+                                                            (_) {
+                                                      _model.oshapeTextController
+                                                              ?.selection =
+                                                          TextSelection
+                                                              .collapsed(
+                                                        offset: _model
+                                                            .oshapeTextController!
+                                                            .text
+                                                            .length,
+                                                      );
+                                                    });
                                                   });
                                                 }
                                               },
@@ -2286,7 +2412,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                               decoration: BoxDecoration(),
                               child: FutureBuilder<List<ServiceCategoryRow>>(
                                 future: ServiceCategoryTable().queryRows(
-                                  queryFn: (q) => q.eq(
+                                  queryFn: (q) => q.eqOrNull(
                                     'type',
                                     EnumType.HALL.name,
                                   ),
@@ -2371,7 +2497,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                   List<ServiceRow>>(
                                                 future:
                                                     ServiceTable().queryRows(
-                                                  queryFn: (q) => q.eq(
+                                                  queryFn: (q) => q.eqOrNull(
                                                     'category',
                                                     staggeredViewServiceCategoryRow
                                                         .id,
@@ -2802,7 +2928,9 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                               '0') &&
                                           (_model.furshetTextController.text ==
                                               '0')) ||
-                                      (_model.uploadedImages.length == 0))
+                                      (_model.uploadedImages.length == 0) ||
+                                      (_model.priceEditTextController.text ==
+                                          '0'))
                                   ? null
                                   : () async {
                                       await showDialog(
@@ -2906,7 +3034,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                     ),
                                                   },
                                                   matchingRows: (rows) =>
-                                                      rows.eq(
+                                                      rows.eqOrNull(
                                                     'id',
                                                     widget!.id,
                                                   ),
@@ -2916,64 +3044,77 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                                           ?.text =
                                                       widget!
                                                           .initialHall!.name!;
+
                                                   _model.descriptionEditTextController
                                                           ?.text =
                                                       widget!.initialHall!
                                                           .description!;
+
                                                   _model.sizeEditTextController
                                                           ?.text =
                                                       widget!.initialHall!.size!
                                                           .toString();
+
                                                   _model.capacityEditTextController
                                                           ?.text =
                                                       widget!.initialHall!
                                                           .capacity!
                                                           .toString();
+
                                                   _model.priceEditTextController
                                                           ?.text =
                                                       widget!
                                                           .initialHall!.price!
                                                           .toString();
+
                                                   _model.halfPriceEditTextController
                                                           ?.text =
                                                       widget!.initialHall!
                                                           .halfprice!
                                                           .toString();
+
                                                   _model.clasTextController
                                                           ?.text =
                                                       widget!.initialHall!
                                                           .seatingClass!
                                                           .toString();
+
                                                   _model.commTextController
                                                           ?.text =
                                                       widget!.initialHall!
                                                           .seatingCommunication!
                                                           .toString();
+
                                                   _model.theatreTextController
                                                           ?.text =
                                                       widget!.initialHall!
                                                           .seatingTheater!
                                                           .toString();
+
                                                   _model.ushapeTextController
                                                           ?.text =
                                                       widget!.initialHall!
                                                           .seatingUshape!
                                                           .toString();
+
                                                   _model.oshapeTextController
                                                           ?.text =
                                                       widget!.initialHall!
                                                           .seatingOshape!
                                                           .toString();
+
                                                   _model.kabareTextController
                                                           ?.text =
                                                       widget!.initialHall!
                                                           .seatingKabare!
                                                           .toString();
+
                                                   _model.banketTextController
                                                           ?.text =
                                                       widget!.initialHall!
                                                           .seatingBanket!
                                                           .toString();
+
                                                   _model.furshetTextController
                                                           ?.text =
                                                       widget!.initialHall!
@@ -3049,54 +3190,67 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                                             _model.nameEditTextController
                                                     ?.text =
                                                 widget!.initialHall!.name!;
+
                                             _model.descriptionEditTextController
                                                     ?.text =
                                                 widget!
                                                     .initialHall!.description!;
+
                                             _model.capacityEditTextController
                                                     ?.text =
                                                 widget!.initialHall!.capacity!
                                                     .toString();
+
                                             _model.sizeEditTextController
                                                     ?.text =
                                                 widget!.initialHall!.size!
                                                     .toString();
+
                                             _model.theatreTextController?.text =
                                                 widget!.initialHall!
                                                     .seatingTheater!
                                                     .toString();
+
                                             _model.commTextController?.text =
                                                 widget!.initialHall!
                                                     .seatingCommunication!
                                                     .toString();
+
                                             _model.ushapeTextController?.text =
                                                 widget!
                                                     .initialHall!.seatingUshape!
                                                     .toString();
+
                                             _model.clasTextController?.text =
                                                 widget!
                                                     .initialHall!.seatingClass!
                                                     .toString();
+
                                             _model.oshapeTextController?.text =
                                                 widget!
                                                     .initialHall!.seatingOshape!
                                                     .toString();
+
                                             _model.kabareTextController?.text =
                                                 widget!
                                                     .initialHall!.seatingKabare!
                                                     .toString();
+
                                             _model.banketTextController?.text =
                                                 widget!
                                                     .initialHall!.seatingBanket!
                                                     .toString();
+
                                             _model.furshetTextController?.text =
                                                 widget!.initialHall!
                                                     .seatingFurshet!
                                                     .toString();
+
                                             _model.priceEditTextController
                                                     ?.text =
                                                 widget!.initialHall!.price!
                                                     .toString();
+
                                             _model.halfPriceEditTextController
                                                     ?.text =
                                                 widget!.initialHall!.halfprice!
@@ -3142,7 +3296,7 @@ class _EditHallWidgetState extends State<EditHallWidget> {
                       FFButtonWidget(
                         onPressed: () async {
                           await HallTable().delete(
-                            matchingRows: (rows) => rows.eq(
+                            matchingRows: (rows) => rows.eqOrNull(
                               'id',
                               widget!.id,
                             ),

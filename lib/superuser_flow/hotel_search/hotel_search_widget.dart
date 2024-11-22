@@ -358,7 +358,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                             final hotelsItem = hotels[hotelsIndex];
                             return FutureBuilder<List<HotelRow>>(
                               future: HotelTable().querySingleRow(
-                                queryFn: (q) => q.eq(
+                                queryFn: (q) => q.eqOrNull(
                                   'id',
                                   getJsonField(
                                     hotelsItem,
@@ -414,7 +414,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                         0.0, 4.0, 0.0, 4.0),
                                     child: FutureBuilder<List<UsersRow>>(
                                       future: UsersTable().querySingleRow(
-                                        queryFn: (q) => q.in_(
+                                        queryFn: (q) => q.inFilterOrNull(
                                           'uid',
                                           (getJsonField(
                                             hotelsItem,
@@ -422,7 +422,7 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                             true,
                                           ) as List)
                                               .map<String>((s) => s.toString())
-                                              .toList()!,
+                                              .toList(),
                                         ),
                                       ),
                                       builder: (context, snapshot) {
@@ -501,8 +501,8 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                                                   false,
                                                             },
                                                             matchingRows:
-                                                                (rows) =>
-                                                                    rows.eq(
+                                                                (rows) => rows
+                                                                    .eqOrNull(
                                                               'id',
                                                               getJsonField(
                                                                 hotelsItem,
@@ -517,8 +517,8 @@ class _HotelSearchWidgetState extends State<HotelSearchWidget> {
                                                               'isVisible': true,
                                                             },
                                                             matchingRows:
-                                                                (rows) =>
-                                                                    rows.eq(
+                                                                (rows) => rows
+                                                                    .eqOrNull(
                                                               'id',
                                                               getJsonField(
                                                                 hotelsItem,

@@ -62,7 +62,7 @@ class _EditQAWidgetState extends State<EditQAWidget> {
               future: (_model.requestCompleter ??= Completer<List<CmsRow>>()
                     ..complete(CmsTable().queryRows(
                       queryFn: (q) => q
-                          .eq(
+                          .eqOrNull(
                             'type',
                             EnumCms.QA.name,
                           )
@@ -106,7 +106,7 @@ class _EditQAWidgetState extends State<EditQAWidget> {
                         qa: columnCmsRow,
                         delete: () async {
                           await CmsTable().delete(
-                            matchingRows: (rows) => rows.eq(
+                            matchingRows: (rows) => rows.eqOrNull(
                               'id',
                               columnCmsRow.id,
                             ),

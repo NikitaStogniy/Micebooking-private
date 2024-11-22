@@ -230,6 +230,8 @@ dynamic deserializeParam<T>(
             return RequestsRoomVarRow(data);
           case HotelRow:
             return HotelRow(data);
+          case RoomSeasonElementRow:
+            return RoomSeasonElementRow(data);
           case RoomRow:
             return RoomRow(data);
           case LastChangedRow:
@@ -244,8 +246,6 @@ dynamic deserializeParam<T>(
             return FoodPositionRow(data);
           case ServiceCategoryRow:
             return ServiceCategoryRow(data);
-          case EthalonSeatingRow:
-            return EthalonSeatingRow(data);
           case SeatingRow:
             return SeatingRow(data);
           case RequestsFoodVarRow:
@@ -260,6 +260,8 @@ dynamic deserializeParam<T>(
             return CenterDistanceRow(data);
           case HallRow:
             return HallRow(data);
+          case RoomSeasonsRow:
+            return RoomSeasonsRow(data);
           case RequestsRow:
             return RequestsRow(data);
           case FeedbackRow:

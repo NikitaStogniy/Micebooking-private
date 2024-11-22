@@ -54,7 +54,7 @@ class _DropdownCompWidgetState extends State<DropdownCompWidget> {
       padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 40.0, 0.0),
       child: FutureBuilder<List<ServiceCategoryRow>>(
         future: ServiceCategoryTable().queryRows(
-          queryFn: (q) => q.eq(
+          queryFn: (q) => q.eqOrNull(
             'type',
             EnumType.FOOD_POSITION.name,
           ),
@@ -94,7 +94,7 @@ class _DropdownCompWidgetState extends State<DropdownCompWidget> {
             onChanged: (val) async {
               safeSetState(() => _model.dropDownValue = val);
               _model.category = await ServiceCategoryTable().queryRows(
-                queryFn: (q) => q.eq(
+                queryFn: (q) => q.eqOrNull(
                   'name',
                   _model.dropDownValue,
                 ),

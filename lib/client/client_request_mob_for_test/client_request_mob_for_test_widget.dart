@@ -68,14 +68,14 @@ class _ClientRequestMobForTestWidgetState
               FutureBuilder<List<RequestsRow>>(
                 future: RequestsTable().queryRows(
                   queryFn: (q) => q
-                      .eq(
+                      .eqOrNull(
                         'owner',
                         valueOrDefault<int>(
                           widget!.userId?.id,
                           88,
                         ),
                       )
-                      .eq(
+                      .eqOrNull(
                         'monthYear',
                         _model.formatedDate,
                       )
@@ -891,7 +891,7 @@ class _ClientRequestMobForTestWidgetState
             if (_model.requestOpen == true)
               FutureBuilder<List<RequestsRow>>(
                 future: RequestsTable().querySingleRow(
-                  queryFn: (q) => q.eq(
+                  queryFn: (q) => q.eqOrNull(
                     'id',
                     _model.request,
                   ),
@@ -1037,7 +1037,7 @@ class _ClientRequestMobForTestWidgetState
                         ),
                         FutureBuilder<List<HotelRow>>(
                           future: HotelTable().querySingleRow(
-                            queryFn: (q) => q.eq(
+                            queryFn: (q) => q.eqOrNull(
                               'id',
                               containerRequestsRow?.hotel,
                             ),
@@ -1068,9 +1068,9 @@ class _ClientRequestMobForTestWidgetState
                               children: [
                                 FutureBuilder<List<UsersRow>>(
                                   future: UsersTable().querySingleRow(
-                                    queryFn: (q) => q.in_(
+                                    queryFn: (q) => q.inFilterOrNull(
                                       'uid',
-                                      columnHotelRow!.ownerId,
+                                      columnHotelRow?.ownerId,
                                     ),
                                   ),
                                   builder: (context, snapshot) {
@@ -1191,9 +1191,9 @@ class _ClientRequestMobForTestWidgetState
                                     0.0, 24.0, 0.0, 0.0),
                                 child: FutureBuilder<List<RequestsHallVarRow>>(
                                   future: RequestsHallVarTable().queryRows(
-                                    queryFn: (q) => q.in_(
+                                    queryFn: (q) => q.inFilterOrNull(
                                       'id',
-                                      containerRequestsRow!.halls,
+                                      containerRequestsRow?.halls,
                                     ),
                                   ),
                                   builder: (context, snapshot) {
@@ -1664,9 +1664,9 @@ class _ClientRequestMobForTestWidgetState
                               ),
                               FutureBuilder<List<RequestsFoodVarRow>>(
                                 future: RequestsFoodVarTable().queryRows(
-                                  queryFn: (q) => q.in_(
+                                  queryFn: (q) => q.inFilterOrNull(
                                     'id',
-                                    containerRequestsRow!.food,
+                                    containerRequestsRow?.food,
                                   ),
                                 ),
                                 builder: (context, snapshot) {
@@ -2129,9 +2129,9 @@ class _ClientRequestMobForTestWidgetState
                               ),
                               FutureBuilder<List<RequestsRoomVarRow>>(
                                 future: RequestsRoomVarTable().queryRows(
-                                  queryFn: (q) => q.in_(
+                                  queryFn: (q) => q.inFilterOrNull(
                                     'id',
-                                    containerRequestsRow!.rooms,
+                                    containerRequestsRow?.rooms,
                                   ),
                                 ),
                                 builder: (context, snapshot) {

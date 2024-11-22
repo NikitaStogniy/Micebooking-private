@@ -46,7 +46,7 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
     return FutureBuilder<List<CmsRow>>(
       future: CmsTable().querySingleRow(
         queryFn: (q) => q
-            .eq(
+            .eqOrNull(
               'type',
               EnumCms.WHYUS.name,
             )
@@ -214,7 +214,8 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
                                                         containerCmsRow?.title1,
                                                         'title1',
                                                       ).maybeHandleOverflow(
-                                                          maxChars: 30),
+                                                        maxChars: 30,
+                                                      ),
                                                       minFontSize: 16.0,
                                                       style: FlutterFlowTheme
                                                               .of(context)
@@ -326,7 +327,8 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
                                                         containerCmsRow?.title2,
                                                         'title2',
                                                       ).maybeHandleOverflow(
-                                                          maxChars: 30),
+                                                        maxChars: 30,
+                                                      ),
                                                       minFontSize: 16.0,
                                                       style: FlutterFlowTheme
                                                               .of(context)
@@ -438,7 +440,8 @@ class _WhyusBottomsheetWidgetState extends State<WhyusBottomsheetWidget> {
                                                         containerCmsRow?.title3,
                                                         'title3',
                                                       ).maybeHandleOverflow(
-                                                          maxChars: 30),
+                                                        maxChars: 30,
+                                                      ),
                                                       minFontSize: 16.0,
                                                       style: FlutterFlowTheme
                                                               .of(context)

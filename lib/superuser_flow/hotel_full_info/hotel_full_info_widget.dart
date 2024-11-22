@@ -57,7 +57,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
   Widget build(BuildContext context) {
     return FutureBuilder<List<HotelRow>>(
       future: HotelTable().querySingleRow(
-        queryFn: (q) => q.eq(
+        queryFn: (q) => q.eqOrNull(
           'id',
           widget!.id,
         ),
@@ -92,7 +92,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
               children: [
                 FutureBuilder<List<CityRow>>(
                   future: CityTable().querySingleRow(
-                    queryFn: (q) => q.eq(
+                    queryFn: (q) => q.eqOrNull(
                       'id',
                       containerHotelRow?.city,
                     ),
@@ -702,7 +702,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                             decoration: BoxDecoration(),
                             child: FutureBuilder<List<ServiceCategoryRow>>(
                               future: ServiceCategoryTable().queryRows(
-                                queryFn: (q) => q.eq(
+                                queryFn: (q) => q.eqOrNull(
                                   'type',
                                   EnumType.HOTEL.name,
                                 ),
@@ -783,7 +783,7 @@ class _HotelFullInfoWidgetState extends State<HotelFullInfoWidget> {
                                             expanded:
                                                 FutureBuilder<List<ServiceRow>>(
                                               future: ServiceTable().queryRows(
-                                                queryFn: (q) => q.eq(
+                                                queryFn: (q) => q.eqOrNull(
                                                   'category',
                                                   staggeredViewServiceCategoryRow
                                                       .id,

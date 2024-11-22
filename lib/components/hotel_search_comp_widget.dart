@@ -25,7 +25,7 @@ class HotelSearchCompWidget extends StatefulWidget {
     required this.onSearch,
     required this.date,
     double? duration,
-    this.ciry,
+    this.city,
     int? visitors,
     this.hallFilter1,
     this.hallFilter2,
@@ -46,7 +46,7 @@ class HotelSearchCompWidget extends StatefulWidget {
       HotelSeatingStruct? hallFilter3)? onSearch;
   final DateTime? date;
   final double duration;
-  final CityRow? ciry;
+  final CityRow? city;
   final int visitors;
   final HotelSeatingStruct? hallFilter1;
   final HotelSeatingStruct? hallFilter2;
@@ -75,7 +75,7 @@ class _HotelSearchCompWidgetState extends State<HotelSearchCompWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.startDate = widget!.date;
       _model.visitors = widget!.visitors;
-      _model.city = widget!.ciry;
+      _model.city = widget!.city;
       _model.duration = widget!.duration;
       _model.hallFilter1 = widget!.hallFilter1;
       _model.hallFilter2 = widget!.hallFilter2;

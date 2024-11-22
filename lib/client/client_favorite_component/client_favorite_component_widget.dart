@@ -74,9 +74,9 @@ class _ClientFavoriteComponentWidgetState
             FutureBuilder<List<HotelRow>>(
               future: HotelTable().queryRows(
                 queryFn: (q) => q
-                    .in_(
+                    .inFilterOrNull(
                       'id',
-                      widget!.list!.hotelId,
+                      widget!.list?.hotelId,
                     )
                     .order('created_at'),
               ),
@@ -262,7 +262,7 @@ class _ClientFavoriteComponentWidgetState
                                           decoration: BoxDecoration(),
                                           child: FutureBuilder<List<CityRow>>(
                                             future: CityTable().querySingleRow(
-                                              queryFn: (q) => q.eq(
+                                              queryFn: (q) => q.eqOrNull(
                                                 'id',
                                                 hotelsItem.city,
                                               ),
@@ -368,7 +368,8 @@ class _ClientFavoriteComponentWidgetState
                                                 data: {
                                                   'hotel_id': _model.newRooms,
                                                 },
-                                                matchingRows: (rows) => rows.eq(
+                                                matchingRows: (rows) =>
+                                                    rows.eqOrNull(
                                                   'id',
                                                   widget!.list?.id,
                                                 ),

@@ -114,7 +114,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                 future: (_model.requestCompleter1 ??=
                         Completer<List<ServiceCategoryRow>>()
                           ..complete(ServiceCategoryTable().querySingleRow(
-                            queryFn: (q) => q.eq(
+                            queryFn: (q) => q.eqOrNull(
                               'id',
                               _model.categoryId,
                             ),
@@ -304,7 +304,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                     ),
                                     FutureBuilder<List<ServiceCategoryRow>>(
                                       future: ServiceCategoryTable().queryRows(
-                                        queryFn: (q) => q.eq(
+                                        queryFn: (q) => q.eqOrNull(
                                           'type',
                                           EnumType.FOOD.name,
                                         ),
@@ -349,7 +349,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                             _model.currentcategotyId =
                                                 await ServiceCategoryTable()
                                                     .queryRows(
-                                              queryFn: (q) => q.eq(
+                                              queryFn: (q) => q.eqOrNull(
                                                 'name',
                                                 _model.createCategoryValue,
                                               ),
@@ -582,7 +582,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                   ..complete(
                                                       ServiceCategoryTable()
                                                           .querySingleRow(
-                                                    queryFn: (q) => q.eq(
+                                                    queryFn: (q) => q.eqOrNull(
                                                       'name',
                                                       _model.menuCategoryValue,
                                                     ),
@@ -735,7 +735,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                               ServiceCategoryTable()
                                                                   .queryRows(
                                                             queryFn: (q) =>
-                                                                q.eq(
+                                                                q.eqOrNull(
                                                               'type',
                                                               EnumType
                                                                   .FOOD_POSITION
@@ -785,7 +785,8 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                       _model.category =
                                                           await ServiceCategoryTable()
                                                               .queryRows(
-                                                        queryFn: (q) => q.eq(
+                                                        queryFn: (q) =>
+                                                            q.eqOrNull(
                                                           'name',
                                                           _model
                                                               .menuCategoryValue,
@@ -876,7 +877,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                                                   .toList()),
                                                     },
                                                     matchingRows: (rows) =>
-                                                        rows.eq(
+                                                        rows.eqOrNull(
                                                       'id',
                                                       rowServiceCategoryRow?.id,
                                                     ),
@@ -1031,7 +1032,8 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                 (_model.createPriceTextController.text ==
                                         null ||
                                     _model.createPriceTextController.text ==
-                                        ''))
+                                        '') ||
+                                (_model.createPriceTextController.text == '0'))
                             ? null
                             : () async {
                                 _model.newFood = await FoodTable().insert({
@@ -1046,7 +1048,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                 _model.submitHotel =
                                     await HotelTable().queryRows(
                                   queryFn: (q) => q
-                                      .eq(
+                                      .eqOrNull(
                                         'id',
                                         valueOrDefault<int>(
                                           widget!.hotelId,
@@ -1068,7 +1070,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                   data: {
                                     'food': _model.newFoodSet,
                                   },
-                                  matchingRows: (rows) => rows.eq(
+                                  matchingRows: (rows) => rows.eqOrNull(
                                     'id',
                                     valueOrDefault<int>(
                                       widget!.hotelId,
@@ -1083,7 +1085,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
                                             .toList(),
                                         _model.newFoods.toList()),
                                   },
-                                  matchingRows: (rows) => rows.eq(
+                                  matchingRows: (rows) => rows.eqOrNull(
                                     'id',
                                     addServiceCategoryRow?.id,
                                   ),
@@ -1135,7 +1137,7 @@ class _AddOrEditFoodWidgetState extends State<AddOrEditFoodWidget>
             if (widget!.id != 0)
               FutureBuilder<List<FoodRow>>(
                 future: FoodTable().querySingleRow(
-                  queryFn: (q) => q.eq(
+                  queryFn: (q) => q.eqOrNull(
                     'id',
                     widget!.id,
                   ),

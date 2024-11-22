@@ -51,7 +51,7 @@ class _MobileMenuWidgetState extends State<MobileMenuWidget> {
       alignment: AlignmentDirectional(1.0, -1.0),
       child: FutureBuilder<List<UsersRow>>(
         future: UsersTable().querySingleRow(
-          queryFn: (q) => q.eq(
+          queryFn: (q) => q.eqOrNull(
             'uid',
             currentUserUid,
           ),

@@ -62,6 +62,15 @@ class RequestModel extends FlutterFlowModel<RequestWidget> {
 
   int? wrapperId;
 
+  List<int> emptyList = [0];
+  void addToEmptyList(int item) => emptyList.add(item);
+  void removeFromEmptyList(int item) => emptyList.remove(item);
+  void removeAtIndexFromEmptyList(int index) => emptyList.removeAt(index);
+  void insertAtIndexInEmptyList(int index, int item) =>
+      emptyList.insert(index, item);
+  void updateEmptyListAtIndex(int index, Function(int) updateFn) =>
+      emptyList[index] = updateFn(emptyList[index]);
+
   ///  State fields for stateful widgets in this page.
 
   // Model for Menu component.

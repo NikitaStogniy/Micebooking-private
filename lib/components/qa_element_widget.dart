@@ -120,7 +120,7 @@ class _QaElementWidgetState extends State<QaElementWidget> {
                       data: {
                         'title1': _model.aboutUsText1TextController1.text,
                       },
-                      matchingRows: (rows) => rows.eq(
+                      matchingRows: (rows) => rows.eqOrNull(
                         'id',
                         widget!.qa?.id,
                       ),
@@ -213,7 +213,7 @@ class _QaElementWidgetState extends State<QaElementWidget> {
                       data: {
                         'text1': _model.aboutUsText1TextController2.text,
                       },
-                      matchingRows: (rows) => rows.eq(
+                      matchingRows: (rows) => rows.eqOrNull(
                         'id',
                         widget!.qa?.id,
                       ),

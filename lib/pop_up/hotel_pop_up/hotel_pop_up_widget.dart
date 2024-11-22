@@ -997,11 +997,11 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                       child: FutureBuilder<List<ServiceCategoryRow>>(
                         future: ServiceCategoryTable().queryRows(
                           queryFn: (q) => q
-                              .eq(
+                              .eqOrNull(
                                 'type',
                                 EnumType.HOTEL.name,
                               )
-                              .overlaps(
+                              .overlapsOrNull(
                                 'services_id',
                                 widget!.hotel?.services,
                               ),
@@ -1053,13 +1053,13 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                       return FutureBuilder<List<ServiceRow>>(
                                         future: ServiceTable().queryRows(
                                           queryFn: (q) => q
-                                              .eq(
+                                              .eqOrNull(
                                                 'category',
                                                 categoriesItem.id,
                                               )
-                                              .in_(
+                                              .inFilterOrNull(
                                                 'id',
-                                                widget!.hotel!.services,
+                                                widget!.hotel?.services,
                                               ),
                                         ),
                                         builder: (context, snapshot) {
@@ -1222,9 +1222,9 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                             0.0, 10.0, 0.0, 0.0),
                                         child: FutureBuilder<List<RoomRow>>(
                                           future: RoomTable().queryRows(
-                                            queryFn: (q) => q.in_(
+                                            queryFn: (q) => q.inFilterOrNull(
                                               'id',
-                                              widget!.hotel!.rooms,
+                                              widget!.hotel?.rooms,
                                             ),
                                           ),
                                           builder: (context, snapshot) {
@@ -1403,9 +1403,9 @@ class _HotelPopUpWidgetState extends State<HotelPopUpWidget> {
                                       0.0, 10.0, 0.0, 0.0),
                                   child: FutureBuilder<List<RoomRow>>(
                                     future: RoomTable().queryRows(
-                                      queryFn: (q) => q.in_(
+                                      queryFn: (q) => q.inFilterOrNull(
                                         'id',
-                                        widget!.hotel!.rooms,
+                                        widget!.hotel?.rooms,
                                       ),
                                     ),
                                     builder: (context, snapshot) {

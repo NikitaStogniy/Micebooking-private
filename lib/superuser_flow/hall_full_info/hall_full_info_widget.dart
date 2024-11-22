@@ -58,7 +58,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
   Widget build(BuildContext context) {
     return FutureBuilder<List<HallRow>>(
       future: HallTable().querySingleRow(
-        queryFn: (q) => q.eq(
+        queryFn: (q) => q.eqOrNull(
           'id',
           widget!.id,
         ),
@@ -92,7 +92,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
               children: [
                 FutureBuilder<List<HotelRow>>(
                   future: HotelTable().querySingleRow(
-                    queryFn: (q) => q.contains(
+                    queryFn: (q) => q.containsOrNull(
                       'hall',
                       '{${containerHallRow?.id}}',
                     ),
@@ -125,7 +125,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                         Expanded(
                           child: FutureBuilder<List<CityRow>>(
                             future: CityTable().querySingleRow(
-                              queryFn: (q) => q.eq(
+                              queryFn: (q) => q.eqOrNull(
                                 'id',
                                 rowHotelRow?.city,
                               ),
@@ -453,7 +453,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                                 ),
                               ),
                               Text(
-                                'м2',
+                                'м²',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -572,7 +572,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                             decoration: BoxDecoration(),
                             child: FutureBuilder<List<ServiceCategoryRow>>(
                               future: ServiceCategoryTable().queryRows(
-                                queryFn: (q) => q.eq(
+                                queryFn: (q) => q.eqOrNull(
                                   'type',
                                   EnumType.HALL.name,
                                 ),
@@ -653,7 +653,7 @@ class _HallFullInfoWidgetState extends State<HallFullInfoWidget> {
                                             expanded:
                                                 FutureBuilder<List<ServiceRow>>(
                                               future: ServiceTable().queryRows(
-                                                queryFn: (q) => q.eq(
+                                                queryFn: (q) => q.eqOrNull(
                                                   'category',
                                                   staggeredViewServiceCategoryRow
                                                       .id,

@@ -1,45 +1,58 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/uikit/check_box/check_box_widget.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'hotel_filter_widget.dart' show HotelFilterWidget;
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class HotelFilterModel extends FlutterFlowModel<HotelFilterWidget> {
   ///  Local state fields for this component.
 
-  bool showMoreService = false;
-
   double? minPrice = 0.0;
 
-  double? maxPrice = 90000000.0;
+  double? maxPrice = 100000.0;
+
+  List<int> stars = [];
+  void addToStars(int item) => stars.add(item);
+  void removeFromStars(int item) => stars.remove(item);
+  void removeAtIndexFromStars(int index) => stars.removeAt(index);
+  void insertAtIndexInStars(int index, int item) => stars.insert(index, item);
+  void updateStarsAtIndex(int index, Function(int) updateFn) =>
+      stars[index] = updateFn(stars[index]);
+
+  double? minDistance = 0.0;
+
+  double? maxDistance = 100000.0;
 
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for Expandable widget.
   late ExpandableController expandableExpandableController1;
 
-  // State field(s) for Checkbox widget.
-  bool? checkboxValue1;
-  // State field(s) for Checkbox widget.
-  bool? checkboxValue2;
-  // State field(s) for Checkbox widget.
-  bool? checkboxValue3;
-  // State field(s) for Checkbox widget.
-  bool? checkboxValue4;
+  // State field(s) for MouseRegion widget.
+  bool mouseRegionHovered1 = false;
+  // State field(s) for MouseRegion widget.
+  bool mouseRegionHovered2 = false;
+  // State field(s) for MouseRegion widget.
+  bool mouseRegionHovered3 = false;
+  // State field(s) for MouseRegion widget.
+  bool mouseRegionHovered4 = false;
   // State field(s) for Expandable widget.
   late ExpandableController expandableExpandableController2;
 
-  // State field(s) for dis1 widget.
-  bool? dis1Value;
-  // State field(s) for dis1-3 widget.
-  bool? dis13Value;
-  // State field(s) for dis3-5 widget.
-  bool? dis35Value;
-  // State field(s) for dis5 widget.
-  bool? dis5Value;
+  // State field(s) for MouseRegion widget.
+  bool mouseRegionHovered5 = false;
+  // State field(s) for MouseRegion widget.
+  bool mouseRegionHovered6 = false;
+  // State field(s) for MouseRegion widget.
+  bool mouseRegionHovered7 = false;
+  // State field(s) for MouseRegion widget.
+  bool mouseRegionHovered8 = false;
   // Model for checkBox component.
   late CheckBoxModel checkBoxModel;
   // State field(s) for Expandable widget.

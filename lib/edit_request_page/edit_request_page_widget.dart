@@ -74,12 +74,48 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.initialhalHallRequest = await RequestsHallVarTable().queryRows(
+        queryFn: (q) => q.inFilterOrNull(
+          'id',
+          widget!.hallRequests,
+        ),
+      );
+      _model.initialhalFoodRequest = await RequestsFoodVarTable().queryRows(
+        queryFn: (q) => q.inFilterOrNull(
+          'id',
+          widget!.foodRequests,
+        ),
+      );
+      _model.initialhalRoomRequest = await RequestsRoomVarTable().queryRows(
+        queryFn: (q) => q.inFilterOrNull(
+          'id',
+          widget!.roomRequests,
+        ),
+      );
       _model.choosenHall = widget!.chosenHalls!.toList().cast<int>();
       _model.listHallRequest = widget!.hallRequests!.toList().cast<int>();
       _model.listFoodRequest = widget!.foodRequests!.toList().cast<int>();
       _model.chosenFood = widget!.chosenFood!.toList().cast<int>();
       _model.listRoomRequest = widget!.roomRequests!.toList().cast<int>();
       _model.choosenRooms = widget!.chosenRoom!.toList().cast<int>();
+      _model.priceHall = _model.initialhalHallRequest!
+          .map((e) => e.price)
+          .withoutNulls
+          .toList()
+          .toList()
+          .cast<double>();
+      _model.foodPrice = _model.initialhalFoodRequest!
+          .map((e) => e.price)
+          .withoutNulls
+          .toList()
+          .toList()
+          .cast<double>();
+      _model.roomPrice = _model.initialhalRoomRequest!
+          .map((e) => e.price)
+          .withoutNulls
+          .toList()
+          .toList()
+          .cast<double>();
       safeSetState(() {});
     });
 
@@ -97,7 +133,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
   Widget build(BuildContext context) {
     return FutureBuilder<List<UsersRow>>(
       future: UsersTable().querySingleRow(
-        queryFn: (q) => q.eq(
+        queryFn: (q) => q.eqOrNull(
           'uid',
           currentUserUid,
         ),
@@ -133,7 +169,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             body: FutureBuilder<List<HotelRow>>(
               future: HotelTable().querySingleRow(
-                queryFn: (q) => q.eq(
+                queryFn: (q) => q.eqOrNull(
                   'id',
                   widget!.hotel,
                 ),
@@ -281,7 +317,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                               0.0, 32.0, 0.0, 56.0),
                           child: FutureBuilder<List<HotelRow>>(
                             future: HotelTable().querySingleRow(
-                              queryFn: (q) => q.eq(
+                              queryFn: (q) => q.eqOrNull(
                                 'id',
                                 widget!.hotel,
                               ),
@@ -331,7 +367,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                               0.0, 0.0, 0.0, 56.0),
                           child: FutureBuilder<List<HotelRow>>(
                             future: HotelTable().querySingleRow(
-                              queryFn: (q) => q.eq(
+                              queryFn: (q) => q.eqOrNull(
                                 'id',
                                 widget!.hotel,
                               ),
@@ -386,9 +422,9 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                       child: FutureBuilder<List<HallRow>>(
                                         future: HallTable().queryRows(
                                           queryFn: (q) => q
-                                              .in_(
+                                              .inFilterOrNull(
                                                 'id',
-                                                hallChooseHotelRow!.hall,
+                                                hallChooseHotelRow?.hall,
                                               )
                                               .order('name', ascending: true),
                                         ),
@@ -430,11 +466,11 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                   future: RequestsHallVarTable()
                                                       .querySingleRow(
                                                     queryFn: (q) => q
-                                                        .eq(
+                                                        .eqOrNull(
                                                           'hall_id',
                                                           columnHallRow.id,
                                                         )
-                                                        .eq(
+                                                        .eqOrNull(
                                                           'request_id',
                                                           widget!.request?.id,
                                                         ),
@@ -508,17 +544,17 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                                 .delete(
                                                               matchingRows:
                                                                   (rows) => rows
-                                                                      .eq(
+                                                                      .eqOrNull(
                                                                         'hall_id',
                                                                         columnHallRow
                                                                             .id,
                                                                       )
-                                                                      .in_(
+                                                                      .inFilterOrNull(
                                                                         'hall_id',
                                                                         widget!
-                                                                            .chosenHalls!,
+                                                                            .chosenHalls,
                                                                       )
-                                                                      .eq(
+                                                                      .eqOrNull(
                                                                         'request_id',
                                                                         widget!
                                                                             .request
@@ -762,7 +798,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                 0.0, 40.0, 0.0, 56.0),
                             child: FutureBuilder<List<HotelRow>>(
                               future: HotelTable().querySingleRow(
-                                queryFn: (q) => q.eq(
+                                queryFn: (q) => q.eqOrNull(
                                   'id',
                                   widget!.hotel,
                                 ),
@@ -819,9 +855,9 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                         decoration: BoxDecoration(),
                                         child: FutureBuilder<List<FoodRow>>(
                                           future: FoodTable().queryRows(
-                                            queryFn: (q) => q.in_(
+                                            queryFn: (q) => q.inFilterOrNull(
                                               'id',
-                                              foodChosesHotelRow!.food,
+                                              foodChosesHotelRow?.food,
                                             ),
                                           ),
                                           builder: (context, snapshot) {
@@ -860,11 +896,11 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                   future: RequestsFoodVarTable()
                                                       .querySingleRow(
                                                     queryFn: (q) => q
-                                                        .eq(
+                                                        .eqOrNull(
                                                           'food_id',
                                                           columnFoodRow.id,
                                                         )
-                                                        .eq(
+                                                        .eqOrNull(
                                                           'request_id',
                                                           widget!.request?.id,
                                                         ),
@@ -946,12 +982,12 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                                 .delete(
                                                               matchingRows:
                                                                   (rows) => rows
-                                                                      .eq(
+                                                                      .eqOrNull(
                                                                         'food_id',
                                                                         columnFoodRow
                                                                             .id,
                                                                       )
-                                                                      .eq(
+                                                                      .eqOrNull(
                                                                         'request_id',
                                                                         widget!
                                                                             .request
@@ -1098,7 +1134,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                 0.0, 40.0, 0.0, 56.0),
                             child: FutureBuilder<List<HotelRow>>(
                               future: HotelTable().querySingleRow(
-                                queryFn: (q) => q.eq(
+                                queryFn: (q) => q.eqOrNull(
                                   'id',
                                   widget!.hotel,
                                 ),
@@ -1155,9 +1191,9 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                         decoration: BoxDecoration(),
                                         child: FutureBuilder<List<RoomRow>>(
                                           future: RoomTable().queryRows(
-                                            queryFn: (q) => q.in_(
+                                            queryFn: (q) => q.inFilterOrNull(
                                               'id',
-                                              roomChoosesHotelRow!.rooms,
+                                              roomChoosesHotelRow?.rooms,
                                             ),
                                           ),
                                           builder: (context, snapshot) {
@@ -1196,11 +1232,11 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                   future: RequestsRoomVarTable()
                                                       .querySingleRow(
                                                     queryFn: (q) => q
-                                                        .eq(
+                                                        .eqOrNull(
                                                           'room_id',
                                                           columnRoomRow.id,
                                                         )
-                                                        .eq(
+                                                        .eqOrNull(
                                                           'request_id',
                                                           widget!.request?.id,
                                                         ),
@@ -1283,12 +1319,12 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                                                 .delete(
                                                               matchingRows:
                                                                   (rows) => rows
-                                                                      .eq(
+                                                                      .eqOrNull(
                                                                         'room_id',
                                                                         columnRoomRow
                                                                             .id,
                                                                       )
-                                                                      .eq(
+                                                                      .eqOrNull(
                                                                         'request_id',
                                                                         widget!
                                                                             .request
@@ -1432,7 +1468,7 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                               0.0, 40.0, 0.0, 40.0),
                           child: FutureBuilder<List<HotelRow>>(
                             future: HotelTable().querySingleRow(
-                              queryFn: (q) => q.eq(
+                              queryFn: (q) => q.eqOrNull(
                                 'id',
                                 widget!.hotel,
                               ),
@@ -2038,7 +2074,8 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                               'room_original_id':
                                                   _model.choosenRooms,
                                             },
-                                            matchingRows: (rows) => rows.eq(
+                                            matchingRows: (rows) =>
+                                                rows.eqOrNull(
                                               'id',
                                               widget!.request?.id,
                                             ),
@@ -2048,15 +2085,15 @@ class _EditRequestPageWidgetState extends State<EditRequestPageWidget> {
                                               'request_id': widget!.request?.id,
                                             },
                                             matchingRows: (rows) => rows
-                                                .eq(
+                                                .eqOrNull(
                                                   'owner',
                                                   editRequestPageUsersRow?.id,
                                                 )
-                                                .eq(
+                                                .eqOrNull(
                                                   'request_id',
                                                   0,
                                                 )
-                                                .in_(
+                                                .inFilterOrNull(
                                                   'hall_id',
                                                   _model.choosenHall,
                                                 ),

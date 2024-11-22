@@ -9,6 +9,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'client_room_component_widget.dart' show ClientRoomComponentWidget;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,7 +19,14 @@ class ClientRoomComponentModel
     extends FlutterFlowModel<ClientRoomComponentWidget> {
   ///  Local state fields for this component.
 
-  double? price = 0.0;
+  List<double> price = [];
+  void addToPrice(double item) => price.add(item);
+  void removeFromPrice(double item) => price.remove(item);
+  void removeAtIndexFromPrice(int index) => price.removeAt(index);
+  void insertAtIndexInPrice(int index, double item) =>
+      price.insert(index, item);
+  void updatePriceAtIndex(int index, Function(double) updateFn) =>
+      price[index] = updateFn(price[index]);
 
   int? days = 1;
 
@@ -26,8 +34,12 @@ class ClientRoomComponentModel
 
   bool roomFieldOpen = true;
 
+  double? reguldarPrice;
+
   ///  State fields for stateful widgets in this component.
 
+  // Stores action output result for [Backend Call - Query Rows] action in ClientRoomComponent widget.
+  List<RoomSeasonElementRow>? initialElement;
   // State field(s) for PageView widget.
   PageController? pageViewController1;
 
@@ -36,6 +48,8 @@ class ClientRoomComponentModel
           pageViewController1!.page != null
       ? pageViewController1!.page!.round()
       : 0;
+  // Stores action output result for [Backend Call - Query Rows] action in Icon widget.
+  List<RoomSeasonElementRow>? searchElement;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController1;

@@ -47,7 +47,7 @@ class _EditTermsWidgetState extends State<EditTermsWidget> {
     return FutureBuilder<List<CmsRow>>(
       future: CmsTable().querySingleRow(
         queryFn: (q) => q
-            .eq(
+            .eqOrNull(
               'type',
               EnumCms.TERMS_OF_USE.name,
             )
@@ -210,7 +210,7 @@ class _EditTermsWidgetState extends State<EditTermsWidget> {
                             data: {
                               'text1': _model.aboutUsText1TextController.text,
                             },
-                            matchingRows: (rows) => rows.eq(
+                            matchingRows: (rows) => rows.eqOrNull(
                               'id',
                               containerCmsRow?.id,
                             ),
