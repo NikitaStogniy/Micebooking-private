@@ -359,7 +359,7 @@ class _EditRoomComponentWidgetState extends State<EditRoomComponentWidget> {
                                             child: Text(
                                               valueOrDefault<String>(
                                                 widget!.room?.name,
-                                                'namne',
+                                                'Без имени',
                                               ),
                                               style: FlutterFlowTheme.of(
                                                       context)

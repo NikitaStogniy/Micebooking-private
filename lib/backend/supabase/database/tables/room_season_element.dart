@@ -44,4 +44,8 @@ class RoomSeasonElementRow extends SupabaseDataRow {
 
   int? get hotelId => getField<int>('hotel_id');
   set hotelId(int? value) => setField<int>('hotel_id', value);
+
+  int? get roomIdentificator => getField<int>('room_identificator');
+  set roomIdentificator(int? value) =>
+      setField<int>('room_identificator', value);
 }

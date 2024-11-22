@@ -43,4 +43,7 @@ class RoomRow extends SupabaseDataRow {
 
   List<String> get images => getListField<String>('images');
   set images(List<String>? value) => setListField<String>('images', value);
+
+  int get identifier => getField<int>('identifier')!;
+  set identifier(int value) => setField<int>('identifier', value);
 }

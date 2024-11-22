@@ -871,7 +871,6 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                                                             widget!.id)
                                                         .toList()
                                                         .first);
-                                                _model.newSeason = false;
                                                 safeSetState(() {});
 
                                                 safeSetState(() {});
@@ -981,6 +980,8 @@ class _EditRoomWidgetState extends State<EditRoomWidget> {
                                                       .first
                                                   : null,
                                               hotel: _model.hotel!.first.id,
+                                              main: false,
+                                              isNew: false,
                                               save: (dayStart, dayEnd, price,
                                                   name) async {
                                                 await RoomSeasonsTable().update(

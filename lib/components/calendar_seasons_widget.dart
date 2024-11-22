@@ -70,7 +70,7 @@ class _CalendarSeasonsWidgetState extends State<CalendarSeasonsWidget> {
             )
             .eqOrNull(
               'main',
-              widget!.currentSeason?.main,
+              widget!.main,
             ),
       );
       _model.disabledDates = functions

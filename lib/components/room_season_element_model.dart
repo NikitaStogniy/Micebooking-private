@@ -34,6 +34,8 @@ class RoomSeasonElementModel extends FlutterFlowModel<RoomSeasonElementWidget> {
   List<RoomSeasonElementRow>? element;
   // Stores action output result for [Backend Call - Query Rows] action in room_season_element widget.
   List<RoomSeasonElementRow>? elementMain2;
+  // Stores action output result for [Backend Call - Query Rows] action in room_season_element widget.
+  List<RoomSeasonElementRow>? element2;
   // State field(s) for name_edit widget.
   FocusNode? nameEditFocusNode;
   TextEditingController? nameEditTextController;

@@ -424,3 +424,12 @@ bool checkForCommonElements(
   }
   return true;
 }
+
+List<int> removeElementFromList(
+  int element,
+  List<int> list,
+) {
+// Создаем копию списка без указанного элемента
+  list.remove(element);
+  return list;
+}

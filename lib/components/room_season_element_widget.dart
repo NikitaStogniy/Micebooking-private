@@ -24,7 +24,9 @@ class RoomSeasonElementWidget extends StatefulWidget {
     required this.delete,
     required this.hotel,
     bool? main,
-  }) : this.main = main ?? false;
+    bool? isNew,
+  })  : this.main = main ?? false,
+        this.isNew = isNew ?? false;
 
   final RoomSeasonsRow? season;
   final bool? isElemExist;
@@ -34,6 +36,7 @@ class RoomSeasonElementWidget extends StatefulWidget {
   final Future Function(int? season, int? seasonElem)? delete;
   final int? hotel;
   final bool main;
+  final bool isNew;
 
   @override
   State<RoomSeasonElementWidget> createState() =>
@@ -118,10 +121,32 @@ class _RoomSeasonElementWidgetState extends State<RoomSeasonElementWidget> {
             safeSetState(() {});
           }
         } else {
-          _model.price = 0.0;
-          _model.dayStart = null;
-          _model.dayEnd = null;
-          safeSetState(() {});
+          _model.element2 = await RoomSeasonElementTable().queryRows(
+            queryFn: (q) => q
+                .eqOrNull(
+                  'season_id',
+                  widget!.season?.id,
+                )
+                .eqOrNull(
+                  'hotel_id',
+                  widget!.hotel,
+                )
+                .eqOrNull(
+                  'main',
+                  false,
+                ),
+          );
+          if (_model.element2!.length > 0) {
+            _model.price = 0.0;
+            _model.dayStart = _model.element2?.first?.dayStart;
+            _model.dayEnd = _model.element2?.first?.dayEnd;
+            safeSetState(() {});
+          } else {
+            _model.price = 0.0;
+            _model.dayStart = null;
+            _model.dayEnd = null;
+            safeSetState(() {});
+          }
         }
       }
 
