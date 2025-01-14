@@ -1,9 +1,9 @@
 # Используем официальный Docker образ Dart для сборки проекта
-FROM dart:2.18 AS build
+FROM dart:3.5.4 AS build
 
 # Устанавливаем Flutter
 RUN git clone https://github.com/flutter/flutter.git /flutter
-RUN cd /flutter && git fetch && git checkout 3.22.2
+RUN cd /flutter && git fetch && git checkout 3.24.5
 ENV PATH="/flutter/bin:/flutter/bin/cache/dart-sdk/bin:${PATH}"
 
 # Устанавливаем Chrome для поддержки Flutter Web
